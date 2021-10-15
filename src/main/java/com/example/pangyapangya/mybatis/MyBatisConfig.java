@@ -1,4 +1,4 @@
-package com.example.board.MyBatis;
+package com.example.pangyapangya.mybatis;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
