@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class mainController {
 
     @GetMapping("index")
-    public String index(){
-        return "main/index";
-    }
+    public String index(){ return "main/index"; }
 
     @GetMapping("elements")
     public String elements(){
@@ -23,8 +21,9 @@ public class mainController {
     }
 
     @GetMapping("generic")
-    public String generic(){
-        return "main/generic";
-    }
+    public String generic(){ return "main/generic"; }
+
+    @GetMapping("mainPage")
+    public String mainPage(){ return "main/mainPage"; }
 
 }
