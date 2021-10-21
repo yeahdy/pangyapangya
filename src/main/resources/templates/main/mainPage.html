@@ -12,6 +12,8 @@
 	<style>
 		.headerIcon{
 			width: 40px;
+			display: block;
+			margin: auto;"
 		}
 		.icon.solid:before {
 			font-weight: 100;
@@ -20,6 +22,11 @@
 
 		.spotlights h5{
 			font-weight: bold;
+			font-size: small;
+		}
+
+		.spotlights p{
+			font-size: small;
 		}
 
 		/* 검색창 */
@@ -42,56 +49,38 @@
 			top: 35%;
 			margin: 0;
 		}
+		form {
+			margin: 0;
+		}
+
+		/* 갤러리 */
+		.spotlights > article {
+			padding: 1.0em 2.25em 0.5em 2.25em;
+			border-style: solid;
+			border-width: 1px 1px 0px 0px;
+			width: 25%;
+		}
+
+		.image.fit img {
+			border-radius: 4px;
+		}
+
+		h4 {
+			font-weight: 700;
+			font-size: large;
+			color: black;
+			display: inline-block;
+		}
+
+		.spotlights h5{
+			color: black;
+		}
 	</style>
 </head>
-<body class="is-preload" style="padding: 200px">
+<body class="is-preload" style="padding: 10em 200px 0 200px;">
 
 <!-- Header -->
-<header id="header">
-
-	<!-- Logo -->
-	<span class="logo">
-		<a href="index.html">빵야빵야(屋)</a>
-		<span></span>
-	</span>
-
-	<!-- Nav -->
-	<nav id="nav">
-		<ul>
-			<li><a href="elements.html">빵집 찾기</a></li>
-			<li><a href="generic.html">원데이 클래스</a></li>
-			<li><a href="elements.html">빵 체험단</a></li>
-			<!-- 검색창 -->
-			<form method="post" action="#" name="">
-				<div class="search">
-					<i class="fas fa-search"></i>
-					<input type="text" placeholder="먹고 싶은 빵 종류를 검색 해 보세요">
-				</div>
-				<input type="hidden" class="box" value="검색">
-			</form>
-			<li><a href="#"><img src="/images/iconCart.png" alt="cart" class="headerIcon"/></a></li>
-
-			<!-- 비회원일 경우 -->
-			<li>
-				<a href="#" class="icon solid fa-angle-down"><img src="/images/iconPerson.png" alt="myPage" class="headerIcon"/></a>
-				<ul>
-					<li><a href="#">로그인</a></li>
-					<li><a href="#">회원가입</a></li>
-				</ul>
-			</li>
-			<!-- 회원일 경우 -->
-			<!--
-			<li>
-				<a href="#" class="icon solid fa-angle-down"><img src="/images/iconPerson.png" alt="myPage" class="headerIcon"/></a>
-				<ul>
-					<li><a href="#">글 등록하기</a></li>
-					<li><a href="#">내 글보기</a></li>
-					<li><a href="#">내 정보관리</a></li>
-				</ul>
-			</li>
-			-->
-		</ul>
-	</nav>
+<header id="header" th:include="/main/header::header_body">
 
 </header>
 
@@ -145,40 +134,191 @@
 			</article>
 		</section>
 
-		<!-- Blurb -->
+		<!-- Blurb 1 -->
 		<section style="padding-top: 2.0em;padding-bottom: 0em;">
-			<h4>오늘의 빵</h4>
+			<h4>따끈따끈 오늘의 빵</h4>
 		</section>
 
-		<!-- Spotlights -->
+		<!-- Spotlights 1 -->
 		<section class="spotlights alt">
-			<article>
-				<a href="#" class="image fit"><img src="/images/pic01.jpg" alt=""></a>
+			<article style="border-width: 0px 1px 0px 0px;">
+				<a href="#" class="image fit"><img src="/images/garlicBread1.jpg" alt=""></a>
 				<h5>만동제과</h5>
 				<p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
+				<p style="font-weight: 600;">리뷰 0개</p>
 			</article>
-			<article>
-				<a href="#" class="image fit"><img src="/images/pic02.jpg" alt=""></a>
+			<article style="border-width: 0px 1px 0px 0px;">
+				<a href="#" class="image fit"><img src="/images/melon1.jpg" alt=""></a>
 				<h5>리코 베이커리</h5>
 				<p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
+				<p style="font-weight: 600;">리뷰 0개</p>
 			</article>
-			<article>
-				<a href="#" class="image fit"><img src="/images/pic03.jpg" alt=""></a>
+			<article style="border-width: 0px 1px 0px 0px;">
+				<a href="#" class="image fit"><img src="/images/스콘1.jpg" alt=""></a>
 				<h5>버터랏츠</h5>
 				<p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
-				<ul class="actions">
-					<li><a href="#" class="button">Learn More</a></li>
-				</ul>
+				<p style="font-weight: 600;">리뷰 0개</p>
 			</article>
-			<article>
-				<a href="#" class="image fit"><img src="/images/pic04.jpg" alt=""></a>
+			<article style="border-width: 0px 0px 0px 0px;">
+				<a href="#" class="image fit"><img src="/images/donut1.jpg" alt=""></a>
 				<h5>카페노티드</h5>
 				<p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
-				<ul class="actions">
-					<li><a href="#" class="button">Learn More</a></li>
-				</ul>
+				<p style="font-weight: 600;">리뷰 0개</p>
 			</article>
+			<article>
+				<a href="#" class="image fit"><img src="/images/donut1.jpg" alt=""></a>
+				<h5>만동제과</h5>
+				<p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
+				<p style="font-weight: 600;">리뷰 0개</p>
+			</article>
+			<article>
+				<a href="#" class="image fit"><img src="/images/donut1.jpg" alt=""></a>
+				<h5>리코 베이커리</h5>
+				<p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
+				<p style="font-weight: 600;">리뷰 0개</p>
+			</article>
+			<article>
+				<a href="#" class="image fit"><img src="/images/까눌레1.jpg" alt=""></a>
+				<h5>버터랏츠</h5>
+				<p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
+				<p style="font-weight: 600;">리뷰 0개</p>
+			</article>
+			<article>
+				<a href="#" class="image fit"><img src="/images/휘낭시에3.png" alt=""></a>
+				<h5>카페노티드</h5>
+				<p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
+				<p style="font-weight: 600;">리뷰 0개</p>
+			</article>
+			<br>
+			<div class="col-6 col-12-medium">
+				<ul class="actions fit">
+					<li><a href="#" class="button primary fit" style="margin-top: 1em;">오늘의 빵 더보기</a></li>
+				</ul>
+			</div>
 		</section>
+
+
+		<!-- Blurb 2 -->
+		<section style="padding-top: 2.0em;padding-bottom: 0em;border-top: none;">
+			<h4>요즘 인기 빵 직접 만드는 원데이 클래스</h4>
+		</section>
+
+		<!-- Spotlights 2 -->
+		<section class="spotlights alt">
+			<article style="border-width: 0px 1px 0px 0px;">
+				<a href="#" class="image fit"><img src="/images/garlicBread2.jpg" alt=""></a>
+				<h5>만동제과</h5>
+				<p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
+				<p style="font-weight: 600;">리뷰 0개</p>
+			</article>
+			<article style="border-width: 0px 1px 0px 0px;">
+				<a href="#" class="image fit"><img src="/images/까눌레1.jpg" alt=""></a>
+				<h5>리코 베이커리</h5>
+				<p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
+				<p style="font-weight: 600;">리뷰 0개</p>
+			</article>
+			<article style="border-width: 0px 1px 0px 0px;">
+				<a href="#" class="image fit"><img src="/images/휘낭시에2.png" alt=""></a>
+				<h5>버터랏츠</h5>
+				<p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
+				<p style="font-weight: 600;">리뷰 0개</p>
+			</article>
+			<article style="border-width: 0px 0px 0px 0px;">
+				<a href="#" class="image fit"><img src="/images/donut2.jpg" alt=""></a>
+				<h5>카페노티드</h5>
+				<p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
+				<p style="font-weight: 600;">리뷰 0개</p>
+			</article>
+			<article>
+				<a href="#" class="image fit"><img src="/images/휘낭시에3.png" alt=""></a>
+				<h5>만동제과</h5>
+				<p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
+				<p style="font-weight: 600;">리뷰 0개</p>
+			</article>
+			<article>
+				<a href="#" class="image fit"><img src="/images/스콘1.jpg" alt=""></a>
+				<h5>리코 베이커리</h5>
+				<p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
+				<p style="font-weight: 600;">리뷰 0개</p>
+			</article>
+			<article>
+				<a href="#" class="image fit"><img src="/images/donut1.jpg" alt=""></a>
+				<h5>버터랏츠</h5>
+				<p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
+				<p style="font-weight: 600;">리뷰 0개</p>
+			</article>
+			<article>
+				<a href="#" class="image fit"><img src="/images/melon1.jpg" alt=""></a>
+				<h5>카페노티드</h5>
+				<p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
+				<p style="font-weight: 600;">리뷰 0개</p>
+			</article>
+			<br>
+			<div class="col-6 col-12-medium">
+				<ul class="actions fit">
+					<li><a href="#" class="button primary fit" style="margin-top: 1em;">원데이 클래스 더보기</a></li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- Blurb 3 -->
+		<section style="padding-top: 2.0em;padding-bottom: 0em;border-top: none;">
+			<h4>빵 체험단 실시간 모집!</h4>
+			<a href="#" style="text-align: right;float: right;font-weight: 700;">더보기</a>
+		</section>
+
+		<!-- Spotlights 3 -->
+		<section class="spotlights alt">
+			<article style="border-width: 0px 0px 0px 0px;width: 33.33333%;">
+				<a href="#" class="image fit"><img src="/images/garlicBread1.jpg" alt=""></a>
+				<h5>만동제과</h5>
+				<p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
+				<p style="font-weight: 600;">리뷰 0개</p>
+			</article>
+			<article style="border-width: 0px 0px 0px 0px;width: 33.33333%;">
+				<a href="#" class="image fit"><img src="/images/휘낭시에3.png" alt=""></a>
+				<h5>리코 베이커리</h5>
+				<p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
+				<p style="font-weight: 600;">리뷰 0개</p>
+			</article>
+			<article style="border-width: 0px 0px 0px 0px;width: 33.33333%;">
+				<a href="#" class="image fit"><img src="/images/donut3.jpg" alt=""></a>
+				<h5>카페노티드</h5>
+				<p>생크림이 가득 심슨 도넛/ 딸기, 우유, 초코 등</p>
+				<p style="font-weight: 600;">리뷰 0개</p>
+			</article>
+			<br>
+		</section>
+
+		<!-- Blurb 4 -->
+		<section style="padding-top: 2.0em;padding-bottom: 0em;border-top: none;">
+			<h4>빵 체험단 실시간 리뷰!</h4>
+			<a href="#" style="text-align: right;float: right;font-weight: 700;">더보기</a>
+		</section>
+
+		<!-- Spotlights 4 -->
+		<section class="spotlights alt">
+			<article style="border-width: 0px 0px 0px 0px;width: 33.33333%;">
+				<a href="#" class="image fit"><img src="/images/garlicBread2.jpg" alt=""></a>
+				<h5>만동제과</h5>
+				<p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
+				<p style="font-weight: 600;">리뷰 0개</p>
+			</article>
+			<article style="border-width: 0px 0px 0px 0px;width: 33.33333%;">
+				<a href="#" class="image fit"><img src="/images/melon1.jpg" alt=""></a>
+				<h5>리코 베이커리</h5>
+				<p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
+				<p style="font-weight: 600;">리뷰 0개</p>
+			</article>
+			<article style="border-width: 0px 0px 0px 0px;width: 33.33333%;">
+				<a href="#" class="image fit"><img src="/images/스콘1.jpg" alt=""></a>
+				<h5>버터랏츠</h5>
+				<p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
+				<p style="font-weight: 600;">리뷰 0개</p>
+			</article>
+			<br>
+		</section>
+
 	</section>
 </div>
 
@@ -241,25 +381,13 @@
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
-<script>
-	let searchField = $('.search');
-	let searchInput = $("input[type='search']");
-
-	let checkSearch = function(){
-		let contents = searchInput.val();
-		if(contents.length !== 0){
-			searchField.addClass('full');
-		} else {
-			searchField.removeClass('full');
-		}
-	};
-
-	$("input[type='search']").focus(function(){
-		searchField.addClass('isActive');
-	}).blur(function(){
-		searchField.removeClass('isActive');
-		checkSearch();
-	});
+<script type="text/javascript">
+	$("#header").mouseleave(function(){
+		$(this).css("background", "rgba(249,168,37,1)");
+	})
+	$("#header").mouseover(function(){
+		$(this).css("background", "rgba(249,168,37,0.7)");
+	})
 </script>
 </body>
 </html>

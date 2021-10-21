@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+	<title>로그인 | 빵야빵야(屋)</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="/css/main.css" />
+	<link rel="stylesheet" href="/css/login.css" />
+	<style th:include="/main/header::header_style">
+		.line_inp :not(button){
+			border: solid 0px;
+		}
+	</style>
+</head>
+<body class="is-preload" style="padding: 5em 200px 0 200px;background-color: white;">
+
+<!-- Header -->
+<header id="header" th:include="/main/header::header_body">
+
+</header>
+
+<!-- Wrapper -->
+	<!-- Main -->
+	<section class="cont_login container">
+		<form action="#" method="post" id="frm-login">
+			<div class="box_login login_email">
+				<h2 class="tit">간편하게 로그인하고 빵야빵야(屋)의<br> 다양한 빵을 먹어보세요.</h2>
+				<div class="box_inp">
+					<div class="line_inp">
+						<input type="text" id="email" name="email" placeholder="이메일 주소를 입력해주세요">
+						<p class="info_error" id="emailError1">이메일을 입력해주세요.</p>
+					</div>
+					<div class="line_inp line_pw">
+						<input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요">
+						<button type="button" class="type_pwd hide" id="viewPass"></button>
+						<p class="info_error" id="passError1">비밀번호를 입력해주세요.</p>
+						<p class="info_error" id="passError2">이메일 또는 비밀번호를 확인해주세요.</p>
+					</div>
+				</div>
+				<div class="col-6 col-12-medium">
+					<ul class="actions fit" style="margin-bottom: 1em;">
+						<li><a href="/main/mainPage" class="button primary fit" style="margin-top: 1em;">로그인 하기</a></li>
+					</ul>
+					<div class="box_btn">
+						<a class="btn" href="/main/idFind">아이디 찾기</a>
+						<a class="btn" href="/main/pwFind">비밀번호 찾기</a>
+						<a class="btn" href="/main/join">회원가입</a>
+					</div>
+				</div>
+
+			</div>
+			<input type="hidden" name="redirectUrl" id="redirectUrl" value="https://taling.me/">
+		</form>
+	</section>
+<!-- Footer -->
+
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script type="text/javascript">
+
+	//비밀번호 숨기기
+	$('.type_pwd').on('click',function() {
+		var $this = $(this);
+		$this.toggleClass('hide');
+		if($this.hasClass('hide')){
+			$this.prev('input').prop('type','password');
+		}else{
+			$this.prev('input').prop('type','text');
+		}
+	});
+
+</script>
+</body>
+</html>

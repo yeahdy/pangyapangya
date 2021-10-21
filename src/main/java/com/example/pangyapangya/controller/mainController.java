@@ -28,4 +28,10 @@ public class mainController {
 
     @GetMapping("mainPage_test")
     public String mainPage_test(){ return "main/mainPage_test"; }
+
+    @GetMapping("login")
+    public String login(){ return "main/login"; }
+
+    @GetMapping("idFind")
+    public String idFind(){ return "main/idFind"; }
 }

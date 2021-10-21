@@ -9,6 +9,47 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<link rel="stylesheet" href="/css/main.css" />
+	<link rel="stylesheet" href="/css/login.css" />
+	<style>
+		.headerIcon{
+			width: 40px;
+			display: block;
+			margin: auto;"
+		}
+		.icon.solid:before {
+			font-weight: 100;
+			content: none;
+		}
+
+		.spotlights h5{
+			font-weight: bold;
+		}
+
+		/* 검색창 */
+		.search {
+			position: relative;
+			text-align: center;
+			width: 400px;
+			margin: 0 auto;
+		}
+		input {
+			width: 100%;
+			border-radius: 20px;
+			border: 1px solid #bbb;
+			margin: 10px 0;
+			padding: 10px 12px;
+		}
+		.fa-search {
+			position: absolute;
+			left: 90%;
+			top: 35%;
+			margin: 0;
+		}
+		form {
+			margin: 0;
+		}
+
+	</style>
 </head>
 <body class="is-preload" style="padding: 200px">
 
@@ -17,9 +58,9 @@
 
 	<!-- Logo -->
 	<span class="logo">
-						<a href="index.html">빵야빵야(屋)</a>
-						<span></span>
-					</span>
+		<a href="#"><img src="/images/breadLogo_re.png" alt="myPage" style="width: 100px;margin-top: 1.3em;"/></a>
+		<span></span>
+	</span>
 
 	<!-- Nav -->
 	<nav id="nav">
@@ -27,18 +68,34 @@
 			<li><a href="elements.html">빵집 찾기</a></li>
 			<li><a href="generic.html">원데이 클래스</a></li>
 			<li><a href="elements.html">빵 체험단</a></li>
+			<!-- 검색창 -->
+			<form method="post" action="#" name="">
+				<div class="search">
+					<i class="fas fa-search"></i>
+					<input type="text" placeholder="먹고 싶은 빵 종류를 검색 해 보세요" maxlength="17" style="background-color: wheat;border-radius: 10px;color: darkgray">
+				</div>
+				<input type="hidden" class="box" value="검색">
+			</form>
+			<!-- 비회원일 경우 -->
 			<li>
-				<a href="#" class="icon solid fa-angle-down">MyPage(icon)</a>
+				<a href="#" class="icon solid fa-angle-down"><img src="/images/iconPerson.png" alt="myPage" class="headerIcon"/></a>
+				<ul>
+					<li><a href="#">로그인</a></li>
+					<li><a href="#">회원가입</a></li>
+				</ul>
+			</li>
+			<!-- 회원일 경우 -->
+			<!--
+			<li>
+				<a href="#" class="icon solid fa-angle-down"><img src="/images/iconPerson.png" alt="myPage" class="headerIcon"/></a>
 				<ul>
 					<li><a href="#">글 등록하기</a></li>
 					<li><a href="#">내 글보기</a></li>
-					<li><a href="#">내 정보</a></li>
+					<li><a href="#">내 정보관리</a></li>
 				</ul>
 			</li>
-			<li><a href="#" class="button">검색(icon)</a></li>
-			<!-- 로그인 시 없애기 -->
-			<li><a href="#" class="button">로그인</a></li>
-			<li><a href="#" class="button">회원가입</a></li>
+			-->
+			<li style="margin-left: -1em;"><a href="#"><img src="/images/iconCart.png" alt="cart" class="headerIcon"/></a></li>
 		</ul>
 	</nav>
 
@@ -54,49 +111,49 @@
 		<section id="banner">
 			<article data-position="bottom right">
 				<div class="inner">
-					<img src="/images/slide01.jpg" alt="">
-					<h3>달콤하고 오싹하게! 할로윈 데이의 특권</h3>
-					<p>100여가지 이상의 할로윈 간식, 디저트</p>
+					<img src="/images/mainBread1.jpg" alt="메인빵1">
+					<h2 style="font-weight: bolder;font-size: xx-large;">엄선된 재료로 만든 영양가득 통밀빵</h2>
+					<p>10여가지 이상의 곡물이 첨가된 다양한 종류의 빵을 만나보세요</p>
 					<ul class="actions">
-						<li><a class="button large" href="#">바로 구경가기</a></li>
+						<li><a class="button" href="#">바로 구경가기</a></li>
 					</ul>
 				</div>
 			</article>
 			<article data-position="top right">
 				<div class="inner">
-					<img src="/images/slide02.jpg" alt="">
-					<h3>빵순이 빵돌이 다 모여라</h3>
+					<img src="/images/mainBread2.jpg" alt="메인빵2">
+					<h2 style="font-weight: bolder;font-size: xx-large;">빵순이 빵돌이 다 모여라</h2>
 					<p>집에서도 바삭한 빵 먹으러 가자!</p>
 					<ul class="actions">
-						<li><a class="button large" href="#">빵 담으러 가기</a></li>
-					</ul>
-				</div>
-			</article>
-			<article data-position="right">
-				<div class="inner">
-					<img src="/images/slide03.jpg" alt="">
-					<h3>빵순이 빵돌이 다 모여라</h3>
-					<p>직접 맛집 빵 만들러 가자!</p>
-					<ul class="actions">
-						<li><a class="button large" href="#">바로 신청하기</a></li>
+						<li><a class="button" href="#">빵 담으러 가기</a></li>
 					</ul>
 				</div>
 			</article>
 			<article data-position="center">
 				<div class="inner">
-					<img src="/images/slide04.jpg" alt="">
-					<h3>인기 빵집에서 무료로 빵 먹자!</h3>
-					<p></p>
+					<img src="/images/휘낭시에1.jpg" alt="">
+					<h2 style="font-weight: bolder;font-size: xx-large;">인기 빵집에서 무료로 빵 먹자!</h2>
+					<p>3초만에 빵 체험단 신청하고, 맛집 빵 무료로 맛보기</p>
 					<ul class="actions">
-						<li><a class="button large" href="#">실시간 모집 보러가기</a></li>
+						<li><a class="button" href="#">실시간 모집 보러가기</a></li>
+					</ul>
+				</div>
+			</article>
+			<article data-position="right">
+				<div class="inner">
+					<img src="/images/mainBread3.jpg" alt="메인빵3">
+					<h2 style="font-weight: bolder;font-size: xx-large;">빵순이 빵돌이 다 모여라</h2>
+					<p>직접 맛집 빵 만들러 가자!</p>
+					<ul class="actions">
+						<li><a class="button" href="#">바로 신청하기</a></li>
 					</ul>
 				</div>
 			</article>
 		</section>
 
 		<!-- Blurb -->
-		<section>
-			<h4>오늘의빵</h4>
+		<section style="padding-top: 2.0em;padding-bottom: 0em;">
+			<h4>오늘의 빵</h4>
 		</section>
 
 		<!-- Spotlights -->
@@ -130,6 +187,31 @@
 		</section>
 	</section>
 </div>
+	<section class="cont_login container">
+		<form action="#" method="post" id="frm-login">
+			<div class="box_login login_email">
+				<h2 class="tit">간편하게 로그인하고 탈잉의<br> 다양한 튜터를 만나보세요.</h2>
+				<div class="box_inp">
+					<div class="line_inp">
+						<input type="text" id="email" name="email" placeholder="이메일 주소를 입력해주세요">
+						<p class="info_error" id="emailError1">이메일을 입력해주세요.</p>
+					</div>
+					<div class="line_inp line_pw">
+						<input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요">
+						<button type="button" class="type_pwd hide" id="viewPass"></button>
+						<p class="info_error" id="passError1">비밀번호를 입력해주세요.</p>
+						<p class="info_error" id="passError2">이메일 또는 비밀번호를 확인해주세요.</p>
+					</div>
+				</div>
+				<div class="box_btn">
+					<button class="btn_submit" type="submit">로그인 하기</button>
+					<a class="btn" href="AccountFindPassword.php">비밀번호 찾기</a>
+					<a class="btn" href="LoginJoin.php">회원가입</a>
+				</div>
+			</div>
+			<input type="hidden" name="redirectUrl" id="redirectUrl" value="https://taling.me/">
+		</form>
+	</section>
 
 <!-- Footer -->
 <footer id="footer">
@@ -183,12 +265,34 @@
 </footer>
 
 <!-- Scripts -->
+<script src="https://kit.fontawesome.com/8eb5905426.js" crossorigin="anonymous"></script>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
 <script src="/js/browser.min.js"></script>
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
+<script type="text/javascript">
+	$("#header").mouseleave(function(){
+		$(this).css("opacity", "1");
+		$(this).css("color", "white");
+	})
+	$("#header").mouseover(function(){
+		$(this).css("opacity", "0.7");
+		$(this).css("color", "black");
+	})
 
+	//비밀번호 숨기기
+	$('.type_pwd').on('click',function() {
+		var $this = $(this);
+		$this.toggleClass('hide');
+		if($this.hasClass('hide')){
+			$this.prev('input').prop('type','password');
+		}else{
+			$this.prev('input').prop('type','text');
+		}
+	});
+
+</script>
 </body>
 </html>
