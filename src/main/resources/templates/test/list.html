@@ -144,6 +144,7 @@
             display: flex;
             justify-content: space-between;
         }
+
     </style>
 </head>
 <body class="is-preload" style="padding: 200px">
@@ -163,12 +164,6 @@
         <section style="padding-top: 2.0em;padding-bottom: 0em; padding-left: 1.5em;">
             <h4>빵 체험단 모집</h4>
             <div class="flexsearch">
-                <div class="sear">
-                    <input type="text" name="search" class="search" onkeyup="enterkey()" placeholder="검색어를 입력해주세요."
-                           style="width: 30%; margin: 0 5px 0 10%; border: none; border-bottom: solid 2px; border-bottom-color: white; font-size: 12px; font-family: 'Nanum Gothic Coding', monospace;">
-                    <input type="button" onclick="search()" value="검색"
-                           style="background-color: #f9a825; box-shadow: none; width: 6%">
-                </div>
                 <select name="category" id="category" onchange="location.href=this.value" style="width: 10%">
                     <option value="">전체</option>
                     <option value="1">제과</option>
@@ -176,9 +171,14 @@
                     <option value="1">케이크</option>
                     <option value="1">디저트</option>
                 </select>
+                <div class="" style="display: flex; align-items: center;">
+                    <input type="text" name="search" class="search" onkeyup="enterkey()" placeholder="검색어를 입력해주세요."
+                           style="width: 30%; color: #333 !important; margin: 0 5px 0 0%; width: 500px; border: none; border-bottom: solid 2px; border-bottom-color: white; font-size: 12px; font-family: 'Nanum Gothic Coding', monospace;">
+                    <input type="button" onclick="search()" value="검색"
+                           style="background-color: #f9a825; box-shadow: none; width: 14%">
+                </div>
             </div>
         </section>
-        여기 작업한거 푸쉬한된거인가 커밋안된거 파랑색으로 뜨잖아요 지금 list요
         <section>
             <div style="display: flex; justify-content: space-evenly; position: relative;">
                 <div class="review" style="/*position: absolute;*/ left: 0px; top: 0px; height: 264px">
