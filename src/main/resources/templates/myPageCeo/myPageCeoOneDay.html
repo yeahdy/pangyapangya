@@ -1,0 +1,318 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+	<title>Untitled</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="/css/main.css" />
+	<style>
+		.headerIcon{
+			width: 40px;
+			display: block;
+			margin: auto;"
+		}
+		.icon.solid:before {
+			font-weight: 100;
+			content: none;
+		}
+
+		.spotlights h5{
+			font-weight: bold;
+			font-size: small;
+		}
+
+		.spotlights p{
+			font-size: small;
+		}
+
+		/* 검색창 */
+		.search {
+			position: relative;
+			text-align: center;
+			width: 400px;
+			margin: 0 auto;
+		}
+		input {
+			width: 100%;
+			border-radius: 20px;
+			border: 1px solid #bbb;
+			margin: 10px 0;
+			padding: 10px 12px;
+		}
+		.fa-search {
+			position: absolute;
+			left: 90%;
+			top: 35%;
+			margin: 0;
+		}
+		form {
+			margin: 0;
+		}
+		#all{display: flex;}
+		.wrapper{width: 75%;}
+		#rightHeader h2{color: #716ff7; font-size: 1.2em; font-weight: 900;}
+		#explain p{font-size: 0.8em; background: aliceblue; height: 80px; padding: 20px 10px;}
+		#ad{background: none; width: 15%; height: 10px;}
+		#ad img{width: 100%; height: 600px;}
+		#myMainSection{display: flex;}
+		#myLeftSection{width: 20%; background: #f9efef; height: 430px;}
+		#myRightSection{width: 80%; padding: 0 15px 15px 45px;}
+		.myPageTitle{background: #F9A825; margin: 0; padding: 7px 7px 7px 15px;}
+		.myPageTitle p{margin: 0; color: #fff;}
+		#allDiv{padding:15px;}
+		#allDiv p{margin: 0; font-size: 0.85em; font-weight: bold; color: #000;}
+		.contentDiv{margin-top: 15px; margin-bottom: 15px;}
+		.contentDiv a{color: #3b3b3b; font-weight: lighter; border: none; font-size: 0.8rem;}
+		.myPageSelectMenu{margin-top: 5px; margin-bottom: 5px;}
+		#subDiv1 {display: flex;}
+		.first-file{width: 60%; padding-top: 150px; border-right: 1px solid #000;}
+		.files {text-align: center; border: 5px solid #F9A825; margin-right: 15px; margin-bottom: 10px;}
+		.image{position: fixed;}
+		.table-1{display: flex; margin-bottom: 20px;}
+		.table-1 div p{margin: 0; padding: 10px 17px 0;}
+		.table-title{width: 25%; color: #F9A825; font-weight: 600; padding-top: 10px}
+		.table-content{width: 75%;}
+		.table-content div{width: 200px; margin-right: 1px;}
+		#title1 p{margin-bottom: 1em; font-size: 1.3em; font-weight: 600; color: #3c4b51;}
+		#title2{margin-top: 2em; margin-bottom: 1em; font-size: 1.3em; font-weight: 600; color: #000;}
+		hr {margin: 1em 0 2em;}
+		sub {font-size: 0.5em; font-weight: lighter; top: 0.3em; left: 0.8em; color: #888}
+		input[type="text"], textarea{border: none; background: #fff;}
+		input[type="file"]{display: none;}
+		#registDiv{text-align: center;}
+		select{border: none; background-color: rgba(144, 144, 144, 000);}
+	</style>
+</head>
+<body class="is-preload" style="padding: 200px">
+<!-- Header -->
+<header id="header">
+
+	<!-- Logo -->
+	<span class="logo">
+						<a href="../main/index.html">Faction</a>
+						<span>By Pixelarity</span>
+					</span>
+
+	<!-- Nav -->
+	<nav id="nav">
+		<ul>
+			<li><a href="../main/index.html">Home</a></li>
+			<li>
+				<a href="#" class="icon solid fa-angle-down">Dropdown</a>
+				<ul>
+					<li><a href="#">Option One</a></li>
+					<li><a href="#">Option Two</a></li>
+					<li><a href="#">Option Three</a></li>
+					<li>
+						<a href="#">Submenu</a>
+						<ul>
+							<li><a href="#">Option One</a></li>
+							<li><a href="#">Option Two</a></li>
+							<li><a href="#">Option Three</a></li>
+							<li><a href="#">Option Four</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li><a href="../main/generic.html">Generic</a></li>
+			<li><a href="../main/elements.html">Elements</a></li>
+			<li><a href="#" class="button">Log In</a></li>
+		</ul>
+	</nav>
+</header>
+
+<!-- Wrapper -->
+<div>
+	<div id="all">
+		<div class="wrapper">
+			<!-- Main -->
+
+			<section class="main second-main">
+
+				<section>
+					<header>
+						<h1>MY PAGE</h1>
+					</header>
+					<p></p>
+					<section id="myMainSection">
+						<section id="myLeftSection">
+							<div id="myLeftDiv">
+								<div class="myPageMenu">
+									<div class="myPageTitle"><p>MY MENU</p></div>
+									<div id="allDiv">
+										<div class="myPageSelect1"><p>글 등록하기</p></div>
+										<div class="contentDiv">
+											<div class="myPageSelectMenu"><p><a href="#" >빵집 소개</a></p></div>
+											<div class="myPageSelectMenu"><p><a href="#" style="text-decoration: underline; color: chocolate;">원데이클래스</a></a></p></div>
+											<div class="myPageSelectMenu floorDiv"><p><a href="#">빵 체험단</a></a></p></div>
+										</div>
+
+										<div class="myPageSelect1"><p>내 글 보기</p></div>
+										<div class="contentDiv">
+											<div class="myPageSelectMenu"><p><a href="#">빵집 리뷰</a></p></div>
+											<div class="myPageSelectMenu"><p><a href="#">원데이 클래스</a></a></p></div>
+											<div class="myPageSelectMenu floorDiv"><p><a href="#">빵 체험단</a></a></p></div>
+										</div>
+
+										<div class="myPageSelect1"><p>내 정보</p></div>
+										<div class="contentDiv">
+											<div class="myPageSelectMenu"><p><a href="#">내 정보 수정</a></p></div>
+											<div class="myPageSelectMenu"><p><a href="#">회원 탈퇴</a></a></p></div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</section>
+
+						<section id="myRightSection">
+
+							<div id="myRightDiv">
+
+								<div id="rightHeader">
+									<h2>원데이 클래스</h2>
+								</div>
+
+								<div id="explain">
+									<p>자신의 매장에 있는 시그니쳐 제품의 레시피를 공유해보세요!<br>다양한 사람들과 베이킹 체험을 통해 매장 홍보를 할 수 있습니다.</p>
+								</div>
+
+								<form enctype="multipart/form-data">
+									<!--전체-->
+									<div id="contentDiv">
+										<!--사진부분-->
+										<div id="title1">
+											<p>가게 이미지 등록</p>
+										</div>
+										<div id="subDiv1">
+											<!--대표사진-->
+											<div class="files first-file">
+												<div id="mainFileDiv">
+													<label for="board_file1" style="display:inline;">
+														<img id="board_file1Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
+													</label>
+												</div>
+												<input id="board_file1" name="board_file1" type="file">
+
+											</div>
+
+
+										</div><!--사진부분-->
+
+										<!--밑에 상세정보 입력Div-->
+
+										<div id="subDiv2">
+											<p id="title2">필수 정보 입력 <sub> 등록에 필요한 기본 정보입니다. 모두 입력해주세요.</sub></p>
+											<hr>
+											<div class="table-1">
+												<div class="table-title">제목</div>
+												<div class="table-content"><input type="text" placeholder="제목 입력"></div>
+											</div>
+
+											<div class="table-1">
+												<div class="table-title">작성자</div>
+												<div class="table-content"><p>한준규</p></div>
+											</div>
+
+											<div class="table-1">
+												<div class="table-title">업체명</div>
+												<div class="table-content"><p>뜨레쥬르</p></div>
+											</div>
+
+											<div class="table-1">
+												<div class="table-title">전화번호</div>
+												<div class="table-content"><p>010-1234-1234</p></div>
+											</div>
+
+											<div class="table-1">
+												<div class="table-title">제품 등록</div>
+
+												<div style="width: 70%;">
+													<div class="table-content" style="display: flex; width: 100%;">
+
+														<div>
+															<select name="type">
+																<option value="">타입</option>
+																<option value="케이크">케이크</option>
+																<option value="제과">제과</option>
+																<option value="제빵">제빵</option>
+															</select>
+														</div>
+														<div>
+															<input type="text" placeholder="빵 이름" style="margin-bottom: 1px;">
+														</div>
+														<div>
+															<input type="text" placeholder="빵 가격">
+														</div>
+													</div>
+												</div>
+
+											</div>
+
+											<div class="table-1">
+												<div class="table-title">원데이 클래스 비용</div>
+												<div class="table-content"><input type="text" placeholder="예)30,000원"></div>
+											</div>
+
+											<div class="table-1">
+												<div class="table-title">등록 날짜</div>
+												<div class="table-content"><input type="date"></div>
+											</div>
+
+											<div class="table-1">
+												<div class="table-title">상세 정보</div>
+												<div class="table-content"><textarea name="content" cols="30" rows="8" maxlength="50" placeholder="상세 정보를 입력하세요." style="resize: none;"></textarea></div>
+											</div>
+
+										</div><!--밑에 상세정보 입력Div-->
+										<div id="registDiv">
+											<input type="button" value="글 등록하기">
+										</div>
+									</div><!--전체DIv-->
+
+								</form>
+
+							</div>
+						</section>
+
+
+					</section>
+				</section>
+			</section>
+		</div>
+		<div id="ad">
+			<span class="image"><img src="/images/ECdDwLmUIAIAX7k.jpg" alt=""></span>
+		</div>
+
+	</div>
+	<!-- Footer -->
+	<footer id="footer">
+
+		<div class="copyright">
+			&copy; Untitled. All rights reserved.
+		</div>
+	</footer>
+
+	<!-- Scripts -->
+	<script src="/static/js/jquery.min.js"></script>
+	<script src="/static/js/jquery.dropotron.min.js"></script>
+	<script src="/static/js/browser.min.js"></script>
+	<script src="/static/js/breakpoints.min.js"></script>
+	<script src="/static/js/util.js"></script>
+	<script src="/static/js/main.js"></script>
+</body>
+<script>
+	$("#header").mouseleave(function(){
+		$(this).css("opacity", "1");
+		$(this).css("color", "white");
+	})
+	$("#header").mouseover(function(){
+		$(this).css("opacity", "0.7");
+		$(this).css("color", "black");
+	})
+</script>
+</html>
