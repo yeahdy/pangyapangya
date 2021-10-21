@@ -1,0 +1,301 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+    <title>Untitled</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <style>
+
+        /* header */
+        .headerIcon{
+            width: 40px;
+            display: block;
+            margin: auto;"
+        }
+        .icon.solid:before {
+            font-weight: 100;
+            content: none;
+        }
+
+        .spotlights h5{
+            font-weight: bold;
+            font-size: small;
+        }
+
+        .spotlights p{
+            font-size: small;
+        }
+
+        /* 검색창 */
+        .search {
+            position: relative;
+            text-align: center;
+            width: 400px;
+            margin: 0 auto;
+        }
+        input {
+            width: 100%;
+            border-radius: 20px;
+            border: 1px solid #bbb;
+            margin: 10px 0;
+            padding: 10px 12px;
+        }
+        .fa-search {
+            position: absolute;
+            left: 90%;
+            top: 35%;
+            margin: 0;
+        }
+        form {
+            margin: 0;
+        }
+
+        /* 탭 */
+        p {
+            margin: 0 0 20px;
+            line-height: 1.5;}
+
+        .main1 {
+            min-width: 320px;
+            max-width: 800px;
+            padding: 0px 30px 30px 30px;
+            margin: 0 auto;
+            background: #ffffff;}
+
+        section #content1{
+            display: none;
+            padding: 20px 0 0;
+            border-top: 1px solid #ddd;}
+
+        section #content2{
+            display: none;
+            padding: 20px 0 0;
+            border-top: 1px solid #ddd;}
+
+        /*라디오버튼 숨김*/
+
+        input[type="radio" i] {
+            display: none;
+        }
+
+
+        label {
+            display: inline-block;
+            margin: 0 0 -1px;
+            padding: 15px 25px;
+            font-weight: 600;
+            text-align: center;
+            color: #bbb;
+            border: 1px solid transparent;}
+
+        label:hover {
+            color: #2e9cdf;
+            cursor: pointer;}
+
+        input[type="radio"]:checked + label:before {
+            background-color: #F9A825;
+            border-color: #F9A825;
+            color: #fff;
+            display: none;
+        }
+        input[type="radio"] + label:before {
+            border-radius: 100%;
+            display: none;
+        }
+
+        input[type="radio"] + label {
+            text-decoration: none;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 1em;
+            font-weight: 400;
+            padding-left: 2.4em;
+            padding-right: 2.4em;
+            position: relative;
+        }
+        /*input 클릭시, label 스타일*/
+        input:checked + label {
+            color: #555;
+            border: 0px solid #ddd;
+            border-bottom: 3px solid #2e9cdf;
+            border-top: 1px solid #ffffff;}
+
+        #tab1:checked ~ #content1,
+        #tab2:checked ~ #content2{
+            display: block;}
+
+        h2{
+            text-align: center;
+        }
+        /* 사이드바 고정 */
+        aside{
+            position: sticky;
+        }
+
+        /* 신청하기 버튼 가운데 정렬 */
+        ul.actions{
+            justify-content: center;
+        }
+
+    </style>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body class="is-preload" style="padding: 200px">
+
+<!-- Header -->
+<header id="header" th:include="/main/header::header_body">
+
+</header>
+
+<!-- Wrapper -->
+<div class="wrapper">
+
+    <!-- Main -->
+    <section class="main">
+
+        <!-- Banner -->
+        <section id="banner">
+            <article data-position="bottom right">
+                <div class="inner">
+                    <img src="/images/bread1.jpeg" alt="">
+                </div>
+            </article>
+            <article data-position="top right">
+                <div class="inner">
+                    <img src="/images/bread2.png" alt="">
+                </div>
+            </article>
+            <article data-position="right">
+                <div class="inner">
+                    <img src="/images/bread3.jpeg" alt="">
+                </div>
+            </article>
+            <article data-position="center">
+                <div class="inner">
+                    <img src="/images/bread4.jpeg" alt="">
+                </div>
+            </article>
+        </section>
+
+        <!-- Blurb -->
+        <section>
+            <h1>타이틀</h1>
+            <h4>| 빵집 이름 </h4>
+        </section>
+
+        <!-- TAB -->
+
+        <div class="main1">
+            <input id="tab1" type="radio" name="tabs" checked> <!--디폴트 메뉴-->
+            <label for="tab1">상세 설명</label>
+
+            <input id="tab2" type="radio" name="tabs">
+            <label for="tab2">후기</label>
+
+
+            <section id="content1">
+                <p>Phasellus sed ultricies mi non congue ullam corper.Phasellus sed ultricies mi non congue ullam corper.Phasellus sed ultricies mi non congue ullam corper.
+                    Phasellus sed ultricies mi non congue ullam corper.Phasellus sed ultricies mi non congue ullam corper.Phasellus sed ultricies mi non congue ullam corper.
+                    Phasellus sed ultricies mi non congue ullam corper.Phasellus sed ultricies mi non congue ullam corper.Phasellus sed ultricies mi non congue ullam corper.
+                </p>
+            </section>
+
+            <section id="content2">
+                <p>댓글이 없습니다.</p>
+            </section>
+
+        </div>
+
+    </section>
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+        <!-- Blurb -->
+        <section>
+            <h2>장소 및 일정</h2>
+            <p>장소 : </p>
+            <p>일정 : </p>
+            <ul class="actions">
+                <li><a href="#" class="button">신청하기</a></li>
+            </ul>
+        </section>
+    </aside>
+
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section class="info">
+            <h3>About Us</h3>
+            <div class="about">
+                <p>Morbi mattis mi consectetur tortor elementum, varius pellentesque velit convallis. Aenean tincidunt lectus auctor mauris maximus, ac scelerisque ipsum tempor. Duis vulputate ex et ex tincidunt, quis lacinia velit aliquet. Duis non efficitur malesuada.</p><p>Sagittis felis ac sagittis semper. Curabitur purus leo donec vel dolor at arcu tincidunt bibendum. Interdum et malesuada fames ac ante ipsum primis.</p>
+                <ul class="actions">
+                    <li><a href="#" class="button">Learn More</a></li>
+                </ul>
+            </div>
+            <div class="team">
+                <article>
+                    <span class="image"><img src="/static/images/pic06.jpg" alt=""></span>
+                    <p>
+                        <strong class="name">John Doe</strong>
+                        <span class="title">Lorem semper magna etiam</span>
+                    </p>
+                </article>
+                <article>
+                    <span class="image"><img src="/static/images/pic07.jpg" alt=""></span>
+                    <p>
+                        <strong class="name">Jane Anderson</strong>
+                        <span class="title">Etiam feugiat adipiscing veroeros</span>
+                    </p>
+                </article>
+                <article>
+                    <span class="image"><img src="/static/images/pic08.jpg" alt=""></span>
+                    <p>
+                        <strong class="name">Mike Smith</strong>
+                        <span class="title">Consequat nulla dolor blandit</span>
+                    </p>
+                </article>
+            </div>
+        </section>
+        <section class="contact">
+            <h3>Contact Us</h3>
+            <ul class="contact-icons">
+                <li class="icon solid fa-home"><a href="#">1234 Somewhere Road #80486<br>Nashville, TN 00000</a></li>
+                <li class="icon solid fa-phone"><a href="#">(800) 555-0000 x12345</a></li>
+                <li class="icon solid fa-envelope"><a href="#">hello@untitled.tld</a></li>
+                <li class="icon brands fa-facebook"><a href="#">facebook.com/untitled-tld</a></li>
+                <li class="icon brands fa-twitter"><a href="#">twitter.com/untitled-tld</a></li>
+            </ul>
+        </section>
+    </div>
+    <div class="copyright">
+        &copy; Untitled. All rights reserved.
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script>
+    $("#header").mouseleave(function(){
+        $(this).css("opacity", "1");
+        $(this).css("color", "white");
+    })
+    $("#header").mouseover(function(){
+        $(this).css("opacity", "0.7");
+        $(this).css("color", "black");
+    })
+</script>
+</body>
+</html>
