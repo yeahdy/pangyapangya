@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+	<title>아이디 찾기 | 빵야빵야(屋)</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="/css/main.css" />
+	<link rel="stylesheet" href="/css/idFind.css" />
+	<style th:include="/main/header::header_style">
+		.line_inp :not(button){
+			border: solid 0px;
+		}
+
+	</style>
+</head>
+<body class="is-preload" style="padding: 5em 200px 0 200px;background-color: white;">
+
+<!-- Header -->
+<header id="header" th:include="/main/header::header_body">
+
+</header>
+
+<!-- Wrapper -->
+	<!-- Main -->
+	<section class="cont_login container">
+		<form action="#" method="post" id="frm-login">
+			<div class="box_login login_email">
+				<h2 class="tit">연락 받으실 전화번호</h2>
+				<p>전화번호 인증을 하지 않은 ID는 검색되지 않습니다.</p>
+				<div class="box_inp">
+					<div class="line_inp">
+						<input type="tel" id="userphonenum" name="userphonenum" placeholder="휴대폰 번호를 - 없이 입력 해 주세요">
+						<p class="info_error" id="emailError1">휴대폰 번호를 입력해주세요.</p>
+					</div>
+					<div class="line_inp line_pw">
+						<input type="tel" name="auth_num" id="auth_num" placeholder="SMS로 수신된 인증번호 5자리를 입력 해 주세요">
+						<p class="info_error" id="passError1">인증번호를 입력해주세요.</p>
+						<p class="info_error" id="passError2">휴대폰 번호 또는 인증번호를 확인해주세요.</p>
+					</div>
+				</div>
+
+			</div>
+			<input type="hidden" name="redirectUrl" id="redirectUrl" value="https://taling.me/">
+		</form>
+	</section>
+<!-- Footer -->
+
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script type="text/javascript">
+
+
+</script>
+</body>
+</html>
