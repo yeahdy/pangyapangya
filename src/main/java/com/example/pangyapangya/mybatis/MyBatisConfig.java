@@ -17,7 +17,7 @@ import java.io.IOException;
 @Configuration
 @RequiredArgsConstructor
 @MapperScan("com.example.pangyapangya.mappers")
-public class MyBatisConfig {
+public class  MyBatisConfig {
     private final ApplicationContext applicationContext;
 
     @Bean
@@ -33,7 +33,7 @@ public class MyBatisConfig {
     public SqlSessionFactory sqlSessionFactory() throws IOException {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource());
-        sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath*:/mappers/*.xml"));
+        sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath*:/mapper/*.xml"));
         sqlSessionFactoryBean.setConfigLocation(applicationContext.getResource("classpath:/config/MyBatisConfig.xml"));
         try {
             SqlSessionFactory factory=sqlSessionFactoryBean.getObject();

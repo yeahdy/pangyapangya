@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/main.css" rel="stylesheet">
+    <title>마이페이지</title>
+    <style>
+        table, h1,h2{
+            width:70%;
+            margin: 25px auto;
+        }
+        #price{
+            text-align: center;
+        }
+        #review_top{
+            float: left;
+            /* height: 20px; */
+            width: 33.3%;
+            border-radius: 0;
+            padding: 10px;
+            line-height: 0px;
+        }
+        img{
+            width: 100px;
+        }
+    </style>
+</head>
+<body style="padding: 200px">
+<!-- header -->
+<header id="header">
+
+    <!-- logo -->
+    <span class="logo">
+						<a href="/main/index">faction</a>
+						<span>by pixelarity</span>
+					</span>
+
+    <!-- nav -->
+    <nav id="nav">
+        <ul>
+            <li><a href="/main/index">home</a></li>
+            <li>
+                <a href="#" class="icon solid fa-angle-down">dropdown</a>
+                <ul>
+                    <li><a href="#">option one</a></li>
+                    <li><a href="#">option two</a></li>
+                    <li><a href="#">option three</a></li>
+                    <li>
+                        <a href="#">submenu</a>
+                        <ul>
+                            <li><a href="#">option one</a></li>
+                            <li><a href="#">option two</a></li>
+                            <li><a href="#">option three</a></li>
+                            <li><a href="#">option four</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="/main/generic">generic</a></li>
+            <li><a href="/main/elements">elements</a></li>
+            <!--dropdown_mypage-->
+            <li>
+                <a href="#" class="icon solid fa-angle-down">mypage</a>
+                <ul>
+
+                    <li>
+                        <a href="#">주문 내역</a>
+                        <ul>
+                            <li><a href="#">빵 배달 결제 내역</a></li>
+                            <li><a href="#">원데이 클래스 신청 내역</a></li>
+                            <li><a href="#">빵 체험단 신청 내역</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">내 글 보기</a>
+                        <ul>
+                            <li><a href="#">빵집 리뷰</a></li>
+                            <li><a href="#">원데이 클래스 리뷰</a></li>
+                            <li><a href="#">빵 체험단 리뷰</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">내 정보 수정</a></li>
+
+                </ul>
+            </li>
+
+            <!--cart-->
+            <li><a href="/main/cart">cart</a></li>
+            <li><a href="#" class="button">log in</a></li>
+        </ul>
+    </nav>
+
+</header>
+    <!--<table id="table_top">
+        <tr>
+            <th><button><h3>빵 배달 내역</h3></button></th>
+            <th><h3>온라인 클래스</h3></th>
+            <th><h3>빵 체험단</h3></th>
+        </tr>
+    </table>-->
+    <!--주문 내역-->
+<h2>주문 내역</h2>
+<form action="/main/bread_review" method="get">
+        <table>
+                <tr>
+                    <th>2020-01-22</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td><img src="/images/bread1.jpg"></td>
+                    <td>
+                        <span style="font-size: 12px;"><strong>9無 🌿비건통밀파운드케이크 👉6종 Half_Size</strong></span>
+                        <br>
+                        <ul>
+                            <li><span style="font-size: 10px">파운드케이크선택 : 흑임자칙피스프레드</span></li>
+                        </ul>
+                    </td>
+                    <td>
+                        <div style="padding: 20px;">담따 디저트</div>
+                    </td>
+                    <td>
+                        <div>
+                        <div id="price">18400원</div>
+                        <button>구매후기 작성</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <!--내 글 보기-->
+            <h2>내 글 보기</h2>
+            <button>빵집 리뷰 보러가기</button>
+        </form>
+        <form action="/main/oneDayClass_review" method="get">
+            <button>원데이 클래스 리뷰 보러가기</button>
+        </form>
+        <form action="/main/testing_review" method="get">
+            <button>빵 체험단 리뷰 보러가기</button>
+        </form>
+    <!--내 정보 수정-->
+    <h2>내 정보 수정</h2>
+
+
+
+
+<!-- footer -->
+<footer id="footer">
+    <div class="inner">
+        <section class="info">
+            <h3>about us</h3>
+            <div class="about">
+                <p>morbi mattis mi consectetur tortor elementum, varius pellentesque velit convallis. aenean tincidunt lectus auctor mauris maximus, ac scelerisque ipsum tempor. duis vulputate ex et ex tincidunt, quis lacinia velit aliquet. duis non efficitur malesuada.</p><p>sagittis felis ac sagittis semper. curabitur purus leo donec vel dolor at arcu tincidunt bibendum. interdum et malesuada fames ac ante ipsum primis.</p>
+                <ul class="actions">
+                    <li><a href="#" class="button">learn more</a></li>
+                </ul>
+            </div>
+            <div class="team">
+                <article>
+                    <span class="image"><img src="../../static/images/pic06.jpg" alt=""></span>
+                    <p>
+                        <strong class="name">john doe</strong>
+                        <span class="title">lorem semper magna etiam</span>
+                    </p>
+                </article>
+                <article>
+                    <span class="image"><img src="../../static/images/pic07.jpg" alt=""></span>
+                    <p>
+                        <strong class="name">jane anderson</strong>
+                        <span class="title">etiam feugiat adipiscing veroeros</span>
+                    </p>
+                </article>
+                <article>
+                    <span class="image"><img src="../../static/images/pic08.jpg" alt=""></span>
+                    <p>
+                        <strong class="name">mike smith</strong>
+                        <span class="title">consequat nulla dolor blandit</span>
+                    </p>
+                </article>
+            </div>
+        </section>
+        <section class="contact">
+            <h3>contact us</h3>
+            <ul class="contact-icons">
+                <li class="icon solid fa-home"><a href="#">1234 somewhere road #80486<br>nashville, tn 00000</a></li>
+                <li class="icon solid fa-phone"><a href="#">(800) 555-0000 x12345</a></li>
+                <li class="icon solid fa-envelope"><a href="#">hello@untitled.tld</a></li>
+                <li class="icon brands fa-facebook"><a href="#">facebook.com/untitled-tld</a></li>
+                <li class="icon brands fa-twitter"><a href="#">twitter.com/untitled-tld</a></li>
+            </ul>
+        </section>
+    </div>
+    <div class="copyright">
+        &copy; untitled. all rights reserved.
+    </div>
+</footer>
+
+<!-- scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script>
+    $("#header").mouseleave(function(){
+        $(this).css("opacity", "1");
+        $(this).css("color", "white");
+    })
+    $("#header").mouseover(function(){
+        $(this).css("opacity", "0.7");
+        $(this).css("color", "black");
+    })
+</script>
+
+</body>
+</html>
