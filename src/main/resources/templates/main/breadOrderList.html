@@ -1,0 +1,344 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+    <title>빵 주문 내역</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <style>
+        .headerIcon{
+            width: 40px;
+            display: block;
+            margin: auto;"
+        }
+        .icon.solid:before {
+            font-weight: 100;
+            content: none;
+        }
+
+        .spotlights h5{
+            font-weight: bold;
+            font-size: small;
+        }
+
+        .spotlights p{
+            font-size: small;
+        }
+
+        /* 검색창 */
+        .search {
+            position: relative;
+            text-align: center;
+            width: 400px;
+            margin: 0 auto;
+        }
+        input {
+            width: 100%;
+            border-radius: 20px;
+            border: 1px solid #bbb;
+            margin: 10px 0;
+            padding: 10px 12px;
+        }
+        .fa-search {
+            position: absolute;
+            left: 90%;
+            top: 35%;
+            margin: 0;
+        }
+        form {
+            margin: 0;
+        }
+        #all{display: flex;}
+        .wrapper{width: 75%;}
+        #ad{background: #fff; width: 15%; height: 10px;}
+        #ad img{width: 100%; height: 600px;}
+        #myMainSection{display: flex;}
+        #myLeftSection{width: 20%; background: #f9efef;}
+        #myRightSection{width: 80%; padding: 0 15px 15px 15px;}
+        .myPageTitle{background: #F9A825; margin: 0; padding: 7px 7px 7px 15px;}
+        .myPageTitle p{margin: 0; color: #fff;}
+        #allDiv{padding:15px;}
+        #allDiv p{margin: 0; font-size: 0.85em; font-weight: bold; color: #000;}
+        .contentDiv{margin-top: 15px; margin-bottom: 15px;}
+        .contentDiv a{color: #3b3b3b; font-weight: lighter; border: none; font-size: 0.8rem;}
+        .myPageSelectMenu{margin-top: 5px; margin-bottom: 5px;}
+
+
+        .bread_table{
+            float: left; padding: 0px 5px;
+            /*font-size: 13px;*/
+        }
+        th{
+            padding: 10px;
+        }
+        #bread_img{
+            width: 100px;
+            margin-right: 35px;
+        }
+        #price{
+            padding: 0 45px;
+            font-size: 14px;
+        }
+
+        #bakeryName, #bakeryTotalPrice{
+            padding: 10px 20px;
+        }
+        #bread_title{
+            font-size: 15px;
+        }
+        #bread_name{
+            font-size: 13px;
+        }
+        #breadTable_top{
+            width: 50%;
+            float: left;
+        }
+        #breadTable_bottom{
+            float: right;
+            margin: 35% 10px;
+        }
+
+        #bread_img{
+            width: 100px;
+        }
+        #bread_cnt, #cnt{
+            float: left;
+            font-size: 13px;
+        }
+        #bakery1{
+            margin: 0 10px 2em 0;
+        }
+        caption{
+            float: left;
+            margin: 10px;
+        }
+        .board_button button{
+            width: 45px;
+            text-align: center;
+            padding: 0px;
+            margin: 10px;
+        }
+        .board_button{
+            width: 50%;
+            margin: 0 40%;
+        }
+    </style>
+</head>
+<body class="is-preload" style="padding: 200px">
+<!-- Header -->
+<header id="header" th:include="/main/header::header_body">
+
+</header>
+
+<!-- Wrapper -->
+<div id="all">
+    <div class="wrapper">
+
+        <!-- Main -->
+        <section class="main second-main">
+
+            <section>
+                <header>
+                    <h1>MY PAGE</h1>
+                </header>
+                <p></p>
+                <section id="myMainSection">
+                    <section id="myLeftSection">
+                        <div id="myLeftDiv">
+                            <div class="myPageMenu">
+                                <div class="myPageTitle"><p>MY MENU</p></div>
+                                <div id="allDiv">
+                                    <div class="myPageSelect1"><p>주문 내역</p></div>
+                                    <div class="contentDiv">
+                                        <div class="myPageSelectMenu"><p><a href="#">빵 결제 내역</a></p></div>
+                                        <div class="myPageSelectMenu"><p><a href="#">원데이 클래스 신청 내역</a></a></p></div>
+                                        <div class="myPageSelectMenu floorDiv"><p><a href="#">빵 체험단 신청 내역</a></a></p></div>
+                                    </div>
+
+                                    <div class="myPageSelect1"><p>내 글 보기</p></div>
+                                    <div class="contentDiv">
+                                        <div class="myPageSelectMenu"><p><a href="#" style="text-decoration: underline; color: chocolate;">빵집 리뷰</a></p></div>
+                                        <div class="myPageSelectMenu"><p><a href="#">원데이 클래스</a></a></p></div>
+                                        <div class="myPageSelectMenu floorDiv"><p><a href="#">빵 체험단</a></a></p></div>
+                                    </div>
+
+                                    <div class="myPageSelect1"><p>내 정보</p></div>
+                                    <div class="contentDiv">
+                                        <div class="myPageSelectMenu"><p><a href="#">내 정보 수정</a></p></div>
+                                        <div class="myPageSelectMenu"><p><a href="#">회원 탈퇴</a></a></p></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                    <section id="myRightSection">
+                        <div id="myRightDiv">
+                            <!--첫 번째 빵집-->
+                                <table border="1" id="bakery1">
+                                    <caption>2021-10-07</caption>
+                                    <tbody><tr>
+                                        <th><div id="bakeryName">빵집 이름</div></th>
+                                        <th><div id="bakeryTotalPrice">25,800</div></th>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="bread_table"><img id="bread_img" src="/images/bread1.jpg"></div>
+                                            <div id="breadTable_top">
+                                                <span id="bread_title"><strong>9無 🌿비건통밀파운드케이크 👉6종 Half_Size</strong></span>
+                                                <br>
+                                                <ul>
+                                                    <li><span id="bread_name">파운드케이크선택 : 흑임자칙피스프레드</span></li>
+                                                </ul>
+                                            </div>
+                                            </td>
+                                        <td>
+                                            <div id="breadTable_bottom">
+                                                <div id="bread_cnt">수량 : </div>
+                                                <div class="bread_table" id="cnt"><b>1</b></div>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                    </tbody></table>
+                            <!--두 번째 빵집-->
+                                <table border="1" id="bakery1">
+                                    <caption>2021-10-03</caption>
+                                    <tbody><tr>
+                                        <th><div id="bakeryName">빵집 이름</div></th>
+                                        <th><div id="bakeryTotalPrice">22,400</div></th>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="bread_table"><img id="bread_img" src="/images/bread2.jpg"></div>
+                                            <div id="breadTable_top">
+                                                <span id="bread_title"><strong>9無 🌿비건통밀파운드케이크 👉6종 Half_Size</strong></span>
+                                                <br>
+                                                <ul>
+                                                    <li><span id="bread_name">파운드케이크선택 : 흑임자칙피스프레드</span></li>
+                                                </ul>
+                                            </div>
+                                            </td>
+                                        <td>
+                                            <div id="breadTable_bottom">
+                                                <div id="bread_cnt">수량 : </div>
+                                                <div class="bread_table" id="cnt"><b>1</b></div>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                    </tbody></table>
+                            <!--세번째 빵집-->
+                                <table border="1" id="bakery1">
+                                    <caption>2021-10-01</caption>
+                                    <tbody><tr>
+                                        <th><div id="bakeryName">빵집 이름</div></th>
+                                        <th><div id="bakeryTotalPrice">38,000</div></th>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="bread_table"><img id="bread_img" src="/images/bread3.jpg"></div>
+                                            <div id="breadTable_top">
+                                                <span id="bread_title"><strong>9無 🌿비건통밀파운드케이크 👉6종 Half_Size</strong></span>
+                                                <br>
+                                                <ul>
+                                                    <li><span id="bread_name">파운드케이크선택 : 흑임자칙피스프레드</span></li>
+                                                </ul>
+                                            </div>
+                                            </td>
+                                        <td>
+                                            <div id="breadTable_bottom">
+                                                <div id="bread_cnt">수량 : </div>
+                                                <div class="bread_table" id="cnt"><b>1</b></div>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                    </tbody></table>
+                            <div class="board_button">
+                                <button>&lt;</button>
+                                <span>1</span>
+                                <button>&gt;</button>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </div>
+    <div id="ad">
+        <span class="image"><img src="/images/ECdDwLmUIAIAX7k.jpg" alt=""></span>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+        <section class="info">
+            <h3>About Us</h3>
+            <div class="about">
+                <p>Morbi mattis mi consectetur tortor elementum, varius pellentesque velit convallis. Aenean tincidunt lectus auctor mauris maximus, ac scelerisque ipsum tempor. Duis vulputate ex et ex tincidunt, quis lacinia velit aliquet. Duis non efficitur malesuada.</p><p>Sagittis felis ac sagittis semper. Curabitur purus leo donec vel dolor at arcu tincidunt bibendum. Interdum et malesuada fames ac ante ipsum primis.</p>
+                <ul class="actions">
+                    <li><a href="#" class="button">Learn More</a></li>
+                </ul>
+            </div>
+            <div class="team">
+                <article>
+                    <span class="image"><img src="/images/pic06.jpg" alt=""></span>
+                    <p>
+                        <strong class="name">John Doe</strong>
+                        <span class="title">Lorem semper magna etiam</span>
+                    </p>
+                </article>
+                <article>
+                    <span class="image"><img src="/images/pic07.jpg" alt=""></span>
+                    <p>
+                        <strong class="name">Jane Anderson</strong>
+                        <span class="title">Etiam feugiat adipiscing veroeros</span>
+                    </p>
+                </article>
+                <article>
+                    <span class="image"><img src="/images/pic08.jpg" alt=""></span>
+                    <p>
+                        <strong class="name">Mike Smith</strong>
+                        <span class="title">Consequat nulla dolor blandit</span>
+                    </p>
+                </article>
+            </div>
+        </section>
+        <section class="contact">
+            <h3>Contact Us</h3>
+            <ul class="contact-icons">
+                <li class="icon solid fa-home"><a href="#">1234 Somewhere Road #80486<br>Nashville, TN 00000</a></li>
+                <li class="icon solid fa-phone"><a href="#">(800) 555-0000 x12345</a></li>
+                <li class="icon solid fa-envelope"><a href="#">hello@untitled.tld</a></li>
+                <li class="icon brands fa-facebook"><a href="#">facebook.com/untitled-tld</a></li>
+                <li class="icon brands fa-twitter"><a href="#">twitter.com/untitled-tld</a></li>
+            </ul>
+        </section>
+    </div>
+    <div class="copyright">
+        &copy; Untitled. All rights reserved.
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script>
+    $("#header").mouseleave(function(){
+        $(this).css("opacity", "1");
+        $(this).css("color", "white");
+    })
+    $("#header").mouseover(function(){
+        $(this).css("opacity", "0.7");
+        $(this).css("color", "black");
+    })
+</script>
+</body>
+</html>
