@@ -9,39 +9,83 @@
     <link rel="stylesheet" href="/css/main.css" />
 </head>
 <style>
+    a{
+        border-bottom: none;
+    }
     .grid{
         display: grid;
-        grid-gap: 8px;
-        grid-template-columns: repeat(auto-fill, minmax(20%, auto));
-
+        grid-gap: 12px;
+        grid-template-columns: repeat(auto-fill, minmax(18%, auto));
+        justify-content: center;
     }
     .frame{
         width : auto;
-        height: 260px;
+        height: 300px;
         border: 1px solid gray;
+        border-radius: 7px;
     }
 
-    #thumbnail{
+    .thumbnail{
+        width: 188px;
         height: 200px;
         border-bottom: 1px solid gray;
+        overflow: hidden;
     }
 
-    #star{
-        height: 30px;
+    .title{
+        height: 50px;
+        border-bottom: 1px solid #c1c1c1;
     }
-    #review{
-        height: 30px;
+    .title a{
+        font-size: large;
+        color: black;
     }
+    .review{
+        height: 50px;
+    }
+
+    .filter{
+        border: #3b3b3b;
+        display: grid;
+        grid-gap: 8px;
+    }
+
+    .thumbnail img {
+        width: inherit;
+        height: inherit;
+        border-radius: 6px 6px 0px 0px;
+        border-color: #c1c1c1;
+        /*margin: -20% 0%;*/
+    }
+
+    .review img{
+        width: auto;
+        height: 15px;
+        overflow: hidden;
+    }
+
+    .review a{
+        width: 188px;
+        overflow: hidden;
+        font-size: small;
+        color: #3b3b3b;
+        border-bottom: none;
+    }
+    a.maker{
+        font-size: xx-small;
+        color : #888888;
+    }
+
 </style>
-<body class="is-preload" style="padding: 200px">
+<body class="is-preload" style="width : 1000px; margin : auto;">
 <!-- Header -->
 <header id="header">
 
     <!-- Logo -->
     <span class="logo">
-						<a href="index.html">빵야빵야</a>
-						<span>By Pixelarity</span>
-					</span>
+		<a href="index">빵야빵야</a>
+	    <span>By Pixelarity</span>
+	</span>
 
     <!-- Nav -->
     <nav id="nav">
@@ -71,96 +115,209 @@
     </nav>
 
 </header>
+<section>
+    <div style="height: 300px;">
 
+    </div>
+</section>
 <div>
     <div>
         <h1>베이커리</h1>
     </div>
-    <div class="filter" style="border: #3b3b3b">
-        검색 조건
+    <div class="filter" style="height: 200px;">
+        <a style="color: black; border-bottom: none;">검색 조건</a>
     </div>
 
     <!-- 빵 목록 -->
     <div class="grid">
         <div class="frame">
-            <div id="thumbnail">
-
+            <div class="thumbnail">
+                <img src="/images/brownie5.jpg"/>
             </div>
-            <div id="star">
-
+            <div class="title">
+                <a class="maker">아이디어스</a><br>
+                <a>브라우니</a>
             </div>
-            <div id="review">
-
-            </div>
-        </div>
-        <div class="frame">
-            <div id="thumbnail">
-
-            </div>
-            <div id="star">
-
-            </div>
-            <div id="review">
-
+            <div class="review">
+                <span>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                </span>
+                <br>
+                <a>맛있어요. 잘 먹고 있어요~</a>
             </div>
         </div>
         <div class="frame">
-            <div id="thumbnail">
-
+            <div class="thumbnail">
+                <img src="/images/brownie5.jpg"/>
             </div>
-            <div id="star">
-
+            <div class="title">
+                <a class="maker">아이디어스</a><br>
+                <a>브라우니</a>
             </div>
-            <div id="review">
-
-            </div>
-        </div>
-        <div class="frame">
-            <div id="thumbnail">
-
-            </div>
-            <div id="star">
-
-            </div>
-            <div id="review">
-
+            <div class="review">
+                <span>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                </span>
+                <br>
+                <a>맛있어요. 잘 먹고 있어요~</a>
             </div>
         </div>
         <div class="frame">
-            <div id="thumbnail">
-
+            <div class="thumbnail">
+                <img src="/images/brownie5.jpg"/>
             </div>
-            <div id="star">
-
+            <div class="title">
+                <a class="maker">아이디어스</a><br>
+                <a>브라우니</a>
             </div>
-            <div id="review">
-
-            </div>
-        </div>
-        <div class="frame">
-            <div id="thumbnail">
-
-            </div>
-            <div id="star">
-
-            </div>
-            <div id="review">
-
+            <div class="review">
+                <span>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                </span>
+                <br>
+                <a>맛있어요. 잘 먹고 있어요~</a>
             </div>
         </div>
         <div class="frame">
-            <div id="thumbnail">
+            <div class="thumbnail">
+                <img src="/images/brownie5.jpg"/>
+            </div>
+            <div class="title">
+                <a class="maker">아이디어스</a><br>
+                <a>브라우니</a>
+            </div>
+            <div class="review">
+                <span>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                </span>
+                <br>
+                <a>맛있어요. 잘 먹고 있어요~</a>
+            </div>
+        </div>
+        <div class="frame">
+            <div class="thumbnail">
+                <img src="https://image.idus.com/image/files/f0d9719407384a68bdca47ff0c0b2b16_512.jpg"/>
+            </div>
+            <div class="title">
 
             </div>
-            <div id="star">
+            <div class="review">
+                <img src="/images/cookie_star.png" alt=""/>
+                <img src="/images/cookie_star.png" alt=""/>
+                <img src="/images/cookie_star.png" alt=""/>
+                <img src="/images/cookie_star.png" alt=""/>
+            </div>
+        </div>
+
+        <div class="frame">
+            <div class="thumbnail">
+                <img src="https://image.idus.com/image/files/f0d9719407384a68bdca47ff0c0b2b16_512.jpg"/>
+            </div>
+            <div class="title">
 
             </div>
-            <div id="review">
+            <div class="review">
+                <img src=""/>
+            </div>
+        </div>
+        <div class="frame">
+            <div class="thumbnail">
+                <img src="https://image.idus.com/image/files/f0d9719407384a68bdca47ff0c0b2b16_512.jpg"/>
+            </div>
+            <div class="title">
 
+            </div>
+            <div class="review">
+                <img src=""/>
+            </div>
+        </div>
+        <div class="frame">
+            <div class="thumbnail">
+                <img src="https://image.idus.com/image/files/f0d9719407384a68bdca47ff0c0b2b16_512.jpg"/>
+            </div>
+            <div class="title">
+
+            </div>
+            <div class="review">
+                <img src=""/>
+            </div>
+        </div>
+        <div class="frame">
+            <div class="thumbnail">
+                <img src="https://image.idus.com/image/files/f0d9719407384a68bdca47ff0c0b2b16_512.jpg"/>
+            </div>
+            <div class="title">
+
+            </div>
+            <div class="review">
+                <img src=""/>
+            </div>
+        </div>
+        <div class="frame">
+            <div class="thumbnail">
+                <img src="https://image.idus.com/image/files/318cb7d1d69e47b484f07080f5c8bb9d_1440.jpg"/>
+            </div>
+            <div class="title">
+
+            </div>
+            <div class="review">
+                <img src=""/>
+            </div>
+        </div>
+        <div class="frame">
+            <div class="thumbnail">
+                <img src="https://image.idus.com/image/files/318cb7d1d69e47b484f07080f5c8bb9d_1440.jpg"/>
+            </div>
+            <div class="title">
+
+            </div>
+            <div class="review">
+                <img src=""/>
+            </div>
+        </div>
+        <div class="frame">
+            <div class="thumbnail">
+                <img src="https://image.idus.com/image/files/318cb7d1d69e47b484f07080f5c8bb9d_1440.jpg"/>
+            </div>
+            <div class="title">
+
+            </div>
+            <div class="review">
+                <img src=""/>
+            </div>
+        </div>
+        <div class="frame">
+            <div class="thumbnail">
+                <img src="https://image.idus.com/image/files/318cb7d1d69e47b484f07080f5c8bb9d_1440.jpg"/>
+            </div>
+            <div class="title">
+
+            </div>
+            <div class="review">
+                <img src=""/>
             </div>
         </div>
     </div>
 </div>
+
+<br>
+
 <!-- Footer -->
 <footer id="footer">
     <div class="inner">
