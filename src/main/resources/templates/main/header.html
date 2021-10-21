@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+	<title>빵야빵야(屋)</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="/css/main.css" />
+	<style th:fragment="header_style">
+		.headerIcon{
+			width: 40px;
+			display: block;
+			margin: auto;"
+		}
+		.icon.solid:before {
+			font-weight: 100;
+			content: none;
+		}
+
+		.spotlights h5{
+			font-weight: bold;
+			font-size: small;
+		}
+
+		.spotlights p{
+			font-size: small;
+		}
+
+		/* 검색창 */
+		.search {
+			position: relative;
+			text-align: center;
+			width: 400px;
+			margin: 0 auto;
+		}
+		input {
+			width: 100%;
+			border-radius: 20px;
+			border: 1px solid #bbb;
+			margin: 10px 0;
+			padding: 10px 12px;
+		}
+		.fa-search {
+			position: absolute;
+			left: 90%;
+			top: 35%;
+			margin: 0;
+		}
+		form {
+			margin: 0;
+		}
+
+	</style>
+</head>
+<body class="is-preload" style="padding: 10em 200px 0 200px;">
+
+<!-- Header -->
+<header id="header" th:fragment="header_body">
+
+	<!-- Logo -->
+	<span class="logo">
+		<a href="/main/mainPage"><img src="/images/breadLogo_re.png" alt="myPage" style="width: 100px;margin-top: 1.3em;"/></a>
+		<span></span>
+	</span>
+
+	<!-- Nav -->
+	<nav id="nav">
+		<ul>
+			<li><a href="elements.html">빵집 찾기</a></li>
+			<li><a href="generic.html">원데이 클래스</a></li>
+			<li><a href="elements.html">빵 체험단</a></li>
+			<!-- 검색창 -->
+			<form method="post" action="#" name="">
+				<div class="search">
+					<i class="fas fa-search"></i>
+					<input type="text" placeholder="먹고 싶은 빵 종류를 검색 해 보세요" maxlength="17" style="background-color: wheat;border-radius: 10px;color: darkgray">
+				</div>
+				<input type="hidden" class="box" value="검색">
+			</form>
+			<!-- 비회원일 경우 -->
+			<li>
+				<a href="#" class="icon solid fa-angle-down"><img src="/images/iconPerson.png" alt="myPage" class="headerIcon"/></a>
+				<ul>
+					<li><a href="/main/login">로그인</a></li>
+					<li><a href="#">회원가입</a></li>
+				</ul>
+			</li>
+			<!-- 회원일 경우 -->
+			<!--
+			<li>
+				<a href="#" class="icon solid fa-angle-down"><img src="/images/iconPerson.png" alt="myPage" class="headerIcon"/></a>
+				<ul>
+					<li><a href="#">글 등록하기</a></li>
+					<li><a href="#">내 글보기</a></li>
+					<li><a href="#">내 정보관리</a></li>
+				</ul>
+			</li>
+			-->
+			<li style="margin-left: -1em;"><a href="#"><img src="/images/iconCart.png" alt="cart" class="headerIcon"/></a></li>
+		</ul>
+	</nav>
+
+</header>
+
+
+<!-- Scripts -->
+<script src="https://kit.fontawesome.com/8eb5905426.js" crossorigin="anonymous"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script type="text/javascript">
+	$("#header").mouseleave(function(){
+		$(this).css("background", "rgba(249,168,37,1)");
+	})
+	$("#header").mouseover(function(){
+		$(this).css("background", "rgba(249,168,37,0.7)");
+	})
+</script>
+</body>
+</html>
