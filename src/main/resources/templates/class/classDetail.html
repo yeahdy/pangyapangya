@@ -10,8 +10,6 @@
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="/css/main.css" />
     <style>
-
-        /* header */
         .headerIcon{
             width: 40px;
             display: block;
@@ -83,7 +81,6 @@
             display: none;
         }
 
-
         label {
             display: inline-block;
             margin: 0 0 -1px;
@@ -132,15 +129,27 @@
         h2{
             text-align: center;
         }
+
         /* 사이드바 고정 */
-        aside{
-            position: sticky;
+        #rightsidebar{
+            position: fixed;
         }
 
         /* 신청하기 버튼 가운데 정렬 */
         ul.actions{
             justify-content: center;
         }
+
+        #apply{
+            border: 1px;
+            width: 300px;
+        }
+
+        .summary{
+            margin: 2em 2em 2em 2em;
+            border: 1px;
+        }
+
 
     </style>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -156,7 +165,7 @@
 <div class="wrapper">
 
     <!-- Main -->
-    <section class="main">
+    <section class="main left">
 
         <!-- Banner -->
         <section id="banner">
@@ -207,6 +216,10 @@
 
             <section id="content2">
                 <p>댓글이 없습니다.</p>
+                <div id="userid" style="float:left">사용자 아이디</div>
+                <div id="date" style="float:right">날짜</div>
+                <div style="width:100%; word-break:break-all;word-wrap:break-word;"></div>
+                <div><input type="text" placeholder="댓글을 작성해주세요"></div>
             </section>
 
         </div>
@@ -214,9 +227,9 @@
     </section>
 
     <!-- Sidebar -->
-
-    <aside class="sidebar">
         <!-- Blurb -->
+    <div id="apply">
+        <div class="summary">
         <section>
             <h2>장소 및 일정</h2>
             <p>장소 : </p>
@@ -225,8 +238,8 @@
                 <li><a href="#" class="button">신청하기</a></li>
             </ul>
         </section>
-    </aside>
-
+        </div>
+    </div>
 </div>
 
 <!-- Footer -->
@@ -287,15 +300,7 @@
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
-<script>
-    $("#header").mouseleave(function(){
-        $(this).css("opacity", "1");
-        $(this).css("color", "white");
-    })
-    $("#header").mouseover(function(){
-        $(this).css("opacity", "0.7");
-        $(this).css("color", "black");
-    })
-</script>
+<script th:replace="/main/header::header_js"></script>
+
 </body>
 </html>
