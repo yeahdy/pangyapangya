@@ -88,45 +88,6 @@ body.on{
     display: none;
 }
 
-.btn_kakao {
-    display: block;
-    width: 100%;
-    height: 48px;
-    margin: 26px 0 12px;
-    padding-left: 25px;
-    border-radius: 2px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #381e1f;
-    line-height: 48px;
-    background: url(https://front-img.taling.me/Content/app3/images/login/login_kakao.png) #feeb4a no-repeat 103px 16px/19px 18px;
-}
-
-.btn_apple {
-    display: block;
-    width: 100%;
-    height: 48px;
-    margin-bottom: 90px;
-    padding-left: 19px;
-    border-radius: 2px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #fff;
-    line-height: 48px;
-    background: url(https://front-img.taling.me/Content/app3/images/login/login_apple.png) #222 no-repeat 124px center/13px 16px;
-}
-
-.btn_apple:hover,.btn_apple:visited, .btn_apple:active{
-    color: #fff;
-}
-
-.btn_facebook {
-    width: 40px;
-    padding: 0;
-    text-indent: -9999px;
-    background: url(https://front-img.taling.me/Content/app3/images/login/login_facebook.png) no-repeat 12px center/8px 14px;
-}
-
 .login_email {
     display: -ms-grid;
     display: grid;
@@ -165,6 +126,7 @@ body.on{
     -ms-grid-column: 1;
     margin-top: 35px;
     padding: 0 15px;
+    margin-left: -15px;
 }
 
 .cont_login .box_inp .line_inp {
@@ -172,11 +134,12 @@ body.on{
 }
 
 .cont_login .box_inp .line_inp input {
-    width: 100%;
+    width: 104%;
     height: 48px;
     border: none;
     border-bottom: 1px solid #eee;
     color: black;
+    border-radius: 4px;
 }
 
 .cont_login .box_inp .line_inp .error {
@@ -308,184 +271,9 @@ body.on{
     margin-top: 20px;
 }
 
-/* íŒì—… */
-.modal {
-    display: none;
-    overflow-y: auto;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1500;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal.db{
-    display: block;
-}
-
-.modal .layer {
-    width: 100%;
-    height: 100%;
-    text-align: center;
-}
-
-.modal .layer::after {
-    content: '';
-    display: inline-block;
-    width: 0;
-    height: 100%;
-    vertical-align: middle;
-}
-
-.modal .popup {
-    display: inline-block;
-    overflow-y: hidden;
-    position: relative;
-    width: 420px;
-    padding: 30px 30px 35px 30px;
-    border-radius: 4px;
-    vertical-align: middle;
-    background-color: #fff;
-    /*
-     * ì•„ëž˜ëŠ” íŒì—… css ì¤‘ë³µìœ¼ë¡œ ìž„ì‹œë¡œ ë„£ì–´ë‘ 
-     * hedaer_pc.cssì— ìžˆëŠ” popup ì‚­ì œí•œë’¤ ì§€ìš¸ ê²ƒ
-     */
-    top: initial;
-    left: initial;
-    height: auto;
-}
-
-.modal .cont {
-    text-align: left;
-}
-
-.modal .top_tit {
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: 300;
-    line-height: 33px;
-    letter-spacing: -0.6px;
-    color: #000;
-}
-
-.modal .btn_area {
-    text-align: center;
-}
-
-.modal .btn_area .btn {
-    display: block;
-    width: 100%;
-    height: 48px;
-    border-radius: 2px;
-    font-size: 16px;
-    line-height: 48px;
-    letter-spacing: -0.4px;
-    color: #fff;
-    background-color: #F9A825;
-}
-.modal .btn_area .btn:hover,.modal .btn_area .btn:visited,.modal .btn_area .btn:link,.modal .btn_area .btn:active{
-    color: #fff ;
-}
-
-
-.modal .btn_close {
-    position: absolute;
-    right: 13px;
-    top: 18px;
-    width: 48px;
-    height: 48px;
-    background: url("https://front-img.taling.me/Content/Images/Vod/btn/btn_close.png") no-repeat center/15px;
-}
-
-/* ì´ë©”ì¼ í†µí•© íŒì—… */
-.email_combine .sub_tit {
-    margin-bottom: 30px;
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: -0.4px;
-}
-
-.email_combine .info {
-    margin-bottom: 30px;
-    padding: 20px 0;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-}
-
-.email_combine .info p {
-    margin-bottom: 4px;
-    line-height: 22px;
-    letter-spacing: -0.35px;
-}
-
-.email_combine .info p:last-child {
-    margin-bottom: 0;
-}
-
-.email_combine .noti {
-    margin-bottom: 10px;
-    padding-left: 22px;
-    line-height: 20px;
-    letter-spacing: -0.35px;
-    color: #666;
-    background: url(https://front-img.taling.me/Content/app3/images/icon_info_gray.png) no-repeat left 2px/16px;
-}
-
-.email_combine ul {
-    margin-bottom: 30px;
-}
-
-.email_combine li {
-    position: relative;
-    margin-bottom: 2px;
-    padding-left: 22px;
-    line-height: 22px;
-    letter-spacing: -0.35px;
-    color: #666;
-}
-
-.email_combine li::before {
-    content: '';
-    display: block;
-    position: absolute;
-    left: 17px;
-    top: 10px;
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background-color: #111;
-}
-
-.email_combine li:last-child {
-    margin-bottom: 0;
-}
-
-.email_combine .btn_create {
-    display: inline-block;
-    margin-top: 30px;
-    font-size: 14px;
-    letter-spacing: -0.35px;
-}
-
-.email_combine .btn_create:hover,.email_combine .btn_create:link,.email_combine .btn_create:visited,.email_combine .btn_create:active{
-    color: #111;
-}
-
-.email_combine .btn_create::after {
-    content: '';
-    display: block;
-    position: relative;
-    top: -2px;
-    width: 100%;
-    height: 1px;
-    background-color: #111;
-}
-
 /* ì•„ì´ë”” ì°¾ê¸° */
 .find_id {
-    width: 455px;
+    width: 550px;
     padding: 25px;
     text-align: left;
 }
@@ -542,6 +330,7 @@ body.on{
     line-height: 44px;
     letter-spacing: -0.35px;
     color: #666;
+    padding: 0px;
 }
 
 .find_id .count {
@@ -558,19 +347,9 @@ body.on{
     margin-bottom: -48px;
 }
 
-.find_id .list_id::after {
-    content: '';
-    position: absolute;
-    left: -25px;
-    bottom: -25px;
-    width: 453px;
-    height: 97px;
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), color-stop(21%, rgba(255, 255, 255, 0.8)), color-stop(61%, rgba(255, 255, 255, 0.9)), to(#fff));
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8) 21%, rgba(255, 255, 255, 0.9) 61%, #fff);
-}
 
 .find_id .list_id ul {
-    padding-bottom: 86px;
+    padding-bottom: 0px;
 }
 
 .find_id .list_id li {
