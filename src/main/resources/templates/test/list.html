@@ -10,6 +10,62 @@
     <meta name="keywords" content=""/>
     <link rel="stylesheet" href="/css/main.css"/>
     <style>
+        p {
+            margin: 0 0 1em 0;
+        }
+
+        .spotlights h5{
+            font-weight: bold;
+            font-size: small;
+        }
+
+        .spotlights p{
+            font-size: small;
+        }
+
+        .spotlights > article {
+            padding: 1.0em 2.25em 0.5em 2.25em;
+            border-style: solid;
+            border-width: 1px 1px 0px 0px;
+            width: 25%;
+        }
+
+        .image.fit img {
+            border-radius: 4px;
+        }
+
+        h4 {
+            font-weight: 700;
+            font-size: large;
+            color: black;
+            display: inline-block;
+        }
+
+        .spotlights h5{
+            color: black;
+        }
+
+
+        /* header */
+        .headerIcon{
+            width: 40px;
+            display: block;
+            margin: auto;"
+        }
+        .icon.solid:before {
+            font-weight: 100;
+            content: none;
+        }
+
+        .spotlights h5{
+            font-weight: bold;
+            font-size: small;
+        }
+
+        .spotlights p{
+            font-size: small;
+        }
+
         .headerIcon{
             width: 40px;
             display: block;
@@ -143,8 +199,42 @@
         .flexsearch{
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
 
+        .testSearch{
+            height: 45px !important;
+            width: 152px !important;
+
+        }
+
+         input[type="text"]:focus{
+            outline: none;
+            box-shadow: none;
+             border:1px solid #f9a825 !important;
+        }
+
+        .searchButton{
+            background-color: #f9a825 !important;
+            box-shadow: none;
+            width: 14%;
+            border-radius: 0 !important;
+            height: 45px !important;
+            display: flex !important;
+            justify-content: space-evenly !important;
+            color: black !important;
+        }
+       #bannerDiv{
+        position: fixed;
+        top: 86.66px;
+        z-index: 999;
+        left: 12%;
+      }
+        .warpdiv{
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
     </style>
 </head>
 <body class="is-preload" style="padding: 200px">
@@ -153,6 +243,9 @@
 <header id="header" th:include="/main/header::header_body">
 
 </header>
+<div id="bannerDiv">
+   <span id="img"></span><img src="/images/test3.png">
+</div>
 <!-- ----------------------------------------------------------------------------------------------------Header---------------------------------------------------------------------------------- -->
 
 <!-- -----------------------------------------------------------------------------------------------------section----------------------------------------------------------------------------------- -->
@@ -161,8 +254,7 @@
     <!-- Main -->
     <section class="main">
         <!-- Blurb -->
-        <section style="padding-top: 2.0em;padding-bottom: 0em; padding-left: 1.5em;">
-            <h4>빵 체험단 모집</h4>
+        <section style="padding-top: 2.0em;padding-bottom: 0em; padding-left: 5.5em; padding-right: 5.5em;">
             <div class="flexsearch">
                 <select name="category" id="category" onchange="location.href=this.value" style="width: 10%">
                     <option value="">전체</option>
@@ -171,57 +263,65 @@
                     <option value="1">케이크</option>
                     <option value="1">디저트</option>
                 </select>
-                <div class="" style="display: flex; align-items: center;">
-                    <input type="text" name="search" class="search" onkeyup="enterkey()" placeholder="검색어를 입력해주세요."
-                           style="width: 30%; color: #333 !important; margin: 0 5px 0 0%; width: 500px; border: none; border-bottom: solid 2px; border-bottom-color: white; font-size: 12px; font-family: 'Nanum Gothic Coding', monospace;">
-                    <input type="button" onclick="search()" value="검색"
-                           style="background-color: #f9a825; box-shadow: none; width: 14%">
+                <div class="warpdiv">
+                    <input type="text" name="search" class="testSearch" onkeyup="enterkey()" placeholder="검색어를 입력해주세요."
+                           style="width: 30%; color: #333 !important; margin: 0 0px 0 0%; width: 150px; border: none; border-bottom-color: white; font-size: 12px; font-family: 'Nanum Gothic Coding', monospace;">
+                    <input type="button" onclick="search()" value="검색" class="searchButton" style="color: black !important; border: 0 !important;">
                 </div>
             </div>
         </section>
         <section>
-            <div style="display: flex; justify-content: space-evenly; position: relative;">
-                <div class="review" style="/*position: absolute;*/ left: 0px; top: 0px; height: 264px">
-                    <div class="img-warp">
-                        <a href="#" class="img"
-                           style="background-image: url(https://t1.daumcdn.net/cfile/tistory/243F934B524FE41402)"></a>
-                    </div>
-                    <div class="text" style="    padding: 12px 16px 8px;">
-                        <span class="txt">형진 빵집</span>
-                        <a href="#" style="font-size: 14px;">무료배송💕 맛있는 빵 무료료 드실분~</a>
-                    </div>
-                </div>
-                <div class="review" style="/*position: absolute;*/ left: 0px; top: 0px; height: 264px">
-                    <div class="img-warp">
-                        <a href="#" class="img"
-                           style="background-image: url(https://t1.daumcdn.net/cfile/tistory/243F934B524FE41402)"></a>
-                    </div>
-                    <div class="text" style="    padding: 12px 16px 8px;">
-                        <span class="txt">형진 빵집</span>
-                        <a href="#" style="font-size: 14px;">무료배송💕 맛있는 빵 무료료 드실분~</a>
-                    </div>
-                </div>
-                <div class="review" style="/*position: absolute;*/ left: 0px; top: 0px; height: 264px">
-                    <div class="img-warp">
-                        <a href="#" class="img"
-                           style="background-image: url(https://t1.daumcdn.net/cfile/tistory/243F934B524FE41402)"></a>
-                    </div>
-                    <div class="text" style="    padding: 12px 16px 8px;">
-                        <span class="txt">형진 빵집</span>
-                        <a href="#" style="font-size: 14px;">무료배송💕 맛있는 빵 무료료 드실분~</a>
-                    </div>
-                </div>
-                <div class="review" style="/*position: absolute;*/ left: 0px; top: 0px; height: 264px">
-                    <div class="img-warp">
-                        <a href="#" class="img"
-                           style="background-image: url(https://t1.daumcdn.net/cfile/tistory/243F934B524FE41402)"></a>
-                    </div>
-                    <div class="text" style="    padding: 12px 16px 8px;">
-                        <span class="txt">형진 빵집</span>
-                        <a href="#" style="font-size: 14px;">무료배송💕 맛있는 빵 무료료 드실분~</a>
-                    </div>
-                </div>
-            </div>
+            <section class="spotlights alt">
+                <article style="border-width: 0px 1px 0px 0px;">
+                    <a href="#" class="image fit"><img src="/images/garlicBread2.jpg" alt=""></a>
+                    <h5>만동제과</h5>
+                    <p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
+                    <p style="font-weight: 600;">리뷰 0개</p>
+                </article>
+                <article style="border-width: 0px 1px 0px 0px;">
+                    <a href="#" class="image fit"><img src="/images/까눌레1.jpg" alt=""></a>
+                    <h5>리코 베이커리</h5>
+                    <p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
+                    <p style="font-weight: 600;">리뷰 0개</p>
+                </article>
+                <article style="border-width: 0px 1px 0px 0px;">
+                    <a href="#" class="image fit"><img src="/images/휘낭시에2.png" alt=""></a>
+                    <h5>버터랏츠</h5>
+                    <p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
+                    <p style="font-weight: 600;">리뷰 0개</p>
+                </article>
+                <article style="border-width: 0px 0px 0px 0px;">
+                    <a href="#" class="image fit"><img src="/images/donut2.jpg" alt=""></a>
+                    <h5>카페노티드</h5>
+                    <p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
+                    <p style="font-weight: 600;">리뷰 0개</p>
+                </article>
+                <article>
+                    <a href="#" class="image fit"><img src="/images/휘낭시에3.png" alt=""></a>
+                    <h5>만동제과</h5>
+                    <p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
+                    <p style="font-weight: 600;">리뷰 0개</p>
+                </article>
+                <article>
+                    <a href="#" class="image fit"><img src="/images/스콘1.jpg" alt=""></a>
+                    <h5>리코 베이커리</h5>
+                    <p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
+                    <p style="font-weight: 600;">리뷰 0개</p>
+                </article>
+                <article>
+                    <a href="#" class="image fit"><img src="/images/donut1.jpg" alt=""></a>
+                    <h5>버터랏츠</h5>
+                    <p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
+                    <p style="font-weight: 600;">리뷰 0개</p>
+                </article>
+                <article>
+                    <a href="#" class="image fit"><img src="/images/melon1.jpg" alt=""></a>
+                    <h5>카페노티드</h5>
+                    <p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
+                    <p style="font-weight: 600;">리뷰 0개</p>
+                </article>
+                <br>
+            </section>
         </section>
     </section>
 </div>
