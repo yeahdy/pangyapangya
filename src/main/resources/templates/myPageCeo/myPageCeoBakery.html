@@ -280,7 +280,7 @@
 
 														<div>
 															<select name="type1">
-																<option value="">타입</option>
+																<option value="">종류</option>
 																<option value="케이크">케이크</option>
 																<option value="제과">제과</option>
 																<option value="제빵">제빵</option>
@@ -312,7 +312,7 @@
 
 														<div>
 															<select name="type2">
-																<option value="">타입</option>
+																<option value="">종류</option>
 																<option value="케이크">케이크</option>
 																<option value="제과">제과</option>
 																<option value="제빵">제빵</option>
@@ -344,7 +344,7 @@
 
 														<div>
 															<select name="type3">
-																<option value="">타입</option>
+																<option value="">종류</option>
 																<option value="케이크">케이크</option>
 																<option value="제과">제과</option>
 																<option value="제빵">제빵</option>
@@ -377,7 +377,7 @@
 
 														<div>
 															<select name="type4">
-																<option value="">타입</option>
+																<option value="">종류</option>
 																<option value="케이크">케이크</option>
 																<option value="제과">제과</option>
 																<option value="제빵">제빵</option>
@@ -410,7 +410,7 @@
 
 														<div>
 															<select name="type5">
-																<option value="">타입</option>
+																<option value="">종류</option>
 																<option value="케이크">케이크</option>
 																<option value="제과">제과</option>
 																<option value="제빵">제빵</option>
@@ -442,7 +442,7 @@
 
 														<div>
 															<select name="type6">
-																<option value="">타입</option>
+																<option value="">종류</option>
 																<option value="케이크">케이크</option>
 																<option value="제과">제과</option>
 																<option value="제빵">제빵</option>
@@ -464,38 +464,6 @@
 
 											</div>
 
-											<!--일곱-->
-											<div class="table-1" style="margin-bottom: 10px;">
-
-												<div class="table-title"></div>
-
-												<div style="width: 75%;">
-													<div class="table-content" style="display: flex; width: 100%;">
-
-														<div>
-															<select name="type7">
-																<option value="">타입</option>
-																<option value="케이크">케이크</option>
-																<option value="제과">제과</option>
-																<option value="제빵">제빵</option>
-															</select>
-														</div>
-														<div>
-															<input type="text" placeholder="빵 이름" style="margin-bottom: 1px;">
-														</div>
-														<div>
-															<input type="text" placeholder="빵 가격">
-														</div>
-														<div style="width: 10%;">
-															<label for="plusImg7" style="margin: 0; position: relative; top: 13px;" >
-																<img id="plusImg7" src="/images/plus.png" width="20px" height="20px" style="display:inline;">
-															</label>
-														</div>
-													</div>
-												</div>
-
-
-											</div>
 										</div><!--밑에 상세정보 입력Div-->
 
 
@@ -520,6 +488,7 @@
 		</div>
 
 	</div>
+</div>
 	<!-- Footer -->
 	<footer id="footer">
 
@@ -535,15 +504,6 @@
 	<script src="/js/breakpoints.min.js"></script>
 	<script src="/js/util.js"></script>
 	<script src="/js/main.js"></script>
+	<script th:replace="/main/header::header_js"></script>
 </body>
-<script>
-	$("#header").mouseleave(function(){
-		$(this).css("opacity", "1");
-		$(this).css("color", "white");
-	})
-	$("#header").mouseover(function(){
-		$(this).css("opacity", "0.7");
-		$(this).css("color", "black");
-	})
-</script>
 </html>
