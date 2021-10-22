@@ -17,5 +17,4 @@ public class breadListController {
 
     @GetMapping("breadDetail")
     public String breadDetail(){ return "main/breadDetail"; }
-
 }
