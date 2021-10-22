@@ -11,7 +11,7 @@ body.on{
 }
 
 .box_login {
-    width: 420px;
+    width: 460px;
     margin: 0 auto;
     padding: 35px 20px;
     border: 1px solid #eee;
@@ -43,8 +43,8 @@ body.on{
     padding-left: 25px;
     text-align: left;
     font-size: 12px;
-    color: #fe0045;
-    background: url(https://front-img.taling.me/Content/app3/images/icon_info_pink.png) no-repeat 5px bottom/16px;
+    color: #F9A825;
+    background: url("/images/iconAlert.png") no-repeat 5px bottom/16px;
 }
 
 .box_login .info_error.act {
@@ -131,10 +131,10 @@ body.on{
     display: -ms-grid;
     display: grid;
     -ms-grid-rows: 72px auto 88px;
-    grid-template-rows: 75px auto 130px;
+    grid-template-rows: 120px auto 130px;
     -ms-grid-columns: 100%;
     grid-template-columns: 100%;
-    height: 460px;
+    height: 500px;
 }
 
 .login_email .box_btn .btn {
@@ -176,10 +176,11 @@ body.on{
     border: none;
     border-bottom: 1px solid #eee;
     color: black;
+    border-radius: 5px;
 }
 
 .cont_login .box_inp .line_inp .error {
-    border-color: #fe0045;
+    border-color: #F9A825;
 }
 
 .line_pw {
@@ -261,7 +262,7 @@ body.on{
 }
 
 .cont_login .label_wrap .inp_label:checked + label::before {
-    background-image: url("https://front-img.taling.me/Content/app3/images/mb_check_on.png");
+    background-image: url("/images/checkBtn.png");
 }
 
 .cont_login .label_wrap .link_more {
@@ -287,11 +288,7 @@ body.on{
 }
 
 .cont_login .terms_lst .terms_chk_all label {
-    color: #fe0045;
-}
-
-.cont_login .terms_lst .terms_chk_all .inp_chkbox::before {
-    background-image: url("https://front-img.taling.me/Content/app3/images/mb_check_off_over.png");
+    color: #F9A825;
 }
 
 .cont_login .terms_lst article {
@@ -480,156 +477,4 @@ body.on{
     width: 100%;
     height: 1px;
     background-color: #111;
-}
-
-/* ì•„ì´ë”” ì°¾ê¸° */
-.find_id {
-    width: 455px;
-    padding: 25px;
-    text-align: left;
-}
-
-.find_id .title {
-    margin-bottom: 16px;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 29px;
-    letter-spacing: -0.5px;
-}
-
-.find_id .info_text {
-    margin-bottom: 29px;
-    font-size: 16px;
-    line-height: 16px;
-    letter-spacing: -0.4px;
-    color: #666;
-}
-
-.find_id .form_title {
-    margin-bottom: 5px;
-    font-weight: 500;
-    line-height: 20px;
-    letter-spacing: -0.35px;
-    color: #666;
-}
-
-.find_id .line {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-}
-
-.find_id .line .inp {
-    width: calc(100% - 110px);
-    height: 46px;
-    border-color: #e0e0e0;
-    border-radius: 4px;
-    letter-spacing: -0.35px;
-}
-
-.find_id .line button {
-    width: 100px;
-    height: 46px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    line-height: 44px;
-    letter-spacing: -0.35px;
-    color: #666;
-}
-
-.find_id .count {
-    padding-top: 5px;
-    letter-spacing: -0.35px;
-    color: #ff5d5d;
-}
-
-.find_id .list_id {
-    overflow-y: scroll;
-    z-index: 1;
-    max-height: 334px;
-    margin-top: 53px;
-    margin-bottom: -48px;
-}
-
-.find_id .list_id::after {
-    content: '';
-    position: absolute;
-    left: -25px;
-    bottom: -25px;
-    width: 453px;
-    height: 97px;
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), color-stop(21%, rgba(255, 255, 255, 0.8)), color-stop(61%, rgba(255, 255, 255, 0.9)), to(#fff));
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8) 21%, rgba(255, 255, 255, 0.9) 61%, #fff);
-}
-
-.find_id .list_id ul {
-    padding-bottom: 86px;
-}
-
-.find_id .list_id li {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    padding: 20px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.find_id .list_id li:first-child {
-    padding-top: 0;
-}
-
-.find_id .list_id li:last-child {
-    padding-bottom: 0;
-    border-bottom: none;
-}
-
-.find_id .list_id span {
-    font-weight: 500;
-    font-size: 12px;
-    letter-spacing: -0.3px;
-    line-height: 20px;
-    color: #666;
-}
-
-.find_id .list_id p {
-    word-break: break-all;
-    line-height: 20px;
-    letter-spacing: -0.35px;
-    color: #111;
-}
-
-.find_id .btn {
-    display: block;
-    position: relative;
-    z-index: 5;
-    width: 100%;
-    height: 48px;
-    border-radius: 6px;
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 48px;
-    letter-spacing: -0.38px;
-    color: #fff;
-    text-align: center;
-    background-color: #F9A825;
-}
-
-.find_id .btn:disabled {
-    background-color: #ccc;
-}
-
-.find_id .btn_next {
-    margin-top: 28px;
 }
