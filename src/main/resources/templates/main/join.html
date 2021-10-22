@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+	<title>회원가입 | 빵야빵야(屋)</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="/css/main.css" />
+	<link rel="stylesheet" href="/css/login.css" />
+	<style th:replace="/main/header::header_style">
+
+	</style>
+</head>
+<body class="is-preload" style="padding: 5em 200px 0 200px;background-color: white;">
+
+<!-- Header -->
+<header id="header" th:replace="/main/header::header_body">
+
+</header>
+
+<!-- Wrapper -->
+	<!-- Main -->
+	<section class="cont_login container">
+		<form action="#" method="post" id="frm-login">
+			<div class="box_login login_email" style="height: 700px">
+				<h2 class="tit">간편하게 가입하고<br><strong style="color: #F9A825">빵야빵야(屋)의</strong><br> 다양한 빵을 먹어보세요.</h2>
+				<div class="box_inp">
+					<div class="line_inp">
+						<input type="text" name="userid" id="userid" placeholder="아이디를 입력해주세요">
+						<p class="info_error" id="idError1">아이디를 입력해주세요.</p>
+					</div>
+					<div class="line_inp">
+						<input type="text" name="userName" id="userName" placeholder="이름(실명)을 입력해주세요">
+						<p class="info_error" id="nameError1">이름(실명)을 입력해주세요.</p>
+					</div>
+					<div class="line_inp">
+						<input type="text" name="email" id="userEmail" placeholder="이메일 주소를 입력해주세요">
+						<p class="info_error" id="emailError1">이메일 형식에 맞지 않습니다.</p>
+						<p class="info_error" id="emailError2">이메일 주소를 입력해주세요.</p>
+					</div>
+					<div class="line_inp line_pw">
+						<input type="password" name="userPassword" id="userPassword" placeholder="비밀번호를 입력해주세요">
+						<button type="button" class="type_pwd hide"></button>
+						<p class="info_error" id="passError1">비밀번호는 영문 숫자조합 8자리 이상 입력해주세요.</p>
+						<p class="info_error" id="passError2">비밀번호를 입력해주세요.</p>
+					</div>
+					<div class="line_inp line_pw">
+						<input type="password" name="confirm" id="confirm" placeholder="비밀번호를 재입력해주세요">
+						<button type="button" class="type_pwd hide"></button>
+						<p class="info_error" id="confirmError1">입력하신 비밀번호가 서로 다릅니다.</p>
+					</div>
+				</div>
+				<div class="col-6 col-12-medium">
+					<ul class="actions fit" style="margin-bottom: 3em;">
+						<li><a href="/main/joinConfirm" class="button primary fit" style="margin-top: 1em;">다음</a></li>
+					</ul>
+				</div>
+			</div>
+		</form>
+	</section>
+<!-- Footer -->
+
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script th:replace="/main/header::header_js"></script>
+<script type="text/javascript">
+
+	//비밀번호 숨기기
+	$('.type_pwd').on('click',function() {
+		var $this = $(this);
+		$this.toggleClass('hide');
+		if($this.hasClass('hide')){
+			$this.prev('input').prop('type','password');
+		}else{
+			$this.prev('input').prop('type','text');
+		}
+	});
+
+</script>
+</body>
+</html>

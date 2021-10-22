@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+	<title>회원가입 | 빵야빵야(屋)</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="/css/main.css" />
+	<link rel="stylesheet" href="/css/login.css" />
+	<style th:include="/main/header::header_style">
+
+	</style>
+</head>
+<body class="is-preload" style="padding: 5em 200px 0 200px;background-color: white;">
+
+<!-- Header -->
+<header id="header" th:include="/main/header::header_body">
+
+</header>
+
+<!-- Wrapper -->
+	<!-- Main -->
+	<section class="cont_login container">
+		<form action="#" method="post" id="frm-agree">
+			<div class="box_login box_terms" style="height: 780px">
+				<h2 class="tit"><b style="color: #F9A825;">환영합니다!</b>원활한 서비스 이용을 위해<br>약관에 동의해주세요.</h2>
+				<ul class="terms_lst" style="list-style: none">
+					<li class="terms_chk_all">
+						<div class="label_wrap">
+							<input class="blind inp_label all" type="checkbox" name="checkAll" id="checkAll">
+							<label for="checkAll" class="inp_chkbox">전체동의</label>
+						</div>
+					</li>
+					<li>
+						<div class="label_wrap">
+							<input class="blind inp_label" type="checkbox" name="checkTerms" id="termsService" value="termsService">
+							<label for="termsService" class="inp_chkbox">* 서비스 이용약관 (필수)</label>
+							<a href="/main/Rule" class="link_more" target="_blank">보기</a>
+						</div>
+						<article><p>빵야빵야(屋) 서비스 이용과 관련하여 회사 및 이용자간의 권리, 의미 등을 안내해 드립니다.</p></article>
+					</li>
+					<li>
+						<div class="label_wrap">
+							<input class="blind inp_label" type="checkbox" name="checkTerms" id="termsPrivacy" value="termsPrivacy">
+							<label for="termsPrivacy" class="inp_chkbox">* 개인정보처리방침 (필수)</label>
+							<a href="/main/Privacy" class="link_more" target="_blank">보기</a>
+						</div>
+						<article><p>서비스 이용과 관련하여 수집 이용하는 개인정보를 안내해 드립니다.</p></article>
+					</li>
+					<li>
+						<div class="label_wrap">
+							<input class="blind inp_label" type="checkbox" name="checkTerms" id="termsPush" value="1">
+							<label for="termsPush" class="inp_chkbox">이벤트 정보 수신 동의 (선택)</label>
+						</div>
+						<article><p>뉴스 및 이벤트, 관심 수업 소식 등 탈잉 서비스와 관련된 알림을 받을 수 있습니다.</p></article>
+						<p class="info_error act">서비스 이용약관과 개인정보처리방침에 모두 동의해주세요.</p>
+					</li>
+				</ul>
+				<div class="col-6 col-12-medium">
+					<ul class="actions fit" style="margin-bottom: 1em;">
+						<li><a href="/main/login" class="button primary fit">빵집 투어 시작하기</a></li>
+					</ul>
+				</div>
+			</div>
+		</form>
+	</section>
+<!-- Footer -->
+
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script type="text/javascript">
+	//비밀번호 숨기기
+	$('.type_pwd').on('click',function() {
+		var $this = $(this);
+		$this.toggleClass('hide');
+		if($this.hasClass('hide')){
+			$this.prev('input').prop('type','password');
+		}else{
+			$this.prev('input').prop('type','text');
+		}
+	});
+
+	//체크박스
+	function allCheckFunc(obj) {
+		$("[name=checkTerms]").prop("checked", $(obj).prop("checked"));
+	}
+	/* 체크박스 체크시 전체선택 체크 여부 */
+	function oneCheckFunc(obj) {
+		var allObj = $("[name=checkAll]");
+		var objName = $(obj).attr("name");
+
+		if($(obj).prop("checked")){
+			checkBoxLength = $("[name="+ objName +"]").length;
+			checkedLength = $("[name="+ objName +"]:checked").length;
+
+			if(checkBoxLength == checkedLength){
+				allObj.prop("checked", true);
+			}else{
+				allObj.prop("checked", false);
+			}
+		}else{
+			allObj.prop("checked", false);
+		}
+	}
+
+
+	$(function(){
+		// 전체동의 클릭 시 모두 체크하기 함수 실행
+		$("[name=checkAll]").click(function(){
+			allCheckFunc(this);
+		});
+		// 개별 동의 클릭 시 하나씩 체크하기 함수 실행
+		$("[name=checkTerms]").each(function(){
+			$(this).click(function(){
+				oneCheckFunc($(this));
+			});
+		});
+
+	});
+</script>
+</body>
+</html>
