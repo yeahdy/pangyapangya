@@ -35,4 +35,8 @@ public class MypageController {
     public String breadOrderList(){ return "main/breadOrderList"; }
     @GetMapping("myWriting")
     public String myWriting(){ return "main/myWriting"; }
+    @GetMapping("myWriting_new")
+    public String myWriting_new(){ return "main/myWriting_new"; }
+    @GetMapping("checkPassword_new")
+    public String checkPassword_new(){ return "main/checkPassword_new"; }
 }
