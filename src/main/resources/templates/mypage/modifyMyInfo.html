@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
-    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/static/css/main.css" />
     <style>
         .headerIcon{
             width: 40px;
@@ -58,9 +58,9 @@
         .wrapper{width: 75%;}
         #ad{background: #fff; width: 15%; height: 10px;}
         #ad img{width: 100%; height: 600px;}
-        #myMainSection{display: flex;}
+        #myMainSection{/*display: flex;*/}
         #myLeftSection{width: 20%; background: #f9efef;}
-        #myRightSection{width: 80%; padding: 0 15px 15px 15px;}
+        #myRightSection{width: 90%; padding: 0 15px 15px 15px; margin: 0 auto;}
         .myPageTitle{background: #F9A825; margin: 0; padding: 7px 7px 7px 15px;}
         .myPageTitle p{margin: 0; color: #fff;}
         #allDiv{padding:15px;}
@@ -82,11 +82,16 @@
         }
         table{
             margin: 2em auto;
-            width: 80%;
+            /*width: 80%;*/
         }
         #myRightDiv h1{
-            width: 80%;
+            /*width: 80%;*/
             margin: 0 auto;
+        }
+        #title{
+            color: #F9A825;
+            font-size: 1.2em;
+            font-weight: 900;
         }
     </style>
 </head>
@@ -100,47 +105,50 @@
 <div id="all">
     <div class="wrapper">
 
+
+
+        <section id="myLeftSection">
+            <div id="myLeftDiv">
+                <div class="myPageMenu">
+                    <div class="myPageTitle"><p>MY PAGE</p></div>
+                    <div id="allDiv">
+                        <div class="myPageSelect1"><p>주문 내역</p></div>
+                        <div class="contentDiv">
+                            <div class="myPageSelectMenu"><p><a href="#">빵 결제 내역</a></p></div>
+                            <div class="myPageSelectMenu"><p><a href="#">원데이 클래스 신청 내역</a></a></p></div>
+                            <div class="myPageSelectMenu floorDiv"><p><a href="#">빵 체험단 신청 내역</a></a></p></div>
+                        </div>
+
+                        <div class="myPageSelect1"><p>내 글 보기</p></div>
+                        <div class="contentDiv">
+                            <div class="myPageSelectMenu"><p><a href="#" style="text-decoration: underline; color: chocolate;">빵집 리뷰</a></p></div>
+                            <div class="myPageSelectMenu"><p><a href="#">원데이 클래스</a></a></p></div>
+                            <div class="myPageSelectMenu floorDiv"><p><a href="#">빵 체험단</a></a></p></div>
+                        </div>
+
+                        <div class="myPageSelect1"><p>내 정보</p></div>
+                        <div class="contentDiv">
+                            <div class="myPageSelectMenu"><p><a href="#">내 정보 수정</a></p></div>
+                            <div class="myPageSelectMenu"><p><a href="#">회원 탈퇴</a></a></p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
         <!-- Main -->
         <section class="main second-main">
 
             <section>
-                <header>
-                    <h1>MY PAGE</h1>
-                </header>
-                <p></p>
                 <section id="myMainSection">
-                    <section id="myLeftSection">
-                        <div id="myLeftDiv">
-                            <div class="myPageMenu">
-                                <div class="myPageTitle"><p>MY MENU</p></div>
-                                <div id="allDiv">
-                                    <div class="myPageSelect1"><p>주문 내역</p></div>
-                                    <div class="contentDiv">
-                                        <div class="myPageSelectMenu"><p><a href="#">빵 결제 내역</a></p></div>
-                                        <div class="myPageSelectMenu"><p><a href="#">원데이 클래스 신청 내역</a></a></p></div>
-                                        <div class="myPageSelectMenu floorDiv"><p><a href="#">빵 체험단 신청 내역</a></a></p></div>
-                                    </div>
 
-                                    <div class="myPageSelect1"><p>내 글 보기</p></div>
-                                    <div class="contentDiv">
-                                        <div class="myPageSelectMenu"><p><a href="#" style="text-decoration: underline; color: chocolate;">빵집 리뷰</a></p></div>
-                                        <div class="myPageSelectMenu"><p><a href="#">원데이 클래스</a></a></p></div>
-                                        <div class="myPageSelectMenu floorDiv"><p><a href="#">빵 체험단</a></a></p></div>
-                                    </div>
 
-                                    <div class="myPageSelect1"><p>내 정보</p></div>
-                                    <div class="contentDiv">
-                                        <div class="myPageSelectMenu"><p><a href="#">내 정보 수정</a></p></div>
-                                        <div class="myPageSelectMenu"><p><a href="#">회원 탈퇴</a></a></p></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </section>
                     <section id="myRightSection" class="form">
                         <div id="myRightDiv">
-                                <h1 >회원 정보 관리</h1>
+                            <header>
+                                <h2 id="title">회원 정보 관리</h2>
+                            </header>
                             <table>
                                 <tr>
                                     <td>이름 - readonly</td>
@@ -157,13 +165,13 @@
                                 <tr>
                                     <td>비밀번호</td>
                                     <td>
-                                        <input type="password" value="hds1234">
+                                        <input type="password" value="hds1234" style="border-radius: 20px;">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>비밀번호 확인</td>
                                     <td>
-                                        <input type="password" value="">
+                                        <input type="password" value="" style="border-radius: 20px;">
                                     </td>
                                 </tr>
                                 <tr>
@@ -196,7 +204,7 @@
         </section>
     </div>
     <div id="ad">
-        <span class="image"><img src="/images/ECdDwLmUIAIAX7k.jpg" alt=""></span>
+        <span class="image"><img src="/static/images/ECdDwLmUIAIAX7k.jpg" alt=""></span>
     </div>
 </div>
 
@@ -213,21 +221,21 @@
             </div>
             <div class="team">
                 <article>
-                    <span class="image"><img src="/images/pic06.jpg" alt=""></span>
+                    <span class="image"><img src="/static/images/pic06.jpg" alt=""></span>
                     <p>
                         <strong class="name">John Doe</strong>
                         <span class="title">Lorem semper magna etiam</span>
                     </p>
                 </article>
                 <article>
-                    <span class="image"><img src="/images/pic07.jpg" alt=""></span>
+                    <span class="image"><img src="/static/images/pic07.jpg" alt=""></span>
                     <p>
                         <strong class="name">Jane Anderson</strong>
                         <span class="title">Etiam feugiat adipiscing veroeros</span>
                     </p>
                 </article>
                 <article>
-                    <span class="image"><img src="/images/pic08.jpg" alt=""></span>
+                    <span class="image"><img src="/static/images/pic08.jpg" alt=""></span>
                     <p>
                         <strong class="name">Mike Smith</strong>
                         <span class="title">Consequat nulla dolor blandit</span>
@@ -252,21 +260,12 @@
 </footer>
 
 <!-- Scripts -->
-<script src="/js/jquery.min.js"></script>
-<script src="/js/jquery.dropotron.min.js"></script>
-<script src="/js/browser.min.js"></script>
-<script src="/js/breakpoints.min.js"></script>
-<script src="/js/util.js"></script>
-<script src="/js/main.js"></script>
-<script>
-    $("#header").mouseleave(function(){
-        $(this).css("opacity", "1");
-        $(this).css("color", "white");
-    })
-    $("#header").mouseover(function(){
-        $(this).css("opacity", "0.7");
-        $(this).css("color", "black");
-    })
-</script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/jquery.dropotron.min.js"></script>
+<script src="/static/js/browser.min.js"></script>
+<script src="/static/js/breakpoints.min.js"></script>
+<script src="/static/js/util.js"></script>
+<script src="/static/js/main.js"></script>
+<script th:replace="/main/header::header_js"></script>
 </body>
 </html>
