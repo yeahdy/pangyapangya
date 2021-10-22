@@ -17,6 +17,12 @@ public class TestController {
         return "test/list";
     }
 
+    @GetMapping("read")
+    public String read(){return "test/read";}
+
+    @GetMapping("review")
+    public String review(){return "test/review";}
+
     @GetMapping("test")
     public String test(){return "test/test";}
 }
