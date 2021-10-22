@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
-    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/static/css/main.css" />
     <style>
         .headerIcon{
             width: 40px;
@@ -56,9 +56,9 @@
         .wrapper{width: 75%;}
         #ad{background: #fff; width: 15%; height: 10px;}
         #ad img{width: 100%; height: 600px;}
-        #myMainSection{display: flex;}
+        #myMainSection{/*display: flex;*/}
         #myLeftSection{width: 20%; background: #f9efef;}
-        #myRightSection{width: 80%; padding: 0 15px 15px 15px;}
+        #myRightSection{width: 100%;/* padding: 0 15px 15px 15px;*/}
         .myPageTitle{background: #F9A825; margin: 0; padding: 7px 7px 7px 15px;}
         .myPageTitle p{margin: 0; color: #fff;}
         #allDiv{padding:15px;}
@@ -72,8 +72,9 @@
             float: left; padding: 0px 5px;
             /*font-size: 13px;*/
         }
-        th{
-            padding: 10px;
+        table th{
+            /*padding: 10px;*/
+            padding: 0.75em 0.75em 0.75em 0.75em;
         }
         #bread_img{
             width: 100px;
@@ -84,9 +85,9 @@
             font-size: 14px;
         }
 
-        #bakeryName, #bakeryTotalPrice{
+       /* #bakeryName, #bakeryTotalPrice{
             padding: 10px 20px;
-        }
+        }*/
         #bread_title{
             font-size: 15px;
         }
@@ -94,7 +95,7 @@
             font-size: 13px;
         }
         #breadTable_top{
-            width: 50%;
+            width: 60%;
             float: left;
         }
         #breadTable_bottom{
@@ -126,6 +127,12 @@
             width: 50%;
             margin: 0 40%;
         }
+        #explain p{font-size: 0.8em; background: #fbf6f6; height: 57px; padding: 20px 10px;}
+        #title{
+            color: #F9A825;
+            font-size: 1.2em;
+            font-weight: 900;
+        }
     </style>
 </head>
 <body class="is-preload" style="padding: 200px">
@@ -138,45 +145,49 @@
 <div id="all">
     <div class="wrapper">
 
+        <section id="myLeftSection">
+            <div id="myLeftDiv">
+                <div class="myPageMenu">
+                    <div class="myPageTitle"><p>MY PAGE</p></div>
+                    <div id="allDiv">
+                        <div class="myPageSelect1"><p>주문 내역</p></div>
+                        <div class="contentDiv">
+                            <div class="myPageSelectMenu"><p><a href="#">빵 결제 내역</a></p></div>
+                            <div class="myPageSelectMenu"><p><a href="#">원데이 클래스 신청 내역</a></a></p></div>
+                            <div class="myPageSelectMenu floorDiv"><p><a href="#">빵 체험단 신청 내역</a></a></p></div>
+                        </div>
+
+                        <div class="myPageSelect1"><p>내 글 보기</p></div>
+                        <div class="contentDiv">
+                            <div class="myPageSelectMenu"><p><a href="#" style="text-decoration: underline; color: chocolate;">빵집 리뷰</a></p></div>
+                            <div class="myPageSelectMenu"><p><a href="#">원데이 클래스</a></a></p></div>
+                            <div class="myPageSelectMenu floorDiv"><p><a href="#">빵 체험단</a></a></p></div>
+                        </div>
+
+                        <div class="myPageSelect1"><p>내 정보</p></div>
+                        <div class="contentDiv">
+                            <div class="myPageSelectMenu"><p><a href="#">내 정보 수정</a></p></div>
+                            <div class="myPageSelectMenu"><p><a href="#">회원 탈퇴</a></a></p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
         <!-- Main -->
         <section class="main second-main">
 
             <section>
                 <header>
-                    <h1>MY PAGE</h1>
+                    <h2 id="title">빵 결제 내역</h2>
                 </header>
                 <p></p>
+
                 <section id="myMainSection">
-                    <section id="myLeftSection">
-                        <div id="myLeftDiv">
-                            <div class="myPageMenu">
-                                <div class="myPageTitle"><p>MY MENU</p></div>
-                                <div id="allDiv">
-                                    <div class="myPageSelect1"><p>주문 내역</p></div>
-                                    <div class="contentDiv">
-                                        <div class="myPageSelectMenu"><p><a href="#">빵 결제 내역</a></p></div>
-                                        <div class="myPageSelectMenu"><p><a href="#">원데이 클래스 신청 내역</a></a></p></div>
-                                        <div class="myPageSelectMenu floorDiv"><p><a href="#">빵 체험단 신청 내역</a></a></p></div>
-                                    </div>
-
-                                    <div class="myPageSelect1"><p>내 글 보기</p></div>
-                                    <div class="contentDiv">
-                                        <div class="myPageSelectMenu"><p><a href="#" style="text-decoration: underline; color: chocolate;">빵집 리뷰</a></p></div>
-                                        <div class="myPageSelectMenu"><p><a href="#">원데이 클래스</a></a></p></div>
-                                        <div class="myPageSelectMenu floorDiv"><p><a href="#">빵 체험단</a></a></p></div>
-                                    </div>
-
-                                    <div class="myPageSelect1"><p>내 정보</p></div>
-                                    <div class="contentDiv">
-                                        <div class="myPageSelectMenu"><p><a href="#">내 정보 수정</a></p></div>
-                                        <div class="myPageSelectMenu"><p><a href="#">회원 탈퇴</a></a></p></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </section>
                     <section id="myRightSection">
+                        <div id="explain">
+                            <p>이전에 구매한 상품을 확인해보세요!</p>
+                        </div>
                         <div id="myRightDiv">
                             <!--첫 번째 빵집-->
                                 <table border="1" id="bakery1">
@@ -186,7 +197,7 @@
                                         <th><div id="bakeryTotalPrice">25,800</div></th>
                                     </tr>
                                     <tr>
-                                        <td><div class="bread_table"><img id="bread_img" src="/images/bread1.jpg"></div>
+                                        <td><div class="bread_table"><img id="bread_img" src="/static/images/bread1.jpg"></div>
                                             <div id="breadTable_top">
                                                 <span id="bread_title"><strong>9無 🌿비건통밀파운드케이크 👉6종 Half_Size</strong></span>
                                                 <br>
@@ -212,7 +223,7 @@
                                         <th><div id="bakeryTotalPrice">22,400</div></th>
                                     </tr>
                                     <tr>
-                                        <td><div class="bread_table"><img id="bread_img" src="/images/bread2.jpg"></div>
+                                        <td><div class="bread_table"><img id="bread_img" src="/static/images/bread2.jpg"></div>
                                             <div id="breadTable_top">
                                                 <span id="bread_title"><strong>9無 🌿비건통밀파운드케이크 👉6종 Half_Size</strong></span>
                                                 <br>
@@ -238,7 +249,7 @@
                                         <th><div id="bakeryTotalPrice">38,000</div></th>
                                     </tr>
                                     <tr>
-                                        <td><div class="bread_table"><img id="bread_img" src="/images/bread3.jpg"></div>
+                                        <td><div class="bread_table"><img id="bread_img" src="/static/images/bread3.jpg"></div>
                                             <div id="breadTable_top">
                                                 <span id="bread_title"><strong>9無 🌿비건통밀파운드케이크 👉6종 Half_Size</strong></span>
                                                 <br>
@@ -268,7 +279,7 @@
         </section>
     </div>
     <div id="ad">
-        <span class="image"><img src="/images/ECdDwLmUIAIAX7k.jpg" alt=""></span>
+        <span class="image"><img src="/static/images/ECdDwLmUIAIAX7k.jpg" alt=""></span>
     </div>
 </div>
 
@@ -285,21 +296,21 @@
             </div>
             <div class="team">
                 <article>
-                    <span class="image"><img src="/images/pic06.jpg" alt=""></span>
+                    <span class="image"><img src="/static/images/pic06.jpg" alt=""></span>
                     <p>
                         <strong class="name">John Doe</strong>
                         <span class="title">Lorem semper magna etiam</span>
                     </p>
                 </article>
                 <article>
-                    <span class="image"><img src="/images/pic07.jpg" alt=""></span>
+                    <span class="image"><img src="/static/images/pic07.jpg" alt=""></span>
                     <p>
                         <strong class="name">Jane Anderson</strong>
                         <span class="title">Etiam feugiat adipiscing veroeros</span>
                     </p>
                 </article>
                 <article>
-                    <span class="image"><img src="/images/pic08.jpg" alt=""></span>
+                    <span class="image"><img src="/static/images/pic08.jpg" alt=""></span>
                     <p>
                         <strong class="name">Mike Smith</strong>
                         <span class="title">Consequat nulla dolor blandit</span>
@@ -324,21 +335,12 @@
 </footer>
 
 <!-- Scripts -->
-<script src="/js/jquery.min.js"></script>
-<script src="/js/jquery.dropotron.min.js"></script>
-<script src="/js/browser.min.js"></script>
-<script src="/js/breakpoints.min.js"></script>
-<script src="/js/util.js"></script>
-<script src="/js/main.js"></script>
-<script>
-    $("#header").mouseleave(function(){
-        $(this).css("opacity", "1");
-        $(this).css("color", "white");
-    })
-    $("#header").mouseover(function(){
-        $(this).css("opacity", "0.7");
-        $(this).css("color", "black");
-    })
-</script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/jquery.dropotron.min.js"></script>
+<script src="/static/js/browser.min.js"></script>
+<script src="/static/js/breakpoints.min.js"></script>
+<script src="/static/js/util.js"></script>
+<script src="/static/js/main.js"></script>
+<script th:replace="/main/header::header_js"></script>
 </body>
 </html>
