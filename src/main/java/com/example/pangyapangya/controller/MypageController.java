@@ -8,35 +8,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("/main/*")
+@RequestMapping("/mypage/*")
 @RequiredArgsConstructor
 public class MypageController {
 
     //mypage_user
     @GetMapping("mypage")
-    public String mypage(){ return "main/mypage"; }
+    public String mypage(){ return "mypage/mypage"; }
     @GetMapping("cart")
-    public String cart(){ return "main/cart"; }
+    public String cart(){ return "mypage/cart"; }
     @GetMapping("order")
-    public String order(){ return "main/order"; }
+    public String order(){ return "mypage/order"; }
     @GetMapping("bread_review")
-    public String bread_review(){ return "main/bread_review"; }
+    public String bread_review(){ return "mypage/bread_review"; }
     @GetMapping("oneDayClass_review")
-    public String oneDayClass_review(){ return "main/oneDayClass_review"; }
+    public String oneDayClass_review(){ return "mypage/oneDayClass_review"; }
     @GetMapping("testing_review")
-    public String testing_review(){ return "main/testing_review"; }
+    public String testing_review(){ return "mypage/testing_review"; }
     @GetMapping("modifyMyInfo")
-    public String modifyMyInfo(){ return "main/modifyMyInfo"; }
+    public String modifyMyInfo(){ return "mypage/modifyMyInfo"; }
     @GetMapping("mypage_new")
-    public String mypage_new(){ return "main/mypage_new"; }
+    public String mypage_new(){ return "mypage/mypage_new"; }
     @GetMapping("checkPassword")
-    public String checkPassword(){ return "main/checkPassword"; }
+    public String checkPassword(){ return "mypage/checkPassword"; }
     @GetMapping("breadOrderList")
-    public String breadOrderList(){ return "main/breadOrderList"; }
+    public String breadOrderList(){ return "mypage/breadOrderList"; }
     @GetMapping("myWriting")
-    public String myWriting(){ return "main/myWriting"; }
+    public String myWriting(){ return "mypage/myWriting"; }
     @GetMapping("myWriting_new")
-    public String myWriting_new(){ return "main/myWriting_new"; }
+    public String myWriting_new(){ return "mypage/myWriting_new"; }
     @GetMapping("checkPassword_new")
-    public String checkPassword_new(){ return "main/checkPassword_new"; }
+    public String checkPassword_new(){ return "mypage/checkPassword_new"; }
 }

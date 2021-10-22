@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
-    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/static/css/main.css" />
     <style>
         .headerIcon{
             width: 40px;
@@ -140,7 +140,7 @@
                             <div class="table-wrapper">
                                 <div id="main-box">
                                     <div id="rightHeader" style="display: flex;">
-                                        <div id="rightHeader-first"><h2>빵집 리뷰</h2></div>
+                                        <div id="rightHeader-first"><h2>빵 체험단 리뷰</h2></div>
                                         <div id="rightHeader-second"><sub>1,500</sub></div>
                                         <div id="rightHeader-third"><input type="button" class="primary" value="글쓰기"></input><span id="img"><img src=""></span></div>
                                     </div>
@@ -261,7 +261,7 @@
         </section>
     </div>
     <div id="ad">
-        <span class="image"><img src="/images/ECdDwLmUIAIAX7k.jpg" alt=""></span>
+        <span class="image"><img src="/static/images/ECdDwLmUIAIAX7k.jpg" alt=""></span>
     </div>
 </div>
 
@@ -274,12 +274,21 @@
 </footer>
 
 <!-- Scripts -->
-<script src="/js/jquery.min.js"></script>
-<script src="/js/jquery.dropotron.min.js"></script>
-<script src="/js/browser.min.js"></script>
-<script src="/js/breakpoints.min.js"></script>
-<script src="/js/util.js"></script>
-<script src="/js/main.js"></script>
-<script th:replace="/main/header::header_js"></script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/jquery.dropotron.min.js"></script>
+<script src="/static/js/browser.min.js"></script>
+<script src="/static/js/breakpoints.min.js"></script>
+<script src="/static/js/util.js"></script>
+<script src="/static/js/main.js"></script>
 </body>
+<script>
+    $("#header").mouseleave(function(){
+        $(this).css("opacity", "1");
+        $(this).css("color", "white");
+    })
+    $("#header").mouseover(function(){
+        $(this).css("opacity", "0.7");
+        $(this).css("color", "black");
+    })
+</script>
 </html>
