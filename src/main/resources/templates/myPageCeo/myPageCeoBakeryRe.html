@@ -54,11 +54,16 @@
 		}
 		#all{display: flex;}
 		.wrapper{width: 75%;}
+		#mainSection{padding: 0;}
+		#rightHeader h2{color: #F9A825; font-size: 1.2em; font-weight: 900;}
+		sub{top: 0; margin-left: 10px;}
+		#rightHeader-second{width:75%;}
+		#explain p{font-size: 0.8em; background: antiquewhite; height: 80px; padding: 20px 10px;}
 		#ad{background: #fff; width: 15%; height: 10px;}
 		#ad img{width: 100%; height: 600px;}
 		#myMainSection{display: flex;}
 		#myLeftSection{width: 20%; background: #f9efef;}
-		#myRightSection{width: 80%; padding: 0 15px 15px 15px;}
+		#myRightSection{width: 80%; padding: 37px 50px 15px 50px;}
 		.myPageTitle{background: #F9A825; margin: 0; padding: 7px 7px 7px 15px;}
 		.myPageTitle p{margin: 0; color: #fff;}
 		#allDiv{padding:15px;}
@@ -66,6 +71,19 @@
 		.contentDiv{margin-top: 15px; margin-bottom: 15px;}
 		.contentDiv a{color: #3b3b3b; font-weight: lighter; border: none; font-size: 0.8rem;}
 		.myPageSelectMenu{margin-top: 5px; margin-bottom: 5px;}
+		table tbody tr:nth-child(2n + 1) {background-color: #fff;}
+		.second-top{display: flex;}
+		.second-top p{margin:0; color: #3b3b3b; font-weight: 600; font-size: 1.1em;}
+		.second-under p{margin: 0 10px 0 0; color: #8cb1f3; font-weight:600;}
+		.col-6{padding: 27px 10px;}
+		.table-boxes{border-top: 0.5px solid #efd0d0; height: 80px;}
+		.table-second{width: 70%; padding: 13px 0;}
+		input[type="button"]{border-radius: 0;}
+		.table-third{margin-right: 4px; padding: 10px 0;}
+		.table-fourth{padding: 10px 0;}
+		.pagination{text-align: center;}
+		ul.pagination {margin-top: 17px;}
+		.table-third input[type="button"], .table-fourth input[type="button"]{font-weight: bold}
 	</style>
 </head>
 <body class="is-preload" style="padding: 200px">
@@ -81,16 +99,13 @@
 		<!-- Main -->
 		<section class="main second-main">
 
-			<section>
-				<header>
-					<h1>MY PAGE</h1>
-				</header>
-				<p></p>
+			<section id="mainSection">
+
 				<section id="myMainSection">
 					<section id="myLeftSection">
 						<div id="myLeftDiv">
 							<div class="myPageMenu">
-								<div class="myPageTitle"><p>MY MENU</p></div>
+								<div class="myPageTitle"><p>MY PAGE</p></div>
 								<div id="allDiv">
 									<div class="myPageSelect1"><p>글 등록하기</p></div>
 									<div class="contentDiv">
@@ -118,7 +133,125 @@
 					</section>
 					<section id="myRightSection">
 						<div id="myRightDiv">
-							<p>페이지</p>
+
+
+							<div class="table-wrapper">
+								<div id="main-box">
+									<div id="rightHeader" style="display: flex;">
+										<div id="rightHeader-first"><h2>빵집 리뷰</h2></div>
+										<div id="rightHeader-second"><sub>1,500</sub></div>
+										<div id="rightHeader-third"><input type="button" class="primary" value="글쓰기"></input><span id="img"><img src=""></span></div>
+									</div>
+									<div id="section-box">
+										<div class="table-boxes" style="display: flex;">
+											<div class="table-first">
+												<div class="col-6 col-12-small">
+													<input type="checkbox" id="list1" name="list1">
+													<label for="list1"></label>
+												</div>
+
+											</div>
+											<div class="table-second">
+												<div class="second-top"><p>빵집 제목</p></div>
+												<div class="second-under" style="display: flex;">
+													<div class="second-under-content"><p>댓글 작성</p></div>
+													<div class="second-under-date"><span>·</span>2021-10-11</div>
+												</div>
+											</div>
+											<div class="table-third"><input type="button" class="button small" value="수정"></div>
+											<div class="table-fourth"><input type="button" class="button small" value="삭제"></div>
+										</div>
+										<div class="table-boxes" style="display: flex;">
+											<div class="table-first">
+												<div class="col-6 col-12-small">
+													<input type="checkbox" id="list2" name="list2" >
+													<label for="list2"></label>
+												</div>
+
+											</div>
+											<div class="table-second">
+												<div class="second-top"><p>빵집 제목</p></div>
+												<div class="second-under" style="display: flex;">
+													<div class="second-under-content"><p>댓글 작성</p></div>
+													<div class="second-under-date"><span>·</span>2021-10-11</div>
+												</div>
+											</div>
+											<div class="table-third"><input type="button" class="button small" value="수정"></div>
+											<div class="table-fourth"><input type="button" class="button small" value="삭제"></div>
+										</div>
+										<div class="table-boxes" style="display: flex;">
+											<div class="table-first">
+												<div class="col-6 col-12-sm
+												all">
+													<input type="checkbox" id="list3" name="list3" >
+													<label for="list3"></label>
+												</div>
+
+											</div>
+											<div class="table-second">
+												<div class="second-top"><p>빵집 제목</p></div>
+												<div class="second-under" style="display: flex;">
+													<div class="second-under-content"><p>댓글 작성</p></div>
+													<div class="second-under-date"><span>·</span>2021-10-11</div>
+												</div>
+											</div>
+											<div class="table-third"><input type="button" class="button small" value="수정"></div>
+											<div class="table-fourth"><input type="button" class="button small" value="삭제"></div>
+										</div>
+
+										<div class="table-boxes" style="display: flex;">
+											<div class="table-first">
+												<div class="col-6 col-12-small">
+													<input type="checkbox" id="list4" name="list4" >
+													<label for="list4"></label>
+												</div>
+
+											</div>
+											<div class="table-second">
+												<div class="second-top"><p>빵집 제목</p></div>
+												<div class="second-under" style="display: flex;">
+													<div class="second-under-content"><p>댓글 작성</p></div>
+													<div class="second-under-date"><span>·</span>2021-10-11</div>
+												</div>
+											</div>
+											<div class="table-third"><input type="button" class="button small" value="수정"></div>
+											<div class="table-fourth"><input type="button" class="button small" value="삭제"></div>
+										</div>
+
+										<div class="table-boxes" style="display: flex; border-bottom: 0.5px solid #efd0d0;" >
+											<div class="table-first">
+												<div class="col-6 col-12-small">
+													<input type="checkbox" id="list5" name="list5">
+													<label for="list5"></label>
+												</div>
+
+											</div>
+											<div class="table-second">
+												<div class="second-top"><p>빵집 제목</p></div>
+												<div class="second-under" style="display: flex;">
+													<div class="second-under-content"><p>댓글 작성</p></div>
+													<div class="second-under-date"><span>·</span>2021-10-11</div>
+												</div>
+											</div>
+											<div class="table-third"><input type="button" class="button small" value="수정"></div>
+											<div class="table-fourth"><input type="button" class="button small" value="삭제"></div>
+										</div>
+
+									</div>
+								</div>
+
+								<ul class="pagination">
+									<li><span class="button disabled">Prev</span></li>
+									<li><a href="#" class="page active">1</a></li>
+									<li><a href="#" class="page">2</a></li>
+									<li><a href="#" class="page">3</a></li>
+									<li><span>&hellip;</span></li>
+									<li><a href="#" class="page">8</a></li>
+									<li><a href="#" class="page">9</a></li>
+									<li><a href="#" class="page">10</a></li>
+									<li><a href="#" class="button">Next</a></li>
+								</ul>
+							</div>
 						</div>
 					</section>
 				</section>
@@ -132,50 +265,7 @@
 
 <!-- Footer -->
 <footer id="footer">
-	<div class="inner">
-		<section class="info">
-			<h3>About Us</h3>
-			<div class="about">
-				<p>Morbi mattis mi consectetur tortor elementum, varius pellentesque velit convallis. Aenean tincidunt lectus auctor mauris maximus, ac scelerisque ipsum tempor. Duis vulputate ex et ex tincidunt, quis lacinia velit aliquet. Duis non efficitur malesuada.</p><p>Sagittis felis ac sagittis semper. Curabitur purus leo donec vel dolor at arcu tincidunt bibendum. Interdum et malesuada fames ac ante ipsum primis.</p>
-				<ul class="actions">
-					<li><a href="#" class="button">Learn More</a></li>
-				</ul>
-			</div>
-			<div class="team">
-				<article>
-					<span class="image"><img src="/images/pic06.jpg" alt=""></span>
-					<p>
-						<strong class="name">John Doe</strong>
-						<span class="title">Lorem semper magna etiam</span>
-					</p>
-				</article>
-				<article>
-					<span class="image"><img src="/images/pic07.jpg" alt=""></span>
-					<p>
-						<strong class="name">Jane Anderson</strong>
-						<span class="title">Etiam feugiat adipiscing veroeros</span>
-					</p>
-				</article>
-				<article>
-					<span class="image"><img src="/images/pic08.jpg" alt=""></span>
-					<p>
-						<strong class="name">Mike Smith</strong>
-						<span class="title">Consequat nulla dolor blandit</span>
-					</p>
-				</article>
-			</div>
-		</section>
-		<section class="contact">
-			<h3>Contact Us</h3>
-			<ul class="contact-icons">
-				<li class="icon solid fa-home"><a href="#">1234 Somewhere Road #80486<br>Nashville, TN 00000</a></li>
-				<li class="icon solid fa-phone"><a href="#">(800) 555-0000 x12345</a></li>
-				<li class="icon solid fa-envelope"><a href="#">hello@untitled.tld</a></li>
-				<li class="icon brands fa-facebook"><a href="#">facebook.com/untitled-tld</a></li>
-				<li class="icon brands fa-twitter"><a href="#">twitter.com/untitled-tld</a></li>
-			</ul>
-		</section>
-	</div>
+
 	<div class="copyright">
 		&copy; Untitled. All rights reserved.
 	</div>
