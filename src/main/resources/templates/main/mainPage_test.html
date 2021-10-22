@@ -3,269 +3,53 @@
 
 <html>
 <head>
-	<title>빵야빵야(屋)</title>
+	<title>아이디 찾기 | 빵야빵야(屋)</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<link rel="stylesheet" href="/css/main.css" />
-	<link rel="stylesheet" href="/css/login.css" />
-	<style>
-		.headerIcon{
-			width: 40px;
-			display: block;
-			margin: auto;"
+	<link rel="stylesheet" href="/css/idFind.css" />
+	<style th:include="/main/header::header_style">
+		.line_inp :not(button){
+			border: solid 0px;
 		}
-		.icon.solid:before {
-			font-weight: 100;
-			content: none;
-		}
-
-		.spotlights h5{
-			font-weight: bold;
-		}
-
-		/* 검색창 */
-		.search {
-			position: relative;
-			text-align: center;
-			width: 400px;
-			margin: 0 auto;
-		}
-		input {
-			width: 100%;
-			border-radius: 20px;
-			border: 1px solid #bbb;
-			margin: 10px 0;
-			padding: 10px 12px;
-		}
-		.fa-search {
-			position: absolute;
-			left: 90%;
-			top: 35%;
-			margin: 0;
-		}
-		form {
-			margin: 0;
-		}
-
 	</style>
 </head>
-<body class="is-preload" style="padding: 200px">
+<body class="is-preload" style="padding: 5em 200px 0 200px;background-color: white;">
 
 <!-- Header -->
-<header id="header">
-
-	<!-- Logo -->
-	<span class="logo">
-		<a href="#"><img src="/images/breadLogo_re.png" alt="myPage" style="width: 100px;margin-top: 1.3em;"/></a>
-		<span></span>
-	</span>
-
-	<!-- Nav -->
-	<nav id="nav">
-		<ul>
-			<li><a href="elements.html">빵집 찾기</a></li>
-			<li><a href="generic.html">원데이 클래스</a></li>
-			<li><a href="elements.html">빵 체험단</a></li>
-			<!-- 검색창 -->
-			<form method="post" action="#" name="">
-				<div class="search">
-					<i class="fas fa-search"></i>
-					<input type="text" placeholder="먹고 싶은 빵 종류를 검색 해 보세요" maxlength="17" style="background-color: wheat;border-radius: 10px;color: darkgray">
-				</div>
-				<input type="hidden" class="box" value="검색">
-			</form>
-			<!-- 비회원일 경우 -->
-			<li>
-				<a href="#" class="icon solid fa-angle-down"><img src="/images/iconPerson.png" alt="myPage" class="headerIcon"/></a>
-				<ul>
-					<li><a href="#">로그인</a></li>
-					<li><a href="#">회원가입</a></li>
-				</ul>
-			</li>
-			<!-- 회원일 경우 -->
-			<!--
-			<li>
-				<a href="#" class="icon solid fa-angle-down"><img src="/images/iconPerson.png" alt="myPage" class="headerIcon"/></a>
-				<ul>
-					<li><a href="#">글 등록하기</a></li>
-					<li><a href="#">내 글보기</a></li>
-					<li><a href="#">내 정보관리</a></li>
-				</ul>
-			</li>
-			-->
-			<li style="margin-left: -1em;"><a href="#"><img src="/images/iconCart.png" alt="cart" class="headerIcon"/></a></li>
-		</ul>
-	</nav>
+<header id="header" th:include="/main/header::header_body">
 
 </header>
 
 <!-- Wrapper -->
-<div class="wrapper">
-
-	<!-- Main -->
-	<section class="main">
-
-		<!-- Banner -->
-		<section id="banner">
-			<article data-position="bottom right">
-				<div class="inner">
-					<img src="/images/mainBread1.jpg" alt="메인빵1">
-					<h2 style="font-weight: bolder;font-size: xx-large;">엄선된 재료로 만든 영양가득 통밀빵</h2>
-					<p>10여가지 이상의 곡물이 첨가된 다양한 종류의 빵을 만나보세요</p>
-					<ul class="actions">
-						<li><a class="button" href="#">바로 구경가기</a></li>
-					</ul>
-				</div>
-			</article>
-			<article data-position="top right">
-				<div class="inner">
-					<img src="/images/mainBread2.jpg" alt="메인빵2">
-					<h2 style="font-weight: bolder;font-size: xx-large;">빵순이 빵돌이 다 모여라</h2>
-					<p>집에서도 바삭한 빵 먹으러 가자!</p>
-					<ul class="actions">
-						<li><a class="button" href="#">빵 담으러 가기</a></li>
-					</ul>
-				</div>
-			</article>
-			<article data-position="center">
-				<div class="inner">
-					<img src="/images/휘낭시에1.jpg" alt="">
-					<h2 style="font-weight: bolder;font-size: xx-large;">인기 빵집에서 무료로 빵 먹자!</h2>
-					<p>3초만에 빵 체험단 신청하고, 맛집 빵 무료로 맛보기</p>
-					<ul class="actions">
-						<li><a class="button" href="#">실시간 모집 보러가기</a></li>
-					</ul>
-				</div>
-			</article>
-			<article data-position="right">
-				<div class="inner">
-					<img src="/images/mainBread3.jpg" alt="메인빵3">
-					<h2 style="font-weight: bolder;font-size: xx-large;">빵순이 빵돌이 다 모여라</h2>
-					<p>직접 맛집 빵 만들러 가자!</p>
-					<ul class="actions">
-						<li><a class="button" href="#">바로 신청하기</a></li>
-					</ul>
-				</div>
-			</article>
-		</section>
-
-		<!-- Blurb -->
-		<section style="padding-top: 2.0em;padding-bottom: 0em;">
-			<h4>오늘의 빵</h4>
-		</section>
-
-		<!-- Spotlights -->
-		<section class="spotlights alt">
-			<article>
-				<a href="#" class="image fit"><img src="/images/pic01.jpg" alt=""></a>
-				<h5>만동제과</h5>
-				<p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
-			</article>
-			<article>
-				<a href="#" class="image fit"><img src="/images/pic02.jpg" alt=""></a>
-				<h5>리코 베이커리</h5>
-				<p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
-			</article>
-			<article>
-				<a href="#" class="image fit"><img src="/images/pic03.jpg" alt=""></a>
-				<h5>버터랏츠</h5>
-				<p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
-				<ul class="actions">
-					<li><a href="#" class="button">Learn More</a></li>
-				</ul>
-			</article>
-			<article>
-				<a href="#" class="image fit"><img src="/images/pic04.jpg" alt=""></a>
-				<h5>카페노티드</h5>
-				<p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
-				<ul class="actions">
-					<li><a href="#" class="button">Learn More</a></li>
-				</ul>
-			</article>
-		</section>
-	</section>
-</div>
-	<section class="cont_login container">
-		<form action="#" method="post" id="frm-login">
-			<div class="box_login login_email">
-				<h2 class="tit">간편하게 로그인하고 탈잉의<br> 다양한 튜터를 만나보세요.</h2>
-				<div class="box_inp">
-					<div class="line_inp">
-						<input type="text" id="email" name="email" placeholder="이메일 주소를 입력해주세요">
-						<p class="info_error" id="emailError1">이메일을 입력해주세요.</p>
+<!-- Main -->
+<section class="cont_login container">
+	<div class="box_login find_id">
+		<h2 class="title">입력하신 휴대폰 번호로 탈잉에<br>가입된 내역은 다음과 같습니다.</h2>
+		<p class="info_text">총 1건의 가입 내역이 확인되었습니다.</p>
+		<div class="list_id mCustomScrollbar _mCS_1 mCS-autoHide" style="position: relative; overflow: visible;"><div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" style="max-height: 126px;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container" style="position: relative; top: 0px; left: 0px;" dir="ltr">
+			<ul>
+				<li>
+					<div class="id">
+						<span>카카오톡 아이디</span>
+						<p>yejine98@nate.com</p>
 					</div>
-					<div class="line_inp line_pw">
-						<input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요">
-						<button type="button" class="type_pwd hide" id="viewPass"></button>
-						<p class="info_error" id="passError1">비밀번호를 입력해주세요.</p>
-						<p class="info_error" id="passError2">이메일 또는 비밀번호를 확인해주세요.</p>
+					<div class="date">
+						<span>가입일자</span>
+						<p>2020.08.07</p>
 					</div>
-				</div>
-				<div class="box_btn">
-					<button class="btn_submit" type="submit">로그인 하기</button>
-					<a class="btn" href="AccountFindPassword.php">비밀번호 찾기</a>
-					<a class="btn" href="LoginJoin.php">회원가입</a>
-				</div>
-			</div>
-			<input type="hidden" name="redirectUrl" id="redirectUrl" value="https://taling.me/">
-		</form>
-	</section>
-
-<!-- Footer -->
-<footer id="footer">
-	<div class="inner">
-		<section class="info">
-			<h3>About Us</h3>
-			<div class="about">
-				<p>Morbi mattis mi consectetur tortor elementum, varius pellentesque velit convallis. Aenean tincidunt lectus auctor mauris maximus, ac scelerisque ipsum tempor. Duis vulputate ex et ex tincidunt, quis lacinia velit aliquet. Duis non efficitur malesuada.</p><p>Sagittis felis ac sagittis semper. Curabitur purus leo donec vel dolor at arcu tincidunt bibendum. Interdum et malesuada fames ac ante ipsum primis.</p>
-				<ul class="actions">
-					<li><a href="#" class="button">Learn More</a></li>
-				</ul>
-			</div>
-			<div class="team">
-				<article>
-					<span class="image"><img src="/images/pic06.jpg" alt=""></span>
-					<p>
-						<strong class="name">John Doe</strong>
-						<span class="title">Lorem semper magna etiam</span>
-					</p>
-				</article>
-				<article>
-					<span class="image"><img src="/images/pic07.jpg" alt=""></span>
-					<p>
-						<strong class="name">Jane Anderson</strong>
-						<span class="title">Etiam feugiat adipiscing veroeros</span>
-					</p>
-				</article>
-				<article>
-					<span class="image"><img src="/images/pic08.jpg" alt=""></span>
-					<p>
-						<strong class="name">Mike Smith</strong>
-						<span class="title">Consequat nulla dolor blandit</span>
-					</p>
-				</article>
-			</div>
-		</section>
-		<section class="contact">
-			<h3>Contact Us</h3>
-			<ul class="contact-icons">
-				<li class="icon solid fa-home"><a href="#">1234 Somewhere Road #80486<br>Nashville, TN 00000</a></li>
-				<li class="icon solid fa-phone"><a href="#">(800) 555-0000 x12345</a></li>
-				<li class="icon solid fa-envelope"><a href="#">hello@untitled.tld</a></li>
-				<li class="icon brands fa-facebook"><a href="#">facebook.com/untitled-tld</a></li>
-				<li class="icon brands fa-twitter"><a href="#">twitter.com/untitled-tld</a></li>
+				</li>
 			</ul>
-		</section>
+		</div></div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; display: block; height: 125px; max-height: 116px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 50px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div>
+		<a href="/Account/LoginPage.php" class="btn">로그인 창으로 돌아가기</a>
 	</div>
-	<div class="copyright">
-		&copy; Untitled. All rights reserved.
-	</div>
-</footer>
+</section>
+<!-- Footer -->
+
 
 <!-- Scripts -->
-<script src="https://kit.fontawesome.com/8eb5905426.js" crossorigin="anonymous"></script>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
 <script src="/js/browser.min.js"></script>
@@ -273,26 +57,14 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 <script type="text/javascript">
-	$("#header").mouseleave(function(){
-		$(this).css("opacity", "1");
-		$(this).css("color", "white");
-	})
-	$("#header").mouseover(function(){
-		$(this).css("opacity", "0.7");
-		$(this).css("color", "black");
-	})
-
-	//비밀번호 숨기기
-	$('.type_pwd').on('click',function() {
-		var $this = $(this);
-		$this.toggleClass('hide');
-		if($this.hasClass('hide')){
-			$this.prev('input').prop('type','password');
-		}else{
-			$this.prev('input').prop('type','text');
-		}
-	});
-
+	// 스크롤 효과
+	scrollPlugin();
+	function scrollPlugin(){
+		$('.list_id').mCustomScrollbar({
+			// 테마
+			theme:"minimal-dark"
+		});
+	}
 </script>
 </body>
 </html>
