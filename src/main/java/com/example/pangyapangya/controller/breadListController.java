@@ -17,7 +17,4 @@ public class breadListController {
 
     @GetMapping("breadDetail")
     public String breadDetail(){ return "main/breadDetail"; }
-
-    @GetMapping("breadDetailTest")
-    public String breadDetailTest(){ return "main/breadDetailTest"; }
 }
