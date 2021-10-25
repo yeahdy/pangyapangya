@@ -54,13 +54,14 @@
 		}
 		#all{display: flex;}
 		.wrapper{width: 75%;}
-		#rightHeader h2{color: #716ff7; font-size: 1.2em; font-weight: 900;}
-		#explain p{font-size: 0.8em; background: aliceblue; height: 57px; padding: 20px 10px;}
+		#mainSection{padding: 0;}
+		#rightHeader h2{color: #F9A825; font-size: 1.2em; font-weight: 900;}
+		#explain p{font-size: 0.8em; background: antiquewhite; height: 58px; padding: 20px 10px;}
 		#ad{background: none; width: 15%; height: 10px;}
 		#ad img{width: 100%; height: 600px;}
 		#myMainSection{display: flex;}
-		#myLeftSection{width: 20%; background: #f9efef; height: 430px;}
-		#myRightSection{width: 80%; padding: 0 15px 15px 45px;}
+		#myLeftSection{width: 20%; background: #f9efef;}
+		#myRightSection{width: 80%; padding: 37px 35px 15px 45px;}
 		.myPageTitle{background: #F9A825; margin: 0; padding: 7px 7px 7px 15px;}
 		.myPageTitle p{margin: 0; color: #fff;}
 		#allDiv{padding:15px;}
@@ -72,19 +73,20 @@
 		.first-file{width: 60%; padding-top: 150px; border-right: 1px solid #000;}
 		.files {text-align: center; border: 5px solid #F9A825; margin-right: 15px; margin-bottom: 10px;}
 		.image{position: fixed;}
-		.table-1{display: flex; margin-bottom: 20px;}
+		.table-1{display: flex; margin-bottom: 10px;}
 		.table-1 div p{margin: 0; padding: 10px 17px 0;}
-		.table-title{width: 25%; color: #F9A825; font-weight: 600; padding-top: 10px}
+		.table-title{width: 25%; color: #F9A825; font-weight: 600; padding-top: 10px; padding-left: 15px;}
 		.table-content{width: 75%;}
-		.table-content div{width: 200px; margin-right: 1px;}
+		.table-content div{width: 200px; margin-right: 5px;}
 		#title1 p{margin-bottom: 1em; font-size: 1.3em; font-weight: 600; color: #3c4b51;}
 		#title2{margin-top: 2em; margin-bottom: 1em; font-size: 1.3em; font-weight: 600; color: #000;}
+		#title3{margin-top: 3em; margin-bottom: 1em; font-size: 1.3em; font-weight: 600; color: #000;}
 		hr {margin: 1em 0 2em;}
 		sub {font-size: 0.5em; font-weight: lighter; top: 0.3em; left: 0.8em; color: #888}
-		input[type="text"], textarea{border: none; background: #fff;}
+		input[type="text"], textarea{border: none; margin: 0;}
 		input[type="file"]{display: none;}
-		#registDiv{text-align: center;}
-		select{border: none; background-color: rgba(144, 144, 144, 000);}
+		#registDiv{width: 18%; margin: 0 auto;}
+		select{border: none;}
 	</style>
 </head>
 <body class="is-preload" style="padding: 200px">
@@ -101,16 +103,13 @@
 
 			<section class="main second-main">
 
-				<section>
-					<header>
-						<h1>MY PAGE</h1>
-					</header>
-					<p></p>
+				<section id="mainSection">
+
 					<section id="myMainSection">
 						<section id="myLeftSection">
 							<div id="myLeftDiv">
 								<div class="myPageMenu">
-									<div class="myPageTitle"><p>MY MENU</p></div>
+									<div class="myPageTitle"><p>MY PAGE</p></div>
 									<div id="allDiv">
 										<div class="myPageSelect1"><p>글 등록하기</p></div>
 										<div class="contentDiv">
@@ -233,35 +232,55 @@
 										<div id="subDiv2">
 											<p id="title2">필수 정보 입력 <sub> 등록에 필요한 기본 정보입니다. 모두 입력해주세요.</sub></p>
 											<hr>
-											<div class="table-1">
+											<div class="table-1" style="margin-bottom: 10px;">
 												<div class="table-title">제목</div>
 												<div class="table-content"><input type="text" placeholder="제목 입력"></div>
 											</div>
 
 											<div class="table-1">
 												<div class="table-title">작성자</div>
-												<div class="table-content"><p>한준규</p></div>
+												<div class="table-content"><input type="text" value="한준규" readonly/></div>
 											</div>
 
 											<div class="table-1">
 												<div class="table-title">업체명</div>
-												<div class="table-content"><p>뜨레쥬르</p></div>
+												<div class="table-content"><input type="text" value="TOUS les JOURS" readonly/></div>
 											</div>
 
 											<div class="table-1">
 												<div class="table-title">전화번호</div>
-												<div class="table-content"><p>010-1234-1234</p></div>
+												<div class="table-content"><input type="text" value="010-1234-5678" readonly/></div>
+											</div>
+
+
+
+											<div class="table-1">
+												<div class="table-title">배송비</div>
+												<div class="table-content"><input type="text" value="3,000원" readonly/></div>
 											</div>
 
 											<div class="table-1">
+												<div class="table-title">상세 정보</div>
+												<div class="table-content"><textarea name="content" cols="30" rows="8" maxlength="50" placeholder="상세 정보를 입력하세요." style="resize: none;"></textarea></div>
+											</div>
+
+										</div><!--밑에 상세정보 입력Div-->
+
+										<div id="subDiv3">
+											<p id="title3">상품 등록 <sub> 등록에 필요한 기본 정보입니다. 모두 입력해주세요.</sub></p>
+											<hr>
+
+											<!--하나-->
+											<div class="table-1" style="margin-bottom: 10px;">
+
 												<div class="table-title">제품 등록</div>
 
-												<div style="width: 70%;">
+												<div style="width: 75%;">
 													<div class="table-content" style="display: flex; width: 100%;">
 
 														<div>
-															<select name="type">
-																<option value="">타입</option>
+															<select name="type1">
+																<option value="">종류</option>
 																<option value="케이크">케이크</option>
 																<option value="제과">제과</option>
 																<option value="제빵">제빵</option>
@@ -273,9 +292,9 @@
 														<div>
 															<input type="text" placeholder="빵 가격">
 														</div>
-														<div>
-															<label for="plusImg" style="margin: 0; position: relative; top: 13px;" >
-																<img id="plusImg" src="/images/plus.png" width="20px" height="20px" style="display:inline;">
+														<div style="width: 10%;">
+															<label for="plusImg1" style="margin: 0; position: relative; top: 13px;" >
+																<img id="plusImg1" src="/images/plus.png" width="20px" height="20px" style="display:inline;">
 															</label>
 														</div>
 													</div>
@@ -283,17 +302,298 @@
 
 											</div>
 
-											<div class="table-1">
-												<div class="table-title">배송비</div>
-												<div class="table-content"><p>3,000원</p></div>
+											<!--둘-->
+											<div class="table-1" style="margin-bottom: 10px;">
+
+												<div class="table-title"></div>
+
+												<div style="width: 75%;">
+													<div class="table-content" style="display: flex; width: 100%;">
+
+														<div>
+															<select name="type2">
+																<option value="">종류</option>
+																<option value="케이크">케이크</option>
+																<option value="제과">제과</option>
+																<option value="제빵">제빵</option>
+															</select>
+														</div>
+														<div>
+															<input type="text" placeholder="빵 이름" style="margin-bottom: 1px;">
+														</div>
+														<div>
+															<input type="text" placeholder="빵 가격">
+														</div>
+														<div style="width: 10%;">
+															<label for="plusImg2" style="margin: 0; position: relative; top: 13px;" >
+																<img id="plusImg2" src="/images/plus.png" width="20px" height="20px" style="display:inline;">
+															</label>
+														</div>
+													</div>
+												</div>
+
 											</div>
 
-											<div class="table-1">
-												<div class="table-title">상세 정보</div>
-												<div class="table-content"><textarea name="content" cols="30" rows="8" maxlength="50" placeholder="상세 정보를 입력하세요." style="resize: none;"></textarea></div>
+											<!--셋-->
+											<div class="table-1" style="margin-bottom: 10px;">
+
+												<div class="table-title"></div>
+
+												<div style="width: 75%;">
+													<div class="table-content" style="display: flex; width: 100%;">
+
+														<div>
+															<select name="type3">
+																<option value="">종류</option>
+																<option value="케이크">케이크</option>
+																<option value="제과">제과</option>
+																<option value="제빵">제빵</option>
+															</select>
+														</div>
+														<div>
+															<input type="text" placeholder="빵 이름" style="margin-bottom: 1px;">
+														</div>
+														<div>
+															<input type="text" placeholder="빵 가격">
+														</div>
+														<div style="width: 10%;">
+															<label for="plusImg3" style="margin: 0; position: relative; top: 13px;" >
+																<img id="plusImg3" src="/images/plus.png" width="20px" height="20px" style="display:inline;">
+															</label>
+														</div>
+													</div>
+												</div>
+
+											</div>
+
+
+										<!--넷-->
+											<div class="table-1" style="margin-bottom: 10px;">
+
+												<div class="table-title"></div>
+
+												<div style="width: 75%;">
+													<div class="table-content" style="display: flex; width: 100%;">
+
+														<div>
+															<select name="type4">
+																<option value="">종류</option>
+																<option value="케이크">케이크</option>
+																<option value="제과">제과</option>
+																<option value="제빵">제빵</option>
+															</select>
+														</div>
+														<div>
+															<input type="text" placeholder="빵 이름" style="margin-bottom: 1px;">
+														</div>
+														<div>
+															<input type="text" placeholder="빵 가격">
+														</div>
+														<div style="width: 10%;">
+															<label for="plusImg4" style="margin: 0; position: relative; top: 13px;" >
+																<img id="plusImg4" src="/images/plus.png" width="20px" height="20px" style="display:inline;">
+															</label>
+														</div>
+													</div>
+												</div>
+
+											</div>
+
+
+										<!--다섯-->
+											<div class="table-1" style="margin-bottom: 10px;">
+
+												<div class="table-title"></div>
+
+												<div style="width: 75%;">
+													<div class="table-content" style="display: flex; width: 100%;">
+
+														<div>
+															<select name="type5">
+																<option value="">종류</option>
+																<option value="케이크">케이크</option>
+																<option value="제과">제과</option>
+																<option value="제빵">제빵</option>
+															</select>
+														</div>
+														<div>
+															<input type="text" placeholder="빵 이름" style="margin-bottom: 1px;">
+														</div>
+														<div>
+															<input type="text" placeholder="빵 가격">
+														</div>
+														<div style="width: 10%;">
+															<label for="plusImg5" style="margin: 0; position: relative; top: 13px;" >
+																<img id="plusImg5" src="/images/plus.png" width="20px" height="20px" style="display:inline;">
+															</label>
+														</div>
+													</div>
+												</div>
+
+											</div>
+
+										<!--여섯-->
+											<div class="table-1" style="margin-bottom: 10px;">
+
+												<div class="table-title"></div>
+
+												<div style="width: 75%;">
+													<div class="table-content" style="display: flex; width: 100%;">
+
+														<div>
+															<select name="type6">
+																<option value="">종류</option>
+																<option value="케이크">케이크</option>
+																<option value="제과">제과</option>
+																<option value="제빵">제빵</option>
+															</select>
+														</div>
+														<div>
+															<input type="text" placeholder="빵 이름" style="margin-bottom: 1px;">
+														</div>
+														<div>
+															<input type="text" placeholder="빵 가격">
+														</div>
+														<div style="width: 10%;">
+															<label for="plusImg6" style="margin: 0; position: relative; top: 13px;" >
+																<img id="plusImg6" src="/images/plus.png" width="20px" height="20px" style="display:inline;">
+															</label>
+														</div>
+													</div>
+												</div>
+
+											</div>
+
+											<!--일곱-->
+											<div class="table-1" style="margin-bottom: 10px;">
+
+												<div class="table-title"></div>
+
+												<div style="width: 75%;">
+													<div class="table-content" style="display: flex; width: 100%;">
+
+														<div>
+															<select name="type7">
+																<option value="">종류</option>
+																<option value="케이크">케이크</option>
+																<option value="제과">제과</option>
+																<option value="제빵">제빵</option>
+															</select>
+														</div>
+														<div>
+															<input type="text" placeholder="빵 이름" style="margin-bottom: 1px;">
+														</div>
+														<div>
+															<input type="text" placeholder="빵 가격">
+														</div>
+														<div style="width: 10%;">
+															<label for="plusImg7" style="margin: 0; position: relative; top: 13px;" >
+																<img id="plusImg7" src="/images/plus.png" width="20px" height="20px" style="display:inline;">
+															</label>
+														</div>
+													</div>
+												</div>
+
+											</div>
+
+											<!--여덟-->
+											<div class="table-1" style="margin-bottom: 10px;">
+
+												<div class="table-title"></div>
+
+												<div style="width: 75%;">
+													<div class="table-content" style="display: flex; width: 100%;">
+
+														<div>
+															<select name="type8">
+																<option value="">종류</option>
+																<option value="케이크">케이크</option>
+																<option value="제과">제과</option>
+																<option value="제빵">제빵</option>
+															</select>
+														</div>
+														<div>
+															<input type="text" placeholder="빵 이름" style="margin-bottom: 1px;">
+														</div>
+														<div>
+															<input type="text" placeholder="빵 가격">
+														</div>
+														<div style="width: 10%;">
+															<label for="plusImg8" style="margin: 0; position: relative; top: 13px;" >
+																<img id="plusImg8" src="/images/plus.png" width="20px" height="20px" style="display:inline;">
+															</label>
+														</div>
+													</div>
+												</div>
+
+											</div>
+
+											<!--아홉-->
+											<div class="table-1" style="margin-bottom: 10px;">
+
+												<div class="table-title"></div>
+
+												<div style="width: 75%;">
+													<div class="table-content" style="display: flex; width: 100%;">
+
+														<div>
+															<select name="type9">
+																<option value="">종류</option>
+																<option value="케이크">케이크</option>
+																<option value="제과">제과</option>
+																<option value="제빵">제빵</option>
+															</select>
+														</div>
+														<div>
+															<input type="text" placeholder="빵 이름" style="margin-bottom: 1px;">
+														</div>
+														<div>
+															<input type="text" placeholder="빵 가격">
+														</div>
+														<div style="width: 10%;">
+															<label for="plusImg9" style="margin: 0; position: relative; top: 13px;" >
+																<img id="plusImg9" src="/images/plus.png" width="20px" height="20px" style="display:inline;">
+															</label>
+														</div>
+													</div>
+												</div>
+
+											</div>
+
+											<!--아홉-->
+											<div class="table-1" style="margin-bottom: 10px;">
+
+												<div class="table-title"></div>
+
+												<div style="width: 75%;">
+													<div class="table-content" style="display: flex; width: 100%;">
+
+														<div>
+															<select name="type10">
+																<option value="">종류</option>
+																<option value="케이크">케이크</option>
+																<option value="제과">제과</option>
+																<option value="제빵">제빵</option>
+															</select>
+														</div>
+														<div>
+															<input type="text" placeholder="빵 이름" style="margin-bottom: 1px;">
+														</div>
+														<div>
+															<input type="text" placeholder="빵 가격">
+														</div>
+														<div style="width: 10%;">
+
+														</div>
+													</div>
+												</div>
+
 											</div>
 
 										</div><!--밑에 상세정보 입력Div-->
+
+
+
 										<div id="registDiv">
 											<input type="button" value="글 등록하기">
 										</div>
@@ -312,8 +612,8 @@
 		<div id="ad">
 			<span class="image"><img src="/images/ECdDwLmUIAIAX7k.jpg" alt=""></span>
 		</div>
-
 	</div>
+</div>
 	<!-- Footer -->
 	<footer id="footer">
 
@@ -329,15 +629,6 @@
 	<script src="/js/breakpoints.min.js"></script>
 	<script src="/js/util.js"></script>
 	<script src="/js/main.js"></script>
+	<script th:replace="/main/header::header_js"></script>
 </body>
-<script>
-	$("#header").mouseleave(function(){
-		$(this).css("opacity", "1");
-		$(this).css("color", "white");
-	})
-	$("#header").mouseover(function(){
-		$(this).css("opacity", "0.7");
-		$(this).css("color", "black");
-	})
-</script>
 </html>

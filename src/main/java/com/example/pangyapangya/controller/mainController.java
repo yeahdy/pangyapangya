@@ -34,6 +34,10 @@ public class mainController {
     @GetMapping("mainPage_test")
     public String mainPage_test(){ return "main/mainPage_test"; }
 
+    /* footer */
+    @GetMapping("footer")
+    public String footer(){ return "main/footer"; }
+
     /* 로그인 */
     @GetMapping("login")
     public String login(){ return "main/login"; }
@@ -54,13 +58,27 @@ public class mainController {
     @GetMapping("pwFindSuccess")
     public String pwFindSuccess(){ return "main/pwFindSuccess"; }
 
-    /* 회원가입 */
+    /* 회원가입- 일반회원 */
     @GetMapping("join")
     public String join(){ return "main/join"; }
+
+    /* 회원가입- 사장님 */
+    @GetMapping("joinCEO")
+    public String joinCEO(){ return "main/joinCEO"; }
+
+    @GetMapping("joinCEO2")
+    public String joinCEO2(){ return "main/joinCEO2"; }
 
     /* 회원가입- 약관동의 */
     @GetMapping("joinConfirm")
     public String joinConfirm(){ return "main/joinConfirm"; }
 
+    /* 회원가입- 약관동의: 서비스 이용약관 동의 팝업창 */
+    @GetMapping("rule")
+    public String rule(){ return "main/rule"; }
+
+    /* 회원가입- 약관동의: 개인정보 처리방침 팝업창 */
+    @GetMapping("privacy")
+    public String privacy(){ return "main/privacy"; }
 
 }
