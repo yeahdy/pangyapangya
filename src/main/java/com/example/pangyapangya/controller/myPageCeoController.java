@@ -12,34 +12,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class myPageCeoController {
     //마이페이지(사장님)-글 등록[빵집 소개]
-    @GetMapping("myPageCeoBakery")
-    public String myPageCeoBakery(){ return "myPageCeo/myPageCeoBakery"; }
+    @GetMapping("bakery")
+    public String myPageCeoBakery(){ return "myPageCeo/bakery"; }
 
     //마이페이지(사장님)-글 등록[원데이 클래스]
-    @GetMapping("myPageCeoOneDay")
-    public String myPageCeoOneDay(){ return "myPageCeo/myPageCeoOneDay"; }
+    @GetMapping("oneDay")
+    public String myPageCeoOneDay(){ return "myPageCeo/oneDay"; }
 
     //마이페이지(사장님)-글 등록[빵 체험단]
-    @GetMapping("myPageCeoExp")
-    public String myPageCeoExp(){ return "myPageCeo/myPageCeoExp"; }
+    @GetMapping("exp")
+    public String myPageCeoExp(){ return "myPageCeo/exp"; }
 
     //마이페이지(사장님)-내 글 보기[빵집 소개]
-    @GetMapping("myPageCeoBakeryRe")
-    public String myPageCeoBakeryRe(){ return "myPageCeo/myPageCeoBakeryRe"; }
+    @GetMapping("bakeryRe")
+    public String myPageCeoBakeryRe(){ return "myPageCeo/bakeryRe"; }
 
     //마이페이지(사장님)-내 글 보기[원데이 클래스]
-    @GetMapping("myPageCeoOneDayRe")
-    public String myPageCeoOneDayRe(){ return "myPageCeo/myPageCeoOneDayRe"; }
+    @GetMapping("oneDayRe")
+    public String myPageCeoOneDayRe(){ return "myPageCeo/oneDayRe"; }
 
     //마이페이지(사장님)-내 글 보기[빵 체험단]
-    @GetMapping("myPageCeoExpRe")
-    public String myPageCeoExpRe(){ return "myPageCeo/myPageCeoExpRe"; }
+    @GetMapping("expRe")
+    public String myPageCeoExpRe(){ return "myPageCeo/expRe"; }
 
     //마이페이지(사장님)-내 정보 수정
-    @GetMapping("myPageCeoEdit")
-    public String myPageCeoEdit(){ return "myPageCeo/myPageCeoEdit"; }
+    @GetMapping("edit")
+    public String myPageCeoEdit(){ return "myPageCeo/edit"; }
 
     //마이페이지(사장님)-회원 탈퇴
-    @GetMapping("myPageCeoDelete")
-    public String myPageCeoDelete(){ return "myPageCeo/myPageCeoDelete"; }
+    @GetMapping("delete")
+    public String myPageCeoDelete(){ return "myPageCeo/delete"; }
 }
