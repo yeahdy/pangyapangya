@@ -6,7 +6,7 @@ body.on{
 
 .cont_login {
     min-height: calc(100vh - 484px);
-    padding: 130px 0 160px;
+    padding: 130px 0 180px;
     text-align: center;
 }
 
