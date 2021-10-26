@@ -244,7 +244,7 @@
 
 </header>
 <div id="bannerDiv">
-    <span id="img"></span><img src="/images/test3.png">
+    <span id="img"></span><img src="/images/testReview.png">
 </div>
 <!-- ----------------------------------------------------------------------------------------------------Header---------------------------------------------------------------------------------- -->
 
@@ -256,12 +256,11 @@
         <!-- Blurb -->
         <section style="padding-top: 2.0em;padding-bottom: 0em; padding-left: 5.5em; padding-right: 5.5em;">
             <div class="flexsearch">
-                <select name="category" id="category" onchange="location.href=this.value" style="width: 10%">
-                    <option value="">전체</option>
+                <select name="category" id="category" onchange="location.href=this.value" style="width: 10%;font-size: 17px !important;">
+                    <option value="">--전체--</option>
+                    <option value="1">케이크</option>
                     <option value="1">제과</option>
                     <option value="1">제빵</option>
-                    <option value="1">케이크</option>
-                    <option value="1">디저트</option>
                 </select>
                 <div class="warpdiv">
                     <input type="text" name="search" class="testSearch" onkeyup="enterkey()" placeholder="검색어를 입력해주세요."
@@ -392,7 +391,6 @@
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
 <script>
-
 </script>
 </body>
 </html>
