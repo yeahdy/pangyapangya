@@ -17,16 +17,17 @@ import java.util.HashMap;
 public class MainService {
     private final MainDAO mainDAO;
 
+    // 인증번호(전화번호, 인증번호)
     public void certifiedPhoneNumber(String phoneNumber, String cerNum) {
 
-        String api_key = "본인의 API KEY";
-        String api_secret = "본인의 API SECRET";
+        String api_key = "NCSQNB02FGNIJWVJ";
+        String api_secret = "XKUECSFOHIBWYHNANPTKSRVMTZQLEIPP";
         Message coolsms = new Message(api_key, api_secret);
 
         // 4 params(to, from, type, text) are mandatory. must be filled
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("to", phoneNumber);    // 수신전화번호
-        params.put("from", "발송할 번호 입력");    // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨
+        params.put("from", "01085362558");    // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨
         params.put("type", "SMS");
         params.put("text", "빵야빵야(屋) 인증번호 " + "["+cerNum+"]" + "를 입력하세요.");
         params.put("app_version", "test app 1.2"); // application name and version
