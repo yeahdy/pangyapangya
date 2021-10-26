@@ -9,282 +9,321 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="/css/main.css" />
+    <style>
+        .wrapper{
+            width: 700px;
+            position: relative;
+
+        }
+        ul{
+            list-style:none;
+        }
+        #rightHeader h2{color: #716ff7; font-size: 1.2em; font-weight: 900;}
+        #explain p{font-size: 0.8em; background: aliceblue; height: 57px; padding: 20px 10px; box-shadow: 0 2px 4px 0 #0000001a;}
+        #side{
+            background: none;
+            width: 480px;
+            height: 10px;
+            margin-left: 10px;
+        }
+        #info{
+        }
+        .payment{
+            position: fixed;
+            background-color: white;
+            width: 400px;
+            height: 200px;
+            padding: 17px;
+            border: solid 1px #0000001a;
+            box-shadow: 0 2px 4px 0 #0000001a;
+        }
+        #img-section{
+            padding: 36px 0px;
+            width: 560px;
+        }
+        #img-view{
+            width: 560px;
+        }
+        #img-view img{
+            width: 560px;
+            height: auto;
+            overflow: hidden;
+        }
+        #product-info{
+            width: 560px;
+            display: flex;
+            justify-content: center;
+            margin: 0px 69px;
+        }
+        #box{
+            position: relative;
+            top: -604px;
+            right: -590px;
+            padding: 0 !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+        .payment a{
+            font-size: large;
+        }
+        .maker-card{
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 12px;
+        }
+        .maker-card a{
+            font-size: xx-small;
+            color: #888888;
+            border-bottom : none;
+        }
+
+        .bread-name{
+            margin-bottom: 12px;
+            color: black;
+        }
+        .price-detail{
+            font-size: large;
+            height: 320px;
+            margin-bottom: 20px;
+        }
+
+        .price-detail strong{
+            font-size: xx-large;
+        }
+        .headerIcon{
+            width: 40px;
+            display: block;
+            margin: auto;"
+        }
+        .icon.solid:before {
+            font-weight: 100;
+            content: none;
+        }
+
+        .spotlights h5{
+            font-weight: bold;
+            font-size: small;
+        }
+
+        .spotlights p{
+            font-size: small;
+        }
+
+        .inner{
+            width: 1056px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* 검색창 */
+        .search {
+            position: relative;
+            text-align: center;
+            width: 400px;
+            margin: 0 auto;
+        }
+        input {
+            width: 100%;
+            border-radius: 20px;
+            border: 1px solid #bbb;
+            margin: 10px 0;
+            padding: 10px 12px;
+        }
+        .fa-search {
+            position: absolute;
+            left: 90%;
+            top: 35%;
+            margin: 0;
+        }
+        form {
+            margin: 0;
+        }
+        .spotlights h5{
+            font-weight: bold;
+            font-size: small;
+        }
+
+        .spotlights p{
+            font-size: small;
+        }
+        /* 갤러리 */
+        .spotlights > article {
+            padding: 1.0em 2.25em 0.5em 2.25em;
+            border-style: solid;
+            border-width: 1px 1px 0px 0px;
+            width: 25%;
+        }
+        .button{
+
+        }
+        fieldset{
+            display: flex;
+            justify-content: space-evenly;
+        }
+        #kakao-pay{
+            width: 100px;
+            height: 40px;
+            position: relative;
+            left: -26px;
+            top: 0px;
+        }
+        #review-title{
+            width: 560px;
+            color: black;
+            font-size: x-large;
+            font-weight: bold;
+            padding-top: 64px;
+            border-bottom: 1px solid #d9d9d9;
+        }
+        #prd-info{
+            text-align: center;
+            width: 560px;
+        }
+        #prd-review{
+            width: 560px;
+        }
+        .review-header{
+            width: 560px;
+            height: 32px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px
+        ;
+        }
+        .reviewer-info{
+            width: 150px;
+            color: #3b3b3b;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .review-box{
+            display: block;
+            padding: 18px 0;
+            border-bottom: 1px solid #cccccc;
+        }
+        .star-one{
+            font-size: 12px;
+            color: #F9C827;
+        }
+        .reviewer{
+            color: black;
+            font-size: 16px;
+        }
+        .review-date{
+            color: #5a5a5a;
+            font-size: 12px;
+        }
+        .star-one{
+            height: 15px;
+        }
+        .review-body{
+            display: flex;
+            margin-bottom: 11px;
+        }
+        .review-img{
+            height: 128px;
+            width: 128px;
+        }
+        .review-text{
+            color: black;
+            margin-left: 10px;
+        }
+        ul{
+            padding-left: 0em;
+        }
+    </style>
 </head>
-<body class="is-preload" style="padding: 200px">
+<body class="is-preload" style="padding: 4em 200px 0 200px;">
 
-<!-- Header -->
-<header id="header">
-
-    <!-- Logo -->
-    <span class="logo">
-						<a href="index.html">Faction</a>
-						<span>By Pixelarity</span>
-					</span>
-
-    <!-- Nav -->
-    <nav id="nav">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li>
-                <a href="#" class="icon solid fa-angle-down">Dropdown</a>
-                <ul>
-                    <li><a href="#">Option One</a></li>
-                    <li><a href="#">Option Two</a></li>
-                    <li><a href="#">Option Three</a></li>
-                    <li>
-                        <a href="#">Submenu</a>
-                        <ul>
-                            <li><a href="#">Option One</a></li>
-                            <li><a href="#">Option Two</a></li>
-                            <li><a href="#">Option Three</a></li>
-                            <li><a href="#">Option Four</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="generic.html">Generic</a></li>
-            <li><a href="elements.html">Elements</a></li>
-            <li><a href="#" class="button">Log In</a></li>
-        </ul>
-    </nav>
+<header id="header" th:include="/main/header::header_body">
 
 </header>
 
 <!-- Wrapper -->
-<div class="wrapper">
 
-    <!-- Main -->
-    <section class="main">
-
-        <!-- Banner -->
-        <section id="banner">
-            <article data-position="bottom right">
-                <div class="inner">
-                    <img src="/images/slide01.jpg" alt="">
-                    <h2>ultricies sed magna</h2>
-                    <p>mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. sed mattis nunc id lorem euismod placerat. vivamus porttitor magna enim, ac accumsan tortor ipsum dolor.</p>
-                    <ul class="actions">
-                        <li><a class="button large" href="#">magna sed dolor</a></li>
-                    </ul>
+<div class="inner">
+    <div>
+        <div id="info">
+            <section id="img-section">
+                <div id="img-view">
+                    <img src="https://image.idus.com/image/files/695f8f487f8b4dbdba9cfa26aea2e1e4_1440.jpg">
                 </div>
-            </article>
-            <article data-position="top right">
-                <div class="inner">
-                    <img src="/images/slide02.jpg" alt="">
-                    <h2>sed mattis nunc lorem</h2>
-                    <p>phasellus sed ultricies mi non congue ullam corper. praesent tincidunt sed tellus ut rutrum. sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida fringilla.</p>
-                    <ul class="actions">
-                        <li><a class="button large" href="#">magna sed dolor</a></li>
-                    </ul>
+            </section>
+            <!-- 구매창 -->
+            <aside id="box">
+                <div class="payment">
+                    <div class="maker-card">
+                        <a>베이커리 이름</a>
+                    </div>
+                    <h2 class="bread-name">브라우니🍞</h2>
+
+<!--                    <fieldset>&lt;!&ndash;&ndash;&gt;
+                        <button type="submit" class="button">
+                            장바구니
+                        </button>
+                        <button type="submit" style="overflow: hidden; width: 100px; background-color: #ffeb00;">
+                            <svg id="kakao-pay" viewBox="0 0 150 65">
+                                <defs>
+                                    <path d="M0 0h150v62.5H0z"></path>
+                                </defs>
+                                <g fill="none" fill-rule="evenodd">
+                                    <g>
+                                        <path fill="#FFEB00" d="M118.75 62.5h-87.5C13.99 62.5 0 48.509 0 31.25S13.991 0 31.25 0h87.5C136.01 0 150 13.991 150 31.25S136.01 62.5 118.75 62.5"></path>
+                                    </g>
+                                    <path fill="#000" d="M35.802 15c-9.03 0-16.35 5.784-16.35 12.917 0 4.28 2.642 8.07 6.703 10.42l-1.925 7.189c-.184.69.586 1.238 1.177.84l8.35-5.638c.671.067 1.352.105 2.045.105 9.03 0 16.35-5.783 16.35-12.916S44.832 15 35.802 15m30.832 6.18v14.129c.347.044 1.21.13 2.031.13 4.493 0 6.223-3.154 6.223-8.123 0-4.364-1.168-7-4.754-7-1.167 0-2.463.344-3.5.864m0 18.536v8.79h-6.307V15.908h4.45l.777 2.074c1.34-1.34 3.37-2.765 6.655-2.765 6.18 0 9.116 4.623 9.074 12.099 0 7.82-4.537 12.833-11.02 12.833-1.252 0-2.201-.088-3.629-.433m30.981-6.28v-4.32H94.72c-3.241 0-4.884 1.167-4.884 3.5 0 1.77.908 2.636 2.766 2.636 1.728 0 3.932-.866 5.013-1.816m-3.588-8.34h3.588v-.776c0-2.594-1.47-3.804-4.02-3.804-1.943 0-4.45.563-6.48 1.557l-1.729-4.235c2.248-1.555 5.704-2.636 8.77-2.636 6.051 0 9.336 3.197 9.336 9.29v14.995H99.04l-.649-1.989c-2.548 1.858-4.881 2.636-7 2.636-4.622 0-7.215-2.765-7.215-7.432 0-4.97 3.458-7.605 9.851-7.605m28.285 12.373c-2.204 5.877-4.84 10.153-8.686 12.53l-3.886-3.587c2.245-1.944 3.844-3.845 5.226-6.394l-8.382-22.858 6.266-1.685 5.357 18.537 5.315-18.624 6.18 1.73-7.39 20.35z"></path>
+                                </g>
+                            </svg>
+                        </button>
+                        <button type="submit">
+                            구매
+                        </button>
+                    </fieldset>-->
                 </div>
-            </article>
-            <article data-position="right">
-                <div class="inner">
-                    <img src="/images/slide03.jpg" alt="">
-                    <h2>nisl sed vitae</h2>
-                    <p>fusce tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. sed ac magna consequat purus ipsum consequat.</p>
-                    <ul class="actions">
-                        <li><a class="button large" href="#">magna sed dolor</a></li>
-                    </ul>
-                </div>
-            </article>
-            <article data-position="center">
-                <div class="inner">
-                    <img src="/images/slide04.jpg" alt="">
-                    <h2>porta ultricies consectetur</h2>
-                    <p>mattis ante fermentum, malesuada neque vitae, eleifend erat. phasellus non pulvinar erat. fusce tincidunt lorem ipsum dolor sit amet. magna tellus fusce tincidunt lorem.</p>
-                    <ul class="actions">
-                        <li><a class="button large" href="#">magna sed dolor</a></li>
-                    </ul>
-                </div>
-            </article>
-        </section>
-
-        <!-- Blurb -->
-        <section>
-            <h1>Sed mattis nunc lorem</h1>
-            <p>Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla lorem.</p>
-        </section>
-
-        <!-- Features -->
-        <section class="features alt">
-            <article class="icon fa-gem">
-                <h3>Nisl sed vitae</h3>
-                <p>Nullam et orci sed lorem magna et vivamus sagittis libero.</p>
-            </article>
-            <article class="icon fa-save">
-                <h3>Sed mattis nunc</h3>
-                <p>Duis non efficitur nisi, sed justo. Maecenas sagittis semper.</p>
-            </article>
-            <article class="icon solid fa-laptop">
-                <h3>Porta ultricies</h3>
-                <p>Maecenas sagittis felis ac sagittis semper. Curabitur purus leo.</p>
-            </article>
-            <article class="icon solid fa-paper-plane">
-                <h3>Magna tellus</h3>
-                <p>Auctor orci eu dolor consectetur, interdum ullamcorper ante.</p>
-            </article>
-        </section>
-
-        <!-- Spotlights -->
-        <section class="spotlights alt">
-            <article>
-                <a href="#" class="image fit"><img src="/images/pic01.jpg" alt=""></a>
-                <h3>Sit amet posuere risus amet lorem faucibus lectus</h3>
-                <p>Fusce tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. Sed ac magna consequat.</p>
-                <ul class="actions">
-                    <li><a href="#" class="button">Learn More</a></li>
-                </ul>
-            </article>
-            <article>
-                <a href="#" class="image fit"><img src="/images/pic02.jpg" alt=""></a>
-                <h3>Ante sed fermentum tempus vitae eleifend magna</h3>
-                <p>Quam vel tortor tincidunt suscipit. Nullam auctor orci eu dolor consectetur, interdum ullamcorper ante tincidunt. Mauris felis felis elementum.</p>
-                <ul class="actions">
-                    <li><a href="#" class="button">Learn More</a></li>
-                </ul>
-            </article>
-            <article>
-                <a href="#" class="image fit"><img src="/images/pic03.jpg" alt=""></a>
-                <h3>Lorem ipsum dolor sit amet consectetur adipiscing</h3>
-                <p>Purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
-                <ul class="actions">
-                    <li><a href="#" class="button">Learn More</a></li>
-                </ul>
-            </article>
-            <article>
-                <a href="#" class="image fit"><img src="/images/pic04.jpg" alt=""></a>
-                <h3>Duis vulputate amet tincidunt lacinia velit aliquet</h3>
-                <p>Mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce tincidunt lorem ipsum dolor sit amet.</p>
-                <ul class="actions">
-                    <li><a href="#" class="button">Learn More</a></li>
-                </ul>
-            </article>
-        </section>
-
+            </aside>
+        </div>
+    </div>
+    <section id="prd-info">
+        <p>
+            제품 배송 안내❗<br>
+            매주 월, 목요일 출고 진행합니다.<br>
+            목 ~ 일까지 주문건 👉🏻 (월)출고<br>
+            월 ~ 수까지 주문건 👉🏻 (목)출고<br>
+            <br>
+            ✔ 주문량에 따라 지연될 수도 있습니다.<br>
+            (단체 대량 주문건은 따로 연락 부탁드립니다.)<br>
+            <br>
+            💛 쌀 브라우니 조각 케이크 🎂<br>
+            꾸덕꾸덕하고 진한 초콜릿의 케이크 브라우니, 이보다 더 좋은 설명은 없다고 생각합니다.<br>
+            밀가루가 아닌 100% 국산 쌀가루와 벨기에산 고급 다크 초콜릿을 사용 했습니다.<br>
+            진한 초콜릿의 브라우니와 쌉싸름한 커피를 같이 드시면 더욱 맛있게 드실 수 있습니다.<br>
+            <br>
+            💛사이즈, 중량💛<br>
+            5 X 4.5 X 2.5 (cm) , 60g내외<br>
+            (두툼한 사각형)&#xFEFF;<br>
+            <br>
+            ✅유통기한 및 보관 방법<br>
+            실온보관 3일, 냉동보관 1주일<br>
+            <br>
+            🌾 쌀 디저트 전문 카페, 모닐이네하우스입니다. 🌾<br>
+            <br>
+            국내산 100% 우리 쌀가루를 사용하며, 모든 제품 글루텐 FREE 입니다.<br>
+            밀가루를 사용하지 않아 촉촉하면서 속이 편안한 디저트를 만들고 있습니다. <br>
+            귀여운 마닐이와 모닐이가 만드는 쌀 디저트 세상에 초대합니다!<br>
+            <br>
+            ✅ No 밀가루 • 100% 국내산 쌀가루를 사용합니다.<br>
+            ✅ No 보존제 • No 색소<br>
+            ✅ 글루텐 Free<br>
+            ✅ 100% 뉴질랜드 우유버터<br>
+            ✅ 알루미늄 Free<br>
+            <br>
+            ❗ 주의사항 ❗<br>
+            ✔ opp포장 → 보냉포장 → 친환경 보냉박스로 포장되어 발송됩니다.<br>
+            ✔ 수제로 만들어지는 제품이므로 식품에 대한 합당한 하자가 발생하지 않는 한 교환, 반품이 불가합니다.<br>
+        </p>
     </section>
-
-    <!-- Sidebar -->
-    <aside class="sidebar">
-
-        <!-- Blurb -->
-        <section>
-            <h2>Magna etiam</h2>
-            <p>Fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem sed euismod placerat. Vivamus porttitor et magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper lorem ipsum.</p>
-            <ul class="actions">
-                <li><a href="#" class="button">Learn More</a></li>
-            </ul>
-        </section>
-
-        <!-- Featured posts -->
-        <section class="featured-posts">
-            <h2>Sed aliquam</h2>
-            <article>
-                <a href="#" class="image fit"><img src="/images/pic05.jpg" alt=""></a>
-                <header>
-                    <span class="date">September 19, 2016</span>
-                    <h3><a href="#">Non velit accumsan cursus gravida amet sapien</a></h3>
-                </header>
-                <p>Phasellus in odio at ipsum porttitor mollis id vel diam. Praesent sit amet posuere risus, eu faucibus lectus. Vivamus ex ligula, tempus pulvinar ipsum in, auctor porta quam. Proin nec commodo, vel scelerisque nisi scelerisque. Suspendisse id quam vel tortor tincidunt suscipit. Nullam auctor orci eu dolor consectetur, interdum ullamcorper ante tincidunt. Mauris felis nec felis varius.</p>
-                <ul class="actions">
-                    <li><a href="#" class="button">Continue Reading</a></li>
-                </ul>
-            </article>
-        </section>
-
-        <!-- Posts -->
-        <section>
-            <h2>Arcu dolore</h2>
-            <ul class="posts">
-                <li>
-                    <a href="#">Etiam quis viverra lorem in semper lorem.</a>
-                    <span class="date">September 15, 2016</span>
-                </li>
-                <li>
-                    <a href="#">Sed nisl arcu euismod sit amet nisi euismod sed cursus elementum ipsum.</a>
-                    <span class="date">September 15, 2016</span>
-                </li>
-                <li>
-                    <a href="#">Arcu vivamus quis venenatis orci lorem.</a>
-                    <span class="date">September 15, 2016</span>
-                </li>
-                <li>
-                    <a href="#">Veroeros aliquam. Lorem ipsum dolor sit amet nullam dolore magna.</a>
-                    <span class="date">September 15, 2016</span>
-                </li>
-                <li>
-                    <a href="#">Mauris neque quam, fermentum ut nisl vitae</a>
-                    <span class="date">September 15, 2016</span>
-                </li>
-                <li>
-                    <a href="#">Convallis maximus nisl sed mattis nunc id lorem euismod amet placerat.</a>
-                    <span class="date">September 15, 2016</span>
-                </li>
-                <li>
-                    <a href="#">Sed nisl arcu euismod sit amet nisi euismod sed cursus elementum ipsum.</a>
-                    <span class="date">September 15, 2016</span>
-                </li>
-            </ul>
-            <ul class="actions">
-                <li><a href="#" class="button">More Posts</a></li>
-            </ul>
-        </section>
-
-    </aside>
-
 </div>
-
-<!-- Footer -->
-<footer id="footer">
-    <div class="inner">
-        <section class="info">
-            <h3>About Us</h3>
-            <div class="about">
-                <p>Morbi mattis mi consectetur tortor elementum, varius pellentesque velit convallis. Aenean tincidunt lectus auctor mauris maximus, ac scelerisque ipsum tempor. Duis vulputate ex et ex tincidunt, quis lacinia velit aliquet. Duis non efficitur malesuada.</p><p>Sagittis felis ac sagittis semper. Curabitur purus leo donec vel dolor at arcu tincidunt bibendum. Interdum et malesuada fames ac ante ipsum primis.</p>
-                <ul class="actions">
-                    <li><a href="#" class="button">Learn More</a></li>
-                </ul>
-            </div>
-            <div class="team">
-                <article>
-                    <span class="image"><img src="/images/pic06.jpg" alt=""></span>
-                    <p>
-                        <strong class="name">John Doe</strong>
-                        <span class="title">Lorem semper magna etiam</span>
-                    </p>
-                </article>
-                <article>
-                    <span class="image"><img src="/images/pic07.jpg" alt=""></span>
-                    <p>
-                        <strong class="name">Jane Anderson</strong>
-                        <span class="title">Etiam feugiat adipiscing veroeros</span>
-                    </p>
-                </article>
-                <article>
-                    <span class="image"><img src="/images/pic08.jpg" alt=""></span>
-                    <p>
-                        <strong class="name">Mike Smith</strong>
-                        <span class="title">Consequat nulla dolor blandit</span>
-                    </p>
-                </article>
-            </div>
-        </section>
-        <section class="contact">
-            <h3>Contact Us</h3>
-            <ul class="contact-icons">
-                <li class="icon solid fa-home"><a href="#">1234 Somewhere Road #80486<br>Nashville, TN 00000</a></li>
-                <li class="icon solid fa-phone"><a href="#">(800) 555-0000 x12345</a></li>
-                <li class="icon solid fa-envelope"><a href="#">hello@untitled.tld</a></li>
-                <li class="icon brands fa-facebook"><a href="#">facebook.com/untitled-tld</a></li>
-                <li class="icon brands fa-twitter"><a href="#">twitter.com/untitled-tld</a></li>
-            </ul>
-        </section>
-    </div>
-    <div class="copyright">
-        &copy; Untitled. All rights reserved.
-    </div>
-</footer>
-
 <!-- Scripts -->
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
@@ -292,6 +331,13 @@
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
+<script th:replace="/main/header::header_js"></script>
 
 </body>
+<!-- Footer -->
+<footer id="footer" style="background-color: #f5f5f5">
+    <div class="copyright">
+        &copy; Untitled. All rights reserved.
+    </div>
+</footer>
 </html>
