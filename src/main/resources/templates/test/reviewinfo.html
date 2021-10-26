@@ -14,12 +14,12 @@
             margin: 0 0 1em 0;
         }
 
-        .spotlights h5{
+        .spotlights h5 {
             font-weight: bold;
             font-size: small;
         }
 
-        .spotlights p{
+        .spotlights p {
             font-size: small;
         }
 
@@ -41,47 +41,51 @@
             display: inline-block;
         }
 
-        .spotlights h5{
+        .spotlights h5 {
             color: black;
         }
 
 
         /* header */
-        .headerIcon{
+        .headerIcon {
             width: 40px;
             display: block;
-            margin: auto;"
+            margin: auto;
+        "
         }
+
         .icon.solid:before {
             font-weight: 100;
             content: none;
         }
 
-        .spotlights h5{
+        .spotlights h5 {
             font-weight: bold;
             font-size: small;
         }
 
-        .spotlights p{
+        .spotlights p {
             font-size: small;
         }
 
-        .headerIcon{
+        .headerIcon {
             width: 40px;
             display: block;
-            margin: auto;"
+            margin: auto;
+        "
         }
+
         .icon.solid:before {
             font-weight: 100;
             content: none;
         }
 
-        .spotlights h5{
+        .spotlights h5 {
             font-weight: bold;
             font-size: small;
         }
 
-        .spotlights p{
+        .spotlights p {
             font-size: small;
         }
 
@@ -92,6 +96,7 @@
             width: 400px;
             margin: 0 auto;
         }
+
         input {
             width: 100%;
             border-radius: 20px;
@@ -99,15 +104,18 @@
             margin: 10px 0;
             padding: 10px 12px;
         }
+
         .fa-search {
             position: absolute;
             left: 90%;
             top: 35%;
             margin: 0;
         }
+
         form {
             margin: 0;
         }
+
         .headerIcon {
             width: 40px;
         }
@@ -196,25 +204,34 @@
             border-bottom: none;
             color: #333 !important;
         }
-        .flexsearch{
+
+        .flexsearch {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .testSearch{
+        .testSearch {
             height: 45px !important;
             width: 152px !important;
 
         }
-
-         input[type="text"]:focus{
-            outline: none;
-            box-shadow: none;
-             border:1px solid #f9a825 !important;
+        #img-view{
+            width: 560px;
+        }
+        #img-view img{
+            width: 560px;
+            height: auto;
+            overflow: hidden;
         }
 
-        .searchButton{
+        input[type="text"]:focus {
+            outline: none;
+            box-shadow: none;
+            border: 1px solid #f9a825 !important;
+        }
+
+        .searchButton {
             background-color: #f9a825 !important;
             box-shadow: none;
             width: 14%;
@@ -224,28 +241,37 @@
             justify-content: space-evenly !important;
             color: black !important;
         }
-       #bannerDiv{
-        position: fixed;
-        top: 86.66px;
-        z-index: 999;
-        left: 12%;
-      }
-        .warpdiv{
+
+        #bannerDiv {
+            position: fixed;
+            top: 86.66px;
+            z-index: 999;
+            left: 12%;
+        }
+
+        .warpdiv {
             display: flex;
             align-items: center;
             justify-content: flex-end;
         }
+
+        #review-img{
+            width: 560px;
+            text-align: center;
+        }
+        #review-img img{
+            width: 560px;
+            height: auto;
+            overflow: hidden;
+        }
     </style>
 </head>
-<body class="is-preload" style="padding: 200px">
+<body class="is-preload" style="padding: 110px">
 
 <!-- ----------------------------------------------------------------------------------------------------Header---------------------------------------------------------------------------------- -->
 <header id="header" th:include="/main/header::header_body">
 
 </header>
-<div id="bannerDiv">
-   <span id="img"></span><img src="/images/test3.png">
-</div>
 <!-- ----------------------------------------------------------------------------------------------------Header---------------------------------------------------------------------------------- -->
 
 <!-- -----------------------------------------------------------------------------------------------------section----------------------------------------------------------------------------------- -->
@@ -254,67 +280,49 @@
     <!-- Main -->
     <section class="main">
         <!-- Blurb -->
-        <section style="padding-top: 2.0em;padding-bottom: 0em; padding-left: 5.5em; padding-right: 5.5em;">
-            <div class="flexsearch">
-                <select name="category" id="category" onchange="location.href=this.value" style="width: 10%;font-size: 17px !important;">
-                    <option value="">--전체--</option>
-                    <option value="1">케이크</option>
-                    <option value="1">제과</option>
-                    <option value="1">제빵</option>
-                </select>
-                <div class="warpdiv">
-                    <input type="text" name="search" class="testSearch" onkeyup="enterkey()" placeholder="검색어를 입력해주세요."
-                           style="width: 30%; color: #333 !important; margin: 0 0px 0 0%; width: 150px; border: none; border-bottom-color: white; font-size: 12px; font-family: 'Nanum Gothic Coding', monospace;">
-                    <input type="button" onclick="search()" value="검색" class="searchButton" style="color: black !important; border: 0 !important;">
-                </div>
+            <div id="review-img">
+                <img src="https://image.idus.com/image/files/695f8f487f8b4dbdba9cfa26aea2e1e4_1440.jpg">
             </div>
-        </section>
-        <section>
-            <section class="spotlights alt">
-                <article style="border-width: 0px 1px 0px 0px;">
-                    <a href="#" class="image fit"><img src="/images/garlicBread2.jpg" alt=""></a>
-                    <h5>만동제과</h5>
-                    <p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
-                </article>
-                <article style="border-width: 0px 1px 0px 0px;">
-                    <a href="#" class="image fit"><img src="/images/까눌레1.jpg" alt=""></a>
-                    <h5>리코 베이커리</h5>
-                    <p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
-                </article>
-                <article style="border-width: 0px 1px 0px 0px;">
-                    <a href="#" class="image fit"><img src="/images/휘낭시에2.png" alt=""></a>
-                    <h5>버터랏츠</h5>
-                    <p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
-                </article>
-                <article style="border-width: 0px 0px 0px 0px;">
-                    <a href="#" class="image fit"><img src="/images/donut2.jpg" alt=""></a>
-                    <h5>카페노티드</h5>
-                    <p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
-                </article>
-                <article>
-                    <a href="#" class="image fit"><img src="/images/휘낭시에3.png" alt=""></a>
-                    <h5>만동제과</h5>
-                    <p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
-                </article>
-                <article>
-                    <a href="#" class="image fit"><img src="/images/스콘1.jpg" alt=""></a>
-                    <h5>리코 베이커리</h5>
-                    <p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
-                </article>
-                <article>
-                    <a href="#" class="image fit"><img src="/images/donut1.jpg" alt=""></a>
-                    <h5>버터랏츠</h5>
-                    <p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
-                </article>
-                <article>
-                    <a href="#" class="image fit"><img src="/images/melon1.jpg" alt=""></a>
-                    <h5>카페노티드</h5>
-                    <p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
-                </article>
-                <br>
+            <section style="text-align: center;">
+                <p>
+                    제품 배송 안내❗<br>
+                    매주 월, 목요일 출고 진행합니다.<br>
+                    목 ~ 일까지 주문건 👉🏻 (월)출고<br>
+                    월 ~ 수까지 주문건 👉🏻 (목)출고<br>
+                    <br>
+                    ✔ 주문량에 따라 지연될 수도 있습니다.<br>
+                    (단체 대량 주문건은 따로 연락 부탁드립니다.)<br>
+                    <br>
+                    💛 쌀 브라우니 조각 케이크 🎂<br>
+                    꾸덕꾸덕하고 진한 초콜릿의 케이크 브라우니, 이보다 더 좋은 설명은 없다고 생각합니다.<br>
+                    밀가루가 아닌 100% 국산 쌀가루와 벨기에산 고급 다크 초콜릿을 사용 했습니다.<br>
+                    진한 초콜릿의 브라우니와 쌉싸름한 커피를 같이 드시면 더욱 맛있게 드실 수 있습니다.<br>
+                    <br>
+                    💛사이즈, 중량💛<br>
+                    5 X 4.5 X 2.5 (cm) , 60g내외<br>
+                    (두툼한 사각형)&#xFEFF;<br>
+                    <br>
+                    ✅유통기한 및 보관 방법<br>
+                    실온보관 3일, 냉동보관 1주일<br>
+                    <br>
+                    🌾 쌀 디저트 전문 카페, 모닐이네하우스입니다. 🌾<br>
+                    <br>
+                    국내산 100% 우리 쌀가루를 사용하며, 모든 제품 글루텐 FREE 입니다.<br>
+                    밀가루를 사용하지 않아 촉촉하면서 속이 편안한 디저트를 만들고 있습니다. <br>
+                    귀여운 마닐이와 모닐이가 만드는 쌀 디저트 세상에 초대합니다!<br>
+                    <br>
+                    ✅ No 밀가루 • 100% 국내산 쌀가루를 사용합니다.<br>
+                    ✅ No 보존제 • No 색소<br>
+                    ✅ 글루텐 Free<br>
+                    ✅ 100% 뉴질랜드 우유버터<br>
+                    ✅ 알루미늄 Free<br>
+                    <br>
+                    ❗ 주의사항 ❗<br>
+                    ✔ opp포장 → 보냉포장 → 친환경 보냉박스로 포장되어 발송됩니다.<br>
+                    ✔ 수제로 만들어지는 제품이므로 식품에 대한 합당한 하자가 발생하지 않는 한 교환, 반품이 불가합니다.<br>
+                </p>
             </section>
         </section>
-    </section>
 </div>
 
 

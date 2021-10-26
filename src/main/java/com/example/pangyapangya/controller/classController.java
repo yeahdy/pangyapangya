@@ -25,10 +25,4 @@ public class classController {
     @GetMapping("practice")
     public String practice(){ return "class/practice"; }
 
-    @GetMapping("practice01")
-    public String practice01(){ return "class/practice01"; }
-
-    @GetMapping("classPay")
-    public String classPay(){ return "class/classPay"; }
-
 }
