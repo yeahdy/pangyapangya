@@ -76,13 +76,20 @@
             /*padding: 10px;*/
             padding: 0.75em 0.75em 0.75em 0.75em;
         }
+        table td{
+            background-color: white;
+        }
         #bread_img{
             width: 100px;
             margin-right: 35px;
+            margin-top: 5px;
         }
         #price{
-            padding: 0 45px;
+            /*padding: 0 45px;*/
             font-size: 14px;
+        }
+        table tbody tr:nth-child(2n + 1) {
+             background-color: white;
         }
 
        /* #bakeryName, #bakeryTotalPrice{
@@ -99,15 +106,15 @@
             float: left;
         }
         #breadTable_bottom{
-            float: right;
-            margin: 35% 10px;
+            /*float: right;*/
+            /*margin: 35% 10px;*/
         }
 
         #bread_img{
             width: 100px;
         }
         #bread_cnt, #cnt{
-            float: left;
+            /*float: left;*/
             font-size: 13px;
         }
         #bakery1{
@@ -191,13 +198,17 @@
                         <div id="myRightDiv">
                             <!--첫 번째 빵집-->
                                 <table border="1" id="bakery1">
-                                    <caption>2021-10-07</caption>
-                                    <tbody><tr>
-                                        <th><div id="bakeryName">빵집 이름</div></th>
-                                        <th><div id="bakeryTotalPrice">25,800</div></th>
-                                    </tr>
+
+                                    <tbody>
+
                                     <tr>
-                                        <td><div class="bread_table"><img id="bread_img" src="/images/bread1.jpg"></div>
+                                        <td>
+                                            <div class="firstSection">
+                                            <div>2021-10-07</div>
+                                            <div class="bread_table"><img id="bread_img" src="/images/bread1.jpg"></div>
+                                            </div>
+
+                                            <div class="secondSection">
                                             <div id="breadTable_top">
                                                 <span id="bread_title"><strong>9無 🌿비건통밀파운드케이크 👉6종 Half_Size</strong></span>
                                                 <br>
@@ -205,68 +216,26 @@
                                                     <li><span id="bread_name">파운드케이크선택 : 흑임자칙피스프레드</span></li>
                                                 </ul>
                                             </div>
-                                            </td>
+                                            </div>
+                                        </td>
                                         <td>
                                             <div id="breadTable_bottom">
-                                                <div id="bread_cnt">수량 : </div>
+                                                <div id="bread_cnt"><span>수량 : </span></div>
                                                 <div class="bread_table" id="cnt"><b>1</b></div>
                                             </div>
+                                                <div class="bread_price" id="price">25,800</div>
+
 
                                         </td>
                                     </tr>
-                                    </tbody></table>
-                            <!--두 번째 빵집-->
-                                <table border="1" id="bakery1">
-                                    <caption>2021-10-03</caption>
-                                    <tbody><tr>
-                                        <th><div id="bakeryName">빵집 이름</div></th>
-                                        <th><div id="bakeryTotalPrice">22,400</div></th>
-                                    </tr>
-                                    <tr>
-                                        <td><div class="bread_table"><img id="bread_img" src="/images/bread2.jpg"></div>
-                                            <div id="breadTable_top">
-                                                <span id="bread_title"><strong>9無 🌿비건통밀파운드케이크 👉6종 Half_Size</strong></span>
-                                                <br>
-                                                <ul>
-                                                    <li><span id="bread_name">파운드케이크선택 : 흑임자칙피스프레드</span></li>
-                                                </ul>
-                                            </div>
-                                            </td>
-                                        <td>
-                                            <div id="breadTable_bottom">
-                                                <div id="bread_cnt">수량 : </div>
-                                                <div class="bread_table" id="cnt"><b>1</b></div>
-                                            </div>
+                                    </tbody>
+                                </table>
+                        </div>
 
-                                        </td>
-                                    </tr>
-                                    </tbody></table>
-                            <!--세번째 빵집-->
-                                <table border="1" id="bakery1">
-                                    <caption>2021-10-01</caption>
-                                    <tbody><tr>
-                                        <th><div id="bakeryName">빵집 이름</div></th>
-                                        <th><div id="bakeryTotalPrice">38,000</div></th>
-                                    </tr>
-                                    <tr>
-                                        <td><div class="bread_table"><img id="bread_img" src="/images/bread3.jpg"></div>
-                                            <div id="breadTable_top">
-                                                <span id="bread_title"><strong>9無 🌿비건통밀파운드케이크 👉6종 Half_Size</strong></span>
-                                                <br>
-                                                <ul>
-                                                    <li><span id="bread_name">파운드케이크선택 : 흑임자칙피스프레드</span></li>
-                                                </ul>
-                                            </div>
-                                            </td>
-                                        <td>
-                                            <div id="breadTable_bottom">
-                                                <div id="bread_cnt">수량 : </div>
-                                                <div class="bread_table" id="cnt"><b>1</b></div>
-                                            </div>
 
-                                        </td>
-                                    </tr>
-                                    </tbody></table>
+
+
+
                             <div class="board_button">
                                 <button>&lt;</button>
                                 <span>1</span>
@@ -335,12 +304,12 @@
 </footer>
 
 <!-- Scripts -->
-<script src="/static/js/jquery.min.js"></script>
-<script src="/static/js/jquery.dropotron.min.js"></script>
-<script src="/static/js/browser.min.js"></script>
-<script src="/static/js/breakpoints.min.js"></script>
-<script src="/static/js/util.js"></script>
-<script src="/static/js/main.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
 </body>
 </html>
