@@ -93,6 +93,9 @@
             font-size: 1.2em;
             font-weight: 900;
         }
+        table input{
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body class="is-preload" style="padding: 200px">
@@ -149,7 +152,7 @@
                             <header>
                                 <h2 id="title">회원 정보 관리</h2>
                             </header>
-                            <table>
+                            <table id="form">
                                 <tr>
                                     <td>이름 - readonly</td>
                                     <td>
@@ -165,13 +168,13 @@
                                 <tr>
                                     <td>비밀번호</td>
                                     <td>
-                                        <input type="password" value="hds1234" style="border-radius: 20px;">
+                                        <input type="password" value="hds1234" style="border-radius: 10px;">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>비밀번호 확인</td>
                                     <td>
-                                        <input type="password" value="" style="border-radius: 20px;">
+                                        <input type="password" value="" style="border-radius: 10px;">
                                     </td>
                                 </tr>
                                 <tr>
@@ -260,12 +263,12 @@
 </footer>
 
 <!-- Scripts -->
-<script src="/static/js/jquery.min.js"></script>
-<script src="/static/js/jquery.dropotron.min.js"></script>
-<script src="/static/js/browser.min.js"></script>
-<script src="/static/js/breakpoints.min.js"></script>
-<script src="/static/js/util.js"></script>
-<script src="/static/js/main.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
 </body>
 </html>
