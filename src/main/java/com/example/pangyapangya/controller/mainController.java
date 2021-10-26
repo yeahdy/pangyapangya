@@ -1,6 +1,6 @@
 package com.example.pangyapangya.controller;
 
-import com.example.pangyapangya.services.MainService;
+//import com.example.pangyapangya.services.MainService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,7 @@ import java.util.Random;
 @RequestMapping("/main/*")
 @RequiredArgsConstructor
 public class mainController {
-    private final MainService mainService;
+    //private final MainService mainService;
 
     @GetMapping("index")
     public String index(){ return "main/index"; }
