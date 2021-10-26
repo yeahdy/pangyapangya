@@ -91,20 +91,19 @@
             font-size: 14px;
         }
         .resultWindow{
-            position: sticky;
-            top: 4px;
 
             border-collapse: separate;
-            /*width: 20%;
-            float: right;*/
-            position: -webkit-sticky;
-            position: sticky;
-            top: 20px;
-            /*width: 30%;*/
+            /*width: 45%;*/
+            /*float: right;*/
             text-align: center;
-            border: 1px !important;
-            border-radius: 30px !important;
-    }
+            border: solid 1px;
+            padding: 10px;
+            /*margin: 0 10%;*/
+        }
+        #resultDiv{
+            width: 52%;
+            float: left;
+        }
     .resultWindow_th{
         background-color: white;
         /*padding: 5%;*/
@@ -144,11 +143,28 @@
             font-size: 25px;
         }
         #orderButton{
-            display: block;
-            margin: 100px auto;
-            width: 20%;
+            /*display: block;*/
+            margin: 31px auto;
+            width: 38%;
+            border-radius: 0;
+            padding-top: 95px;
+            padding-bottom: 125px;
+            background-color: wheat;
         }
-
+        .resultWindow_th img{
+            width: 30%;
+        }
+        #title{
+            color: #F9A825;
+            /*font-size: 1.2em;*/
+            font-weight: 900;
+        }
+        .topLine th, .topLine td{
+            border-top: 1px solid #dee2e6;
+        }
+        .cart_bottom{
+            margin-left: 5%;
+        }
     </style>
 </head>
 <body class="is-preload" style="padding: 200px">
@@ -168,11 +184,12 @@
         <section style="    margin: 100px 0;">
 
             <header>
-                <h1>장바구니</h1>
+                <h1 id="title">장바구니</h1>
             </header>
 
             <table border="1" id="bakery1">
-                <tbody><tr>
+                <tbody>
+                <tr>
                     <th id="bakeryName">빵집 이름</th>
                 </tr>
                 <tr>
@@ -253,37 +270,28 @@
                 </tr>
                 </tbody></table>
             <!--총 결제-->
+            <div class="cart_bottom">
             <div id="resultDiv">
-                <table border="1">
-                    <!--<p>radius 넣고 싶다..</p>-->
             <table class="resultWindow">
-          <!--      <tr>
+                <tr>
                     <th class="resultWindow_th">상품 금액</th>
-                    <th class="resultWindow_th" id="priceResult">38000</th>
+                    <td class="resultWindow_th" id="priceResult">38000</td>
                 </tr>
                 <tr>
                     <th class="resultWindow_th">배달료</th>
-                    <th class="resultWindow_th" id="deliveryPrice">3000</th>
+                    <td class="resultWindow_th" id="deliveryPrice">3000</td>
                 </tr>
-                <tr>
+
+                <tr class="topLine">
                     <th class="resultWindow_th"><strong>총 주문 금액</strong></th>
-                    <th class="resultWindow_th" id="totalPrice">41000</th>
+                    <td class="resultWindow_th" id="totalPrice">41000</td>
                 </tr>
--->
-                <tr>
-                    <td class="resultWindow_th">상품 금액</td>
-                    <td class="resultWindow_th">배달료</td>
-                    <td class="resultWindow_th">총 주문 금액</td>
-                </tr>
-                <tr>
-                    <td id="priceResult" class="resultWindow_th">38000</td>
-                    <td id="deliveryPrice" class="resultWindow_th">3000</td>
-                    <td id="totalPrice" class="resultWindow_th"><b>41000</b></td>
-                </tr>
-            </table>
                 </table>
             </div>
-            <button id="orderButton">주문하기</button>
+            <div>
+            <button id="orderButton"><div>주문하기</div></button>
+            </div>
+            </div>
         </section>
     </section>
 
@@ -301,21 +309,21 @@
             </div>
             <div class="team">
                 <article>
-                    <span class="image"><img src="/images/pic06.jpg" alt=""></span>
+                    <span class="image"><img src="/static/images/pic06.jpg" alt=""></span>
                     <p>
                         <strong class="name">John Doe</strong>
                         <span class="title">Lorem semper magna etiam</span>
                     </p>
                 </article>
                 <article>
-                    <span class="image"><img src="/images/pic07.jpg" alt=""></span>
+                    <span class="image"><img src="/static/images/pic07.jpg" alt=""></span>
                     <p>
                         <strong class="name">Jane Anderson</strong>
                         <span class="title">Etiam feugiat adipiscing veroeros</span>
                     </p>
                 </article>
                 <article>
-                    <span class="image"><img src="/images/pic08.jpg" alt=""></span>
+                    <span class="image"><img src="/static/images/pic08.jpg" alt=""></span>
                     <p>
                         <strong class="name">Mike Smith</strong>
                         <span class="title">Consequat nulla dolor blandit</span>
@@ -340,12 +348,13 @@
 </footer>
 
 <!-- Scripts -->
-<script src="/js/jquery.min.js"></script>
-<script src="/js/jquery.dropotron.min.js"></script>
-<script src="/js/browser.min.js"></script>
-<script src="/js/breakpoints.min.js"></script>
-<script src="/js/util.js"></script>
-<script src="/js/main.js"></script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/jquery.dropotron.min.js"></script>
+<script src="/static/js/browser.min.js"></script>
+<script src="/static/js/breakpoints.min.js"></script>
+<script src="/static/js/util.js"></script>
+<script src="/static/js/main.js"></script>
+<script th:replace="/main/header::header_js"></script>
 <script>
     function count(type)  {
         // 결과를 표시할 element
@@ -388,14 +397,6 @@
         totalPriceElement.innerText =totalPrice;
     }
 
-    $("#header").mouseleave(function(){
-        $(this).css("opacity", "1");
-        $(this).css("color", "white");
-    })
-    $("#header").mouseover(function(){
-        $(this).css("opacity", "0.7");
-        $(this).css("color", "black");
-    })
 </script>
 </body>
 </html>

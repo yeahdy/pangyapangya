@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+    <title>ErrorPage | 빵야빵야(屋)</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <style>
+        .headerIcon{
+            width: 40px;
+            display: block;
+            margin: auto;"
+        }
+        .icon.solid:before {
+            font-weight: 100;
+            content: none;
+        }
+
+        .spotlights h5{
+            font-weight: bold;
+            font-size: small;
+        }
+
+        .spotlights p{
+            font-size: small;
+        }
+
+        /* 검색창 */
+        .search {
+            position: relative;
+            text-align: center;
+            width: 400px;
+            margin: 0 auto;
+        }
+        input {
+            width: 100%;
+            border-radius: 20px;
+            border: 1px solid #bbb;
+            margin: 10px 0;
+            padding: 10px 12px;
+        }
+        .fa-search {
+            position: absolute;
+            left: 90%;
+            top: 35%;
+            margin: 0;
+        }
+        form {
+            margin: 0;
+        }
+
+    </style>
+</head>
+<body class="is-preload" style="padding: 10em 200px 0 200px; background: white;">
+
+<!-- Header -->
+<header id="header" th:include="/main/header::header_body"></header>
+
+    <!-- Main -->
+    <div class="inner" style="text-align: center">
+        <img src="/images/errorPage404.png" alt="에러페이지"/>
+        <h5 style="margin: 2em;color: lightslategray">We have encountered a system error while processing your request.<br>We apologize for the inconvenience. Please check URL and try again</h5>
+        <ul class="actions" style="justify-content: center">
+            <li><a class="button primary" href="/main/mainPage">홈으로 이동</a></li>
+        </ul>
+    </div>
+
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script th:replace="/main/header::header_js"></script>
+</body>
+</html>

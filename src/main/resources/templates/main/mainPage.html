@@ -326,52 +326,70 @@
 <footer id="footer">
 	<div class="inner">
 		<section class="info">
-			<h3>About Us</h3>
-			<div class="about">
-				<p>Morbi mattis mi consectetur tortor elementum, varius pellentesque velit convallis. Aenean tincidunt lectus auctor mauris maximus, ac scelerisque ipsum tempor. Duis vulputate ex et ex tincidunt, quis lacinia velit aliquet. Duis non efficitur malesuada.</p><p>Sagittis felis ac sagittis semper. Curabitur purus leo donec vel dolor at arcu tincidunt bibendum. Interdum et malesuada fames ac ante ipsum primis.</p>
-				<ul class="actions">
-					<li><a href="#" class="button">Learn More</a></li>
-				</ul>
+			<div class="team">
+				<article>
+					<p>
+						<strong class="name">Policies</strong>
+						<a href="/main/rule" class="title">서비스 이용약관</a><br>
+						<a href="/main/privacy" class="title">개인정보 처리 방침</a>
+					</p>
+				</article>
+				<article>
+					<p>
+						<strong class="name">Support</strong>
+						<a href="/main/error" class="title">자주 묻는 질문</a><br>
+						<a href="/test/list" class="title">이벤트</a>
+					</p>
+				</article>
 			</div>
 			<div class="team">
 				<article>
-					<span class="image"><img src="/images/pic06.jpg" alt=""></span>
 					<p>
-						<strong class="name">John Doe</strong>
-						<span class="title">Lorem semper magna etiam</span>
+						<strong class="name">메일</strong>
+						<span class="title">BBangya@gmail.com</span><br>
 					</p>
 				</article>
 				<article>
-					<span class="image"><img src="/images/pic07.jpg" alt=""></span>
 					<p>
-						<strong class="name">Jane Anderson</strong>
-						<span class="title">Etiam feugiat adipiscing veroeros</span>
+						<strong class="name">제휴문의</strong>
+						<span class="title">BBangya@gmail.com</span><br>
 					</p>
 				</article>
 				<article>
-					<span class="image"><img src="/images/pic08.jpg" alt=""></span>
 					<p>
-						<strong class="name">Mike Smith</strong>
-						<span class="title">Consequat nulla dolor blandit</span>
+						<strong class="name">빵야빵야(屋) 고객센터</strong>
+						<span class="title">1588-8888(주 7일 오전 10시~저녁 10시까지)</span>
 					</p>
 				</article>
 			</div>
-		</section>
-		<section class="contact">
-			<h3>Contact Us</h3>
-			<ul class="contact-icons">
-				<li class="icon solid fa-home"><a href="#">1234 Somewhere Road #80486<br>Nashville, TN 00000</a></li>
-				<li class="icon solid fa-phone"><a href="#">(800) 555-0000 x12345</a></li>
-				<li class="icon solid fa-envelope"><a href="#">hello@untitled.tld</a></li>
-				<li class="icon brands fa-facebook"><a href="#">facebook.com/untitled-tld</a></li>
-				<li class="icon brands fa-twitter"><a href="#">twitter.com/untitled-tld</a></li>
-			</ul>
+			<div class="team">
+				<p>
+					<strong class="name">Follow</strong>
+				</p>
+				<ul class="contact-icons">
+					<li class="icon brands fa-dribbble">
+						<span><strong>Blog</strong></span><br>
+						<a href="https://blog.naver.com/yejine98" target="_blank">yeahdy</a><br>
+					</li>
+					<li class="icon brands fa-github">
+						<span><strong>Github</strong></span><br>
+						<a href="https://github.com/yeahdy" target="_blank">yeahdy</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="https://github.com/HanJunKyu" target="_blank">HanJunKyu</a><br>
+						<a href="https://github.com/gomjiyun" target="_blank">gomjiyun</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="https://github.com/hyeongjin0706" target="_blank">hyeongjin0706</a><br>
+						<a href="https://github.com/hyunjuu" target="_blank">hyunjuu</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="https://github.com/CraBk94" target="_blank">CraBk94</a>
+					</li>
+				</ul>
+			</div>
 		</section>
 	</div>
+
 	<div class="copyright">
-		&copy; Untitled. All rights reserved.
+		&copy; Copyright 2021 BBangyaBBangya(屋) inc, ltd. All rights reserved
 	</div>
 </footer>
+
 
 <!-- Scripts -->
 <script src="https://kit.fontawesome.com/8eb5905426.js" crossorigin="anonymous"></script>
@@ -381,13 +399,8 @@
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
+<script th:replace="/main/header::header_js"></script>
 <script type="text/javascript">
-	$("#header").mouseleave(function(){
-		$(this).css("background", "rgba(249,168,37,1)");
-	})
-	$("#header").mouseover(function(){
-		$(this).css("background", "rgba(249,168,37,0.7)");
-	})
 
 </script>
 </body>

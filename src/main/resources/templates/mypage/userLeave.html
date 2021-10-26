@@ -3,62 +3,18 @@
 
 <html>
 <head>
-    <title>회원 정보</title>
+    <title>회원 탈퇴</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="/css/main.css" />
     <style>
-        .headerIcon{
-            width: 40px;
-            display: block;
-            margin: auto;"
-        }
-        .icon.solid:before {
-            font-weight: 100;
-            content: none;
-        }
-
-        .spotlights h5{
-            font-weight: bold;
-            font-size: small;
-        }
-
-        .spotlights p{
-            font-size: small;
-        }
-
-        /* 검색창 */
-        .search {
-            position: relative;
-            text-align: center;
-            width: 400px;
-            margin: 0 auto;
-        }
-        input {
-            width: 100%;
-            border-radius: 20px;
-            border: 1px solid #bbb;
-            margin: 10px 0;
-            padding: 10px 12px;
-        }
-        .fa-search {
-            position: absolute;
-            left: 90%;
-            top: 35%;
-            margin: 0;
-        }
-        form {
-            margin: 0;
-        }
-        /**/
-
         #all{display: flex;}
         .wrapper{width: 75%;}
         #ad{background: #fff; width: 15%; height: 10px;}
         #ad img{width: 100%; height: 600px;}
-        #myMainSection{display: flex;}
+        #myMainSection{/*display: flex;*/}
         #myLeftSection{width: 20%; background: #f9efef;}
         #myRightSection{width: 80%; padding: 0 15px 15px 15px;}
         .myPageTitle{background: #F9A825; margin: 0; padding: 7px 7px 7px 15px;}
@@ -68,32 +24,44 @@
         .contentDiv{margin-top: 15px; margin-bottom: 15px;}
         .contentDiv a{color: #3b3b3b; font-weight: lighter; border: none; font-size: 0.8rem;}
         .myPageSelectMenu{margin-top: 5px; margin-bottom: 5px;}
-        #modify_button{
-            display: block;
-            margin: 0 auto;
-        }
-        table tbody tr:nth-child(2n + 1) {
-            background-color: white;
-        }
-        input, select, textarea {
-            color: #666;
-            border-color: rgba(144, 144, 144, 0.075);
-            width: 100%;
-        }
-        table{
-            margin: 2em auto;
-            width: 80%;
-        }
-        #myRightDiv h1{
-            width: 80%;
-            margin: 0 auto;
-        }
     </style>
 </head>
 <body class="is-preload" style="padding: 200px">
 <!-- Header -->
-<header id="header" th:include="/main/header::header_body">
+<header id="header">
 
+    <!-- Logo -->
+    <span class="logo">
+                  <a href="../main/index.html">Faction</a>
+                  <span>By Pixelarity</span>
+               </span>
+
+    <!-- Nav -->
+    <nav id="nav">
+        <ul>
+            <li><a href="../main/index.html">Home</a></li>
+            <li>
+                <a href="#" class="icon solid fa-angle-down">Dropdown</a>
+                <ul>
+                    <li><a href="#">Option One</a></li>
+                    <li><a href="#">Option Two</a></li>
+                    <li><a href="#">Option Three</a></li>
+                    <li>
+                        <a href="#">Submenu</a>
+                        <ul>
+                            <li><a href="#">Option One</a></li>
+                            <li><a href="#">Option Two</a></li>
+                            <li><a href="#">Option Three</a></li>
+                            <li><a href="#">Option Four</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="../main/generic.html">Generic</a></li>
+            <li><a href="../main/elements.html">Elements</a></li>
+            <li><a href="#" class="button">Log In</a></li>
+        </ul>
+    </nav>
 </header>
 
 <!-- Wrapper -->
@@ -138,57 +106,9 @@
 
                         </div>
                     </section>
-                    <section id="myRightSection" class="form">
+                    <section id="myRightSection">
                         <div id="myRightDiv">
-                                <h1 >회원 정보 관리</h1>
-                            <table>
-                                <tr>
-                                    <td>이름 - readonly</td>
-                                    <td>
-                                        <input value="한동석" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>아이디 - readonly</td>
-                                    <td>
-                                        <input value="hds1234" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>비밀번호</td>
-                                    <td>
-                                        <input type="password" value="hds1234">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>비밀번호 확인</td>
-                                    <td>
-                                        <input type="password" value="">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>휴대전화</td>
-                                    <td>
-                                        <input type="" value="01012341234">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>이메일</td>
-                                    <td>
-                                        <input type="" value="hds1234@gmail.com">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>주소</td>
-                                    <td>
-                                        <input type="" value="서울 특별시 강남구 역삼동">
-                                    </td>
-                                </tr>
-
-                            </table>
-                    <section>
-                    <button id="modify_button">정보 수정 하기</button>
-                </section>
+                            <p>페이지</p>
                         </div>
                     </section>
                 </section>
@@ -196,7 +116,7 @@
         </section>
     </div>
     <div id="ad">
-        <span class="image"><img src="/images/ECdDwLmUIAIAX7k.jpg" alt=""></span>
+        <span class="image"><img src="/static/images/ECdDwLmUIAIAX7k.jpg" alt=""></span>
     </div>
 </div>
 
@@ -213,21 +133,21 @@
             </div>
             <div class="team">
                 <article>
-                    <span class="image"><img src="/images/pic06.jpg" alt=""></span>
+                    <span class="image"><img src="/static/images/pic06.jpg" alt=""></span>
                     <p>
                         <strong class="name">John Doe</strong>
                         <span class="title">Lorem semper magna etiam</span>
                     </p>
                 </article>
                 <article>
-                    <span class="image"><img src="/images/pic07.jpg" alt=""></span>
+                    <span class="image"><img src="/static/images/pic07.jpg" alt=""></span>
                     <p>
                         <strong class="name">Jane Anderson</strong>
                         <span class="title">Etiam feugiat adipiscing veroeros</span>
                     </p>
                 </article>
                 <article>
-                    <span class="image"><img src="/images/pic08.jpg" alt=""></span>
+                    <span class="image"><img src="/static/images/pic08.jpg" alt=""></span>
                     <p>
                         <strong class="name">Mike Smith</strong>
                         <span class="title">Consequat nulla dolor blandit</span>
@@ -252,21 +172,11 @@
 </footer>
 
 <!-- Scripts -->
-<script src="/js/jquery.min.js"></script>
-<script src="/js/jquery.dropotron.min.js"></script>
-<script src="/js/browser.min.js"></script>
-<script src="/js/breakpoints.min.js"></script>
-<script src="/js/util.js"></script>
-<script src="/js/main.js"></script>
-<script>
-    $("#header").mouseleave(function(){
-        $(this).css("opacity", "1");
-        $(this).css("color", "white");
-    })
-    $("#header").mouseover(function(){
-        $(this).css("opacity", "0.7");
-        $(this).css("color", "black");
-    })
-</script>
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/jquery.dropotron.min.js"></script>
+<script src="/static/js/browser.min.js"></script>
+<script src="/static/js/breakpoints.min.js"></script>
+<script src="/static/js/util.js"></script>
+<script src="/static/js/main.js"></script>
 </body>
 </html>
