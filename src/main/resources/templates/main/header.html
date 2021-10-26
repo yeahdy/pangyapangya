@@ -79,14 +79,15 @@
 				</ul>
 			</li>
 			<!-- 검색창 -->
-			<form method="post" action="#" name="">
+			<form method="post" action="/main/breadList" id="searchForm" name="searchForm">
 				<div class="search">
-					<a href="#"><i class="fas fa-search"></i></a>
-					<input type="text" placeholder="먹고 싶은 빵 종류를 검색 해 보세요" maxlength="17" style="background-color: wheat;border-radius: 10px;color: darkgray">
+					<a href="#" id="iconSearch"><i class="fas fa-search"></i></a>
+					<input type="text" id="searchInput" placeholder="먹고 싶은 빵 종류를 검색 해 보세요" maxlength="17" style="background-color: wheat;border-radius: 10px;color: darkgray">
 				</div>
 				<input type="hidden" class="box" value="검색">
 			</form>
 			<!-- 비회원일 경우 -->
+
 			<li>
 				<a href="#" class="icon solid fa-angle-down"><img src="/images/iconPerson.png" alt="myPage" class="headerIcon"/></a>
 				<ul>
@@ -116,24 +117,24 @@
 					<li>
 						<a href="#">글 등록하기</a>
 						<ul>
-							<li><a href="/myPageCeo/myPageCeoBakery">빵집 소개</a></li>
-							<li><a href="/myPageCeo/myPageCeoOneDay">원데이 클래스</a></li>
-							<li><a href="/myPageCeo/myPageCeoExp">빵 체험단</a></li>
+							<li><a href="/myPageCeo/bakery">빵집 소개</a></li>
+							<li><a href="/myPageCeo/oneDay">원데이 클래스</a></li>
+							<li><a href="/myPageCeo/exp">빵 체험단</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="#">내 글보기</a>
 						<ul>
-							<li><a href="/myPageCeo/myPageCeoBakeryRe">빵집 소개</a></li>
-							<li><a href="/myPageCeo/myPageCeoOneDayRe">원데이 클래스</a></li>
-							<li><a href="/myPageCeo/myPageCeoExpRe">빵 체험단</a></li>
+							<li><a href="/myPageCeo/bakeryRe">빵집 소개</a></li>
+							<li><a href="/myPageCeo/oneDayRe">원데이 클래스</a></li>
+							<li><a href="/myPageCeo/expRe">빵 체험단</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="#">내 정보관리</a>
 						<ul>
-							<li><a href="/myPageCeo/myPageCeoEdit">회원정보 수정</a></li>
-							<li><a href="/myPageCeo/myPageCeoDelete">회원 탈퇴</a></li>
+							<li><a href="/myPageCeo/edit">회원정보 수정</a></li>
+							<li><a href="/myPageCeo/delete">회원 탈퇴</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -157,7 +158,9 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 <script type="text/javascript" th:fragment="header_js">
+	let searchForm = $(document.searchForm);	// 검색창
 
+	// 메뉴 색상 변경
 	let div= $("#nav").find(".changeColor");
 	console.log(div);
 
@@ -169,6 +172,27 @@
 		$(element).mouseover(function(){
 			$(element).css("color", "black");
 		})
+	})
+
+	// 검색창 공백막기
+	$("form[name='searchForm']").on("keydown", function (e) {
+		if(e.keyCode == 13){
+			console.log($("#searchInput").val())
+			if(!$("#searchInput").val()){
+				alert("빵 종류를 입력 해 주세요");
+				return false;
+			}
+			searchForm.submit();
+		}
+	})
+
+	// 돋보기 눌렀을때 공백 막기
+	$('.fas').on("click", function () {
+		if(!$("#searchInput").val()){
+			alert("빵 종류를 입력 해 주세요");
+			return false;
+		}
+		searchForm.submit();
 	})
 
 </script>

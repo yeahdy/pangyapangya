@@ -65,30 +65,30 @@
 					<h4><a href="/main/joinCEO"><strong>사장님</strong></a></h4>
 				</li>
 			</div>
-			<div class="box_login login_email" style="height: 1200px">
+			<div class="box_login login_email" style="height: 1100px">
 				<h2 class="tit">간편하게 가입하고<br><strong style="color: #F9A825">빵야빵야(屋)의</strong><br> 다양한 빵을 먹어보세요.</h2>
 				<div class="box_inp">
 					<div class="line_inp">
 						<p class="form_title">아이디</p>
-						<input type="text" name="userid" id="userid" placeholder="아이디를 입력해주세요">
-						<p class="info_error" id="idError1">아이디를 입력해주세요.</p>
+						<input type="text" name="userId" id="userId" placeholder="아이디를 입력해주세요">
+						<p class="info_error" id="userIdError1">아이디를 입력해주세요.</p>
 					</div>
 					<p class="form_title">비밀번호</p>
 					<div class="line_inp line_pw">
-						<input type="password" name="userPassword" id="userPassword" placeholder="비밀번호를 입력해주세요">
+						<input type="password" name="userPw" id="userPw" placeholder="비밀번호를 입력해주세요">
 						<button type="button" class="type_pwd hide"></button>
-						<p class="info_error" id="passError1">비밀번호는 영문 숫자조합 8자리 이상 입력해주세요.</p>
-						<p class="info_error" id="passError2">비밀번호를 입력해주세요.</p>
+						<p class="info_error" id="userPwError1">비밀번호는 영문 숫자조합 8자리 이상 입력해주세요.</p>
+						<p class="info_error" id="userPwError2">비밀번호를 입력해주세요.</p>
 					</div>
 					<div class="line_inp line_pw">
-						<input type="password" name="confirm" id="confirm" placeholder="비밀번호를 재입력해주세요">
+						<input type="password" name="confirmPw" id="confirmPw" placeholder="비밀번호 확인">
 						<button type="button" class="type_pwd hide"></button>
-						<p class="info_error" id="confirmError1">입력하신 비밀번호가 서로 다릅니다.</p>
+						<p class="info_error" id="confirmPwError1">입력하신 비밀번호가 서로 다릅니다.</p>
 					</div>
 					<div class="line_inp">
 						<p class="form_title">이름</p>
 						<input type="text" name="userName" id="userName" placeholder="이름(실명)을 입력해주세요">
-						<p class="info_error" id="nameError1">이름(실명)을 입력해주세요.</p>
+						<p class="info_error" id="userNameError1">이름(실명)을 입력해주세요.</p>
 					</div>
 					<!-- 이메일 인증 할지 말지 고민
 					<div class="line_inp">
@@ -102,22 +102,23 @@
 						<p class="form_title">휴대폰 번호</p>
 						<input type="tel" class="inp" name="userPhoneNum" id="userPhoneNum" placeholder="휴대폰 번호를 - 없이 입력해주세요" style="width: calc(100% - 110px);float: left;">
 						<p class="info_error" id="phoneNumError1">휴대폰 번호 입력해주세요.</p>
-						<input type="button" value="SMS 전송" style="width: 100px;padding: 0px;" />
+						<input type="button" id="goSMS" value="SMS 전송" style="width: 100px;padding: 0px;" />
 					</div>
-					<div class="line_inp">
+					<div class="line_inp confirmDiv">
 						<p class="form_title">인증번호</p>
-						<input class="inp" id="inp-auth-number" type="tel" placeholder="SMS로 수신된 인증번호 5자리를 입력해주세요" style="width: calc(100% - 110px);float: left;">
-						<input type="button" id="btn-confirm" value="인증" style="width: 100px;padding: 0px;" />
+						<input class="inp" id="authNumber" type="tel" placeholder="SMS로 수신된 인증번호 5자리를 입력해주세요" style="width: calc(100% - 110px);float: left;">
+						<input type="button" id="confirmBnt" value="인증" style="width: 100px;padding: 0px;" />
 					</div>
+					<!-- 타이머 -->
+					<p class="count"><span class="timer"></span></p>
 					<div class="line_inp">
 						<p class="form_title">주소</p>
-						<input type="text" class="inp" id="sample6_postcode" placeholder="우편번호" style="width: calc(100% - 110px);float: left;">
+						<input type="text" class="inp" id="postcode" placeholder="우편번호" style="width: calc(100% - 110px);float: left;">
 						<p class="info_error" id="shopAddressError1">우편주소를 입력해주세요.</p>
-						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="width: 100px;padding: 0px;font-size: 13px"><br>
-						<input type="text" id="sample6_address" placeholder="주소">
+						<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" style="width: 100px;padding: 0px;font-size: 13px"><br>
+						<input type="text" id="address" placeholder="주소">
 						<p class="info_error" id="shopAddressError2">주소를 입력해주세요.</p>
-						<input type="text" id="sample6_detailAddress" placeholder="상세주소">
-						<input type="text" id="sample6_extraAddress" placeholder="참고사항">
+						<input type="text" id="detailAddress" placeholder="상세주소">
 					</div>
 				</div>
 				<div class="col-6 col-12-medium">
@@ -142,6 +143,7 @@
 <script th:replace="/main/header::header_js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
+	let confirmDiv = $(".confirmDiv");
 
 	//비밀번호 숨기기
 	$('.type_pwd').on('click',function() {
@@ -154,8 +156,106 @@
 		}
 	});
 
+
+	let interval;
+
+	// 휴대폰 인증 버튼 클릭시 해당 태그의 값으로 사용자가 입력한 '숫자'만 가져온다
+	$(document).ready(function(){
+		$('#userPhoneNum').on('keyup', function () {
+			$(this).val($(this).val().replace(/[^0-9]/g, ""));	// 문자열에서 숫자(/[^0-9]/g)만 가져오기
+		});
+
+		// 인증번호 확인
+		$(document).on('click', '#confirmBnt', function () {
+			// 타이머의 숫자가 0초가 아닐 경우
+			if ($('.timer').text() != "00:00") {
+				// ajax for confirm validation auth number
+				let authNumber = $('#authNumber').val();	// 인증번호
+				let phoneNumber = $('#userPhoneNum').val();	// 전화번호
+
+				// 인증번호가 공백이 아니고 0 이상일 경우
+				if (authNumber != '' && parseInt(authNumber) > 0) {	// val()로 받으면 문자열이기 때문에 형변환
+					$.ajax({
+						url: '/main/execute',
+						method: 'post',
+						data: {'type': 'phoneConfirmNoAc', 'code': authNumber},	// ♣type? 과 인증번호를 함께 보낸다.
+						success: function (response) {
+							if (response == '0000') {
+								alert('휴대폰 번호 인증이 완료되었습니다. 감사합니다.');
+								clearInterval(interval);	// 타이머 종료
+
+							} else {
+								alert('인증번호가 일치하지 않습니다.');
+							}
+						},
+						error: function (response) {
+							alert('인증번호 확인에 실패하였습니다.\n다시 시도해 주시기 바랍니다.');
+						}
+					});
+				}
+			} else {
+				// 타이머 시간이 지났을 경우
+				alert('인증번호 재발송을 눌러주세요.');
+				return false;
+			}
+		});
+
+		// 인증번호 전송
+		$(document).on('click','#goSMS', function () {
+			let phoneNumber = $('#userPhoneNum').val();	// 사용자가 입력한 전화번호
+
+			// 사용자가 입력한 전화번호가 공백이 아니고, 8자리 이상일 경우
+			if (phoneNumber != '' && phoneNumber.length > 8) {
+				$.ajax({
+					url: '/main/execute',
+					method: 'post',
+					data: {'type': 'sendPhoneConfirm', 'phone': phoneNumber},	// 컨트롤러에 사용자번호와 type?을 보낸다.
+					success: function (response) {
+						$('.timer').text("02:00");
+						countdown();
+						alert('인증 번호가 발송 되었습니다.');
+					},
+					error: function(response) {
+						alert('인증번호 발송에 실패하였습니다.\n잠시 후 다시 시도해주시기 바랍니다.')
+					}
+				});
+			}else{
+				alert("휴대폰 번호를 입력 해 주세요");
+			}
+		});
+	});
+
+	// 인증번호 타이머
+	function countdown() {
+		// 타이머 중지 clearInterval(종료할 함수명)
+		clearInterval(interval);
+
+		// 타이머 시작 setInterval(실행될 함수, 밀리초)
+		interval = setInterval( function() {
+			let timer = $('.timer').html();	// 2:00
+			timer = timer.split(':');	// : 를 기준으로 나눈다
+			let minutes = timer[0];	// 분
+			let seconds = timer[1];	// 초
+			seconds -= 1;	// 1초씩 감소
+
+			// 만약 분 이 0이하 라면 종료
+			if (minutes < 0) return;
+			// 초 가 0 이하고, 분 이 0이 아닐 경우 → 1분 감소, 59초 부터 시작
+			else if (seconds < 0 && minutes != 0) {
+				minutes -= 1;
+				seconds = 59;
+			}
+			// 10초 이하이고,
+			else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
+			$('.timer').html(minutes + ':' + seconds);
+			// 만약 분, 초가 0일 경우 타이머 종료
+			if (minutes == 0 && seconds == 0) clearInterval(interval);
+		}, 1000);	// 1초마다 실행
+	}
+
+
 	// 다음 주소 api
-	function sample6_execDaumPostcode() {
+	function execDaumPostcode() {
 		new daum.Postcode({
 			oncomplete: function(data) {
 				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -188,17 +288,17 @@
 						extraAddr = ' (' + extraAddr + ')';
 					}
 					// 조합된 참고항목을 해당 필드에 넣는다.
-					document.getElementById("sample6_extraAddress").value = extraAddr;
+					document.getElementById("detailAddress").value = extraAddr;
 
 				} else {
-					document.getElementById("sample6_extraAddress").value = '';
+					document.getElementById("detailAddress").value = '';
 				}
 
 				// 우편번호와 주소 정보를 해당 필드에 넣는다.
-				document.getElementById('sample6_postcode').value = data.zonecode;
-				document.getElementById("sample6_address").value = addr;
+				document.getElementById('postcode').value = data.zonecode;
+				document.getElementById("address").value = addr;
 				// 커서를 상세주소 필드로 이동한다.
-				document.getElementById("sample6_detailAddress").focus();
+				document.getElementById("detailAddress").focus();
 			}
 		}).open();
 	}

@@ -31,7 +31,7 @@
 <!-- Main -->
 <section class="cont_login container">
 	<form action="#" method="post" id="frm-login">
-		<div class="box_login login_email" style="height: 900px">
+		<div class="box_login login_email" style="height: 850px">
 			<h2 class="tit">빵야빵야(屋) 사장님의<br><strong style="color: #F9A825">가게 정보를</strong><br>입력 해주세요.</h2>
 			<div class="box_inp">
 				<div class="line_inp">
@@ -51,13 +51,12 @@
 				</div>
 				<div class="line_inp">
 					<p class="form_title">가게 주소</p>
-					<input type="text" class="inp" id="sample6_postcode" placeholder="우편번호" style="width: calc(100% - 110px);float: left;">
+					<input type="text" class="inp" id="postcode" placeholder="우편번호" style="width: calc(100% - 110px);float: left;">
 					<p class="info_error" id="shopAddressError1">가게 우편번호를 입력해주세요.</p>
-					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="width: 100px;padding: 0px;font-size: 13px"><br>
-					<input type="text" id="sample6_address" placeholder="주소">
+					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" style="width: 100px;padding: 0px;font-size: 13px"><br>
+					<input type="text" id="address" placeholder="주소">
 					<p class="info_error" id="shopAddressError2">가게 주소를 입력해주세요.</p>
-					<input type="text" id="sample6_detailAddress" placeholder="상세주소">
-					<input type="text" id="sample6_extraAddress" placeholder="참고사항">
+					<input type="text" id="detailAddress" placeholder="상세주소">
 				</div>
 			</div>
 			<div class="col-6 col-12-medium">
@@ -95,7 +94,7 @@
 	});
 
 	// 다음 주소 api
-	function sample6_execDaumPostcode() {
+	function execDaumPostcode() {
 		new daum.Postcode({
 			oncomplete: function(data) {
 				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -128,17 +127,17 @@
 						extraAddr = ' (' + extraAddr + ')';
 					}
 					// 조합된 참고항목을 해당 필드에 넣는다.
-					document.getElementById("sample6_extraAddress").value = extraAddr;
+					document.getElementById("detailAddress").value = extraAddr;
 
 				} else {
-					document.getElementById("sample6_extraAddress").value = '';
+					document.getElementById("detailAddress").value = '';
 				}
 
 				// 우편번호와 주소 정보를 해당 필드에 넣는다.
-				document.getElementById('sample6_postcode').value = data.zonecode;
-				document.getElementById("sample6_address").value = addr;
+				document.getElementById('postcode').value = data.zonecode;
+				document.getElementById("address").value = addr;
 				// 커서를 상세주소 필드로 이동한다.
-				document.getElementById("sample6_detailAddress").focus();
+				document.getElementById("detailAddress").focus();
 			}
 		}).open();
 	}
