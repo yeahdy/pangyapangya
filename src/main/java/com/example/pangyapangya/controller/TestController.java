@@ -20,6 +20,9 @@ public class TestController {
     @GetMapping("read")
     public String read(){return "test/read";}
 
+    @GetMapping("readSuccess")
+    public String readSuccess(){return "test/readSuccess";}
+
     @GetMapping("review")
     public String review(){return "test/review";}
 
