@@ -1,4 +1,4 @@
-package com.example.pangyapangya.mapper;
+package com.example.pangyapangya.mappers;
 
 import com.example.pangyapangya.beans.vo.CartVO;
 import org.apache.ibatis.annotations.Mapper;

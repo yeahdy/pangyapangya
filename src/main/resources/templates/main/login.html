@@ -24,24 +24,24 @@
 <!-- Wrapper -->
 	<!-- Main -->
 	<section class="cont_login container">
-		<form action="#" method="post" id="frm-login">
+		<form action="/main/mainPage" method="post" id="loginForm" name="loginForm">
 			<div class="box_login login_email">
 				<h2 class="tit">간편하게 로그인하고<br><strong style="color: #F9A825">빵야빵야(屋)의</strong><br> 다양한 빵을 먹어보세요.</h2>
 				<div class="box_inp">
 					<div class="line_inp">
-						<input type="text" id="id" name="id" placeholder="아이디를 입력해주세요">
-						<p class="info_error" id="emailError1">아이디를 입력해주세요.</p>
+						<input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요">
+						<p class="info_error" id="userIdError1">아이디를 입력해주세요.</p>
 					</div>
 					<div class="line_inp line_pw">
-						<input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요">
+						<input type="password" name="userPw" id="userPw" placeholder="비밀번호를 입력해주세요">
 						<button type="button" class="type_pwd hide" id="viewPass"></button>
-						<p class="info_error" id="passError1">비밀번호를 입력해주세요.</p>
-						<p class="info_error" id="passError2">이메일 또는 비밀번호를 확인해주세요.</p>
+						<p class="info_error" id="userPwError1">비밀번호를 입력해주세요.</p>
+						<p class="info_error" id="userPwError2">이메일 또는 비밀번호를 확인해주세요.</p>
 					</div>
 				</div>
 				<div class="col-6 col-12-medium">
 					<ul class="actions fit" style="margin-bottom: 1em;">
-						<li><a href="/main/mainPage" class="button primary fit" style="margin-top: 3em;">로그인 하기</a></li>
+						<li><input type="button" class="button primary fit" id="loginButton" value="로그인 하기" style="margin-top: 3em;"/></li>
 					</ul>
 					<div class="box_btn">
 						<a class="btn" href="/main/idFind">아이디 찾기</a>
@@ -67,10 +67,11 @@
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
 <script type="text/javascript">
+	let loginForm = $(document.loginForm);
 
 	//비밀번호 숨기기
 	$('.type_pwd').on('click',function() {
-		var $this = $(this);
+		let $this = $(this);
 		$this.toggleClass('hide');
 		if($this.hasClass('hide')){
 			$this.prev('input').prop('type','password');
@@ -79,6 +80,18 @@
 		}
 	});
 
+	// 아이디, 비밀번호 공백 막기
+	$('#loginButton').on("click", function () {
+		if(!$("#userId").val()){
+			alert("아이디를 입력 해 주세요");
+			return;
+		}
+		if(!$('#userPw').val()){
+			alert("비밀번호를 입력 해 주세요");
+			return;
+		}
+		loginForm.submit();
+	})
 </script>
 </body>
 </html>

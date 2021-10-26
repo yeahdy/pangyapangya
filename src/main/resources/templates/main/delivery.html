@@ -111,9 +111,18 @@
             color: black;
             margin-bottom: 10px;
         }
+        ul{
+            list-style:none;
+            display: flex;
+            padding-left: 0em;
+        }
+        input[type="radio"] + label{
+            padding-left: 1.7em;
+            padding-right: 1.5em;
+        }
     </style>
 </head>
-    <body class="is-preload" style="padding: 10em 200px 0 200px;">
+    <body class="is-preload" style="padding: 10em 350px 0 350px;">
 
     <header id="header" th:include="/main/header::header_body">
 
@@ -202,6 +211,84 @@
                     </td>
                     <td class="col-2">
                         없음
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!-- 결제 정보 -->
+            <div class="payment">
+                <h3>결제 정보</h3>
+            </div>
+            <table class="payment-table">
+                <tbody>
+                <tr>
+                    <td class="col-1">
+                        총 상품 가격
+                    </td>
+                    <td class="col-2">
+                        <strong>3000</strong>
+                        원
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-1">
+                        배송비
+                    </td>
+                    <td class="col-2">
+                        <strong>0</strong>
+                        원
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-1">
+                        총 결제 금액
+                    </td>
+                    <td class="col-2">
+                        <strong>3000</strong>
+                        원
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-1">
+                        결제 방식
+                    </td>
+                    <td class="col-2">
+                        <div id="type-selector">
+                            <ul id="pay-type-list">
+                                <li class="pay-type">
+                                    <input class="type-selector-radio" type="radio">
+                                    <label>
+                                        <span class="selector-name">
+                                            계좌이체
+                                        </span>
+                                    </label>
+                                </li>
+                                <li class="pay-type">
+                                    <input class="type-selector-radio" type="radio">
+                                    <label>
+                                        <span class="selector-name">
+                                            신용/체크카드
+                                        </span>
+                                    </label>
+                                </li>
+                                <li class="pay-type">
+                                    <input class="type-selector-radio" type="radio">
+                                    <label>
+                                        <span class="selector-name">
+                                            휴대폰
+                                        </span>
+                                    </label>
+                                </li>
+                                <li class="pay-type">
+                                    <input class="type-selector-radio" type="radio">
+                                    <label>
+                                        <span class="selector-name">
+                                            무통장입금
+                                        </span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
                     </td>
                 </tr>
                 </tbody>
