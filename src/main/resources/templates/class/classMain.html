@@ -132,67 +132,77 @@
     form {
         margin: 0;
     }
+    #bannerDiv{
+        position: fixed;
+        top: 86.66px;
+        z-index: 999;
+    }
+
 </style>
 <body class="is-preload" style="padding: 200px">
 
 <!-- Header -->
 <header id="header" th:include="/main/header::header_body">
-
 </header>
-
+<div id="bannerDiv">
+    <img src="/images/classbanner.png" style="width: 86%; padding: 20px;">
+</div>
 
 <!-- Wrapper -->
 <div class="wrapper">
 
     <!-- Main -->
     <section class="main">
+<!--        <div>-->
+<!--            <img src="/images/classbanner.jpeg" alt="" width="200px">-->
+<!--        </div>-->
 
         <!-- Spotlights 2 -->
         <section class="spotlights alt">
             <article style="border-width: 0px 1px 0px 0px;">
-                <a href="#" class="image fit"><img src="/images/garlicBread2.jpg" alt=""></a>
+                <a href="/class/classDetail" class="image fit"><img src="/images/garlicBread2.jpg" alt=""></a>
                 <h5>만동제과</h5>
                 <p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
                 <p style="font-weight: 600;">리뷰 0개</p>
             </article>
             <article style="border-width: 0px 1px 0px 0px;">
-                <a href="#" class="image fit"><img src="/images/까눌레1.jpg" alt=""></a>
+                <a href="/class/classDetail" class="image fit"><img src="/images/까눌레1.jpg" alt=""></a>
                 <h5>리코 베이커리</h5>
                 <p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
                 <p style="font-weight: 600;">리뷰 0개</p>
             </article>
             <article style="border-width: 0px 1px 0px 0px;">
-                <a href="#" class="image fit"><img src="/images/휘낭시에2.png" alt=""></a>
+                <a href="/class/classDetail" class="image fit"><img src="/images/휘낭시에2.png" alt=""></a>
                 <h5>버터랏츠</h5>
                 <p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
                 <p style="font-weight: 600;">리뷰 0개</p>
             </article>
             <article style="border-width: 0px 0px 0px 0px;">
-                <a href="#" class="image fit"><img src="/images/donut2.jpg" alt=""></a>
+                <a href="/class/classDetail" class="image fit"><img src="/images/donut2.jpg" alt=""></a>
                 <h5>카페노티드</h5>
                 <p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
                 <p style="font-weight: 600;">리뷰 0개</p>
             </article>
             <article>
-                <a href="#" class="image fit"><img src="/images/휘낭시에3.png" alt=""></a>
+                <a href="/class/classDetail" class="image fit"><img src="/images/휘낭시에3.png" alt=""></a>
                 <h5>만동제과</h5>
                 <p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
                 <p style="font-weight: 600;">리뷰 0개</p>
             </article>
             <article>
-                <a href="#" class="image fit"><img src="/images/스콘1.jpg" alt=""></a>
+                <a href="/class/classDetail" class="image fit"><img src="/images/스콘1.jpg" alt=""></a>
                 <h5>리코 베이커리</h5>
                 <p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
                 <p style="font-weight: 600;">리뷰 0개</p>
             </article>
             <article>
-                <a href="#" class="image fit"><img src="/images/donut1.jpg" alt=""></a>
+                <a href="/class/classDetail" class="image fit"><img src="/images/donut1.jpg" alt=""></a>
                 <h5>버터랏츠</h5>
                 <p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
                 <p style="font-weight: 600;">리뷰 0개</p>
             </article>
             <article>
-                <a href="#" class="image fit"><img src="/images/melon1.jpg" alt=""></a>
+                <a href="/class/classDetail" class="image fit"><img src="/images/melon1.jpg" alt=""></a>
                 <h5>카페노티드</h5>
                 <p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
                 <p style="font-weight: 600;">리뷰 0개</p>
@@ -200,11 +210,7 @@
             <br>
 
         </section>
-
-
     </section>
-
-
 </div>
 
 <!-- Footer -->

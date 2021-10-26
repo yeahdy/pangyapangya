@@ -130,11 +130,6 @@
             text-align: center;
         }
 
-        /* 사이드바 고정 */
-        #rightsidebar{
-            position: fixed;
-        }
-
         /* 신청하기 버튼 가운데 정렬 */
         ul.actions{
             justify-content: center;
@@ -150,6 +145,26 @@
             border: 1px;
         }
 
+        #save{
+            border-radius: 20px;
+            margin: 10px;
+        }
+
+        /* 별점 */
+        #star a{ text-decoration: none; color: gray; } #star a.on{ color: red; }
+         #star{
+             margin-left: 0px;
+             margin-top: 40px;
+             margin-bottom: 10px;
+         }
+
+        #Toggle{
+            border-top: 1px solid #e0e0e0;
+        }
+
+        #btn_write{
+            margin-bottom: 10px;
+        }
 
     </style>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -208,18 +223,74 @@
 
 
             <section id="content1">
-                <p>Phasellus sed ultricies mi non congue ullam corper.Phasellus sed ultricies mi non congue ullam corper.Phasellus sed ultricies mi non congue ullam corper.
-                    Phasellus sed ultricies mi non congue ullam corper.Phasellus sed ultricies mi non congue ullam corper.Phasellus sed ultricies mi non congue ullam corper.
-                    Phasellus sed ultricies mi non congue ullam corper.Phasellus sed ultricies mi non congue ullam corper.Phasellus sed ultricies mi non congue ullam corper.
+                <div>
+                <h4>이런 분들이 들으면 좋아요!</h4>
+                    <ol>
+                        <li>하고싶은 사람.</li>
+                        <li>하고싶은 사람.</li>
+                        <li>하고싶은 사람.</li>
+                    </ol>
+                </div>
+                <div>
+                <h4>어떤 클래스 인가요?</h4>
+                <input type="text" style="background-color: white; border-color: white">
+                </div>
+                <div>
+                <h4>클래스는 이렇게 진행됩니다.</h4>
+                <input type="text" style="background-color: white; border-color: white">
+                </div>
+                <div>
+                <h4>날짜 및 시간</h4>
+                <input type="text" style="background-color: white; border-color: white">
+                </div>
+                <div>
+                <h4>인원 수</h4>
+                <input type="text" style="background-color: white; border-color: white">
+                </div>
+                <div>
+                <h4>위치</h4>
+                </div>
+                <p style="margin-top:-12px">
+                    <em class="link">
+                        <a href="javascript:void(0);" onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
+                            혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요.
+                        </a>
+                    </em>
                 </p>
+                <div id="map" style="width:100%;height:350px;"></div>
             </section>
 
             <section id="content2">
-                <p>댓글이 없습니다.</p>
-                <div id="userid" style="float:left">사용자 아이디</div>
-                <div id="date" style="float:right">날짜</div>
-                <div style="width:100%; word-break:break-all;word-wrap:break-word;"></div>
-                <div><input type="text" placeholder="댓글을 작성해주세요"></div>
+                <div id="replywrite">
+                    <div>
+                        <p>댓글이 없습니다.</p>
+                    </div>
+                    <div id="btn_write">
+                        <button type="submit" id="btn_toggle">리뷰 쓰기</button>
+                    </div>
+                </div>
+
+                <div>
+                    <div id="Toggle" style="display: none">
+                        <div>
+                            <span id="userid" style="float:left; margin-top: 1em;" >사용자 아이디</span>
+                            <span id="date" style="float:right; margin-top: 1em;">날짜</span>
+                        </div>
+
+                            <P id="star" > <!-- 부모 -->
+                                <a href="#" onclick="return false" value="1">★</a> <!-- 자식들-->
+                                <a href="#" onclick="return false" value="2">★</a>
+                                <a href="#" onclick="return false" value="3">★</a>
+                                <a href="#" onclick="return false" value="4">★</a>
+                                <a href="#" onclick="return false" value="5">★</a>
+                            </p>
+
+                        <div><input type="text" placeholder="리뷰를 작성해주세요" style="float:left; width: 85%;"></div>
+                        <div>
+                            <button type="submit" id="save" style="float: right">등록</button>
+                        </div>
+                    </div>
+                </div>
             </section>
 
         </div>
@@ -235,7 +306,7 @@
             <p>장소 : </p>
             <p>일정 : </p>
             <ul class="actions">
-                <li><a href="#" class="button">신청하기</a></li>
+                <li><a href="/class/classApply" class="button">신청하기</a></li>
             </ul>
         </section>
         </div>
@@ -301,6 +372,57 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
+<script>
+    $('#star a').click(function(){
+        $(this).parent().children("a").removeClass("on");
+        $(this).addClass("on").prevAll("a").addClass("on");
+        console.log($(this).attr("value")); });
+</script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dbbd6cafd6a9270f3ff84ad1d9873ab9"></script>
+<script>
+    $(function (){
+        $("#btn_toggle").click(function (){
+            $("#Toggle").toggle();
+        });
+    });
+</script>
+<script>
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(37.500151, 127.035613), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };
 
+    // 지도를 생성합니다
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // 주소-좌표 변환 객체를 생성합니다
+    var geocoder = new kakao.maps.services.Geocoder();
+
+    // 주소로 좌표를 검색합니다
+    geocoder.addressSearch('서울 강남구 역삼동 736-6', function(result, status) {
+
+        // 정상적으로 검색이 완료됐으면
+        if (status === kakao.maps.services.Status.OK) {
+
+            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+            // 결과값으로 받은 위치를 마커로 표시합니다
+            var marker = new kakao.maps.Marker({
+                map: map,
+                position: coords
+            });
+
+            // 인포윈도우로 장소에 대한 설명을 표시합니다
+            var infowindow = new kakao.maps.InfoWindow({
+                content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+            });
+            infowindow.open(map, marker);
+
+            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+            map.setCenter(coords);
+        }
+    });
+</script>
 </body>
 </html>
