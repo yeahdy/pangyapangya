@@ -23,6 +23,6 @@ public class TestController {
     @GetMapping("review")
     public String review(){return "test/review";}
 
-    @GetMapping("test")
-    public String test(){return "test/test";}
+    @GetMapping("reviewinfo")
+    public String reviewinfo(){return "test/reviewinfo";}
 }
