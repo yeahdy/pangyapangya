@@ -82,6 +82,12 @@
             margin-bottom: 12px;
             color: black;
         }
+
+        .pxorm{
+            margin-bottom: 12px;
+            color: black;
+        }
+
         .price-detail{
             font-size: large;
             height: 320px;
@@ -235,7 +241,7 @@
         }
     </style>
 </head>
-<body class="is-preload" style="padding: 4em 200px 0 200px;">
+<body class="is-preload" style="padding: 4em 200px 0 200px; background-color: white;">
 
 <header id="header" th:include="/main/header::header_body">
 
@@ -243,7 +249,7 @@
 
 <!-- Wrapper -->
 
-<div class="inner">
+<div class="inner" style="background-color: white;">
     <div>
         <div id="info">
             <section id="img-section">
@@ -255,11 +261,21 @@
             <aside id="box">
                 <div class="payment">
                     <div class="maker-card">
-                        <a>베이커리 이름</a>
+                        <a>형진 빵집</a>
                     </div>
-                    <h2 class="bread-name">브라우니🍞</h2>
+                    <p class="pxorm">브라우니🍞</p>
+                    <div class="maker-card">
+                        <a>모집 인원</a>
+                    </div>
+                    <p class="pxorm">00명</p>
+                    <div class="maker-card">
+                        <a>신청 기간</a>
+                    </div>
+                    <p class="pxorm">2020/10/10~2020/11/11</p>
 
-<!--                    <fieldset>&lt;!&ndash;&ndash;&gt;
+
+
+                  <fieldset>&lt;!&ndash;&ndash;&gt;
                         <button type="submit" class="button">
                             장바구니
                         </button>
@@ -279,7 +295,7 @@
                         <button type="submit">
                             구매
                         </button>
-                    </fieldset>-->
+                    </fieldset>
                 </div>
             </aside>
         </div>
