@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>errorPage</title>
+</head>
+<body>
+    <h1>문제가 발생하였습니다.</h1>
+    <p th:text="${exception.getMessage()}"></p>
+    <ul>
+        <th:block th:each="stack: ${exception.getStackTrace()}">
+            <li th:text="${stack}"></li>
+        </th:block>
+    </ul>
+</body>
+</html>

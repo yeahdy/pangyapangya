@@ -65,7 +65,7 @@
 				<h4><a href="/main/joinCEO"><strong style="color: #F9A825; border-bottom: 1px solid">사장님</strong></a></h4>
 			</li>
 		</div>
-		<div class="box_login login_email" style="height: 800px">
+		<div class="box_login login_email" style="height: 900px">
 			<h2 class="tit">간편하게 가입하고<br><strong style="color: #F9A825">빵야빵야(屋)의</strong><br> 사장님이 되어주세요!</h2>
 			<div class="box_inp">
 				<div class="line_inp">
@@ -92,8 +92,14 @@
 				</div>
 				<div class="line_inp">
 					<p class="form_title">휴대폰 번호</p>
-					<input type="tel" name="userPhoneNum" id="userPhoneNum" placeholder="휴대폰 번호를 - 없이 입력해주세요">
+					<input type="tel" class="inp" name="userPhoneNum" id="userPhoneNum" placeholder="휴대폰 번호를 - 없이 입력해주세요" style="width: calc(100% - 110px);float: left;">
 					<p class="info_error" id="phoneNumError1">휴대폰 번호 입력해주세요.</p>
+					<input type="button" value="SMS 전송" style="width: 100px;padding: 0px;" />
+				</div>
+				<div class="line_inp">
+					<p class="form_title">인증번호</p>
+					<input class="inp" id="inp-auth-number" type="tel" placeholder="SMS로 수신된 인증번호 5자리를 입력해주세요" style="width: calc(100% - 110px);float: left;">
+					<input type="button" id="btn-confirm" value="인증" style="width: 100px;padding: 0px;" />
 				</div>
 			</div>
 			<div class="col-6 col-12-medium">
