@@ -77,13 +77,16 @@
 		.second-under p{margin: 0 10px 0 0; color: #8cb1f3; font-weight:600;}
 		.col-6{padding: 27px 10px;}
 		.table-boxes{border-top: 0.5px solid #efd0d0; height: 80px;}
-		.table-second{width: 70%; padding: 13px 0;}
+		.table-second{width: 80%; padding: 13px 0;}
 		input[type="button"]{border-radius: 0;}
 		.table-third{margin-right: 4px; padding: 10px 0;}
 		.table-fourth{padding: 10px 0;}
 		.pagination{text-align: center;}
-		ul.pagination {margin-top: 17px;}
+		ul.pagination {margin-top: 25px;}
 		.table-third input[type="button"], .table-fourth input[type="button"]{font-weight: bold}
+		input[type="button"].bs{padding: 0; border: none !important;}
+		.second-under-date{color: #d5b3b3;}
+		input[type="checkbox"] + label:before {background: #fff; border-color: rgba(144, 144, 144, 0.25);}
 	</style>
 </head>
 <body class="is-preload" style="padding: 200px">
@@ -109,22 +112,22 @@
 								<div id="allDiv">
 									<div class="myPageSelect1"><p>글 등록하기</p></div>
 									<div class="contentDiv">
-										<div class="myPageSelectMenu"><p><a href="#">빵집 소개</a></p></div>
-										<div class="myPageSelectMenu"><p><a href="#">원데이클래스</a></a></p></div>
-										<div class="myPageSelectMenu floorDiv"><p><a href="#">빵 체험단</a></a></p></div>
+										<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakery">빵집 소개</a></p></div>
+										<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDay">원데이클래스</a></a></p></div>
+										<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/exp">빵 체험단</a></a></p></div>
 									</div>
 
 									<div class="myPageSelect1"><p>내 글 보기</p></div>
 									<div class="contentDiv">
-										<div class="myPageSelectMenu"><p><a href="#" style="text-decoration: underline; color: chocolate;">빵집 리뷰</a></p></div>
-										<div class="myPageSelectMenu"><p><a href="#">원데이 클래스</a></a></p></div>
-										<div class="myPageSelectMenu floorDiv"><p><a href="#">빵 체험단</a></a></p></div>
+										<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakeryRe" style="text-decoration: underline; color: chocolate;">빵집 리뷰</a></p></div>
+										<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDayRe">원데이 클래스</a></a></p></div>
+										<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/expRe">빵 체험단</a></a></p></div>
 									</div>
 
 									<div class="myPageSelect1"><p>내 정보</p></div>
 									<div class="contentDiv">
-										<div class="myPageSelectMenu"><p><a href="#">내 정보 수정</a></p></div>
-										<div class="myPageSelectMenu"><p><a href="#">회원 탈퇴</a></a></p></div>
+										<div class="myPageSelectMenu"><p><a href="/myPageCeo/edit">내 정보 수정</a></p></div>
+										<div class="myPageSelectMenu"><p><a href="/myPageCeo/delete">회원 탈퇴</a></a></p></div>
 									</div>
 								</div>
 							</div>
@@ -152,14 +155,16 @@
 
 											</div>
 											<div class="table-second">
-												<div class="second-top"><p>빵집 제목</p></div>
-												<div class="second-under" style="display: flex;">
-													<div class="second-under-content"><p>댓글 작성</p></div>
-													<div class="second-under-date"><span>·</span>2021-10-11</div>
+												<a href="#">
+													<div class="second-top"><p>빵집 제목</p></div>
+													<div class="second-under" style="display: flex;">
+														<div class="second-under-content"><p>댓글 작성</p></div>
+														<div class="second-under-date"><span>·</span>2021-10-11</div>
 												</div>
+												</a>
 											</div>
-											<div class="table-third"><input type="button" class="button small" value="수정"></div>
-											<div class="table-fourth"><input type="button" class="button small" value="삭제"></div>
+											<div class="table-third"><input type="button" class="button small bs" value="수정"></div>
+											<div class="table-fourth"><input type="button" class="button small bs" value="삭제"></div>
 										</div>
 										<div class="table-boxes" style="display: flex;">
 											<div class="table-first">
@@ -170,33 +175,36 @@
 
 											</div>
 											<div class="table-second">
-												<div class="second-top"><p>빵집 제목</p></div>
-												<div class="second-under" style="display: flex;">
-													<div class="second-under-content"><p>댓글 작성</p></div>
-													<div class="second-under-date"><span>·</span>2021-10-11</div>
-												</div>
+												<a href="#">
+													<div class="second-top"><p>빵집 제목</p></div>
+													<div class="second-under" style="display: flex;">
+														<div class="second-under-content"><p>댓글 작성</p></div>
+														<div class="second-under-date"><span>·</span>2021-10-11</div>
+													</div>
+												</a>
 											</div>
-											<div class="table-third"><input type="button" class="button small" value="수정"></div>
-											<div class="table-fourth"><input type="button" class="button small" value="삭제"></div>
+											<div class="table-third"><input type="button" class="button small bs" value="수정"></div>
+											<div class="table-fourth"><input type="button" class="button small bs" value="삭제"></div>
 										</div>
 										<div class="table-boxes" style="display: flex;">
 											<div class="table-first">
-												<div class="col-6 col-12-sm
-												all">
+												<div class="col-6 col-12-sm all">
 													<input type="checkbox" id="list3" name="list3" >
 													<label for="list3"></label>
 												</div>
 
 											</div>
 											<div class="table-second">
-												<div class="second-top"><p>빵집 제목</p></div>
-												<div class="second-under" style="display: flex;">
-													<div class="second-under-content"><p>댓글 작성</p></div>
-													<div class="second-under-date"><span>·</span>2021-10-11</div>
-												</div>
+												<a href="#">
+													<div class="second-top"><p>빵집 제목</p></div>
+													<div class="second-under" style="display: flex;">
+														<div class="second-under-content"><p>댓글 작성</p></div>
+														<div class="second-under-date"><span>·</span>2021-10-11</div>
+													</div>
+												</a>
 											</div>
-											<div class="table-third"><input type="button" class="button small" value="수정"></div>
-											<div class="table-fourth"><input type="button" class="button small" value="삭제"></div>
+											<div class="table-third"><input type="button" class="button small bs" value="수정"></div>
+											<div class="table-fourth"><input type="button" class="button small bs" value="삭제"></div>
 										</div>
 
 										<div class="table-boxes" style="display: flex;">
@@ -208,14 +216,16 @@
 
 											</div>
 											<div class="table-second">
-												<div class="second-top"><p>빵집 제목</p></div>
-												<div class="second-under" style="display: flex;">
-													<div class="second-under-content"><p>댓글 작성</p></div>
-													<div class="second-under-date"><span>·</span>2021-10-11</div>
-												</div>
+												<a href="#">
+													<div class="second-top"><p>빵집 제목</p></div>
+													<div class="second-under" style="display: flex;">
+														<div class="second-under-content"><p>댓글 작성</p></div>
+														<div class="second-under-date"><span>·</span>2021-10-11</div>
+													</div>
+												</a>
 											</div>
-											<div class="table-third"><input type="button" class="button small" value="수정"></div>
-											<div class="table-fourth"><input type="button" class="button small" value="삭제"></div>
+											<div class="table-third"><input type="button" class="button small bs" value="수정"></div>
+											<div class="table-fourth"><input type="button" class="button small bs" value="삭제"></div>
 										</div>
 
 										<div class="table-boxes" style="display: flex; border-bottom: 0.5px solid #efd0d0;" >
@@ -227,21 +237,23 @@
 
 											</div>
 											<div class="table-second">
-												<div class="second-top"><p>빵집 제목</p></div>
-												<div class="second-under" style="display: flex;">
-													<div class="second-under-content"><p>댓글 작성</p></div>
-													<div class="second-under-date"><span>·</span>2021-10-11</div>
-												</div>
+												<a href="#">
+													<div class="second-top"><p>빵집 제목</p></div>
+													<div class="second-under" style="display: flex;">
+														<div class="second-under-content"><p>댓글 작성</p></div>
+														<div class="second-under-date"><span>·</span>2021-10-11</div>
+													</div>
+												</a>
 											</div>
-											<div class="table-third"><input type="button" class="button small" value="수정"></div>
-											<div class="table-fourth"><input type="button" class="button small" value="삭제"></div>
+											<div class="table-third"><input type="button" class="button small bs" value="수정"></div>
+											<div class="table-fourth"><input type="button" class="button small bs" value="삭제"></div>
 										</div>
 
 									</div>
 								</div>
 
 								<ul class="pagination">
-									<li><span class="button disabled">Prev</span></li>
+									<li><span class="disabled"><</span></li>
 									<li><a href="#" class="page active">1</a></li>
 									<li><a href="#" class="page">2</a></li>
 									<li><a href="#" class="page">3</a></li>
@@ -249,7 +261,7 @@
 									<li><a href="#" class="page">8</a></li>
 									<li><a href="#" class="page">9</a></li>
 									<li><a href="#" class="page">10</a></li>
-									<li><a href="#" class="button">Next</a></li>
+									<li><a href="#">></a></li>
 								</ul>
 							</div>
 						</div>
