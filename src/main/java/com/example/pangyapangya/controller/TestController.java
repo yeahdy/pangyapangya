@@ -28,4 +28,7 @@ public class TestController {
 
     @GetMapping("reviewinfo")
     public String reviewinfo(){return "test/reviewinfo";}
+
+    @GetMapping("info")
+    public String info(){return "test/info";}
 }
