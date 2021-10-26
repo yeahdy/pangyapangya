@@ -108,9 +108,9 @@
 						<p class="form_title">인증번호</p>
 						<input class="inp" id="authNumber" type="tel" placeholder="SMS로 수신된 인증번호 5자리를 입력해주세요" style="width: calc(100% - 110px);float: left;">
 						<input type="button" id="confirmBnt" value="인증" style="width: 100px;padding: 0px;" />
+						<!-- 타이머 -->
+						<p class="count" style="margin: 0em 23em 0em 0em;color: #F9A825;"><span class="timer"></span></p>
 					</div>
-					<!-- 타이머 -->
-					<p class="count"><span class="timer"></span></p>
 					<div class="line_inp">
 						<p class="form_title">주소</p>
 						<input type="text" class="inp" id="postcode" placeholder="우편번호" style="width: calc(100% - 110px);float: left;">
@@ -158,7 +158,7 @@
 
 
 	let interval;
-
+	let successCode = [[${successCode}]]	// 인증번호가 일치할 경우
 	// 휴대폰 인증 버튼 클릭시 해당 태그의 값으로 사용자가 입력한 '숫자'만 가져온다
 	$(document).ready(function(){
 		$('#userPhoneNum').on('keyup', function () {
@@ -171,18 +171,21 @@
 			if ($('.timer').text() != "00:00") {
 				// ajax for confirm validation auth number
 				let authNumber = $('#authNumber').val();	// 인증번호
-				let phoneNumber = $('#userPhoneNum').val();	// 전화번호
-
+				let userPhoneNum = $('#userPhoneNum').val();	// 전화번호
+				console.log(authNumber);
 				// 인증번호가 공백이 아니고 0 이상일 경우
 				if (authNumber != '' && parseInt(authNumber) > 0) {	// val()로 받으면 문자열이기 때문에 형변환
 					$.ajax({
 						url: '/main/execute',
-						method: 'post',
-						data: {'type': 'phoneConfirmNoAc', 'code': authNumber},	// ♣type? 과 인증번호를 함께 보낸다.
+						method: 'get',
+						data: {'code': authNumber},
 						success: function (response) {
-							if (response == '0000') {
+							console.log(successCode);
+							if (successCode = '0000') {
 								alert('휴대폰 번호 인증이 완료되었습니다. 감사합니다.');
 								clearInterval(interval);	// 타이머 종료
+
+								// 사용자 전화번호 저장하기
 
 							} else {
 								alert('인증번호가 일치하지 않습니다.');
@@ -192,6 +195,9 @@
 							alert('인증번호 확인에 실패하였습니다.\n다시 시도해 주시기 바랍니다.');
 						}
 					});
+				}else{
+					// 인증번호를 입력하지 않았을 경우
+					alert("인증번호를 입력 해 주세요")
 				}
 			} else {
 				// 타이머 시간이 지났을 경우
@@ -202,15 +208,16 @@
 
 		// 인증번호 전송
 		$(document).on('click','#goSMS', function () {
-			let phoneNumber = $('#userPhoneNum').val();	// 사용자가 입력한 전화번호
+			let userPhoneNum = $('#userPhoneNum').val();	// 사용자가 입력한 전화번호
 
 			// 사용자가 입력한 전화번호가 공백이 아니고, 8자리 이상일 경우
-			if (phoneNumber != '' && phoneNumber.length > 8) {
+			if (userPhoneNum != '' && userPhoneNum.length > 8) {
 				$.ajax({
 					url: '/main/execute',
-					method: 'post',
-					data: {'type': 'sendPhoneConfirm', 'phone': phoneNumber},	// 컨트롤러에 사용자번호와 type?을 보낸다.
+					method: 'get',
+					data: {'userPhoneNum': userPhoneNum},
 					success: function (response) {
+						console.log(response);
 						$('.timer').text("02:00");
 						countdown();
 						alert('인증 번호가 발송 되었습니다.');
