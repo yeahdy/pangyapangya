@@ -20,4 +20,6 @@ public class TestingVO {
     private int breadPrice;
     private int people;
     private String description;
+    private String testingPhoto;
+
 }

@@ -14,4 +14,5 @@ public class BakeryVO {
     private String bakeryZipCode;
     private String bakeryAddress;
     private String bakeryAddressDetail;
+    private String bakeryPhoto;
 }
