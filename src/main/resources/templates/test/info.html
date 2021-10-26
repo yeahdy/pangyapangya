@@ -264,9 +264,25 @@
             height: auto;
             overflow: hidden;
         }
+
+        .payment{
+            position: fixed;
+            background-color: white;
+            width: 400px;
+            height: 200px;
+            padding: 17px;
+            border: solid 1px #0000001a;
+            box-shadow: 0 2px 4px 0 #0000001a;
+        }
+
+        .pxorm{
+            margin-bottom: 12px;
+            color: black;
+        }
+
     </style>
 </head>
-<body class="is-preload" style="padding: 200px">
+<body class="is-preload" style="padding: 200px; padding-top: 86.66px;">
 
 <!-- ----------------------------------------------------------------------------------------------------Header---------------------------------------------------------------------------------- -->
 <header id="header" th:include="/main/header::header_body">
@@ -275,15 +291,50 @@
 <!-- ----------------------------------------------------------------------------------------------------Header---------------------------------------------------------------------------------- -->
 
 <!-- -----------------------------------------------------------------------------------------------------section----------------------------------------------------------------------------------- -->
-<div class="wrapper">
+<div class="wrapper" style="width: 70% !important;">
 
     <!-- Main -->
     <section class="main">
         <!-- Blurb -->
-        <div id="review-img">
-            <img src="https://image.idus.com/image/files/695f8f487f8b4dbdba9cfa26aea2e1e4_1440.jpg">
+        <section id="banner" style="width: 560px; height: 560px; margin: 0 auto;">
+            <article data-position="bottom right">
+                <div class="inner">
+                    <img src="/images/mainBread1.jpg" alt="메인빵1">
+                </div>
+            </article>
+            <article data-position="top right">
+                <div class="inner">
+                    <img src="/images/mainBread2.jpg" alt="메인빵2">
+                </div>
+            </article>
+            <article data-position="center">
+                <div class="inner">
+                    <img src="/images/휘낭시에1.jpg" alt="">
+                </div>
+            </article>
+            <article data-position="right">
+                <div class="inner">
+                    <img src="/images/mainBread3.jpg" alt="메인빵3">
+                </div>
+            </article>
+        </section>
+        <div class="payment">
+            <div class="maker-card">
+                <a>형진 빵집</a>
+            </div>
+            <p class="pxorm">브라우니🍞</p>
+            <div class="maker-card">
+                <a>모집 인원</a>
+            </div>
+            <p class="pxorm">00명</p>
+            <div class="maker-card">
+                <a>신청 기간</a>
+            </div>
+            <p class="pxorm">2020/10/10~2020/11/11</p>
         </div>
-        <section style="text-align: center;">
+<section style="text-align: center;">
+
+
             <p>
                 제품 배송 안내❗<br>
                 매주 월, 목요일 출고 진행합니다.<br>
