@@ -306,6 +306,43 @@
             margin-bottom: 12px;
             color: black;
         }
+        #store-img{
+            display: inline-block;
+            vertical-align: top;
+            font-size: 0;
+            width: 24px;
+            height: 24px;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            margin-right: 6px;
+            -webkit-background-size: cover;
+        }
+
+        #store-name{
+            margin-top: 2px;
+            display: inline-block;
+            vertical-align: top;
+            max-width: 80%;
+            font-size: 14px;
+            color: #666;
+        }
+
+/*        #store-icon{
+            color: #999;
+            font-size: 12px;
+            margin-bottom: 2px;
+            margin-left: -4px;
+            display: inline-block;
+            vertical-align: middle;
+        }*/
+
+        .maker-card{
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 12px;
+        }
     </style>
 </head>
 <body class="is-preload" style="padding: 200px; padding-top: 86.66px;">
@@ -317,7 +354,10 @@
 
 <div class="payment" style="margin-top: 2%;">
     <div class="maker-card">
-        <a href="#">형진 빵집</a>
+        <a href="#">
+            <div id="store-img" style="background-image: url('https://image.idus.com/image/files/695f8f487f8b4dbdba9cfa26aea2e1e4_1440.jpg');"></div>
+            <span id="store-name">형진 빵집</span>
+        </a>
     </div>
     <p class="pxorm">브라우니🍞</p>
     <div class="maker-card">
@@ -363,6 +403,7 @@
             </div>
             <div>
                 <section style="text-align: center; width: 560px; margin-left: 16%">
+                    <hr>
                     <p>
                         제품 배송 안내❗<br>
                         매주 월, 목요일 출고 진행합니다.<br>
