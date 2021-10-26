@@ -633,4 +633,32 @@
 	<script src="/js/main.js"></script>
 	<script th:replace="/main/header::header_js"></script>
 </body>
+<script>
+	var index = 1;
+	$(document).ready(function() {
+
+
+		$("#insertFile").click(function() {
+
+			if(index == 1){
+				$("#div1").css("display", "block");
+				$("#div2").css("display", "block");
+				$("#div3").css("display", "block");
+				index++;
+			}else if(index == 2){
+
+				$("#div4").css("display", "block");
+				$("#div5").css("display", "block");
+				$("#div6").css("display", "block");
+
+			}
+
+			/*$("#appendForm1").append("<p>헌혈증 번호(증서 번호)</p><input type='text' name='dona_ticket_num' id='dona_ticket_num' value='' placeholder='증서번호' />");
+		    $("#appendForm2").append("<p>헌혈증 사진</p><input type='file' accept='image/gif,image/jpeg,image/png,image/jpg' required />");
+		    $("#appendForm3").append("<p></p>");
+		 */
+
+		});
+	});
+</script>
 </html>
