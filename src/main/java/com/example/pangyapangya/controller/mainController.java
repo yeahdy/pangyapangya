@@ -5,6 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Random;
 
 @Controller
 @Slf4j
@@ -41,6 +44,25 @@ public class mainController {
     /* 로그인 */
     @GetMapping("login")
     public String login(){ return "main/login"; }
+
+    /* 인증번호 */
+    @GetMapping("/main/execute")
+    public @ResponseBody
+    String sendSMS(String userPhoneNum) {
+        // 5자리 인증번호 만들기
+        Random random  = new Random();
+        String numStr = "";
+        for(int i=0; i<5; i++) {
+            String ranNum = Integer.toString(random.nextInt(10));   // 0부터 9까지 랜덤으로 숫자를 뽑는다
+            numStr += ranNum;   // 랜덤으로 나온 숫자를 하나씩 담는다.
+        }
+
+        System.out.println("수신자 번호 : " + userPhoneNum);
+        System.out.println("인증번호 : " + numStr);
+        //certificationService.certifiedPhoneNumber(userPhoneNum,numStr);
+        return numStr;
+    }
+
 
     /* 아이디 찾기 */
     @GetMapping("idFind")
