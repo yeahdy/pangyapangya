@@ -11,6 +11,6 @@ public class BreadDetailDAO {
 
     private final BreadDetailMapper mapper;
 
-    public BakeryVO get(Long bno) { mapper.insertSelectKey_bno(bakery); }
+    public BakeryVO get(Long bno) { return mapper.call(bno); }
 
 }
