@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MypageController {
 
     //mypage_user
-    @GetMapping("mypage")
-    public String mypage(){ return "mypage/mypage"; }
+    /*@GetMapping("mypage")
+    public String mypage(){ return "mypage/mypage"; }*/
     @GetMapping("cart")
     public String cart(){ return "mypage/cart"; }
     @GetMapping("order")
