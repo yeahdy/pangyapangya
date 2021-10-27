@@ -31,13 +31,14 @@
 		<p class="info_text">전화번호 인증을 하지 않은 ID는 검색되지 않습니다.</p>
 		<p class="form_title">휴대폰 번호</p>
 		<div class="line" style="margin-bottom: 15px;">
-			<input class="inp" id="inp-phone" type="tel" placeholder="휴대폰 번호를 - 없이 입력해주세요">
-			<button type="button" id="btn-send">SMS 전송</button>
+			<input class="inp" name="userPhoneNum" id="userPhoneNum" type="tel" placeholder="휴대폰 번호를 - 없이 입력해주세요">
+			<button type="button" id="goSMS">SMS 전송</button>
 		</div>
-		<p class="form_title">인증번호</p>
-		<div class="line">
-			<input class="inp" id="inp-auth-number" type="tel" placeholder="SMS로 수신된 인증번호 5자리를 입력해주세요">
-			<button type="button" id="btn-confirm">인증</button>
+		<p class="form_title" id="confirmMsg" style="display: none">인증번호</p>
+		<div class="line confirmDiv" style="display: none">
+			<input class="inp" id="authNumber" type="tel" placeholder="SMS로 수신된 인증번호 5자리를 입력해주세요">
+			<input type="hidden" id="authCode"/>
+			<button type="button" id="confirmBnt">인증</button>
 		</div>
 		<!-- 타이머 -->
 		<p class="count"><span class="timer"></span></p>
@@ -57,75 +58,85 @@
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
 <script type="text/javascript">
-	let interval;
+	let cnfCheck = false;
 
+
+
+	let interval;
 	// 휴대폰 인증 버튼 클릭시 해당 태그의 값으로 사용자가 입력한 '숫자'만 가져온다
 	$(document).ready(function(){
-		$('#inp-phone').on('keyup', function () {
+
+		$('#userPhoneNum').on('keyup', function () {
 			$(this).val($(this).val().replace(/[^0-9]/g, ""));	// 문자열에서 숫자(/[^0-9]/g)만 가져오기
 		});
 
 		// 인증번호 확인
-		$(document).on('click', '#btn-confirm', function () {
+		$(document).on('click', '#confirmBnt', function () {
 			// 타이머의 숫자가 0초가 아닐 경우
 			if ($('.timer').text() != "00:00") {
 				// ajax for confirm validation auth number
-				let authNumber = $('#inp-auth-number').val();	// 인증번호
-				let phoneNumber = $('#inp-phone').val();	// 전화번호
+				let authNumber = $('#authNumber').val();	// 인증번호
+				let userPhoneNum = $('#userPhoneNum').val();	// 전화번호
+				let authCode= $("#authCode").val();	//휴대폰 인증번호
 
 				// 인증번호가 공백이 아니고 0 이상일 경우
 				if (authNumber != '' && parseInt(authNumber) > 0) {	// val()로 받으면 문자열이기 때문에 형변환
-					$.ajax({
-						url: '/main/execute',
-						method: 'post',
-						data: {'type': 'phoneConfirmNoAc', 'code': authNumber},	// ♣type? 과 인증번호를 함께 보낸다.
-						success: function (response) {
-							if (response == '0000') {
-								alert('전화번호 인증이 완료되었습니다. 감사합니다.');
-								clearInterval(interval);	// 타이머 종료
+					if(authNumber == authCode){
+						cnfCheck = true;
+						alert('휴대폰 번호 인증이 완료되었습니다. 감사합니다.');
+						clearInterval(interval);	// 타이머 종료
+						console.log("체크여부: "+cnfCheck);
+						// 사용자 전화번호 저장하기
 
-								// ♣ html에 phone,frmFindId 태그가 없는데 어디서 가져온것?
-								$('#phone').val(phoneNumber);
-
-								// 인증완료 시 아이디 찾기 완료 페이지로 이동
-								$('#frmFindId').attr('method','POST');
-								$('#frmFindId').attr('action', '/Account/AccountFindId/findAccountResult.php');
-								$('#frmFindId').submit();
-							} else {
-								alert('인증번호가 일치하지 않습니다.');
-							}
-						},
-						error: function (response) {
-							alert('인증번호 확인에 실패하였습니다.\n다시 시도해 주시기 바랍니다.');
+						// 인증성공일 경우에만 idFindSuccess 로 이동
+						if(cnfCheck){
+							location.href= "/main/idFindSuccess";
+							$('#authNumber').val("");
 						}
-					});
-				}
+
+					} else {
+						alert('인증번호가 일치하지 않습니다.');
+						cnfCheck = false;
+					}
+					// 인증번호를 입력하지 않았을 경우
+				}else{alert("인증번호를 입력 해 주세요"); cnfCheck = false;}
 			} else {
 				// 타이머 시간이 지났을 경우
 				alert('인증번호 재발송을 눌러주세요.');
+				cnfCheck = false;
 				return false;
 			}
 		});
 
 		// 인증번호 전송
-		$(document).on('click','#btn-send', function () {
-			let phoneNumber = $('#inp-phone').val();	// 사용자가 입력한 전화번호
+		$(document).on('click','#goSMS', function () {
+			let userPhoneNum = $('#userPhoneNum').val();	// 사용자가 입력한 전화번호
+			let authCode= $("#authCode");	//휴대폰 인증번호 담을 변수
 
 			// 사용자가 입력한 전화번호가 공백이 아니고, 8자리 이상일 경우
-			if (phoneNumber != '' && phoneNumber.length > 8) {
+			if (userPhoneNum != '' && userPhoneNum.length > 8) {
 				$.ajax({
 					url: '/main/execute',
-					method: 'post',
-					data: {'type': 'sendPhoneConfirm', 'phone': phoneNumber},	// 컨트롤러에 사용자번호와 type?을 보낸다.
+					method: 'get',
+					data: {'userPhoneNum': userPhoneNum},
 					success: function (response) {
+						authCode.attr('value', response);
+						console.log("input태그에 담긴 인증번호: " + authCode.val());
+
 						$('.timer').text("02:00");
 						countdown();
 						alert('인증 번호가 발송 되었습니다.');
+						// 인증번호 입력란 애니메이션
+						$("#confirmMsg").slideDown();
+						$(".confirmDiv").slideDown();
 					},
 					error: function(response) {
 						alert('인증번호 발송에 실패하였습니다.\n잠시 후 다시 시도해주시기 바랍니다.')
 					}
 				});
+			}else{
+				alert("휴대폰 번호를 입력 해 주세요");
+				$("#userPhoneNum").focus();
 			}
 		});
 	});
@@ -136,7 +147,7 @@
 		clearInterval(interval);
 
 		// 타이머 시작 setInterval(실행될 함수, 밀리초)
-	interval = setInterval( function() {
+		interval = setInterval( function() {
 			let timer = $('.timer').html();	// 2:00
 			timer = timer.split(':');	// : 를 기준으로 나눈다
 			let minutes = timer[0];	// 분

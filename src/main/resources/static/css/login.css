@@ -39,12 +39,12 @@ body.on{
 
 .box_login .info_error {
     display: none;
-    margin-top: 10px;
     padding-left: 25px;
     text-align: left;
     font-size: 12px;
     color: #F9A825;
     background: url("/images/iconAlert.png") no-repeat 5px bottom/16px;
+    margin: 0.5em;
 }
 
 .box_login .info_error.act {
@@ -131,10 +131,10 @@ body.on{
     display: -ms-grid;
     display: grid;
     -ms-grid-rows: 72px auto 88px;
-    grid-template-rows: 120px auto 130px;
+    grid-template-rows: 130px auto 130px;
     -ms-grid-columns: 100%;
     grid-template-columns: 100%;
-    height: 500px;
+    height: 600px;
 }
 
 .login_email .box_btn .btn {
@@ -167,7 +167,7 @@ body.on{
 }
 
 .cont_login .box_inp .line_inp {
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
 .cont_login .box_inp .line_inp input {
@@ -236,7 +236,7 @@ body.on{
     -ms-grid-columns: 100%;
     grid-template-columns: 100%;
     -ms-grid-rows: 138px auto 48px;
-    grid-template-rows: 138px auto 48px;
+    grid-template-rows: 138px auto 90px;
     height: 644px;
 }
 
