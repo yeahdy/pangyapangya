@@ -44,6 +44,10 @@
 			font-size: 18px;
 		}
 
+		.line_inp {
+			margin-bottom: 40px;
+		}
+
 	</style>
 </head>
 <body class="is-preload" style="padding: 5em 200px 0 200px;background-color: white;">
@@ -55,7 +59,7 @@
 
 <!-- Wrapper -->
 	<!-- Main -->
-	<section class="cont_login container">
+	<section class="cont_login container" id="joinForm1">
 		<form action="#" method="post" id="frm-login">
 			<div class="box">
 				<li style="border-right: 1px solid #dcdcdc">
@@ -65,7 +69,7 @@
 					<h4><a href="/main/joinCEO"><strong>사장님</strong></a></h4>
 				</li>
 			</div>
-			<div class="box_login login_email" style="height: 1100px">
+			<div class="box_login login_email" style="height: 1050px">
 				<h2 class="tit">간편하게 가입하고<br><strong style="color: #F9A825">빵야빵야(屋)의</strong><br> 다양한 빵을 먹어보세요.</h2>
 				<div class="box_inp">
 					<div class="line_inp">
@@ -77,8 +81,8 @@
 					<div class="line_inp line_pw">
 						<input type="password" name="userPw" id="userPw" placeholder="비밀번호를 입력해주세요">
 						<button type="button" class="type_pwd hide"></button>
-						<p class="info_error" id="userPwError1">비밀번호는 영문 숫자조합 8자리 이상 입력해주세요.</p>
-						<p class="info_error" id="userPwError2">비밀번호를 입력해주세요.</p>
+						<p class="info_error" id="userPwError1">비밀번호를 입력해주세요.</p>
+						<p class="info_error" id="userPwError2">비밀번호는 영문+숫자+특수문자를 포함한 8~20자 까지 입니다.</p>
 					</div>
 					<div class="line_inp line_pw">
 						<input type="password" name="confirmPw" id="confirmPw" placeholder="비밀번호 확인">
@@ -101,12 +105,12 @@
 					<div class="line_inp">
 						<p class="form_title">휴대폰 번호</p>
 						<input type="tel" class="inp" name="userPhoneNum" id="userPhoneNum" placeholder="휴대폰 번호를 - 없이 입력해주세요" style="width: calc(100% - 110px);float: left;">
-						<p class="info_error" id="phoneNumError1">휴대폰 번호 입력해주세요.</p>
 						<input type="button" id="goSMS" value="SMS 전송" style="width: 100px;padding: 0px;" />
 					</div>
-					<div class="line_inp confirmDiv">
+					<div class="line_inp confirmDiv" style="display: none">
 						<p class="form_title">인증번호</p>
 						<input class="inp" id="authNumber" type="tel" placeholder="SMS로 수신된 인증번호 5자리를 입력해주세요" style="width: calc(100% - 110px);float: left;">
+						<input type="hidden" id="authCode"/>
 						<input type="button" id="confirmBnt" value="인증" style="width: 100px;padding: 0px;" />
 						<!-- 타이머 -->
 						<p class="count" style="margin: 0em 23em 0em 0em;color: #F9A825;"><span class="timer"></span></p>
@@ -114,16 +118,15 @@
 					<div class="line_inp">
 						<p class="form_title">주소</p>
 						<input type="text" class="inp" id="postcode" placeholder="우편번호" style="width: calc(100% - 110px);float: left;">
-						<p class="info_error" id="shopAddressError1">우편주소를 입력해주세요.</p>
 						<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" style="width: 100px;padding: 0px;font-size: 13px"><br>
 						<input type="text" id="address" placeholder="주소">
-						<p class="info_error" id="shopAddressError2">주소를 입력해주세요.</p>
 						<input type="text" id="detailAddress" placeholder="상세주소">
+						<p class="info_error" id="addressError1">주소를 정확히 입력해주세요.</p>
 					</div>
 				</div>
 				<div class="col-6 col-12-medium">
 					<ul class="actions fit" style="margin-bottom: 3em;">
-						<li><a href="/main/joinConfirm" class="button primary fit" style="margin-top: 1em;">다음</a></li>
+						<li><input type="button" id="nextButton" class="button primary fit" value="로그인 하기" style="margin-top: 1em;"></input></li>
 					</ul>
 				</div>
 			</div>
@@ -142,8 +145,9 @@
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript">
-	let confirmDiv = $(".confirmDiv");
+<script type="text/javascript" th:inline="javascript">
+	let joinForm1 = $(document.joinForm1);
+	let check = false;
 
 	//비밀번호 숨기기
 	$('.type_pwd').on('click',function() {
@@ -156,9 +160,85 @@
 		}
 	});
 
+	//공백 막기 & 비밀번호 유효성 검사
+	$('#nextButton').on("click", function () {
+		// 아이디
+		if(!$("#userId").val()){
+			$("#userId").focus();
+			$("#userIdError1").show();
+			return;
+		}else{
+			$("#userIdError1").hide();
+		}
+
+		// 비밀번호
+		if(!$('#userPw').val()){
+			$("#userPw").focus();
+			$("#userPwError1").show();
+			return;
+		}else{
+			$("#userPwError1").hide();
+		}
+
+		// 비밀번호 정규식
+		let pwCheck= /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/
+		let pw = $("#userPw").val();
+
+		if(!pwCheck.test($('#userPw').val())){
+			$("#userPw").focus();
+			$("#userPwError2").show();
+			return;
+		}else {
+			$("#userPwError2").hide();
+		}
+
+		// 비밀번호 확인
+		if(!$('#confirmPw').val()){
+			$("#confirmPw").focus();
+			$("#confirmPwError1").show();
+			return;
+		}else if($("#userPw").val() !== $("#confirmPw").val()){
+			$("#confirmPw").focus();
+			$("#confirmPwError1").show();
+			return;
+		}else{
+			$("#confirmPwError1").hide();
+		}
+
+		// 이름
+		if(!$('#userName').val()){
+			$("#userName").focus();
+			$("#userNameError1").show();
+			return;
+		}else{
+			$("#userNameError1").hide();
+		}
+
+		// 휴대폰번호, 인증번호
+		if(!$('#userPhoneNum').val()){
+			$("#userPhoneNum").focus();
+			$("#authNumber").focus();
+			return;
+		}
+
+		// 주소
+		if(!$('#address').val()){
+			$("#address").focus();
+			$("#addressError1").show();
+			return;
+		}else{
+			$("#addressError1").hide();
+		}
+
+		joinForm1.submit();
+		location.href= '/main/joinConfirm';
+	})
+
+	// 아이디 중복검사
+
+
 
 	let interval;
-	let successCode = [[${successCode}]]	// 인증번호가 일치할 경우
 	// 휴대폰 인증 버튼 클릭시 해당 태그의 값으로 사용자가 입력한 '숫자'만 가져온다
 	$(document).ready(function(){
 		$('#userPhoneNum').on('keyup', function () {
@@ -172,33 +252,19 @@
 				// ajax for confirm validation auth number
 				let authNumber = $('#authNumber').val();	// 인증번호
 				let userPhoneNum = $('#userPhoneNum').val();	// 전화번호
-				console.log(authNumber);
+				let authCode= $("#authCode").val();	//휴대폰 인증번호
+
 				// 인증번호가 공백이 아니고 0 이상일 경우
 				if (authNumber != '' && parseInt(authNumber) > 0) {	// val()로 받으면 문자열이기 때문에 형변환
-					$.ajax({
-						url: '/main/execute',
-						method: 'get',
-						data: {'code': authNumber},
-						success: function (response) {
-							console.log(successCode);
-							if (successCode = '0000') {
-								alert('휴대폰 번호 인증이 완료되었습니다. 감사합니다.');
-								clearInterval(interval);	// 타이머 종료
-
-								// 사용자 전화번호 저장하기
-
-							} else {
-								alert('인증번호가 일치하지 않습니다.');
-							}
-						},
-						error: function (response) {
-							alert('인증번호 확인에 실패하였습니다.\n다시 시도해 주시기 바랍니다.');
-						}
-					});
-				}else{
+					if(authNumber == authCode){
+						alert('휴대폰 번호 인증이 완료되었습니다. 감사합니다.');
+						clearInterval(interval);	// 타이머 종료
+						// 사용자 전화번호 저장하기
+					} else {
+						alert('인증번호가 일치하지 않습니다.');
+					}
 					// 인증번호를 입력하지 않았을 경우
-					alert("인증번호를 입력 해 주세요")
-				}
+				}else{alert("인증번호를 입력 해 주세요")}
 			} else {
 				// 타이머 시간이 지났을 경우
 				alert('인증번호 재발송을 눌러주세요.');
@@ -209,6 +275,7 @@
 		// 인증번호 전송
 		$(document).on('click','#goSMS', function () {
 			let userPhoneNum = $('#userPhoneNum').val();	// 사용자가 입력한 전화번호
+			let authCode= $("#authCode");	//휴대폰 인증번호 담을 변수
 
 			// 사용자가 입력한 전화번호가 공백이 아니고, 8자리 이상일 경우
 			if (userPhoneNum != '' && userPhoneNum.length > 8) {
@@ -217,10 +284,17 @@
 					method: 'get',
 					data: {'userPhoneNum': userPhoneNum},
 					success: function (response) {
-						console.log(response);
+						authCode.attr('value', response);
+						console.log("input태그에 담긴 인증번호: " + authCode.val());
+
 						$('.timer').text("02:00");
 						countdown();
 						alert('인증 번호가 발송 되었습니다.');
+						// 인증번호 입력란 애니메이션
+						$(".confirmDiv").slideDown();
+						$(".login_email").css({
+							"height" : "1150px"
+						});
 					},
 					error: function(response) {
 						alert('인증번호 발송에 실패하였습니다.\n잠시 후 다시 시도해주시기 바랍니다.')
