@@ -1,9 +1,12 @@
 package com.example.pangyapangya.controller;
 
+import com.example.pangyapangya.beans.vo.CartVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -13,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MypageController {
 
     //mypage_user
-    /*@GetMapping("mypage")
-    public String mypage(){ return "mypage/mypage"; }*/
     @GetMapping("cart")
     public String cart(){ return "mypage/cart"; }
     @GetMapping("order")
@@ -27,20 +28,22 @@ public class MypageController {
     public String testing_review(){ return "mypage/testing_review"; }
     @GetMapping("modifyMyInfo")
     public String modifyMyInfo(){ return "mypage/modifyMyInfo"; }
-    @GetMapping("mypage_new")
-    public String mypage_new(){ return "mypage/mypage_new"; }
-    @GetMapping("checkPassword")
-    public String checkPassword(){ return "mypage/checkPassword"; }
+    /*@GetMapping("checkPassword")
+    public String checkPassword(){ return "mypage/checkPassword"; }*/
     @GetMapping("breadOrderList")
     public String breadOrderList(){ return "mypage/breadOrderList"; }
     @GetMapping("oneDayClassList")
     public String oneDayClassList(){ return "mypage/oneDayClassList"; }
     @GetMapping("testingList")
     public String testingList(){ return "mypage/testingList"; }
-    @GetMapping("myWriting")
-    public String myWriting(){ return "mypage/myWriting"; }
     @GetMapping("myWriting_new")
     public String myWriting_new(){ return "mypage/myWriting_new"; }
     @GetMapping("checkPassword_new")
     public String checkPassword_new(){ return "mypage/checkPassword_new"; }
+    @GetMapping("test")
+    public void test(@ModelAttribute("vo") CartVO vo){
+        log.info("------------------------------------");
+        log.info(vo.toString());
+        log.info("------------------------------------");
+    }
 }

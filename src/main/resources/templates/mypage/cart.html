@@ -215,7 +215,7 @@
                         <div class="breadTable_bottom">
                             <div class="cnt_buttonDiv">
                                 <button type="button" class="cnt_button" onclick="count('minus')"><span>-</span></button>
-                                <div class="bread_table" id="cnt1">1</div>
+                                <div class="bread_table" id="cnt1" >1</div>
                                 <button type="button" class="cnt_button" onclick="count('plus')">+</button>
                             </div>
                             <div class="bread_table" id="price1">
@@ -311,13 +311,37 @@
 <footer id="footer" th:include="/main/footer::footer_body"></footer>
 
 <!-- Scripts -->
+
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
 <script src="/js/browser.min.js"></script>
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
+<!--<script scr="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script th:replace="/main/header::header_js"></script>
+<!--장바구니 삭제-->
+<script type="text/javascript">
+    var p;
+
+    $(function () {
+        for(i = 1;i <= 9; i++){
+            p = $("<img>").attr("src", "image/photo_" + i + ".jpg");
+            $(".pic").append( p );
+        }
+
+        $("img").mouseover(function() {
+            $(this).css("cursor", "pointer");
+        });
+
+        $("img").click(function() {
+            $(this).remove();
+        });
+
+    });
+
+</script>
 <script>
     function count(type)  {
         // 결과를 표시할 element

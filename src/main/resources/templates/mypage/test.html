@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>test_th</title>
+</head>
+<body>
+
+    <table border="1">
+        <tr>
+            <th>카트 번호</th>
+            <th>빵 이름</th>
+            <th>빵 개수</th>
+        </tr>
+        <tr>
+            <td th:text="${vo.getCartNum()}"></td>
+            <td th:text="${vo.getBreadName()}"></td>
+            <td th:text="${vo.getBreadCnt()}"></td>
+        </tr>
+    </table>
+    <table border="1" class="bakery1">
+        <tbody><tr>
+            <th class="bakeryName">빵집 이름</th>
+        </tr>
+        <tr>
+            <td><div class="bread_table"><img class="bread_img" src="/images/bread1.jpg" width="200px"></div>
+                <div class="breadTable_top">
+                    <span class="bread_title"><strong></strong></span>
+                    <br>
+                    <ul>
+                        <li><span class="bread_name">파운드케이크선택 : 흑임자칙피스프레드</span></li>
+                    </ul>
+                </div>
+                <div class="breadTable_bottom">
+                    <div class="cnt_buttonDiv">
+                        <button type="button" class="cnt_button" onclick="count('minus')"><span>-</span></button>
+                        <div class="bread_table" id="cnt1">1</div>
+                        <button type="button" class="cnt_button" onclick="count('plus')">+</button>
+                    </div>
+                    <div class="bread_table" id="price1">
+                        38000
+                    </div>
+                    <div class="bread_table"><img class="delete_icon" src="/images/delete_icon.png"></div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+<!-- Scripts -->
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<!--<script scr="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script th:replace="/main/header::header_js"></script>
+<!--장바구니 삭제-->
+<script type="text/javascript">
+    var p;
+
+    $(function () {
+        for(i = 1;i <= 9; i++){
+            p = $("<img>").attr("src", "images/bread" + i + ".jpg");// /images/bread1.jpg
+            $(".pic").append( p );
+        }
+
+        $("img").mouseover(function() {
+            $(this).css("cursor", "pointer");
+        });
+
+        $("img").click(function() {
+            $(this).remove();
+        });
+
+    });
+
+</script>
+</body>
+</html>
