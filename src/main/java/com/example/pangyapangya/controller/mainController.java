@@ -1,8 +1,10 @@
 package com.example.pangyapangya.controller;
 
+import com.example.pangyapangya.services.MainService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +16,7 @@ import java.util.Random;
 @RequestMapping("/main/*")
 @RequiredArgsConstructor
 public class mainController {
+    private final MainService mainService;
 
     @GetMapping("index")
     public String index(){ return "main/index"; }
@@ -47,8 +50,7 @@ public class mainController {
 
     /* 인증번호 */
     @GetMapping("/main/execute")
-    public @ResponseBody
-    String sendSMS(String userPhoneNum) {
+    public @ResponseBody String sendSMS(String userPhoneNum) {
         // 5자리 인증번호 만들기
         Random random  = new Random();
         String numStr = "";
@@ -59,7 +61,8 @@ public class mainController {
 
         System.out.println("수신자 번호 : " + userPhoneNum);
         System.out.println("인증번호 : " + numStr);
-        //certificationService.certifiedPhoneNumber(userPhoneNum,numStr);
+
+        //mainService.certifiedPhoneNumber(userPhoneNum , numStr);
         return numStr;
     }
 
