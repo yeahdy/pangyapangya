@@ -43,8 +43,8 @@ body.on{
     padding-left: 25px;
     text-align: left;
     font-size: 12px;
-    color: #fe0045;
-    background: url(https://front-img.taling.me/Content/app3/images/icon_info_pink.png) no-repeat 5px bottom/16px;
+    color: #F9A825;
+    background: url("/images/iconAlert.png") no-repeat 5px bottom/16px;
 }
 
 .box_login .info_error.act {
@@ -143,7 +143,7 @@ body.on{
 }
 
 .cont_login .box_inp .line_inp .error {
-    border-color: #fe0045;
+    border-color: #F9A825;
 }
 
 .line_pw {
@@ -251,7 +251,7 @@ body.on{
 }
 
 .cont_login .terms_lst .terms_chk_all label {
-    color: #fe0045;
+    color: #F9A825;
 }
 
 .cont_login .terms_lst .terms_chk_all .inp_chkbox::before {
