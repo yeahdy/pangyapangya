@@ -50,7 +50,7 @@ public class mainController {
 
     /* 인증번호 */
     @GetMapping("/main/execute")
-    public @ResponseBody String sendSMS(String userPhoneNum, String code, Model model) {
+    public @ResponseBody String sendSMS(String userPhoneNum) {
         // 5자리 인증번호 만들기
         Random random  = new Random();
         String numStr = "";
@@ -62,15 +62,6 @@ public class mainController {
         System.out.println("수신자 번호 : " + userPhoneNum);
         System.out.println("인증번호 : " + numStr);
 
-        // 사용자가 인증번호를 입력했을 경우
-        if(!code.equals("")){
-            // 입력한 인증번호가 같을 경우
-            if(code.equals(numStr)){
-                System.out.println("인증번호: " + numStr);
-                System.out.println("사용자 인증번호: " + code);
-                model.addAttribute("successCode", "0000");
-            }
-        }
         //mainService.certifiedPhoneNumber(userPhoneNum , numStr);
         return numStr;
     }
