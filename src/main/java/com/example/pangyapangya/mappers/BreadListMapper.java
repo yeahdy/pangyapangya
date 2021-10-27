@@ -1,11 +1,14 @@
+/*
 package com.example.pangyapangya.mappers;
 
+import com.example.pangyapangya.beans.vo.Criteria;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-/*@Mapper
+@Mapper
 public interface BreadListMapper {
     //  빵 목록
     public List<BreadVO> getList(Criteria)
-}*/
+}
+*/
