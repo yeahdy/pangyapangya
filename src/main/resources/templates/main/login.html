@@ -11,7 +11,9 @@
 	<link rel="stylesheet" href="/css/main.css" />
 	<link rel="stylesheet" href="/css/login.css" />
 	<style th:include="/main/header::header_style">
-
+		. info_error{
+			margin: 0 0 1em 0;
+		}
 	</style>
 </head>
 <body class="is-preload" style="padding: 5em 200px 0 200px;background-color: white;">
@@ -25,7 +27,7 @@
 	<!-- Main -->
 	<section class="cont_login container">
 		<form action="/main/mainPage" method="post" id="loginForm" name="loginForm">
-			<div class="box_login login_email">
+			<div class="box_login login_email" style="grid-template-rows: 130px auto 170px;">
 				<h2 class="tit">간편하게 로그인하고<br><strong style="color: #F9A825">빵야빵야(屋)의</strong><br> 다양한 빵을 먹어보세요.</h2>
 				<div class="box_inp">
 					<div class="line_inp">
@@ -36,7 +38,6 @@
 						<input type="password" name="userPw" id="userPw" placeholder="비밀번호를 입력해주세요">
 						<button type="button" class="type_pwd hide" id="viewPass"></button>
 						<p class="info_error" id="userPwError1">비밀번호를 입력해주세요.</p>
-						<p class="info_error" id="userPwError2">이메일 또는 비밀번호를 확인해주세요.</p>
 					</div>
 				</div>
 				<div class="col-6 col-12-medium">
@@ -44,7 +45,7 @@
 						<li><input type="button" class="button primary fit" id="loginButton" value="로그인 하기" style="margin-top: 3em;"/></li>
 					</ul>
 					<div class="box_btn">
-						<a class="btn" href="/main/idFind">아이디 찾기</a>
+						<a style="padding-left: 0px;" class="btn" href="/main/idFind">아이디 찾기</a>
 						<a class="btn" href="/main/pwFind">비밀번호 찾기</a>
 						<a class="btn" href="/main/join">회원가입</a>
 					</div>
@@ -83,12 +84,19 @@
 	// 아이디, 비밀번호 공백 막기
 	$('#loginButton').on("click", function () {
 		if(!$("#userId").val()){
-			alert("아이디를 입력 해 주세요");
+			$("#userId").focus();
+			$("#userIdError1").show();
 			return;
+		}else{
+			$("#userIdError1").hide();
 		}
+
 		if(!$('#userPw').val()){
-			alert("비밀번호를 입력 해 주세요");
+			$("#userPw").focus();
+			$("#userPwError1").show();
 			return;
+		}else{
+			$("#userPwError1").hide();
 		}
 		loginForm.submit();
 	})
