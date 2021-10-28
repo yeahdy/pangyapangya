@@ -3,5 +3,6 @@
 <configuration>
     <typeAliases>
         <typeAlias type="com.example.pangyapangya.beans.vo.CartVO" alias="CartVO"></typeAlias>
+        <typeAlias type="com.example.pangyapangya.beans.vo.UserVO" alias="UserVO"></typeAlias>
     </typeAliases>
 </configuration>
