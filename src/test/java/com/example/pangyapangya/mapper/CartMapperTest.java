@@ -1,23 +1,19 @@
 package com.example.pangyapangya.mapper;
 
+import com.example.pangyapangya.mappers.CartMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 @Slf4j
 public class CartMapperTest {
-    /*@Autowired
+    @Autowired
     CartMapper mapper;
 
-   *//* @Test
-    public void testGetList(){
-        mapper.getList().forEach(cart -> log.info(cart.toString()));
-    }*//*
     @Test
-    public void testGetTime(){
-        String sysdate = mapper.getTime();
-        log.info("---------------------------------------");
-        log.info("sysdate : " + sysdate);
-        log.info("---------------------------------------");
-    }*/
+    public void testGetList(){
+        mapper.getCartList().forEach(cart -> log.info(cart.toString()));
+    }
 }
