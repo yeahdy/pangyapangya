@@ -59,8 +59,8 @@
 
 <!-- Wrapper -->
 	<!-- Main -->
-	<section class="cont_login container" id="joinForm1">
-		<form action="#" method="post" id="frm-login">
+	<section class="cont_login container">
+		<form action="#" method="post" id="joinForm">
 			<div class="box">
 				<li style="border-right: 1px solid #dcdcdc">
 						<h4><a href="/main/join"><strong style="color: #F9A825; border-bottom: 1px solid">일반회원</strong></a></h4>
@@ -117,16 +117,16 @@
 					</div>
 					<div class="line_inp">
 						<p class="form_title">주소</p>
-						<input type="text" class="inp" id="postcode" placeholder="우편번호" style="width: calc(100% - 110px);float: left;">
+						<input type="text" class="inp" id="userZipcode" placeholder="우편번호" style="width: calc(100% - 110px);float: left;">
 						<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" style="width: 100px;padding: 0px;font-size: 13px"><br>
-						<input type="text" id="address" placeholder="주소">
-						<input type="text" id="detailAddress" placeholder="상세주소">
+						<input type="text" id="userAddress" placeholder="주소">
+						<input type="text" id="userAddress_detail" placeholder="상세주소">
 						<p class="info_error" id="addressError1">주소를 정확히 입력해주세요.</p>
 					</div>
 				</div>
 				<div class="col-6 col-12-medium">
 					<ul class="actions fit" style="margin-bottom: 3em;">
-						<li><input type="button" id="nextButton" class="button primary fit" value="로그인 하기" style="margin-top: 1em;"></input></li>
+						<li><input type="button" id="nextButton" class="button primary fit" value="다음" style="margin-top: 1em;"></input></li>
 					</ul>
 				</div>
 			</div>
@@ -146,8 +146,8 @@
 <script th:replace="/main/header::header_js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" th:inline="javascript">
-	let joinForm1 = $(document.joinForm1);
-	let check = false;
+	let joinForm = $(document.joinForm);	//<form>
+	let cnfCheck= false;	// 인증번호 check 확인
 
 	//비밀번호 숨기기
 	$('.type_pwd').on('click',function() {
@@ -162,6 +162,7 @@
 
 	//공백 막기 & 비밀번호 유효성 검사
 	$('#nextButton').on("click", function () {
+
 		// 아이디
 		if(!$("#userId").val()){
 			$("#userId").focus();
@@ -214,24 +215,27 @@
 			$("#userNameError1").hide();
 		}
 
-		// 휴대폰번호, 인증번호
+		// 휴대폰번호
 		if(!$('#userPhoneNum').val()){
 			$("#userPhoneNum").focus();
-			$("#authNumber").focus();
 			return;
 		}
 
 		// 주소
-		if(!$('#address').val()){
-			$("#address").focus();
+		if(!$('#userAddress').val()){
+			$("#userAddress").focus();
 			$("#addressError1").show();
 			return;
 		}else{
 			$("#addressError1").hide();
 		}
 
-		joinForm1.submit();
-		location.href= '/main/joinConfirm';
+		console.log("체크여부: "+cnfCheck);
+		if(cnfCheck){
+			joinForm.submit();
+			$('#authNumber').val("");
+			location.href= '/main/joinConfirm';
+		}
 	})
 
 	// 아이디 중복검사
@@ -257,17 +261,22 @@
 				// 인증번호가 공백이 아니고 0 이상일 경우
 				if (authNumber != '' && parseInt(authNumber) > 0) {	// val()로 받으면 문자열이기 때문에 형변환
 					if(authNumber == authCode){
+						cnfCheck = true;
 						alert('휴대폰 번호 인증이 완료되었습니다. 감사합니다.');
 						clearInterval(interval);	// 타이머 종료
+						console.log("체크여부: "+cnfCheck);
 						// 사용자 전화번호 저장하기
+
 					} else {
 						alert('인증번호가 일치하지 않습니다.');
+						cnfCheck = false;
 					}
 					// 인증번호를 입력하지 않았을 경우
-				}else{alert("인증번호를 입력 해 주세요")}
+				}else{alert("인증번호를 입력 해 주세요"); cnfCheck = false;}
 			} else {
 				// 타이머 시간이 지났을 경우
 				alert('인증번호 재발송을 눌러주세요.');
+				cnfCheck = false;
 				return false;
 			}
 		});
@@ -369,17 +378,17 @@
 						extraAddr = ' (' + extraAddr + ')';
 					}
 					// 조합된 참고항목을 해당 필드에 넣는다.
-					document.getElementById("detailAddress").value = extraAddr;
+					document.getElementById("userAddress_detail").value = extraAddr;
 
 				} else {
-					document.getElementById("detailAddress").value = '';
+					document.getElementById("userAddress_detail").value = '';
 				}
 
 				// 우편번호와 주소 정보를 해당 필드에 넣는다.
-				document.getElementById('postcode').value = data.zonecode;
-				document.getElementById("address").value = addr;
+				document.getElementById('userZipcode').value = data.zonecode;
+				document.getElementById("userAddress").value = addr;
 				// 커서를 상세주소 필드로 이동한다.
-				document.getElementById("detailAddress").focus();
+				document.getElementById("userAddress_detail").focus();
 			}
 		}).open();
 	}
