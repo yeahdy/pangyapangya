@@ -2,8 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.pangyapangya.mappers.CartMapper">
-    <select id="getCartList" resultType="CartVO">
+    <select id="getList" resultType="CartVO">
         SELECT * FROM TBL_CART
     </select>
+    <select id="getCartList" resultType="CartVO">
+        SELECT * FROM TBL_CART WHERE USERID=#{userId}
+    </select>
 
+
+    <insert id="insertCart">
+        INSERT INTO TBL_CART (CARTNUM, USERID, BREADNAME, PRICEOFBREAD, DELIVERCHARGE, BREADCNT, BREADIMG)
+        VALUES (TBL_CART_SEQ.NEXTVAL, #{userId},#{breadName}, #{priceOfBread}, #{deliverCharge}, #{breadCnt}, #{breadImg})
+    </insert>
+
+    <!--pk값 알기위해서 insert전에 select-->
+    <insert id="insertSelect_cartNum">
+        <selectKey keyProperty="cartNum" order="BEFORE" resultType="Long">
+                SELECT TBL_CART_SEQ.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_CART (CARTNUM, USERID, BREADNAME, PRICEOFBREAD, DELIVERCHARGE, BREADCNT, BREADIMG)
+        VALUES (#{cartNum}, #{userId},#{breadName}, #{priceOfBread}, #{deliverCharge}, #{breadCnt}, #{breadImg})
+    </insert>
+
+    <delete id="deleteCart">
+        DELETE FROM TBL_CART WHERE CARTNUM=#{cartNum}
+    </delete>
+
+    <update id="updateBreadCnt">
+        UPDATE TBL_CART
+        SET BREADCNT = #{breadCnt}
+        WHERE CARTNUM=#{cartNum}
+    </update>
+
+    <delete id="leaveUser_cart">
+        DELETE FROM TBL_CART WHERE USERID=#{userId}
+    </delete>
 </mapper>

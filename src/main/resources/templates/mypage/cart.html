@@ -326,18 +326,28 @@
     var p;
 
     $(function () {
-        for(i = 1;i <= 9; i++){
+        //사진 모두 출력
+        /*for(i = 1;i <= 9; i++){
             p = $("<img>").attr("src", "image/photo_" + i + ".jpg");
             $(".pic").append( p );
-        }
+        }*/
 
-        $("img").mouseover(function() {
+        //이미지에 커서 올리면 바뀜
+        $(".delete_icon").mouseover(function() {
             $(this).css("cursor", "pointer");
         });
 
-        $("img").click(function() {
-            $(this).remove();
+        //x클릭하면 장바구니 지워짐
+        $(".delete_icon").click(function() {
+            /*console.log("개수"+$(".delete_icon").length)*/
+            if ($(".delete_icon").length>1)
+            {
+            $(this).closest("table").remove();
+            }else{
+                alert("1개 이상부터 주문이 가능합니다.");
+            }
         });
+
 
     });
 
