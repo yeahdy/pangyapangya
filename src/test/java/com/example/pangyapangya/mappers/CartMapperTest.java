@@ -1,4 +1,4 @@
-package com.example.pangyapangya.mapper;
+package com.example.pangyapangya.mappers;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.test.context.SpringBootTest;

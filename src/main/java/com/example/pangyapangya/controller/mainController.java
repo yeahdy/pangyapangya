@@ -1,10 +1,9 @@
 package com.example.pangyapangya.controller;
 
-//import com.example.pangyapangya.services.MainService;
+import com.example.pangyapangya.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,7 +15,7 @@ import java.util.Random;
 @RequestMapping("/main/*")
 @RequiredArgsConstructor
 public class mainController {
-    //private final MainService mainService;
+    private final UserService userService;
 
     @GetMapping("index")
     public String index(){ return "main/index"; }
@@ -62,7 +61,8 @@ public class mainController {
         System.out.println("수신자 번호 : " + userPhoneNum);
         System.out.println("인증번호 : " + numStr);
 
-        //mainService.certifiedPhoneNumber(userPhoneNum , numStr);
+        // 문자 보내기
+        //userService.certifiedPhoneNumber(userPhoneNum , numStr);
         return numStr;
     }
 
@@ -98,11 +98,11 @@ public class mainController {
     @GetMapping("joinConfirm")
     public String joinConfirm(){ return "main/joinConfirm"; }
 
-    /* 회원가입- 약관동의: 서비스 이용약관 동의 팝업창 */
+    /* 회원가입- 약관동의: 서비스 이용약관 동의 */
     @GetMapping("rule")
     public String rule(){ return "main/rule"; }
 
-    /* 회원가입- 약관동의: 개인정보 처리방침 팝업창 */
+    /* 회원가입- 약관동의: 개인정보 처리방침 */
     @GetMapping("privacy")
     public String privacy(){ return "main/privacy"; }
 
