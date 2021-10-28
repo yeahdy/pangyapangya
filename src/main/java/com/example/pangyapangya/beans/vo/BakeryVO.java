@@ -15,4 +15,5 @@ public class BakeryVO {
     private String bakeryAddress;
     private String bakeryAddressDetail;
     private String bakeryPhoto;
+    private String regDate;
 }
