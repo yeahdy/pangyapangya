@@ -236,7 +236,7 @@ body.on{
     -ms-grid-columns: 100%;
     grid-template-columns: 100%;
     -ms-grid-rows: 138px auto 48px;
-    grid-template-rows: 138px auto 48px;
+    grid-template-rows: 138px auto 90px;
     height: 644px;
 }
 
