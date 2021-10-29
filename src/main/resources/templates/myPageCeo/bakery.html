@@ -150,7 +150,7 @@
 									<p>자신의 매장에 있는 제품들을 홍보하고 판매해보세요!</p>
 								</div>
 
-								<form enctype="multipart/form-data">
+								<form method="post" action="/myPageCeo/bakery" enctype="multipart/form-data" id="bakeryForm">
 									<!--전체-->
 									<div id="contentDiv">
 										<!--사진부분-->
@@ -236,22 +236,22 @@
 											<hr>
 											<div class="table-1" style="margin-bottom: 10px;">
 												<div class="table-title">제목</div>
-												<div class="table-content"><input type="text" placeholder="제목 입력"></div>
+												<div class="table-content"><input type="text" name="title" placeholder="제목 입력"></div>
 											</div>
 
 											<div class="table-1">
 												<div class="table-title">작성자</div>
-												<div class="table-content"><input type="text" value="한준규" readonly/></div>
+												<div class="table-content"><input type="text" name="ceoId" value="한준규" readonly/></div>
 											</div>
 
 											<div class="table-1">
 												<div class="table-title">업체명</div>
-												<div class="table-content"><input type="text" value="TOUS les JOURS" readonly/></div>
+												<div class="table-content"><input type="text" name="shopName" value="TOUS les JOURS" readonly/></div>
 											</div>
 
 											<div class="table-1">
 												<div class="table-title">전화번호</div>
-												<div class="table-content"><input type="text" value="010-1234-5678" readonly/></div>
+												<div class="table-content"><input type="text" name="shopCallNum" value="010-1234-5678" readonly/></div>
 											</div>
 
 
@@ -273,7 +273,7 @@
 											<hr>
 
 											<!--하나-->
-											<div class="table-1" style="margin-bottom: 10px;">
+											<div class="table-1" style="margin-bottom: 10px;" id="breadDiv1">
 
 												<div class="table-title">제품 등록</div>
 
@@ -281,7 +281,7 @@
 													<div class="table-content" style="display: flex; width: 100%;">
 
 														<div>
-															<select name="type1">
+															<select name="breadType1">
 																<option value="">종류</option>
 																<option value="케이크">케이크</option>
 																<option value="제과">제과</option>
@@ -289,10 +289,10 @@
 															</select>
 														</div>
 														<div>
-															<input type="text" placeholder="빵 이름" style="margin-bottom: 1px;">
+															<input type="text" name="breadName1" placeholder="빵 이름" style="margin-bottom: 1px;">
 														</div>
 														<div>
-															<input type="text" placeholder="빵 가격">
+															<input type="text" name="breadPrice1" placeholder="빵 가격">
 														</div>
 														<div style="width: 10%;">
 															<label for="plusImg1" style="margin: 0; position: relative; top: 13px;" >
@@ -305,7 +305,7 @@
 											</div>
 
 											<!--둘-->
-											<div class="table-1" style="margin-bottom: 10px;">
+											<div class="table-1" style="margin-bottom: 10px; display: none;" id="breadDiv2">
 
 												<div class="table-title"></div>
 
@@ -313,7 +313,7 @@
 													<div class="table-content" style="display: flex; width: 100%;">
 
 														<div>
-															<select name="type2">
+															<select name="breadType2">
 																<option value="">종류</option>
 																<option value="케이크">케이크</option>
 																<option value="제과">제과</option>
@@ -321,10 +321,10 @@
 															</select>
 														</div>
 														<div>
-															<input type="text" placeholder="빵 이름" style="margin-bottom: 1px;">
+															<input type="text" name="breadName2" placeholder="빵 이름" style="margin-bottom: 1px;">
 														</div>
 														<div>
-															<input type="text" placeholder="빵 가격">
+															<input type="text" name="breadPrice2" placeholder="빵 가격">
 														</div>
 														<div style="width: 10%;">
 															<label for="plusImg2" style="margin: 0; position: relative; top: 13px;" >
@@ -337,7 +337,7 @@
 											</div>
 
 											<!--셋-->
-											<div class="table-1" style="margin-bottom: 10px;">
+											<div class="table-1" style="margin-bottom: 10px; display: none;" id="breadDiv3">
 
 												<div class="table-title"></div>
 
@@ -345,7 +345,7 @@
 													<div class="table-content" style="display: flex; width: 100%;">
 
 														<div>
-															<select name="type3">
+															<select name="breadType3">
 																<option value="">종류</option>
 																<option value="케이크">케이크</option>
 																<option value="제과">제과</option>
@@ -353,10 +353,10 @@
 															</select>
 														</div>
 														<div>
-															<input type="text" placeholder="빵 이름" style="margin-bottom: 1px;">
+															<input type="text" name="breadName3" placeholder="빵 이름" style="margin-bottom: 1px;">
 														</div>
 														<div>
-															<input type="text" placeholder="빵 가격">
+															<input type="text" name="breadPrice3" placeholder="빵 가격">
 														</div>
 														<div style="width: 10%;">
 															<label for="plusImg3" style="margin: 0; position: relative; top: 13px;" >
@@ -370,7 +370,7 @@
 
 
 										<!--넷-->
-											<div class="table-1" style="margin-bottom: 10px;">
+											<div class="table-1" style="margin-bottom: 10px; display: none;" id="breadDiv4">
 
 												<div class="table-title"></div>
 
@@ -378,7 +378,7 @@
 													<div class="table-content" style="display: flex; width: 100%;">
 
 														<div>
-															<select name="type4">
+															<select name="breadType4">
 																<option value="">종류</option>
 																<option value="케이크">케이크</option>
 																<option value="제과">제과</option>
@@ -386,10 +386,10 @@
 															</select>
 														</div>
 														<div>
-															<input type="text" placeholder="빵 이름" style="margin-bottom: 1px;">
+															<input type="text" name="breadName4" placeholder="빵 이름" style="margin-bottom: 1px;">
 														</div>
 														<div>
-															<input type="text" placeholder="빵 가격">
+															<input type="text" name="breadPrice4" placeholder="빵 가격">
 														</div>
 														<div style="width: 10%;">
 															<label for="plusImg4" style="margin: 0; position: relative; top: 13px;" >
@@ -403,7 +403,7 @@
 
 
 										<!--다섯-->
-											<div class="table-1" style="margin-bottom: 10px;">
+											<div class="table-1" style="margin-bottom: 10px; display: none;" id="breadDiv5">
 
 												<div class="table-title"></div>
 
@@ -411,7 +411,7 @@
 													<div class="table-content" style="display: flex; width: 100%;">
 
 														<div>
-															<select name="type5">
+															<select name="breadType5">
 																<option value="">종류</option>
 																<option value="케이크">케이크</option>
 																<option value="제과">제과</option>
@@ -419,10 +419,10 @@
 															</select>
 														</div>
 														<div>
-															<input type="text" placeholder="빵 이름" style="margin-bottom: 1px;">
+															<input type="text" name="breadName5" placeholder="빵 이름" style="margin-bottom: 1px;">
 														</div>
 														<div>
-															<input type="text" placeholder="빵 가격">
+															<input type="text" name="breadPrice5" placeholder="빵 가격">
 														</div>
 														<div style="width: 10%;">
 															<label for="plusImg5" style="margin: 0; position: relative; top: 13px;" >
@@ -435,7 +435,7 @@
 											</div>
 
 										<!--여섯-->
-											<div class="table-1" style="margin-bottom: 10px;">
+											<div class="table-1" style="margin-bottom: 10px; display: none;" id="breadDiv6">
 
 												<div class="table-title"></div>
 
@@ -443,7 +443,7 @@
 													<div class="table-content" style="display: flex; width: 100%;">
 
 														<div>
-															<select name="type6">
+															<select name="breadType6">
 																<option value="">종류</option>
 																<option value="케이크">케이크</option>
 																<option value="제과">제과</option>
@@ -451,10 +451,10 @@
 															</select>
 														</div>
 														<div>
-															<input type="text" placeholder="빵 이름" style="margin-bottom: 1px;">
+															<input type="text" name="breadName6" placeholder="빵 이름" style="margin-bottom: 1px;">
 														</div>
 														<div>
-															<input type="text" placeholder="빵 가격">
+															<input type="text" name="breadPrice6" placeholder="빵 가격">
 														</div>
 														<div style="width: 10%;">
 															<label for="plusImg6" style="margin: 0; position: relative; top: 13px;" >
@@ -467,7 +467,7 @@
 											</div>
 
 											<!--일곱-->
-											<div class="table-1" style="margin-bottom: 10px;">
+											<div class="table-1" style="margin-bottom: 10px; display: none;" id="breadDiv7">
 
 												<div class="table-title"></div>
 
@@ -475,7 +475,7 @@
 													<div class="table-content" style="display: flex; width: 100%;">
 
 														<div>
-															<select name="type7">
+															<select name="breadType7">
 																<option value="">종류</option>
 																<option value="케이크">케이크</option>
 																<option value="제과">제과</option>
@@ -483,10 +483,10 @@
 															</select>
 														</div>
 														<div>
-															<input type="text" placeholder="빵 이름" style="margin-bottom: 1px;">
+															<input type="text" name="breadName7" placeholder="빵 이름" style="margin-bottom: 1px;">
 														</div>
 														<div>
-															<input type="text" placeholder="빵 가격">
+															<input type="text" name="breadPrice7" placeholder="빵 가격">
 														</div>
 														<div style="width: 10%;">
 															<label for="plusImg7" style="margin: 0; position: relative; top: 13px;" >
@@ -499,7 +499,7 @@
 											</div>
 
 											<!--여덟-->
-											<div class="table-1" style="margin-bottom: 10px;">
+											<div class="table-1" style="margin-bottom: 10px; display: none;" id="breadDiv8">
 
 												<div class="table-title"></div>
 
@@ -507,7 +507,7 @@
 													<div class="table-content" style="display: flex; width: 100%;">
 
 														<div>
-															<select name="type8">
+															<select name="breadType8">
 																<option value="">종류</option>
 																<option value="케이크">케이크</option>
 																<option value="제과">제과</option>
@@ -515,10 +515,10 @@
 															</select>
 														</div>
 														<div>
-															<input type="text" placeholder="빵 이름" style="margin-bottom: 1px;">
+															<input type="text" name="breadName8" placeholder="빵 이름" style="margin-bottom: 1px;">
 														</div>
 														<div>
-															<input type="text" placeholder="빵 가격">
+															<input type="text" name="breadPrice8" placeholder="빵 가격">
 														</div>
 														<div style="width: 10%;">
 															<label for="plusImg8" style="margin: 0; position: relative; top: 13px;" >
@@ -531,7 +531,7 @@
 											</div>
 
 											<!--아홉-->
-											<div class="table-1" style="margin-bottom: 10px;">
+											<div class="table-1" style="margin-bottom: 10px; display: none;" id="breadDiv9">
 
 												<div class="table-title"></div>
 
@@ -539,7 +539,7 @@
 													<div class="table-content" style="display: flex; width: 100%;">
 
 														<div>
-															<select name="type9">
+															<select name="breadType9">
 																<option value="">종류</option>
 																<option value="케이크">케이크</option>
 																<option value="제과">제과</option>
@@ -547,10 +547,10 @@
 															</select>
 														</div>
 														<div>
-															<input type="text" placeholder="빵 이름" style="margin-bottom: 1px;">
+															<input type="text" name="breadName9" placeholder="빵 이름" style="margin-bottom: 1px;">
 														</div>
 														<div>
-															<input type="text" placeholder="빵 가격">
+															<input type="text" name="breadPrice9" placeholder="빵 가격">
 														</div>
 														<div style="width: 10%;">
 															<label for="plusImg9" style="margin: 0; position: relative; top: 13px;" >
@@ -563,7 +563,7 @@
 											</div>
 
 											<!--아홉-->
-											<div class="table-1" style="margin-bottom: 10px;">
+											<div class="table-1" style="margin-bottom: 10px; display: none;" id="breadDiv10">
 
 												<div class="table-title"></div>
 
@@ -571,7 +571,7 @@
 													<div class="table-content" style="display: flex; width: 100%;">
 
 														<div>
-															<select name="type10">
+															<select name="breadType10">
 																<option value="">종류</option>
 																<option value="케이크">케이크</option>
 																<option value="제과">제과</option>
@@ -579,10 +579,10 @@
 															</select>
 														</div>
 														<div>
-															<input type="text" placeholder="빵 이름" style="margin-bottom: 1px;">
+															<input type="text" name="breadName10" placeholder="빵 이름" style="margin-bottom: 1px;">
 														</div>
 														<div>
-															<input type="text" placeholder="빵 가격">
+															<input type="text" name="breadPrice10" placeholder="빵 가격">
 														</div>
 														<div style="width: 10%;">
 
@@ -628,7 +628,7 @@
 	<script src="/js/main.js"></script>
 	<script th:replace="/main/header::header_js"></script>
 </body>
-<script>
+<script th:inline="javascript">
 	var index = 1;
 	$(document).ready(function() {
 
@@ -654,6 +654,13 @@
 		 */
 
 		});
+		let bno = [[${bno}]];
+		if(bno == null){
+			return;
+		}
+		alert("게시글 " + bno + "번이 등록되었습니다.");
 	});
+
+
 </script>
 </html>

@@ -345,18 +345,13 @@
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
 </body>
-<script type="text/javascript">
-
-	//비밀번호 숨기기
-	$('.type_pwd').on('click',function() {
-		var $this = $(this);
-		$this.toggleClass('hide');
-		if($this.hasClass('hide')){
-			$this.prev('input').prop('type','password');
-		}else{
-			$this.prev('input').prop('type','text');
+<script th:inline="javascript">
+	$(document).ready(function () {
+		let bno = [[${bno}]];
+		if(bno == null){
+			return;
 		}
-	});
-
+		alert("게시글 " + bno + "번이 등록되었습니다.");
+	})
 </script>
 </html>
