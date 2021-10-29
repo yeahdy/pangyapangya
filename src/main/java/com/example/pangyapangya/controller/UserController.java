@@ -51,11 +51,14 @@ public class UserController {
     public String pwFindSuccess(){ return "user/pwFindSuccess"; }
 
     /* 회원가입- 일반회원 */
-    @GetMapping("join")
+    @PostMapping("join")
     public String join(UserVO userVO){
         userService.join(userVO);
         return "user/join";
     }
+
+    @GetMapping("join")
+    public String join(){ return "user/join";}
 
     /* 회원가입- 사장님 */
     @GetMapping("joinCEO")
