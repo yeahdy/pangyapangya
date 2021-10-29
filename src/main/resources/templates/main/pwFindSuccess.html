@@ -27,27 +27,30 @@
 <!-- Main -->
 <section class="cont_login container" id="inputView">
 	<div class="box_login find_id" style="width: 460px;">
-		<h2 class="title">연락 받으실 전화번호</h2>
-		<p class="info_text">전화번호 인증 후 비밀번호를 변경하실 수 있습니다.</p>
-		<div class="box_inp">
-			<p class="form_title">변경하실 비밀번호</p>
-			<b style="font-weight: 100;font-size: 11px;color: red;">※ 비밀번호는 영문+숫자+특수문자 8자 이상이여야 합니다</b>
-			<div class="line_inp line_pw">
-				<input type="password" name="password" id="password" placeholder="변경하실 비밀번호를 입력 해 주세요">
-				<p class="info_error" id="passError1">비밀번호를 입력해주세요.</p>
+		<form action="#" method="get" name="pwChangeForm">
+			<h2 class="title">연락 받으실 전화번호</h2>
+			<p class="info_text">전화번호 인증 후 비밀번호를 변경하실 수 있습니다.</p>
+			<div class="box_inp">
+				<p class="form_title">변경하실 비밀번호</p>
+				<b style="font-weight: 100;font-size: 11px;color: red;">※ 비밀번호는 영문+숫자+특수문자 8~20자 이여야 합니다</b>
+				<div class="line_inp line_pw">
+					<input type="password" name="userPw" id="userPw" placeholder="변경하실 비밀번호를 입력 해 주세요">
+					<p class="info_error" id="userPwError1">비밀번호를 입력해주세요.</p>
+					<p class="info_error" id="userPwError2">비밀번호는 영문+숫자+특수문자를 포함한 8~20자 까지 입니다.</p>
+				</div>
+				<p class="form_title">비밀번호 확인</p>
+				<div class="line_inp line_pw">
+					<input type="password" name="confirmPw" id="confirmPw" placeholder="비밀번호를 재입력 해 주세요">
+					<button type="button" class="type_pwd hide" id="viewPass"></button>
+					<p class="info_error" id="confirmPwError1">비밀번호를 확인해주세요.</p>
+				</div>
 			</div>
-			<p class="form_title">비밀번호 확인</p>
-			<div class="line_inp line_pw">
-				<input type="password" name="pwConfirm" id="pwConfirm" placeholder="비밀번호를 재입력 해 주세요">
-				<button type="button" class="type_pwd hide" id="viewPass"></button>
-				<p class="info_error" id="passError2">비밀번호를 확인해주세요.</p>
+			<div class="col-6 col-12-medium">
+				<ul class="actions fit" style="margin-bottom: 1em;">
+					<li><input type="button" id="nextButton" class="button primary fit" value="비밀번호 변경하기" style="margin-top: 1em;"/></li>
+				</ul>
 			</div>
-		</div>
-		<div class="col-6 col-12-medium">
-			<ul class="actions fit" style="margin-bottom: 1em;">
-				<li><a href="/main/login" class="button primary fit" style="margin-top: 1em;">비밀번호 변경하기</a></li>
-			</ul>
-		</div>
+		</form>
 	</div>
 </section>
 <!-- Footer -->
@@ -63,6 +66,9 @@
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
 <script type="text/javascript">
+	let pwCheck = false;	// 비밀번호 확인
+	let pwChangeForm = $("#pwChangeForm")	// <form>
+
 	//비밀번호 숨기기
 	$('.type_pwd').on('click',function() {
 		var $this = $(this);
@@ -73,6 +79,51 @@
 			$this.prev('input').prop('type','text');
 		}
 	});
+
+	//공백 막기 & 비밀번호 유효성 검사
+	$('#nextButton').on("click", function () {
+		// 비밀번호
+		if(!$('#userPw').val()){
+			$("#userPw").focus();
+			$("#userPwError1").show();
+			return;
+		}else{
+			$("#userPwError1").hide();
+		}
+
+		// 비밀번호 정규식
+		let pwCheck= /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/
+		let pw = $("#userPw").val();
+
+		if(!pwCheck.test($('#userPw').val())){
+			$("#userPw").focus();
+			$("#userPwError2").show();
+			return;
+		}else {
+			$("#userPwError2").hide();
+		}
+
+		// 비밀번호 확인
+		if(!$('#confirmPw').val()){
+			$("#confirmPw").focus();
+			$("#confirmPwError1").show();
+			return;
+		}else if($("#userPw").val() !== $("#confirmPw").val()){
+			$("#confirmPw").focus();
+			$("#confirmPwError1").show();
+			return;
+		}else{
+			pwCheck = true;
+			$("#confirmPwError1").hide();
+		}
+
+		console.log("체크여부: "+pwCheck);
+		if(pwCheck){
+			pwChangeForm.submit();
+			alert("비밀번호 변경이 완료되었습니다.")
+			location.href= '/main/login';
+		}
+	})
 </script>
 </body>
 </html>

@@ -33,6 +33,10 @@ public class MypageController {
     public String checkPassword(){ return "mypage/checkPassword"; }
     @GetMapping("breadOrderList")
     public String breadOrderList(){ return "mypage/breadOrderList"; }
+    @GetMapping("oneDayClassList")
+    public String oneDayClassList(){ return "mypage/oneDayClassList"; }
+    @GetMapping("testingList")
+    public String testingList(){ return "mypage/testingList"; }
     @GetMapping("myWriting")
     public String myWriting(){ return "mypage/myWriting"; }
     @GetMapping("myWriting_new")
