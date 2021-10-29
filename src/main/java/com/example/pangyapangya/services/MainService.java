@@ -1,12 +1,8 @@
 package com.example.pangyapangya.services;
 
 import com.example.pangyapangya.beans.dao.MainDAO;
-import com.example.pangyapangya.beans.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.nurigo.java_sdk.api.Message;
-import net.nurigo.java_sdk.exceptions.CoolsmsException;
-import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -16,7 +12,7 @@ import java.util.HashMap;
 @RequiredArgsConstructor
 public class MainService {
     private final MainDAO mainDAO;
-
+/*
     // 인증번호(전화번호, 인증번호)
     public void certifiedPhoneNumber(String phoneNumber, String cerNum) {
 
@@ -40,5 +36,5 @@ public class MainService {
             System.out.println(e.getCode());
         }
 
-    }
+    }*/
 }

@@ -343,4 +343,13 @@
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
 </body>
+<script th:inline="javascript">
+	$(document).ready(function () {
+		let bno = [[${bno}]];
+		if(bno == null){
+			return;
+		}
+		alert("게시글 " + bno + "번이 등록되었습니다.");
+	})
+</script>
 </html>
