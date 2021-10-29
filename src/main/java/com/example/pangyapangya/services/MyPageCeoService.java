@@ -1,16 +1,19 @@
 package com.example.pangyapangya.services;
 
-import com.example.pangyapangya.beans.dao.MyPageCeoDAO;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import com.example.pangyapangya.beans.vo.BakeryVO;
+import com.example.pangyapangya.beans.vo.Criteria;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
+import java.util.List;
 
 @Service
-@Slf4j
-@RequiredArgsConstructor
-public class MyPageCeoService {
-    private final MyPageCeoDAO myPageCeoDAO;
+public interface MyPageCeoService {
+    public void register(BakeryVO bakery);
+    public BakeryVO get(Long bno);
+    public boolean modify(BakeryVO bakery);
+    public boolean remove(Long bno);
+    public List<BakeryVO> getList(Criteria criteria);
+    public int getTotal(Criteria criteria);
+//    public List<AttachFileVO> getAttachList(Long bno);
 
 }
