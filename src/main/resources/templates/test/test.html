@@ -1,21 +1,407 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>빵야빵야(屋)</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <link rel="stylesheet" href="/css/main.css"/>
     <style>
-        div#wrap{
+        p {
+            margin: 0 0 1em 0;
+        }
+
+        .spotlights h5 {
+            font-weight: bold;
+            font-size: small;
+        }
+
+        .spotlights p {
+            font-size: small;
+        }
+
+        .spotlights > article {
+            padding: 1.0em 2.25em 0.5em 2.25em;
+            border-style: solid;
+            border-width: 1px 1px 0px 0px;
+            width: 25%;
+        }
+
+        .image.fit img {
+            border-radius: 4px;
+        }
+
+        h4 {
+            font-weight: 700;
+            font-size: large;
+            color: black;
+            display: inline-block;
+        }
+
+        .spotlights h5 {
+            color: black;
+        }
+
+
+        /* header */
+        .headerIcon {
+            width: 40px;
+            display: block;
+            margin: auto;
+        "
+        }
+
+        .icon.solid:before {
+            font-weight: 100;
+            content: none;
+        }
+
+        .spotlights h5 {
+            font-weight: bold;
+            font-size: small;
+        }
+
+        .spotlights p {
+            font-size: small;
+        }
+
+        .headerIcon {
+            width: 40px;
+            display: block;
+            margin: auto;
+        "
+        }
+
+        .icon.solid:before {
+            font-weight: 100;
+            content: none;
+        }
+
+        .spotlights h5 {
+            font-weight: bold;
+            font-size: small;
+        }
+
+        .spotlights p {
+            font-size: small;
+        }
+
+        /* 검색창 */
+        .search {
+            position: relative;
+            text-align: center;
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        input {
+            width: 100%;
+            border-radius: 20px;
+            border: 1px solid #bbb;
+            margin: 10px 0;
+            padding: 10px 12px;
+        }
+
+        .fa-search {
+            position: absolute;
+            left: 90%;
+            top: 35%;
+            margin: 0;
+        }
+
+        form {
+            margin: 0;
+        }
+
+        .headerIcon {
+            width: 40px;
+        }
+
+        .icon.solid:before {
+            font-weight: 100;
+            content: none;
+        }
+
+        div#wrap {
             display: flex;
+        }
+
+        .spotlights h5 {
+            font-weight: bold;
+        }
+
+        /* 검색창 */
+        .search {
+            position: relative;
+            text-align: center;
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        input {
+            width: 100%;
+            border-radius: 20px;
+            border: 1px solid #bbb;
+            margin: 10px 0;
+            padding: 10px 12px;
+        }
+
+        .fa-search {
+            position: absolute;
+            left: 90%;
+            top: 35%;
+            margin: 0;
+        }
+
+        .img-warp {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .review {
+            width: 252px;
+            margin-left: 0;
+            padding-left: 0;
+            margin-top: 0;
+            padding-top: 0;
+            margin-bottom: 16px;
+            display: block;
+            border: 1px solid #d9d9d9;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .img {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: auto;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .img:after {
+            content: '' !important;
+            display: block !important;
+            padding-bottom: 66.66667% !important;
+        }
+
+        .txt {
+            margin-bottom: 4px;
+            font-size: 12px;
+            color: #999;
+            display: inherit;
+        }
+
+        a {
+            text-decoration: none !important;
+            border-bottom: none;
+            color: #333 !important;
+        }
+
+        .flexsearch {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .testSearch {
+            height: 45px !important;
+            width: 152px !important;
+
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            box-shadow: none;
+            border: 1px solid #f9a825 !important;
+        }
+
+        .searchButton {
+            background-color: #f9a825 !important;
+            box-shadow: none;
+            width: 14%;
+            border-radius: 0 !important;
+            height: 45px !important;
+            display: flex !important;
+            justify-content: space-evenly !important;
+            color: black !important;
+        }
+
+        #bannerDiv {
+            position: fixed;
+            top: 87px;
+            z-index: 999;
+        }
+
+        .warpdiv {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
         }
     </style>
 </head>
-<body>
-<div id="wrap">
-    <div>동석이네 빵집, 동석이 빵</div>
-    <div id="img">
-        <img src="/img/bread.jpg" width="300px">
+<body class="is-preload" style="padding: 3.6% 200px 200px 200px">
+
+<!-- ----------------------------------------------------------------------------------------------------Header---------------------------------------------------------------------------------- -->
+<header id="header" th:include="/main/header::header_body">
+
+</header>
+<!-- ----------------------------------------------------------------------------------------------------Header---------------------------------------------------------------------------------- -->
+<div class="wrapper">
+    <div id="bannerDiv">
+        <img src="/images/test3.png" style="width: 1433.66px">
     </div>
-    <div>★★★★★</div>
 </div>
+<!-- -----------------------------------------------------------------------------------------------------section----------------------------------------------------------------------------------- -->
+<div class="wrapper">
+    <!-- Main -->
+    <section class="main">
+        <!-- Blurb -->
+        <section style="padding-top: 0em;padding-bottom: 0em; padding-left: 5.5em; padding-right: 5.5em;">
+            <div class="flexsearch">
+                <select name="category" id="category" onchange="location.href=this.value"
+                        style="width: 8em;font-size: 17px !important;">
+                    <option value="">--전체--</option>
+                    <option value="1">케이크</option>
+                    <option value="1">제과</option>
+                    <option value="1">제빵</option>
+                </select>
+                <div class="warpdiv">
+                    <input type="text" name="search" class="testSearch" onkeyup="enterkey()" placeholder="검색어를 입력해주세요."
+                           style="width: 30%; color: #333 !important; margin: 0 0px 0 0%; width: 150px; border: none; border-bottom-color: white; font-size: 12px; font-family: 'Nanum Gothic Coding', monospace;">
+                    <input type="button" onclick="search()" value="검색" class="searchButton"
+                           style="color: black !important; border: 0 !important;">
+                </div>
+            </div>
+        </section>
+        <section>
+            <section class="spotlights alt" id="list">
+                <article style="border-width: 0px 1px 0px 0px;">
+                    <a href="#" class="image fit"><img src="/images/garlicBread2.jpg" alt=""></a>
+                    <h5>만동제과</h5>
+                    <p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
+                </article>
+                <article style="border-width: 0px 1px 0px 0px;">
+                    <a href="#" class="image fit"><img src="/images/까눌레1.jpg" alt=""></a>
+                    <h5>리코 베이커리</h5>
+                    <p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
+                </article>
+                <article style="border-width: 0px 1px 0px 0px;">
+                    <a href="#" class="image fit"><img src="/images/휘낭시에2.png" alt=""></a>
+                    <h5>버터랏츠</h5>
+                    <p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
+                </article>
+                <article style="border-width: 0px 0px 0px 0px;">
+                    <a href="#" class="image fit"><img src="/images/donut2.jpg" alt=""></a>
+                    <h5>카페노티드</h5>
+                    <p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
+                </article>
+                <article>
+                    <a href="#" class="image fit"><img src="/images/휘낭시에3.png" alt=""></a>
+                    <h5>만동제과</h5>
+                    <p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
+                </article>
+                <article>
+                    <a href="#" class="image fit"><img src="/images/스콘1.jpg" alt=""></a>
+                    <h5>리코 베이커리</h5>
+                    <p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
+                </article>
+                <article>
+                    <a href="#" class="image fit"><img src="/images/donut1.jpg" alt=""></a>
+                    <h5>버터랏츠</h5>
+                    <p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
+                </article>
+                <article>
+                    <a href="#" class="image fit"><img src="/images/melon1.jpg" alt=""></a>
+                    <h5>카페노티드</h5>
+                    <p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
+                </article>
+            </section>
+        </section>
+    </section>
+</div>
+<div class="list"></div>
+<p id="sentinel"></p>
+
+<!-- ----------------------------------------------------------------------------------------------Footer-------------------------------------------------------------------------------------------------------------------------- -->
+<!-- Footer -->
+
+<!-- Scripts -->
+<script src="https://kit.fontawesome.com/8eb5905426.js" crossorigin="anonymous"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script th:replace="/main/header::header_js"></script>
+<script>
+</script>
 </body>
+<script>
+    let currentPage = 1
+
+    const DATA_PER_PAGE = 10,
+        lastPage = 5
+
+    const msgLoading = document.getElementById("msg-loading")
+
+
+    // 데이터 추가 함수
+    function addData(currentPage) {
+        $("#list").append("<article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article>");
+    }
+
+    // IntersectionObserver 갱신 함수
+    function observeLastChild(intersectionObserver) {
+
+        const listChildren = document.querySelectorAll("#list article")
+        listChildren.forEach(el => {
+
+            if (!el.nextSibling && currentPage < lastPage) {
+                intersectionObserver.observe(el) // el에 대하여 관측 시작
+            } else if (currentPage >= lastPage) {
+                intersectionObserver.disconnect()
+            }
+
+        })
+    }
+
+    // IntersectionObeserver 부분
+    const observerOption = {
+        root: null,
+        rootMargin: "0px 0px 0px 0px",
+        threshold: 0.5
+    }
+
+    // IntersectionObserver 인스턴스 생성
+    const io = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+
+            // entry.isIntersecting: 특정 요소가 뷰포트와 50%(threshold 0.5) 교차되었으면
+            if (entry.isIntersecting) {
+
+                // 다음 데이터 가져오기: 자연스러운 연출을 위해 setTime-out 사용
+                setTimeout(() => {
+                    addData(++currentPage)
+                    observer.unobserve(entry.target)
+                    observeLastChild(observer)
+
+                }, 1000)
+            }
+        })
+    }, observerOption)
+
+
+    // 초기 데이터 생성
+    addData(currentPage)
+    observeLastChild(io)
+</script>
 </html>
