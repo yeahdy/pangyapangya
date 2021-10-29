@@ -93,7 +93,7 @@
 		}
 	});
 
-	//공백 막기 & 비밀번호 유효성 검사
+	//공백 막기
 	$('#nextButton').on("click", function () {
 		// 사업자 등록번호
 		if(!$("#shopRegNum").val()){
@@ -132,7 +132,7 @@
 		}
 
 		joinCEO2Form.submit();
-		location.href= '/main/joinConfirm';
+		location.href= '/user/joinConfirm';
 	})
 
 

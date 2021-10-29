@@ -1,6 +1,9 @@
 package com.example.pangyapangya.services;
 
-import com.example.pangyapangya.beans.dao.MyPageCeoDAO;
+
+import com.example.pangyapangya.beans.dao.BakeryDAO;
+import com.example.pangyapangya.beans.dao.BakeryFileDAO;
+import com.example.pangyapangya.beans.vo.BakeryFileVO;
 import com.example.pangyapangya.beans.vo.BakeryVO;
 import com.example.pangyapangya.beans.vo.Criteria;
 import lombok.RequiredArgsConstructor;
@@ -20,14 +23,23 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class MyPageCeoServiceImple implements MyPageCeoService{
+public class BakeryServiceImple implements BakeryService{
 
-    private final MyPageCeoDAO bakeryDAO;
+    private final BakeryDAO bakeryDAO;
+    private final BakeryFileDAO bakeryFileDAO;
+
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void register(BakeryVO bakery) {
-        bakeryDAO.register(bakery);
+    public void register(BakeryVO bakeryVO) {
+        bakeryDAO.register(bakeryVO);
+        if(bakeryVO.getAttachList() == null || bakeryVO.getAttachList().size() == 0){
+            return;
+        }
 
+        bakeryVO.getAttachList().forEach(attach -> {
+            attach.setBno(bakeryVO.getBno());
+            bakeryFileDAO.insert(attach);
+        });
     }
 
     @Override
@@ -36,8 +48,8 @@ public class MyPageCeoServiceImple implements MyPageCeoService{
     }
 
     @Override
-    public boolean modify(BakeryVO bakery) {
-        return bakeryDAO.modify(bakery);
+    public boolean modify(BakeryVO bakeryVO) {
+        return bakeryDAO.modify(bakeryVO);
     }
 
     @Override
@@ -51,4 +63,8 @@ public class MyPageCeoServiceImple implements MyPageCeoService{
     @Override
     public int getTotal(Criteria criteria) { return bakeryDAO.getTotal(criteria); }
 
+    @Override
+    public List<BakeryFileVO> getAttachList(Long bno) {
+        return bakeryFileDAO.findByBno(bno);
+    }
 }
