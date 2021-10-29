@@ -5,9 +5,10 @@ import com.example.pangyapangya.beans.vo.CeoVO;
 import com.example.pangyapangya.beans.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.nurigo.java_sdk.api.Message;
-import net.nurigo.java_sdk.exceptions.CoolsmsException;
-import org.json.simple.JSONObject;
+
+
+import org.apache.logging.log4j.message.Message;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -53,7 +54,7 @@ public class UserService {
         return userDAO.pwFind(userId);
     } 
 
-    // 인증번호(전화번호, 인증번호)
+/*    // 인증번호(전화번호, 인증번호)
     public void certifiedPhoneNumber(String phoneNumber, String cerNum) {
 
         String api_key = "NCSQNB02FGNIJWVJ";
@@ -76,6 +77,6 @@ public class UserService {
             System.out.println(e.getCode());
         }
 
-    }
+    }*/
 }
 

@@ -66,6 +66,7 @@ public class myPageCeoController {
 //    삭제 처리 /board/remove    POST        bno          필요    이동
 //    수정 처리 /board/modify    POST        모든 항목     필요    이동
 
+/*
         @GetMapping("bakeryRe")
         public String bakeryRe(Criteria criteria, Model model){
             log.info("-------------------------------");
@@ -131,25 +132,6 @@ public class myPageCeoController {
 
         @GetMapping("register")
         public void register(){}
-
+*/
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
