@@ -18,7 +18,7 @@ public interface CartMapper {
     //장바구니 삭제
     public int deleteCart(Long cartNum);
     //수량(breadCnt) 수정
-    public boolean updateBreadCnt(Long cartNum, int breadCnt);
+    public int updateBreadCnt(Long cartNum, int breadCnt);
     //회원탈퇴 시 장바구니
-    public boolean leaveUser_cart(String userId);
+    public int leaveUser_cart(String userId);
 }
