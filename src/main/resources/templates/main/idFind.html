@@ -27,22 +27,23 @@
 <!-- Main -->
 <section class="cont_login container">
 	<div class="box_login find_id">
-		<h2 class="title">연락 받으실 전화번호</h2>
-		<p class="info_text">전화번호 인증을 하지 않은 ID는 검색되지 않습니다.</p>
-		<p class="form_title">휴대폰 번호</p>
-		<div class="line" style="margin-bottom: 15px;">
-			<input class="inp" name="userPhoneNum" id="userPhoneNum" type="tel" placeholder="휴대폰 번호를 - 없이 입력해주세요">
-			<button type="button" id="goSMS">SMS 전송</button>
-		</div>
-		<p class="form_title" id="confirmMsg" style="display: none">인증번호</p>
-		<div class="line confirmDiv" style="display: none">
-			<input class="inp" id="authNumber" type="tel" placeholder="SMS로 수신된 인증번호 5자리를 입력해주세요">
-			<input type="hidden" id="authCode"/>
-			<button type="button" id="confirmBnt">인증</button>
-		</div>
-		<!-- 타이머 -->
-		<p class="count"><span class="timer"></span></p>
-		<!--            <button type="button" class="btn btn_next" disabled>다음</button>-->
+		<form action="#" method="get" id="idFindForm">
+			<h2 class="title">아이디 찾기</h2>
+			<p class="info_text">연락 받으실 전화번호를 입력해 주세요.</p>
+			<p class="form_title">휴대폰 번호</p>
+			<div class="line" style="margin-bottom: 15px;">
+				<input class="inp" name="userPhoneNum" id="userPhoneNum" type="tel" placeholder="휴대폰 번호를 - 없이 입력해주세요">
+				<button type="button" id="goSMS">SMS 전송</button>
+			</div>
+			<p class="form_title" id="confirmMsg" style="display: none">인증번호</p>
+			<div class="line confirmDiv" style="display: none">
+				<input class="inp" id="authNumber" type="tel" placeholder="SMS로 수신된 인증번호 5자리를 입력해주세요">
+				<input type="hidden" id="authCode"/>
+				<button type="button" id="confirmBnt">인증</button>
+			</div>
+			<!-- 타이머 -->
+			<p class="count"><span class="timer"></span></p>
+		</form>
 	</div>
 </section>
 <!-- Footer -->
@@ -59,8 +60,6 @@
 <script th:replace="/main/header::header_js"></script>
 <script type="text/javascript">
 	let cnfCheck = false;
-
-
 
 	let interval;
 	// 휴대폰 인증 버튼 클릭시 해당 태그의 값으로 사용자가 입력한 '숫자'만 가져온다
@@ -90,6 +89,7 @@
 
 						// 인증성공일 경우에만 idFindSuccess 로 이동
 						if(cnfCheck){
+							$("#idFindForm").submit();
 							location.href= "/main/idFindSuccess";
 							$('#authNumber').val("");
 						}

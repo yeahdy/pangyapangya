@@ -1,11 +1,11 @@
 package com.example.pangyapangya.beans.dao;
 
-import com.example.pangyapangya.mappers.MainMapper;
+import com.example.pangyapangya.mappers.MyPageCeoMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 @Repository
 @RequiredArgsConstructor
-public class MainDAO {
-    private final MainMapper mapper;
+public class MyPageCeoDAO {
+    private final MyPageCeoMapper mapper;
 }
