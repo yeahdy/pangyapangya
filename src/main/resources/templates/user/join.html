@@ -60,7 +60,7 @@
 <!-- Wrapper -->
 	<!-- Main -->
 	<section class="cont_login container">
-		<form action="#" method="post" id="joinForm">
+		<form action="/user/join" method="post" id="joinForm">
 			<div class="box">
 				<li style="border-right: 1px solid #dcdcdc">
 						<h4><a href="/user/join"><strong style="color: #F9A825; border-bottom: 1px solid">일반회원</strong></a></h4>
@@ -78,6 +78,7 @@
 						<p class="info_error" id="userIdError1">아이디를 입력해주세요.</p>
 						<p class="info_error" id="userIdError2">8~20자의 영문 소문자와 숫자만 사용가능 합니다.</p>
 						<p class="info_error" id="userIdError3">중복된 아이디 입니다.</p>
+						<p class="info_error" id="userIdSuccess">사용가능한 아이디 입니다.</p>
 					</div>
 					<p class="form_title">비밀번호</p>
 					<div class="line_inp line_pw">
@@ -106,7 +107,7 @@
 					-->
 					<div class="line_inp">
 						<p class="form_title">휴대폰 번호</p>
-						<input type="tel" class="inp" name="userPhoneNum" id="userPhoneNum" placeholder="휴대폰 번호를 - 없이 입력해주세요" style="width: calc(100% - 110px);float: left;">
+						<input type="tel" class="inp" id="userPhoneNum" name="userPhoneNum" placeholder="휴대폰 번호를 - 없이 입력해주세요" style="width: calc(100% - 110px);float: left;">
 						<input type="button" id="goSMS" value="SMS 전송" style="width: 100px;padding: 0px;" />
 					</div>
 					<div class="line_inp confirmDiv" style="display: none">
@@ -119,10 +120,10 @@
 					</div>
 					<div class="line_inp">
 						<p class="form_title">주소</p>
-						<input type="text" class="inp" id="userZipcode" placeholder="우편번호" style="width: calc(100% - 110px);float: left;">
+						<input type="text" class="inp" id="userZipcode" name="userZipcode" placeholder="우편번호" style="width: calc(100% - 110px);float: left;">
 						<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" style="width: 100px;padding: 0px;font-size: 13px"><br>
-						<input type="text" id="userAddress" placeholder="주소">
-						<input type="text" id="userAddress_detail" placeholder="상세주소">
+						<input type="text" id="userAddress" name="userAddress" placeholder="주소">
+						<input type="text" id="userAddress_detail" name="userAddress_detail" placeholder="상세주소">
 						<p class="info_error" id="addressError1">주소를 정확히 입력해주세요.</p>
 					</div>
 				</div>
@@ -150,6 +151,7 @@
 <script type="text/javascript" th:inline="javascript">
 	let joinForm = $(document.joinForm);	//<form>
 	let cnfCheck= false;	// 인증번호 check 확인
+	let idCheck= false;		// 아이디 중복검사
 
 	//비밀번호 숨기기
 	$('.type_pwd').on('click',function() {
@@ -162,7 +164,7 @@
 		}
 	});
 
-	//공백 막기 & 비밀번호 유효성 검사
+	//공백 막기
 	$('#nextButton').on("click", function () {
 
 		// 아이디
@@ -174,18 +176,6 @@
 			$("#userIdError1").hide();
 		}
 
-		//아이디 정규식
-		let regId = /^[a-z0-9]{8,20}$/;
-
-		if(!regId.test($("#userId").val())) {
-			$("#userId").focus();
-			$("#userIdError2").show();
-			return;
-		}else {
-			$("#userIdError2").hide();
-		}
-
-
 		// 비밀번호
 		if(!$('#userPw').val()){
 			$("#userPw").focus();
@@ -195,23 +185,8 @@
 			$("#userPwError1").hide();
 		}
 
-		// 비밀번호 정규식
-		let pwCheck= /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/
-
-		if(!pwCheck.test($('#userPw').val())){
-			$("#userPw").focus();
-			$("#userPwError2").show();
-			return;
-		}else {
-			$("#userPwError2").hide();
-		}
-
 		// 비밀번호 확인
-		if(!$('#confirmPw').val()){
-			$("#confirmPw").focus();
-			$("#confirmPwError1").show();
-			return;
-		}else if($("#userPw").val() !== $("#confirmPw").val()){
+		if(!$('#confirmPw').val()) {
 			$("#confirmPw").focus();
 			$("#confirmPwError1").show();
 			return;
@@ -244,15 +219,80 @@
 		}
 
 		console.log("체크여부: "+cnfCheck);
-		if(cnfCheck){
+		if(cnfCheck && idCheck){
 			joinForm.submit();
 			$('#authNumber').val("");
 			location.href= '/user/joinConfirm';
+		}else if(!idCheck){
+			$("#userId").focus();
+		}else if(!cnfCheck){
+			alert("비밀번호를 다시 확인 해 주세요");
 		}
 	})
 
 	// 아이디 중복검사
-	$("#userId").val()
+	$("#userId").focusout(function (){
+		let userId= $("#userId").val();
+		$.ajax({
+			url: '/user/idCheck/' + userId,
+			type: 'get',
+			dataType: 'text',
+			success: function (check) {
+				if(check == "true"){
+					console.log(check)
+					$("#userIdError3").show();	//중복 아이디
+					$("#userIdSuccess").hide();	// 사용가능 아이디(숨김)
+					$("#userIdError2").hide();	//정규식 불합격(숨김)
+					idCheck = false;
+				}else {
+					console.log(check)
+					//아이디 정규식(영문 소문자, 숫자만 가능)
+					let regId = /^[a-z0-9]{8,20}$/;
+
+					if(!regId.test($("#userId").val())) {
+						$("#userIdError2").show();	// 정규식 불합격
+						$("#userIdError3").hide();	// 중복 아이디(숨김)
+						$("#userIdSuccess").hide();	// 사용가능 아이디(숨김)
+						idCheck = false;
+						return;
+					}else {
+						$("#userIdSuccess").show();	// 사용가능 아이디
+						$("#userIdError2").hide();	//정규식 불합격(숨김)
+						$("#userIdError3").hide();	//중복 아이디(숨김)
+						idCheck = true;
+					}
+				}
+			},
+			error: function () {
+				console.log("checkId() 오류");
+			}
+		});
+	});
+
+	// 비밀번호 유효성 검사
+	$("#userPw").focusout(function () {
+		let pwCheck= /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/
+		if(!pwCheck.test($('#userPw').val())){
+			$("#userPwError2").show();
+			cnfCheck = false;
+			return;
+		}else {
+			$("#userPwError2").hide();
+			cnfCheck = true;
+		}
+	})
+
+	// 비밀번호 일치 확인
+	$("#confirmPw").focusout(function () {
+		if($("#userPw").val() !== $("#confirmPw").val()){
+			$("#confirmPwError1").show();
+			cnfCheck = false;
+			return;
+		}else{
+			$("#confirmPwError1").hide();
+			cnfCheck = true;
+		}
+	})
 
 
 	let interval;
@@ -315,7 +355,7 @@
 						// 인증번호 입력란 애니메이션
 						$(".confirmDiv").slideDown();
 						$(".login_email").css({
-							"height" : "1150px"
+							"height" : "1250px"
 						});
 					},
 					error: function(response) {
