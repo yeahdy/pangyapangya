@@ -72,7 +72,7 @@
         #{bakeryZipcode}, #{bakeryAddress}, #{bakeryAddressDetail}, #{bakeryPhoto}, #{regDate})
     </insert>
 
-    <select id="read" resultType="boardVO">
+    <select id="read" resultType="bakeryVO">
         SELECT BNO, TITLE, CONTENT, CEOID, CEONAME, BAKERYNAME, BAKERYZIPCODE, BAKERYADDRESS,
                BAKERYADDRESSDETAIL, BAKERYPHOTO, REGDATE
         FROM TBL_BOARD
