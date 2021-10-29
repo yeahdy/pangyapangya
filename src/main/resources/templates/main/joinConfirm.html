@@ -61,7 +61,7 @@
 				</ul>
 				<div class="col-6 col-12-medium">
 					<ul class="actions fit" style="margin-bottom: 1em;">
-						<li><a href="/main/login" class="button primary fit">빵집 투어 시작하기</a></li>
+						<li><input type="button" id="nextButton" class="button primary fit" value="빵집투어 시작하기" style="margin-top: 1em;"/></li>
 					</ul>
 				</div>
 			</div>
@@ -80,41 +80,6 @@
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
 <script type="text/javascript">
-	//비밀번호 숨기기
-	$('.type_pwd').on('click',function() {
-		var $this = $(this);
-		$this.toggleClass('hide');
-		if($this.hasClass('hide')){
-			$this.prev('input').prop('type','password');
-		}else{
-			$this.prev('input').prop('type','text');
-		}
-	});
-
-	//체크박스
-	function allCheckFunc(obj) {
-		$("[name=checkTerms]").prop("checked", $(obj).prop("checked"));
-	}
-	/* 체크박스 체크시 전체선택 체크 여부 */
-	function oneCheckFunc(obj) {
-		var allObj = $("[name=checkAll]");
-		var objName = $(obj).attr("name");
-
-		if($(obj).prop("checked")){
-			checkBoxLength = $("[name="+ objName +"]").length;
-			checkedLength = $("[name="+ objName +"]:checked").length;
-
-			if(checkBoxLength == checkedLength){
-				allObj.prop("checked", true);
-			}else{
-				allObj.prop("checked", false);
-			}
-		}else{
-			allObj.prop("checked", false);
-		}
-	}
-
-
 	$(function(){
 		// 전체동의 클릭 시 모두 체크하기 함수 실행
 		$("[name=checkAll]").click(function(){
@@ -126,10 +91,44 @@
 				oneCheckFunc($(this));
 			});
 		});
-
 	});
 
-	// 서비스 이용약관 동의
+	// 전체동의 버튼이 true일 경우 모든 개별박스 체크하기
+	function allCheckFunc(obj) {
+		$("[name=checkTerms]").prop("checked", $(obj).prop("checked"));
+	}
+
+	/* 체크박스 체크시 전체선택 체크 여부 */
+	function oneCheckFunc(obj) {
+		var allObj = $("[name=checkAll]");	// 전체 박스
+		var objName = $(obj).attr("name");	// 개별 박스
+
+		// 개별박스에 체크를 했을 경우
+		if($(obj).prop("checked")){
+			checkBoxLength = $("[name="+ objName +"]").length;	// 개별박스 수 (ex. 1개)
+			checkedLength = $("[name="+ objName +"]:checked").length;	// 개별박스 체크한 수 (ex. 1개)
+
+			// 반복문을 통해 개별박스 수 == 개별박스 체크한 수 가 같은 경우 '전체박스'를 체크표시
+			if(checkBoxLength == checkedLength){
+				allObj.prop("checked", true);
+			}else{
+				allObj.prop("checked", false);
+			}
+		}else{
+			// 개별박스에 체크하지 않았을 경우
+			allObj.prop("checked", false);
+		}
+	}
+
+	// 필수 약관 체크 했을 경우에만 회원가입 완료
+	$("#nextButton").on("click",function () {
+		if($("#termsService").prop("checked") && $("#termsPrivacy").prop("checked")){
+			location.href= "/main/login";
+			return;
+		}else {
+			alert("*필수 약관에 동의 해 주세요.")
+		}
+	})
 
 </script>
 </body>

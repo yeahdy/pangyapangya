@@ -30,7 +30,7 @@
 <!-- Wrapper -->
 <!-- Main -->
 <section class="cont_login container">
-	<form action="#" method="post" id="frm-login">
+	<form action="#" method="post" id="joinCEO2Form">
 		<div class="box_login login_email" style="height: 850px">
 			<h2 class="tit">빵야빵야(屋) 사장님의<br><strong style="color: #F9A825">가게 정보를</strong><br>입력 해주세요.</h2>
 			<div class="box_inp">
@@ -51,17 +51,16 @@
 				</div>
 				<div class="line_inp">
 					<p class="form_title">가게 주소</p>
-					<input type="text" class="inp" id="postcode" placeholder="우편번호" style="width: calc(100% - 110px);float: left;">
-					<p class="info_error" id="shopAddressError1">가게 우편번호를 입력해주세요.</p>
+					<input type="text" class="inp" id="shopZipcode" placeholder="우편번호" style="width: calc(100% - 110px);float: left;">
 					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" style="width: 100px;padding: 0px;font-size: 13px"><br>
-					<input type="text" id="address" placeholder="주소">
-					<p class="info_error" id="shopAddressError2">가게 주소를 입력해주세요.</p>
-					<input type="text" id="detailAddress" placeholder="상세주소">
+					<input type="text" id="shopAddress" placeholder="주소">
+					<input type="text" id="shopAddressDetail" placeholder="상세주소">
+					<p class="info_error" id="shopAddressError1">가게 주소를 입력해주세요.</p>
 				</div>
 			</div>
 			<div class="col-6 col-12-medium">
 				<ul class="actions fit" style="margin-bottom: 3em;">
-					<li><a href="/main/joinConfirm" class="button primary fit" style="margin-top: 1em;">다음</a></li>
+					<li><input type="button" id="nextButton" class="button primary fit" value="다음" style="margin-top: 1em;"/></li>
 				</ul>
 			</div>
 		</div>
@@ -81,6 +80,7 @@
 <script th:replace="/main/header::header_js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
+	let joinCEO2Form = $(document.joinCEO2Form);
 
 	//비밀번호 숨기기
 	$('.type_pwd').on('click',function() {
@@ -92,6 +92,50 @@
 			$this.prev('input').prop('type','text');
 		}
 	});
+
+	//공백 막기
+	$('#nextButton').on("click", function () {
+		// 사업자 등록번호
+		if(!$("#shopRegNum").val()){
+			$("#shopRegNum").focus();
+			$("#shopRegNumError1").show();
+			return;
+		}else{
+			$("#shopRegNumError1").hide();
+		}
+
+		// 가게이름
+		if(!$('#shopName').val()){
+			$("#shopName").focus();
+			$("#shopNameError1").show();
+			return;
+		}else{
+			$("#shopNameError1").hide();
+		}
+
+		// 가게 전화번호
+		if(!$('#shopCallNumber').val()){
+			$("#shopCallNumber").focus();
+			$("#shopCallNumberError1").show();
+			return;
+		}else{
+			$("#shopCallNumberError1").hide();
+		}
+
+		// 가게 주소
+		if(!$('#shopAddress').val()){
+			$("#shopAddress").focus();
+			$("#shopAddressError1").show();
+			return;
+		}else{
+			$("#shopAddressError1").hide();
+		}
+
+		joinCEO2Form.submit();
+		location.href= '/main/joinConfirm';
+	})
+
+
 
 	// 다음 주소 api
 	function execDaumPostcode() {
@@ -127,17 +171,17 @@
 						extraAddr = ' (' + extraAddr + ')';
 					}
 					// 조합된 참고항목을 해당 필드에 넣는다.
-					document.getElementById("detailAddress").value = extraAddr;
+					document.getElementById("shopAddressDetail").value = extraAddr;
 
 				} else {
-					document.getElementById("detailAddress").value = '';
+					document.getElementById("shopAddressDetail").value = '';
 				}
 
 				// 우편번호와 주소 정보를 해당 필드에 넣는다.
-				document.getElementById('postcode').value = data.zonecode;
-				document.getElementById("address").value = addr;
+				document.getElementById('shopZipcode').value = data.zonecode;
+				document.getElementById("shopAddress").value = addr;
 				// 커서를 상세주소 필드로 이동한다.
-				document.getElementById("detailAddress").focus();
+				document.getElementById("shopAddressDetail").focus();
 			}
 		}).open();
 	}
