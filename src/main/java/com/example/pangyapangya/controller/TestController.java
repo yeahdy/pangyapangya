@@ -31,4 +31,7 @@ public class TestController {
 
     @GetMapping("info")
     public String info(){return "test/info";}
+
+    @GetMapping("test")
+    public String test(){return "test/test";}
 }

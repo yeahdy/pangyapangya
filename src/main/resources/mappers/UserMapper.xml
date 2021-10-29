@@ -35,14 +35,32 @@
     </select>
 
     <!-- 아이디 찾기 -->
-    <select id="findId" resultType="String">
-        SELECT USERID, USERNAME FROM TBL_USER
+    <select id="idFind" resultType="UserVO">
+        SELECT USERID, USERPW, USERNAME, USERZIPCODE, USERADDRESS, USERADDRESS_DETAIL, USERPHONENUM FROM TBL_USER
         WHERE USERPHONENUM = #{userPhoneNum}
     </select>
 
-    <!-- 비밀번호 찾기 -->
-    <select id="findPw" resultType="_int">
+    <!-- 비밀번호 찾기 : 아이디 조회 -->
+    <select id="pwFind" resultType="_int">
         SELECT COUNT(USERID) FROM TBL_USER
         WHERE USERID = #{userId}
+    </select>
+
+    <!-- 비밀번호 찾기 : 가입한 전화번호 조회 -->
+    <select id="pwFind_phone" resultType="String">
+        SELECT USERPHONENUM FROM TBL_USER
+        WHERE USERID = #{userId}
+    </select>
+
+    <!-- 상태 구분하기(일반회원) -->
+    <select id="userStatus" resultType="_int">
+        SELECT STATUS FROM TBL_USER
+        WHERE USERID = #{userId}
+    </select>
+
+    <!-- 상태 구분하기(사장님) -->
+    <select id="CEOStatus" resultType="_int">
+        SELECT STATUS FROM TBL_CEO
+        WHERE CEOID = #{ceoId}
     </select>
 </mapper>
