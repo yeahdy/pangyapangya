@@ -17,4 +17,5 @@ public class CeoVO {
     private String shopPhoto;
     private String phoneNum;
     private String shopRegNum;
+    private int status;
 }
