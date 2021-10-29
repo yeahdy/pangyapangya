@@ -282,7 +282,7 @@
             </div>
         </section>
         <section>
-            <section class="spotlights alt">
+            <section class="spotlights alt" id="list">
                 <article style="border-width: 0px 1px 0px 0px;">
                     <a href="#" class="image fit"><img src="/images/garlicBread2.jpg" alt=""></a>
                     <h5>만동제과</h5>
@@ -323,15 +323,15 @@
                     <h5>카페노티드</h5>
                     <p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
                 </article>
-                <br>
             </section>
         </section>
     </section>
 </div>
+<div class="list"></div>
+<p id="sentinel"></p>
 
 <!-- ----------------------------------------------------------------------------------------------Footer-------------------------------------------------------------------------------------------------------------------------- -->
 <!-- Footer -->
-<footer id="footer" th:include="/main/footer::footer_body"></footer>
 
 <!-- Scripts -->
 <script src="https://kit.fontawesome.com/8eb5905426.js" crossorigin="anonymous"></script>
@@ -346,6 +346,62 @@
 </script>
 </body>
 <script>
+    let currentPage = 1
 
+    const DATA_PER_PAGE = 10,
+        lastPage = 100;
+
+    const msgLoading = document.getElementById("msg-loading")
+
+
+    // 데이터 추가 함수
+    function addData(currentPage) {
+        $("#list").append("<article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article>");
+    }
+
+    // IntersectionObserver 갱신 함수
+    function observeLastChild(intersectionObserver) {
+
+        const listChildren = document.querySelectorAll("#list article")
+        listChildren.forEach(el => {
+
+            if (!el.nextSibling && currentPage < lastPage) {
+                intersectionObserver.observe(el) // el에 대하여 관측 시작
+            } else if (currentPage >= lastPage) {
+                intersectionObserver.disconnect()
+            }
+
+        })
+    }
+
+    // IntersectionObeserver 부분
+    const observerOption = {
+        root: null,
+        rootMargin: "0px 0px 0px 0px",
+        threshold: 0.5
+    }
+
+    // IntersectionObserver 인스턴스 생성
+    const io = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+
+            // entry.isIntersecting: 특정 요소가 뷰포트와 50%(threshold 0.5) 교차되었으면
+            if (entry.isIntersecting) {
+
+                // 다음 데이터 가져오기: 자연스러운 연출을 위해 setTime-out 사용
+                setTimeout(() => {
+                    addData(++currentPage)
+                    observer.unobserve(entry.target)
+                    observeLastChild(observer)
+
+                }, 1000)
+            }
+        })
+    }, observerOption)
+
+
+    // 초기 데이터 생성
+    addData(currentPage)
+    observeLastChild(io)
 </script>
 </html>
