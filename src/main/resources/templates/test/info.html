@@ -1,0 +1,551 @@
+<!--
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+    <title>빵야빵야(屋)</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <link rel="stylesheet" href="/css/main.css"/>
+    <style>
+        p {
+            margin: 0 0 1em 0;
+        }
+
+        .spotlights h5 {
+            font-weight: bold;
+            font-size: small;
+        }
+
+        .spotlights p {
+            font-size: small;
+        }
+
+        .spotlights > article {
+            padding: 1.0em 2.25em 0.5em 2.25em;
+            border-style: solid;
+            border-width: 1px 1px 0px 0px;
+            width: 25%;
+        }
+
+        .image.fit img {
+            border-radius: 4px;
+        }
+
+        h4 {
+            font-weight: 700;
+            font-size: large;
+            color: black;
+            display: inline-block;
+        }
+
+        .spotlights h5 {
+            color: black;
+        }
+
+
+        /* header */
+        .headerIcon {
+            width: 40px;
+            display: block;
+            margin: auto;
+        "
+        }
+
+        .icon.solid:before {
+            font-weight: 100;
+            content: none;
+        }
+
+        .spotlights h5 {
+            font-weight: bold;
+            font-size: small;
+        }
+
+        .spotlights p {
+            font-size: small;
+        }
+
+        .headerIcon {
+            width: 40px;
+            display: block;
+            margin: auto;
+        "
+        }
+
+        .icon.solid:before {
+            font-weight: 100;
+            content: none;
+        }
+
+        .spotlights h5 {
+            font-weight: bold;
+            font-size: small;
+        }
+
+        .spotlights p {
+            font-size: small;
+        }
+
+        /* 검색창 */
+        .search {
+            position: relative;
+            text-align: center;
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        input {
+            width: 100%;
+            border-radius: 20px;
+            border: 1px solid #bbb;
+            margin: 10px 0;
+            padding: 10px 12px;
+        }
+
+        .fa-search {
+            position: absolute;
+            left: 90%;
+            top: 35%;
+            margin: 0;
+        }
+
+        form {
+            margin: 0;
+        }
+
+        .headerIcon {
+            width: 40px;
+        }
+
+        .icon.solid:before {
+            font-weight: 100;
+            content: none;
+        }
+
+        div#wrap {
+            display: flex;
+        }
+
+        .spotlights h5 {
+            font-weight: bold;
+        }
+
+        /* 검색창 */
+        .search {
+            position: relative;
+            text-align: center;
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        input {
+            width: 100%;
+            border-radius: 20px;
+            border: 1px solid #bbb;
+            margin: 10px 0;
+            padding: 10px 12px;
+        }
+
+        .fa-search {
+            position: absolute;
+            left: 90%;
+            top: 35%;
+            margin: 0;
+        }
+
+        .img-warp {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .review {
+            width: 252px;
+            margin-left: 0;
+            padding-left: 0;
+            margin-top: 0;
+            padding-top: 0;
+            margin-bottom: 16px;
+            display: block;
+            border: 1px solid #d9d9d9;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .img {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: auto;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .img:after {
+            content: '' !important;
+            display: block !important;
+            padding-bottom: 66.66667% !important;
+        }
+
+        .txt {
+            margin-bottom: 4px;
+            font-size: 12px;
+            color: #999;
+            display: inherit;
+        }
+
+        a {
+            text-decoration: none !important;
+            border-bottom: none;
+            color: #333 !important;
+        }
+
+        .flexsearch {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .testSearch {
+            height: 45px !important;
+            width: 152px !important;
+
+        }
+        #img-view{
+            width: 560px;
+        }
+        #img-view img{
+            width: 560px;
+            height: auto;
+            overflow: hidden;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            box-shadow: none;
+            border: 1px solid #f9a825 !important;
+        }
+
+        .searchButton {
+            background-color: #f9a825 !important;
+            box-shadow: none;
+            width: 14%;
+            border-radius: 0 !important;
+            height: 45px !important;
+            display: flex !important;
+            justify-content: space-evenly !important;
+            color: black !important;
+        }
+
+        #bannerDiv {
+            position: fixed;
+            top: 86.66px;
+            z-index: 999;
+            left: 12%;
+        }
+
+        .warpdiv {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        #review-img{
+            width: 560px;
+            text-align: center;
+        }
+        #review-img img{
+            width: 560px;
+            height: auto;
+            overflow: hidden;
+        }
+
+        .payment{
+            position: fixed;
+            background-color: white;
+            width: 400px;
+            height: 200px;
+            padding: 17px;
+            border: solid 1px #0000001a;
+            box-shadow: 0 2px 4px 0 #0000001a;
+        }
+
+        .pxorm{
+            margin-bottom: 12px;
+            color: black;
+        }
+
+    </style>
+</head>
+<body class="is-preload" style="padding: 200px; padding-top: 86.66px;">
+
+&lt;!&ndash; &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;Header&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; &ndash;&gt;
+<header id="header" th:include="/main/header::header_body">
+
+</header>
+&lt;!&ndash; &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;Header&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; &ndash;&gt;
+
+&lt;!&ndash; -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;section-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; &ndash;&gt;
+<div class="wrapper" style="width: 70% !important;">
+
+    &lt;!&ndash; Main &ndash;&gt;
+    <section class="main">
+        &lt;!&ndash; Blurb &ndash;&gt;
+        <section id="banner" style="width: 560px; height: 560px; margin: 0 auto;">
+            <article data-position="bottom right">
+                <div class="inner">
+                    <img src="/images/mainBread1.jpg" alt="메인빵1">
+                </div>
+            </article>
+            <article data-position="top right">
+                <div class="inner">
+                    <img src="/images/mainBread2.jpg" alt="메인빵2">
+                </div>
+            </article>
+            <article data-position="center">
+                <div class="inner">
+                    <img src="/images/휘낭시에1.jpg" alt="">
+                </div>
+            </article>
+            <article data-position="right">
+                <div class="inner">
+                    <img src="/images/mainBread3.jpg" alt="메인빵3">
+                </div>
+            </article>
+        </section>
+        <div class="payment">
+            <div class="maker-card">
+                <a>형진 빵집</a>
+            </div>
+            <p class="pxorm">브라우니🍞</p>
+            <div class="maker-card">
+                <a>모집 인원</a>
+            </div>
+            <p class="pxorm">00명</p>
+            <div class="maker-card">
+                <a>신청 기간</a>
+            </div>
+            <p class="pxorm">2020/10/10~2020/11/11</p>
+        </div>
+<section style="text-align: center;">
+
+
+            <p>
+                제품 배송 안내❗<br>
+                매주 월, 목요일 출고 진행합니다.<br>
+                목 ~ 일까지 주문건 👉🏻 (월)출고<br>
+                월 ~ 수까지 주문건 👉🏻 (목)출고<br>
+                <br>
+                ✔ 주문량에 따라 지연될 수도 있습니다.<br>
+                (단체 대량 주문건은 따로 연락 부탁드립니다.)<br>
+                <br>
+                💛 쌀 브라우니 조각 케이크 🎂<br>
+                꾸덕꾸덕하고 진한 초콜릿의 케이크 브라우니, 이보다 더 좋은 설명은 없다고 생각합니다.<br>
+                밀가루가 아닌 100% 국산 쌀가루와 벨기에산 고급 다크 초콜릿을 사용 했습니다.<br>
+                진한 초콜릿의 브라우니와 쌉싸름한 커피를 같이 드시면 더욱 맛있게 드실 수 있습니다.<br>
+                <br>
+                💛사이즈, 중량💛<br>
+                5 X 4.5 X 2.5 (cm) , 60g내외<br>
+                (두툼한 사각형)&#xFEFF;<br>
+                <br>
+                ✅유통기한 및 보관 방법<br>
+                실온보관 3일, 냉동보관 1주일<br>
+                <br>
+                🌾 쌀 디저트 전문 카페, 모닐이네하우스입니다. 🌾<br>
+                <br>
+                국내산 100% 우리 쌀가루를 사용하며, 모든 제품 글루텐 FREE 입니다.<br>
+                밀가루를 사용하지 않아 촉촉하면서 속이 편안한 디저트를 만들고 있습니다. <br>
+                귀여운 마닐이와 모닐이가 만드는 쌀 디저트 세상에 초대합니다!<br>
+                <br>
+                ✅ No 밀가루 • 100% 국내산 쌀가루를 사용합니다.<br>
+                ✅ No 보존제 • No 색소<br>
+                ✅ 글루텐 Free<br>
+                ✅ 100% 뉴질랜드 우유버터<br>
+                ✅ 알루미늄 Free<br>
+                <br>
+                ❗ 주의사항 ❗<br>
+                ✔ opp포장 → 보냉포장 → 친환경 보냉박스로 포장되어 발송됩니다.<br>
+                ✔ 수제로 만들어지는 제품이므로 식품에 대한 합당한 하자가 발생하지 않는 한 교환, 반품이 불가합니다.<br>
+            </p>
+        </section>
+    </section>
+</div>
+
+
+&lt;!&ndash; &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;Footer&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; &ndash;&gt;
+&lt;!&ndash; Footer &ndash;&gt;
+<footer id="footer" th:include="/main/footer::footer_body"></footer>
+
+&lt;!&ndash; Scripts &ndash;&gt;
+<script src="https://kit.fontawesome.com/8eb5905426.js" crossorigin="anonymous"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script th:replace="/main/header::header_js"></script>
+<script>
+</script>
+</body>
+</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IntersecionObserver: infinite scroll example</title>
+    <style>
+        body {
+            padding: 30px;
+            background-color: gray;
+        }
+
+        #container {
+            margin: 0px auto;
+            width: 500px;
+        }
+
+        #list {
+            padding: 0px;
+        }
+
+        #list li {
+            height: 250px;
+            line-height: 250px;
+            display: block;
+            background-color: aliceblue;
+            margin-bottom: 15px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 3em;
+        }
+
+        #msg-loading {
+            background-color: honeydew;
+            color: red;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .fade-in {
+            opacity: 1;
+            animation-name: fadeInOpacity;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-in;
+            animation-duration: 0.5s;
+        }
+
+        .fade-out {
+            opacity: 0;
+            animation-name: fadeOutOpacity;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-in;
+            animation-duration: 0.5s;
+        }
+
+        @keyframes fadeInOpacity {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOutOpacity {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div id="container">
+    <ul id="list">
+
+    </ul>
+    <p id="msg-loading">....... 로딩중 .......</p>
+</div>
+<script>
+    let currentPage = 1
+
+    const DATA_PER_PAGE = 10,
+        lastPage = 5
+
+    const msgLoading = document.getElementById("msg-loading")
+
+
+    // 데이터 추가 함수
+    function addData(currentPage) {
+
+        const $list = document.getElementById("list")
+
+        for (let i = (currentPage - 1) * DATA_PER_PAGE + 1; i <= currentPage * DATA_PER_PAGE; i++) {
+            const $li = document.createElement("li")
+            $li.textContent = `${currentPage}페이지 : ${i}번째 데이터`
+            $li.classList.add("fade-in")
+            $list.appendChild($li)
+        }
+    }
+
+    // IntersectionObserver 갱신 함수
+    function observeLastChild(intersectionObserver) {
+
+        const listChildren = document.querySelectorAll("#list li")
+        listChildren.forEach(el => {
+
+            if (!el.nextSibling && currentPage < lastPage) {
+                intersectionObserver.observe(el) // el에 대하여 관측 시작
+            } else if (currentPage >= lastPage) {
+                intersectionObserver.disconnect()
+                msgLoading.textContent = "페이지의 끝입니다."
+            }
+
+        })
+    }
+
+    // IntersectionObeserver 부분
+    const observerOption = {
+        root: null,
+        rootMargin: "0px 0px 0px 0px",
+        threshold: 0.5
+    }
+
+    // IntersectionObserver 인스턴스 생성
+    const io = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+
+            // entry.isIntersecting: 특정 요소가 뷰포트와 50%(threshold 0.5) 교차되었으면
+            if (entry.isIntersecting) {
+
+                msgLoading.classList.add("fade-in")
+                // 다음 데이터 가져오기: 자연스러운 연출을 위해 setTime-out 사용
+                setTimeout(() => {
+                    addData(++currentPage)
+                    observer.unobserve(entry.target)
+                    observeLastChild(observer)
+
+                    msgLoading.classList.remove("fade-in")
+                }, 1000)
+            }
+        })
+    }, observerOption)
+
+
+    // 초기 데이터 생성
+    addData(currentPage)
+    observeLastChild(io)
+</script>
+</body></html>
