@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.pangyapangya.mappers.CartMapper">
-    <select id="getList" resultType="CartVO">
+    <!--<select id="getList" resultType="CartVO">
         SELECT * FROM TBL_CART
-    </select>
+    </select>-->
     <select id="getCartList" resultType="CartVO">
         SELECT * FROM TBL_CART WHERE USERID=#{userId}
     </select>

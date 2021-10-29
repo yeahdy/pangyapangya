@@ -41,9 +41,10 @@ public class MypageController {
     @GetMapping("checkPassword_new")
     public String checkPassword_new(){ return "mypage/checkPassword_new"; }
     @GetMapping("test")
-    public void test(@ModelAttribute("vo") CartVO vo){
+    public String test(@ModelAttribute("cart") CartVO cart){
         log.info("------------------------------------");
-        log.info(vo.toString());
+        log.info(cart.toString());
         log.info("------------------------------------");
+        return "mypage/test";
     }
 }

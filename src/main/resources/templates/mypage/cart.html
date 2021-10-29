@@ -177,6 +177,16 @@
         #orderButton:not(input[type="submit"], input[type="reset"], input[type="button"], button, .button){
             border: solid 0px;
         }
+        .bt tr{
+            background-color: white !important;
+            border: none;
+        }
+        .bt td{
+            padding: 0;
+        }
+        .bt{
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body class="is-preload" style="padding: 200px">
@@ -214,9 +224,13 @@
                         </div>
                         <div class="breadTable_bottom">
                             <div class="cnt_buttonDiv">
-                                <button type="button" class="cnt_button" onclick="count('minus')"><span>-</span></button>
-                                <div class="bread_table" id="cnt1" >1</div>
-                                <button type="button" class="cnt_button" onclick="count('plus')">+</button>
+                                <table class="bt">
+                                    <tr class="bt">
+                                        <td class="bt_minus"><button type="button" class="cnt_button"><span>-</span></button></td>
+                                        <td><div class="bread_table" id="cnt1">1</div></td>
+                                        <td class="bt_plus"><button type="button" class="cnt_button">+</button></td>
+                                    </tr>
+                                </table>
                             </div>
                             <div class="bread_table" id="price1">
                                 38000
@@ -303,8 +317,8 @@
             </div>
             </div>
         </section>
+        </form>
     </section>
-
 </div>
 
 <!-- Footer -->
@@ -318,11 +332,9 @@
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
-<!--<script scr="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script th:replace="/main/header::header_js"></script>
 <!--장바구니 삭제-->
-<script type="text/javascript">
+<script>
     var p;
 
     $(function () {
@@ -347,13 +359,26 @@
                 alert("1개 이상부터 주문이 가능합니다.");
             }
         });
+        //수량 버튼
+        $(".bt_plus").click(function(){
+            cnt = parseInt($(this).closest("tr").children("td:eq(1)").text());
+            $(this).closest("tr").children("td:eq(1)").text(++cnt);
+            /*$(this).parents()..remove();*/
 
+        })
+        $(".bt_minus").click(function(){
+            cnt = parseInt($(this).closest("tr").children("td:eq(1)").text());
+            if(cnt>1){
+            $(this).closest("tr").children("td:eq(1)").text(--cnt);
+            }else{
+                alert("1개 이상부터 주문 가능합니다.");
+            }
+        })
 
     });
 
-</script>
-<script>
-    function count(type)  {
+
+        function count(type)  {
         // 결과를 표시할 element
         const cntElement = document.getElementById('cnt1');
         const priceElement = document.getElementById('price1');
@@ -370,21 +395,7 @@
         //원래 빵 가격
         var originalPrice=0;
 
-        // 더하기/빼기
-        if(type === 'plus') {
-            originalPrice = price/number;
-            number = parseInt(number) + 1;
-            price = number * originalPrice;
-            priceResult = number * originalPrice;
-        }else if(type === 'minus')  {
-            if(number>1){
-                originalPrice = price/number;
-                number = parseInt(number) - 1;
-                price = number * originalPrice;
-                priceResult = number * originalPrice;
-            }
-            else{alert("1개 이상부터 주문 가능합니다.");}
-        }
+
 
         totalPrice = parseInt(priceResult) + parseInt(deliveryPrice);
         // 결과 출력
@@ -394,6 +405,13 @@
         totalPriceElement.innerText =totalPrice;
     }
 
+    /*//장바구니 개수만큼 table 생성하기
+    function tableCreate(){
+        var tc= new Array();
+        var html ="";
+
+
+    }*/
 </script>
 </body>
 </html>
