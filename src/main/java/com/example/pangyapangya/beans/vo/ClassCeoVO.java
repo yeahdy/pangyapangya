@@ -9,6 +9,7 @@ public class ClassCeoVO {
     private Long bno;
     private String title;
     private String ceoId;
+    private String ceoName;
     private String classPhoto;
     private int classPrice;
     private String regDate;
@@ -20,4 +21,7 @@ public class ClassCeoVO {
     private String bakeryZipCode;
     private String bakeryAddress;
     private String bakeryAddressDetail;
+    private String breadType;
+    private String breadName;
+    private int breadPrice;
 }
