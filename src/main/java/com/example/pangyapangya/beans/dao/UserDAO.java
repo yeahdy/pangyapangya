@@ -6,6 +6,8 @@ import com.example.pangyapangya.mappers.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @RequiredArgsConstructor
 public class UserDAO {
@@ -37,12 +39,15 @@ public class UserDAO {
     }
 
     // 아이디찾기
-    public String idFind (String userPhoneNum){
+    public List<UserVO> idFind (String userPhoneNum){
         return mapper.idFind(userPhoneNum);
     }
 
-    // 비밀번호 찾기
+    // 비밀번호 찾기 : 아이디 조회
     public boolean pwFind (String userId){
         return mapper.pwFind(userId) == 1;
     }
+
+    // 비밀번호 찾기 : 가입한 전화번호 조회
+    public String pwFind_phone (String userId) {return mapper.pwFind_phone(userId); }
 }

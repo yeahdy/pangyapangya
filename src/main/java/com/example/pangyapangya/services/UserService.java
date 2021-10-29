@@ -11,6 +11,7 @@ import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -44,14 +45,18 @@ public class UserService {
     }
 
     // 아이디찾기
-    public String idFind (String userPhoneNum){
+    public List<UserVO> idFind (String userPhoneNum){
         return userDAO.idFind(userPhoneNum);
     }
 
-    // 비밀번호 찾기
+    // 비밀번호 찾기 : 아이디 조회
     public boolean pwFind (String userId){
         return userDAO.pwFind(userId);
-    } 
+    }
+
+    // 비밀번호 찾기 : 가입한 전화번호 조회
+    public String pwFind_phone (String userId) {return userDAO.pwFind_phone(userId); }
+
 
     // 인증번호(전화번호, 인증번호)
     public void certifiedPhoneNumber(String phoneNumber, String cerNum) {

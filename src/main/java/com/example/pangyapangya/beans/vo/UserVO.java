@@ -13,4 +13,5 @@ public class UserVO {
     private String userAddress;
     private String userAddress_detail;
     private String userPhoneNum;
+    private int status;
 }

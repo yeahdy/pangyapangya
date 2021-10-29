@@ -1,5 +1,6 @@
 package com.example.pangyapangya.beans.dao;
 
+import com.example.pangyapangya.beans.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,52 @@ public class UserDAO_test {
 
     @Test
     public void checkIdTest(){
-
+        if(userDAO.checkId("yejin")){
+            log.info("-----------아이디 중복-----------");
+        }else{
+            log.info("-----------아이디 사용가능-----------");
+        }
     }
+
+    @Test
+    public void joinTest(){
+        UserVO userVO = new UserVO();
+        userVO.setUserId("yeahdy123");
+        userVO.setUserPw("dpwls123^^");
+        userVO.setUserName("박예진");
+        userVO.setUserPhoneNum("01012345678");
+        userVO.setUserZipcode("13524");
+        userVO.setUserAddress("경기 성남시 분당구 대왕판교로606번길 45");
+        userVO.setUserAddress_detail("(삼평동) 5층");
+        userDAO.join(userVO);
+    }
+
+    @Test
+    public void login(){
+        UserVO userVO = new UserVO();
+        userVO.setUserId("yejin");
+        userVO.setUserPw("dpwls123^^");
+        if(userDAO.login(userVO)){
+            log.info("-----------로그인 완료-----------");
+        }else{
+            log.info("-----------로그인 실패-----------");
+        }
+    }
+
+    @Test
+    public void pwFindTest(){
+        if(userDAO.pwFind("yejin")){
+            log.info("-----------아이디 존재 O----------");
+            log.info( "가입한 전화번호: " + userDAO.pwFind_phone("yejin").toString());
+        }else{
+            log.info("-----------아이디 존재 x----------");
+        }
+    }
+
+    // 아이디가 존재하면 휴대폰번호 조회하기
+    @Test
+    public void pwFind_phoneTest(){
+        log.info( "가입한 전화번호: " + userDAO.pwFind_phone("yejin").toString());
+    }
+
 }
