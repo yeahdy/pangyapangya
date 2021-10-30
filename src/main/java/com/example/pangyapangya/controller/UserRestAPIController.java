@@ -1,8 +1,11 @@
 package com.example.pangyapangya.controller;
 
+import com.example.pangyapangya.beans.vo.UserVO;
 import com.example.pangyapangya.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /*
@@ -31,5 +34,8 @@ public class UserRestAPIController {
         boolean check= userService.checkId(userId);
         return check + "";
     }
+
+
+    /* 로그인 */
 
 }

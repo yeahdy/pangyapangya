@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Random;
 
@@ -33,7 +35,6 @@ public class UserController {
     @GetMapping("login")
     public String login(){ return "user/login"; }
 
-
     /* 아이디 찾기 */
     @GetMapping("idFind")
     public String idFind(){ return "user/idFind"; }
@@ -50,15 +51,20 @@ public class UserController {
     @GetMapping("pwFindSuccess")
     public String pwFindSuccess(){ return "user/pwFindSuccess"; }
 
-    /* 회원가입- 일반회원 */
-    @PostMapping("join")
-    public String join(UserVO userVO){
+    /* 회원가입 */
+    @GetMapping("join")
+    public String join(){ return "user/join";}
+
+    /* 회원가입 */
+    @PostMapping("create")
+    public String create(UserVO userVO){
+        log.info("-----------------------------------------");
+        log.info("create: " + userVO.toString());
+        log.info("-----------------------------------------");
+
         userService.join(userVO);
         return "user/join";
     }
-
-    @GetMapping("join")
-    public String join(){ return "user/join";}
 
     /* 회원가입- 사장님 */
     @GetMapping("joinCEO")

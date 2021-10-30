@@ -1,6 +1,6 @@
 package com.example.pangyapangya.services;
 
-import com.example.pangyapangya.beans.vo.UserVO;
+import com.example.pangyapangya.beans.vo.CeoVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,9 +10,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootTest
 @Slf4j
-public class UserServiceTest {
+public class CEOServiceTest {
     @Autowired
-    private UserService userService;
+    private CEOService ceoService;
 
     // 비밀번호 암호화
     @Autowired
@@ -35,9 +35,10 @@ public class UserServiceTest {
         }
     }
 
+
     @Test
     public void checkIdTest(){
-        if(userService.checkId("yejin33333")){
+        if(ceoService.checkIdCEO("yejin")){
             log.info("-----------아이디 중복-----------");
         }else{
             log.info("-----------아이디 사용가능-----------");
@@ -46,23 +47,26 @@ public class UserServiceTest {
 
     @Test
     public void joinTest(){
-        UserVO userVO = new UserVO();
-        userVO.setUserId("dudgus000");
-        userVO.setUserPw("dudgus123!!");
-        userVO.setUserName("최영현");
-        userVO.setUserPhoneNum("01099998888");
-        userVO.setUserZipcode("16332");
-        userVO.setUserAddress("경기 수원시 장안구 천천로22번길 34");
-        userVO.setUserAddress_detail(" (정자동, 백설마을 삼환 나우빌 아파트)");
-        userService.join(userVO);
+        CeoVO ceoVO = new CeoVO();
+        ceoVO.setCeoId("alsrud123");
+        ceoVO.setCeoPw("alsrud000!");
+        ceoVO.setCeoName("주민경");
+        ceoVO.setPhoneNum("01033445577");
+        ceoVO.setShopRegNum("1234567890");
+        ceoVO.setShopName("민경이네 빵집");
+        ceoVO.setShopZipcode("13524");
+        ceoVO.setShopAddress("경기 성남시 분당구 대왕판교로606번길 45");
+        ceoVO.setShopAddressDetail("삼평동 13층");
+        ceoVO.setShopCallNumber("0312234812");
+        ceoService.joinCEO(ceoVO);
     }
 
     @Test
     public void login(){
-        UserVO userVO = new UserVO();
-        userVO.setUserId("yejin");
-        userVO.setUserPw("dpwls123^^");
-        if(userService.login(userVO)){
+        CeoVO ceoVO = new CeoVO();
+        ceoVO.setCeoId("yedeec2o");
+        ceoVO.setCeoPw("dpwls123!");
+        if(ceoService.loginCEO(ceoVO)){
             log.info("-----------로그인 완료-----------");
         }else{
             log.info("-----------로그인 실패-----------");
@@ -71,18 +75,19 @@ public class UserServiceTest {
 
     @Test
     public void pwFindTest(){
-        if(userService.pwFind("yejin")){
+        if(ceoService.pwFindCEO("yedeec2o")){
             log.info("-----------아이디 존재 O----------");
-            UserVO userVO = userService.userInfo("yeahdy123");
-            log.info( "가입한 전화번호: " + userVO.getUserPhoneNum());
+            CeoVO ceoVO = ceoService.ceoInfo("yedeec2o");
+            log.info( "가입한 전화번호: " + ceoVO.getPhoneNum());
         }else{
             log.info("-----------아이디 존재 x----------");
         }
     }
 
     @Test
-    public void userInfoTest(){
-        UserVO userVO = userService.userInfo("yeahdy123");
-        log.info(userVO.toString());
+    public void ceoInfoTest(){
+        CeoVO ceoVO = ceoService.ceoInfo("yedeec2o");
+        log.info(ceoVO.toString());
     }
+
 }

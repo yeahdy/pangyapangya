@@ -61,7 +61,7 @@
 <!-- Wrapper -->
 	<!-- Main -->
 	<section class="cont_login container">
-		<form action="/user/join" method="post" id="joinForm">
+		<form action="/user/create" method="POST" id="joinForm">
 			<div class="box">
 				<li style="border-right: 1px solid #dcdcdc">
 						<h4><a href="/user/join"><strong style="color: #F9A825; border-bottom: 1px solid">일반회원</strong></a></h4>
@@ -130,7 +130,7 @@
 				</div>
 				<div class="col-6 col-12-medium">
 					<ul class="actions fit" style="margin-bottom: 3em;">
-						<li><input type="button" id="nextButton" class="button primary fit" value="다음" style="margin-top: 1em;"></input></li>
+						<li><input type="button" id="nextButton" class="button primary fit" value="다음" style="margin-top: 1em;"/></li>
 					</ul>
 				</div>
 			</div>
@@ -142,6 +142,7 @@
 
 <!-- Scripts -->
 <script src="/js/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
 <script src="/js/browser.min.js"></script>
 <script src="/js/breakpoints.min.js"></script>
@@ -150,7 +151,7 @@
 <script th:replace="/main/header::header_js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" th:inline="javascript">
-	let joinForm = $(document.joinForm);	//<form>
+	let joinForm = $("#joinForm");	//<form>
 	let cnfCheck= false;	// 인증번호 check 확인
 	let idCheck= false;		// 아이디 중복검사
 
@@ -223,7 +224,7 @@
 		if(cnfCheck && idCheck){
 			joinForm.submit();
 			$('#authNumber').val("");
-			location.href= '/user/joinConfirm';
+			//location.href= '/user/joinConfirm';
 		}else if(!idCheck){
 			$("#userId").focus();
 		}else if(!cnfCheck){
