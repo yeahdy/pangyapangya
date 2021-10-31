@@ -30,11 +30,11 @@ public class CartControllerTest {
 
     @Test
     public void testCartList() throws Exception{
-        log.info(mockMvc.perform(MockMvcRequestBuilders.get("/mypage/cart")).andReturn().getModelAndView().getModelMap().toString());
+        log.info(mockMvc.perform(MockMvcRequestBuilders.get("/mypage/cartList")).andReturn().getModelAndView().getModelMap().toString());
     }
     @Test
     public void testAddCart() throws Exception{
-        mockMvc.perform(MockMvcRequestBuilders.get("/mypage/cart")
+        mockMvc.perform(MockMvcRequestBuilders.get("/mypage/addCart")
                 .param("breadName", "빵33")
                 .param("userId","hds1234")
                 .param("deliverCharge", "3000")
@@ -42,6 +42,25 @@ public class CartControllerTest {
                 .param("breadImg", "bread1.jpg")
         ).andReturn();
 
+    }
+
+    @Test
+    public void testGetCart() throws Exception{
+        log.info(mockMvc.perform(MockMvcRequestBuilders.get("/mypage/getCart").param("userId", "kjy1234")).andReturn().getModelAndView().getViewName());
+    }
+
+    @Test
+    public void testDeleteCart() throws Exception{
+        String result = mockMvc.perform(MockMvcRequestBuilders.get("/mypage/deleteCart").param("cartNum","35"))
+                .andReturn().getFlashMap().toString();
+        log.info(result);
+    }
+
+    @Test
+    public void testUpdateCnt() throws Exception{
+        String result = mockMvc.perform(MockMvcRequestBuilders.get("/mypage/updateCnt").param("cartNum", "36").param("breadCnt","7"))
+                .andReturn().getFlashMap().toString();
+        log.info(result);
 
     }
 }
