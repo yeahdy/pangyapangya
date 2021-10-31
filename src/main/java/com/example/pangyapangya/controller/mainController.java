@@ -1,6 +1,5 @@
 package com.example.pangyapangya.controller;
 
-import com.example.pangyapangya.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
