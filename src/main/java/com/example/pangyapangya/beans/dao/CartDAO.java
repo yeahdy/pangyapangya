@@ -11,7 +11,7 @@ import java.util.List;
 @Repository /*부모가 component*/
 @RequiredArgsConstructor
 public class CartDAO {
-    private CartMapper mapper;
+    private final CartMapper mapper;
 
     public void addCart(CartVO cart){
         mapper.insertSelect_cartNum(cart);

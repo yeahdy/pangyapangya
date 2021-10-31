@@ -9,6 +9,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="/css/main.css" />
+    <link rel="icon" type="image/png"  href="/images/favicon.png"/>
     <style>
         .headerIcon{
             width: 40px;
@@ -229,12 +230,13 @@
                                         <td class="bt_minus"><button type="button" class="cnt_button"><span>-</span></button></td>
                                         <td><div class="bread_table" id="cnt1">1</div></td>
                                         <td class="bt_plus"><button type="button" class="cnt_button">+</button></td>
+                                        <td><div class="bread_table" id="price1">
+                                            38000
+                                        </div></td>
                                     </tr>
                                 </table>
                             </div>
-                            <div class="bread_table" id="price1">
-                                38000
-                            </div>
+
                             <div class="bread_table"><img class="delete_icon" src="/images/delete_icon.png"></div>
                         </div>
                     </td>
@@ -256,13 +258,20 @@
                         </div>
                         <div class="breadTable_bottom">
                             <div class="cnt_buttonDiv">
-                                <button type="button" class="cnt_button" onclick="count('minus')"><span>-</span></button>
-                                <div class="bread_table" id="cnt2">1</div>
-                                <button type="button" class="cnt_button" onclick="count('plus')">+</button>
+                                <table class="bt">
+                                    <tr class="bt">
+                                        <td class="bt_minus"><button type="button" class="cnt_button"><span>-</span></button></td>
+                                        <td><div class="bread_table" id="cnt2">1</div></td>
+                                        <td class="bt_plus"><button type="button" class="cnt_button">+</button></td>
+                                        <td>
+                                            <div class="bread_table" id="price2">
+                                           42000
+                                        </div>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
-                            <div class="bread_table" id="price2">
-                                38000
-                            </div>
+
                             <div class="bread_table"><img class="delete_icon" src="/images/delete_icon.png"></div>
                         </div>
                     </td>
@@ -289,7 +298,7 @@
                                 <button type="button" class="cnt_button" onclick="count('plus')">+</button>
                             </div>
                             <div class="bread_table" id="price3">
-                                38000
+                                10000
                             </div>
                             <div class="bread_table"><img class="delete_icon" src="/images/delete_icon.png"></div>
                         </div>
@@ -336,7 +345,10 @@
 <!--장바구니 삭제-->
 <script>
     var p;
-//커밋
+    var cnt;
+    var totalPrice;
+    var bakeryCnt;
+    var deliveryCharge;
     $(function () {
         //사진 모두 출력
         /*for(i = 1;i <= 9; i++){
@@ -359,26 +371,51 @@
                 alert("1개 이상부터 주문이 가능합니다.");
             }
         });
+
         //수량 버튼
         $(".bt_plus").click(function(){
-            cnt = parseInt($(this).closest("tr").children("td:eq(1)").text());
-            $(this).closest("tr").children("td:eq(1)").text(++cnt);
-            /*$(this).parents()..remove();*/
 
-        })
+            cnt = parseInt($(this).closest("tr").children("td:eq(1)").text());
+            price = parseInt($(this).closest("tr").children("td:eq(3)").text());
+            price = price/cnt;//상품 1개의 가격
+            $(this).closest("tr").children("td:eq(1)").text(++cnt);
+            price = price * cnt;
+            $(this).closest("tr").children("td:eq(3)").text(price);
+
+        });
         $(".bt_minus").click(function(){
             cnt = parseInt($(this).closest("tr").children("td:eq(1)").text());
+            price = price/cnt;//상품 1개의 가격
             if(cnt>1){
             $(this).closest("tr").children("td:eq(1)").text(--cnt);
+                price = price * cnt;
+                $(this).closest("tr").children("td:eq(3)").text(price);
             }else{
                 alert("1개 이상부터 주문 가능합니다.");
             }
-        })
+        });
 
+        //console.log("장바구니의 개수는 "+$(".bread_table").length/4);
+        //console.log("하나 가격은 "+(parseInt($("#price1").text())+parseInt($("#price2").text())));
+        // console.log("총 금액은 "+$(".bread_table").length/4);
+        totalPrice = 0;
+        bakeryCnt=$(".bread_table").length/4
+        for (let i=0; i<bakeryCnt; i++){
+            console.log(parseInt($("#price"+(i+1)).text()));
+            totalPrice+=parseInt($("#price"+(i+1)).text());
+        }
+        console.log(totalPrice);
+
+        //상품 금액
+       $("#priceResult").text(totalPrice);
+       //배달료
+        deliveryCharge = 3000*bakeryCnt;
+       $("#deliveryPrice").text(deliveryCharge);
+       //총 상품 금액
+       $("#totalPrice").text(totalPrice+deliveryCharge);
     });
 
-
-        function count(type)  {
+        /*function count(type)  {
         // 결과를 표시할 element
         const cntElement = document.getElementById('cnt1');
         const priceElement = document.getElementById('price1');
@@ -395,15 +432,13 @@
         //원래 빵 가격
         var originalPrice=0;
 
-
-
         totalPrice = parseInt(priceResult) + parseInt(deliveryPrice);
         // 결과 출력
         cntElement.innerText =number;
         priceElement.innerText =price;
         priceResultElement.innerText =priceResult;
         totalPriceElement.innerText =totalPrice;
-    }
+    }*/
 
     /*//장바구니 개수만큼 table 생성하기
     function tableCreate(){

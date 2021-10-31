@@ -1,5 +1,6 @@
 package com.example.pangyapangya.controller;
 
+import com.example.pangyapangya.beans.dao.CartDAO;
 import com.example.pangyapangya.beans.vo.CartVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.config.annotation.RedirectViewControllerRegistration;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @Slf4j
@@ -15,9 +18,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class MypageController {
 
+
     //mypage_user
-    @GetMapping("cart")
-    public String cart(){ return "mypage/cart"; }
+//    @GetMapping("cart")
+//    public String cart(){ return "mypage/cart"; }
+    private final CartDAO cartDAO;
+    //cart
+    @GetMapping("cartList")
+    public String cart(Model model){
+        log.info("-------------------------------------");
+        log.info("cartList");
+        log.info("-------------------------------------");
+        model.addAttribute("cartList", cartDAO.getCart("kjy1234"));
+        return "mypage/cart"; }
+
+    @GetMapping
+    public String addCart(CartVO cartVO, Model model){
+        log.info("-------------------------------------");
+        log.info("addCart");
+        log.info("-------------------------------------");
+
+        cartDAO.addCart(cartVO);
+        return "mypage/cart";
+    }
+
     @GetMapping("order")
     public String order(){ return "mypage/order"; }
     @GetMapping("bread_review")
