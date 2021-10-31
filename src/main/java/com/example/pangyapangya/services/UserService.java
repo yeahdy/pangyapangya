@@ -9,6 +9,7 @@ import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService {
     private final UserDAO userDAO;
-
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     // 아이디 중복확인
     public boolean checkId(String userId){
@@ -31,9 +31,10 @@ public class UserService {
     // 회원가입 + 비밀번호 암호화
     public void join(UserVO userVO){
         if(userVO != null){
-            System.out.println("Service join 들어옴");
             // 비밀번호 암호화
             String encodedPw = passwordEncoder.encode(userVO.getUserPw());
+            System.out.println("암호화된 비밀번호: " + encodedPw);
+
             // 암호화된 비밀번호로 저장
             userVO.setUserPw(encodedPw);
             userDAO.join(userVO);

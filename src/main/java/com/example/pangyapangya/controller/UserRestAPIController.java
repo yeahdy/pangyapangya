@@ -4,9 +4,12 @@ import com.example.pangyapangya.beans.vo.UserVO;
 import com.example.pangyapangya.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.UnsupportedEncodingException;
 
 /*
     [ Task ]		    [ URL ]			    [ Method ]		[ Parameter ]			    [ Form ]	[ URL이동 ]
@@ -35,7 +38,26 @@ public class UserRestAPIController {
         return check + "";
     }
 
+    // @RequestBody 를 사용하게 되면 content-Type이 application/json 에 해당된다.
+    // 어노테이션을 붙이지 않으면 @ModelAttribute가 암묵적으로 사용되기 때문에 content-Type이 application/x-www-form-urlencoded 이다.
+    //[참고] https://blog.naver.com/PostView.nhn?blogId=writer0713&logNo=221853596497&redirect=Dlog&widgetTypeCall=true&directAccess=false
+    /* 회원가입 */
+    /*
+    ※ 페이지이동 하려면 어떻게 해야하지..?
+    @PostMapping("create")
+    public String create(UserVO userVO){
+        try {
+            userService.join(userVO);
+            log.info("UserVO: " + userVO);
+        } catch (Exception e) {
+            log.info("join RestController 오류");
+            log.info(e.getMessage());
+        }
+        return "redirect:/joinConfirm";
+    }
+    */
 
     /* 로그인 */
+
 
 }

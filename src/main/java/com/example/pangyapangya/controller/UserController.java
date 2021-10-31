@@ -1,15 +1,14 @@
 package com.example.pangyapangya.controller;
 
+import com.example.pangyapangya.beans.vo.CeoVO;
 import com.example.pangyapangya.beans.vo.UserVO;
 import com.example.pangyapangya.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.Random;
 
 /*
     [ Task ]		    [ URL ]			    [ Method ]		[ Parameter ]			    [ Form ]	[ URL이동 ]
@@ -56,25 +55,28 @@ public class UserController {
     public String join(){ return "user/join";}
 
     /* 회원가입 */
-    @PostMapping("create")
-    public String create(UserVO userVO){
+    @PostMapping("createUser")
+    public String createUser(UserVO userVO, Model model){
         log.info("-----------------------------------------");
-        log.info("create: " + userVO.toString());
+        log.info("createUser: " + userVO.toString());
         log.info("-----------------------------------------");
 
-        userService.join(userVO);
-        return "user/join";
+       model.addAttribute("userVO", userVO);
+        return "user/joinConfirm";
     }
 
-    /* 회원가입- 사장님 */
-    @GetMapping("joinCEO")
-    public String joinCEO(){ return "user/joinCEO"; }
-
-    @GetMapping("joinCEO2")
-    public String joinCEO2(){ return "user/joinCEO2"; }
-
     /* 회원가입- 약관동의 */
-    @GetMapping("joinConfirm")
-    public String joinConfirm(){ return "user/joinConfirm"; }
+    @PostMapping("joinConfirm")
+    public String joinConfirm(UserVO userVO, CeoVO ceoVO){
+        log.info("-----------------------------------------");
+        log.info("joinConfirm(일반 회원): " + userVO.toString());
+        log.info("status: " + userVO.getStatus());
+        log.info("-----------------------------------------");
+            userService.join(userVO);
+        return "user/joinSuccess";
+    }
 
+    /* 회원가입 완료 */
+    @GetMapping("joinSuccess")
+    public String joinSuccess(){ return "user/joinSuccess";}
 }

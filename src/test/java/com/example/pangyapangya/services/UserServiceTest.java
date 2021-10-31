@@ -36,6 +36,26 @@ public class UserServiceTest {
     }
 
     @Test
+    @DisplayName("joinEncoderTest")
+    public void joinEncoderTest(){
+        // 기존 비밀번호
+        String originalPw = "12345";
+        // 암호화된 비밀번호를 반환
+        String encodePassword = passwordEncoder.encode(originalPw);
+        UserVO userVO = new UserVO();
+        userVO.setUserId("nang000");
+        userVO.setUserPw(encodePassword);
+        userVO.setUserName("권나영");
+        userVO.setUserPhoneNum("01099991212");
+        userVO.setUserZipcode("16332");
+        userVO.setUserAddress("경기 수원시 장안구 천천로22번길 34");
+        userVO.setUserAddress_detail(" (정자동, 백설마을 삼환 나우빌 아파트)");
+        userService.join(userVO);
+        log.info("암호화된 비밀번호로 DB저장 성공");
+        log.info(userVO.toString());
+    }
+
+    @Test
     public void checkIdTest(){
         if(userService.checkId("yejin33333")){
             log.info("-----------아이디 중복-----------");

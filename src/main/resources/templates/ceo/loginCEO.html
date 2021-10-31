@@ -56,10 +56,10 @@
 		<form action="/main/mainPage" method="post" id="loginForm" name="loginForm">
 			<div class="box">
 				<li style="border-right: 1px solid #dcdcdc">
-					<h4><a href="/user/login"><strong style="color: #F9A825; border-bottom: 1px solid">일반회원</strong></a></h4>
+					<h4><a href="/user/login"><strong>일반회원</strong></a></h4>
 				</li>
 				<li>
-					<h4><a href="/ceo/loginCEO"><strong>사장님</strong></a></h4>
+					<h4><a href="/ceo/loginCEO"><strong style="color: #F9A825; border-bottom: 1px solid">사장님</strong></a></h4>
 				</li>
 			</div>
 			<div class="box_login login_email" style="grid-template-rows: 130px auto 170px;">
@@ -80,14 +80,12 @@
 						<li><input type="button" class="button primary fit" id="loginButton" value="로그인 하기" style="margin-top: 3em;"/></li>
 					</ul>
 					<div class="box_btn">
-						<a style="padding-left: 0px;" class="btn" href="/user/idFind">아이디 찾기</a>
-						<a class="btn" href="/user/pwFind">비밀번호 찾기</a>
-						<a class="btn" href="/user/join">회원가입</a>
+						<a style="padding-left: 0px;" class="btn" href="/ceo/idFindCEO">아이디 찾기</a>
+						<a class="btn" href="/ceo/pwFindCEO">비밀번호 찾기</a>
+						<a class="btn" href="/ceo/joinCEO">회원가입</a>
 					</div>
 				</div>
-
 			</div>
-			<input type="hidden" name="redirectUrl" id="redirectUrl" value="https://taling.me/">
 		</form>
 	</section>
 <!-- Footer -->
