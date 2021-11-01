@@ -3,7 +3,7 @@
 
 <html>
 <head>
-	<title>회원가입-약관동의 | 빵야빵야(屋)</title>
+	<title>회원가입 | 빵야빵야(屋)</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<meta name="description" content="" />
@@ -123,7 +123,7 @@
 	// 필수 약관 체크 했을 경우에만 회원가입 완료
 	$("#nextButton").on("click",function () {
 		if($("#termsService").prop("checked") && $("#termsPrivacy").prop("checked")){
-			location.href= "/user/login";
+			location.href= "/main/login";
 			return;
 		}else {
 			alert("*필수 약관에 동의 해 주세요.")
