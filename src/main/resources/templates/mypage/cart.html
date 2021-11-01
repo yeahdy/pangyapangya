@@ -209,15 +209,17 @@
             <header>
                 <h1 id="title">장바구니</h1>
             </header>
+            <th:block th:each="cart : ${cartList}">
+            <table border="1" class="bakery1" th:object="${cart}">
+                <tbody>
 
-            <table border="1" class="bakery1">
-                <tbody><tr>
-                    <th class="bakeryName">빵집 이름</th>
+                <tr>
+                    <th class="bakeryName" th:text="*{breadName}"></th>
                 </tr>
                 <tr>
                     <td><div class="bread_table"><img class="bread_img" src="/images/bread1.jpg" width="200px"></div>
                         <div class="breadTable_top">
-                            <span class="bread_title"><strong>9無 🌿비건통밀파운드케이크 👉6종 Half_Size</strong></span>
+                            <span class="bread_title"><strong></strong></span>
                             <br>
                             <ul>
                                 <li><span class="bread_name">파운드케이크선택 : 흑임자칙피스프레드</span></li>
@@ -241,7 +243,9 @@
                         </div>
                     </td>
                 </tr>
+
                 </tbody></table>
+            </th:block>
             <!--두번째-->
             <table border="1" class="bakery1">
                 <tbody><tr>

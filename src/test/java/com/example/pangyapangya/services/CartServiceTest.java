@@ -24,6 +24,7 @@ public class CartServiceTest {
         cart.setDeliverCharge(3000);
         cart.setBreadCnt(3);
         cart.setBreadImg("이미지1");
+        cart.setCeoId("A");
         cartService.addCart(cart);
     }
 

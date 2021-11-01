@@ -12,7 +12,7 @@
             <th>빵 이름</th>
             <th>빵 개수</th>
         </tr>
-        <tr th:object="${cart}">
+        <tr th:object="${cartList}">
             <td th:text="*{cartNum}"></td>
             <td th:text="*{breadName}"></td>
             <td th:text="*{breadCnt}"></td>
