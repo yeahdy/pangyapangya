@@ -292,6 +292,7 @@
                     </article>
                 </th:block>
             </section>
+            <!-- 관측 대상 -->
             <p id="sentinel"></p>
         </section>
     </section>
@@ -309,12 +310,17 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
+<!-- 새로고침시, 스크롤 초기화 -->
 <script>history.scrollRestoration = "manual"</script>
 </body>
 <script th:inline="javascript">
+    /* DB에 들어있는 아이템 총 갯수 */
     const total = [[ ${total} ]];
+    /* 현재 페이지에 있는 아이템 갯수 */
     let temp = document.querySelectorAll("#testList article").length;
+    /* 스크롤이 됐을때, APPEND해줄 DOM */
     let sectionDom = $("#testList");
+    /* AJAX 실행중 판단 */
     let loading = false;
 
     // IntersectionObeserver 부분
@@ -324,40 +330,26 @@
         threshold: 0
     }
 
-    // IntersectionObserver 갱신 함수
-    function observeLastChild(intersectionObserver) {
-        const listChildren = document.querySelectorAll("#testList article");
-        console.log("옵저빙 실행됨");
-        listChildren.forEach(el => {
-/*            if(!el.nextSibling && total > temp){
-                intersectionObserver.observe(el);
-            }*/
-            if (!el.nextElementSibling && total > temp) {
-                // el에 대하여 관측 시작
-                intersectionObserver.observe(el);
-            }
-            else if (temp >= total) {
-                intersectionObserver.disconnect();
-            }
-
-        })
-    }
-
     // IntersectionObserver 인스턴스 생성
     const io = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-            // entry.isIntersecting: 특정 요소가 뷰포트와 50%(threshold 0.5) 교차되었으면
-            //entry가 interscting 중이 아니라면 함수를 실행하지 않습니다.
+            // AJAX가 실행중이면 함수 실행 안함
             if (loading) {return;}
+            // entry가 interscting 중이 아니라면 함수 실행안함
             else if (!entry.isIntersecting){return;}
+            // sentinel에 대하여 관측 시작
             observer.observe(document.getElementById('sentinel'))
-            console.log("entry.isIntersecting")
+            // 데이터 추가 실행 함수
             getAddData(temp);
+            // 아이템 갯수 20증가
             temp+=20;
+
+            // 검색된 아이템이 DB에 있는 아이템 수 보다 많거나 적으면 관측종료
+            if(temp>= total){
+                io.unobserve(document.getElementById('sentinel'));
+            }
         })
     }, observerOption)
-
-    io.observe(document.getElementById('sentinel'))
 
     // 데이터 ajax로 가져오기
     function getAddData(temp, callback, error) {
@@ -366,20 +358,18 @@
             method: "GET",
             dataType: "json",
             success: function (result, status, xhr) {
-                console.log("데이터 리스트 크기 : "+result.length);
-                console.log("ajax 들어옴");
                 let str="";
                 for(let i=0;i<result.length;i++){
-                        str += "<article>" +
-                            "<a href='#' class='image fit'>" +
-                            "<img src="+result[i].testingPhoto+" alt=''>" +
-                            "</a>" +
-                            "<h5>"+ result[i].shopName+"</h5>" +
-                            "<p>"+ result[i].title +"</p>" +
-                            "</article>";
+                    str += "<article>" +
+                        "<a href='#' class='image fit'>" +
+                        "<img src="+result[i].testingPhoto+" alt=''>" +
+                        "</a>" +
+                        "<h5>"+ result[i].shopName+"</h5>" +
+                        "<p>"+ result[i].title +"</p>" +
+                        "</article>";
                 }
+                // DOM에 DB에서 가져온 아이템 추가
                 sectionDom.append(str);
-                console.log("ajax 끝!")
             },
             error: function (xhr, status, err) {
                 if(error){
@@ -404,5 +394,8 @@
             }
         });
     }
+
+    // sentinel에 대하여 관측 시작
+    io.observe(document.getElementById('sentinel'));
 </script>
 </html>
