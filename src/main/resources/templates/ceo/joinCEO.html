@@ -195,7 +195,6 @@
 		if(cnfCheck && idCheck){
 			joinCEOform.submit();
 			$('#authNumber').val("");
-			location.href= '/ceo/joinCEO2';
 		}else if(!idCheck){
 			$("#userId").focus();
 		}else if(!cnfCheck){
@@ -207,7 +206,7 @@
 	$("#userId").focusout(function (){
 		let userId= $("#userId").val();
 		$.ajax({
-			url: '/user/idCheck/' + userId,
+			url: '/user/idCheckCEO/' + userId,
 			type: 'get',
 			dataType: 'text',
 			success: function (check) {

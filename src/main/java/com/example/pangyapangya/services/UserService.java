@@ -58,6 +58,7 @@ public class UserService {
             }
         }else {
             // 해당 아이디가 없을 경우
+            System.out.println("해당 아이디 존재하지 않음.");
             return false;
         }
     }

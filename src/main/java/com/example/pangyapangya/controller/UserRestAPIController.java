@@ -1,6 +1,7 @@
 package com.example.pangyapangya.controller;
 
 import com.example.pangyapangya.beans.vo.UserVO;
+import com.example.pangyapangya.services.CEOService;
 import com.example.pangyapangya.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,11 +31,19 @@ import java.io.UnsupportedEncodingException;
 @RequiredArgsConstructor
 public class UserRestAPIController {
     private final UserService userService;
+    private final CEOService ceoService;
 
-    /* 아이디 중복검사 */
+    /* 아이디 중복검사(일반회원) */
     @GetMapping("/idCheck/{userId}")
     public String checkId(@PathVariable String userId){
         boolean check= userService.checkId(userId);
+        return check + "";
+    }
+
+    /* 아이디 중복검사(일반회원) */
+    @GetMapping("/idCheckCEO/{userId}")
+    public String checkIdCEO(@PathVariable String userId){
+        boolean check= ceoService.checkIdCEO(userId);
         return check + "";
     }
 

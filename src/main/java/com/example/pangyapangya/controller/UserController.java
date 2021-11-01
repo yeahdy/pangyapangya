@@ -70,7 +70,6 @@ public class UserController {
     public String joinConfirm(UserVO userVO, CeoVO ceoVO){
         log.info("-----------------------------------------");
         log.info("joinConfirm(일반 회원): " + userVO.toString());
-        log.info("status: " + userVO.getStatus());
         log.info("-----------------------------------------");
             userService.join(userVO);
         return "user/joinSuccess";
