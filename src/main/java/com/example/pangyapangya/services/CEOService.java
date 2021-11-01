@@ -14,16 +14,26 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CEOService {
     private final CEODAO ceoDAO;
-
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     // 아이디 중복검사
     public boolean checkIdCEO (String ceoId){
         return ceoDAO.checkIdCEO(ceoId);
     }
 
-    // 회원가입
-    public void joinCEO (CeoVO ceoVO){ ceoDAO.joinCEO(ceoVO); }
+    // 회원가입 + 비밀번호 암호화
+    public void joinCEO (CeoVO ceoVO){
+        if(ceoVO != null){
+            // 비밀번호 암호화
+            System.out.println("사용자 비밀번호: " + ceoVO.getCeoPw());
+            String encodedPw = passwordEncoder.encode(ceoVO.getCeoPw());
+            System.out.println("암호화된 비밀번호: " + encodedPw);
+
+            // 암호화된 비밀번호로 저장
+            ceoVO.setCeoPw(encodedPw);
+            ceoDAO.joinCEO(ceoVO);
+        }
+    }
 
     // 로그인
     public boolean loginCEO (CeoVO ceoVO){ return ceoDAO.loginCEO(ceoVO); }

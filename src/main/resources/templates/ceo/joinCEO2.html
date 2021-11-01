@@ -31,7 +31,7 @@
 <!-- Wrapper -->
 <!-- Main -->
 <section class="cont_login container">
-	<form action="#" method="post" id="joinCEO2Form">
+	<form action="/ceo/createCEO2" method="post" id="joinCEO2Form">
 		<div class="box_login login_email" style="height: 850px">
 			<h2 class="tit">빵야빵야(屋) 사장님의<br><strong style="color: #F9A825">가게 정보를</strong><br>입력 해주세요.</h2>
 			<div class="box_inp">
@@ -63,6 +63,10 @@
 				<ul class="actions fit" style="margin-bottom: 3em;">
 					<li><input type="button" id="nextButton" class="button primary fit" value="다음" style="margin-top: 1em;"/></li>
 				</ul>
+				<!-- joinCEO1에서 보낸 회원정보 -->
+				<div style="display: none" th:if="${not #maps.isEmpty(ceoVO_1)}">
+					<input type="hidden" th:each="key, status : ${ceoVO_1.keySet()}" th:name="${key}" th:value="${ceoVO_1.get(key)}" />
+				</div>
 			</div>
 		</div>
 	</form>
@@ -134,7 +138,6 @@
 		}
 
 		joinCEO2Form.submit();
-		location.href= '/ceo/joinConfirmCEO';
 	})
 
 
