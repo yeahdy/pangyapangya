@@ -1,0 +1,89 @@
+package com.example.pangyapangya.controller;
+
+import com.example.pangyapangya.beans.vo.CeoVO;
+import com.example.pangyapangya.services.CEOService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+/*
+    [ Task ]		    [ URL ]			    [ Method ]		[ Parameter ]			    [ Form ]	[ URL이동 ]
+    메인 페이지	        /main/mainPage		GET		        ???				            없음	    없음
+    로그인		        /user/login		    POST		    userId, Pw, status		    있음	    이동
+    아이디 찾기	        /user/idFind		POST		    user/ceoPhoneNum			있음	    이동
+    아이디 찾기 완료	/user/idFindSuccess	POST		    user/ceoId, user/ceoName	없음	    없음
+    비밀번호 찾기	    /user/pwFind		POST		    user/ceoId, user/ceoPhoneNum있음	    이동
+    비밀번호 찾기 완료	/user/idFindSuccess	POST		    user/ceoPw			        없음        없음
+    회원가입- 일반회원	/user/join		    POST		    userVO				        있음      	이동
+    회원가입- 사장님	/user/joinCEO		POST		    ceoVO	정보 반반씩 처리?	있음	    이동
+    회원가입- 사장님	/user/joinCEO2		POST		    ceoVO				        있음      	이동
+    회원가입- 약관동의	/user/joinConfirm	X		        X				            없음      	없음
+*/
+@Controller
+@Slf4j
+@RequestMapping("/ceo/*")
+@RequiredArgsConstructor
+public class CEOController {
+    private final CEOService ceoService;
+
+    /* 로그인 */
+    @GetMapping("loginCEO")
+    public String loginCEO(){ return "ceo/loginCEO"; }
+
+    /* 아이디 찾기 */
+    @GetMapping("idFindCEO")
+    public String idFindCEO(){ return "ceo/idFindCEO"; }
+
+    /* 아이디 찾기 완료 */
+    @GetMapping("idFindSuccessCEO")
+    public String idFindSuccessCEO(){ return "ceo/idFindSuccessCEO"; }
+
+    /* 비밀번호 찾기 */
+    @GetMapping("pwFindCEO")
+    public String pwFindCEO(){ return "ceo/pwFindCEO"; }
+
+    /* 비밀번호 찾기 완료 */
+    @GetMapping("pwFindSuccessCEO")
+    public String pwFindSuccessCEO(){ return "ceo/pwFindSuccessCEO"; }
+
+
+    /* 회원가입- 사장님 */
+    @GetMapping("joinCEO")
+    public String joinCEO(){ return "ceo/joinCEO"; }
+
+    @PostMapping("createCEO")
+    public String createCEO(CeoVO ceoVO, Model model){
+        log.info("-----------------------------------------");
+        log.info("createCEO: " +ceoVO.toString());
+        log.info("-----------------------------------------");
+        model.addAttribute("ceoId", ceoVO.getCeoId());
+        model.addAttribute("ceoPw", ceoVO.getCeoPw());
+        model.addAttribute("ceoName", ceoVO.getCeoName());
+        model.addAttribute("phoneNum", ceoVO.getPhoneNum());
+        return "ceo/joinCEO2";
+    }
+
+    @GetMapping("joinCEO2")
+    public String joinCEO2(CeoVO ceoVO, Model model){
+        log.info("-----------------------------------------");
+        log.info("createCEO: " +ceoVO.toString());
+        log.info("-----------------------------------------");
+        model.addAttribute("ceoVO", ceoVO);
+        return "ceo/joinCEO2";
+    }
+
+    /* 회원가입- 약관동의 */
+    @PostMapping("joinConfirmCEO")
+    public String joinConfirmCEO(CeoVO ceoVO){
+        log.info("-----------------------------------------");
+        log.info("joinConfirmCEO(사장님): " + ceoVO.toString());
+        log.info("status: " + ceoVO.getStatus());
+        log.info("-----------------------------------------");
+        ceoService.joinCEO(ceoVO);
+        return "user/joinSuccess";
+    }
+}
