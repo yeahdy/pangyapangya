@@ -15,6 +15,6 @@ public interface BakeryService {
     public boolean remove(Long bno);
     public List<BakeryVO> getList(Criteria criteria);
     public int getTotal(Criteria criteria);
-    public List<BakeryFileVO> getAttachList(Long bno);
+//    public List<BakeryFileVO> getAttachList(Long bno);
 
 }

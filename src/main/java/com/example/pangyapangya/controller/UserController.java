@@ -1,13 +1,14 @@
 package com.example.pangyapangya.controller;
 
+import com.example.pangyapangya.beans.vo.CeoVO;
 import com.example.pangyapangya.beans.vo.UserVO;
 import com.example.pangyapangya.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Random;
 
 /*
     [ Task ]		    [ URL ]			    [ Method ]		[ Parameter ]			    [ Form ]	[ URL이동 ]
@@ -33,7 +34,6 @@ public class UserController {
     @GetMapping("login")
     public String login(){ return "user/login"; }
 
-
     /* 아이디 찾기 */
     @GetMapping("idFind")
     public String idFind(){ return "user/idFind"; }
@@ -50,22 +50,33 @@ public class UserController {
     @GetMapping("pwFindSuccess")
     public String pwFindSuccess(){ return "user/pwFindSuccess"; }
 
-    /* 회원가입- 일반회원 */
+    /* 회원가입 */
     @GetMapping("join")
-    public String join(UserVO userVO){
-        userService.join(userVO);
-        return "user/join";
+    public String join(){ return "user/join";}
+
+    /* 회원가입 */
+    @PostMapping("createUser")
+    public String createUser(UserVO userVO, Model model){
+        log.info("-----------------------------------------");
+        log.info("createUser: " + userVO.toString());
+        log.info("-----------------------------------------");
+
+       model.addAttribute("userVO", userVO);
+        return "user/joinConfirm";
     }
 
-    /* 회원가입- 사장님 */
-    @GetMapping("joinCEO")
-    public String joinCEO(){ return "user/joinCEO"; }
-
-    @GetMapping("joinCEO2")
-    public String joinCEO2(){ return "user/joinCEO2"; }
-
     /* 회원가입- 약관동의 */
-    @GetMapping("joinConfirm")
-    public String joinConfirm(){ return "user/joinConfirm"; }
+    @PostMapping("joinConfirm")
+    public String joinConfirm(UserVO userVO, CeoVO ceoVO){
+        log.info("-----------------------------------------");
+        log.info("joinConfirm(일반 회원): " + userVO.toString());
+        log.info("status: " + userVO.getStatus());
+        log.info("-----------------------------------------");
+            userService.join(userVO);
+        return "user/joinSuccess";
+    }
 
+    /* 회원가입 완료 */
+    @GetMapping("joinSuccess")
+    public String joinSuccess(){ return "user/joinSuccess";}
 }
