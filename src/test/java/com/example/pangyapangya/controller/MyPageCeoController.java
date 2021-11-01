@@ -2,7 +2,7 @@ package com.example.pangyapangya.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,7 +28,7 @@ public class MyPageCeoController {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
-    @Test
+  /*  @Test
     public void testBakery() throws Exception {
         String bno = mockMvc.perform(
                 MockMvcRequestBuilders.post("/myPageCeo/bakeryRe")
@@ -45,5 +45,5 @@ public class MyPageCeoController {
 
         log.info(bno);
     }
-
+*/
 }

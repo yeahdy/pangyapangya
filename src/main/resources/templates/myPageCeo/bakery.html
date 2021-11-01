@@ -151,7 +151,7 @@
 									<p>자신의 매장에 있는 제품들을 홍보하고 판매해보세요!</p>
 								</div>
 
-								<form method="post" action="/myPageCeo/bakeryRe" id="registForm">
+								<form method="post" action="/myPageCeo/bakery" id="registForm">
 									<!--전체-->
 									<div id="contentDiv">
 										<!--사진부분-->
@@ -166,7 +166,7 @@
 														<img id="board_file1Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
 													</label>
 												</div>
-												<input id="board_file1" name="board_file1" type="file" multiple>
+												<input id="board_file1" name="bakery_photo1" type="file" multiple>
 
 											</div>
 											<!--사진6개-->
@@ -242,12 +242,16 @@
 
 											<div class="table-1">
 												<div class="table-title">작성자</div>
-												<div class="table-content"><input type="text" name="ceoName" /></div>
+												<div class="table-content">
+													<input type="text" name="ceoName" />
+													<input type="hidden" name="ceoId" value="wnsrbod"/>
+												</div>
+
 											</div>
 
 											<div class="table-1">
 												<div class="table-title">업체명</div>
-												<div class="table-content"><input type="text" name="shopName" /></div>
+												<div class="table-content"><input type="text" name="bakeryName"/></div>
 											</div>
 
 											<div class="table-1">
