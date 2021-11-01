@@ -116,14 +116,14 @@
 									<div id="allDiv">
 										<div class="myPageSelect1"><p>글 등록하기</p></div>
 										<div class="contentDiv">
-											<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakery" style="text-decoration: underline; color: chocolate;">빵집 소개</a></p></div>
+											<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakery" >빵집 소개</a></p></div>
 											<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDay">원데이 클래스</a></a></p></div>
 											<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/exp">빵 체험단</a></a></p></div>
 										</div>
 
 										<div class="myPageSelect1"><p>내 글 보기</p></div>
 										<div class="contentDiv">
-											<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakeryRe">빵집 리뷰</a></p></div>
+											<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakeryRe" style="text-decoration: underline; color: chocolate;">빵집 리뷰</a></p></div>
 											<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDayRe">원데이 클래스</a></a></p></div>
 											<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/expRe">빵 체험단</a></a></p></div>
 										</div>
@@ -153,7 +153,7 @@
 
 								<form method="post" action="/myPageCeo/bakeryRe" id="registForm">
 									<!--전체-->
-									<div id="contentDiv">
+									<div id="contentDiv" >
 										<!--사진부분-->
 										<div id="title1">
 											<p>빵 이미지 등록</p>
@@ -237,22 +237,22 @@
 											<hr>
 											<div class="table-1" style="margin-bottom: 10px;">
 												<div class="table-title">제목</div>
-												<div class="table-content"><input type="text" name="title" placeholder="제목 입력"></div>
+												<div class="table-content"><input type="text" name="title" th:field="${bakery.title}" placeholder="제목 입력"></div>
 											</div>
 
 											<div class="table-1">
 												<div class="table-title">작성자</div>
-												<div class="table-content"><input type="text" name="ceoName" th:field="*{ceoName}" readonly/></div>
+												<div class="table-content"><input type="text" name="ceoName" th:field="${ceo.ceoName}"  readonly/></div>
 											</div>
 
 											<div class="table-1">
 												<div class="table-title">업체명</div>
-												<div class="table-content"><input type="text" name="shopName" th:field="*{shopName}" readonly/></div>
+												<div class="table-content"><input type="text" name="shopName" th:field="${ceo.shopName}"  readonly/></div>
 											</div>
 
 											<div class="table-1">
 												<div class="table-title">전화번호</div>
-												<div class="table-content"><input type="text" name="shopCallNum" th:field="*{shopCallNum}" readonly/></div>
+												<div class="table-content"><input type="text" name="shopCallNumber" th:field="${ceo.shopCallNumber}"  readonly/></div>
 											</div>
 
 
@@ -264,7 +264,7 @@
 
 											<div class="table-1">
 												<div class="table-title">상세 정보</div>
-												<div class="table-content"><textarea name="content" cols="30" rows="8" maxlength="50" placeholder="상세 정보를 입력하세요." style="resize: none;"></textarea></div>
+												<div class="table-content"><textarea name="content" cols="30" rows="8" maxlength="50" placeholder="상세 정보를 입력하세요." style="resize: none;" th:text="${bakery.content}"></textarea></div>
 											</div>
 
 										</div><!--밑에 상세정보 입력Div-->
@@ -374,7 +374,6 @@
 											<div class="table-1" style="margin-bottom: 10px; display: none;" id="breadDiv4">
 
 												<div class="table-title"></div>
-
 												<div style="width: 75%;">
 													<div class="table-content" style="display: flex; width: 100%;">
 
