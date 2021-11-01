@@ -232,7 +232,7 @@
 
 										<!--밑에 상세정보 입력Div-->
 
-										<div id="subDiv2" >
+										<div id="subDiv2" th:object="${ceo}">
 											<p id="title2">필수 정보 입력 <sub> 등록에 필요한 기본 정보입니다. 모두 입력해주세요.</sub></p>
 											<hr>
 											<div class="table-1" style="margin-bottom: 10px;">
@@ -242,17 +242,17 @@
 
 											<div class="table-1">
 												<div class="table-title">작성자</div>
-												<div class="table-content"><input type="text" name="ceoName" /></div>
+												<div class="table-content"><input type="text" name="ceoName" th:field="*{ceoName}" readonly/></div>
 											</div>
 
 											<div class="table-1">
 												<div class="table-title">업체명</div>
-												<div class="table-content"><input type="text" name="shopName" /></div>
+												<div class="table-content"><input type="text" name="shopName" th:field="*{shopName}" readonly/></div>
 											</div>
 
 											<div class="table-1">
 												<div class="table-title">전화번호</div>
-												<div class="table-content"><input type="text" name="shopCallNum"/></div>
+												<div class="table-content"><input type="text" name="shopCallNum" th:field="*{shopCallNum}" readonly/></div>
 											</div>
 
 
