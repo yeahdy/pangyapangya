@@ -35,11 +35,13 @@ public class CartControllerTest {
     @Test
     public void testAddCart() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/mypage/addCart")
-                .param("breadName", "빵33")
-                .param("userId","hds1234")
+                .param("breadName", "빵5")
+                .param("userId","kjy1234")
+                .param("PriceOfBread","8500")
                 .param("deliverCharge", "3000")
-                .param("breadCnt","4")
-                .param("breadImg", "bread1.jpg")
+                .param("breadCnt","1")
+                .param("breadImg", "bread2.jpg")
+                .param("ceoId","A")
         ).andReturn();
 
     }

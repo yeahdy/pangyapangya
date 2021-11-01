@@ -12,4 +12,5 @@ public class CartVO {
     private int deliverCharge;
     private int breadCnt;
     private String breadImg;
+    private String ceoId;
 }

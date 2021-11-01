@@ -21,6 +21,7 @@ public class CartDAO_test {
         cart.setDeliverCharge(3000);
         cart.setBreadCnt(3);
         cart.setBreadImg("이미지1");
+        cart.setCeoId("A");
         cartDAO.addCart(cart); 
     }
 

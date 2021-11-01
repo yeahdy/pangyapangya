@@ -22,7 +22,7 @@ public class CartMapperTest {
     /*사용자 개인 장바구니*/
     @Test
     public void testGetCartList() {
-        mapper.getCartList("kjy1234").forEach(cart -> log.info(cart.toString()));
+        mapper.getCartList("hds1234").forEach(cart -> log.info(cart.toString()));
     }
 
 /*    @Test
@@ -47,6 +47,7 @@ public class CartMapperTest {
         cart.setBreadCnt(1);
         cart.setDeliverCharge(3000);
         cart.setPriceOfBread(13000);
+        cart.setCeoId("A");
         mapper.insertSelect_cartNum(cart);
     }
 
