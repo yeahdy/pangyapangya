@@ -7,8 +7,9 @@ import java.util.List;
 
 @Mapper
 public interface CartMapper {
-    //장바구니 목록 가져오기
-    public List<CartVO> getList();
+    //장바구니 목록 가져오기 - 필요 x
+    /*public List<CartVO> getList();*/
+
     //장바구니 목록 가져오기
     public List<CartVO> getCartList(String userId);
     //장바구니 추가하기

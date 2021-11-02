@@ -1,6 +1,7 @@
 package com.example.pangyapangya.beans.dao;
 
 import com.example.pangyapangya.beans.vo.CartVO;
+import com.example.pangyapangya.beans.vo.Cart_shopName_VO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

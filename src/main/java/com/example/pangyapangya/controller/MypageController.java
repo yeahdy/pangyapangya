@@ -3,6 +3,7 @@ package com.example.pangyapangya.controller;
 import com.example.pangyapangya.beans.dao.CartDAO;
 import com.example.pangyapangya.beans.vo.CartVO;
 import com.example.pangyapangya.services.CartService;
+import com.example.pangyapangya.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -23,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/mypage/*")
 @RequiredArgsConstructor
 public class MypageController {
-
+    private final UserService userService;
 
     //mypage_user
 
@@ -36,8 +37,12 @@ public class MypageController {
     public String oneDayClass_review(){ return "mypage/oneDayClass_review"; }
     @GetMapping("testing_review")
     public String testing_review(){ return "mypage/testing_review"; }
+
     @GetMapping("modifyMyInfo")
-    public String modifyMyInfo(){ return "mypage/modifyMyInfo"; }
+    public String modifyMyInfo(String userId, Model model){
+        model.addAttribute("userInfo",userService.userInfo("kjy1234"));
+        return "mypage/modifyMyInfo";
+    }
     /*@GetMapping("checkPassword")
     public String checkPassword(){ return "mypage/checkPassword"; }*/
     @GetMapping("breadOrderList")

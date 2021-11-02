@@ -1,6 +1,7 @@
 package com.example.pangyapangya.controller;
 
 import com.example.pangyapangya.beans.vo.CartVO;
+import com.example.pangyapangya.beans.vo.Cart_shopName_VO;
 import com.example.pangyapangya.services.CartService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,16 +18,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/mypage/*")
 @RequiredArgsConstructor
 public class CartController {
+
     private final CartService cartService;
     @GetMapping("cart")
     public String cart(){ return "mypage/cart"; }
     //cart
+
+
     @GetMapping("cartList")
     public String cartList(Model model){
         log.info("-------------------------------------");
         log.info("cartList");
         log.info("-------------------------------------");
-        model.addAttribute("cartList", cartService.getCart("kjy1234"));
+        model.addAttribute("cartList", cartService.getCartList("kjy1234"));
         return "mypage/cart"; }
 
     @GetMapping("addCart")
@@ -39,15 +43,15 @@ public class CartController {
         return "mypage/cart";
     }
 
-    @GetMapping("getCart")
-    public String getCart(@RequestParam("userId")String userId, Model model){
+   /* @GetMapping("getCart")
+    public String getCart(String userId, Model model){
         log.info("-------------------------------------");
         log.info(userId+ "님의 장바구니" );
         log.info("-------------------------------------");
 
         model.addAttribute("cart", cartService.getCart(userId));
         return "mypage/cart";
-    }
+    }*/
 
     @GetMapping("deleteCart")
     public String deleteCart(@RequestParam("cartNum") Long cartNum, RedirectAttributes rttr){
