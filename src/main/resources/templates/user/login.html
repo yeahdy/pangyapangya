@@ -86,8 +86,8 @@
 						<a class="btn" href="/user/join">회원가입</a>
 					</div>
 					<!-- 로그인 상태 -->
-					<div th:if="${not #strings.isEmpty(check)}">
-						<input type="hidden" id="chklogin1" th:value="${check}">
+					<div  th:if="${session.sessionC == null}">
+						<input type="hidden" id="sessionC" th:value="${session['sessionC']}" />
 					</div>
 				</div>
 
@@ -139,6 +139,10 @@
 			$("#userPwError1").hide();
 		}
 		loginForm.submit();
+
+		console.log("session: " + $("#sessionC").val());
+		if($("#sessionC").val() == null){
+		}
 	})
 </script>
 </body>
