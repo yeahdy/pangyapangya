@@ -63,4 +63,6 @@
         SELECT STATUS FROM TBL_CEO
         WHERE CEOID = #{ceoId}
     </select>
+
+    <!-- 수정 -->
 </mapper>

@@ -1,47 +1,63 @@
 package com.example.pangyapangya.services;
 
 import com.example.pangyapangya.beans.dao.UserDAO;
-import com.example.pangyapangya.beans.vo.CeoVO;
 import com.example.pangyapangya.beans.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.json.simple.JSONObject;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
-//0
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class UserService {
     private final UserDAO userDAO;
+    private final PasswordEncoder passwordEncoder;
 
     // 아이디 중복확인
     public boolean checkId(String userId){
         return userDAO.checkId(userId);
     }
 
-    // 회원가입(일반회원)
+    // 회원가입 + 비밀번호 암호화
     public void join(UserVO userVO){
-        userDAO.join(userVO);
+        if(userVO != null){
+            // 비밀번호 암호화
+            String encodedPw = passwordEncoder.encode(userVO.getUserPw());
+            System.out.println("암호화된 비밀번호: " + encodedPw);
+
+            // 암호화된 비밀번호로 저장
+            userVO.setUserPw(encodedPw);
+            userDAO.join(userVO);
+        }
     }
 
-    // 회원가입(사장님)
-    public void joinCEO(CeoVO ceoVO){
-        userDAO.joinCEO(ceoVO);
-    }
-
-    // 로그인(일반회원)
+    // 로그인 + 비밀번호 암호화 비교하기
     public boolean login (UserVO userVO){
-        return userDAO.login(userVO);
-    }
-
-    // 로그인(사장님)
-    public boolean loginCEO (CeoVO ceoVO){
-        return userDAO.loginCEO(ceoVO);
+        // 사용자가 입력한 아이디 유무 조회
+        if(userDAO.checkId(userVO.getUserId())){
+            // 저장된 사용자의 정보를 불러옴
+            UserVO userInfo = userDAO.userInfo(userVO.getUserId());
+            // 사용자가 입력한 비밀번호와 저장된 사용자의 비밀번호를 비교
+            if(!passwordEncoder.matches(userVO.getUserPw(), userInfo.getUserPw())){
+                System.out.println("비밀번호가 일치하지 않습니다.");
+                return false;
+            }else{
+                userDAO.login(userVO);
+                System.out.println("비밀번호가 일치합니다.");
+                return true;
+            }
+        }else {
+            // 해당 아이디가 없을 경우
+            System.out.println("해당 아이디 존재하지 않음.");
+            return false;
+        }
     }
 
     // 아이디찾기
@@ -49,13 +65,13 @@ public class UserService {
         return userDAO.idFind(userPhoneNum);
     }
 
-    // 비밀번호 찾기 : 아이디 조회
+    // 비밀번호 찾기 : 아이디 유무 조회
     public boolean pwFind (String userId){
         return userDAO.pwFind(userId);
     }
 
-    // 비밀번호 찾기 : 가입한 전화번호 조회
-    public String pwFind_phone (String userId) {return userDAO.pwFind_phone(userId); }
+    // 회원 정보 조회
+    public UserVO userInfo (String userId) {return  userDAO.userInfo(userId);}
 
 
     // 인증번호(전화번호, 인증번호)
@@ -80,7 +96,10 @@ public class UserService {
             System.out.println(e.getMessage());
             System.out.println(e.getCode());
         }
-
     }
+
+    //수정
+
+
 }
 
