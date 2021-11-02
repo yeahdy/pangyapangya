@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /*
@@ -32,10 +36,33 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class CEOController {
     private final CEOService ceoService;
+    private String mainView = "redirect:/main/mainPage";
 
     /* 로그인 */
     @GetMapping("loginCEO")
     public String loginCEO(){ return "ceo/loginCEO"; }
+
+    @PostMapping("loginCEO")
+    public String loginCEO(CeoVO ceoVO, HttpServletRequest req, RedirectAttributes rttr){
+        log.info("---------로그인-----------");
+        log.info("ceoId: " + ceoVO.getCeoId());
+        log.info("ceoPw: " + ceoVO.getCeoPw());
+        log.info("--------------------------");
+
+        HttpSession session = req.getSession(); // session 생성
+        if(!ceoService.loginCEO(ceoVO)) {
+            log.info("-------로그인 실패-------");
+            session.setAttribute("sessionC", null);
+            rttr.addAttribute("check", "false");
+            return "ceo/loginCEO";
+        }else{
+            log.info("-------로그인 성공-------");
+            CeoVO ceoInfo= ceoService.ceoInfo(ceoVO.getCeoId());
+            session.setAttribute("sessionC", ceoInfo.getStatus());
+            return mainView;
+        }
+    }
+
 
     /* 아이디 찾기 */
     @GetMapping("idFindCEO")
