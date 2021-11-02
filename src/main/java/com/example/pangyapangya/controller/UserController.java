@@ -61,11 +61,12 @@ public class UserController {
 
     /* 로그아웃 */
     @GetMapping("logout")
-    public void logout(HttpServletRequest req){
+    public String logout(HttpServletRequest req){
         HttpSession session = req.getSession(false);    // false: 세션이 없을 경우 null 반환. 기본값 true
         if(session != null){
             session.invalidate();   //세션 삭제
         }
+        return mainView;
     }
 
     /* 아이디 찾기 */

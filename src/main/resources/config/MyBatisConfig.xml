@@ -2,11 +2,10 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0/EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias type="com.example.pangyapangya.beans.vo.CartVO" alias="CartVO"/>
-        <typeAlias type="com.example.pangyapangya.beans.vo.UserVO" alias="UserVO"/>
+        <typeAlias type="com.example.pangyapangya.beans.vo.CartVO" alias="CartVO"></typeAlias>
         <typeAlias type="com.example.pangyapangya.beans.vo.BakeryVO" alias="bakeryVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.BakeryFileVO" alias="bakeryFileVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.UserVO" alias="UserVO"></typeAlias>
-        <typeAlias type="com.example.pangyapangya.beans.vo.TestingVO" alias="TestingVO"></typeAlias>
+        <typeAlias type="com.example.pangyapangya.beans.vo.CeoVO" alias="CeoVO"></typeAlias>
     </typeAliases>
 </configuration>

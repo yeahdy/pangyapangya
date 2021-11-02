@@ -25,7 +25,7 @@
 <!-- Wrapper -->
 	<!-- Main -->
 	<section class="cont_login container">
-		<form action="/user/joinConfirm" method="post" id="joinConrimForm">
+		<form action="/ceo/joinConfirmCEO" method="post" id="joinConrimForm">
 			<div class="box_login box_terms" style="height: 800px">
 				<h2 class="tit"><b style="color: #F9A825;">환영합니다!</b>원활한 서비스 이용을 위해<br>약관에 동의해주세요.</h2>
 				<ul class="terms_lst" style="list-style: none">
@@ -63,14 +63,17 @@
 				<div class="col-6 col-12-medium">
 					<ul class="actions fit" style="margin-bottom: 1em;">
 						<li><input type="button" id="nextButton" class="button primary fit" value="확인" style="margin-top: 1em;"/></li>
-						<div th:object="${userVO}" style="display: none">
-							<input type="hidden" th:field="*{userId}">
-							<input type="hidden" th:field="*{userPw}">
-							<input type="hidden" th:field="*{userName}">
-							<input type="hidden" th:field="*{userZipcode}">
-							<input type="hidden" th:field="*{userAddress}">
-							<input type="hidden" th:field="*{userAddress_detail}">
-							<input type="hidden" th:field="*{userPhoneNum}">
+						<div th:object="${ceoVO}" style="display: none">
+							<input type="hidden" th:field="*{ceoId}">
+							<input type="hidden" th:field="*{ceoPw}">
+							<input type="hidden" th:field="*{ceoName}">
+							<input type="hidden" th:field="*{shopName}">
+							<input type="hidden" th:field="*{shopCallNumber}">
+							<input type="hidden" th:field="*{shopZipcode}">
+							<input type="hidden" th:field="*{shopAddress}">
+							<input type="hidden" th:field="*{shopAddressDetail}">
+							<input type="hidden" th:field="*{phoneNum}">
+							<input type="hidden" th:field="*{shopRegNum}">
 						</div>
 					</ul>
 				</div>

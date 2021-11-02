@@ -1,12 +1,15 @@
 package com.example.pangyapangya.services;
 
 import com.example.pangyapangya.beans.dao.UserDAO;
+import com.example.pangyapangya.beans.vo.CeoVO;
 import com.example.pangyapangya.beans.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -96,10 +99,7 @@ public class UserService {
             System.out.println(e.getMessage());
             System.out.println(e.getCode());
         }
+
     }
-
-    //수정
-
-
 }
 

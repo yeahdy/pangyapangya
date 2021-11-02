@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>Error</title>
+    <title>회원가입 | 빵야빵야(屋)</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="" />
@@ -54,21 +54,35 @@
             margin: 0;
         }
 
+        /* 회원가입 완료 */
+        .box {
+            text-align: center;
+            background: white;
+            height: 600px;
+            padding: 7em;
+        }
+        .box img {
+            width: 100px;
+        }
     </style>
 </head>
-<body class="is-preload" style="padding: 10em 200px 0 200px; background: white;">
+<body class="is-preload" style="padding: 10em 200px 0 200px;">
 
 <!-- Header -->
 <header id="header" th:include="/main/header::header_body"></header>
 
     <!-- Main -->
-    <div class="inner" style="text-align: center">
-        <img src="/images/errorPage404.png" alt="에러페이지"/>
-        <h5 style="margin: 2em;color: lightslategray">We have encountered a system error while processing your request.<br>We apologize for the inconvenience. Please check URL and try again</h5>
-        <ul class="actions" style="justify-content: center">
-            <li><a class="button primary" href="/main/mainPage">홈으로 이동</a></li>
+    <div class="box">
+        <img src="/images/favicon.png" alt="식빵아이콘"/>
+        <h3 style="margin: 1em;"><strong style="color: #F9A825;">환영합니다!</strong><br>빵야빵야(屋) 회원가입이 완료 되었습니다.</h3>
+        <h5 style="margin: 2em;color: black;">따끈따끈한 빵 구경하며 빵야빵야(屋)의 다양한 컨텐츠를 누려보세요!</h5>
+        <ul class="actions" style="justify-content: center;margin: 2.5em auto;">
+            <li><a class="button primary" href="/main/mainPage">빵집 투어 시작하기</a></li>
         </ul>
     </div>
+
+<!-- Footer -->
+<footer id="footer" th:include="/main/footer::footer_body"></footer>
 
 
 <!-- Scripts -->
