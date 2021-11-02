@@ -2,58 +2,15 @@ package com.example.pangyapangya.services;
 
 import com.example.pangyapangya.beans.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootTest
 @Slf4j
 public class UserServiceTest {
     @Autowired
     private UserService userService;
-
-    // 비밀번호 암호화
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Test
-    @DisplayName("Password Encode Test")
-    public void passwordEncoderTest(){
-        // 기존 비밀번호
-        String originalPw = "123456";
-        // 암호화된 비밀번호를 반환
-        String encodePassword = passwordEncoder.encode(originalPw);
-
-        // matches()? 내부에서 평문 비밀번호와 암호화된 비밀번호가 서로 대칭되는지 true, false로 반환해줌
-        if(passwordEncoder.matches(originalPw, encodePassword)){
-            log.info("일치 합니다");
-            log.info("암호화된 코드: " + encodePassword);
-        }else{
-            log.info("불일치 합니다");
-        }
-    }
-
-    @Test
-    @DisplayName("joinEncoderTest")
-    public void joinEncoderTest(){
-        // 기존 비밀번호
-        String originalPw = "12345";
-        // 암호화된 비밀번호를 반환
-        String encodePassword = passwordEncoder.encode(originalPw);
-        UserVO userVO = new UserVO();
-        userVO.setUserId("nang000");
-        userVO.setUserPw(encodePassword);
-        userVO.setUserName("권나영");
-        userVO.setUserPhoneNum("01099991212");
-        userVO.setUserZipcode("16332");
-        userVO.setUserAddress("경기 수원시 장안구 천천로22번길 34");
-        userVO.setUserAddress_detail(" (정자동, 백설마을 삼환 나우빌 아파트)");
-        userService.join(userVO);
-        log.info("암호화된 비밀번호로 DB저장 성공");
-        log.info(userVO.toString());
-    }
 
     @Test
     public void checkIdTest(){
@@ -93,16 +50,16 @@ public class UserServiceTest {
     public void pwFindTest(){
         if(userService.pwFind("yejin")){
             log.info("-----------아이디 존재 O----------");
-            UserVO userVO = userService.userInfo("yeahdy123");
-            log.info( "가입한 전화번호: " + userVO.getUserPhoneNum());
+            log.info( "가입한 전화번호: " + userService.pwFind_phone("yejin").toString());
         }else{
             log.info("-----------아이디 존재 x----------");
         }
     }
 
+    // 아이디가 존재하면 휴대폰번호 조회하기
     @Test
-    public void userInfoTest(){
-        UserVO userVO = userService.userInfo("yeahdy123");
-        log.info(userVO.toString());
+    public void pwFind_phoneTest(){
+        log.info( "가입한 전화번호: " + userService.pwFind_phone("yejin").toString());
     }
+
 }

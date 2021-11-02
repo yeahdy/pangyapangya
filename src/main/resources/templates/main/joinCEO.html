@@ -1,0 +1,367 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+	<title>회원가입(사장님) | 빵야빵야(屋)</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="/css/main.css" />
+	<link rel="stylesheet" href="/css/login.css" />
+	<style th:replace="/main/header::header_style"></style>
+	<style>
+		.form_title{
+			margin: 0px 0px 5px 0;
+			text-align: left;
+			font-weight: 500;
+			line-height: 20px;
+		}
+
+		/* 회원가입 구분 */
+		.box {
+			display: flex;
+			justify-content: center;
+			width: 460px;
+			margin: 0 auto;
+			cursor: pointer;
+			padding: 1em;
+		}
+
+		.box li {
+			width: 50%;
+			cursor: pointer;
+			list-style: none;
+			float: left;
+		}
+
+		.box h4{
+			margin-bottom: 0em;
+		}
+
+		.box a {
+			font-size: 18px;
+		}
+
+	</style>
+</head>
+<body class="is-preload" style="padding: 5em 200px 0 200px;background-color: white;">
+
+<!-- Header -->
+<header id="header" th:replace="/main/header::header_body">
+
+</header>
+
+<!-- Wrapper -->
+<!-- Main -->
+<section class="cont_login container">
+	<form action="#" method="post" id="joinCEOform">
+		<div class="box">
+			<li style="border-right: 1px solid #dcdcdc">
+				<h4><a href="/main/join"><strong>일반회원</strong></a></h4>
+			</li>
+			<li>
+				<h4><a href="/main/joinCEO"><strong style="color: #F9A825; border-bottom: 1px solid">사장님</strong></a></h4>
+			</li>
+		</div>
+		<div class="box_login login_email" style="height: 800px">
+			<h2 class="tit">간편하게 가입하고<br><strong style="color: #F9A825">빵야빵야(屋)의</strong><br> 사장님이 되어주세요!</h2>
+			<div class="box_inp">
+				<div class="line_inp">
+					<p class="form_title">아이디</p>
+					<input type="text" name="userId" id="userId" placeholder="아이디를 입력해주세요">
+					<p class="info_error" id="userIdError1">아이디를 입력해주세요.</p>
+				</div>
+				<p class="form_title">비밀번호</p>
+				<div class="line_inp line_pw">
+					<input type="password" name="userPw" id="userPw" placeholder="비밀번호를 입력해주세요">
+					<button type="button" class="type_pwd hide"></button>
+					<p class="info_error" id="userPwError1">비밀번호를 입력해주세요.</p>
+					<p class="info_error" id="userPwError2">비밀번호는 영문 숫자조합 8자리 이상 입력해주세요.</p>
+				</div>
+				<div class="line_inp line_pw">
+					<input type="password" name="confirmPw" id="confirmPw" placeholder="비밀번호 확인">
+					<button type="button" class="type_pwd hide"></button>
+					<p class="info_error" id="confirmPwError1">입력하신 비밀번호가 서로 다릅니다.</p>
+				</div>
+				<div class="line_inp">
+					<p class="form_title">이름</p>
+					<input type="text" name="userName" id="userName" placeholder="이름(실명)을 입력해주세요">
+					<p class="info_error" id="userNameError1">이름(실명)을 입력해주세요.</p>
+				</div>
+				<div class="line_inp">
+					<p class="form_title">휴대폰 번호</p>
+					<input type="tel" class="inp" name="userPhoneNum" id="userPhoneNum" placeholder="휴대폰 번호를 - 없이 입력해주세요" style="width: calc(100% - 110px);float: left;">
+					<input type="button" id="goSMS" value="SMS 전송" style="width: 100px;padding: 0px;" />
+				</div>
+				<div class="line_inp confirmDiv" style="display: none">
+					<p class="form_title">인증번호</p>
+					<input class="inp" id="authNumber" type="tel" placeholder="SMS로 수신된 인증번호 5자리를 입력해주세요" style="width: calc(100% - 110px);float: left;">
+					<input type="hidden" id="authCode"/>
+					<input type="button" id="confirmBnt" value="인증" style="width: 100px;padding: 0px;" />
+					<!-- 타이머 -->
+					<p class="count" style="margin: 0em 23em 0em 0em;color: #F9A825;"><span class="timer"></span></p>
+				</div>
+			</div>
+			<div class="col-6 col-12-medium">
+				<ul class="actions fit" style="margin-bottom: 3em;">
+					<li><input type="button" id="nextButton" class="button primary fit" value="다음" style="margin-top: 1em;"/></li>
+				</ul>
+			</div>
+		</div>
+	</form>
+</section>
+<!-- Footer -->
+<footer id="footer" th:include="/main/footer::footer_body"></footer>
+
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script th:replace="/main/header::header_js"></script>
+<script type="text/javascript">
+	let joinCEOform = $(document.joinCEOform);	//<form>
+	let cnfCheck= false;	// 인증번호 check 확인
+
+	//비밀번호 숨기기
+	$('.type_pwd').on('click',function() {
+		var $this = $(this);
+		$this.toggleClass('hide');
+		if($this.hasClass('hide')){
+			$this.prev('input').prop('type','password');
+		}else{
+			$this.prev('input').prop('type','text');
+		}
+	});
+
+
+	//공백 막기 & 비밀번호 유효성 검사
+	$('#nextButton').on("click", function () {
+		// 아이디
+		if(!$("#userId").val()){
+			$("#userId").focus();
+			$("#userIdError1").show();
+			return;
+		}else{
+			$("#userIdError1").hide();
+		}
+
+		// 비밀번호
+		if(!$('#userPw').val()){
+			$("#userPw").focus();
+			$("#userPwError1").show();
+			return;
+		}else{
+			$("#userPwError1").hide();
+		}
+
+		// 비밀번호 정규식
+		let pwCheck= /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/
+		let pw = $("#userPw").val();
+
+		if(!pwCheck.test($('#userPw').val())){
+			$("#userPw").focus();
+			$("#userPwError2").show();
+			return;
+		}else {
+			$("#userPwError2").hide();
+		}
+
+		// 비밀번호 확인
+		if(!$('#confirmPw').val()){
+			$("#confirmPw").focus();
+			$("#confirmPwError1").show();
+			return;
+		}else if($("#userPw").val() !== $("#confirmPw").val()){
+			$("#confirmPw").focus();
+			$("#confirmPwError1").show();
+			return;
+		}else{
+			$("#confirmPwError1").hide();
+		}
+
+		// 이름
+		if(!$('#userName').val()){
+			$("#userName").focus();
+			$("#userNameError1").show();
+			return;
+		}else{
+			$("#userNameError1").hide();
+		}
+
+		// 휴대폰번호, 인증번호
+		if(!$('#userPhoneNum').val()){
+			$("#userPhoneNum").focus();
+			$("#authNumber").focus();
+			return;
+		}
+
+		console.log("체크여부: "+cnfCheck);
+		if(cnfCheck){
+			joinCEOform.submit();
+			$('#authNumber').val("");
+			location.href= '/main/joinCEO2';
+		}
+	})
+
+	// 아이디 중복검사
+
+
+
+	let interval;
+	// 휴대폰 인증 버튼 클릭시 해당 태그의 값으로 사용자가 입력한 '숫자'만 가져온다
+	$(document).ready(function(){
+		$('#userPhoneNum').on('keyup', function () {
+			$(this).val($(this).val().replace(/[^0-9]/g, ""));	// 문자열에서 숫자(/[^0-9]/g)만 가져오기
+		});
+
+		// 인증번호 확인
+		$(document).on('click', '#confirmBnt', function () {
+			// 타이머의 숫자가 0초가 아닐 경우
+			if ($('.timer').text() != "00:00") {
+				// ajax for confirm validation auth number
+				let authNumber = $('#authNumber').val();	// 인증번호
+				let userPhoneNum = $('#userPhoneNum').val();	// 전화번호
+				let authCode= $("#authCode").val();	//휴대폰 인증번호
+
+				// 인증번호가 공백이 아니고 0 이상일 경우
+				if (authNumber != '' && parseInt(authNumber) > 0) {	// val()로 받으면 문자열이기 때문에 형변환
+					if(authNumber == authCode){
+						cnfCheck = true;
+						alert('휴대폰 번호 인증이 완료되었습니다. 감사합니다.');
+						clearInterval(interval);	// 타이머 종료
+						// 사용자 전화번호 저장하기
+					} else {
+						alert('인증번호가 일치하지 않습니다.');
+						cnfCheck = false;
+					}
+					// 인증번호를 입력하지 않았을 경우
+				}else{alert("인증번호를 입력 해 주세요"); cnfCheck = false;}
+			} else {
+				// 타이머 시간이 지났을 경우
+				alert('인증번호 재발송을 눌러주세요.');
+				cnfCheck = false;
+				return false;
+			}
+		});
+
+		// 인증번호 전송
+		$(document).on('click','#goSMS', function () {
+			let userPhoneNum = $('#userPhoneNum').val();	// 사용자가 입력한 전화번호
+			let authCode= $("#authCode");	//휴대폰 인증번호 담을 변수
+
+			// 사용자가 입력한 전화번호가 공백이 아니고, 8자리 이상일 경우
+			if (userPhoneNum != '' && userPhoneNum.length > 8) {
+				$.ajax({
+					url: '/main/execute',
+					method: 'get',
+					data: {'userPhoneNum': userPhoneNum},
+					success: function (response) {
+						authCode.attr('value', response);
+						console.log("input태그에 담긴 인증번호: " + authCode.val());
+
+						$('.timer').text("02:00");
+						countdown();
+						alert('인증 번호가 발송 되었습니다.');
+						// 인증번호 입력란 애니메이션
+						$(".confirmDiv").slideDown();
+						$(".login_email").css({
+							"height" : "950px"
+						});
+					},
+					error: function(response) {
+						alert('인증번호 발송에 실패하였습니다.\n잠시 후 다시 시도해주시기 바랍니다.')
+					}
+				});
+			}else{
+				alert("휴대폰 번호를 입력 해 주세요");
+			}
+		});
+	});
+
+	// 인증번호 타이머
+	function countdown() {
+		// 타이머 중지 clearInterval(종료할 함수명)
+		clearInterval(interval);
+
+		// 타이머 시작 setInterval(실행될 함수, 밀리초)
+		interval = setInterval( function() {
+			let timer = $('.timer').html();	// 2:00
+			timer = timer.split(':');	// : 를 기준으로 나눈다
+			let minutes = timer[0];	// 분
+			let seconds = timer[1];	// 초
+			seconds -= 1;	// 1초씩 감소
+
+			// 만약 분 이 0이하 라면 종료
+			if (minutes < 0) return;
+			// 초 가 0 이하고, 분 이 0이 아닐 경우 → 1분 감소, 59초 부터 시작
+			else if (seconds < 0 && minutes != 0) {
+				minutes -= 1;
+				seconds = 59;
+			}
+			// 10초 이하이고,
+			else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
+			$('.timer').html(minutes + ':' + seconds);
+			// 만약 분, 초가 0일 경우 타이머 종료
+			if (minutes == 0 && seconds == 0) clearInterval(interval);
+		}, 1000);	// 1초마다 실행
+	}
+
+
+	// 다음 주소 api
+	function execDaumPostcode() {
+		new daum.Postcode({
+			oncomplete: function(data) {
+				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+				// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+				// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+				var addr = ''; // 주소 변수
+				var extraAddr = ''; // 참고항목 변수
+
+				//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+				if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+					addr = data.roadAddress;
+				} else { // 사용자가 지번 주소를 선택했을 경우(J)
+					addr = data.jibunAddress;
+				}
+
+				// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+				if(data.userSelectedType === 'R'){
+					// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+					// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+					if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+						extraAddr += data.bname;
+					}
+					// 건물명이 있고, 공동주택일 경우 추가한다.
+					if(data.buildingName !== '' && data.apartment === 'Y'){
+						extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+					}
+					// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+					if(extraAddr !== ''){
+						extraAddr = ' (' + extraAddr + ')';
+					}
+					// 조합된 참고항목을 해당 필드에 넣는다.
+					document.getElementById("detailAddress").value = extraAddr;
+
+				} else {
+					document.getElementById("detailAddress").value = '';
+				}
+
+				// 우편번호와 주소 정보를 해당 필드에 넣는다.
+				document.getElementById('postcode').value = data.zonecode;
+				document.getElementById("address").value = addr;
+				// 커서를 상세주소 필드로 이동한다.
+				document.getElementById("detailAddress").focus();
+			}
+		}).open();
+	}
+
+</script>
+</body>
+</html>
