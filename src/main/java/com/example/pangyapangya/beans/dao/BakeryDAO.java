@@ -34,5 +34,5 @@ public class BakeryDAO {
 
     public int getTotal(Criteria criteria){ return mapper.getTotal(criteria); }
 
-    public int myTotal(String ceoId){ return mapper.myTotal(ceoId);}
+    public int myTotal(String ceoId){ return mapper.myTotal(ceoId); }
 }
