@@ -3,13 +3,12 @@
 
 <html>
 <head>
-	<title>마이페이지 | 빵집 소개(글 등록)</title>
+	<title>Untitled</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<link rel="stylesheet" href="/css/main.css" />
-	<link rel="icon" type="image/png"  href="/images/favicon.png"/>
 	<style>
 		.headerIcon{
 			width: 40px;
@@ -151,7 +150,7 @@
 									<p>자신의 매장에 있는 제품들을 홍보하고 판매해보세요!</p>
 								</div>
 
-								<form method="post" action="/myPageCeo/bakery" id="registForm">
+								<form method="post" action="/myPageCeo/bakery" enctype="multipart/form-data" id="bakeryForm">
 									<!--전체-->
 									<div id="contentDiv">
 										<!--사진부분-->
@@ -160,13 +159,13 @@
 										</div>
 										<div id="subDiv1">
 											<!--대표사진-->
-											<div class="files first-file uploadResult">
+											<div class="files first-file">
 												<div id="mainFileDiv">
 													<label for="board_file1" style="display:inline;">
 														<img id="board_file1Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
 													</label>
 												</div>
-												<input id="board_file1" name="bakery_photo1" type="file" multiple>
+												<input id="board_file1" name="board_file1" type="file">
 
 											</div>
 											<!--사진6개-->
@@ -177,7 +176,7 @@
 															<img id="board_file2Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
 														</label>
 													</div>
-													<input id="board_file2" name="board_file2" type="file" multiple>
+													<input id="board_file2" name="board_file2" type="file">
 
 												</div>
 												<div class="files sub-files">
@@ -186,7 +185,7 @@
 															<img id="board_file3Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
 														</label>
 													</div>
-													<input id="board_file3" name="board_file3" type="file" multiple>
+													<input id="board_file3" name="board_file3" type="file">
 
 												</div>
 												<div class="files sub-files">
@@ -195,7 +194,7 @@
 															<img id="board_file4Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
 														</label>
 													</div>
-													<input id="board_file4" name="board_file4" type="file" multiple>
+													<input id="board_file4" name="board_file4" type="file">
 
 												</div>
 											</div>
@@ -206,7 +205,7 @@
 															<img id="board_file5Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
 														</label>
 													</div>
-													<input id="board_file5" name="board_file5" type="file" multiple>
+													<input id="board_file5" name="board_file5" type="file">
 
 												</div>
 												<div class="files sub-files">
@@ -215,7 +214,7 @@
 															<img id="board_file6Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
 														</label>
 													</div>
-													<input id="board_file6" name="board_file6" type="file" multiple>
+													<input id="board_file6" name="board_file6" type="file">
 
 												</div>
 												<div class="files sub-files">
@@ -224,7 +223,7 @@
 															<img id="board_file7Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
 														</label>
 													</div>
-													<input id="board_file7" name="board_file7" type="file" multiple>
+													<input id="board_file7" name="board_file7" type="file">
 
 												</div>
 											</div>
@@ -232,7 +231,7 @@
 
 										<!--밑에 상세정보 입력Div-->
 
-										<div id="subDiv2" th:object="${ceo}">
+										<div id="subDiv2">
 											<p id="title2">필수 정보 입력 <sub> 등록에 필요한 기본 정보입니다. 모두 입력해주세요.</sub></p>
 											<hr>
 											<div class="table-1" style="margin-bottom: 10px;">
@@ -242,21 +241,17 @@
 
 											<div class="table-1">
 												<div class="table-title">작성자</div>
-												<div class="table-content">
-													<input type="text" name="ceoName" th:field="*{ceoName}" readonly/>
-													<input type="hidden" name="ceoId" th:field="*{ceoId}" readonly/>
-												</div>
-
+												<div class="table-content"><input type="text" name="ceoId" value="한준규" readonly/></div>
 											</div>
 
 											<div class="table-1">
 												<div class="table-title">업체명</div>
-												<div class="table-content"><input type="text" name="shopName" th:field="*{shopName}" readonly/></div>
+												<div class="table-content"><input type="text" name="shopName" value="TOUS les JOURS" readonly/></div>
 											</div>
 
 											<div class="table-1">
 												<div class="table-title">전화번호</div>
-												<div class="table-content"><input type="text" name="shopCallNum" th:field="*{shopCallNumber}" readonly/></div>
+												<div class="table-content"><input type="text" name="shopCallNum" value="010-1234-5678" readonly/></div>
 											</div>
 
 
@@ -602,7 +597,7 @@
 
 
 										<div id="registDiv">
-											<input type="submit" value="글 등록하기">
+											<input type="button" value="글 등록하기">
 										</div>
 									</div><!--전체DIv-->
 
@@ -634,135 +629,38 @@
 	<script th:replace="/main/header::header_js"></script>
 </body>
 <script th:inline="javascript">
-	let check = false;
-	function showImage(fileCallPath){
-		if(check) {return;}
-		$(".bigPictureWrapper").css("display", "flex").show();
-		$(".bigPicture").html("<img src='/upload/display?fileName=" + encodeURIComponent(fileCallPath) + "'>")
-				.animate({width:"100%", height:"100%"}, 1000);
-		check = true;
-	}
+	var index = 1;
+	$(document).ready(function() {
 
-	$(".bigPictureWrapper").on("click", function(){
-		if(!check){return;}
-		$(".bigPicture").animate({width: "0%", height: "0%"}, 1000);
-		setTimeout(function(){
-			check = false;
-			$(".bigPictureWrapper").hide();
-		}, 1000)
-	})
 
-	$(document).ready(function(){
-		let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
-		let maxSize = 5242880;// 5MB
-		let inputFile = $(".uploadDiv input");
-		let uploadResult = $(".uploadResult ul");
+		$("#insertFile").click(function() {
 
-		//form태그에 input hidden 생성 실습
-		//서버 쪽으로 전달할 첨부파일의 데이터를 input type hidden으로 추가하기
-		//추가된 li태그를 모두 가져와서 data속성을 통해 알맞는 값을 설정한다.
-		//form.append("추가할 HTML") : HTML 추가
-		//submit을 눌렀을 때 click 이벤트를 발생하고, 기존 submit이벤트는 막아줘야 한다.
-		//input태그가 모두 추가된 후 submit()해준다.
+			if(index == 1){
+				$("#div1").css("display", "block");
+				$("#div2").css("display", "block");
+				$("#div3").css("display", "block");
+				index++;
+			}else if(index == 2){
 
-		$("input[type='submit']").on("click", function(e){
-			e.preventDefault();
-			let form = $("form#registForm");
-			let str = "";
-			$(".uploadResult ul li").each(function(i, obj){
-				str += "<input type='hidden' name='attachList[" + i + "].fileName' value='" + $(obj).data('name') + "'>"
-				str += "<input type='hidden' name='attachList[" + i + "].uuid' value='" + $(obj).data('uuid') + "'>"
-				str += "<input type='hidden' name='attachList[" + i + "].uploadPath' value='" + $(obj).data('path') + "'>"
-				str += "<input type='hidden' name='attachList[" + i + "].image' value='" + $(obj).data('type') + "'>"
-			});
-			form.append(str).submit();
-		})
+				$("#div4").css("display", "block");
+				$("#div5").css("display", "block");
+				$("#div6").css("display", "block");
 
-		function showUploadFile(board_file1){
-			let str = "";
-			$(board_file1).each(function(i, obj){
-				if(!obj.image){
-					let fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.fileName);
-
-					str += "<li data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-name='" + obj.fileName.substring(obj.fileName.indexOf("_") + 1) + "' data-type='" + obj.image +"'>";
-					str += "<div>";
-					str += "<a href='/upload/download?fileName=" + fileCallPath + "'>";
-					str += "<img src='/img/attach.png' width='100px'>" + obj.fileName.substring(obj.fileName.indexOf("_") + 1);
-					str += "</a>"
-					str += "<span data-file='" + fileCallPath + "' data-type='file'>x</span>";
-					str += "</div>";
-					str += "</li>";
-				}else{
-					let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.fileName);
-					let originPath = encodeURIComponent(obj.uploadPath + "/" + obj.fileName);
-
-					str += "<li data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-name='" + obj.fileName.substring(obj.fileName.indexOf("_") + 1) + "' data-type='" + obj.image +"'>";
-					str += "<div>";
-					str += "<a href=\"javascript:showImage(\'" + originPath + "\')\">";
-					str += "<img src='/upload/display?fileName=" + fileCallPath + "'>" + obj.fileName.substring(obj.fileName.indexOf("_") + 1);
-					str += "</a>";
-					str += "<span data-file='" + fileCallPath + "' data-type='image'>x</span>";
-					str += "</div>";
-					str += "</li>";
-				}
-			});
-			uploadResult.append(str);
-		}
-
-		$(".uploadResult").on("click", "span", function(){
-			let targetFile = $(this).data("file");
-			let type = $(this).data("type");
-			let li = $(this).parents("li");
-
-			$.ajax({
-				url: "/upload/deleteFile",
-				type: "POST",
-				data: {fileName:targetFile, type:type},
-				dataType: "text",
-				success: function(result){
-					alert(result);
-					li.remove();
-				}
-			});
-
-		})
-
-		//확장자 별 업로드 제한, 특정 크기 이상의 파일은 업로드 제한
-		function checkExtension(fileName, fileSize){
-			if(regex.test(fileName)){
-				alert("업로드 할 수 없는 파일의 형식입니다.");
-				return false;
-			}
-			if(fileSize >= maxSize){
-				alert("파일 사이즈 초과");
-				return false;
-			}
-			return true;
-		}
-
-		$("input[type='file']").change(function(){
-			let formData = new FormData();
-			let inputFile = $("input[name='uploadFiles']");
-			let files = inputFile[0].files;
-
-			for(let i=0; i<files.length; i++){
-				if(!checkExtension(files[i].name, files[i].size)){ return; }
-				formData.append("uploadFiles", files[i]);
 			}
 
-			$.ajax({
-				url: "/upload/uploadAjaxAction",
-				type: "post",
-				data: formData,
-				contentType: false,
-				processData: false,
-				success: function(fileList){
-					showUploadFile(fileList);
-					inputFile.val("");
-				}
-			});
+			/*$("#appendForm1").append("<p>헌혈증 번호(증서 번호)</p><input type='text' name='dona_ticket_num' id='dona_ticket_num' value='' placeholder='증서번호' />");
+		    $("#appendForm2").append("<p>헌혈증 사진</p><input type='file' accept='image/gif,image/jpeg,image/png,image/jpg' required />");
+		    $("#appendForm3").append("<p></p>");
+		 */
+
 		});
-	})
+		let bno = [[${bno}]];
+		if(bno == null){
+			return;
+		}
+		alert("게시글 " + bno + "번이 등록되었습니다.");
+	});
+
 
 </script>
 </html>

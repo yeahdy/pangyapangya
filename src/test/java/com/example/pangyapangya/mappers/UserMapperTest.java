@@ -34,6 +34,10 @@ public class UserMapperTest {
         userMapper.join(userVO);
     }
 
+    // 회원가입 (사장님)
+    public void joinCEOTest(){
+
+    }
 
     @Test
     public void loginTest(){
@@ -47,6 +51,10 @@ public class UserMapperTest {
         }
     }
 
+    // 로그인 (사장님)
+    public void loginCEOTest(){
+
+    }
 
     @Test
     public void idFindTest(){
@@ -55,19 +63,17 @@ public class UserMapperTest {
 
     @Test
     public void pwFindTest(){
-        if(userMapper.pwFind("yeahdy123") == 1){
+        if(userMapper.pwFind("yejin") == 1){
             log.info("-----------아이디 존재 O----------");
-            UserVO userVO = userMapper.userInfo("yeahdy123");
-            log.info( "가입한 전화번호: " + userVO.getUserPhoneNum());
-        } else{
+            log.info( "가입한 전화번호: " + userMapper.pwFind_phone("yejin").toString());
+        }else{
             log.info("-----------아이디 존재 x----------");
         }
     }
 
+    // 아이디가 존재하면 휴대폰번호 조회하기
     @Test
-    public void userInfoTest(){
-        UserVO userVO = userMapper.userInfo("yeahdy123");
-        log.info(userVO.toString());
+    public void pwFind_phoneTest(){
+        log.info( "가입한 전화번호: " + userMapper.pwFind_phone("yejin").toString());
     }
-
 }

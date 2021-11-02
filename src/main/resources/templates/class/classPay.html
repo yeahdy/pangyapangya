@@ -3,111 +3,41 @@
 
 <html>
 <head>
-    <title>Untitled</title>
+    <title>원데이클래스 | 결제완료 </title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="/css/main.css" />
-    <style>
-        .headerIcon{
-            width: 40px;
-            display: block;
-            margin: auto;"
-        }
-        .icon.solid:before {
-            font-weight: 100;
-            content: none;
-        }
-
-        .spotlights h5{
-            font-weight: bold;
-            font-size: small;
-        }
-
-        .spotlights p{
-            font-size: small;
-        }
-
-        /* 검색창 */
-        .search {
-            position: relative;
-            text-align: center;
-            width: 400px;
-            margin: 0 auto;
-        }
-        input {
-            width: 100%;
-            border-radius: 20px;
-            border: 1px solid #bbb;
-            margin: 10px 0;
-            padding: 10px 12px;
-        }
-        .fa-search {
-            position: absolute;
-            left: 90%;
-            top: 35%;
-            margin: 0;
-        }
-        form {
-            margin: 0;
-        }
-
-        h2{
-            margin: 1.5em 2em 1.5em 2em;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        table th {
-            font-size: 0.9em;
-            font-weight: 700;
-            padding: 0.7em 1em 0.7em 1em;
-            text-align: center;
-        }
-
-        #head1{
-            background-color: orange;
-            font-size: 16px;
-            font-weight: 700;
-            padding: 0.7em 1em 0.7em 1em;
-            text-align: center;
-
+    <link rel="stylesheet" href="/css/login.css" />
+    <style th:include="/main/header::header_style">
+        . info_error{
+            margin: 0 0 1em 0;
         }
     </style>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
-
-<body class="is-preload" style="padding: 200px">
+<body class="is-preload" style="padding: 5em 200px 0 200px;background-color: white;">
 
 <!-- Header -->
 <header id="header" th:include="/main/header::header_body">
+
 </header>
+
 <!-- Wrapper -->
-<div class="wrapper">
+<!-- Main -->
+<section class="cont_login container">
+    <form action="/main/mainPage" method="post" id="loginForm" name="loginForm">
+        <div class="box_login login_email" style="grid-template-rows: 130px auto 170px;">
+            <h2 class="tit"><strong style="color: #F9A825">결제 완료 내</strong></h2>
 
-    <!-- Main -->
-    <section class="main">
-        <div><h2>원데이 클래스 결제</h2></div>
-        <div>
-            <table>
-                <tr> <th colspan="4" id="head1">원데이 클래스 예약 내역</th></tr>
 
-                <tr>
-                    <th>예약자</th>
-                    <td>사용자 ID</td>
-                </tr>
-
-                <tr>
-                    <th rowspan="3">예약 내용</th>
-                    <td>title</td>
-                </tr>
-                <tr><td>IMG</td></tr>
-                <tr><td>날짜 및 시간</td></tr>
-            </table>
         </div>
-    </section>
-</div>
+    </form>
+</section>
+<!-- Footer -->
+<footer id="footer" th:include="/main/footer::footer_body"></footer>
+
+
 <!-- Scripts -->
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
@@ -116,5 +46,6 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
+
 </body>
 </html>

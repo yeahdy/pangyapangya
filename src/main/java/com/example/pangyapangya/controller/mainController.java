@@ -1,11 +1,12 @@
 package com.example.pangyapangya.controller;
 
-import com.example.pangyapangya.beans.vo.CeoVO;
 import com.example.pangyapangya.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Random;
 /*
@@ -48,9 +49,7 @@ public class mainController {
     public String mainPage(){ return "main/mainPage"; }
 
     @GetMapping("mainPage_test")
-    public String mainPage_test(){
-        return "main/mainPage_test";
-    }
+    public String mainPage_test(){ return "main/mainPage_test"; }
 
     /* footer */
     @GetMapping("footer")

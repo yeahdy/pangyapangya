@@ -9,7 +9,6 @@
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
     <link rel="stylesheet" href="/css/main.css"/>
-    <link rel="icon" type="image/png" href="/images/favicon.png"/>
     <style>
         p {
             margin: 0 0 1em 0;
@@ -283,20 +282,53 @@
             </div>
         </section>
         <section>
-            <section class="spotlights alt" id="testList">
-                <th:block th:each="item : ${list}">
-                    <article th:object="${item}" class="item">
-                        <a href="#" class="image fit"><img th:src="*{testingPhoto}" alt=""></a>
-                        <h5 th:text="*{shopName}"></h5>
-                        <p th:text="*{title}"></p>
-                    </article>
-                </th:block>
+            <section class="spotlights alt" id="list">
+                <article style="border-width: 0px 1px 0px 0px;">
+                    <a href="#" class="image fit"><img src="/images/garlicBread2.jpg" alt=""></a>
+                    <h5>만동제과</h5>
+                    <p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
+                </article>
+                <article style="border-width: 0px 1px 0px 0px;">
+                    <a href="#" class="image fit"><img src="/images/까눌레1.jpg" alt=""></a>
+                    <h5>리코 베이커리</h5>
+                    <p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
+                </article>
+                <article style="border-width: 0px 1px 0px 0px;">
+                    <a href="#" class="image fit"><img src="/images/휘낭시에2.png" alt=""></a>
+                    <h5>버터랏츠</h5>
+                    <p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
+                </article>
+                <article style="border-width: 0px 0px 0px 0px;">
+                    <a href="#" class="image fit"><img src="/images/donut2.jpg" alt=""></a>
+                    <h5>카페노티드</h5>
+                    <p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
+                </article>
+                <article>
+                    <a href="#" class="image fit"><img src="/images/휘낭시에3.png" alt=""></a>
+                    <h5>만동제과</h5>
+                    <p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
+                </article>
+                <article>
+                    <a href="#" class="image fit"><img src="/images/스콘1.jpg" alt=""></a>
+                    <h5>리코 베이커리</h5>
+                    <p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
+                </article>
+                <article>
+                    <a href="#" class="image fit"><img src="/images/donut1.jpg" alt=""></a>
+                    <h5>버터랏츠</h5>
+                    <p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
+                </article>
+                <article>
+                    <a href="#" class="image fit"><img src="/images/melon1.jpg" alt=""></a>
+                    <h5>카페노티드</h5>
+                    <p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
+                </article>
             </section>
-            <!-- 관측 대상 -->
-            <p id="sentinel"></p>
         </section>
     </section>
 </div>
+<div class="list"></div>
+<p id="sentinel"></p>
 
 <!-- ----------------------------------------------------------------------------------------------Footer-------------------------------------------------------------------------------------------------------------------------- -->
 <!-- Footer -->
@@ -310,92 +342,66 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
-<!-- 새로고침시, 스크롤 초기화 -->
-<script>history.scrollRestoration = "manual"</script>
+<script>
+</script>
 </body>
-<script th:inline="javascript">
-    /* DB에 들어있는 아이템 총 갯수 */
-    const total = [[ ${total} ]];
-    /* 현재 페이지에 있는 아이템 갯수 */
-    let temp = document.querySelectorAll("#testList article").length;
-    /* 스크롤이 됐을때, APPEND해줄 DOM */
-    let sectionDom = $("#testList");
-    /* AJAX 실행중 판단 */
-    let loading = false;
+<script>
+    let currentPage = 1
+
+    const DATA_PER_PAGE = 10,
+        lastPage = 100;
+
+    const msgLoading = document.getElementById("msg-loading")
+
+
+    // 데이터 추가 함수
+    function addData(currentPage) {
+        $("#list").append("<article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article>");
+    }
+
+    // IntersectionObserver 갱신 함수
+    function observeLastChild(intersectionObserver) {
+
+        const listChildren = document.querySelectorAll("#list article")
+        listChildren.forEach(el => {
+
+            if (!el.nextSibling && currentPage < lastPage) {
+                intersectionObserver.observe(el) // el에 대하여 관측 시작
+            } else if (currentPage >= lastPage) {
+                intersectionObserver.disconnect()
+            }
+
+        })
+    }
 
     // IntersectionObeserver 부분
     const observerOption = {
         root: null,
         rootMargin: "0px 0px 0px 0px",
-        threshold: 0
+        threshold: 0.5
     }
 
     // IntersectionObserver 인스턴스 생성
     const io = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-            // AJAX가 실행중이면 함수 실행 안함
-            if (loading) {return;}
-            // entry가 interscting 중이 아니라면 함수 실행안함
-            else if (!entry.isIntersecting){return;}
-            // sentinel에 대하여 관측 시작
-            observer.observe(document.getElementById('sentinel'))
-            // 데이터 추가 실행 함수
-            getAddData(temp);
-            // 아이템 갯수 20증가
-            temp+=20;
 
-            // 검색된 아이템이 DB에 있는 아이템 수 보다 많거나 적으면 관측종료
-            if(temp>= total){
-                io.unobserve(document.getElementById('sentinel'));
+            // entry.isIntersecting: 특정 요소가 뷰포트와 50%(threshold 0.5) 교차되었으면
+            if (entry.isIntersecting) {
+
+                // 다음 데이터 가져오기: 자연스러운 연출을 위해 setTime-out 사용
+                setTimeout(() => {
+                    addData(++currentPage)
+                    observer.unobserve(entry.target)
+                    observeLastChild(observer)
+
+                }, 1000)
             }
         })
     }, observerOption)
 
-    // 데이터 ajax로 가져오기
-    function getAddData(temp, callback, error) {
-        $.ajax({
-            url: "/testrest/"+temp,
-            method: "GET",
-            dataType: "json",
-            success: function (result, status, xhr) {
-                let str="";
-                for(let i=0;i<result.length;i++){
-                    str += "<article>" +
-                        "<a href='#' class='image fit'>" +
-                        "<img src="+result[i].testingPhoto+" alt=''>" +
-                        "</a>" +
-                        "<h5>"+ result[i].shopName+"</h5>" +
-                        "<p>"+ result[i].title +"</p>" +
-                        "</article>";
-                }
-                // DOM에 DB에서 가져온 아이템 추가
-                sectionDom.append(str);
-            },
-            error: function (xhr, status, err) {
-                if(error){
-                    error(err);
-                }
-            },
-            beforeSend: function () {
-                //로딩중 flag
-                loading = true;
-                //skeleton을 그리는 함수를 이용해 DOM에 추가해줍니다.
-                // document.getElementById('list').appendChild(skeleton.show());
-                //loading animation을 가진 요소를 보여줍니다.
-                // $(".loading").show();
-            },
-            complete: function () {
-                //로딩 끝나서 false로 바꿈
-                loading = false;
-                // 로딩끝나서 숨겨줌
-                // $(".loading").hide();
-                //loading animation 요소와 skeleton을 지우는 함수를 이용해 DOM에서 지워줍니다.
-                // skeleton.hide();
-            }
-        });
-    }
 
-    // sentinel에 대하여 관측 시작
-    io.observe(document.getElementById('sentinel'));
+    // 초기 데이터 생성
+    addData(currentPage)
+    observeLastChild(io)
 </script>
 </html>
