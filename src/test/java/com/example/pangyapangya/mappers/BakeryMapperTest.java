@@ -20,11 +20,7 @@ public class BakeryMapperTest {
         board.setContent("새로 작성한 글 내용");
         board.setCeoId("wnsrbod");
         board.setCeoName("한준규");
-        board.setBakeryName("뜨레쥬르");
-        board.setBakeryZipcode("1234");
-        board.setBakeryAddress("주소");
-        board.setBakeryAddressDetail("상세주소");
-        board.setBakeryPhoto("사진");
+        board.setShopName("뜨레쥬르");
         bakeryMapper.insert(board);
     }
 

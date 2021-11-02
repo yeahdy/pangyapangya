@@ -24,4 +24,6 @@ public interface CEOMapper {
 
     // 회원정보 조회
     public CeoVO ceoInfo (String ceoId);
+
+
 }
