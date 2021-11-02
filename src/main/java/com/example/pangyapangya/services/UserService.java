@@ -9,6 +9,7 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.json.simple.JSONObject;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -39,6 +40,7 @@ public class UserService {
     }
 
     // 로그인 + 비밀번호 암호화 비교하기
+    @Transactional(rollbackFor = Exception.class)
     public boolean login (UserVO userVO){
         // 사용자가 입력한 아이디 유무 조회
         if(userDAO.checkId(userVO.getUserId())){
@@ -65,10 +67,11 @@ public class UserService {
         return userDAO.idFind(userPhoneNum);
     }
 
+    // 동일한 전화번호의 아이디 갯수
+    public int idFindCnt (String userPhoneNum){ return userDAO.idFindCnt(userPhoneNum); }
+
     // 비밀번호 찾기 : 아이디 유무 조회
-    public boolean pwFind (String userId){
-        return userDAO.pwFind(userId);
-    }
+    public boolean pwFind (String userId){ return userDAO.pwFind(userId); }
 
     // 회원 정보 조회
     public UserVO userInfo (String userId) {return  userDAO.userInfo(userId);}

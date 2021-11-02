@@ -28,6 +28,11 @@
         FROM TBL_USER WHERE USERPHONENUM = #{userPhoneNum}
     </select>
 
+    <!-- 동일한 전화번호의 아이디 갯수 -->
+    <select id="idFindCnt" resultType="_int">
+        SELECT COUNT(USERID) FROM TBL_USER
+        WHERE USERPHONENUM = #{userPhoneNum}
+    </select>
 
     <!-- 비밀번호 찾기 : 아이디 유무 조회 -->
     <select id="pwFind" resultType="_int">
@@ -43,5 +48,4 @@
         WHERE USERID= #{userId}
     </select>
 
-    <!-- 수정 -->
 </mapper>

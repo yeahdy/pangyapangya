@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -37,6 +38,7 @@ public class CEOService {
     }
 
     // 로그인
+    @Transactional(rollbackFor = Exception.class)
     public boolean loginCEO (CeoVO ceoVO){
         // 사용자가 입력한 아이디 유무 조회
         if(ceoDAO.checkIdCEO(ceoVO.getCeoId())){
