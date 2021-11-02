@@ -48,7 +48,9 @@ public class mainController {
     public String mainPage(){ return "main/mainPage"; }
 
     @GetMapping("mainPage_test")
-    public String mainPage_test(){ return "main/mainPage_test"; }
+    public String mainPage_test(){
+        return "main/mainPage_test";
+    }
 
     /* footer */
     @GetMapping("footer")

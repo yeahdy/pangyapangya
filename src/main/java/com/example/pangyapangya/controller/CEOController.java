@@ -58,7 +58,7 @@ public class CEOController {
         }else{
             log.info("-------로그인 성공-------");
             CeoVO ceoInfo= ceoService.ceoInfo(ceoVO.getCeoId());
-            session.setAttribute("sessionC", ceoInfo.getStatus());
+            session.setAttribute("sessionC", ceoInfo.getCeoId());
             return mainView;
         }
     }
