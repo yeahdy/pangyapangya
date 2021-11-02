@@ -45,7 +45,7 @@ public class UserRestAPIController {
         return check + "";
     }
 
-    /* 아이디 중복검사(일반회원) */
+    /* 아이디 중복검사(사장님) */
     @GetMapping("/idCheckCEO/{userId}")
     public String checkIdCEO(@PathVariable String userId){
         boolean check= ceoService.checkIdCEO(userId);
