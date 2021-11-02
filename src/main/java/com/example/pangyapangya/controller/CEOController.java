@@ -52,13 +52,13 @@ public class CEOController {
         HttpSession session = req.getSession(); // session 생성
         if(!ceoService.loginCEO(ceoVO)) {
             log.info("-------로그인 실패-------");
-            session.setAttribute("session", null);
+            session.setAttribute("sessionC", null);
             rttr.addAttribute("check", "false");
             return "ceo/loginCEO";
         }else{
             log.info("-------로그인 성공-------");
             CeoVO ceoInfo= ceoService.ceoInfo(ceoVO.getCeoId());
-            session.setAttribute("session", ceoInfo.getStatus());
+            session.setAttribute("sessionC", ceoInfo.getStatus());
             return mainView;
         }
     }

@@ -49,21 +49,24 @@ public class UserController {
         HttpSession session = req.getSession(); // session 생성
         if(!userService.login(userVO)) {
             log.info("-------로그인 실패-------");
-            session.setAttribute("session", null);  // session 저장하기
+            session.setAttribute("sessionU", null);  // session 저장하기
             rttr.addFlashAttribute("check", "false");
             return "user/login";
         }
         log.info("-------로그인 성공-------");
         UserVO userInfo= userService.userInfo(userVO.getUserId());
-        session.setAttribute("session", userInfo.getStatus());
+        session.setAttribute("sessionU", userInfo.getStatus());
         return mainView;
     }
 
     /* 로그아웃 */
-    public void logout(HttpServletRequest req){
-        HttpSession session = req.getSession();
-        // 세션 삭제
-        session.invalidate();
+    @GetMapping("logout")
+    public String logout(HttpServletRequest req){
+        HttpSession session = req.getSession(false);    // false: 세션이 없을 경우 null 반환. 기본값 true
+        if(session != null){
+            session.invalidate();   //세션 삭제
+        }
+        return mainView;
     }
 
     /* 아이디 찾기 */
