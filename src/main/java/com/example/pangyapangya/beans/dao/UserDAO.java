@@ -23,9 +23,19 @@ public class UserDAO {
         mapper.join(userVO);
     }
 
+    // 회원가입(사장님)
+    public void joinCEO(CeoVO ceoVO){
+        mapper.joinCEO(ceoVO);
+    }
+
     // 로그인(일반회원)
     public boolean login (UserVO userVO){
         return mapper.login(userVO) == 1;
+    }
+
+    // 로그인(사장님)
+    public boolean loginCEO (CeoVO ceoVO){
+        return mapper.loginCEO(ceoVO) == 1;
     }
 
     // 아이디찾기
@@ -38,10 +48,6 @@ public class UserDAO {
         return mapper.pwFind(userId) == 1;
     }
 
-    // 회원정보 조회(일반회원)
-    public UserVO userInfo (String userId){
-        return mapper.userInfo(userId);
-    };
-
-    // 수정
+    // 비밀번호 찾기 : 가입한 전화번호 조회
+    public String pwFind_phone (String userId) {return mapper.pwFind_phone(userId); }
 }
