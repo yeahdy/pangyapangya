@@ -2,6 +2,7 @@ package com.example.pangyapangya.services;
 
 import com.example.pangyapangya.beans.dao.CEODAO;
 import com.example.pangyapangya.beans.vo.CeoVO;
+import com.example.pangyapangya.beans.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,7 +37,26 @@ public class CEOService {
     }
 
     // 로그인
-    public boolean loginCEO (CeoVO ceoVO){ return ceoDAO.loginCEO(ceoVO); }
+    public boolean loginCEO (CeoVO ceoVO){
+        // 사용자가 입력한 아이디 유무 조회
+        if(ceoDAO.checkIdCEO(ceoVO.getCeoId())){
+            // 저장된 사용자의 정보를 불러옴
+            CeoVO ceoInfo = ceoDAO.ceoInfo(ceoVO.getCeoId());
+            // 사용자가 입력한 비밀번호와 저장된 사용자의 비밀번호를 비교
+            if(!passwordEncoder.matches(ceoVO.getCeoPw(), ceoInfo.getCeoPw())){
+                System.out.println("비밀번호가 일치하지 않습니다.");
+                return false;
+            }else{
+                System.out.println("비밀번호가 일치합니다.");
+                ceoDAO.loginCEO(ceoVO);
+                return true;
+            }
+        }else {
+            // 해당 아이디가 없을 경우
+            System.out.println("해당 아이디 존재하지 않음.");
+            return false;
+        }
+    }
 
     // 아이디찾기
     public List<CeoVO> idFindCEO (String phoneNum){ return ceoDAO.idFindCEO(phoneNum); }
