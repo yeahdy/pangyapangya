@@ -25,4 +25,5 @@ public interface UserMapper {
     // 회원정보 조회(일반회원)
     public UserVO userInfo (String userId);
 
+    // 수정
 }
