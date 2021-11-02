@@ -18,4 +18,6 @@ public class CeoVO {
     private String phoneNum;
     private String shopRegNum;
     private int status;
+    private String shopName_ceo;
+
 }

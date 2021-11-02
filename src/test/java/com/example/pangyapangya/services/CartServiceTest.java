@@ -30,7 +30,7 @@ public class CartServiceTest {
 
     @Test
     public void testGetCart(){
-        cartService.getCart("kjy1234").forEach(cart ->log.info(cart.toString()));
+        cartService.getCartList("kjy1234").forEach(cart ->log.info(cart.toString()));
     }
 
     @Test

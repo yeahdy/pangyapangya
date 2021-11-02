@@ -16,7 +16,11 @@ public class CartService {
     public void addCart(CartVO cart) {
         cartDAO.addCart(cart);
     }
-    public List<CartVO> getCart(String userId){
+    /*public List<CartVO> getCart(String userId){
+        return cartDAO.getCart(userId);
+    }*/
+    //수정한 getCart
+    public List<CartVO> getCartList(String userId){
         return cartDAO.getCart(userId);
     }
     public boolean deleteCart(Long cartNum){

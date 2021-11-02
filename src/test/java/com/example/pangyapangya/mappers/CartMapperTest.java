@@ -21,8 +21,7 @@ public class CartMapperTest {
 
     /*사용자 개인 장바구니*/
     @Test
-    public void testGetCartList() {
-        mapper.getCartList("hds1234").forEach(cart -> log.info(cart.toString()));
+    public void testGetCartList() throws Exception{ mapper.getCartList("hds1234").forEach(cart -> log.info(cart.toString()));
     }
 
 /*    @Test
