@@ -89,6 +89,8 @@
 		.second-under-date{color: #d5b3b3; display: flex;}
 		input[type="checkbox"] + label:before {background: #fff; border-color: rgba(144, 144, 144, 0.25);}
 		#rightHeader-first{width: 14%;}
+		#main-box{border-bottom: 0.5px solid #efd0d0;}
+		#goModify, #goRemove {color: #7e7a7a; font-size: 0.8em; position: relative; top: 16px;}
 	</style>
 </head>
 <body class="is-preload" style="padding: 200px">
@@ -168,8 +170,8 @@
 													</div>
 												</a>
 											</div>
-											<div class="table-third"><a id="goModify" th:href="*{bno}" class="button small bs">수정</a></div>
-											<div class="table-fourth"><a id="goRemove" th:href="*{bno}" class="button small bs">삭제</a></div>
+											<div class="table-third"><a id="goModify" th:href="*{bno}" >수정</a></div>
+											<div class="table-fourth"><a id="goRemove" th:href="*{bno}" >삭제</a></div>
 										</div>
 									</th:block>
 								</div>

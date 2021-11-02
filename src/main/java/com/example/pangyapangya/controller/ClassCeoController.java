@@ -1,34 +1,25 @@
 package com.example.pangyapangya.controller;
 
 import com.example.pangyapangya.beans.vo.*;
-import com.example.pangyapangya.services.BakeryService;
+import com.example.pangyapangya.services.ClassCeoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @Controller
 @Slf4j
 @RequestMapping("/myPageCeo/*")
 @RequiredArgsConstructor
-public class MyPageCeoController {
+public class ClassCeoController {
 
-    private final BakeryService bakeryService;
+    private final ClassCeoService classCeoService;
 
-    //마이페이지(사장님)-글 등록[빵집 소개]
-    @GetMapping("bakery")
-    public String myPageCeoBakery(Model model, String ceoId){
-        ceoId="wnsrbod";
-        model.addAttribute("ceo", bakeryService.getCeo(ceoId));
-        return "myPageCeo/bakery";
-    }
 
     //마이페이지(사장님)-글 등록[빵집 소개]
     /*@GetMapping("bakeryModify")
@@ -41,55 +32,46 @@ public class MyPageCeoController {
         return "myPageCeo/bakeryModify";
     }*/
 
-    //마이페이지(사장님)-글 등록[빵 체험단]
-    @GetMapping("exp")
-    public String myPageCeoExp(){ return "myPageCeo/exp"; }
+    //마이페이지(사장님)-글 등록[원데이 클래스]
+    @GetMapping("oneDay")
+    public String myPageCeoOneDay(Model model, String ceoId){
+        ceoId="wnsrbod";
+        model.addAttribute("ceo", classCeoService.getCeo(ceoId));
+        return "myPageCeo/oneDay"; }
 
 
-    //마이페이지(사장님)-내 글 보기[빵 체험단]
-    @GetMapping("expRe")
-    public String myPageCeoExpRe(){ return "myPageCeo/expRe"; }
-
-    //마이페이지(사장님)-내 정보 수정
-    @GetMapping("edit")
-    public String myPageCeoEdit(){ return "myPageCeo/edit"; }
-
-    //마이페이지(사장님)-회원 탈퇴
-    @GetMapping("delete")
-    public String myPageCeoDelete(){ return "myPageCeo/delete"; }
-
-    @PostMapping("bakery")
-    public RedirectView bakery(BakeryVO bakeryVO, RedirectAttributes rttr, CeoVO ceoVO){
+    @PostMapping("oneDay")
+    public RedirectView oneDay(ClassCeoVO classCeoVO, RedirectAttributes rttr, CeoVO ceoVO){
         log.info("-------------------------------");
-        log.info("bakery : " + bakeryVO.toString());
+        log.info("oneDay : " + classCeoVO.toString());
         log.info("-------------------------------");
 
        /* if(bakeryVO.getAttachList() != null){
             bakeryVO.getAttachList().forEach(attach -> log.info(attach.toString()));
         }*/
-        bakeryService.register(bakeryVO);
+        classCeoService.register(classCeoVO);
 //        쿼리 스트링으로 전달
 //        rttr.addAttribute("bno", boardVO.getBno());
 //        세션의 flash영역을 이용하여 전달
-        rttr.addFlashAttribute("bno", bakeryVO.getBno());
+        rttr.addFlashAttribute("bno", classCeoVO.getBno());
 //        RedirectView를 사용하면 redirect방식으로 전송이 가능하다.
-        return new RedirectView("bakeryRe");
+        return new RedirectView("oneDayRe");
     }
 
-    @GetMapping("bakeryRe")
-    public String bakeryRe(Criteria criteria, Model model){
+    @GetMapping("oneDayRe")
+    public String oneDayRe(Criteria criteria, Model model){
 
         log.info("-------------------------------");
-        log.info("bakeryRe");
+        log.info("oneDayRe");
         log.info("-------------------------------");
-        model.addAttribute("total", bakeryService.myTotal("wnsrbod"));
-        model.addAttribute("list", bakeryService.getList(criteria));
-        model.addAttribute("pageMaker", new PageDTO(bakeryService.getTotal(criteria), 10, criteria));
-        return "myPageCeo/bakeryRe";
+        model.addAttribute("total", classCeoService.myTotal("wnsrbod"));
+        model.addAttribute("list", classCeoService.getList(criteria));
+        model.addAttribute("pageMaker", new PageDTO(classCeoService.getTotal(criteria), 10, criteria));
+        return "myPageCeo/oneDayRe";
     }
 
     //    여러 요청을 하나의 메소드로 받을 때에는 {}를 사용하여 콤마로 구분한다.
-   /* @GetMapping({"bakeryRe", "modify"})
+   /* @GetMapping({"oneDayRe", "modify"})
     public void read(@RequestParam("bno") Long bno, Criteria criteria, Model model, HttpServletRequest request, CeoVO ceoVO){
         String reqURI = request.getRequestURI();
         String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
@@ -99,25 +81,25 @@ public class MyPageCeoController {
         log.info(reqType + " : " + bno);
         log.info("-------------------------------");
         ceoVO.setCeoId("wnsrbod");
-        model.addAttribute("ceo", bakeryService.getCeo("wnsrbod"));
-        model.addAttribute("bakery", bakeryService.get(bno));
+        model.addAttribute("ceo", classCeoService.getCeo("wnsrbod"));
+        model.addAttribute("bakery", classCeoService.get(bno));
         model.addAttribute("criteria", criteria);
     }*/
 
     //    /modify 요청을 처리할 수 있는 비지니스 로직 작성
 //    수정 성공시 result에 "success"를 담아서 전달한다.
 //    단위 테스트로 View에 전달할 파라미터를 조회한다.
-    @PostMapping("modify")
-    public RedirectView modify(BakeryVO bakeryVO, RedirectAttributes rttr){
+    @PostMapping("oneDayModify")
+    public RedirectView oneDayModify(ClassCeoVO classCeoVO, RedirectAttributes rttr){
         log.info("-------------------------------");
-        log.info("modify : " + bakeryVO.toString());
+        log.info("modify : " + classCeoVO.toString());
         log.info("-------------------------------");
 
-        if(bakeryService.modify(bakeryVO)){
+        if(classCeoService.modify(classCeoVO)){
             rttr.addAttribute("result", "success");
-            rttr.addAttribute("bno", bakeryVO.getBno());
+            rttr.addAttribute("bno", classCeoVO.getBno());
         }
-        return new RedirectView("bakeryModify");
+        return new RedirectView("oneDayModify");
     }
 
     //    /remove 요청을 처리할 수 있는 비지니스 로직 작성
@@ -135,11 +117,8 @@ public class MyPageCeoController {
         } else {
             rttr.addFlashAttribute("result", "fail");
         }
-        return new RedirectView("bakeryRe");
+        return new RedirectView("oneDayRe");
     }*/
-
-    @GetMapping("register")
-    public void register(){}
 
     //    게시글 첨부파일
     /*@GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
