@@ -23,6 +23,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().disable()
                 .csrf().disable()
                 .formLogin().disable()
-                .headers().frameOptions().disable();
+                .headers().frameOptions().disable()
+                .and()
+//로그 아웃
+                .logout()
+                    .logoutUrl("/user/logout")
+                    .logoutSuccessUrl("/main/mainPage");
     }
 }
