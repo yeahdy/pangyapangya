@@ -55,7 +55,7 @@ public class UserController {
         }
         log.info("-------로그인 성공-------");
         UserVO userInfo= userService.userInfo(userVO.getUserId());
-        session.setAttribute("sessionU", userInfo.getStatus());
+        session.setAttribute("sessionU", userInfo.getUserId()); //session 저장하기
         return mainView;
     }
 
