@@ -70,6 +70,7 @@ public class CartController {
         }
         return "mypage/cart";
     }
+
     /* 추가 해야할 것 : 장바구니 모두 비우기
     * service까지 해놓음 */
 
