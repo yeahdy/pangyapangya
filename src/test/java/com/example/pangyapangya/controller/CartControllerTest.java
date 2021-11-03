@@ -38,11 +38,11 @@ public class CartControllerTest {
                 .param("breadName", "달콤한 누텔라 식빵")
                 /*초코듬뿍 까눌레*/
                 /*겉바속촉 크루와상*/
-                .param("userId","hds1234")
+                .param("userId","kjyun7777")
                 .param("PriceOfBread","16500")
                 .param("deliverCharge", "3000")
                 .param("breadCnt","1")
-                .param("breadImg", "bread4.jpg")
+                .param("breadImg", "bread2.jpg")
                 .param("ceoId","A")
         ).andReturn();
 
