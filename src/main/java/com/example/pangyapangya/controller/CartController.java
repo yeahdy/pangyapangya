@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @Slf4j
 @RequestMapping("/mypage/*")
@@ -38,11 +40,15 @@ public class CartController {
 
     /*수정된 getCart*/
     @GetMapping("cart")
-    public String cartList(Model model){
+    public String cartList(Model model, HttpSession session){
         log.info("-------------------------------------");
         log.info("cartList");
         log.info("-------------------------------------");
-        model.addAttribute("cartList", cartService.getCartList("hds1234"));/*여기에 userId를 어떻게 넘길까 bno같은 맥락?*/
+        String sessionU = (String)session.getAttribute("sessionU");
+        if(sessionU == null){
+            return "/user/login";
+        }
+        model.addAttribute("cartList", cartService.getCartList(sessionU));
         return "mypage/cart";}
 
     @GetMapping("addCart")

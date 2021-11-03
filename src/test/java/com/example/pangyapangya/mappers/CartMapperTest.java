@@ -39,10 +39,10 @@ public class CartMapperTest {
     @Test
     public void testInsertSelect_cartNum() {
         CartVO cart = new CartVO();
-        cart.setUserId("hds1234");
+        cart.setUserId("kjyun7777");
         cart.setBreadName("쫀득 찹쌀빵");
         /*겉바속촉 크루와상🥐*/
-        cart.setBreadImg("images/bread1.jpg");
+        cart.setBreadImg("bread1.jpg");
         cart.setBreadCnt(1);
         cart.setDeliverCharge(3000);
         cart.setPriceOfBread(13000);
