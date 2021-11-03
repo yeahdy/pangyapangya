@@ -340,6 +340,7 @@
 <script src="/js/main.js"></script>
 <script src="/js/reply.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dbbd6cafd6a9270f3ff84ad1d9873ab9"></script>
 <script th:replace="/main/header::header_js"></script>
 <script>
     $('#star a').click(function(){
@@ -354,7 +355,7 @@
         });
     });
 </script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dbbd6cafd6a9270f3ff84ad1d9873ab9"></script>
+
 <script>
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
@@ -394,7 +395,8 @@
     });
 </script>
 </body>
-<script th:inline="javascript">
+<!--
+<script type="text/javascript" th:inline="javascript">
     // 댓글달기
     let bno = [[${board.getBno()}]];
     let paging = [[${criteria.listLink}]];
@@ -434,6 +436,9 @@
         )
     });
 </script>
+-->
+
+<!--
 <script>
     // 첨부파일
     let check = false;
@@ -557,4 +562,6 @@
         });
     })
 </script>
+-->
+
 </html>

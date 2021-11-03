@@ -28,7 +28,7 @@ public class CartDAO_test {
 
     @Test
     public void testGetCart() throws Exception{
-        cartDAO.getCart("kjy1234").forEach(cart ->log.info(cart.toString()));
+        cartDAO.getCart("yejine000").forEach(cart ->log.info(cart.toString()));
     }
 
     @Test

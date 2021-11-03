@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -41,15 +42,18 @@ public class CartController {
     /*수정된 getCart*/
     @GetMapping("cart")
     public String cartList(Model model, HttpSession session){
-        log.info("-------------------------------------");
-        log.info("cartList");
-        log.info("-------------------------------------");
         String sessionU = (String)session.getAttribute("sessionU");
+        log.info("session 회원아이디: " + sessionU);
         if(sessionU == null){
             return "/user/login";
         }
+        List<CartVO> cartList = cartService.getCartList(sessionU);
+        log.info("-------------------------------------");
+        log.info("cartList: " + cartList.toString());
+        log.info("-------------------------------------");
         model.addAttribute("cartList", cartService.getCartList(sessionU));
-        return "mypage/cart";}
+        return "mypage/cart";
+    }
 
     @GetMapping("addCart")
     public String addCart(CartVO cartVO, Model model){
@@ -61,21 +65,6 @@ public class CartController {
         return "mypage/cart";
     }
 
-
-    /*장바구니 하나만 삭제*/
-    @GetMapping("deleteCart")
-    public String deleteCart(@RequestParam("cartNum") Long cartNum, RedirectAttributes rttr){
-        log.info("-------------------------------------");
-        log.info("delete"+ cartNum );
-        log.info("-------------------------------------");
-
-        if (cartService.deleteCart(cartNum)){
-            rttr.addFlashAttribute("result", "success");
-        }else{
-            rttr.addFlashAttribute("result", "fail");
-        }
-        return "mypage/cart";
-    }
 
     /* 추가 해야할 것 : 장바구니 모두 비우기
     * service까지 해놓음 */

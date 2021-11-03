@@ -206,7 +206,7 @@
 
     <!-- Main -->
     <section class="main">
-        <form action="/main/order" method="get">
+        <form action="/myPage/order" method="get">
         <section style="    margin: 100px 0;">
 
             <header>
@@ -241,7 +241,7 @@
                                     </tr>
                                 </table>
                             </div>
-                            <div class="bread_table"><a th:href="@{/mypage/deleteCart(cartNum=${cart.getCartNum()})}"><img class="delete_icon" src="/images/delete_icon.png"></a>
+                            <div class="bread_table"><a id="cartNum" th:href="${cart.getCartNum()}"><img class="delete_icon" src="/images/delete_icon.png"></a>
                             </div>
                         </div>
                     </td>
@@ -323,7 +323,7 @@
     });
 
 
-    $(function () {
+    $(document).ready(function () {
         //사진 모두 출력
         /*for(i = 1;i <= 9; i++){
             p = $("<img>").attr("src", "image/photo_" + i + ".jpg");
@@ -335,17 +335,38 @@
             $(this).css("cursor", "pointer");
         });
 
-        //x클릭하면 장바구니 지워짐
-        $(".delete_icon").click(function() {
-            /*console.log("개수"+$(".delete_icon").length)*/
-            if ($(".delete_icon").length>1)
-            {
-            $(this).closest("tr").remove();
-            }else{
+        //이미지 x클릭하면 장바구니 지워짐
+        $("#cartNum").click(function (e) {
+            // a 태그 막기
+            e.preventDefault();
+
+            let cartNum = $("#cartNum").attr("href");
+            console.log("선택한 상품 번호: " + cartNum);
+            $.ajax({
+                type: "delete",
+                url: "/mypage/" + cartNum,
+                success: function (result) {
+                    console.log("삭제 result: " + result);
+                    if(result == "success"){
+                        alert("해당 상품이 장바구니에서 삭제되었습니다.");
+                        $(this).closest("tr").remove();
+                        location.href= "/mypage/cart";
+                    }
+                },
+                error: function (e) {
+                    console.log("장바구니 삭제 에러");
+                }
+            });
+
+        })
+
+        // 주문하기 버튼
+        $("#orderButton").click(function () {
+            // 장바구니 수량 1이하일 경우
+            if($(".delete_icon").length < 1){
                 alert("1개 이상부터 주문이 가능합니다.");
             }
-
-        });
+        })
         //console에 test
         // let price = document.getElementsByClassName('breadPrice')[1];
         // console.log("이거는 뭐엮지"+price);
