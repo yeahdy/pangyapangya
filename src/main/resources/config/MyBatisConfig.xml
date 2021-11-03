@@ -10,5 +10,6 @@
         <typeAlias type="com.example.pangyapangya.beans.vo.ClassCeoVO" alias="classCeoVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.TestingVO" alias="testingVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.TestingImgVO" alias="TestingImgVO"></typeAlias>
+        <typeAlias type="com.example.pangyapangya.beans.vo.Cart_shopName_VO" alias="Cart_shopName_VO"></typeAlias>
     </typeAliases>
 </configuration>

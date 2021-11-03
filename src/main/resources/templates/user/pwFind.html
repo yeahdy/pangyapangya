@@ -10,9 +10,37 @@
 	<meta name="keywords" content="" />
 	<link rel="stylesheet" href="/css/main.css" />
 	<link rel="stylesheet" href="/css/idFind.css" />
-	<style th:include="/main/header::header_style">
+	<link rel="icon" type="image/png"  href="/images/favicon.png"/>
+	<style th:include="/main/header::header_style"></style>
+	<style>
 		.line_inp :not(button){
 			border: solid 0px;
+		}
+
+		/* 로그인 구분 */
+		.box {
+			display: flex;
+			justify-content: center;
+			width: 550px;
+			margin: 0 auto;
+			cursor: pointer;
+			padding: 1em;
+			text-align: center;
+		}
+
+		.box li {
+			width: 50%;
+			cursor: pointer;
+			list-style: none;
+			float: left;
+		}
+
+		.box h4{
+			margin-bottom: 0em;
+		}
+
+		.box a {
+			font-size: 18px;
 		}
 	</style>
 </head>
@@ -26,6 +54,14 @@
 <!-- Wrapper -->
 <!-- Main -->
 <section class="cont_login container" id="inputView">
+	<div class="box">
+		<li style="border-right: 1px solid #dcdcdc">
+			<h4><a href="/user/pwFind"><strong style="color: #F9A825; border-bottom: 1px solid">일반회원</strong></a></h4>
+		</li>
+		<li>
+			<h4><a href="/ceo/pwFindCEO"><strong>사장님</strong></a></h4>
+		</li>
+	</div>
 	<div class="box_login find_id">
 		<form action="/user/pwFind" method="post" id="pwFindForm">
 			<h2 class="title">비밀번호 찾기</h2>
@@ -69,6 +105,7 @@
 
 <!-- Scripts -->
 <script src="/js/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
 <script src="/js/browser.min.js"></script>
 <script src="/js/breakpoints.min.js"></script>
