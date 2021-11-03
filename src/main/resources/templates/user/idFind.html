@@ -56,14 +56,14 @@
 <section class="cont_login container">
 	<div class="box">
 		<li style="border-right: 1px solid #dcdcdc">
-			<h4><a href="/user/idFindSuccess"><strong style="color: #F9A825; border-bottom: 1px solid">일반회원</strong></a></h4>
+			<h4><a href="/user/idFind"><strong style="color: #F9A825; border-bottom: 1px solid">일반회원</strong></a></h4>
 		</li>
 		<li>
 			<h4><a href="/ceo/idFindCEO"><strong>사장님</strong></a></h4>
 		</li>
 	</div>
 	<div class="box_login find_id">
-		<form action="/user/idFindSuccess" method="post" id="idFindForm">
+		<form action="#" method="get" id="idFindForm">
 			<h2 class="title">아이디 찾기</h2>
 			<p class="info_text">연락 받으실 전화번호를 입력해 주세요.</p>
 			<p class="form_title">휴대폰 번호</p>
@@ -95,7 +95,7 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
-<script type="text/javascript" th:inline="javascript">
+<script type="text/javascript">
 	let cnfCheck = false;
 
 	let interval;
@@ -127,6 +127,7 @@
 						// 인증성공일 경우에만 idFindSuccess 로 이동
 						if(cnfCheck){
 							$("#idFindForm").submit();
+							location.href= "/main/idFindSuccess";
 							$('#authNumber').val("");
 						}
 

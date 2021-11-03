@@ -6,7 +6,7 @@
         <![CDATA[
             SELECT * FROM
             (
-                SELECT ROWNUM R,TNO, STARTDATE, ENDDATE, CEOID, TITLE, BREADTYPE, BREADNAME, PEOPLE, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REGDATE
+                SELECT ROWNUM R,TNO, TBNO, STARTDATE, ENDDATE, CNT, CEOID, TITLE, CEONAME, SHOPCALLNUM, BREADTYPE, BREADNAME, BREADPRICE, PEOPLE, DESCRIPTION, TESTINGPHOTO, SHOPNAME
                 FROM TBL_TESTING
                 ORDER BY TNO DESC
             )
@@ -18,7 +18,7 @@
         <![CDATA[
             SELECT * FROM
             (
-                SELECT ROWNUM R,TNO, STARTDATE, ENDDATE, CEOID, TITLE, BREADTYPE, BREADNAME, PEOPLE, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REGDATE
+                SELECT ROWNUM R,TNO, TBNO, STARTDATE, ENDDATE, CNT, CEOID, TITLE, CEONAME, SHOPCALLNUM, BREADTYPE, BREADNAME, BREADPRICE, PEOPLE, DESCRIPTION, TESTINGPHOTO, SHOPNAME
                 FROM TBL_TESTING
                 ORDER BY TNO DESC
             )
@@ -28,13 +28,5 @@
 
     <select id="getTotal" resultType="_int">
         SELECT COUNT(TNO) FROM TBL_TESTING
-    </select>
-
-    <select id="getRead" resultType="TestingVO">
-        SELECT * FROM TBL_TESTING WHERE TNO = #{tno}
-    </select>
-
-    <select id="getReadImgs" resultType="TestingImgVO">
-        SELECT * FROM TBL_TESTING_IMG WHERE TNO = #{tno}
     </select>
 </mapper>

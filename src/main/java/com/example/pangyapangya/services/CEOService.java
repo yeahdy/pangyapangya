@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -38,7 +37,6 @@ public class CEOService {
     }
 
     // 로그인
-    @Transactional(rollbackFor = Exception.class)
     public boolean loginCEO (CeoVO ceoVO){
         // 사용자가 입력한 아이디 유무 조회
         if(ceoDAO.checkIdCEO(ceoVO.getCeoId())){
@@ -63,17 +61,8 @@ public class CEOService {
     // 아이디찾기
     public List<CeoVO> idFindCEO (String phoneNum){ return ceoDAO.idFindCEO(phoneNum); }
 
-    // 아이디찾기 갯수
-    public int idFindCntCEO (String phoneNum){ return ceoDAO.idFindCntCEO(phoneNum); }
-
     // 비밀번호 찾기 : 아이디 조회
     public boolean pwFindCEO (String ceoId){ return ceoDAO.pwFindCEO(ceoId); }
-
-    // 비밀번호 찾기: 아이디 + 전화번호 + 이름 같아야 인증 가능
-    public boolean pwFindAuthCEO (CeoVO ceoVO) {return ceoDAO.pwFindAuthCEO(ceoVO); }
-
-    // 비밀번호 변경
-    public boolean pwUpdateCEO (CeoVO ceoVO) {return ceoDAO.pwUpdateCEO(ceoVO);}
 
     // 회원정보 조회
     public CeoVO ceoInfo (String ceoId){ return ceoDAO.ceoInfo(ceoId); }

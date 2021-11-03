@@ -50,7 +50,7 @@
 
 </header>
 
-<!-- Wrapper수정 -->
+<!-- Wrapper -->
 	<!-- Main -->
 	<section class="cont_login container">
 		<form action="/ceo/loginCEO" method="post" id="loginForm">
@@ -87,11 +87,7 @@
 					</div>
 					<!-- 로그인 상태 -->
 					<div th:if="${not #strings.isEmpty(check)}">
-						<input type="hidden" id="loginCheck" th:value="${check}">
-					</div>
-					<!-- 비밀번호 찾기 컨트롤러 -->
-					<div id="resultPw" th:if="${resultPw == 0}" style="display: none">
-						<span th:text="${resultPw}"></span>
+						<input type="hidden" th:value="${check}">
 					</div>
 				</div>
 			</div>
@@ -144,16 +140,6 @@
 			}
 			loginForm.submit();
 		})
-		// 왜 컨트롤러에서 데이터를 못받아올까...
-		console.log("loginCheck: " + $("#loginCheck").val())
-
-		/* 비밀번호 찾기 컨트롤러 */
-		let resultPw = $("#resultPw span").text();
-		console.log("비밀번호 변경 결과: " + resultPw);
-
-		if(resultPw == 0 && resultPw != ''){
-			alert("비밀번호 변경이 완료되었습니다. 다시 로그인 해주세요.");
-		}
 	})
 
 

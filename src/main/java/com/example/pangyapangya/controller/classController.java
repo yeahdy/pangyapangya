@@ -2,15 +2,9 @@ package com.example.pangyapangya.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Controller
@@ -30,16 +24,5 @@ public class classController {
 
     @GetMapping("practice")
     public String practice(){ return "class/practice"; }
-
-    @GetMapping("classPay")
-    public String classPay(){ return "class/classPay"; }
-
-//    //    게시글 첨부파일
-//    @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
-//    @ResponseBody
-//    public List<ClassReviewFileVO> getAttachList(Long bno){
-//        log.info("getAttachList " + bno);
-//        return classReplyService.getAttachList(bno);
-//    }
 
 }

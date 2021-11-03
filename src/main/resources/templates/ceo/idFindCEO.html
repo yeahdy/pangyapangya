@@ -51,7 +51,7 @@
 
 </header>
 
-<!-- Wrapper수정 -->
+<!-- Wrapper -->
 <!-- Main -->
 <section class="cont_login container">
 	<div class="box">
@@ -63,12 +63,12 @@
 		</li>
 	</div>
 	<div class="box_login find_id">
-		<form action="/ceo/idFindSuccessCEO" method="post" id="idFindForm">
+		<form action="#" method="get" id="idFindForm">
 			<h2 class="title">아이디 찾기</h2>
 			<p class="info_text">연락 받으실 전화번호를 입력해 주세요.</p>
 			<p class="form_title">휴대폰 번호</p>
 			<div class="line" style="margin-bottom: 15px;">
-				<input class="inp" name="phoneNum" id="userPhoneNum" type="tel" placeholder="휴대폰 번호를 - 없이 입력해주세요">
+				<input class="inp" name="userPhoneNum" id="userPhoneNum" type="tel" placeholder="휴대폰 번호를 - 없이 입력해주세요">
 				<button type="button" id="goSMS">SMS 전송</button>
 			</div>
 			<p class="form_title" id="confirmMsg" style="display: none">인증번호</p>
@@ -127,6 +127,7 @@
 						// 인증성공일 경우에만 idFindSuccess 로 이동
 						if(cnfCheck){
 							$("#idFindForm").submit();
+							location.href= "/ceo/idFindSuccessCEO";
 							$('#authNumber').val("");
 						}
 

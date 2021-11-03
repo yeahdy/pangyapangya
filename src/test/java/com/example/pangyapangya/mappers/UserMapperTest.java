@@ -70,6 +70,4 @@ public class UserMapperTest {
         log.info(userVO.toString());
     }
 
-    //수정 수정 수정
-
 }

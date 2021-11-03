@@ -85,19 +85,12 @@
 						<a class="btn" href="/user/pwFind">비밀번호 찾기</a>
 						<a class="btn" href="/user/join">회원가입</a>
 					</div>
+					<!-- 로그인 상태 -->
+					<div  th:if="${session.sessionC == null}">
+						<input type="hidden" id="sessionC" th:value="${session['sessionC']}" />
+					</div>
 				</div>
-				<!-- 로그인 상태 -->
-				<div th:if="${check == 'false'}">
-					<input type="hidden" id="loginChk" th:value="${check}" />
-				</div>
-				<!-- 아이디 찾기 컨트롤러 -->
-				<div id="resultId" th:if="${resultId == 0}" style="display: none">
-					<span th:text="${resultId}"></span>
-				</div>
-				<!-- 비밀번호 찾기 컨트롤러 -->
-				<div id="resultPw" th:if="${resultPw == 0}" style="display: none">
-					<span th:text="${resultPw}"></span>
-				</div>
+
 			</div>
 		</form>
 	</section>
@@ -129,50 +122,28 @@
 	});
 
 	// 아이디, 비밀번호 공백 막기
-	$(document).ready(function () {
-		$('#loginButton').on("click", function () {
-			if(!$("#userId").val()){
-				$("#userId").focus();
-				$("#userIdError1").show();
-				return;
-			}else{
-				$("#userIdError1").hide();
-			}
-
-			if(!$('#userPw').val()){
-				$("#userPw").focus();
-				$("#userPwError1").show();
-				return;
-			}else{
-				$("#userPwError1").hide();
-			}
-			loginForm.submit();
-
-			/* 로그인 실패 컨트롤러(왜 안들어오지) */
-			console.log("loginChk: " + $("#loginChk").val());
-			if($("#loginChk").val() == 'undefined'){
-				alert("아이디 또는 비밀번호가 일치하지 않습니다.");
-			}
-		})
-
-		/* 아이디 찾기 컨트롤러 */
-		let resultId = $("#resultId span").text();
-		console.log("아이디 찾기 실패 결과: " + resultId);
-
-		if(resultId == 0 && resultId != ''){
-			alert("해당 전화번호로 가입된 이력이 존재하지 않습니다.");
+	$('#loginButton').on("click", function () {
+		if(!$("#userId").val()){
+			$("#userId").focus();
+			$("#userIdError1").show();
+			return;
+		}else{
+			$("#userIdError1").hide();
 		}
 
-		/* 비밀번호 찾기 컨트롤러 */
-		let resultPw = $("#resultPw span").text();
-		console.log("비밀번호 변경 결과: " + resultPw);
+		if(!$('#userPw').val()){
+			$("#userPw").focus();
+			$("#userPwError1").show();
+			return;
+		}else{
+			$("#userPwError1").hide();
+		}
+		loginForm.submit();
 
-		if(resultPw == 0 && resultPw != ''){
-			alert("비밀번호 변경이 완료되었습니다. 다시 로그인 해주세요.");
+		console.log("session: " + $("#sessionC").val());
+		if($("#sessionC").val() == null){
 		}
 	})
-
-
 </script>
 </body>
 </html>

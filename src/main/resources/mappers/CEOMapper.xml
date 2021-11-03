@@ -27,30 +27,11 @@
         FROM TBL_CEO WHERE PHONENUM = #{phoneNum}
     </select>
 
-    <!-- 동일한 전화번호의 아이디 갯수 -->
-    <select id="idFindCntCEO" resultType="_int">
-        SELECT COUNT(CEOID) FROM TBL_CEO
-        WHERE PHONENUM = #{phoneNum}
-    </select>
-
     <!-- 비밀번호 찾기 : 아이디 유무 조회 -->
     <select id="pwFindCEO" resultType="_int">
         SELECT COUNT(CEOID) FROM TBL_CEO
         WHERE CEOID = #{ceoId}
     </select>
-
-    <!-- 비밀번호 찾기: 아이디 + 전화번호 + 이름 같아야 인증 가능 -->
-    <select id="pwFindAuthCEO" resultType="_int">
-        SELECT COUNT(CEOID) FROM TBL_CEO
-        WHERE CEOID = #{ceoId} AND PHONENUM = #{phoneNum} AND CEONAME = #{ceoName}
-    </select>
-
-    <!-- 비밀번호 변경 -->
-    <update id="pwUpdateCEO">
-        UPDATE TBL_CEO
-        SET CEOPW= #{ceoPw}
-        WHERE CEOID= #{ceoId}
-    </update>
 
     <!-- 회원 정보 조회-->
     <select id="ceoInfo" resultType="CeoVO">

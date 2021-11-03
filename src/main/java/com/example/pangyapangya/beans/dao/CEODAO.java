@@ -27,17 +27,8 @@ public class CEODAO {
     // 아이디찾기
     public List<CeoVO> idFindCEO (String phoneNum){ return mapper.idFindCEO(phoneNum); }
 
-    // 아이디 찾기 갯수
-    public int idFindCntCEO (String phoneNum){ return mapper.idFindCntCEO(phoneNum); }
-
     // 비밀번호 찾기 : 아이디 조회
     public boolean pwFindCEO (String ceoId){ return mapper.pwFindCEO(ceoId) == 1; }
-
-    // 비밀번호 찾기: 아이디 + 전화번호 + 이름 같아야 인증 가능
-    public boolean pwFindAuthCEO (CeoVO ceoVO) {return mapper.pwFindAuthCEO(ceoVO) == 1; }
-
-    // 비밀번호 변경
-    public boolean pwUpdateCEO (CeoVO ceoVO) {return mapper.pwUpdateCEO(ceoVO) == 1;}
 
     // 회원정보 조회
     public CeoVO ceoInfo (String ceoId){ return mapper.ceoInfo(ceoId); }

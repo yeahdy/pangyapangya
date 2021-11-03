@@ -105,6 +105,4 @@ public class UserServiceTest {
         UserVO userVO = userService.userInfo("yeahdy123");
         log.info(userVO.toString());
     }
-
-    //수정수정수정
 }
