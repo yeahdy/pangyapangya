@@ -7,6 +7,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="/css/main.css" />
+    <link rel="icon" type="image/png"  href="/images/favicon.png"/>
 </head>
 <style>
     a{
@@ -85,13 +86,9 @@
         content: none;
     }
 
-    .spotlights h5{
-        font-weight: bold;
-        font-size: small;
-    }
-
-    .spotlights p{
-        font-size: small;
+    h4{
+        margin-left: 15px;
+        color: black;
     }
 
     /* 검색창 */
@@ -129,17 +126,17 @@
     .spotlights > article {
         padding: 1.0em 2.25em 0.5em 2.25em;
         border-style: solid;
-        /*border-width: 1px 1px 0px 0px;*/
+        border-width: 1px 1px 0px 0px;
         width: 25%;
     }
     .image.fit{
         overflow: hidden;
         margin: 0 0 0.5em 0;
-        height: 16vw;
+        height: 10vw;
     }
     .image.fit img{
         width: 100%;
-        height: 100%;
+        /*height: 100%;*/
         object-fit:cover;
     }
     .bread-title{
@@ -172,8 +169,21 @@
         font-size: 13px;
         font-weight: bold;
     }
+
+    #inner{
+        background-color: white;
+        width: 990px;
+        margin: auto;
+        padding-top: 5em;
+    }
+    .is-preload{
+        width: 990px;
+        display: flex;
+        flex-direction: row;
+        margin: auto;
+    }
 </style>
-<body class="is-preload" style="padding: 10em 200px 0 200px;">
+<body class="is-preload" style="padding-top: 2em;">
 
 <!-- Header -->
 <header id="header" th:include="/main/header::header_body">
@@ -181,7 +191,7 @@
 </header>
 
 <!-- Wrapper -->
-<div>
+<div id="inner">
     <div>
         <h1>베이커리</h1>
     </div>
@@ -353,22 +363,63 @@
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
 <script>
-    let count = 2;
-    window.onscroll = function(e) {
-        if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-            setTimeout(function(){
-                let addArticle = document.createElement("article");
-                let addImage = document.createElement("a");
-                addImage.classList.add("image fit")
-                let addImageLink = document.createElement("img");
-                let addInfo = document.createElement("div");
-                addInfo.classList.add("info-header");
-                document.createElement("div");
-                addContent.innerHTML = `<p>${++count}번째 블록</p>`
-                document.querySelector('section').appendChild(addContent);
-            }, 1000)
-        }
+    let currentPage = 1
+
+    const DATA_PER_PAGE = 10,
+        lastPage = 5
+
+    const msgLoading = document.getElementById("msg-loading")
+
+
+    // 데이터 추가 함수
+    function addData(currentPage) {
+        $("#list").append("<article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article>");
     }
+
+    // IntersectionObserver 갱신 함수
+    function observeLastChild(intersectionObserver) {
+
+        const listChildren = document.querySelectorAll("#list article")
+        listChildren.forEach(el => {
+
+            if (!el.nextSibling && currentPage < lastPage) {
+                intersectionObserver.observe(el) // el에 대하여 관측 시작
+            } else if (currentPage >= lastPage) {
+                intersectionObserver.disconnect()
+            }
+
+        })
+    }
+
+    // IntersectionObeserver 부분
+    const observerOption = {
+        root: null,
+        rootMargin: "0px 0px 0px 0px",
+        threshold: 0.5
+    }
+
+    // IntersectionObserver 인스턴스 생성
+    const io = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+
+            // entry.isIntersecting: 특정 요소가 뷰포트와 50%(threshold 0.5) 교차되었으면
+            if (entry.isIntersecting) {
+
+                // 다음 데이터 가져오기: 자연스러운 연출을 위해 setTime-out 사용
+                setTimeout(() => {
+                    addData(++currentPage)
+                    observer.unobserve(entry.target)
+                    observeLastChild(observer)
+
+                }, 1000)
+            }
+        })
+    }, observerOption)
+
+
+    // 초기 데이터 생성
+    addData(currentPage)
+    observeLastChild(io)
 </script>
 </body>
 </html>

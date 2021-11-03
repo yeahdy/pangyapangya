@@ -3,14 +3,13 @@
 
 <html>
 <head>
-	<title>회원가입-약관동의 | 빵야빵야(屋)</title>
+	<title>회원가입 | 빵야빵야(屋)</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<link rel="stylesheet" href="/css/main.css" />
 	<link rel="stylesheet" href="/css/login.css" />
-	<link rel="icon" type="image/png"  href="/images/favicon.png"/>
 	<style th:include="/main/header::header_style">
 
 	</style>
@@ -25,7 +24,7 @@
 <!-- Wrapper -->
 	<!-- Main -->
 	<section class="cont_login container">
-		<form action="/user/joinConfirm" method="post" id="joinConrimForm">
+		<form action="#" method="post" id="frm-agree">
 			<div class="box_login box_terms" style="height: 800px">
 				<h2 class="tit"><b style="color: #F9A825;">환영합니다!</b>원활한 서비스 이용을 위해<br>약관에 동의해주세요.</h2>
 				<ul class="terms_lst" style="list-style: none">
@@ -62,16 +61,7 @@
 				</ul>
 				<div class="col-6 col-12-medium">
 					<ul class="actions fit" style="margin-bottom: 1em;">
-						<li><input type="button" id="nextButton" class="button primary fit" value="확인" style="margin-top: 1em;"/></li>
-						<div th:object="${userVO}" style="display: none">
-							<input type="hidden" th:field="*{userId}">
-							<input type="hidden" th:field="*{userPw}">
-							<input type="hidden" th:field="*{userName}">
-							<input type="hidden" th:field="*{userZipcode}">
-							<input type="hidden" th:field="*{userAddress}">
-							<input type="hidden" th:field="*{userAddress_detail}">
-							<input type="hidden" th:field="*{userPhoneNum}">
-						</div>
+						<li><input type="button" id="nextButton" class="button primary fit" value="빵집투어 시작하기" style="margin-top: 1em;"/></li>
 					</ul>
 				</div>
 			</div>
@@ -83,7 +73,6 @@
 
 <!-- Scripts -->
 <script src="/js/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
 <script src="/js/browser.min.js"></script>
 <script src="/js/breakpoints.min.js"></script>
@@ -134,10 +123,10 @@
 	// 필수 약관 체크 했을 경우에만 회원가입 완료
 	$("#nextButton").on("click",function () {
 		if($("#termsService").prop("checked") && $("#termsPrivacy").prop("checked")){
-			$("#joinConrimForm").submit();
-		}else {
-			alert("*필수 약관에 동의 해 주세요.");
+			location.href= "/main/login";
 			return;
+		}else {
+			alert("*필수 약관에 동의 해 주세요.")
 		}
 	})
 

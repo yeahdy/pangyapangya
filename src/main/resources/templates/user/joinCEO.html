@@ -3,7 +3,7 @@
 
 <html>
 <head>
-	<title>회원가입-일반회원 | 빵야빵야(屋)</title>
+	<title>회원가입-사장님 | 빵야빵야(屋)</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<meta name="description" content="" />
@@ -44,10 +44,6 @@
 			font-size: 18px;
 		}
 
-		.line_inp {
-			margin-bottom: 40px;
-		}
-
 	</style>
 </head>
 <body class="is-preload" style="padding: 5em 200px 0 200px;background-color: white;">
@@ -58,83 +54,68 @@
 </header>
 
 <!-- Wrapper -->
-	<!-- Main -->
-	<section class="cont_login container">
-		<form action="/user/join" method="post" id="joinForm">
-			<div class="box">
-				<li style="border-right: 1px solid #dcdcdc">
-						<h4><a href="/user/join"><strong style="color: #F9A825; border-bottom: 1px solid">일반회원</strong></a></h4>
-				</li>
-				<li>
-					<h4><a href="/user/joinCEO"><strong>사장님</strong></a></h4>
-				</li>
-			</div>
-			<div class="box_login login_email" style="height: 1050px">
-				<h2 class="tit">간편하게 가입하고<br><strong style="color: #F9A825">빵야빵야(屋)의</strong><br> 다양한 빵을 먹어보세요.</h2>
-				<div class="box_inp">
-					<div class="line_inp">
-						<p class="form_title">아이디</p>
-						<input type="text" name="userId" id="userId" placeholder="아이디를 입력해주세요">
-						<p class="info_error" id="userIdError1">아이디를 입력해주세요.</p>
-						<p class="info_error" id="userIdError2">8~20자의 영문 소문자와 숫자만 사용가능 합니다.</p>
-						<p class="info_error" id="userIdError3">중복된 아이디 입니다.</p>
-						<p class="info_error" id="userIdSuccess">사용가능한 아이디 입니다.</p>
-					</div>
-					<p class="form_title">비밀번호</p>
-					<div class="line_inp line_pw">
-						<input type="password" name="userPw" id="userPw" placeholder="비밀번호를 입력해주세요">
-						<button type="button" class="type_pwd hide"></button>
-						<p class="info_error" id="userPwError1">비밀번호를 입력해주세요.</p>
-						<p class="info_error" id="userPwError2">비밀번호는 영문+숫자+특수문자를 포함한 8~20자 까지 입니다.</p>
-					</div>
-					<div class="line_inp line_pw">
-						<input type="password" name="confirmPw" id="confirmPw" placeholder="비밀번호 확인">
-						<button type="button" class="type_pwd hide"></button>
-						<p class="info_error" id="confirmPwError1">입력하신 비밀번호가 서로 다릅니다.</p>
-					</div>
-					<div class="line_inp">
-						<p class="form_title">이름</p>
-						<input type="text" name="userName" id="userName" placeholder="이름(실명)을 입력해주세요">
-						<p class="info_error" id="userNameError1">이름(실명)을 입력해주세요.</p>
-					</div>
-					<!-- 이메일 인증 할지 말지 고민
-					<div class="line_inp">
-						<p class="form_title">이메일</p>
-						<input type="text" name="email" id="userEmail" placeholder="이메일 주소를 입력해주세요">
-						<p class="info_error" id="emailError1">이메일 형식에 맞지 않습니다.</p>
-						<p class="info_error" id="emailError2">이메일 주소를 입력해주세요.</p>
-					</div>
-					-->
-					<div class="line_inp">
-						<p class="form_title">휴대폰 번호</p>
-						<input type="tel" class="inp" id="userPhoneNum" name="userPhoneNum" placeholder="휴대폰 번호를 - 없이 입력해주세요" style="width: calc(100% - 110px);float: left;">
-						<input type="button" id="goSMS" value="SMS 전송" style="width: 100px;padding: 0px;" />
-					</div>
-					<div class="line_inp confirmDiv" style="display: none">
-						<p class="form_title">인증번호</p>
-						<input class="inp" id="authNumber" type="tel" placeholder="SMS로 수신된 인증번호 5자리를 입력해주세요" style="width: calc(100% - 110px);float: left;">
-						<input type="hidden" id="authCode"/>
-						<input type="button" id="confirmBnt" value="인증" style="width: 100px;padding: 0px;" />
-						<!-- 타이머 -->
-						<p class="count" style="margin: 0em 23em 0em 0em;color: #F9A825;"><span class="timer"></span></p>
-					</div>
-					<div class="line_inp">
-						<p class="form_title">주소</p>
-						<input type="text" class="inp" id="userZipcode" name="userZipcode" placeholder="우편번호" style="width: calc(100% - 110px);float: left;">
-						<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" style="width: 100px;padding: 0px;font-size: 13px"><br>
-						<input type="text" id="userAddress" name="userAddress" placeholder="주소">
-						<input type="text" id="userAddress_detail" name="userAddress_detail" placeholder="상세주소">
-						<p class="info_error" id="addressError1">주소를 정확히 입력해주세요.</p>
-					</div>
+<!-- 전송전송 -->
+<!-- Main -->
+<section class="cont_login container">
+	<form action="#" method="post" id="joinCEOform">
+		<div class="box">
+			<li style="border-right: 1px solid #dcdcdc">
+				<h4><a href="/user/join"><strong>일반회원</strong></a></h4>
+			</li>
+			<li>
+				<h4><a href="/user/joinCEO"><strong style="color: #F9A825; border-bottom: 1px solid">사장님</strong></a></h4>
+			</li>
+		</div>
+		<div class="box_login login_email" style="height: 850px">
+			<h2 class="tit">간편하게 가입하고<br><strong style="color: #F9A825">빵야빵야(屋)의</strong><br> 사장님이 되어주세요!</h2>
+			<div class="box_inp">
+				<div class="line_inp">
+					<p class="form_title">아이디</p>
+					<input type="text" name="userId" id="userId" placeholder="아이디를 입력해주세요">
+					<p class="info_error" id="userIdError1">아이디를 입력해주세요.</p>
+					<p class="info_error" id="userIdError2">8~20자의 영문 소문자와 숫자만 사용가능 합니다.</p>
+					<p class="info_error" id="userIdError3">중복된 아이디 입니다.</p>
+					<p class="info_error" id="userIdSuccess">사용가능한 아이디 입니다.</p>
 				</div>
-				<div class="col-6 col-12-medium">
-					<ul class="actions fit" style="margin-bottom: 3em;">
-						<li><input type="button" id="nextButton" class="button primary fit" value="다음" style="margin-top: 1em;"></input></li>
-					</ul>
+				<p class="form_title">비밀번호</p>
+				<div class="line_inp line_pw">
+					<input type="password" name="userPw" id="userPw" placeholder="비밀번호를 입력해주세요">
+					<button type="button" class="type_pwd hide"></button>
+					<p class="info_error" id="userPwError1">비밀번호를 입력해주세요.</p>
+					<p class="info_error" id="userPwError2">비밀번호는 영문 숫자조합 8자리 이상 입력해주세요.</p>
+				</div>
+				<div class="line_inp line_pw">
+					<input type="password" name="confirmPw" id="confirmPw" placeholder="비밀번호 확인">
+					<button type="button" class="type_pwd hide"></button>
+					<p class="info_error" id="confirmPwError1">입력하신 비밀번호가 서로 다릅니다.</p>
+				</div>
+				<div class="line_inp">
+					<p class="form_title">이름</p>
+					<input type="text" name="userName" id="userName" placeholder="이름(실명)을 입력해주세요">
+					<p class="info_error" id="userNameError1">이름(실명)을 입력해주세요.</p>
+				</div>
+				<div class="line_inp">
+					<p class="form_title">휴대폰 번호</p>
+					<input type="tel" class="inp" name="userPhoneNum" id="userPhoneNum" placeholder="휴대폰 번호를 - 없이 입력해주세요" style="width: calc(100% - 110px);float: left;">
+					<input type="button" id="goSMS" value="SMS 전송" style="width: 100px;padding: 0px;" />
+				</div>
+				<div class="line_inp confirmDiv" style="display: none">
+					<p class="form_title">인증번호</p>
+					<input class="inp" id="authNumber" type="tel" placeholder="SMS로 수신된 인증번호 5자리를 입력해주세요" style="width: calc(100% - 110px);float: left;">
+					<input type="hidden" id="authCode"/>
+					<input type="button" id="confirmBnt" value="인증" style="width: 100px;padding: 0px;" />
+					<!-- 타이머 -->
+					<p class="count" style="margin: 0em 23em 0em 0em;color: #F9A825;"><span class="timer"></span></p>
 				</div>
 			</div>
-		</form>
-	</section>
+			<div class="col-6 col-12-medium">
+				<ul class="actions fit" style="margin-bottom: 3em;">
+					<li><input type="button" id="nextButton" class="button primary fit" value="다음" style="margin-top: 1em;"/></li>
+				</ul>
+			</div>
+		</div>
+	</form>
+</section>
 <!-- Footer -->
 <footer id="footer" th:include="/main/footer::footer_body"></footer>
 
@@ -147,9 +128,8 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" th:inline="javascript">
-	let joinForm = $(document.joinForm);	//<form>
+<script type="text/javascript">
+	let joinCEOform = $(document.joinCEOform);	//<form>
 	let cnfCheck= false;	// 인증번호 check 확인
 	let idCheck= false;		// 아이디 중복검사
 
@@ -164,9 +144,9 @@
 		}
 	});
 
+
 	//공백 막기
 	$('#nextButton').on("click", function () {
-
 		// 아이디
 		if(!$("#userId").val()){
 			$("#userId").focus();
@@ -185,7 +165,7 @@
 			$("#userPwError1").hide();
 		}
 
-		// 비밀번호 확인
+		// 비밀번호 유효성 검사
 		if(!$('#confirmPw').val()) {
 			$("#confirmPw").focus();
 			$("#confirmPwError1").show();
@@ -203,26 +183,18 @@
 			$("#userNameError1").hide();
 		}
 
-		// 휴대폰번호
+		// 휴대폰번호, 인증번호
 		if(!$('#userPhoneNum').val()){
 			$("#userPhoneNum").focus();
+			$("#authNumber").focus();
 			return;
-		}
-
-		// 주소
-		if(!$('#userAddress').val()){
-			$("#userAddress").focus();
-			$("#addressError1").show();
-			return;
-		}else{
-			$("#addressError1").hide();
 		}
 
 		console.log("체크여부: "+cnfCheck);
 		if(cnfCheck && idCheck){
-			joinForm.submit();
+			joinCEOform.submit();
 			$('#authNumber').val("");
-			location.href= '/user/joinConfirm';
+			location.href= '/user/joinCEO2';
 		}else if(!idCheck){
 			$("#userId").focus();
 		}else if(!cnfCheck){
@@ -269,7 +241,7 @@
 		});
 	});
 
-	// 비밀번호 유효성 검사
+	// 비밀번호 정규식
 	$("#userPw").focusout(function () {
 		let pwCheck= /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/
 		if(!pwCheck.test($('#userPw').val())){
@@ -295,6 +267,7 @@
 	})
 
 
+
 	let interval;
 	// 휴대폰 인증 버튼 클릭시 해당 태그의 값으로 사용자가 입력한 '숫자'만 가져온다
 	$(document).ready(function(){
@@ -317,9 +290,7 @@
 						cnfCheck = true;
 						alert('휴대폰 번호 인증이 완료되었습니다. 감사합니다.');
 						clearInterval(interval);	// 타이머 종료
-						console.log("체크여부: "+cnfCheck);
 						// 사용자 전화번호 저장하기
-
 					} else {
 						alert('인증번호가 일치하지 않습니다.');
 						cnfCheck = false;
@@ -355,7 +326,7 @@
 						// 인증번호 입력란 애니메이션
 						$(".confirmDiv").slideDown();
 						$(".login_email").css({
-							"height" : "1250px"
+							"height" : "950px"
 						});
 					},
 					error: function(response) {
@@ -431,17 +402,17 @@
 						extraAddr = ' (' + extraAddr + ')';
 					}
 					// 조합된 참고항목을 해당 필드에 넣는다.
-					document.getElementById("userAddress_detail").value = extraAddr;
+					document.getElementById("detailAddress").value = extraAddr;
 
 				} else {
-					document.getElementById("userAddress_detail").value = '';
+					document.getElementById("detailAddress").value = '';
 				}
 
 				// 우편번호와 주소 정보를 해당 필드에 넣는다.
-				document.getElementById('userZipcode').value = data.zonecode;
-				document.getElementById("userAddress").value = addr;
+				document.getElementById('postcode').value = data.zonecode;
+				document.getElementById("address").value = addr;
 				// 커서를 상세주소 필드로 이동한다.
-				document.getElementById("userAddress_detail").focus();
+				document.getElementById("detailAddress").focus();
 			}
 		}).open();
 	}
