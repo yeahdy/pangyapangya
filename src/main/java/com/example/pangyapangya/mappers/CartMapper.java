@@ -20,6 +20,8 @@ public interface CartMapper {
     public int deleteCart(Long cartNum);
     //수량(breadCnt) 수정
     public int updateBreadCnt(Long cartNum, int breadCnt);
+    //장바구니 비우기
+    public int emptyCart(String userId);
     //회원탈퇴 시 장바구니
     public int leaveUser_cart(String userId);
 }

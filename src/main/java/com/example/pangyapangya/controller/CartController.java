@@ -20,18 +20,30 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class CartController {
 
     private final CartService cartService;
-    @GetMapping("cart")
-    public String cart(){ return "mypage/cart"; }
     //cart
+   /* @GetMapping("cart")
+    public String cart(){ return "mypage/cart"; }*/
 
 
-    @GetMapping("cartList")
+
+    /* @GetMapping("getCart")
+    public String getCart(String userId, Model model){
+        log.info("-------------------------------------");
+        log.info(userId+ "님의 장바구니" );
+        log.info("-------------------------------------");
+
+        model.addAttribute("cart", cartService.getCart(userId));
+        return "mypage/cart";
+    }*/
+
+    /*수정된 getCart*/
+    @GetMapping("cart")
     public String cartList(Model model){
         log.info("-------------------------------------");
         log.info("cartList");
         log.info("-------------------------------------");
-        model.addAttribute("cartList", cartService.getCartList("kjy1234"));
-        return "mypage/cart"; }
+        model.addAttribute("cartList", cartService.getCartList("hds1234"));/*여기에 userId를 어떻게 넘길까 bno같은 맥락?*/
+        return "mypage/cart";}
 
     @GetMapping("addCart")
     public String addCart(CartVO cartVO, Model model){
@@ -43,16 +55,8 @@ public class CartController {
         return "mypage/cart";
     }
 
-   /* @GetMapping("getCart")
-    public String getCart(String userId, Model model){
-        log.info("-------------------------------------");
-        log.info(userId+ "님의 장바구니" );
-        log.info("-------------------------------------");
 
-        model.addAttribute("cart", cartService.getCart(userId));
-        return "mypage/cart";
-    }*/
-
+    /*장바구니 하나만 삭제*/
     @GetMapping("deleteCart")
     public String deleteCart(@RequestParam("cartNum") Long cartNum, RedirectAttributes rttr){
         log.info("-------------------------------------");
@@ -66,6 +70,8 @@ public class CartController {
         }
         return "mypage/cart";
     }
+    /* 추가 해야할 것 : 장바구니 모두 비우기
+    * service까지 해놓음 */
 
     @GetMapping("updateCnt")
     public String updateCnt(@RequestParam("cartNum") Long cartNum, int breadCnt){
@@ -78,10 +84,11 @@ public class CartController {
     }
 
     @GetMapping("test")
-    public String test(@ModelAttribute("cart") CartVO cart){
-        log.info("------------------------------------");
-        log.info(cart.toString());
-        log.info("------------------------------------");
+    public String test(Model model){
+        log.info("-------------------------------------");
+        log.info("cartList");
+        log.info("-------------------------------------");
+        model.addAttribute("cartList", cartService.getCartList("hds1234"));
         return "mypage/test";
     }
 

@@ -5,20 +5,24 @@
     <title>test_th</title>
 </head>
 <body>
+<!--<th:block th:each="cart : ${cartList}">
+    <table border="1" th:object="${cart}">
 
-    <table border="1">
         <tr>
             <th>카트 번호</th>
             <th>빵 이름</th>
             <th>빵 개수</th>
         </tr>
-        <tr th:object="${cartList}">
+        <tr>
             <td th:text="*{cartNum}"></td>
             <td th:text="*{breadName}"></td>
             <td th:text="*{breadCnt}"></td>
         </tr>
+
     </table>
-    <table border="1" class="bakery1">
+</th:block>-->
+<th:block th:each="cart : ${cartList}">
+    <table border="1" class="bakery1" th:object="${cart}">
         <tbody><tr>
             <th class="bakeryName">빵집 이름</th>
         </tr>
@@ -28,7 +32,7 @@
                     <span class="bread_title"><strong></strong></span>
                     <br>
                     <ul>
-                        <li><span class="bread_name">파운드케이크선택 : 흑임자칙피스프레드</span></li>
+                        <li><span class="bread_name" th:text="|*{breadName} 여기|"></span></li>
                     </ul>
                 </div>
                 <div class="breadTable_bottom">
@@ -50,38 +54,7 @@
         </tr>
         </tbody>
     </table>
-    <table border="1" class="bakery1">
-        <tbody><tr>
-            <th class="bakeryName">빵집 이름</th>
-        </tr>
-        <tr>
-            <td><div class="bread_table"><img class="bread_img" src="/images/bread1.jpg" width="200px"></div>
-                <div class="breadTable_top">
-                    <span class="bread_title"><strong></strong></span>
-                    <br>
-                    <ul>
-                        <li><span class="bread_name">파운드케이크선택 : 흑임자칙피스프레드</span></li>
-                    </ul>
-                </div>
-                <div class="breadTable_bottom">
-                    <div class="cnt_buttonDiv">
-                        <table>
-                        <tr>
-                            <td class="bt"><button type="button" class="cnt_button_plus"><span>-</span></button></td>
-                            <td><div class="bread_table" id="cnt1">1</div></td>
-                            <td><button type="button" class="cnt_button_minus">+</button></td>
-                        </tr>
-                        </table>
-                    </div>
-                    <div class="bread_table" class="price">
-                        38000
-                    </div>
-                    <div class="bread_table"><img class="delete_icon" src="/images/delete_icon.png"></div>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+</th:block>
 
 <!-- Scripts -->
 
