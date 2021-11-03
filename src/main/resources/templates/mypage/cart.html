@@ -212,20 +212,17 @@
             <header>
                 <h1 id="title">장바구니</h1>
             </header>
-
             <table border="1" class="bakery1">
                 <tbody>
-                <!--<script th:inline="javascript">
-                    var num=0;
-                    </script>-->
                 <th:block th:each="cart : ${cartList}">
-                <!--<tr>
-                    <th class="bakeryName">빵집이름</th>
-                </tr>-->
+
+                    <tr>
+<!--                    <th class="bakeryName">빵집이름</th>-->
+                </tr>
                 <tr>
-                    <td><div class="bread_table"><img class="bread_img" src="/images/bread1.jpg" width="200px"></div>
+                    <td><div class="bread_table"><img class="bread_img" th:src="@{/images/}+${cart.getBreadImg()}" width="200px"></div>
                         <div class="breadTable_top">
-                            <span class="bread_title"><strong>여기에 빵집?</strong></span>
+                            <span class="bread_title"><strong th:text="${cart.getShopName}">빵집이름</strong></span>
                             <br>
                             <ul>
                                 <li><span class="bread_name" th:text="${cart.breadName}"></span></li>
@@ -239,25 +236,18 @@
                                         <td><div class="bread_table" id="cnt1" th:text="${cart.getBreadCnt()}"></div></td>
                                         <td class="bt_plus"><button type="button" class="cnt_button">+</button></td>
                                         <td class="price">
-                                            <!--<script th:inline="javascript">
-                                                let priceId;
-                                                priceId="price"+ ++num;
-                                                $("#price1").attr('id', priceId);
-                                            </script>-->
                                                 <div class="bread_table breadPrice" id="price1" th:text="${cart.getBreadCnt()*cart.getPriceOfBread()}"></div>
-
                                         </td>
                                     </tr>
                                 </table>
                             </div>
-
-                            <div class="bread_table"><img class="delete_icon" src="/images/delete_icon.png"></div>
+                            <div class="bread_table"><a th:href="@{/mypage/deleteCart(cartNum=${cart.getCartNum()})}"><img class="delete_icon" src="/images/delete_icon.png"></a>
+                            </div>
                         </div>
                     </td>
                 </tr>
                 </th:block>
                 </tbody></table>
-            </th:block>
             <!--총 결제-->
             <div class="cart_bottom">
             <div id="resultDiv">
@@ -297,21 +287,21 @@
 <script th:replace="/main/header::header_js"></script>
 <!--장바구니 삭제-->
 <script>
-    var p;
-    var cnt;
-    var totalPrice;
-    var bakeryCnt;
-    var deliveryCharge;
-    var resultPrice;
+    let p;
+    let cnt;
+    let totalPrice;
+    let bakeryCnt;
+    let deliveryCharge;
+    let resultPrice;
 
     //console.log("장바구니의 개수는 "+$(".bread_table").length/4);
     //console.log("하나 가격은 "+(parseInt($("#price1").text())+parseInt($("#price2").text())));
     // console.log("총 금액은 "+$(".bread_table").length/4);
     totalPrice = 0;
     bakeryCnt=$(".bread_table").length/4;
-    var totalPriceResult = $(function () {
+    let totalPriceResult = $(function () {
         for (let i = 0; i < bakeryCnt; i++) {
-        totalPrice = $(".breadPrice").eq(i).text();
+        totalPrice += parseInt($(".breadPrice").eq(i).text());
         }
 
         console.log("총 금액" + totalPrice);

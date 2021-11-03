@@ -35,12 +35,14 @@ public class CartControllerTest {
     @Test
     public void testAddCart() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/mypage/addCart")
-                .param("breadName", "부드러운 식빵")
+                .param("breadName", "달콤한 누텔라 식빵")
+                /*초코듬뿍 까눌레*/
+                /*겉바속촉 크루와상*/
                 .param("userId","hds1234")
                 .param("PriceOfBread","16500")
                 .param("deliverCharge", "3000")
-                .param("breadCnt","3")
-                .param("breadImg", "bread2.jpg")
+                .param("breadCnt","1")
+                .param("breadImg", "bread4.jpg")
                 .param("ceoId","A")
         ).andReturn();
 
@@ -53,7 +55,7 @@ public class CartControllerTest {
 
     @Test
     public void testDeleteCart() throws Exception{
-        String result = mockMvc.perform(MockMvcRequestBuilders.get("/mypage/deleteCart").param("cartNum","35"))
+        String result = mockMvc.perform(MockMvcRequestBuilders.get("/mypage/deleteCart").param("cartNum","1"))
                 .andReturn().getFlashMap().toString();
         log.info(result);
     }
