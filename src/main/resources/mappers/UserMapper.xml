@@ -8,57 +8,61 @@
         WHERE USERID = #{userId}
     </select>
 
-    <!-- 회원가입 -->
+    <!-- 회원가입 (일반회원) -->
     <insert id="join">
         INSERT INTO TBL_USER
         (USERID, USERPW, USERNAME, USERZIPCODE, USERADDRESS, USERADDRESS_DETAIL, USERPHONENUM)
         VALUES(#{userId}, #{userPw}, #{userName}, #{userZipcode}, #{userAddress}, #{userAddress_detail}, #{userPhoneNum})
     </insert>
 
-    <!-- 로그인 -->
+    <!-- 회원가입 (사장님) -->
+    <insert id="joinCEO">
+        INSERT INTO TBL_CEO
+        (CEOID, CEOPW, CEONAME, SHOPNAME, SHOPCALLNUMBER, SHOPADDRESS, SHOPADDRESSDETAIL, SHOPPHOTO, SHOPREGNUM, SHOPZIPCODE, PHONENUM)
+        VALUES(#{ceoId}, #{ceoPw}, #{ceoName}, #{shopName}, #{shopCallNumber}, #{shopAddress}, #{shopAddressDetail}, #{shopPhoto}, #{shopRegNum}, #{shopZipcode}, #{phoneNum});
+    </insert>
+
+    <!-- 로그인(일반회원) -->
     <select id="login" resultType="_int">
         SELECT COUNT(USERID) FROM TBL_USER
         WHERE USERID = #{userId} AND USERPW = #{userPw}
     </select>
 
+    <!-- 로그인(사장님) -->
+    <select id="loginCEO" resultType="_int">
+        SELECT COUNT(CEOID) FROM TBL_CEO
+        WHERE CEOID = #{ceoId} AND CEOPW = #{ceoPw}
+    </select>
 
     <!-- 아이디 찾기 -->
     <select id="idFind" resultType="UserVO">
-        SELECT USERID, USERPW, USERNAME, USERZIPCODE, USERADDRESS, USERADDRESS_DETAIL, USERPHONENUM, STATUS
-        FROM TBL_USER WHERE USERPHONENUM = #{userPhoneNum}
-    </select>
-
-    <!-- 동일한 전화번호의 아이디 갯수 -->
-    <select id="idFindCnt" resultType="_int">
-        SELECT COUNT(USERID) FROM TBL_USER
+        SELECT USERID, USERPW, USERNAME, USERZIPCODE, USERADDRESS, USERADDRESS_DETAIL, USERPHONENUM FROM TBL_USER
         WHERE USERPHONENUM = #{userPhoneNum}
     </select>
 
-    <!-- 비밀번호 찾기 : 아이디 유무 조회 -->
+    <!-- 비밀번호 찾기 : 아이디 조회 -->
     <select id="pwFind" resultType="_int">
         SELECT COUNT(USERID) FROM TBL_USER
         WHERE USERID = #{userId}
     </select>
 
-    <!-- 비밀번호 찾기: 아이디 + 전화번호 + 이름 같아야 인증 가능 -->
-    <select id="pwFindAuth" resultType="_int">
-        SELECT COUNT(USERID) FROM TBL_USER
-        WHERE USERID = #{userId} AND USERPHONENUM = #{userPhoneNum} AND USERNAME = #{userName}
+    <!-- 비밀번호 찾기 : 가입한 전화번호 조회 -->
+    <select id="pwFind_phone" resultType="String">
+        SELECT USERPHONENUM FROM TBL_USER
+        WHERE USERID = #{userId}
     </select>
 
-    <!-- 비밀번호 변경 -->
-    <update id="pwUpdate">
-        UPDATE TBL_USER
-        SET USERPW= #{userPw}
-        WHERE USERID= #{userId}
-    </update>
-
-    <!-- 회원 정보 조회 -->
-    <select id="userInfo" resultType="UserVO">
-        SELECT USERID, USERPW, USERNAME, USERZIPCODE, USERADDRESS, USERADDRESS_DETAIL, USERPHONENUM, STATUS
-        FROM TBL_USER
-        WHERE USERID= #{userId}
+    <!-- 상태 구분하기(일반회원) -->
+    <select id="userStatus" resultType="_int">
+        SELECT STATUS FROM TBL_USER
+        WHERE USERID = #{userId}
     </select>
 
+    <!-- 상태 구분하기(사장님) -->
+    <select id="CEOStatus" resultType="_int">
+        SELECT STATUS FROM TBL_CEO
+        WHERE CEOID = #{ceoId}
+    </select>
 
+    <!-- 수정 -->
 </mapper>

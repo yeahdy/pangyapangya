@@ -28,28 +28,20 @@
 <section class="cont_login container">
 	<div class="box_login find_id">
 		<h2 class="title">입력하신 휴대폰 번호로 빵야빵야(屋)에<br>가입된 내역은 다음과 같습니다.</h2>
-		<p class="info_text">총 <span th:text="${idFindCnt}"></span>건의 가입 내역이 확인되었습니다.</p>
+		<p class="info_text">총 1건의 가입 내역이 확인되었습니다.</p>
 		<div class="list_id mCustomScrollbar _mCS_1 mCS-autoHide" style="position: relative; overflow: visible;margin-bottom: -10px;">
 				<div id="mCSB_1_container" class="mCSB_container" style="position: relative; top: 0px; left: 0px;" dir="ltr">
 					<ul>
-						<li style="padding: 0px;margin-bottom: 1em;border-bottom: 0px solid;">
+						<li>
 							<div class="id">
-								<span style="border-bottom: 1px solid #dcdcdc;padding-bottom: 5px;">아이디</span>
+								<span>아이디</span>
+								<p>yejinyejin</p>
 							</div>
 							<div class="name">
-								<span style="border-bottom: 1px solid #dcdcdc;padding-bottom: 5px;">가입하신 이름</span>
+								<span>가입하신 이름</span>
+								<p>이예진</p>
 							</div>
 						</li>
-						<th:block th:each="userVO : ${userList}">
-							<li th:object="${userVO}" style="border-bottom: 0px solid;padding: 0px;">
-								<div class="id">
-									<p th:text="*{userId}"></p>
-								</div>
-								<div class="name">
-									<p th:text="*{userName}"></p>
-								</div>
-							</li>
-						</th:block>
 					</ul>
 					<div class="col-6 col-12-medium">
 						<ul class="actions fit" style="margin-bottom: 1em;">
@@ -72,7 +64,7 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
-<script type="text/javascript" th:inline="javascript">
+<script type="text/javascript">
 
 </script>
 </body>
