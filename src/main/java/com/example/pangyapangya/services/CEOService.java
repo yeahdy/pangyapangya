@@ -73,7 +73,17 @@ public class CEOService {
     public boolean pwFindAuthCEO (CeoVO ceoVO) {return ceoDAO.pwFindAuthCEO(ceoVO); }
 
     // 비밀번호 변경
-    public boolean pwUpdateCEO (CeoVO ceoVO) {return ceoDAO.pwUpdateCEO(ceoVO);}
+    public boolean pwUpdateCEO (CeoVO ceoVO) {
+        String ceoPw = ceoVO.getCeoPw();
+
+        System.out.print("변경할 비밀번호: " + ceoPw);
+        String encodedPw = passwordEncoder.encode(ceoPw);
+        System.out.println("암호화된 비밀번호: " + encodedPw);
+        // 암호화된 비밀번호로 다시 세팅
+        ceoVO.setCeoPw(encodedPw);
+
+        return ceoDAO.pwUpdateCEO(ceoVO);
+    }
 
     // 회원정보 조회
     public CeoVO ceoInfo (String ceoId){ return ceoDAO.ceoInfo(ceoId); }
