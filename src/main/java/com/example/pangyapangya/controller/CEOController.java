@@ -1,7 +1,6 @@
 package com.example.pangyapangya.controller;
 
 import com.example.pangyapangya.beans.vo.CeoVO;
-import com.example.pangyapangya.beans.vo.UserVO;
 import com.example.pangyapangya.services.CEOService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -98,50 +97,48 @@ public class CEOController {
     @GetMapping("pwFindCEO")
     public String pwFindCEO(){ return "ceo/pwFindCEO"; }
 
-    /*
-    * @PostMapping("pwFind")
-    public RedirectView pwFind(UserVO userVO, RedirectAttributes rttr){
+    @PostMapping("pwFindCEO")
+    public RedirectView pwFindCEO(CeoVO ceoVO, RedirectAttributes rttr){
         log.info("----------------- 사용자 입력 정보 -----------------");
-        log.info("아이디: " + userVO.getUserId());
-        log.info("이름: " + userVO.getUserName());
-        log.info("전화번호: " + userVO.getUserPhoneNum());
+        log.info("아이디: " + ceoVO.getCeoId());
+        log.info("이름: " + ceoVO.getCeoName());
+        log.info("전화번호: " + ceoVO.getPhoneNum());
         log.info("-----------------------------------------------");
         // 만약 사용자가 입력한 정보가 DB와 일치할 경우 → 비밀번호 변경
-        if(userService.pwFindAuth(userVO)){
+        if(ceoService.pwFindAuthCEO(ceoVO)){
             log.info("-------------- DB와 입력정보 일치 --------------");
-            rttr.addFlashAttribute("userId", userVO.getUserId());
-            return new RedirectView("pwFindSuccess");
+            rttr.addFlashAttribute("ceoId", ceoVO.getCeoId());
+            return new RedirectView("pwFindSuccessCEO");
         }else{
             log.info("-------------- DB와 입력정보 불일치 --------------");
             rttr.addFlashAttribute("result", 0);
-            return new RedirectView("pwFind");
+            return new RedirectView("pwFindCEO");
         }
     }
-    * */
+
 
     /* 비밀번호 찾기 완료 */
     @GetMapping("pwFindSuccessCEO")
     public String pwFindSuccessCEO(){ return "ceo/pwFindSuccessCEO"; }
 
-    /*
-    * @PostMapping("pwFindSuccess")
-    public RedirectView pwFindSuccess(UserVO userVO, RedirectAttributes rttr){
+    @PostMapping("pwFindSuccessCEO")
+    public RedirectView pwFindSuccessCEO(CeoVO ceoVO, RedirectAttributes rttr){
         // 받아와야할것? 회원의 아이디, 변경할 비밀번호
         log.info("--------------- 사용자 입력 정보 --------------");
-        log.info("아이디: " + userVO.getUserId());
-        log.info("변경할 비밀번호: " + userVO.getUserPw());
+        log.info("아이디: " + ceoVO.getCeoId());
+        log.info("변경할 비밀번호: " + ceoVO.getCeoPw());
         log.info("-----------------------------------------------");
         // pwFind에서 넘겨받은 아이디를 통해 해당 회원의 비밀번호 변경하기 → 서비스에서 전달받은 비밀번호 암호화하기
-        if(userService.pwUpdate(userVO)){
+        if(ceoService.pwUpdateCEO(ceoVO)){
             log.info("--------- 비밀번호 변경 완료 ---------");
             rttr.addFlashAttribute("resultPw", 0);
-            return new RedirectView("login");
+            return new RedirectView("loginCEO");
         }else{
             log.info("--------- 비밀번호 변경 실패 ---------");
-            return new RedirectView("pwFindSuccess");
+            return new RedirectView("pwFindSuccessCEO");
         }
     }
-     */
+
 
 
     /* 회원가입- 사장님 */
