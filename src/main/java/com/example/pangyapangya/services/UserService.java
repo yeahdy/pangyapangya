@@ -1,17 +1,15 @@
 package com.example.pangyapangya.services;
 
 import com.example.pangyapangya.beans.dao.UserDAO;
-import com.example.pangyapangya.beans.vo.CeoVO;
 import com.example.pangyapangya.beans.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.json.simple.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -42,6 +40,7 @@ public class UserService {
     }
 
     // 로그인 + 비밀번호 암호화 비교하기
+    @Transactional(rollbackFor = Exception.class)
     public boolean login (UserVO userVO){
         // 사용자가 입력한 아이디 유무 조회
         if(userDAO.checkId(userVO.getUserId())){
@@ -68,14 +67,30 @@ public class UserService {
         return userDAO.idFind(userPhoneNum);
     }
 
+    // 동일한 전화번호의 아이디 갯수
+    public int idFindCnt (String userPhoneNum){ return userDAO.idFindCnt(userPhoneNum); }
+
     // 비밀번호 찾기 : 아이디 유무 조회
-    public boolean pwFind (String userId){
-        return userDAO.pwFind(userId);
+    public boolean pwFind (String userId){ return userDAO.pwFind(userId); }
+
+    // 비밀번호 찾기: 아이디 + 전화번호 + 이름 같아야 인증 가능
+    public boolean pwFindAuth (UserVO userVO) { return userDAO.pwFindAuth(userVO); }
+
+    // 비밀번호 변경
+    public boolean pwUpdate (UserVO userVO) {
+        String userPw = userVO.getUserPw();
+
+        System.out.print("변경할 비밀번호: " + userPw);
+        String encodedPw = passwordEncoder.encode(userPw);
+        System.out.println("암호화된 비밀번호: " + encodedPw);
+        // 암호화된 비밀번호로 다시 세팅
+        userVO.setUserPw(encodedPw);
+
+        return userDAO.pwUpdate(userVO);
     }
 
     // 회원 정보 조회
     public UserVO userInfo (String userId) {return  userDAO.userInfo(userId);}
-
 
     // 인증번호(전화번호, 인증번호)
     public void certifiedPhoneNumber(String phoneNumber, String cerNum) {
@@ -99,7 +114,8 @@ public class UserService {
             System.out.println(e.getMessage());
             System.out.println(e.getCode());
         }
-
     }
+
+
 }
 

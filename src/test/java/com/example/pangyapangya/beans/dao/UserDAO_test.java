@@ -62,4 +62,6 @@ public class UserDAO_test {
         UserVO userVO = userDAO.userInfo("yeahdy123");
         log.info(userVO.toString());
     }
+
+    //수정 수정수정수정
 }

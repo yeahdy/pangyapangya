@@ -1,6 +1,7 @@
 package com.example.pangyapangya.controller;
 
 import com.example.pangyapangya.beans.vo.CeoVO;
+import com.example.pangyapangya.beans.vo.UserVO;
 import com.example.pangyapangya.services.CEOService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
 /*
@@ -58,15 +60,35 @@ public class CEOController {
         }else{
             log.info("-------로그인 성공-------");
             CeoVO ceoInfo= ceoService.ceoInfo(ceoVO.getCeoId());
-            session.setAttribute("sessionC", ceoInfo.getStatus());
+            session.setAttribute("sessionC", ceoInfo.getCeoId());
             return mainView;
         }
     }
 
-
     /* 아이디 찾기 */
     @GetMapping("idFindCEO")
     public String idFindCEO(){ return "ceo/idFindCEO"; }
+
+    /* 아이디 찾기 완료 */
+    @PostMapping ("idFindSuccessCEO")
+    public RedirectView idFindSuccess(@RequestParam("phoneNum") String phoneNum, RedirectAttributes rttr){
+        // 사용자가 입력한 전화번호를 받아 list로 뽑는다.
+        List<CeoVO> ceoList = ceoService.idFindCEO(phoneNum);
+        // 전화번호에 따른 아이디 갯수
+        int idFindCnt = ceoService.idFindCntCEO(phoneNum);
+        if(ceoList != null){
+            log.info("----------------- 유저 리스트 -----------------");
+            log.info(ceoList.toString());
+            log.info("아이디 갯수: " + idFindCnt);
+            log.info("-----------------------------------------------");
+            rttr.addFlashAttribute("ceoList", ceoList);
+            rttr.addFlashAttribute("idFindCnt", idFindCnt);
+            if(idFindCnt == 0){
+                return new RedirectView("idFindSuccessCEO");
+            }
+        }
+        return new RedirectView("idFindSuccessCEO");
+    }
 
     /* 아이디 찾기 완료 */
     @GetMapping("idFindSuccessCEO")
@@ -76,9 +98,50 @@ public class CEOController {
     @GetMapping("pwFindCEO")
     public String pwFindCEO(){ return "ceo/pwFindCEO"; }
 
+    /*
+    * @PostMapping("pwFind")
+    public RedirectView pwFind(UserVO userVO, RedirectAttributes rttr){
+        log.info("----------------- 사용자 입력 정보 -----------------");
+        log.info("아이디: " + userVO.getUserId());
+        log.info("이름: " + userVO.getUserName());
+        log.info("전화번호: " + userVO.getUserPhoneNum());
+        log.info("-----------------------------------------------");
+        // 만약 사용자가 입력한 정보가 DB와 일치할 경우 → 비밀번호 변경
+        if(userService.pwFindAuth(userVO)){
+            log.info("-------------- DB와 입력정보 일치 --------------");
+            rttr.addFlashAttribute("userId", userVO.getUserId());
+            return new RedirectView("pwFindSuccess");
+        }else{
+            log.info("-------------- DB와 입력정보 불일치 --------------");
+            rttr.addFlashAttribute("result", 0);
+            return new RedirectView("pwFind");
+        }
+    }
+    * */
+
     /* 비밀번호 찾기 완료 */
     @GetMapping("pwFindSuccessCEO")
     public String pwFindSuccessCEO(){ return "ceo/pwFindSuccessCEO"; }
+
+    /*
+    * @PostMapping("pwFindSuccess")
+    public RedirectView pwFindSuccess(UserVO userVO, RedirectAttributes rttr){
+        // 받아와야할것? 회원의 아이디, 변경할 비밀번호
+        log.info("--------------- 사용자 입력 정보 --------------");
+        log.info("아이디: " + userVO.getUserId());
+        log.info("변경할 비밀번호: " + userVO.getUserPw());
+        log.info("-----------------------------------------------");
+        // pwFind에서 넘겨받은 아이디를 통해 해당 회원의 비밀번호 변경하기 → 서비스에서 전달받은 비밀번호 암호화하기
+        if(userService.pwUpdate(userVO)){
+            log.info("--------- 비밀번호 변경 완료 ---------");
+            rttr.addFlashAttribute("resultPw", 0);
+            return new RedirectView("login");
+        }else{
+            log.info("--------- 비밀번호 변경 실패 ---------");
+            return new RedirectView("pwFindSuccess");
+        }
+    }
+     */
 
 
     /* 회원가입- 사장님 */

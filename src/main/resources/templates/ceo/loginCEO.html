@@ -87,7 +87,7 @@
 					</div>
 					<!-- 로그인 상태 -->
 					<div th:if="${not #strings.isEmpty(check)}">
-						<input type="hidden" th:value="${check}">
+						<input type="hidden" id="loginCheck" th:value="${check}">
 					</div>
 				</div>
 			</div>
@@ -140,6 +140,8 @@
 			}
 			loginForm.submit();
 		})
+		// 왜 컨트롤러에서 데이터를 못받아올까...
+		console.log("loginCheck: " + $("#loginCheck").val())
 	})
 
 

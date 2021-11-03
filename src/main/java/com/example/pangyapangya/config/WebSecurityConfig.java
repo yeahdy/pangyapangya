@@ -11,6 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    //들어가!!!
+
     // PasswordEncoder? 비밀번호를 암호화하는 역할로 PasswordEncoder의 구현체를 대입해주어 스프링 빈으로 등록하는 과정이 필요
     @Bean
     public PasswordEncoder getPasswordEncoder() {
