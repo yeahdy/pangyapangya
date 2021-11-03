@@ -10,7 +10,6 @@
 	<meta name="keywords" content="" />
 	<link rel="stylesheet" href="/css/main.css" />
 	<link rel="stylesheet" href="/css/login.css" />
-	<link rel="icon" type="image/png"  href="/images/favicon.png"/>
 	<style th:replace="/main/header::header_style"></style>
 	<style>
 		.form_title{
@@ -57,13 +56,13 @@
 <!-- Wrapper -->
 <!-- Main -->
 <section class="cont_login container">
-	<form action="/ceo/createCEO" method="post" id="joinCEOform">
+	<form action="#" method="post" id="joinCEOform">
 		<div class="box">
 			<li style="border-right: 1px solid #dcdcdc">
 				<h4><a href="/user/join"><strong>일반회원</strong></a></h4>
 			</li>
 			<li>
-				<h4><a href="/ceo/joinCEO"><strong style="color: #F9A825; border-bottom: 1px solid">사장님</strong></a></h4>
+				<h4><a href="/user/joinCEO"><strong style="color: #F9A825; border-bottom: 1px solid">사장님</strong></a></h4>
 			</li>
 		</div>
 		<div class="box_login login_email" style="height: 850px">
@@ -71,7 +70,7 @@
 			<div class="box_inp">
 				<div class="line_inp">
 					<p class="form_title">아이디</p>
-					<input type="text" name="ceoId" id="userId" placeholder="아이디를 입력해주세요">
+					<input type="text" name="userId" id="userId" placeholder="아이디를 입력해주세요">
 					<p class="info_error" id="userIdError1">아이디를 입력해주세요.</p>
 					<p class="info_error" id="userIdError2">8~20자의 영문 소문자와 숫자만 사용가능 합니다.</p>
 					<p class="info_error" id="userIdError3">중복된 아이디 입니다.</p>
@@ -79,7 +78,7 @@
 				</div>
 				<p class="form_title">비밀번호</p>
 				<div class="line_inp line_pw">
-					<input type="password" name="ceoPw" id="userPw" placeholder="비밀번호를 입력해주세요">
+					<input type="password" name="userPw" id="userPw" placeholder="비밀번호를 입력해주세요">
 					<button type="button" class="type_pwd hide"></button>
 					<p class="info_error" id="userPwError1">비밀번호를 입력해주세요.</p>
 					<p class="info_error" id="userPwError2">비밀번호는 영문 숫자조합 8자리 이상 입력해주세요.</p>
@@ -91,12 +90,12 @@
 				</div>
 				<div class="line_inp">
 					<p class="form_title">이름</p>
-					<input type="text" name="ceoName" id="userName" placeholder="이름(실명)을 입력해주세요">
+					<input type="text" name="userName" id="userName" placeholder="이름(실명)을 입력해주세요">
 					<p class="info_error" id="userNameError1">이름(실명)을 입력해주세요.</p>
 				</div>
 				<div class="line_inp">
 					<p class="form_title">휴대폰 번호</p>
-					<input type="tel" class="inp" name="phoneNum" id="userPhoneNum" placeholder="휴대폰 번호를 - 없이 입력해주세요" style="width: calc(100% - 110px);float: left;">
+					<input type="tel" class="inp" name="userPhoneNum" id="userPhoneNum" placeholder="휴대폰 번호를 - 없이 입력해주세요" style="width: calc(100% - 110px);float: left;">
 					<input type="button" id="goSMS" value="SMS 전송" style="width: 100px;padding: 0px;" />
 				</div>
 				<div class="line_inp confirmDiv" style="display: none">
@@ -122,7 +121,6 @@
 
 <!-- Scripts -->
 <script src="/js/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
 <script src="/js/browser.min.js"></script>
 <script src="/js/breakpoints.min.js"></script>
@@ -130,7 +128,7 @@
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
 <script type="text/javascript">
-	let joinCEOform = $("#joinCEOform");	//<form>
+	let joinCEOform = $(document.joinCEOform);	//<form>
 	let cnfCheck= false;	// 인증번호 check 확인
 	let idCheck= false;		// 아이디 중복검사
 
@@ -195,6 +193,7 @@
 		if(cnfCheck && idCheck){
 			joinCEOform.submit();
 			$('#authNumber').val("");
+			location.href= '/user/joinCEO2';
 		}else if(!idCheck){
 			$("#userId").focus();
 		}else if(!cnfCheck){
@@ -206,7 +205,7 @@
 	$("#userId").focusout(function (){
 		let userId= $("#userId").val();
 		$.ajax({
-			url: '/user/idCheckCEO/' + userId,
+			url: '/user/idCheck/' + userId,
 			type: 'get',
 			dataType: 'text',
 			success: function (check) {

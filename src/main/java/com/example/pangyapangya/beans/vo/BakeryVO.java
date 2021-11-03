@@ -13,8 +13,11 @@ public class BakeryVO {
     private String title;
     private String ceoId;
     private String ceoName;
-    private String shopName;
+    private String bakeryName;
+    private String bakeryZipCode;
+    private String bakeryAddress;
+    private String bakeryAddressDetail;
     private String bakeryPhoto;
     private String regDate;
-    /*private List<BakeryFileVO> attachList;*/
+    private List<BakeryFileVO> attachList;
 }

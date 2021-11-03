@@ -3,14 +3,13 @@
 
 <html>
 <head>
-	<title>마이페이지 | 빵 체험단(글 등록)</title>
+	<title>Untitled</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<link rel="stylesheet" href="/css/main.css" />
 	<link rel="stylesheet" href="/css/login.css" />
-	<link rel="icon" type="image/png"  href="/images/favicon.png"/>
 	<style>
 		.headerIcon{
 			width: 40px;
@@ -156,7 +155,7 @@
 									<p>자신의 매장에 있는 대표 메뉴 빵을 홍보하고 공유할 수 있는<br>시식단을 모집하여 빵의 레시피 및 맛을 직접 경험해볼 수 있는 기회를 제공합니다.</p>
 								</div>
 
-								<form method="post" action="/myPageCeo/exp" id="registForm">
+								<form enctype="multipart/form-data">
 									<!--전체-->
 									<div id="contentDiv">
 										<!--사진부분-->
@@ -237,30 +236,27 @@
 
 										<!--밑에 상세정보 입력Div-->
 
-										<div id="subDiv2" th:object="${ceo}">
+										<div id="subDiv2">
 											<p id="title2">필수 정보 입력 <sub> 등록에 필요한 기본 정보입니다. 모두 입력해주세요.</sub></p>
 											<hr>
 											<div class="table-1" style="margin-bottom: 10px;">
 												<div class="table-title">제목</div>
-												<div class="table-content"><input type="text" name="title" placeholder="제목 입력"></div>
+												<div class="table-content"><input type="text" placeholder="제목 입력"></div>
 											</div>
 
 											<div class="table-1">
 												<div class="table-title">작성자</div>
-												<div class="table-content">
-													<input type="text" name="ceoName" th:field="*{ceoName}" readonly/>
-													<input type="hidden" name="ceoId" th:field="*{ceoId}" readonly/>
-												</div>
+												<div class="table-content"><input type="text" value="한준규" readonly/></div>
 											</div>
 
 											<div class="table-1">
 												<div class="table-title">업체명</div>
-												<div class="table-content"><input type="text" name="shopName" th:field="*{shopName}" readonly/></div>
+												<div class="table-content"><input type="text" value="TOUS les JOURS" readonly/></div>
 											</div>
 
 											<div class="table-1">
 												<div class="table-title">전화번호</div>
-												<div class="table-content"><input type="text" name="shopCallNumber" th:field="*{shopCallNumber}" readonly/></div>
+												<div class="table-content"><input type="text" value="010-1234-5678" readonly/></div>
 											</div>
 
 											<!--하나-->
@@ -272,7 +268,7 @@
 													<div class="table-content" style="display: flex; width: 100%;">
 
 														<div style="width: 30%">
-															<select name="breadType">
+															<select name="type1">
 																<option value="">종류</option>
 																<option value="케이크">케이크</option>
 																<option value="제과">제과</option>
@@ -280,7 +276,10 @@
 															</select>
 														</div>
 														<div style="width: 35%;">
-															<input type="text" name="breadName" placeholder="빵 이름" style="margin-bottom: 1px;">
+															<input type="text" placeholder="빵 이름" style="margin-bottom: 1px;">
+														</div>
+														<div style="width: 35%; margin-right: 0;">
+															<input type="text" placeholder="빵 가격">
 														</div>
 
 													</div>
@@ -290,18 +289,18 @@
 
 											<div class="table-1">
 												<div class="table-title">최대 모집 인원 수 </div>
-												<div class="table-content"><input type="text" name="people" placeholder="예)10명"/></div>
+												<div class="table-content"><input type="text" placeholder="예)10명"/></div>
 											</div>
 
 											<div class="table-1">
 												<div class="table-title">모집 날짜</div>
 												<div class="table-content" id="table-date">
 													<div>
-														<input type="date" name="startDate" class="input-date"/>
+														<input type="date" class="input-date"/>
 													</div>
 													<div style="width: 10px;"><p id="water">~</p></div>
 													<div>
-														<input type="date" name="endDate" class="input-date"/>
+														<input type="date" class="input-date"/>
 													</div>
 												</div>
 											</div>
@@ -309,13 +308,13 @@
 
 											<div class="table-1">
 												<div class="table-title">상세 정보</div>
-												<div class="table-content"><textarea name="description" cols="30" rows="8" maxlength="50" placeholder="상세 정보를 입력하세요." style="resize: none;"></textarea></div>
+												<div class="table-content"><textarea name="content" cols="30" rows="8" maxlength="50" placeholder="상세 정보를 입력하세요." style="resize: none;"></textarea></div>
 											</div>
 
 										</div><!--밑에 상세정보 입력Div-->
 
 										<div id="registDiv">
-											<input type="submit" value="글 등록하기">
+											<input type="button" value="글 등록하기">
 										</div>
 									</div><!--전체DIv-->
 
@@ -348,11 +347,11 @@
 </body>
 <script th:inline="javascript">
 	$(document).ready(function () {
-		let tno = [[${tno}]];
-		if(tno == null){
+		let bno = [[${bno}]];
+		if(bno == null){
 			return;
 		}
-		alert("게시글 " + tno + "번이 등록되었습니다.");
+		alert("게시글 " + bno + "번이 등록되었습니다.");
 	})
 </script>
 </html>

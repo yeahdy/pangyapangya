@@ -22,23 +22,11 @@ public class TestController {
         model.addAttribute("total", testService.getTotal());
         return "test/list";
     }
-
-//    @GetMapping({"read", "modify"})
-//    public void read(@RequestParam("bno") Long bno, Criteria criteria, Model model, HttpServletRequest request){
-//        String reqURI = request.getRequestURI();
-//        String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
-//        //read 요청 시 read 출력
-//        //modify 요청 시 modify 출력
-//        log.info("-------------------------------");
-//        log.info(reqType + " : " + bno);
-//        log.info("-------------------------------");
-//
-//        model.addAttribute("board", boardService.get(bno));
-//        model.addAttribute("criteria", criteria);
-//    }
+    
     @GetMapping("read")
     public String read(@RequestParam("tno") Long tno, Model model){
         model.addAttribute("item", testService.getRead(tno));
+        model.addAttribute("imgs", testService.getReadImgs(tno));
         return "test/read";
     }
 

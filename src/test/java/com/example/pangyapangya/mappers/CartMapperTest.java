@@ -1,16 +1,11 @@
 package com.example.pangyapangya.mappers;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 @Slf4j
 public class CartMapperTest {
-
-    @Autowired
-    private BakeryMapper mapper;
-
     /*@Autowired
     CartMapper mapper;
 
