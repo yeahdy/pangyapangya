@@ -1,6 +1,5 @@
 package com.example.pangyapangya.mappers;
 
-import com.example.pangyapangya.beans.vo.Criteria;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

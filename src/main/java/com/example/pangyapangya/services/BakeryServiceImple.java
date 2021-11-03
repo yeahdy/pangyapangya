@@ -69,12 +69,7 @@ public class BakeryServiceImple implements BakeryService{
     public int myTotal(String ceoId) { return bakeryDAO.myTotal(ceoId); }
 
     @Override
-    public CeoVO getCeo(String ceoId) {
-        return null;
-    }
-
-    /*@Override
-    public CeoVO getCeo(String ceoId) { return ceodao.ceoInfo(ceoId); }*/
+    public CeoVO getCeo(String ceoId) { return ceodao.ceoInfo(ceoId); }
 
     /* @Override
     public List<BakeryFileVO> getAttachList(Long bno) {

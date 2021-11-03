@@ -63,7 +63,7 @@
 		</li>
 	</div>
 	<div class="box_login find_id">
-		<form action="#" method="post" id="pwFindForm">
+		<form action="/ceo/pwFindCEO" method="post" id="pwFindForm">
 			<h2 class="title">비밀번호 찾기</h2>
 			<p class="info_text">비밀번호를 찾고자 하는 아이디를 입력해 주세요.</p>
 			<p class="form_title">아이디</p>
@@ -76,12 +76,12 @@
 			<div class="phone_code" style="display: none">
 				<p class="form_title">이름</p>
 				<div class="line" style="margin-bottom: 15px;">
-					<input class="inp" id="userName" name="userName" type="text" placeholder="이름(실명)을 입력해주세요.">
+					<input class="inp" id="userName" name="ceoName" type="text" placeholder="이름(실명)을 입력해주세요.">
 				</div>
 				<p class="info_error" id="userNameError1">이름을 입력 해주세요.</p>
 				<p class="form_title">휴대폰 번호</p>
 				<div class="line" style="margin-bottom: 15px;">
-					<input class="inp" id="userPhoneNum" name="userPhoneNum" type="tel" placeholder="휴대폰 번호를 - 없이 입력해주세요">
+					<input class="inp" id="userPhoneNum" name="phoneNum" type="tel" placeholder="휴대폰 번호를 - 없이 입력해주세요">
 					<button type="button" id="goSMS">SMS 전송</button>
 				</div>
 				<p class="form_title">인증번호</p>
@@ -183,11 +183,29 @@
 						clearInterval(interval);	// 타이머 종료
 						console.log("체크여부: "+cnfCheck);
 
-						// 인증성공일 경우에만 pwFindSuccess 로 이동
-						if(cnfCheck){
-							$("#pwFindForm").submit();
-							$('#authNumber').val("");
+						// 이름 공백 막기
+						if (!$("#userName").val()){
+							$("#userName").focus();
+							$("#userNameError1").show();
+							return;
+						}else{
+							$("#userNameError1").hide();
 						}
+
+						// 인증성공 + 아이디 검사 true일 경우에만 pwFindSuccess 로 이동
+						if(cnfCheck && idCheck){
+							$("#pwFindForm").submit();
+							// 입력한 정보 초기화
+							$("#userId").val("");
+							$("#userName").val("");
+							$("#userPhoneNum").val("");
+							$('#authNumber').val("");
+						}else if(!idCheck){
+							// 만약 아이디 검사가 false일 경우
+							$("#userId").focus();
+							alert("아이디를 다시 확인 해 주세요");
+						}
+
 					} else {
 						alert('인증번호가 일치하지 않습니다.');
 						cnfCheck = false;
@@ -230,6 +248,13 @@
 				$("#userPhoneNum").focus();
 			}
 		});
+
+		/* 비밀번호 찾기 컨트롤러 */
+		console.log($(".pwFindCnt span").text());
+		let pwFindCnt = $(".pwFindCnt span").text();
+		if(pwFindCnt == 0 && pwFindCnt != ''){
+			alert("해당 전화번호로 가입된 이력이 존재하지 않습니다.");
+		}
 	});
 
 	// 인증번호 타이머
