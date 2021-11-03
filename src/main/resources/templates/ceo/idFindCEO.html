@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+	<title>아이디 찾기 | 빵야빵야(屋)</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="/css/main.css" />
+	<link rel="stylesheet" href="/css/idFind.css" />
+	<link rel="icon" type="image/png"  href="/images/favicon.png"/>
+	<style th:include="/main/header::header_style"></style>
+	<style>
+		.line_inp :not(button){
+			border: solid 0px;
+		}
+
+		/* 로그인 구분 */
+		.box {
+			display: flex;
+			justify-content: center;
+			width: 550px;
+			margin: 0 auto;
+			cursor: pointer;
+			padding: 1em;
+			text-align: center;
+		}
+
+		.box li {
+			width: 50%;
+			cursor: pointer;
+			list-style: none;
+			float: left;
+		}
+
+		.box h4{
+			margin-bottom: 0em;
+		}
+
+		.box a {
+			font-size: 18px;
+		}
+	</style>
+</head>
+<body class="is-preload" style="padding: 5em 200px 0 200px;background-color: white;">
+
+<!-- Header -->
+<header id="header" th:include="/main/header::header_body">
+
+</header>
+
+<!-- Wrapper수정 -->
+<!-- Main -->
+<section class="cont_login container">
+	<div class="box">
+		<li style="border-right: 1px solid #dcdcdc">
+			<h4><a href="/user/idFind"><strong>일반회원</strong></a></h4>
+		</li>
+		<li>
+			<h4><a href="/ceo/idFindCEO"><strong style="color: #F9A825; border-bottom: 1px solid">사장님</strong></a></h4>
+		</li>
+	</div>
+	<div class="box_login find_id">
+		<form action="/ceo/idFindSuccessCEO" method="post" id="idFindForm">
+			<h2 class="title">아이디 찾기</h2>
+			<p class="info_text">연락 받으실 전화번호를 입력해 주세요.</p>
+			<p class="form_title">휴대폰 번호</p>
+			<div class="line" style="margin-bottom: 15px;">
+				<input class="inp" name="phoneNum" id="userPhoneNum" type="tel" placeholder="휴대폰 번호를 - 없이 입력해주세요">
+				<button type="button" id="goSMS">SMS 전송</button>
+			</div>
+			<p class="form_title" id="confirmMsg" style="display: none">인증번호</p>
+			<div class="line confirmDiv" style="display: none">
+				<input class="inp" id="authNumber" type="tel" placeholder="SMS로 수신된 인증번호 5자리를 입력해주세요">
+				<input type="hidden" id="authCode"/>
+				<button type="button" id="confirmBnt">인증</button>
+			</div>
+			<!-- 타이머 -->
+			<p class="count"><span class="timer"></span></p>
+		</form>
+	</div>
+</section>
+<!-- Footer -->
+<footer id="footer" th:include="/main/footer::footer_body"></footer>
+
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script th:replace="/main/header::header_js"></script>
+<script type="text/javascript">
+	let cnfCheck = false;
+
+	let interval;
+	// 휴대폰 인증 버튼 클릭시 해당 태그의 값으로 사용자가 입력한 '숫자'만 가져온다
+	$(document).ready(function(){
+
+		$('#userPhoneNum').on('keyup', function () {
+			$(this).val($(this).val().replace(/[^0-9]/g, ""));	// 문자열에서 숫자(/[^0-9]/g)만 가져오기
+		});
+
+		// 인증번호 확인
+		$(document).on('click', '#confirmBnt', function () {
+			// 타이머의 숫자가 0초가 아닐 경우
+			if ($('.timer').text() != "00:00") {
+				// ajax for confirm validation auth number
+				let authNumber = $('#authNumber').val();	// 인증번호
+				let userPhoneNum = $('#userPhoneNum').val();	// 전화번호
+				let authCode= $("#authCode").val();	//휴대폰 인증번호
+
+				// 인증번호가 공백이 아니고 0 이상일 경우
+				if (authNumber != '' && parseInt(authNumber) > 0) {	// val()로 받으면 문자열이기 때문에 형변환
+					if(authNumber == authCode){
+						cnfCheck = true;
+						alert('휴대폰 번호 인증이 완료되었습니다. 감사합니다.');
+						clearInterval(interval);	// 타이머 종료
+						console.log("체크여부: "+cnfCheck);
+						// 사용자 전화번호 저장하기
+
+						// 인증성공일 경우에만 idFindSuccess 로 이동
+						if(cnfCheck){
+							$("#idFindForm").submit();
+							$('#authNumber').val("");
+						}
+
+					} else {
+						alert('인증번호가 일치하지 않습니다.');
+						cnfCheck = false;
+					}
+					// 인증번호를 입력하지 않았을 경우
+				}else{alert("인증번호를 입력 해 주세요"); cnfCheck = false;}
+			} else {
+				// 타이머 시간이 지났을 경우
+				alert('인증번호 재발송을 눌러주세요.');
+				cnfCheck = false;
+				return false;
+			}
+		});
+
+		// 인증번호 전송
+		$(document).on('click','#goSMS', function () {
+			let userPhoneNum = $('#userPhoneNum').val();	// 사용자가 입력한 전화번호
+			let authCode= $("#authCode");	//휴대폰 인증번호 담을 변수
+
+			// 사용자가 입력한 전화번호가 공백이 아니고, 8자리 이상일 경우
+			if (userPhoneNum != '' && userPhoneNum.length > 8) {
+				$.ajax({
+					url: '/main/execute',
+					method: 'get',
+					data: {'userPhoneNum': userPhoneNum},
+					success: function (response) {
+						authCode.attr('value', response);
+						console.log("input태그에 담긴 인증번호: " + authCode.val());
+
+						$('.timer').text("02:00");
+						countdown();
+						alert('인증 번호가 발송 되었습니다.');
+						// 인증번호 입력란 애니메이션
+						$("#confirmMsg").slideDown();
+						$(".confirmDiv").slideDown();
+					},
+					error: function(response) {
+						alert('인증번호 발송에 실패하였습니다.\n잠시 후 다시 시도해주시기 바랍니다.')
+					}
+				});
+			}else{
+				alert("휴대폰 번호를 입력 해 주세요");
+				$("#userPhoneNum").focus();
+			}
+		});
+	});
+
+	// 인증번호 타이머
+	function countdown() {
+		// 타이머 중지 clearInterval(종료할 함수명)
+		clearInterval(interval);
+
+		// 타이머 시작 setInterval(실행될 함수, 밀리초)
+		interval = setInterval( function() {
+			let timer = $('.timer').html();	// 2:00
+			timer = timer.split(':');	// : 를 기준으로 나눈다
+			let minutes = timer[0];	// 분
+			let seconds = timer[1];	// 초
+			seconds -= 1;	// 1초씩 감소
+
+			// 만약 분 이 0이하 라면 종료
+			if (minutes < 0) return;
+			// 초 가 0 이하고, 분 이 0이 아닐 경우 → 1분 감소, 59초 부터 시작
+			else if (seconds < 0 && minutes != 0) {
+				minutes -= 1;
+				seconds = 59;
+			}
+			// 10초 이하이고,
+			else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
+			$('.timer').html(minutes + ':' + seconds);
+			// 만약 분, 초가 0일 경우 타이머 종료
+			if (minutes == 0 && seconds == 0) clearInterval(interval);
+		}, 1000);	// 1초마다 실행
+	}
+</script>
+</body>
+</html>

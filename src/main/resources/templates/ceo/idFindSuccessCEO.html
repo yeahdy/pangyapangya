@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+	<title>빵야빵야(屋)</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="/css/main.css" />
+	<link rel="stylesheet" href="/css/idFind.css" />
+	<link rel="icon" type="image/png"  href="/images/favicon.png"/>
+	<style th:include="/main/header::header_style">
+		.line_inp :not(button){
+			border: solid 0px;
+		}
+	</style>
+</head>
+<body class="is-preload" style="padding: 5em 200px 0 200px;background-color: white;">
+
+<!-- Header 수정 -->
+<header id="header" th:include="/main/header::header_body">
+
+</header>
+
+<!-- Wrapper -->
+<!-- Main -->
+<section class="cont_login container">
+	<div class="box_login find_id">
+		<h2 class="title">입력하신 휴대폰 번호로 빵야빵야(屋)에<br>가입된 내역은 다음과 같습니다.</h2>
+		<p class="info_text">총 <span th:text="${idFindCnt}"></span>건의 가입 내역이 확인되었습니다.</p>
+		<div class="list_id mCustomScrollbar _mCS_1 mCS-autoHide" style="position: relative; overflow: visible;margin-bottom: -10px;">
+				<div id="mCSB_1_container" class="mCSB_container" style="position: relative; top: 0px; left: 0px;" dir="ltr">
+					<ul>
+						<li style="padding: 0px;margin-bottom: 1em;border-bottom: 0px solid;">
+							<div class="id">
+								<span style="border-bottom: 1px solid #dcdcdc;padding-bottom: 5px;">아이디</span>
+							</div>
+							<div class="name">
+								<span style="border-bottom: 1px solid #dcdcdc;padding-bottom: 5px;">가입하신 이름</span>
+							</div>
+						</li>
+						<th:block th:each="ceoVO : ${ceoList}">
+							<li th:object="${ceoVO}" style="border-bottom: 0px solid;padding: 0px;">
+								<div class="id">
+									<p th:text="*{ceoId}"></p>
+								</div>
+								<div class="name">
+									<p th:text="*{ceoName}"></p>
+								</div>
+							</li>
+						</th:block>
+					</ul>
+					<div class="col-6 col-12-medium">
+						<ul class="actions fit" style="margin-bottom: 1em;">
+							<li><a href="/ceo/loginCEO" class="button primary fit" style="margin-top: 1em;margin-left: 1.1em;">로그인창으로 돌아가기</a></li>
+						</ul>
+					</div>
+				</div>
+		</div>
+	</div>
+</section>
+<!-- Footer -->
+<footer id="footer" th:include="/main/footer::footer_body"></footer>
+
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script th:replace="/main/header::header_js"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		/* 아이디 찾기 컨트롤러 */
+		let idFindCnt = $(".info_text span").text();
+		console.log("아이디갯수: " + idFindCnt);
+
+		if(idFindCnt < 1){
+			alert("해당 전화번호로 가입된 이력이 존재하지 않습니다.");
+			location.href= "/user/login";
+		}
+	})
+</script>
+</body>
+</html>
