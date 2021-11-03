@@ -37,8 +37,12 @@
     </resultMap>-->
 
 
-    <select id="getCartList" resultType="CartVO">
+    <!--<select id="getCartList" resultType="Cart_shopName_VO">
         SELECT CA.*,CEO.SHOPNAME FROM TBL_CART CA JOIN TBL_CEO CEO ON CA.CEOID = CEO.CEOID WHERE CA.USERID=#{userId}
+    </select>-->
+
+    <select id="getCartList" resultType="CartVO">
+        SELECT * FROM TBL_CART WHERE USERID=#{userId}
     </select>
 
 
@@ -65,6 +69,11 @@
         SET BREADCNT = #{breadCnt}
         WHERE CARTNUM=#{cartNum}
     </update>
+
+    <!--장바구니 비우기-->
+    <delete id="emptyCart">
+        DELETE FROM TBL_CART WHERE USERID=#{userId}
+    </delete>
 
     <delete id="leaveUser_cart">
         DELETE FROM TBL_CART WHERE USERID=#{userId}

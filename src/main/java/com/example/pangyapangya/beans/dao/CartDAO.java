@@ -29,6 +29,10 @@ public class CartDAO {
         return mapper.updateBreadCnt(cartNum, breadCnt)==1;
     }
 
+    public boolean emptyCart(String userId){
+        return mapper.leaveUser_cart(userId)==1;
+    }
+
     public boolean leaveUser(String userId){
         return mapper.leaveUser_cart(userId)==1;
     }

@@ -75,4 +75,12 @@ public class CartMapperTest {
             log.info("존재하지 않는 회원입니다.");
         }
     }
+
+    @Test
+    public void testEmptyCart(){
+        int result = mapper.emptyCart("kjy1234");
+        if (result==0){
+            log.info("-----------------");
+        }
+    }
 }
