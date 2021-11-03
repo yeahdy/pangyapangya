@@ -36,7 +36,8 @@ public class ClassReviewFileController {
         log.info("upload ajax action...........");
         List<ClassReviewFileVO> fileList = new ArrayList<>();
 
-        String uploadFolder = "/Users/iseungmin/Desktop/upload";
+//        String uploadFolder = "/Users/iseungmin/Desktop/upload";
+        String uploadFolder = "C:/upload/temp";
         String uploadFolderPath = getFolder();
 
 //        년/월/일 폴더 생성

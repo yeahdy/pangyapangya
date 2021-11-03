@@ -425,7 +425,7 @@
         classReplyService.add({bno:bno, reply:reply, replier:replier},
             function(result){
                 alert(result);
-                $("input[name='userid']").val("");
+                $("input[name='relier']").val("");
                 $("textarea[name='reply']").val("");
                 $(".register-form").hide();
                 $(".register").show();
@@ -440,7 +440,7 @@
     function showImage(fileCallPath){
         if(check) {return;}
         $(".bigPictureWrapper").css("display", "flex").show();
-        $(".bigPicture").html("<img src='/upload/display?fileName=" + encodeURIComponent(fileCallPath) + "'>")
+        $(".bigPicture").html("<img src='/cupload/display?fileName=" + encodeURIComponent(fileCallPath) + "'>")
             .animate({width:"100%", height:"100%"}, 1000);
         check = true;
     }
@@ -508,7 +508,7 @@
             let li = $(this).parents("li");
 
             $.ajax({
-                url: "/upload/deleteFile",
+                url: "/cupload/deleteFile",
                 type: "POST",
                 data: {fileName:targetFile, type:type},
                 dataType: "text",
@@ -544,7 +544,7 @@
             }
 
             $.ajax({
-                url: "/upload/uploadAjaxAction",
+                url: "/cupload/uploadAjaxAction",
                 type: "post",
                 data: formData,
                 contentType: false,
