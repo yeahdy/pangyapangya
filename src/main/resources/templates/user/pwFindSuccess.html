@@ -27,7 +27,7 @@
 <!-- Main -->
 <section class="cont_login container" id="inputView">
 	<div class="box_login find_id" style="width: 460px;">
-		<form action="#" method="get" name="pwChangeForm">
+		<form action="/user/pwFindSuccess" method="post" id="pwChangeForm">
 			<h2 class="title">연락 받으실 전화번호</h2>
 			<p class="info_text">전화번호 인증 후 비밀번호를 변경하실 수 있습니다.</p>
 			<div class="box_inp">
@@ -42,7 +42,7 @@
 				<div class="line_inp line_pw">
 					<input type="password" name="confirmPw" id="confirmPw" placeholder="비밀번호를 재입력 해 주세요">
 					<button type="button" class="type_pwd hide" id="viewPass"></button>
-					<p class="info_error" id="confirmPwError1">비밀번호를 확인해주세요.</p>
+					<p class="info_error" id="confirmPwError1">비밀번호가 일치한지 다시 확인해주세요.</p>
 				</div>
 			</div>
 			<div class="col-6 col-12-medium">
@@ -50,6 +50,8 @@
 					<li><input type="button" id="nextButton" class="button primary fit" value="비밀번호 변경하기" style="margin-top: 1em;"/></li>
 				</ul>
 			</div>
+			<!-- pwFind 컨트롤러 -->
+			<input type="hidden" id="userId" name="userId" th:value="${userId}"/>
 		</form>
 	</div>
 </section>
@@ -93,7 +95,6 @@
 
 		// 비밀번호 정규식
 		let pwCheck= /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/
-		let pw = $("#userPw").val();
 
 		if(!pwCheck.test($('#userPw').val())){
 			$("#userPw").focus();
@@ -120,8 +121,6 @@
 		console.log("체크여부: "+pwCheck);
 		if(pwCheck){
 			pwChangeForm.submit();
-			alert("비밀번호 변경이 완료되었습니다.")
-			location.href= '/user/login';
 		}
 	})
 </script>

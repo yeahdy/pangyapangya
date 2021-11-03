@@ -2,20 +2,22 @@ package com.example.pangyapangya.controller;
 
 import com.example.pangyapangya.beans.vo.CeoVO;
 import com.example.pangyapangya.beans.vo.UserVO;
-import com.example.pangyapangya.services.UserService;
+import com.example.pangyapangya.services.CEOService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
-
+import java.util.Map;
 
 /*
     [ Task ]		    [ URL ]			    [ Method ]		[ Parameter ]			    [ Form ]	[ URL이동 ]
@@ -32,80 +34,72 @@ import java.util.List;
 */
 @Controller
 @Slf4j
-@RequestMapping("/user/*")
+@RequestMapping("/ceo/*")
 @RequiredArgsConstructor
-public class UserController {
-    private final UserService userService;
+public class CEOController {
+    private final CEOService ceoService;
     private String mainView = "redirect:/main/mainPage";
 
     /* 로그인 */
-    @GetMapping("login")
-    public String login(){ return "user/login"; }
+    @GetMapping("loginCEO")
+    public String loginCEO(){ return "ceo/loginCEO"; }
 
-    @PostMapping("login")
-    public String login(UserVO userVO, HttpServletRequest req, RedirectAttributes rttr){
+    @PostMapping("loginCEO")
+    public String loginCEO(CeoVO ceoVO, HttpServletRequest req, RedirectAttributes rttr){
         log.info("---------로그인-----------");
-        log.info("ceoId: " + userVO.getUserId());
-        log.info("ceoPw: " + userVO.getUserPw());
+        log.info("ceoId: " + ceoVO.getCeoId());
+        log.info("ceoPw: " + ceoVO.getCeoPw());
         log.info("--------------------------");
 
         HttpSession session = req.getSession(); // session 생성
-        if(!userService.login(userVO)) {
+        if(!ceoService.loginCEO(ceoVO)) {
             log.info("-------로그인 실패-------");
-            session.setAttribute("sessionU", null);  // session 저장하기
-            rttr.addFlashAttribute("check", "false");
-            return "user/login";
-        }
-        log.info("-------로그인 성공-------");
-        UserVO userInfo= userService.userInfo(userVO.getUserId());
-        session.setAttribute("sessionU", userInfo.getUserId()); //session 저장하기
-        return mainView;
-    }
-
-    /* 로그아웃 */
-    @GetMapping("logout")
-    public void logout(HttpServletRequest req){
-        HttpSession session = req.getSession(false);    // false: 세션이 없을 경우 null 반환. 기본값 true
-        if(session != null){
-            session.invalidate();   //세션 삭제
+            session.setAttribute("sessionC", null);
+            rttr.addAttribute("check", "false");
+            return "ceo/loginCEO";
+        }else{
+            log.info("-------로그인 성공-------");
+            CeoVO ceoInfo= ceoService.ceoInfo(ceoVO.getCeoId());
+            session.setAttribute("sessionC", ceoInfo.getCeoId());
+            return mainView;
         }
     }
 
     /* 아이디 찾기 */
-    @GetMapping("idFind")
-    public String idFind(){ return "user/idFind"; }
+    @GetMapping("idFindCEO")
+    public String idFindCEO(){ return "ceo/idFindCEO"; }
 
     /* 아이디 찾기 완료 */
-    @PostMapping ("idFindSuccess")
-    public RedirectView idFindSuccess(@RequestParam("userPhoneNum") String userPhoneNum, RedirectAttributes rttr){
+    @PostMapping ("idFindSuccessCEO")
+    public RedirectView idFindSuccess(@RequestParam("phoneNum") String phoneNum, RedirectAttributes rttr){
         // 사용자가 입력한 전화번호를 받아 list로 뽑는다.
-        List<UserVO> userList = userService.idFind(userPhoneNum);
+        List<CeoVO> ceoList = ceoService.idFindCEO(phoneNum);
         // 전화번호에 따른 아이디 갯수
-        int idFindCnt = userService.idFindCnt(userPhoneNum);
-        if(userList != null){
+        int idFindCnt = ceoService.idFindCntCEO(phoneNum);
+        if(ceoList != null){
             log.info("----------------- 유저 리스트 -----------------");
-            log.info(userList.toString());
+            log.info(ceoList.toString());
             log.info("아이디 갯수: " + idFindCnt);
             log.info("-----------------------------------------------");
-            rttr.addFlashAttribute("userList", userList);
+            rttr.addFlashAttribute("ceoList", ceoList);
             rttr.addFlashAttribute("idFindCnt", idFindCnt);
             if(idFindCnt == 0){
-                rttr.addFlashAttribute("resultId", 0);
-                return new RedirectView("login");
+                return new RedirectView("idFindSuccessCEO");
             }
         }
-        return new RedirectView("idFindSuccess");
+        return new RedirectView("idFindSuccessCEO");
     }
 
-    @GetMapping("idFindSuccess")
-    public String idFindSuccess(){ return "user/idFindSuccess"; }
-
+    /* 아이디 찾기 완료 */
+    @GetMapping("idFindSuccessCEO")
+    public String idFindSuccessCEO(){ return "ceo/idFindSuccessCEO"; }
 
     /* 비밀번호 찾기 */
-    @GetMapping("pwFind")
-    public String pwFind(){ return "user/pwFind"; }
+    @GetMapping("pwFindCEO")
+    public String pwFindCEO(){ return "ceo/pwFindCEO"; }
 
-    @PostMapping("pwFind")
+    /*
+    * @PostMapping("pwFind")
     public RedirectView pwFind(UserVO userVO, RedirectAttributes rttr){
         log.info("----------------- 사용자 입력 정보 -----------------");
         log.info("아이디: " + userVO.getUserId());
@@ -123,12 +117,14 @@ public class UserController {
             return new RedirectView("pwFind");
         }
     }
+    * */
 
     /* 비밀번호 찾기 완료 */
-    @GetMapping("pwFindSuccess")
-    public String pwFindSuccess(){ return "user/pwFindSuccess"; }
+    @GetMapping("pwFindSuccessCEO")
+    public String pwFindSuccessCEO(){ return "ceo/pwFindSuccessCEO"; }
 
-    @PostMapping("pwFindSuccess")
+    /*
+    * @PostMapping("pwFindSuccess")
     public RedirectView pwFindSuccess(UserVO userVO, RedirectAttributes rttr){
         // 받아와야할것? 회원의 아이디, 변경할 비밀번호
         log.info("--------------- 사용자 입력 정보 --------------");
@@ -145,40 +141,48 @@ public class UserController {
             return new RedirectView("pwFindSuccess");
         }
     }
+     */
 
-    /* 회원가입 */
-    @GetMapping("join")
-    public String join(){ return "user/join";}
 
-    /* 회원가입 */
-    @PostMapping("createUser")
-    public String createUser(UserVO userVO, Model model){
+    /* 회원가입- 사장님 */
+    @GetMapping("joinCEO")
+    public String joinCEO(){ return "ceo/joinCEO"; }
+
+    @PostMapping("createCEO")
+    public String createCEO(@RequestParam Map<String,String> ceoVO_1, Model model){
+        log.info("--------------------------");
+        log.info("ceoVO_1: " + ceoVO_1.get("ceoId"));
+        log.info("ceoVO_1: " + ceoVO_1.get("ceoPw"));
+        log.info("ceoVO_1: " + ceoVO_1.get("ceoName"));
+        log.info("ceoVO_1: " + ceoVO_1.get("phoneNum"));
+        log.info("--------------------------");
+        model.addAttribute("ceoVO_1",ceoVO_1);
+        model.addAttribute("ceoId", ceoVO_1.get("ceoId"));
+        model.addAttribute("ceoPw", ceoVO_1.get("ceoPw"));
+        model.addAttribute("ceoName", ceoVO_1.get("ceoName"));
+        model.addAttribute("phoneNum", ceoVO_1.get("phoneNum"));
+        return "ceo/joinCEO2";
+    }
+
+    @GetMapping("joinCEO2")
+    public String joinCEO2(){ return "ceo/joinCEO2"; }
+
+    @PostMapping("createCEO2")
+    public String createCEO2(CeoVO ceoVO, Model model){
         log.info("-----------------------------------------");
-        log.info("createUser: " + userVO.toString());
+        log.info("createCEO2" + ceoVO.toString());
         log.info("-----------------------------------------");
-
-       model.addAttribute("userVO", userVO);
-        return "user/joinConfirm";
+        model.addAttribute("ceoVO", ceoVO);
+        return "ceo/joinConfirmCEO";
     }
 
     /* 회원가입- 약관동의 */
-    @PostMapping("joinConfirm")
-    public String joinConfirm(UserVO userVO){
+    @PostMapping("joinConfirmCEO")
+    public String joinConfirmCEO(CeoVO ceoVO){
         log.info("-----------------------------------------");
-        log.info("joinConfirm(일반 회원): " + userVO.toString());
+        log.info("joinConfirmCEO(사장님): " + ceoVO.toString());
         log.info("-----------------------------------------");
-        userService.join(userVO);
-        return "user/joinSuccess";
-    }
-
-    /* 회원가입 완료 */
-    @GetMapping("joinSuccess")
-    public String joinSuccess(HttpSession session){
-        String sessionU = (String)session.getAttribute("sessionU");
-        String sessionC = (String)session.getAttribute("sessionC");
-        if(sessionU != null || sessionC != null){
-            return "/main/mainPage";
-        }
+        ceoService.joinCEO(ceoVO);
         return "user/joinSuccess";
     }
 }
