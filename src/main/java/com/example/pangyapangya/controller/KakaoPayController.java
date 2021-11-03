@@ -14,7 +14,5 @@ public class KakaoPayController {
 
     private KakaoPay kakaopay;
 
-    private Ka
-
 
 }
