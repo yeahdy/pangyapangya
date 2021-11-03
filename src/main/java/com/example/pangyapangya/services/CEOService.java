@@ -63,6 +63,9 @@ public class CEOService {
     // 아이디찾기
     public List<CeoVO> idFindCEO (String phoneNum){ return ceoDAO.idFindCEO(phoneNum); }
 
+    // 아이디찾기 갯수
+    public int idFindCntCEO (String phoneNum){ return ceoDAO.idFindCntCEO(phoneNum); }
+
     // 비밀번호 찾기 : 아이디 조회
     public boolean pwFindCEO (String ceoId){ return ceoDAO.pwFindCEO(ceoId); }
 

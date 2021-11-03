@@ -1,6 +1,7 @@
 package com.example.pangyapangya.controller;
 
 import com.example.pangyapangya.beans.vo.CeoVO;
+import com.example.pangyapangya.beans.vo.UserVO;
 import com.example.pangyapangya.services.CEOService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
 /*
@@ -62,10 +65,30 @@ public class CEOController {
         }
     }
 
-
     /* 아이디 찾기 */
     @GetMapping("idFindCEO")
     public String idFindCEO(){ return "ceo/idFindCEO"; }
+
+    /* 아이디 찾기 완료 */
+    @PostMapping ("idFindSuccessCEO")
+    public RedirectView idFindSuccess(@RequestParam("phoneNum") String phoneNum, RedirectAttributes rttr){
+        // 사용자가 입력한 전화번호를 받아 list로 뽑는다.
+        List<CeoVO> ceoList = ceoService.idFindCEO(phoneNum);
+        // 전화번호에 따른 아이디 갯수
+        int idFindCnt = ceoService.idFindCntCEO(phoneNum);
+        if(ceoList != null){
+            log.info("----------------- 유저 리스트 -----------------");
+            log.info(ceoList.toString());
+            log.info("아이디 갯수: " + idFindCnt);
+            log.info("-----------------------------------------------");
+            rttr.addFlashAttribute("ceoList", ceoList);
+            rttr.addFlashAttribute("idFindCnt", idFindCnt);
+            if(idFindCnt == 0){
+                return new RedirectView("idFindSuccessCEO");
+            }
+        }
+        return new RedirectView("idFindSuccessCEO");
+    }
 
     /* 아이디 찾기 완료 */
     @GetMapping("idFindSuccessCEO")

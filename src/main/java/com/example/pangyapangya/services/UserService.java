@@ -73,9 +73,24 @@ public class UserService {
     // 비밀번호 찾기 : 아이디 유무 조회
     public boolean pwFind (String userId){ return userDAO.pwFind(userId); }
 
+    // 비밀번호 찾기: 아이디 + 전화번호 + 이름 같아야 인증 가능
+    public boolean pwFindAuth (UserVO userVO) { return userDAO.pwFindAuth(userVO); }
+
+    // 비밀번호 변경
+    public boolean pwUpdate (UserVO userVO) {
+        String userPw = userVO.getUserPw();
+
+        System.out.print("변경할 비밀번호: " + userPw);
+        String encodedPw = passwordEncoder.encode(userPw);
+        System.out.println("암호화된 비밀번호: " + encodedPw);
+        // 암호화된 비밀번호로 다시 세팅
+        userVO.setUserPw(encodedPw);
+
+        return userDAO.pwUpdate(userVO);
+    }
+
     // 회원 정보 조회
     public UserVO userInfo (String userId) {return  userDAO.userInfo(userId);}
-
 
     // 인증번호(전화번호, 인증번호)
     public void certifiedPhoneNumber(String phoneNumber, String cerNum) {
@@ -100,8 +115,6 @@ public class UserService {
             System.out.println(e.getCode());
         }
     }
-
-    //수정
 
 
 }

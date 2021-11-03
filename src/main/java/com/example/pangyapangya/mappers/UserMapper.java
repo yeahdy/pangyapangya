@@ -25,6 +25,12 @@ public interface UserMapper {
     // 비밀번호 찾기 : 아이디 조회
     public int pwFind (String userId);
 
+    // 비밀번호 찾기: 아이디 + 전화번호 + 이름 같아야 인증 가능
+    public int pwFindAuth (UserVO userVO);
+
+    // 비밀번호 변경
+    public int pwUpdate (UserVO userVO);
+
     // 회원정보 조회(일반회원)
     public UserVO userInfo (String userId);
 }

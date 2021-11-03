@@ -40,6 +40,18 @@
         WHERE USERID = #{userId}
     </select>
 
+    <!-- 비밀번호 찾기: 아이디 + 전화번호 + 이름 같아야 인증 가능 -->
+    <select id="pwFindAuth" resultType="_int">
+        SELECT COUNT(USERID) FROM TBL_USER
+        WHERE USERID = #{userId} AND USERPHONENUM = #{userPhoneNum} AND USERNAME = #{userName}
+    </select>
+
+    <!-- 비밀번호 변경 -->
+    <update id="pwUpdate">
+        UPDATE TBL_USER
+        SET USERPW= #{userPw}
+        WHERE USERID= #{userId}
+    </update>
 
     <!-- 회원 정보 조회 -->
     <select id="userInfo" resultType="UserVO">
@@ -47,5 +59,6 @@
         FROM TBL_USER
         WHERE USERID= #{userId}
     </select>
+
 
 </mapper>

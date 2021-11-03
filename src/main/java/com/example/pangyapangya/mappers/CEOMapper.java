@@ -17,7 +17,10 @@ public interface CEOMapper {
     public int loginCEO (CeoVO ceoVO);
 
     // 아이디 찾기
-    public List<CeoVO> idFindCEO (String ceoPhoneNum);
+    public List<CeoVO> idFindCEO (String phoneNum);
+
+    // 아이디 찾기 갯수
+    public int idFindCntCEO (String phoneNum);
 
     //비밀번호 찾기: 아이디 유무검사
     public int pwFindCEO (String ceoId);

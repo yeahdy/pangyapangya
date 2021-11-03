@@ -80,12 +80,19 @@ public class UserController {
     public RedirectView idFindSuccess(@RequestParam("userPhoneNum") String userPhoneNum, RedirectAttributes rttr){
         // 사용자가 입력한 전화번호를 받아 list로 뽑는다.
         List<UserVO> userList = userService.idFind(userPhoneNum);
+        // 전화번호에 따른 아이디 갯수
+        int idFindCnt = userService.idFindCnt(userPhoneNum);
         if(userList != null){
             log.info("----------------- 유저 리스트 -----------------");
             log.info(userList.toString());
+            log.info("아이디 갯수: " + idFindCnt);
             log.info("-----------------------------------------------");
-            rttr.addFlashAttribute("userList", userService.idFind(userPhoneNum));
-            rttr.addFlashAttribute("idFindCnt", userService.idFindCnt(userPhoneNum));
+            rttr.addFlashAttribute("userList", userList);
+            rttr.addFlashAttribute("idFindCnt", idFindCnt);
+            if(idFindCnt == 0){
+                rttr.addFlashAttribute("resultId", 0);
+                return new RedirectView("login");
+            }
         }
         return new RedirectView("idFindSuccess");
     }
@@ -98,9 +105,46 @@ public class UserController {
     @GetMapping("pwFind")
     public String pwFind(){ return "user/pwFind"; }
 
+    @PostMapping("pwFind")
+    public RedirectView pwFind(UserVO userVO, RedirectAttributes rttr){
+        log.info("----------------- 사용자 입력 정보 -----------------");
+        log.info("아이디: " + userVO.getUserId());
+        log.info("이름: " + userVO.getUserName());
+        log.info("전화번호: " + userVO.getUserPhoneNum());
+        log.info("-----------------------------------------------");
+        // 만약 사용자가 입력한 정보가 DB와 일치할 경우 → 비밀번호 변경
+        if(userService.pwFindAuth(userVO)){
+            log.info("-------------- DB와 입력정보 일치 --------------");
+            rttr.addFlashAttribute("userId", userVO.getUserId());
+            return new RedirectView("pwFindSuccess");
+        }else{
+            log.info("-------------- DB와 입력정보 불일치 --------------");
+            rttr.addFlashAttribute("result", 0);
+            return new RedirectView("pwFind");
+        }
+    }
+
     /* 비밀번호 찾기 완료 */
     @GetMapping("pwFindSuccess")
     public String pwFindSuccess(){ return "user/pwFindSuccess"; }
+
+    @PostMapping("pwFindSuccess")
+    public RedirectView pwFindSuccess(UserVO userVO, RedirectAttributes rttr){
+        // 받아와야할것? 회원의 아이디, 변경할 비밀번호
+        log.info("--------------- 사용자 입력 정보 --------------");
+        log.info("아이디: " + userVO.getUserId());
+        log.info("변경할 비밀번호: " + userVO.getUserPw());
+        log.info("-----------------------------------------------");
+        // pwFind에서 넘겨받은 아이디를 통해 해당 회원의 비밀번호 변경하기 → 서비스에서 전달받은 비밀번호 암호화하기
+        if(userService.pwUpdate(userVO)){
+            log.info("--------- 비밀번호 변경 완료 ---------");
+            rttr.addFlashAttribute("resultPw", 0);
+            return new RedirectView("login");
+        }else{
+            log.info("--------- 비밀번호 변경 실패 ---------");
+            return new RedirectView("pwFindSuccess");
+        }
+    }
 
     /* 회원가입 */
     @GetMapping("join")
