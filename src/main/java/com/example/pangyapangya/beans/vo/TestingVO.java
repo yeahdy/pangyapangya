@@ -13,9 +13,9 @@ public class TestingVO {
     private String title;
     private String breadType;
     private String breadName;
+    private int breadPrice;
     private int people;
     private String description;
     private String testingPhoto;
     private String regDate;
-    private String shopName;
 }
