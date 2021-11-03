@@ -50,7 +50,7 @@ public class CartControllerTest {
 
     @Test
     public void testGetCart() throws Exception{
-        log.info(mockMvc.perform(MockMvcRequestBuilders.get("/mypage/getCart").param("userId", "kjy1234")).andReturn().getModelAndView().getViewName());
+        log.info(mockMvc.perform(MockMvcRequestBuilders.get("/mypage/cart").param("userId", "hds1234")).andReturn().getModelAndView().getViewName());
     }
 
     @Test
