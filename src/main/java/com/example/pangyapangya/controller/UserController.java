@@ -8,6 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
 /*
@@ -29,10 +33,41 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    private String mainView = "redirect:/main/mainPage";
 
     /* 로그인 */
     @GetMapping("login")
     public String login(){ return "user/login"; }
+
+    @PostMapping("login")
+    public String login(UserVO userVO, HttpServletRequest req, RedirectAttributes rttr){
+        log.info("---------로그인-----------");
+        log.info("ceoId: " + userVO.getUserId());
+        log.info("ceoPw: " + userVO.getUserPw());
+        log.info("--------------------------");
+
+        HttpSession session = req.getSession(); // session 생성
+        if(!userService.login(userVO)) {
+            log.info("-------로그인 실패-------");
+            session.setAttribute("sessionU", null);  // session 저장하기
+            rttr.addFlashAttribute("check", "false");
+            return "user/login";
+        }
+        log.info("-------로그인 성공-------");
+        UserVO userInfo= userService.userInfo(userVO.getUserId());
+        session.setAttribute("sessionU", userInfo.getStatus());
+        return mainView;
+    }
+
+    /* 로그아웃 */
+    @GetMapping("logout")
+    public String logout(HttpServletRequest req){
+        HttpSession session = req.getSession(false);    // false: 세션이 없을 경우 null 반환. 기본값 true
+        if(session != null){
+            session.invalidate();   //세션 삭제
+        }
+        return mainView;
+    }
 
     /* 아이디 찾기 */
     @GetMapping("idFind")
@@ -70,7 +105,6 @@ public class UserController {
     public String joinConfirm(UserVO userVO, CeoVO ceoVO){
         log.info("-----------------------------------------");
         log.info("joinConfirm(일반 회원): " + userVO.toString());
-        log.info("status: " + userVO.getStatus());
         log.info("-----------------------------------------");
             userService.join(userVO);
         return "user/joinSuccess";
