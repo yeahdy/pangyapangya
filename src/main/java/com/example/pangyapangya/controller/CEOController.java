@@ -98,9 +98,50 @@ public class CEOController {
     @GetMapping("pwFindCEO")
     public String pwFindCEO(){ return "ceo/pwFindCEO"; }
 
+    /*
+    * @PostMapping("pwFind")
+    public RedirectView pwFind(UserVO userVO, RedirectAttributes rttr){
+        log.info("----------------- 사용자 입력 정보 -----------------");
+        log.info("아이디: " + userVO.getUserId());
+        log.info("이름: " + userVO.getUserName());
+        log.info("전화번호: " + userVO.getUserPhoneNum());
+        log.info("-----------------------------------------------");
+        // 만약 사용자가 입력한 정보가 DB와 일치할 경우 → 비밀번호 변경
+        if(userService.pwFindAuth(userVO)){
+            log.info("-------------- DB와 입력정보 일치 --------------");
+            rttr.addFlashAttribute("userId", userVO.getUserId());
+            return new RedirectView("pwFindSuccess");
+        }else{
+            log.info("-------------- DB와 입력정보 불일치 --------------");
+            rttr.addFlashAttribute("result", 0);
+            return new RedirectView("pwFind");
+        }
+    }
+    * */
+
     /* 비밀번호 찾기 완료 */
     @GetMapping("pwFindSuccessCEO")
     public String pwFindSuccessCEO(){ return "ceo/pwFindSuccessCEO"; }
+
+    /*
+    * @PostMapping("pwFindSuccess")
+    public RedirectView pwFindSuccess(UserVO userVO, RedirectAttributes rttr){
+        // 받아와야할것? 회원의 아이디, 변경할 비밀번호
+        log.info("--------------- 사용자 입력 정보 --------------");
+        log.info("아이디: " + userVO.getUserId());
+        log.info("변경할 비밀번호: " + userVO.getUserPw());
+        log.info("-----------------------------------------------");
+        // pwFind에서 넘겨받은 아이디를 통해 해당 회원의 비밀번호 변경하기 → 서비스에서 전달받은 비밀번호 암호화하기
+        if(userService.pwUpdate(userVO)){
+            log.info("--------- 비밀번호 변경 완료 ---------");
+            rttr.addFlashAttribute("resultPw", 0);
+            return new RedirectView("login");
+        }else{
+            log.info("--------- 비밀번호 변경 실패 ---------");
+            return new RedirectView("pwFindSuccess");
+        }
+    }
+     */
 
 
     /* 회원가입- 사장님 */

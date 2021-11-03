@@ -50,7 +50,7 @@ public class UserDAO {
     // 회원정보 조회(일반회원)
     public UserVO userInfo (String userId){
         return mapper.userInfo(userId);
-    };
+    }
 
     // 수정
 }
