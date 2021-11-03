@@ -72,7 +72,7 @@ public class TestingController {
     }
 
     //    여러 요청을 하나의 메소드로 받을 때에는 {}를 사용하여 콤마로 구분한다.
-   /* @GetMapping({"oneDayRe", "modify"})
+   /* @GetMapping({"read", "modify"})
     public void read(@RequestParam("bno") Long bno, Criteria criteria, Model model, HttpServletRequest request, CeoVO ceoVO){
         String reqURI = request.getRequestURI();
         String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
