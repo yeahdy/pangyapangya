@@ -9,6 +9,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="/css/main.css" />
+    <link rel="icon" type="image/png"  href="/images/favicon.png"/>
     <style>
         .headerIcon{
             width: 40px;
@@ -58,6 +59,9 @@
             width: 80%;
             margin: 30px auto;
         }
+        table td{
+            background-color: white;
+        }
         .bread_table{
             float: left; padding: 0px 5px;
             /*font-size: 13px;*/
@@ -86,7 +90,7 @@
             float:right;
             width: 30px;
         }
-        #price1, #price2, #price3{
+        .price div{
             padding: 0 45px;
             font-size: 14px;
         }
@@ -177,6 +181,16 @@
         #orderButton:not(input[type="submit"], input[type="reset"], input[type="button"], button, .button){
             border: solid 0px;
         }
+        .bt tr{
+            background-color: white !important;
+            border: none;
+        }
+        .bt td{
+            padding: 0;
+        }
+        .bt{
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body class="is-preload" style="padding: 200px">
@@ -198,89 +212,41 @@
             <header>
                 <h1 id="title">장바구니</h1>
             </header>
+            <table border="1" class="bakery1">
+                <tbody>
+                <th:block th:each="cart : ${cartList}">
 
-            <table border="1" class="bakery1">
-                <tbody><tr>
-                    <th class="bakeryName">빵집 이름</th>
+                    <tr>
+<!--                    <th class="bakeryName">빵집이름2</th>-->
                 </tr>
                 <tr>
-                    <td><div class="bread_table"><img class="bread_img" src="/images/bread1.jpg" width="200px"></div>
+                    <td><div class="bread_table"><img class="bread_img" th:src="@{/images/}+${cart.getBreadImg()}" width="200px"></div>
                         <div class="breadTable_top">
-                            <span class="bread_title"><strong>9無 🌿비건통밀파운드케이크 👉6종 Half_Size</strong></span>
+                            <span class="bread_title"><strong>빵집이름</strong></span>
                             <br>
                             <ul>
-                                <li><span class="bread_name">파운드케이크선택 : 흑임자칙피스프레드</span></li>
+                                <li><span class="bread_name" th:text="${cart.breadName}"></span></li>
                             </ul>
                         </div>
                         <div class="breadTable_bottom">
                             <div class="cnt_buttonDiv">
-                                <button type="button" class="cnt_button" onclick="count('minus')"><span>-</span></button>
-                                <div class="bread_table" id="cnt1">1</div>
-                                <button type="button" class="cnt_button" onclick="count('plus')">+</button>
+                                <table class="bt">
+                                    <tr class="bt">
+                                        <td class="bt_minus"><button type="button" class="cnt_button"><span>-</span></button></td>
+                                        <td><div class="bread_table" id="cnt1" th:text="${cart.getBreadCnt()}"></div></td>
+                                        <td class="bt_plus"><button type="button" class="cnt_button">+</button></td>
+                                        <td class="price">
+                                                <div class="bread_table breadPrice" id="price1" th:text="${cart.getBreadCnt()*cart.getPriceOfBread()}"></div>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
-                            <div class="bread_table" id="price1">
-                                38000
+                            <div class="bread_table"><a th:href="@{/mypage/deleteCart(cartNum=${cart.getCartNum()})}"><img class="delete_icon" src="/images/delete_icon.png"></a>
                             </div>
-                            <div class="bread_table"><img class="delete_icon" src="/images/delete_icon.png"></div>
                         </div>
                     </td>
                 </tr>
-                </tbody></table>
-            <!--두번째-->
-            <table border="1" class="bakery1">
-                <tbody><tr>
-                    <th class="bakeryName">빵집 이름</th>
-                </tr>
-                <tr>
-                    <td><div class="bread_table"><img class="bread_img" src="/images/bread1.jpg" width="200px"></div>
-                        <div class="breadTable_top">
-                            <span class="bread_title"><strong>9無 🌿비건통밀파운드케이크 👉6종 Half_Size</strong></span>
-                            <br>
-                            <ul>
-                                <li><span class="bread_name">파운드케이크선택 : 흑임자칙피스프레드</span></li>
-                            </ul>
-                        </div>
-                        <div class="breadTable_bottom">
-                            <div class="cnt_buttonDiv">
-                                <button type="button" class="cnt_button" onclick="count('minus')"><span>-</span></button>
-                                <div class="bread_table" id="cnt2">1</div>
-                                <button type="button" class="cnt_button" onclick="count('plus')">+</button>
-                            </div>
-                            <div class="bread_table" id="price2">
-                                38000
-                            </div>
-                            <div class="bread_table"><img class="delete_icon" src="/images/delete_icon.png"></div>
-                        </div>
-                    </td>
-                </tr>
-                </tbody></table>
-            <!--세 번째-->
-            <table border="1" class="bakery1">
-                <tbody><tr>
-                    <th class="bakeryName">빵집 이름</th>
-                </tr>
-                <tr>
-                    <td><div class="bread_table"><img class="bread_img" src="/images/bread1.jpg" width="200px"></div>
-                        <div class="breadTable_top">
-                            <span class="bread_title"><strong>9無 🌿비건통밀파운드케이크 👉6종 Half_Size</strong></span>
-                            <br>
-                            <ul>
-                                <li><span class="bread_name">파운드케이크선택 : 흑임자칙피스프레드</span></li>
-                            </ul>
-                        </div>
-                        <div class="breadTable_bottom">
-                            <div class="cnt_buttonDiv">
-                                <button type="button" class="cnt_button" onclick="count('minus')"><span>-</span></button>
-                                <div class="bread_table" id="cnt3">1</div>
-                                <button type="button" class="cnt_button" onclick="count('plus')">+</button>
-                            </div>
-                            <div class="bread_table" id="price3">
-                                38000
-                            </div>
-                            <div class="bread_table"><img class="delete_icon" src="/images/delete_icon.png"></div>
-                        </div>
-                    </td>
-                </tr>
+                </th:block>
                 </tbody></table>
             <!--총 결제-->
             <div class="cart_bottom">
@@ -303,14 +269,15 @@
             </div>
             </div>
         </section>
+        </form>
     </section>
-
 </div>
 
 <!-- Footer -->
 <footer id="footer" th:include="/main/footer::footer_body"></footer>
 
 <!-- Scripts -->
+
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
 <script src="/js/browser.min.js"></script>
@@ -318,47 +285,98 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
+<!--장바구니 삭제-->
 <script>
-    function count(type)  {
-        // 결과를 표시할 element
-        const cntElement = document.getElementById('cnt1');
-        const priceElement = document.getElementById('price1');
-        const priceResultElement = document.getElementById('priceResult');
-        const deliveryPriceElement = document.getElementById('deliveryPrice');
-        const totalPriceElement = document.getElementById('totalPrice');
+    let p;
+    let cnt;
+    let totalPrice;
+    let bakeryCnt;
+    let deliveryCharge;
+    let resultPrice;
 
-        // 현재 화면에 표시된 값
-        let number = cntElement.innerText;
-        let price = priceElement.innerText;
-        let priceResult = priceResultElement.innerText;
-        let deliveryPrice = deliveryPriceElement.innerText;
-        let totalPrice = totalPriceElement.innerText;
-        //원래 빵 가격
-        var originalPrice=0;
-
-        // 더하기/빼기
-        if(type === 'plus') {
-            originalPrice = price/number;
-            number = parseInt(number) + 1;
-            price = number * originalPrice;
-            priceResult = number * originalPrice;
-        }else if(type === 'minus')  {
-            if(number>1){
-                originalPrice = price/number;
-                number = parseInt(number) - 1;
-                price = number * originalPrice;
-                priceResult = number * originalPrice;
-            }
-            else{alert("1개 이상부터 주문 가능합니다.");}
+    //console.log("장바구니의 개수는 "+$(".bread_table").length/4);
+    //console.log("하나 가격은 "+(parseInt($("#price1").text())+parseInt($("#price2").text())));
+    // console.log("총 금액은 "+$(".bread_table").length/4);
+    totalPrice = 0;
+    bakeryCnt=$(".bread_table").length/4;
+    let totalPriceResult = $(function () {
+        for (let i = 0; i < bakeryCnt; i++) {
+        totalPrice += parseInt($(".breadPrice").eq(i).text());
         }
 
-        totalPrice = parseInt(priceResult) + parseInt(deliveryPrice);
-        // 결과 출력
-        cntElement.innerText =number;
-        priceElement.innerText =price;
-        priceResultElement.innerText =priceResult;
-        totalPriceElement.innerText =totalPrice;
-    }
+        console.log("총 금액" + totalPrice);
+
+        //상품 금액
+        $("#priceResult").text(totalPrice);
+        //배달료
+        deliveryCharge = 3000 * bakeryCnt;
+        $("#deliveryPrice").text(deliveryCharge);
+        //총 상품 금액
+        resultPrice = parseInt(totalPrice) + parseInt(deliveryCharge);
+        $("#totalPrice").text(resultPrice);
+
+        // for (let i=0; i<bakeryCnt; i++) {
+        //     totalPrice += parseInt(document.getElementsByClassName('breadPrice')[i]);
+        //     console.log(totalPrice);
+        // }
+        // console.log(totalPrice);
+    });
+
+
+    $(function () {
+        //사진 모두 출력
+        /*for(i = 1;i <= 9; i++){
+            p = $("<img>").attr("src", "image/photo_" + i + ".jpg");
+            $(".pic").append( p );
+        }*/
+
+        //이미지에 커서 올리면 바뀜
+        $(".delete_icon").mouseover(function() {
+            $(this).css("cursor", "pointer");
+        });
+
+        //x클릭하면 장바구니 지워짐
+        $(".delete_icon").click(function() {
+            /*console.log("개수"+$(".delete_icon").length)*/
+            if ($(".delete_icon").length>1)
+            {
+            $(this).closest("tr").remove();
+            }else{
+                alert("1개 이상부터 주문이 가능합니다.");
+            }
+
+        });
+        //console에 test
+        // let price = document.getElementsByClassName('breadPrice')[1];
+        // console.log("이거는 뭐엮지"+price);
+        // console.log("여기"+$(this).closest("tr").children("td:eq(3)").children("div").text());
+
+        //수량 버튼
+        $(".bt_plus").click(function(){
+            cnt = parseInt($(this).closest("tr").children("td:eq(1)").text());
+            price = parseInt($(this).closest("tr").children("td:eq(3)").children("div").text());
+            price = parseInt(price/cnt);//상품 1개의 가격
+            $(this).closest("tr").children("td:eq(1)").children(".bread_table").text(++cnt);
+            price = price * cnt;
+            // $(this).closest("tr").children("td:eq(3)").text(price);
+            console.log("여기"+$(this).closest("tr").children("td:eq(3)").children("div").text(price));
+            totalPriceResult();
+        });
+
+        $(".bt_minus").click(function(){
+            cnt = parseInt($(this).closest("tr").children("td:eq(1)").text());
+            price = parseInt($(this).closest("tr").children("td:eq(3)").children("div").text())
+            price = parseInt(price/cnt);//상품 1개의 가격
+
+            if(cnt>1){
+            $(this).closest("tr").children("td:eq(1)").children(".bread_table").text(--cnt);
+                price = price * cnt;
+                $(this).closest("tr").children("td:eq(3)").children("div").text(price);
+            }else{
+                alert("1개 이상부터 주문 가능합니다.");
+            }
+        });
+    });
 
 </script>
 </body>

@@ -3,8 +3,9 @@ package com.example.pangyapangya.services;
 
 import com.example.pangyapangya.beans.dao.BakeryDAO;
 import com.example.pangyapangya.beans.dao.BakeryFileDAO;
-import com.example.pangyapangya.beans.vo.BakeryFileVO;
+import com.example.pangyapangya.beans.dao.CEODAO;
 import com.example.pangyapangya.beans.vo.BakeryVO;
+import com.example.pangyapangya.beans.vo.CeoVO;
 import com.example.pangyapangya.beans.vo.Criteria;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,19 +28,21 @@ public class BakeryServiceImple implements BakeryService{
 
     private final BakeryDAO bakeryDAO;
     private final BakeryFileDAO bakeryFileDAO;
+    private final CEODAO ceodao;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void register(BakeryVO bakeryVO) {
-        bakeryDAO.register(bakeryVO);
-        if(bakeryVO.getAttachList() == null || bakeryVO.getAttachList().size() == 0){
-            return;
-        }
 
-        bakeryVO.getAttachList().forEach(attach -> {
+        bakeryDAO.register(bakeryVO);
+       /* if(bakeryVO.getAttachList() == null || bakeryVO.getAttachList().size() == 0){
+            return;
+        }*/
+
+       /* bakeryVO.getAttachList().forEach(attach -> {
             attach.setBno(bakeryVO.getBno());
             bakeryFileDAO.insert(attach);
-        });
+        });*/
     }
 
     @Override
@@ -62,9 +65,14 @@ public class BakeryServiceImple implements BakeryService{
 
     @Override
     public int getTotal(Criteria criteria) { return bakeryDAO.getTotal(criteria); }
+    @Override
+    public int myTotal(String ceoId) { return bakeryDAO.myTotal(ceoId); }
 
     @Override
+    public CeoVO getCeo(String ceoId) { return ceodao.ceoInfo(ceoId); }
+
+    /* @Override
     public List<BakeryFileVO> getAttachList(Long bno) {
         return bakeryFileDAO.findByBno(bno);
-    }
+    }*/
 }

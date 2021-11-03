@@ -1,6 +1,7 @@
 package com.example.pangyapangya.beans.dao;
 
 import com.example.pangyapangya.beans.vo.BakeryVO;
+import com.example.pangyapangya.beans.vo.CeoVO;
 import com.example.pangyapangya.beans.vo.Criteria;
 import com.example.pangyapangya.mappers.BakeryMapper;
 import lombok.RequiredArgsConstructor;
@@ -32,4 +33,6 @@ public class BakeryDAO {
     }
 
     public int getTotal(Criteria criteria){ return mapper.getTotal(criteria); }
+
+    public int myTotal(String ceoId){ return mapper.myTotal(ceoId); }
 }

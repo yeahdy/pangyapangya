@@ -152,48 +152,40 @@
                             <header>
                                 <h2 id="title">회원 정보 관리</h2>
                             </header>
-                            <table id="form">
-                                <tr>
+                            <table id="form" th:object="${userInfo}">
+                                <tr >
                                     <td>이름</td>
-                                    <td>
-                                        <input value="한동석" readonly>
-                                    </td>
+                                    <td><input th:value="*{userName}" readonly></td>
                                 </tr>
                                 <tr>
                                     <td>아이디</td>
-                                    <td>
-                                        <input value="hds1234" readonly>
-                                    </td>
+                                    <td><input th:value="*{userId}" readonly></td>
                                 </tr>
                                 <tr>
                                     <td>비밀번호</td>
-                                    <td>
-                                        <input type="password" value="hds1234" style="border-radius: 10px;">
-                                    </td>
+                                    <td><input type="password" th:value="*{userPw}" style="border-radius: 10px;"></td>
                                 </tr>
                                 <tr>
                                     <td>비밀번호 확인</td>
-                                    <td>
-                                        <input type="password" value="" style="border-radius: 10px;">
-                                    </td>
+                                    <td><input type="password" value="" style="border-radius: 10px;"></td>
                                 </tr>
                                 <tr>
                                     <td>휴대전화</td>
-                                    <td>
-                                        <input type="" value="01012341234">
-                                    </td>
+                                    <td><input type="" th:value="*{userPhoneNum}"></td>
                                 </tr>
+
+                                <!--우편번호 작성하는 거 양식 바꾸기-->
                                 <tr>
-                                    <td>이메일</td>
-                                    <td>
-                                        <input type="" value="hds1234@gmail.com">
-                                    </td>
+                                    <td>우편번호</td>
+                                    <td> <input type="" th:value="*{userZipcode}"></td>
                                 </tr>
                                 <tr>
                                     <td>주소</td>
-                                    <td>
-                                        <input type="" value="서울 특별시 강남구 역삼동">
-                                    </td>
+                                    <td> <input type="" th:value="*{userAddress}"></td>
+                                </tr>
+                                <tr>
+                                    <td>상세 주소</td>
+                                    <td><input type="" th:value="*{userAddress_detail}"></td>
                                 </tr>
 
                             </table>
