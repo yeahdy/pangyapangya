@@ -166,28 +166,10 @@
 													</div>
 												</a>
 											</div>
-											<div class="table-third"><input type="button" class="button small bs" value="수정"></div>
-											<div class="table-fourth"><input type="button" class="button small bs" value="삭제"></div>
-										</div>
-										<div class="table-boxes" style="display: flex;">
-											<div class="table-first">
-												<div class="col-6 col-12-small">
-													<input type="checkbox" id="list2" name="list2" >
-													<label for="list2"></label>
-												</div>
-
-											</div>
-											<div class="table-second">
-												<a href="#">
-													<div style="display: flex;">
-														<div class="second-top"><p>빵 체험단 제목</p></div>
-														<div class="second-under-date"><span>·</span>2021-10-11</div>
-													</div>
-												</a>
-											</div>
 											<div class="table-third"><a id="goModify" th:href="*{tno}">수정</a></div>
 											<div class="table-fourth"><a id="goRemove" th:href="*{tno}">삭제</a></div>
 										</div>
+
 										<!--<div class="table-boxes" style="display: flex;">
 											<div class="table-first">
 												<div class="col-6 col-12-sm all">
@@ -258,4 +240,36 @@
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script></body>
 </body>
+<script th:inline="javascript">
+	// 글 등록 시 전달받는 게시글 번호를 alert으로 출력
+	let pageForm = $(document.pageForm);
+	let paging = [[${pageMaker.criteria.listLink}]];
+	let searchForm = $(document.searchForm);
+
+	$(document).ready(function(){
+		let tno = [[${tno}]];
+		if(tno == null || history.state){
+			return;
+		}
+		alert("게시글 " + tno + "번이 등록되었습니다.");
+		history.replaceState({}, null, null);
+	});
+
+	$("a.changePage").click(function(e){
+		e.preventDefault();
+		pageForm.find("input[name='pageNum']").val($(this).attr("href"));
+		pageForm.submit();
+	});
+
+	$("a#goRead").on("click", function(e){
+		e.preventDefault();
+		location.href = "/myPageCeo/expRe" + paging + "&tno=" + $(this).attr("href");
+	})
+
+	$("a#goModify").on("click", function(e){
+		e.preventDefault();
+		location.href = "/myPageCeo/expModify" + paging + "&tno=" + $(this).attr("href");
+	})
+
+</script>
 </html>

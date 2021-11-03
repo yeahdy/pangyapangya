@@ -48,8 +48,8 @@ public class TestingServiceImple implements TestingService{
     }
 
     @Override
-    public TestingVO get(Long bno) {
-        return testingDAO.get(bno);
+    public TestingVO get(Long tno) {
+        return testingDAO.get(tno);
     }
 
     @Override
@@ -58,8 +58,8 @@ public class TestingServiceImple implements TestingService{
     }
 
     @Override
-    public boolean remove(Long bno) {
-        return testingDAO.remove(bno);
+    public boolean remove(Long tno) {
+        return testingDAO.remove(tno);
     }
 
     @Override

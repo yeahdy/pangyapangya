@@ -90,8 +90,8 @@ public class TestingController {
     //    /modify 요청을 처리할 수 있는 비지니스 로직 작성
 //    수정 성공시 result에 "success"를 담아서 전달한다.
 //    단위 테스트로 View에 전달할 파라미터를 조회한다.
-    @PostMapping("expModify")
-    public RedirectView expModify(TestingVO testingVO, RedirectAttributes rttr){
+    @GetMapping("expModify")
+    public String expModify(TestingVO testingVO, RedirectAttributes rttr){
         log.info("-------------------------------");
         log.info("expModify : " + testingVO.toString());
         log.info("-------------------------------");
@@ -100,7 +100,7 @@ public class TestingController {
             rttr.addAttribute("result", "success");
             rttr.addAttribute("tno", testingVO.getTno());
         }
-        return new RedirectView("expModify");
+        return "myPageCeo/expModify";
     }
 
     //    /remove 요청을 처리할 수 있는 비지니스 로직 작성

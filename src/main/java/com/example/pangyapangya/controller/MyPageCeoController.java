@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -24,9 +25,13 @@ public class MyPageCeoController {
 
     //마이페이지(사장님)-글 등록[빵집 소개]
     @GetMapping("bakery")
-    public String myPageCeoBakery(Model model, String ceoId){
-        ceoId="wnsrbod";
-        model.addAttribute("ceo", bakeryService.getCeo(ceoId));
+    public String myPageCeoBakery(Model model, HttpSession session){
+        String sessionU = (String)session.getAttribute("sessionU");
+        String sessionC = (String)session.getAttribute("sessionC");
+        if(sessionU == null && sessionC == null){
+            return "/user/login";
+        }
+        model.addAttribute("ceo", bakeryService.getCeo(sessionC));
         return "myPageCeo/bakery";
     }
 
@@ -81,7 +86,7 @@ public class MyPageCeoController {
     }
 
     //    여러 요청을 하나의 메소드로 받을 때에는 {}를 사용하여 콤마로 구분한다.
-   /* @GetMapping({"bakeryRe", "modify"})
+   /* @GetMapping({"read", "modify"})
     public void read(@RequestParam("bno") Long bno, Criteria criteria, Model model, HttpServletRequest request, CeoVO ceoVO){
         String reqURI = request.getRequestURI();
         String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
