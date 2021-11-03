@@ -48,18 +48,18 @@ public class UserDAO_test {
 
     @Test
     public void pwFindTest(){
-        if(userDAO.pwFind("yeahdy123")){
+        if(userDAO.pwFind("yejin")){
             log.info("-----------아이디 존재 O----------");
-            UserVO userVO = userDAO.userInfo("yeahdy123");
-            log.info( "가입한 전화번호: " + userVO.getUserPhoneNum());
+            log.info( "가입한 전화번호: " + userDAO.pwFind_phone("yejin").toString());
         }else{
             log.info("-----------아이디 존재 x----------");
         }
     }
 
+    // 아이디가 존재하면 휴대폰번호 조회하기
     @Test
-    public void userInfoTest(){
-        UserVO userVO = userDAO.userInfo("yeahdy123");
-        log.info(userVO.toString());
+    public void pwFind_phoneTest(){
+        log.info( "가입한 전화번호: " + userDAO.pwFind_phone("yejin").toString());
     }
+
 }

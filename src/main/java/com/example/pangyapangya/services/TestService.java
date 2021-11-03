@@ -25,8 +25,4 @@ public class TestService {
     public int getTotal(){
         return testDAO.getTotal();
     }
-
-    public TestingVO getRead(Long tno){
-        return testDAO.getRead(tno);
-    }
 }

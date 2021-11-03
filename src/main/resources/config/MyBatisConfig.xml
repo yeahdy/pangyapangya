@@ -8,6 +8,5 @@
         <typeAlias type="com.example.pangyapangya.beans.vo.BakeryFileVO" alias="bakeryFileVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.UserVO" alias="UserVO"></typeAlias>
         <typeAlias type="com.example.pangyapangya.beans.vo.TestingVO" alias="TestingVO"></typeAlias>
-        <typeAlias type="com.example.pangyapangya.beans.vo.TestingImgVO" alias="TestingImgVO"></typeAlias>
     </typeAliases>
 </configuration>

@@ -15,7 +15,4 @@ public interface TestMapper {
 
 //    게시글 총 개수
     public int getTotal();
-
-//    게시글 상세정보
-    public TestingVO getRead(Long tno);
 }

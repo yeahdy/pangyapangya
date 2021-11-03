@@ -20,7 +20,7 @@ public class TestDAO {
         return mapper.addData(temp);
     }
 
-    public int getTotal(){return mapper.getTotal();}
-
-    public TestingVO getRead(Long tno){return mapper.getRead(tno);}
+    public int getTotal(){
+        return mapper.getTotal();
+    }
 }

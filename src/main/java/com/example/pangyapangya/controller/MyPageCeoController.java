@@ -12,7 +12,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -25,27 +24,28 @@ public class MyPageCeoController {
 
     //마이페이지(사장님)-글 등록[빵집 소개]
     @GetMapping("bakery")
-    public String myPageCeoBakery(Model model, HttpSession session){
-        String sessionU = (String)session.getAttribute("sessionU");
-        String sessionC = (String)session.getAttribute("sessionC");
-        if(sessionU == null && sessionC == null){
-            return "/user/login";
-        }
-        model.addAttribute("ceo", bakeryService.getCeo(sessionC));
+    public String myPageCeoBakery(Model model, String ceoId){
+        ceoId="wnsrbod";
+        model.addAttribute("ceo", bakeryService.getCeo(ceoId));
         return "myPageCeo/bakery";
     }
 
-    //마이페이지(사장님)-글 등록[빵집 소개]
-    /*@GetMapping("bakeryModify")
-    public String bakeryModify(@RequestParam("bno") Long bno, HttpServletRequest request,  Model model, BakeryVO bakeryVO, Criteria criteria){
-        String reqURI = request.getRequestURI();
-        String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
-        model.addAttribute("ceo", bakeryService.getCeo(bakeryVO.getCeoId()));
-        model.addAttribute("bakery", bakeryService.get(bno));
-        model.addAttribute("criteria", criteria);
-        return "myPageCeo/bakeryModify";
-    }*/
+    //마이페이지(사장님)-글 등록[원데이 클래스]
+    @GetMapping("oneDay")
+    public String myPageCeoOneDay(){ return "myPageCeo/oneDay"; }
 
+    //마이페이지(사장님)-글 등록[빵 체험단]
+    @GetMapping("exp")
+    public String myPageCeoExp(){ return "myPageCeo/exp"; }
+
+
+    //마이페이지(사장님)-내 글 보기[원데이 클래스]
+    @GetMapping("oneDayRe")
+    public String myPageCeoOneDayRe(){ return "myPageCeo/oneDayRe"; }
+
+    //마이페이지(사장님)-내 글 보기[빵 체험단]
+    @GetMapping("expRe")
+    public String myPageCeoExpRe(){ return "myPageCeo/expRe"; }
 
     //마이페이지(사장님)-내 정보 수정
     @GetMapping("edit")
@@ -74,20 +74,20 @@ public class MyPageCeoController {
     }
 
     @GetMapping("bakeryRe")
-    public String bakeryRe(Criteria criteria, Model model){
-
+    public String bakeryRe(Criteria criteria, Model model, String ceoId){
+        ceoId = "wnsrbod";
         log.info("-------------------------------");
         log.info("bakeryRe");
         log.info("-------------------------------");
-        model.addAttribute("total", bakeryService.myTotal("wnsrbod"));
+        model.addAttribute("total", bakeryService.myTotal(ceoId));
         model.addAttribute("list", bakeryService.getList(criteria));
         model.addAttribute("pageMaker", new PageDTO(bakeryService.getTotal(criteria), 10, criteria));
         return "myPageCeo/bakeryRe";
     }
 
     //    여러 요청을 하나의 메소드로 받을 때에는 {}를 사용하여 콤마로 구분한다.
-   /* @GetMapping({"read", "modify"})
-    public void read(@RequestParam("bno") Long bno, Criteria criteria, Model model, HttpServletRequest request, CeoVO ceoVO){
+    @GetMapping("bakeryModify")
+    public void bakeryModify(@RequestParam("bno") Long bno, Criteria criteria, Model model, HttpServletRequest request, CeoVO ceoVO){
         String reqURI = request.getRequestURI();
         String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
         //read 요청 시 read 출력
@@ -99,22 +99,22 @@ public class MyPageCeoController {
         model.addAttribute("ceo", bakeryService.getCeo("wnsrbod"));
         model.addAttribute("bakery", bakeryService.get(bno));
         model.addAttribute("criteria", criteria);
-    }*/
+    }
 
     //    /modify 요청을 처리할 수 있는 비지니스 로직 작성
 //    수정 성공시 result에 "success"를 담아서 전달한다.
 //    단위 테스트로 View에 전달할 파라미터를 조회한다.
-    @PostMapping("modify")
-    public RedirectView modify(BakeryVO bakeryVO, RedirectAttributes rttr){
+    @PostMapping("bakeryModify")
+    public RedirectView bakeryModify(BakeryVO bakeryVO, RedirectAttributes rttr){
         log.info("-------------------------------");
-        log.info("modify : " + bakeryVO.toString());
+        log.info("bakeryModify : " + bakeryVO.toString());
         log.info("-------------------------------");
 
         if(bakeryService.modify(bakeryVO)){
             rttr.addAttribute("result", "success");
             rttr.addAttribute("bno", bakeryVO.getBno());
         }
-        return new RedirectView("bakeryModify");
+        return new RedirectView("bakeryRe");
     }
 
     //    /remove 요청을 처리할 수 있는 비지니스 로직 작성
