@@ -51,7 +51,7 @@
 
 </header>
 
-<!-- Wrapper -->
+<!-- Wrapper수정 -->
 <!-- Main -->
 <section class="cont_login container" id="inputView">
 	<div class="box">
@@ -66,15 +66,19 @@
 		<form action="#" method="post" id="pwFindForm">
 			<h2 class="title">비밀번호 찾기</h2>
 			<p class="info_text">비밀번호를 찾고자 하는 아이디를 입력해 주세요.</p>
-			<div class="box_inp">
-				<p class="form_title">아이디</p>
-				<div class="line_inp">
-					<input type="text" name="userId" id="userId" placeholder="가입하신 아이디를 입력해주세요" style="float: left;width: 77%;">
-					<input type="button" id="findIdBtn" value="다음" style="width: 100px;padding: 0px;margin-left: 11px;">
-					<p class="info_error" id="userIdError1">입력하신 아이디를 찾을 수 없습니다.</p>
-				</div>
+			<p class="form_title">아이디</p>
+			<div class="line" style="margin-bottom: 15px;">
+				<input type="text" name="ceoId" id="userId" placeholder="가입하신 아이디를 입력해주세요" style="float: left;width: 77%;">
+				<button type="button" id="findIdBtn">다음</button>
 			</div>
+			<p class="info_error" id="userIdError1">등록된 아이디가 존재하지 않습니다. 다시 입력 해주세요.</p>
+			<p class="info_error" id="userIdError2">가입하신 아이디를 입력 해주세요.</p>
 			<div class="phone_code" style="display: none">
+				<p class="form_title">이름</p>
+				<div class="line" style="margin-bottom: 15px;">
+					<input class="inp" id="userName" name="userName" type="text" placeholder="이름(실명)을 입력해주세요.">
+				</div>
+				<p class="info_error" id="userNameError1">이름을 입력 해주세요.</p>
 				<p class="form_title">휴대폰 번호</p>
 				<div class="line" style="margin-bottom: 15px;">
 					<input class="inp" id="userPhoneNum" name="userPhoneNum" type="tel" placeholder="휴대폰 번호를 - 없이 입력해주세요">
@@ -88,6 +92,10 @@
 				</div>
 				<!-- 타이머 -->
 				<p class="count" style="margin: 0em 23em 0em 0em;color: #F9A825;"><span class="timer"></span></p>
+			</div>
+			<!-- 비밀번호 찾기 컨트롤러 -->
+			<div class="pwFindCnt" th:if="${result == 0}" style="display: none">
+				<span th:text="${result}"></span>
 			</div>
 		</form>
 	</div>
@@ -105,16 +113,47 @@
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
 <script type="text/javascript">
-	// 아이디 공백 막기
+	let idCheck= false;		// 아이디 검사
+
+	// '다음' 클릭 시 아이디 검사
 	$('#findIdBtn').on("click", function () {
+		// 아이디 공백 막기
 		if(!$("#userId").val()){
 			$("#userId").focus();
-			$("#userIdError1").show();
+			$("#userIdError2").show();
+			$("#userIdError1").hide();
 			return;
 		}else{
-			$("#userIdError1").hide();
-			$(".phone_code").slideDown();
+			$("#userIdError2").hide();
 		}
+
+		// DB에서 ID 조회
+		$.ajax({
+			url: '/user/idCheckCEO/' + $("#userId").val(),
+			type: 'get',
+			dataType: 'text',
+			success: function (check) {
+				// DB에 회원이 입력한 아이디존재 → 전화번호 인증
+				if(check == "true"){
+					console.log(check)
+					$("#userIdError1").hide();
+					$("#userIdError2").hide();
+					idCheck = true;
+					// 아이디가 존재할 경우 전화번호 인증가능
+					if(idCheck){
+						$(".phone_code").slideDown();
+					}
+				}else {
+					// DB에 회원이 입력한 아이디 X
+					console.log(check)
+					$("#userIdError1").show();
+					idCheck = false;
+				}
+			},
+			error: function () {
+				console.log("checkId() 오류");
+			}
+		});
 	})
 
 
@@ -143,12 +182,10 @@
 						alert('휴대폰 번호 인증이 완료되었습니다. 감사합니다.');
 						clearInterval(interval);	// 타이머 종료
 						console.log("체크여부: "+cnfCheck);
-						// 사용자 전화번호 저장하기
 
-						// 인증성공일 경우에만 idFindSuccess 로 이동
+						// 인증성공일 경우에만 pwFindSuccess 로 이동
 						if(cnfCheck){
 							$("#pwFindForm").submit();
-							location.href= "/ceo/pwFindSuccessCEO";
 							$('#authNumber').val("");
 						}
 					} else {
