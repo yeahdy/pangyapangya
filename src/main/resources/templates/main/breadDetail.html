@@ -262,23 +262,28 @@
 <!-- Wrapper -->
 
 <div class="inner">
-    <div>
+    <form method="post" action="" id="registForm">
+      <th:block class="field" th:object="${info}">
+
+
+        <div>
         <div id="info">
             <section id="img-section">
                 <div id="img-view">
-                    <img src="https://image.idus.com/image/files/695f8f487f8b4dbdba9cfa26aea2e1e4_1440.jpg">
+                    <img th:src="*{bakeryPhoto}">
                 </div>
             </section>
             <!-- 구매창 -->
             <aside id="box">
                 <div class="payment">
                     <div class="maker-card">
-                        <a href="">베이커리 이름</a>
+                        <input type="hidden" >
+                        <a href="#" th:text="*{shopName}"></a>
                     </div>
-                    <h2 class="bread-name">브라우니🍞</h2>
+                    <h2 class="bread-name" th:text="*{breadName}">브라우니🍞</h2>
                     <div class="price-detail">
                         <span>
-                            <strong>3000</strong>
+                            <strong th:text="*{breadPrice}">3000</strong>
                             원
                         </span>
                     </div>
@@ -287,11 +292,11 @@
                         <button type="submit">
                             장바구니
                         </button>
-                        <form method="post" action="/kakaoPay">
+
                         <button class="kakao" type="submit" style="overflow: hidden; width: 100px; background-color: #ffeb00;">
                             <img src="/images/kakao.png">
                         </button>
-                        </form>
+
                         <button type="submit">
                             구매
                         </button>
@@ -301,7 +306,7 @@
         </div>
     </div>
     <section id="prd-info">
-        <p>
+        <p th:text="*{content}">
             제품 배송 안내❗<br>
             매주 월, 목요일 출고 진행합니다.<br>
             목 ~ 일까지 주문건 👉🏻 (월)출고<br>
@@ -339,6 +344,8 @@
             ✔ 수제로 만들어지는 제품이므로 식품에 대한 합당한 하자가 발생하지 않는 한 교환, 반품이 불가합니다.<br>
         </p>
     </section>
+      </th:block>
+    </form>
     <section id="prd-review">
         <div id="review-title">
             구매 후기

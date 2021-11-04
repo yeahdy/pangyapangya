@@ -87,6 +87,11 @@ public class BakeryServiceImple implements BakeryService{
         return bakeryDAO.ceoDelete(ceoVO);
     }
 
+    @Override
+    public List<BakeryVO> breadList() {
+        return bakeryDAO.breadList();
+    }
+
     /* @Override
     public List<BakeryFileVO> getAttachList(Long bno) {
         return bakeryFileDAO.findByBno(bno);
