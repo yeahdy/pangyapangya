@@ -5,11 +5,12 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class CartVO {
-    private int cartNum;
+    private Long cartNum;
     private String userId;
     private String breadName;
     private int priceOfBread;
     private int deliverCharge;
     private int breadCnt;
     private String breadImg;
+    private String ceoId;
 }

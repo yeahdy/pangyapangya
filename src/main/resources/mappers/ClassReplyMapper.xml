@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.pangyapangya.mappers.ClassReplyMapper">
+    <insert id="insert">
+        INSERT INTO TBL_CLASSREVIEWREPLY (RNO, BNO, CONTENT, USERID, REVIEWDATE, STAR)
+        VALUES (SEQ_CLASSREVIEWREPLY.NEXTVAL, #{bno}, #{content}, #{userid})
+    </insert>
+
+    <select id="read" resultType="ClassReplyVO">
+        SELECT RNO, BNO, CONTENT, USERID, REVIEWDATE, STAR FROM TBL_CLASSREVIEWREPLY
+        WHERE RNO = #{rno}
+    </select>
+
+    <!--    <delete id="delete">-->
+    <!--        DELETE FROM TBL_CLASSREVIEWREPLY WHERE RNO = #{rno}-->
+    <!--    </delete>-->
+
+    <!--    <update id="update">-->
+    <!--        UPDATE TBL_CLASSREVIEWREPLY-->
+    <!--        SET REPLY = #{reply}, UPDATEDATE = SYSDATE-->
+    <!--        WHERE RNO = #{rno}-->
+    <!--    </update>-->
+
+        <select id="getListWithPaging" resultType="ClassReplyVO">
+            <![CDATA[
+            SELECT RNO, BNO, CONTENT, USERID, REVIEWDATE, STAR
+            FROM
+            (
+                SELECT /*+ INDEX_DESC(TBL_REPLY PK_REPLY) */
+                ROWNUM R, RNO, BNO, CONTENT, USERID, REVIEWDATE, STAR
+                FROM TBL_CLASSREVIEWREPLY
+                WHERE BNO = #{bno}
+                AND ROWNUM <= #{criteria.pageNum} * #{criteria.amount}
+            )
+            WHERE R > (#{criteria.pageNum} - 1) * #{criteria.amount}
+            ]]>
+        </select>
+
+    <select id="getTotal" resultType="_int">
+        SELECT COUNT(RNO) FROM TBL_CLASSREVIEWREPLY WHERE BNO = #{bno}
+    </select>
+</mapper>

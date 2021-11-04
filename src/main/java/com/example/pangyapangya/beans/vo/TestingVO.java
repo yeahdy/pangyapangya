@@ -16,5 +16,6 @@ public class TestingVO {
     private int people;
     private String description;
     private String testingPhoto;
+    private String regDate;
     private String shopName;
 }

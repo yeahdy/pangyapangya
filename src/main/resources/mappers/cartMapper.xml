@@ -3,11 +3,79 @@
 
 <mapper namespace="com.example.pangyapangya.mappers.CartMapper">
     <!--<select id="getList" resultType="CartVO">
-        <![CDATA[
         SELECT * FROM TBL_CART
-        ]]>
     </select>-->
-    <select id="getTime" resultType="string">
-        SELECT SYSDATE FROM DUAL
+
+    <!--cart table과 join 하여 shopName을 얻기 위함-->
+    <!--vo 타입과 String 타입을 한번에 담기 위해 사용-->
+    <!--<resultMap id="CartList" type="CartVO">
+        <id property="cartNum" column="cartNum"/>
+        <id property="userId" column="userId"/>
+        <id property="breadName" column="breadName"/>
+        <id property="priceOfBread" column="priceOfBread"/>
+        <id property="deliverCharge" column="deliverCharge"/>
+        <id property="breadCnt" column="breadCnt"/>
+        <id property="breadImg" column="breadImg"/>
+    </resultMap>
+    <resultMap id="shopName" type="CeoVO">
+        <id property="ceoId" column="ceoId"/>
+        <id property="ceoPw" column="ceoPw"/>
+        <id property="ceoName" column="ceoName"/>
+        <id property="shopName" column="shopName"/>
+        <id property="shopCallNumber" column="shopCallNumber"/>
+        <id property="shopZipCode" column="shopZipCode"/>
+        <id property="shopAdDress" column="shopAdDress"/>
+        <id property="shopAddressDetail" column="shopAddressDetail"/>
+        <id property="shopPhoto" column="shopPhoto"/>
+        <id property="phoneNum" column="phoneNum"/>
+        <id property="status" column="status"/>
+    </resultMap>
+    &lt;!&ndash;타입을 하나로 합침&ndash;&gt;
+    <resultMap id="getCartList_shopName" type="Cart_shopName_VO">
+        <collection property="cart" resultMap="CartVO"/>
+        <collection property="ceo" resultMap="CeoVO"/>
+    </resultMap>-->
+
+
+    <!--<select id="getCartList" resultType="Cart_shopName_VO">
+        SELECT CA.*,CEO.SHOPNAME FROM TBL_CART CA JOIN TBL_CEO CEO ON CA.CEOID = CEO.CEOID WHERE CA.USERID=#{userId}
+    </select>-->
+
+    <select id="getCartList" resultType="CartVO">
+        SELECT * FROM TBL_CART WHERE USERID=#{userId}
     </select>
+
+
+    <insert id="insertCart">
+        INSERT INTO TBL_CART (CARTNUM, USERID, BREADNAME, PRICEOFBREAD, DELIVERCHARGE, BREADCNT, BREADIMG, CEOID)
+        VALUES (TBL_CART_SEQ.NEXTVAL, #{userId},#{breadName}, #{priceOfBread}, #{deliverCharge}, #{breadCnt}, #{breadImg}, #{ceoId})
+    </insert>
+
+    <!--pk값 알기위해서 insert전에 select-->
+    <insert id="insertSelect_cartNum">
+        <selectKey keyProperty="cartNum" order="BEFORE" resultType="Long">
+                SELECT TBL_CART_SEQ.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_CART (CARTNUM, USERID, BREADNAME, PRICEOFBREAD, DELIVERCHARGE, BREADCNT, BREADIMG, CEOID)
+        VALUES (#{cartNum}, #{userId},#{breadName}, #{priceOfBread}, #{deliverCharge}, #{breadCnt}, #{breadImg}, #{ceoId})
+    </insert>
+
+    <delete id="deleteCart">
+        DELETE FROM TBL_CART WHERE CARTNUM=#{cartNum}
+    </delete>
+
+    <update id="updateBreadCnt">
+        UPDATE TBL_CART
+        SET BREADCNT = #{breadCnt}
+        WHERE CARTNUM=#{cartNum}
+    </update>
+
+    <!--장바구니 비우기-->
+    <delete id="emptyCart">
+        DELETE FROM TBL_CART WHERE USERID=#{userId}
+    </delete>
+
+    <delete id="leaveUser_cart">
+        DELETE FROM TBL_CART WHERE USERID=#{userId}
+    </delete>
 </mapper>

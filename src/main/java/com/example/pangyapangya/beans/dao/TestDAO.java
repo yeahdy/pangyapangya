@@ -1,5 +1,6 @@
 package com.example.pangyapangya.beans.dao;
 
+import com.example.pangyapangya.beans.vo.TestingImgVO;
 import com.example.pangyapangya.beans.vo.TestingVO;
 import com.example.pangyapangya.mappers.TestMapper;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,9 @@ public class TestDAO {
         return mapper.addData(temp);
     }
 
-    public int getTotal(){
-        return mapper.getTotal();
-    }
+    public int getTotal(){return mapper.getTotal();}
+
+    public TestingVO getRead(Long tno){return mapper.getRead(tno);}
+
+    public List<TestingImgVO> getReadImgs(Long tno){return mapper.getReadImgs(tno);}
 }
