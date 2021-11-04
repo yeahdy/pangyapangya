@@ -95,4 +95,9 @@
         SELECT COUNT(BNO) FROM TBL_BAKERY
         WHERE CEOID = #{ceoId}
     </select>
+
+    <select id="breadInfo" resultType="bakeryVO">
+        SELECT * FROM TBL_BAKERY
+        WHERE BNO = #{bno}
+    </select>
 </mapper>

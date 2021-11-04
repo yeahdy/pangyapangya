@@ -11,6 +11,5 @@ public class BreadDetailService {
 
     private final BreadDetailDAO breadDetailDAO;
 
-    @Override
-    public BakeryVO get(Long bno) { return BreadDetailDAO.get(bno); }
+    public BakeryVO getInfo(Long bno){return breadDetailDAO.get(bno);}
 }

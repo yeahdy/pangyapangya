@@ -25,4 +25,7 @@ public interface BakeryMapper {
     public int getTotal(Criteria criteria);
     // 해당 회원의 게시글 전체 갯수
     public int myTotal(String ceoId);
+
+//    게시글 상세정보
+    public BakeryVO breadInfo(Long bno);
 }
