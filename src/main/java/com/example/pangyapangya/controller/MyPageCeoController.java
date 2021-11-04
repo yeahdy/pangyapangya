@@ -26,6 +26,7 @@ public class MyPageCeoController {
 
     private final BakeryService bakeryService;
     private final CEOService ceoService;
+
     //마이페이지(사장님)-글 등록[빵집 소개]
     @GetMapping("bakery")
     public String myPageCeoBakery(Model model, HttpSession session){
@@ -36,42 +37,6 @@ public class MyPageCeoController {
         }
         model.addAttribute("ceo", bakeryService.getCeo(sessionC));
         return "myPageCeo/bakery";
-    }
-
-    //마이페이지(사장님)-글 등록[빵집 소개]
-    /*@GetMapping("bakeryModify")
-    public String bakeryModify(@RequestParam("bno") Long bno, HttpServletRequest request,  Model model, BakeryVO bakeryVO, Criteria criteria){
-        String reqURI = request.getRequestURI();
-        String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
-        model.addAttribute("ceo", bakeryService.getCeo(bakeryVO.getCeoId()));
-        model.addAttribute("bakery", bakeryService.get(bno));
-        model.addAttribute("criteria", criteria);
-        return "myPageCeo/bakeryModify";
-    }*/
-
-
-    //마이페이지(사장님)-내 정보 수정
-    @GetMapping("edit")
-    public String myPageCeoEdit(Model model, HttpSession session){
-        String sessionU = (String)session.getAttribute("sessionU");
-        String sessionC = (String)session.getAttribute("sessionC");
-        if(sessionU == null && sessionC == null){
-            return "/user/login";
-        }
-        model.addAttribute("ceo", bakeryService.getCeo(sessionC));
-        return "myPageCeo/edit";
-    }
-
-    //마이페이지(사장님)-회원 탈퇴
-    @GetMapping("delete")
-    public String myPageCeoDelete(HttpSession session, Model model){
-        String sessionU = (String)session.getAttribute("sessionU");
-        String sessionC = (String)session.getAttribute("sessionC");
-        if(sessionU == null && sessionC == null){
-            return "/user/login";
-        }
-        model.addAttribute("ceo", bakeryService.getCeo(sessionC));
-        return "myPageCeo/delete";
     }
 
     @PostMapping("bakery")
@@ -92,31 +57,7 @@ public class MyPageCeoController {
         return new RedirectView("bakeryRe");
     }
 
-    @PostMapping("edit")
-    public RedirectView edit(RedirectAttributes rttr, CeoVO ceoVO, HttpSession session){
-        String sessionU = (String)session.getAttribute("sessionU");
-        String sessionC = (String)session.getAttribute("sessionC");
-        if(sessionU == null && sessionC == null){
-            return new RedirectView("login");
-        }
-
-        log.info("-------------------------------");
-        log.info("ceo : " + ceoVO.toString());
-        log.info("-------------------------------");
-        ceoVO.setCeoPw(ceoVO.getCeoPw());
-        ceoVO.setCeoId(sessionC);
-       /* if(bakeryVO.getAttachList() != null){
-            bakeryVO.getAttachList().forEach(attach -> log.info(attach.toString()));
-        }*/
-        bakeryService.ceoUpdate(ceoVO);
-//        쿼리 스트링으로 전달
-//        rttr.addAttribute("bno", boardVO.getBno());
-//        세션의 flash영역을 이용하여 전달
-        rttr.addFlashAttribute("ceo", bakeryService.getCeo(ceoVO.getCeoId()));
-//        RedirectView를 사용하면 redirect방식으로 전송이 가능하다.
-        return new RedirectView("edit");
-    }
-
+    //마이페이지(사장님) 내가 작성한 글 - 빵집소개
     @GetMapping("bakeryRe")
     public String bakeryRe(Criteria criteria, Model model){
 
@@ -128,6 +69,18 @@ public class MyPageCeoController {
         model.addAttribute("pageMaker", new PageDTO(bakeryService.getTotal(criteria), 10, criteria));
         return "myPageCeo/bakeryRe";
     }
+
+
+    //마이페이지(사장님)-글 수정[빵집 소개]
+    /*@GetMapping("bakeryModify")
+    public String bakeryModify(@RequestParam("bno") Long bno, HttpServletRequest request,  Model model, BakeryVO bakeryVO, Criteria criteria){
+        String reqURI = request.getRequestURI();
+        String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
+        model.addAttribute("ceo", bakeryService.getCeo(bakeryVO.getCeoId()));
+        model.addAttribute("bakery", bakeryService.get(bno));
+        model.addAttribute("criteria", criteria);
+        return "myPageCeo/bakeryModify";
+    }*/
 
     //    여러 요청을 하나의 메소드로 받을 때에는 {}를 사용하여 콤마로 구분한다.
     @GetMapping("modify")
@@ -186,9 +139,6 @@ public class MyPageCeoController {
         return new RedirectView("bakeryRe");
     }*/
 
-    @GetMapping("register")
-    public void register(){}
-
     //    게시글 첨부파일
     /*@GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -197,27 +147,61 @@ public class MyPageCeoController {
         return bakeryService.getAttachList(bno);
     }*/
 
+    //마이페이지(사장님)-내 정보 수정
+    @GetMapping("edit")
+    public String myPageCeoEdit(Model model, HttpSession session){
+        String sessionU = (String)session.getAttribute("sessionU");
+        String sessionC = (String)session.getAttribute("sessionC");
+        if(sessionU == null && sessionC == null){
+            return "/user/login";
+        }
+        model.addAttribute("ceo", bakeryService.getCeo(sessionC));
+        return "myPageCeo/edit";
+    }
 
-    /*@PostMapping("delete")
+    @PostMapping("edit")
+    public RedirectView edit(RedirectAttributes rttr, CeoVO ceoVO, HttpSession session){
+        String sessionU = (String)session.getAttribute("sessionU");
+        String sessionC = (String)session.getAttribute("sessionC");
+        if(sessionU == null && sessionC == null){
+            return new RedirectView("login");
+        }
+
+        ceoVO.setCeoPw(ceoVO.getCeoPw());
+        ceoVO.setCeoId(sessionC);
+
+        bakeryService.ceoUpdate(ceoVO);
+        rttr.addFlashAttribute("ceo", bakeryService.getCeo(ceoVO.getCeoId()));
+        return new RedirectView("edit");
+    }
+
+    //마이페이지(사장님)-회원 탈퇴
+    @GetMapping("delete")
+    public String myPageCeoDelete(HttpSession session, Model model){
+        String sessionU = (String)session.getAttribute("sessionU");
+        String sessionC = (String)session.getAttribute("sessionC");
+        if(sessionU == null && sessionC == null){
+            return "/user/login";
+        }
+        model.addAttribute("ceo", bakeryService.getCeo(sessionC));
+        return "myPageCeo/delete";
+    }
+
+    @PostMapping("delete")
     public String delete(CeoVO ceoVO, HttpServletRequest req, RedirectAttributes rttr){
-        log.info("---------로그인-----------");
-        log.info("ceoId: " + ceoVO.getCeoId());
-        log.info("ceoPw: " + ceoVO.getCeoPw());
-        log.info("--------------------------");
-
         HttpSession session = req.getSession(); // session 생성
         if(!ceoService.loginCEO(ceoVO)) {
-            log.info("-------로그인 실패-------");
             session.setAttribute("sessionC", null);
             rttr.addAttribute("check", "false");
-            return "ceo/loginCEO";
+            return "myPageCeo/delete";
         }else{
-            log.info("-------로그인 성공-------");
-            CeoVO ceoInfo= ceoService.ceoInfo(ceoVO.getCeoId());
-            session.setAttribute("sessionC", ceoInfo.getCeoId());
-            return mainView;
+            if(bakeryService.ceoDelete(ceoVO)){
+                session.invalidate();
+                return "main/mainPage";
+            }
         }
-    }*/
+        return "myPageCeo/delete";
+    }
 }
 
 

@@ -94,175 +94,143 @@
 </head>
 <body class="is-preload" style="padding: 200px">
 
-<header id="header" th:include="/main/header::header_body">
+	<header id="header" th:include="/main/header::header_body"></header>
 
-</header>
-
-<!-- Wrapper -->
-<div>
-	<div id="all">
-		<div class="wrapper">
-			<!-- Main -->
-
-			<section class="main second-main">
-
-				<section id="mainSection">
-
-					<section id="myMainSection">
-						<section id="myLeftSection">
-							<div id="myLeftDiv">
-								<div class="myPageMenu">
-									<div class="myPageTitle"><p>MY PAGE</p></div>
-									<div id="allDiv">
-										<div class="myPageSelect1"><p>글 등록하기</p></div>
-										<div class="contentDiv">
-											<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakery" style="text-decoration: underline; color: chocolate;">빵집 소개</a></p></div>
-											<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDay">원데이 클래스</a></a></p></div>
-											<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/exp">빵 체험단</a></a></p></div>
-										</div>
-
-										<div class="myPageSelect1"><p>내 글 보기</p></div>
-										<div class="contentDiv">
-											<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakeryRe">빵집 리뷰</a></p></div>
-											<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDayRe">원데이 클래스</a></a></p></div>
-											<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/expRe">빵 체험단</a></a></p></div>
-										</div>
-
-										<div class="myPageSelect1"><p>내 정보</p></div>
-										<div class="contentDiv">
-											<div class="myPageSelectMenu"><p><a href="/myPageCeo/edit">내 정보 수정</a></p></div>
-											<div class="myPageSelectMenu"><p><a href="/myPageCeo/delete">회원 탈퇴</a></a></p></div>
+	<!-- Wrapper -->
+	<div>
+		<div id="all">
+			<div class="wrapper">
+				<!-- Main -->
+				<section class="main second-main">
+					<section id="mainSection">
+						<section id="myMainSection">
+							<section id="myLeftSection">
+								<div id="myLeftDiv">
+									<div class="myPageMenu">
+										<div class="myPageTitle"><p>MY PAGE</p></div>
+										<div id="allDiv">
+											<div class="myPageSelect1"><p>글 등록하기</p></div>
+											<div class="contentDiv">
+												<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakery" style="text-decoration: underline; color: chocolate;">빵집 소개</a></p></div>
+												<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDay">원데이 클래스</a></a></p></div>
+												<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/exp">빵 체험단</a></a></p></div>
+											</div>
+											<div class="myPageSelect1"><p>내 글 보기</p></div>
+											<div class="contentDiv">
+												<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakeryRe">빵집 리뷰</a></p></div>
+												<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDayRe">원데이 클래스</a></a></p></div>
+												<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/expRe">빵 체험단</a></a></p></div>
+											</div>
+											<div class="myPageSelect1"><p>내 정보</p></div>
+											<div class="contentDiv">
+												<div class="myPageSelectMenu"><p><a href="/myPageCeo/edit">내 정보 수정</a></p></div>
+												<div class="myPageSelectMenu"><p><a href="/myPageCeo/delete">회원 탈퇴</a></a></p></div>
+											</div>
 										</div>
 									</div>
 								</div>
+							</section>
 
-							</div>
-						</section>
-
-						<section id="myRightSection">
-
-							<div id="myRightDiv">
-
-								<div id="rightHeader">
-									<h2>빵집 소개</h2>
-								</div>
-
-								<div id="explain">
-									<p>자신의 매장에 있는 제품들을 홍보하고 판매해보세요!</p>
-								</div>
-
-								<form method="post" action="/myPageCeo/bakery" id="registForm">
-									<!--전체-->
-									<div id="contentDiv">
-										<!--사진부분-->
-										<div id="title1">
-											<p>빵 이미지 등록</p>
-										</div>
-										<div id="subDiv1">
-											<!--대표사진-->
-											<div class="files first-file uploadResult">
-												<div id="mainFileDiv">
-													<label for="board_file1" style="display:inline;">
-														<img id="board_file1Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
-													</label>
+							<section id="myRightSection">
+								<div id="myRightDiv">
+									<div id="rightHeader">
+										<h2>빵집 소개</h2>
+									</div>
+									<div id="explain">
+										<p>자신의 매장에 있는 제품들을 홍보하고 판매해보세요!</p>
+									</div>
+									<form method="post" action="/myPageCeo/bakery" id="registForm">
+										<!--전체-->
+										<div id="contentDiv">
+											<!--사진부분-->
+											<div id="title1">
+												<p>빵 이미지 등록</p>
+											</div>
+											<div id="subDiv1">
+												<!--대표사진-->
+												<div class="files first-file uploadResult">
+													<div id="mainFileDiv">
+														<label for="board_file1" style="display:inline;">
+															<img id="board_file1Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
+														</label>
+													</div>
+													<input id="board_file1" name="bakery_photo1" type="file" multiple>
 												</div>
-												<input id="board_file1" name="bakery_photo1" type="file" multiple>
+											</div><!--사진부분-->
 
-											</div>
-
-										</div><!--사진부분-->
-
-										<!--밑에 상세정보 입력Div-->
-
-										<div id="subDiv2" th:object="${ceo}">
-											<p id="title2">필수 정보 입력 <sub> 등록에 필요한 기본 정보입니다. 모두 입력해주세요.</sub></p>
-											<hr>
-											<div class="table-1" style="margin-bottom: 10px;">
-												<div class="table-title">제목</div>
-												<div class="table-content"><input type="text" name="title" placeholder="제목 입력"></div>
-											</div>
-
-											<div class="table-1">
-												<div class="table-title">작성자</div>
-												<div class="table-content">
-													<input type="text" name="ceoName" th:field="*{ceoName}" readonly/>
-													<input type="hidden" name="ceoId" th:field="*{ceoId}" readonly/>
+											<!--밑에 상세정보 입력Div-->
+											<div id="subDiv2" th:object="${ceo}">
+												<p id="title2">필수 정보 입력 <sub> 등록에 필요한 기본 정보입니다. 모두 입력해주세요.</sub></p>
+												<hr>
+												<div class="table-1" style="margin-bottom: 10px;">
+													<div class="table-title">제목</div>
+													<div class="table-content"><input type="text" name="title" placeholder="제목 입력"></div>
 												</div>
-
-											</div>
-
-											<div class="table-1">
-												<div class="table-title">업체명</div>
-												<div class="table-content"><input type="text" name="shopName" th:field="*{shopName}" readonly/></div>
-											</div>
-
-											<div class="table-1">
-												<div class="table-title">전화번호</div>
-												<div class="table-content"><input type="text" name="shopCallNum" th:field="*{shopCallNumber}" readonly/></div>
-											</div>
-											<!--하나-->
-											<div class="table-1" style="margin-bottom: 10px;">
-
-												<div class="table-title">상품 등록</div>
-
-												<div style="width: 75%;">
-													<div class="table-content" style="display: flex; width: 100%;">
-
-														<div style="width: 30%">
-															<select name="breadType">
-																<option value="">종류</option>
-																<option value="케이크">케이크</option>
-																<option value="제과">제과</option>
-																<option value="제빵">제빵</option>
-															</select>
-														</div>
-														<div style="width: 35%;">
-															<input type="text" name="breadName" placeholder="빵 이름" style="margin-bottom: 1px;">
-														</div>
-														<div style="width: 35%; margin-right: 0;">
-															<input type="text" name="breadPrice" placeholder="빵 가격">
-														</div>
-
+												<div class="table-1">
+													<div class="table-title">작성자</div>
+													<div class="table-content">
+														<input type="text" name="ceoName" th:field="*{ceoName}" readonly/>
+														<input type="hidden" name="ceoId" th:field="*{ceoId}" readonly/>
 													</div>
 												</div>
+												<div class="table-1">
+													<div class="table-title">업체명</div>
+													<div class="table-content"><input type="text" name="shopName" th:field="*{shopName}" readonly/></div>
+												</div>
+												<div class="table-1">
+													<div class="table-title">전화번호</div>
+													<div class="table-content"><input type="text" name="shopCallNum" th:field="*{shopCallNumber}" readonly/></div>
+												</div>
+												<!--하나-->
+												<div class="table-1" style="margin-bottom: 10px;">
+													<div class="table-title">상품 등록</div>
+													<div style="width: 75%;">
+														<div class="table-content" style="display: flex; width: 100%;">
+															<div style="width: 30%">
+																<select name="breadType">
+																	<option value="">종류</option>
+																	<option value="케이크">케이크</option>
+																	<option value="제과">제과</option>
+																	<option value="제빵">제빵</option>
+																</select>
+															</div>
+															<div style="width: 35%;">
+																<input type="text" name="breadName" placeholder="빵 이름" style="margin-bottom: 1px;">
+															</div>
+															<div style="width: 35%; margin-right: 0;">
+																<input type="text" name="breadPrice" placeholder="빵 가격">
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="table-1">
+													<div class="table-title">배송비</div>
+													<div class="table-content"><input type="text" value="3,000원" readonly/></div>
+												</div>
+												<div class="table-1">
+													<div class="table-title">상세 정보</div>
+													<div class="table-content"><textarea name="content" cols="30" rows="8" maxlength="50" placeholder="상세 정보를 입력하세요." style="resize: none;"></textarea></div>
+												</div>
+											</div><!--밑에 상세정보 입력Div-->
 
+											<div id="registDiv">
+												<input type="submit" value="글 등록하기">
 											</div>
-
-											<div class="table-1">
-												<div class="table-title">배송비</div>
-												<div class="table-content"><input type="text" value="3,000원" readonly/></div>
-											</div>
-
-											<div class="table-1">
-												<div class="table-title">상세 정보</div>
-												<div class="table-content"><textarea name="content" cols="30" rows="8" maxlength="50" placeholder="상세 정보를 입력하세요." style="resize: none;"></textarea></div>
-											</div>
-
-										</div><!--밑에 상세정보 입력Div-->
-
-
-										<div id="registDiv">
-											<input type="submit" value="글 등록하기">
-										</div>
-									</div><!--전체DIv-->
-
-								</form>
-
-							</div>
+										</div><!--전체DIv-->
+									</form>
+								</div>
+							</section>
 						</section>
-
-
 					</section>
 				</section>
-			</section>
-		</div>
-		<div id="ad">
-			<span class="image"><img src="/images/ECdDwLmUIAIAX7k.jpg" alt=""></span>
+			</div>
+			<div id="ad">
+				<span class="image"><img src="/images/ECdDwLmUIAIAX7k.jpg" alt=""></span>
+			</div>
 		</div>
 	</div>
-</div>
-<!-- Footer -->
-<footer id="footer" th:include="/main/footer::footer_body"></footer>
+	<!-- Footer -->
+	<footer id="footer" th:include="/main/footer::footer_body"></footer>
 
 	<!-- Scripts -->
 	<script src="/js/jquery.min.js"></script>
