@@ -42,6 +42,4 @@
         FROM TBL_USER
         WHERE USERID= #{userId}
     </select>
-
-    <!-- 수정 -->
 </mapper>

@@ -17,6 +17,10 @@ public class ClassCeoVO {
     private String classDate;
     private int recruitment;
     private String description;
+    private String bakeryName;
+    private String bakeryZipCode;
+    private String bakeryAddress;
+    private String bakeryAddressDetail;
     private String breadType;
     private String breadName;
     private int breadPrice;

@@ -7,7 +7,6 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="/css/main.css" />
-    <link rel="icon" type="image/png"  href="/images/favicon.png"/>
 </head>
 <style>
     a{
@@ -86,9 +85,13 @@
         content: none;
     }
 
-    h4{
-        margin-left: 15px;
-        color: black;
+    .spotlights h5{
+        font-weight: bold;
+        font-size: small;
+    }
+
+    .spotlights p{
+        font-size: small;
     }
 
     /* 검색창 */
@@ -132,11 +135,11 @@
     .image.fit{
         overflow: hidden;
         margin: 0 0 0.5em 0;
-        height: 10vw;
+        height: 16vw;
     }
     .image.fit img{
         width: 100%;
-        /*height: 100%;*/
+        height: 100%;
         object-fit:cover;
     }
     .bread-title{
@@ -169,21 +172,8 @@
         font-size: 13px;
         font-weight: bold;
     }
-
-    #inner{
-        background-color: white;
-        width: 990px;
-        margin: auto;
-        padding-top: 5em;
-    }
-    .is-preload{
-        width: 990px;
-        display: flex;
-        flex-direction: row;
-        margin: auto;
-    }
 </style>
-<body class="is-preload" style="padding-top: 2em;">
+<body class="is-preload" style="padding: 10em 200px 0 200px;">
 
 <!-- Header -->
 <header id="header" th:include="/main/header::header_body">
@@ -191,7 +181,7 @@
 </header>
 
 <!-- Wrapper -->
-<div id="inner">
+<div>
     <div>
         <h1>베이커리</h1>
     </div>
@@ -205,7 +195,7 @@
 
     <!-- Spotlights 1 -->
     <section class="spotlights alt">
-        <article>
+        <article style="border-width: 0px 1px 0px 0px;">
             <a href="http://localhost:10009/main/breadDetail" class="image fit"><img src="https://image.idus.com/image/files/695f8f487f8b4dbdba9cfa26aea2e1e4_1440.jpg" alt=""></a>
             <div class="info-header">
                 <div>
@@ -233,7 +223,7 @@
                 <a href="">리뷰 0개</a>
             </div>
         </article>
-        <article>
+        <article style="border-width: 0px 1px 0px 0px;">
             <a href="#" class="image fit"><img src="/images/melon1.jpg" alt=""></a>
             <div class="info-header">
                 <div>
@@ -260,7 +250,7 @@
                 <a href="">리뷰 2개</a>
             </div>
         </article>
-        <article>
+        <article style="border-width: 0px 1px 0px 0px;">
             <a href="#" class="image fit"><img src="/images/스콘1.jpg" alt=""></a>
             <div class="info-header">
                 <div>
@@ -284,7 +274,7 @@
                 <a href="">리뷰 1개</a>
             </div>
         </article>
-        <article>
+        <article style="border-width: 0px 0px 0px 0px;">
             <a href="#" class="image fit"><img src="/images/donut1.jpg" alt=""></a>
             <div class="info-header">
                 <div>
@@ -343,6 +333,191 @@
             </ul>
         </div>
     </section>
+    <!--<div class="grid">
+        <div class="frame">
+            <div class="thumbnail">
+                <img src="/images/brownie5.jpg"/>
+            </div>
+            <div class="title">
+                <a class="maker">아이디어스</a><br>
+                <a>브라우니</a>
+            </div>
+            <div class="review">
+                <span>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                </span>
+                <br>
+                <a>맛있어요. 잘 먹고 있어요~</a>
+            </div>
+        </div>
+        <div class="frame">
+            <div class="thumbnail">
+                <img src="/images/brownie5.jpg"/>
+            </div>
+            <div class="title">
+                <a class="maker">아이디어스</a><br>
+                <a>브라우니</a>
+            </div>
+            <div class="review">
+                <span>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                </span>
+                <br>
+                <a>맛있어요. 잘 먹고 있어요~</a>
+            </div>
+        </div>
+        <div class="frame">
+            <div class="thumbnail">
+                <img src="/images/brownie5.jpg"/>
+            </div>
+            <div class="title">
+                <a class="maker">아이디어스</a><br>
+                <a>브라우니</a>
+            </div>
+            <div class="review">
+                <span>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                </span>
+                <br>
+                <a>맛있어요. 잘 먹고 있어요~</a>
+            </div>
+        </div>
+        <div class="frame">
+            <div class="thumbnail">
+                <img src="/images/brownie5.jpg"/>
+            </div>
+            <div class="title">
+                <a class="maker">아이디어스</a><br>
+                <a>브라우니</a>
+            </div>
+            <div class="review">
+                <span>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                    <img src="/images/cookie_star.png" alt=""/>
+                </span>
+                <br>
+                <a>맛있어요. 잘 먹고 있어요~</a>
+            </div>
+        </div>
+        <div class="frame">
+            <div class="thumbnail">
+                <img src="https://image.idus.com/image/files/f0d9719407384a68bdca47ff0c0b2b16_512.jpg"/>
+            </div>
+            <div class="title">
+
+            </div>
+            <div class="review">
+                <img src="/images/cookie_star.png" alt=""/>
+                <img src="/images/cookie_star.png" alt=""/>
+                <img src="/images/cookie_star.png" alt=""/>
+                <img src="/images/cookie_star.png" alt=""/>
+            </div>
+        </div>
+
+        <div class="frame">
+            <div class="thumbnail">
+                <img src="https://image.idus.com/image/files/f0d9719407384a68bdca47ff0c0b2b16_512.jpg"/>
+            </div>
+            <div class="title">
+
+            </div>
+            <div class="review">
+                <img src=""/>
+            </div>
+        </div>
+        <div class="frame">
+            <div class="thumbnail">
+                <img src="https://image.idus.com/image/files/f0d9719407384a68bdca47ff0c0b2b16_512.jpg"/>
+            </div>
+            <div class="title">
+
+            </div>
+            <div class="review">
+                <img src=""/>
+            </div>
+        </div>
+        <div class="frame">
+            <div class="thumbnail">
+                <img src="https://image.idus.com/image/files/f0d9719407384a68bdca47ff0c0b2b16_512.jpg"/>
+            </div>
+            <div class="title">
+
+            </div>
+            <div class="review">
+                <img src=""/>
+            </div>
+        </div>
+        <div class="frame">
+            <div class="thumbnail">
+                <img src="https://image.idus.com/image/files/f0d9719407384a68bdca47ff0c0b2b16_512.jpg"/>
+            </div>
+            <div class="title">
+
+            </div>
+            <div class="review">
+                <img src=""/>
+            </div>
+        </div>
+        <div class="frame">
+            <div class="thumbnail">
+                <img src="https://image.idus.com/image/files/318cb7d1d69e47b484f07080f5c8bb9d_1440.jpg"/>
+            </div>
+            <div class="title">
+
+            </div>
+            <div class="review">
+                <img src=""/>
+            </div>
+        </div>
+        <div class="frame">
+            <div class="thumbnail">
+                <img src="https://image.idus.com/image/files/318cb7d1d69e47b484f07080f5c8bb9d_1440.jpg"/>
+            </div>
+            <div class="title">
+
+            </div>
+            <div class="review">
+                <img src=""/>
+            </div>
+        </div>
+        <div class="frame">
+            <div class="thumbnail">
+                <img src="https://image.idus.com/image/files/318cb7d1d69e47b484f07080f5c8bb9d_1440.jpg"/>
+            </div>
+            <div class="title">
+
+            </div>
+            <div class="review">
+                <img src=""/>
+            </div>
+        </div>
+        <div class="frame">
+            <div class="thumbnail">
+                <img src="https://image.idus.com/image/files/318cb7d1d69e47b484f07080f5c8bb9d_1440.jpg"/>
+            </div>
+            <div class="title">
+
+            </div>
+            <div class="review">
+                <img src=""/>
+            </div>
+        </div>
+    </div>-->
 </div>
 
 <br>
@@ -353,7 +528,6 @@
         &copy; Untitled. All rights reserved.
     </div>
     <footer id="footer" th:include="/main/footer::footer_body"></footer>
--->
 <!--Script-->
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
@@ -362,64 +536,5 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
-<script>
-    let currentPage = 1
-
-    const DATA_PER_PAGE = 10,
-        lastPage = 5
-
-    const msgLoading = document.getElementById("msg-loading")
-
-
-    // 데이터 추가 함수
-    function addData(currentPage) {
-        $("#list").append("<article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article>");
-    }
-
-    // IntersectionObserver 갱신 함수
-    function observeLastChild(intersectionObserver) {
-
-        const listChildren = document.querySelectorAll("#list article")
-        listChildren.forEach(el => {
-
-            if (!el.nextSibling && currentPage < lastPage) {
-                intersectionObserver.observe(el) // el에 대하여 관측 시작
-            } else if (currentPage >= lastPage) {
-                intersectionObserver.disconnect()
-            }
-
-        })
-    }
-
-    // IntersectionObeserver 부분
-    const observerOption = {
-        root: null,
-        rootMargin: "0px 0px 0px 0px",
-        threshold: 0.5
-    }
-
-    // IntersectionObserver 인스턴스 생성
-    const io = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-
-            // entry.isIntersecting: 특정 요소가 뷰포트와 50%(threshold 0.5) 교차되었으면
-            if (entry.isIntersecting) {
-
-                // 다음 데이터 가져오기: 자연스러운 연출을 위해 setTime-out 사용
-                setTimeout(() => {
-                    addData(++currentPage)
-                    observer.unobserve(entry.target)
-                    observeLastChild(observer)
-
-                }, 1000)
-            }
-        })
-    }, observerOption)
-
-
-    // 초기 데이터 생성
-    addData(currentPage)
-    observeLastChild(io)
-</script>
 </body>
 </html>
