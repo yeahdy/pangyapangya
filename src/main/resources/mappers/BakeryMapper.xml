@@ -95,4 +95,16 @@
         SELECT COUNT(BNO) FROM TBL_BAKERY
         WHERE CEOID = #{ceoId}
     </select>
+
+    <update id="ceoUpdate">
+        UPDATE TBL_CEO
+        SET CEOPW = #{ceoPw}, SHOPNAME = #{shopName}, SHOPCALLNUMBER = #{shopCallNumber}, SHOPZIPCODE = #{shopZipcode}, SHOPADDRESS = #{shopAddress}, SHOPADDRESSDETAIL = #{shopAddressDetail}, SHOPPHOTO = '수정된 가게 이미지', PHONENUM = #{phoneNum}, SHOPREGNUM = #{shopRegNum}
+        WHERE CEOID = #{ceoId}
+    </update>
+
+    <update id="ceoDelete">
+        UPDATE TBL_CEO
+        SET STATUS = 2
+        WHERE CEOID = #{ceoId} AND CEOPW = #{ceoPw}
+    </update>
 </mapper>

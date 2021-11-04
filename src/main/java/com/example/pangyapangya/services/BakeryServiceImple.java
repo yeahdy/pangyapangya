@@ -8,6 +8,7 @@ import com.example.pangyapangya.beans.vo.BakeryVO;
 import com.example.pangyapangya.beans.vo.CeoVO;
 import com.example.pangyapangya.beans.vo.Criteria;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +30,7 @@ public class BakeryServiceImple implements BakeryService{
     private final BakeryDAO bakeryDAO;
     private final BakeryFileDAO bakeryFileDAO;
     private final CEODAO ceodao;
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -71,8 +73,24 @@ public class BakeryServiceImple implements BakeryService{
     @Override
     public CeoVO getCeo(String ceoId) { return ceodao.ceoInfo(ceoId); }
 
+    @Override
+    public boolean ceoUpdate(CeoVO ceoVO) {
+        String pw = passwordEncoder.encode(ceoVO.getCeoPw());
+        ceoVO.setCeoPw(pw);
+        return bakeryDAO.ceoUpdate(ceoVO);
+    }
+
+    @Override
+    public boolean ceoDelete(CeoVO ceoVO) {
+        String pw = passwordEncoder.encode(ceoVO.getCeoPw());
+        ceoVO.setCeoPw(pw);
+        return bakeryDAO.ceoDelete(ceoVO);
+    }
+
     /* @Override
     public List<BakeryFileVO> getAttachList(Long bno) {
         return bakeryFileDAO.findByBno(bno);
     }*/
+
+
 }
