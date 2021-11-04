@@ -12,20 +12,30 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @RequiredArgsConstructor
 public class ClassReplyService {
-    private final ClassReplyDAO classReplyDAO;
+    private final ClassReplyDAO ClassReplyDAO;
 
-    public int register(ClassReplyVO classReplyVO) {
+    public int register(ClassReplyVO classReplyVO){
         log.info("register..............");
-        return classReplyDAO.register(classReplyVO);
+        return ClassReplyDAO.register(classReplyVO);
     }
 
     public ClassReplyVO get(Long rno){
         log.info("get..............");
-        return classReplyDAO.get(rno);
+        return ClassReplyDAO.get(rno);
     }
+
+//    public int remove(Long rno){
+//        log.info("remove..............");
+//        return ClassReplyDAO.remove(rno);
+//    }
+
+//    public int modify(ClassReplyVO classReplyVO){
+//        log.info("modify..............");
+//        return ClassReplyDAO.modify(classReplyVO);
+//    }
 
     public ClassReplyPageDTO getList(Long bno, Criteria criteria){
         log.info("getList..............");
-        return new ClassReplyPageDTO(classReplyDAO.getTotal(bno), classReplyDAO.getList(bno,criteria));
+        return new ClassReplyPageDTO(ClassReplyDAO.getTotal(bno), ClassReplyDAO.getList(bno, criteria));
     }
 }

@@ -10,5 +10,7 @@ public class ClassReplyVO {
     private Long bno;
     private String content;
     private String userid;
-    private String reviewdate;
+    private String star;
+    private String reviewDate;
+
 }

@@ -25,14 +25,13 @@ public class ClassReplyController {
 //    produces : Ajax의 success:function(result)에 있는 result로 전달할 데이터 타입
 //    @ResponseBody : @Controller에서 REST API를 구현하기 위해서 사용된다.
 
-//    문자열을 전달할 때 한글이 깨지지 않게 하기 위해서는 text/plain; charset=utf-8을 작성한다.
+    //    문자열을 전달할 때 한글이 깨지지 않게 하기 위해서는 text/plain; charset=utf-8을 작성한다.
 //    ResponseEntity : 서버의 상태 코드, 응답 메세지 등을 담을 수 있는 타입이다.
-
     @PostMapping(value = "/new", consumes = "application/json", produces = "text/plain; charset=utf-8")
     public ResponseEntity<String> create(@RequestBody ClassReplyVO classReplyVO) throws UnsupportedEncodingException {
 
         int replyCount = classReplyService.register(classReplyVO);
-        log.info("ReplyVO : " + classReplyVO);
+        log.info("ClassReplyVO : " + classReplyVO);
         log.info("REPLY INSERT COUNT : " + replyCount);
         return replyCount == 1 ?
                 new ResponseEntity<>(new String("댓글 등록 성공".getBytes(), "UTF-8"), HttpStatus.OK) :

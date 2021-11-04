@@ -32,7 +32,7 @@ public class ClassReplyDAO {
 //
 //    public int modify(ClassReplyVO classReplyVO){
 //        log.info("modify..............");
-//        return classReplyMapper.update(ClassReplyVO);
+//        return classReplyMapper.update(replyVO);
 //    }
 
     public List<ClassReplyVO> getList(Long bno, Criteria criteria){

@@ -14,6 +14,11 @@ public interface ClassReplyMapper {
     //    댓글 1개 조회
     public ClassReplyVO read(Long rno);
 
+    //    댓글 삭제
+    //public int delete(Long rno);
+    //    댓글 수정
+    //public int update(ClassReplyVO classReplyVO);
+
     //    댓글 목록
 //    기존의 게시글 페이징 처리 + 특정 게시글 번호를 전달해야 한다.
 //    MyBatis는 두 개 이상의 데이터를 파라미터로 전달받아서 사용할 수 없다.
