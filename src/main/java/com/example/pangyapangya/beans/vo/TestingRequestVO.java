@@ -5,8 +5,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Data
-public class TestingImgVO {
-    Long ino;
-    String img;
+public class TestingRequestVO {
+    Long requestNum;
+    String UserID;
     Long tno;
+    int Status;
 }
