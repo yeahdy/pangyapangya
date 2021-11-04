@@ -1,15 +1,11 @@
 package com.example.pangyapangya.controller;
 
-import com.example.pangyapangya.beans.vo.CeoVO;
-import com.example.pangyapangya.beans.vo.UserVO;
 import com.example.pangyapangya.services.CEOService;
 import com.example.pangyapangya.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.util.Strings;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -34,7 +30,7 @@ import java.io.UnsupportedEncodingException;
 @Slf4j
 @RequestMapping("/user/*")
 @RequiredArgsConstructor
-public class UserRestAPIController {
+public class UserRestController {
     private final UserService userService;
     private final CEOService ceoService;
 
