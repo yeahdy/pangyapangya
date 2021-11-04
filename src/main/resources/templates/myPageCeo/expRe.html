@@ -94,151 +94,137 @@
 	</style>
 </head>
 <body class="is-preload" style="padding: 200px">
-<!-- Header -->
-<header id="header" th:include="/main/header::header_body">
+	<!-- Header -->
+	<header id="header" th:include="/main/header::header_body"></header>
 
-</header>
-
-<!-- Wrapper -->
-<div id="all">
-	<div class="wrapper">
-
-		<!-- Main -->
-		<section class="main second-main">
-
-			<section id="mainSection">
-
-				<section id="myMainSection">
-					<section id="myLeftSection">
-						<div id="myLeftDiv">
-							<div class="myPageMenu">
-								<div class="myPageTitle"><p>MY PAGE</p></div>
-								<div id="allDiv">
-									<div class="myPageSelect1"><p>글 등록하기</p></div>
-									<div class="contentDiv">
-										<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakery">빵집 소개</a></p></div>
-										<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDay">원데이클래스</a></a></p></div>
-										<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/exp">빵 체험단</a></a></p></div>
-									</div>
-
-									<div class="myPageSelect1"><p>내 글 보기</p></div>
-									<div class="contentDiv">
-										<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakeryRe">빵집 리뷰</a></p></div>
-										<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDayRe">원데이 클래스</a></a></p></div>
-										<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/expRe" style="text-decoration: underline; color: chocolate;">빵 체험단</a></a></p></div>
-									</div>
-
-									<div class="myPageSelect1"><p>내 정보</p></div>
-									<div class="contentDiv">
-										<div class="myPageSelectMenu"><p><a href="/myPageCeo/edit">내 정보 수정</a></p></div>
-										<div class="myPageSelectMenu"><p><a href="/myPageCeo/delete">회원 탈퇴</a></a></p></div>
-									</div>
-								</div>
-							</div>
-
-						</div>
-					</section>
-					<section id="myRightSection">
-						<div id="myRightDiv">
-
-
-							<div class="table-wrapper">
-								<div id="main-box">
-									<div id="rightHeader" style="display: flex;">
-										<div id="rightHeader-first"><h2>빵 체험단</h2></div>
-										<div id="rightHeader-second"><sub th:text="${total}"></sub></div>
-										<div id="rightHeader-third"><a href="/myPageCeo/exp" class="button primary small" style="width: 60px; padding: 0; font-size: 0.7em; border-radius: 0;">글쓰기</a></div>
-									</div>
-									<th:block id="section-box" th:each="testing : ${list}">
-										<div class="table-boxes" style="display: flex;" th:object="${testing}">
-											<div class="table-first">
-												<div class="col-6 col-12-small">
-													<input type="checkbox"  id="*{tno}" name="*{tno}">
-													<label for="*{tno}"></label>
-												</div>
-
-											</div>
-											<div class="table-second">
-												<a id="goRead" th:href="*{tno}">
-													<div style="display: flex;">
-														<div class="second-top"><p th:text="*{title}"></p></div>
-														<div class="second-under-date"><span>·</span><p th:text="*{regDate}"></p></div>
-													</div>
-												</a>
-											</div>
-											<div class="table-third"><a id="goModify" th:href="*{tno}">수정</a></div>
-											<div class="table-fourth"><a id="goRemove" th:href="*{tno}">삭제</a></div>
+	<!-- Wrapper -->
+	<div id="all">
+		<div class="wrapper">
+			<!-- Main -->
+			<section class="main second-main">
+				<section id="mainSection">
+					<section id="myMainSection">
+						<section id="myLeftSection">
+							<div id="myLeftDiv">
+								<div class="myPageMenu">
+									<div class="myPageTitle"><p>MY PAGE</p></div>
+									<div id="allDiv">
+										<div class="myPageSelect1"><p>글 등록하기</p></div>
+										<div class="contentDiv">
+											<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakery">빵집 소개</a></p></div>
+											<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDay">원데이클래스</a></a></p></div>
+											<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/exp">빵 체험단</a></a></p></div>
 										</div>
-
-										<!--<div class="table-boxes" style="display: flex;">
-											<div class="table-first">
-												<div class="col-6 col-12-sm all">
-													<input type="checkbox" id="list3" name="list3" >
-													<label for="list3"></label>
-												</div>
-
-											</div>
-											<div class="table-second">
-												<a href="#">
-													<div style="display: flex;">
-														<div class="second-top"><p>빵 체험단 제목</p></div>
-														<div class="second-under-date"><span>·</span>2021-10-11</div>
-													</div>
-												</a>
-											</div>
-											<div class="table-third"><input type="button" class="button small bs" value="수정"></div>
-											<div class="table-fourth"><input type="button" class="button small bs" value="삭제"></div>
-										</div>-->
-
-									</th:block>
+										<div class="myPageSelect1"><p>내 글 보기</p></div>
+										<div class="contentDiv">
+											<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakeryRe">빵집 리뷰</a></p></div>
+											<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDayRe">원데이 클래스</a></a></p></div>
+											<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/expRe" style="text-decoration: underline; color: chocolate;">빵 체험단</a></a></p></div>
+										</div>
+										<div class="myPageSelect1"><p>내 정보</p></div>
+										<div class="contentDiv">
+											<div class="myPageSelectMenu"><p><a href="/myPageCeo/edit">내 정보 수정</a></p></div>
+											<div class="myPageSelectMenu"><p><a href="/myPageCeo/delete">회원 탈퇴</a></a></p></div>
+										</div>
+									</div>
 								</div>
-
-								<ul class="pagination" th:object="${pageMaker}">
-
-									<li>
-										<a class="changePage" th:if="*{prev}" th:href="*{startPage - 1}">
-											<span class="disabled changePage"><</span>
-										</a>
-									</li>
-									<li th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), pageMaker.getEndPage())}">
-										<th:block th:if="${pageMaker.criteria.getPageNum() == num}">
-											<a class="page active changePage" th:text="${num}"></a>
-											<a class="page active changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="${num}" th:text="${num}"></a>
-										</th:block>
-									</li>
-									<li>
-										<a class="changePage" th:if="*{next}" th:href="*{endPage + 1}">
-											<span class="disabled">></span>
-										</a>
-									</li>
-									<form action="/myPageCeo/expRe" th:object="${criteria}" name="pageForm">
-										<input type="hidden" name="pageNum" th:field="*{pageNum}">
-										<input type="hidden" name="amount" th:field="*{amount}">
-									</form>
-								</ul>
 							</div>
-						</div>
+						</section>
+
+						<section id="myRightSection">
+							<div id="myRightDiv">
+								<div class="table-wrapper">
+									<div id="main-box">
+										<div id="rightHeader" style="display: flex;">
+											<div id="rightHeader-first"><h2>빵 체험단</h2></div>
+											<div id="rightHeader-second"><sub th:text="${total}"></sub></div>
+											<div id="rightHeader-third"><a href="/myPageCeo/exp" class="button primary small" style="width: 60px; padding: 0; font-size: 0.7em; border-radius: 0;">글쓰기</a></div>
+										</div>
+										<th:block id="section-box" th:each="testing : ${list}">
+											<div class="table-boxes" style="display: flex;" th:object="${testing}">
+												<div class="table-first">
+													<div class="col-6 col-12-small">
+														<input type="checkbox"  id="*{tno}" name="*{tno}">
+														<label for="*{tno}"></label>
+													</div>
+												</div>
+												<div class="table-second">
+													<a id="goRead" th:href="*{tno}">
+														<div style="display: flex;">
+															<div class="second-top"><p th:text="*{title}"></p></div>
+															<div class="second-under-date"><span>·</span><p th:text="*{regDate}"></p></div>
+														</div>
+													</a>
+												</div>
+												<div class="table-third"><a id="goModify" th:href="*{tno}">수정</a></div>
+												<div class="table-fourth"><a id="goRemove" th:href="*{tno}">삭제</a></div>
+											</div>
+											<!--<div class="table-boxes" style="display: flex;">
+												<div class="table-first">
+													<div class="col-6 col-12-sm all">
+														<input type="checkbox" id="list3" name="list3" >
+														<label for="list3"></label>
+													</div>
+
+												</div>
+												<div class="table-second">
+													<a href="#">
+														<div style="display: flex;">
+															<div class="second-top"><p>빵 체험단 제목</p></div>
+															<div class="second-under-date"><span>·</span>2021-10-11</div>
+														</div>
+													</a>
+												</div>
+												<div class="table-third"><input type="button" class="button small bs" value="수정"></div>
+												<div class="table-fourth"><input type="button" class="button small bs" value="삭제"></div>
+											</div>-->
+										</th:block>
+									</div>
+
+									<ul class="pagination" th:object="${pageMaker}">
+										<li>
+											<a class="changePage" th:if="*{prev}" th:href="*{startPage - 1}">
+												<span class="disabled changePage"><</span>
+											</a>
+										</li>
+										<li th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), pageMaker.getEndPage())}">
+											<th:block th:if="${pageMaker.criteria.getPageNum() == num}">
+												<a class="page active changePage" th:text="${num}"></a>
+												<a class="page active changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="${num}" th:text="${num}"></a>
+											</th:block>
+										</li>
+										<li>
+											<a class="changePage" th:if="*{next}" th:href="*{endPage + 1}">
+												<span class="disabled">></span>
+											</a>
+										</li>
+										<form action="/myPageCeo/expRe" th:object="${criteria}" name="pageForm">
+											<input type="hidden" name="pageNum" th:field="*{pageNum}">
+											<input type="hidden" name="amount" th:field="*{amount}">
+										</form>
+									</ul>
+								</div>
+							</div>
+						</section>
 					</section>
 				</section>
 			</section>
-		</section>
+		</div>
+		<div id="ad">
+			<span class="image"><img src="/images/ECdDwLmUIAIAX7k.jpg" alt=""></span>
+		</div>
 	</div>
-	<div id="ad">
-		<span class="image"><img src="/images/ECdDwLmUIAIAX7k.jpg" alt=""></span>
-	</div>
-</div>
 
-<!-- Footer -->
-<footer id="footer" th:include="/main/footer::footer_body"></footer>
-
-<!-- Scripts -->
-<script src="/js/jquery.min.js"></script>
-<script src="/js/jquery.dropotron.min.js"></script>
-<script src="/js/browser.min.js"></script>
-<script src="/js/breakpoints.min.js"></script>
-<script src="/js/util.js"></script>
-<script src="/js/main.js"></script>
-<script th:replace="/main/header::header_js"></script></body>
+	<!-- Footer -->
+	<footer id="footer" th:include="/main/footer::footer_body"></footer>
+	<!-- Scripts -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/jquery.dropotron.min.js"></script>
+	<script src="/js/browser.min.js"></script>
+	<script src="/js/breakpoints.min.js"></script>
+	<script src="/js/util.js"></script>
+	<script src="/js/main.js"></script>
+	<script th:replace="/main/header::header_js"></script></body>
 </body>
 <script th:inline="javascript">
 	// 글 등록 시 전달받는 게시글 번호를 alert으로 출력
@@ -270,6 +256,5 @@
 		e.preventDefault();
 		location.href = "/myPageCeo/expModify" + paging + "&tno=" + $(this).attr("href");
 	})
-
 </script>
 </html>

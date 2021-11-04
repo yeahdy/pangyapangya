@@ -91,104 +91,90 @@
 </head>
 <body class="is-preload" style="padding: 200px">
 
-<header id="header" th:include="/main/header::header_body">
+	<header id="header" th:include="/main/header::header_body"></header>
 
-</header>
+	<!-- Wrapper -->
+	<div>
+		<div id="all">
+			<div class="wrapper">
+				<!-- Main -->
 
-<!-- Wrapper -->
-<div>
-	<div id="all">
-		<div class="wrapper">
-			<!-- Main -->
-
-			<section class="main second-main">
-
-				<section id="mainSection">
-
-					<section id="myMainSection">
-						<section id="myLeftSection">
-							<div id="myLeftDiv">
-								<div class="myPageMenu">
-									<div class="myPageTitle"><p>MY PAGE</p></div>
-									<div id="allDiv">
-										<div class="myPageSelect1"><p>글 등록하기</p></div>
-										<div class="contentDiv">
-											<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakery">빵집 소개</a></p></div>
-											<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDay">원데이클래스</a></a></p></div>
-											<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/exp">빵 체험단</a></a></p></div>
-										</div>
-
-										<div class="myPageSelect1"><p>내 글 보기</p></div>
-										<div class="contentDiv">
-											<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakeryRe">빵집 리뷰</a></p></div>
-											<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDayRe">원데이 클래스</a></a></p></div>
-											<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/expRe">빵 체험단</a></a></p></div>
-										</div>
-
-										<div class="myPageSelect1"><p>내 정보</p></div>
-										<div class="contentDiv">
-											<div class="myPageSelectMenu"><p><a href="/myPageCeo/edit">내 정보 수정</a></p></div>
-											<div class="myPageSelectMenu"><p><a href="/myPageCeo/delete" style="text-decoration: underline; color: chocolate;">회원 탈퇴</a></a></p></div>
+				<section class="main second-main">
+					<section id="mainSection">
+						<section id="myMainSection">
+							<section id="myLeftSection">
+								<div id="myLeftDiv">
+									<div class="myPageMenu">
+										<div class="myPageTitle"><p>MY PAGE</p></div>
+										<div id="allDiv">
+											<div class="myPageSelect1"><p>글 등록하기</p></div>
+											<div class="contentDiv">
+												<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakery">빵집 소개</a></p></div>
+												<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDay">원데이클래스</a></a></p></div>
+												<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/exp">빵 체험단</a></a></p></div>
+											</div>
+											<div class="myPageSelect1"><p>내 글 보기</p></div>
+											<div class="contentDiv">
+												<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakeryRe">빵집 리뷰</a></p></div>
+												<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDayRe">원데이 클래스</a></a></p></div>
+												<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/expRe">빵 체험단</a></a></p></div>
+											</div>
+											<div class="myPageSelect1"><p>내 정보</p></div>
+											<div class="contentDiv">
+												<div class="myPageSelectMenu"><p><a href="/myPageCeo/edit">내 정보 수정</a></p></div>
+												<div class="myPageSelectMenu"><p><a href="/myPageCeo/delete" style="text-decoration: underline; color: chocolate;">회원 탈퇴</a></a></p></div>
+											</div>
 										</div>
 									</div>
 								</div>
+							</section>
 
-							</div>
-						</section>
+							<section id="myRightSection">
+								<div id="myRightDiv">
+									<form method="post" action="/myPageCeo/delete" id="registForm">
+										<!--전체-->
+										<div id="contentDiv">
+											<!--밑에 상세정보 입력Div-->
+											<div id="subDiv2">
+												<p id="title2">회원 탈퇴</p>
+												<hr>
+												<div class="table-1" th:object="${ceo}">
+													<div class="table-title">비밀번호</div>
+													<div class="table-content">
+														<input type="password" name="ceoPw"/>
+														<input type="hidden" name="ceoId" th:field="*{ceoId}">
+													</div>
+												</div>
+											</div><!--밑에 상세정보 입력Div-->
 
-						<section id="myRightSection">
-
-							<div id="myRightDiv">
-
-								<form method="post" action="/myPageCeo/delete" id="registForm">
-									<!--전체-->
-									<div id="contentDiv">
-
-										<!--밑에 상세정보 입력Div-->
-
-										<div id="subDiv2">
-											<p id="title2">회원 탈퇴</p>
-											<hr>
-											<div class="table-1">
-												<div class="table-title">비밀번호</div>
-												<div class="table-content"><input type="password" name="ceoPw"/></div>
+											<div id="registDiv">
+												<input type="submit" class="primary" value="회원 탈퇴">
 											</div>
-
-										</div><!--밑에 상세정보 입력Div-->
-
-										<div id="registDiv">
-											<input type="submit" class="primary" value="회원 탈퇴">
-										</div>
-									</div><!--전체DIv-->
-
-								</form>
-
-							</div>
+										</div><!--전체DIv-->
+									</form>
+								</div>
+							</section>
 						</section>
-
-
 					</section>
 				</section>
-			</section>
-		</div>
-		<div id="ad">
-			<span class="image"><img src="/images/ECdDwLmUIAIAX7k.jpg" alt=""></span>
+			</div>
+			<div id="ad">
+				<span class="image"><img src="/images/ECdDwLmUIAIAX7k.jpg" alt=""></span>
+			</div>
 		</div>
 	</div>
-</div>
-<!-- Footer -->
-<footer id="footer" th:include="/main/footer::footer_body"></footer>
-
-<!-- Scripts -->
-<script src="/js/jquery.min.js"></script>
-<script src="/js/jquery.dropotron.min.js"></script>
-<script src="/js/browser.min.js"></script>
-<script src="/js/breakpoints.min.js"></script>
-<script src="/js/util.js"></script>
-<script src="/js/main.js"></script>
-<script th:replace="/main/header::header_js"></script>
-<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
-<script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
+	<!-- Footer -->
+	<footer id="footer" th:include="/main/footer::footer_body"></footer>
+	<!-- Scripts -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/jquery.dropotron.min.js"></script>
+	<script src="/js/browser.min.js"></script>
+	<script src="/js/breakpoints.min.js"></script>
+	<script src="/js/util.js"></script>
+	<script src="/js/main.js"></script>
+	<script th:replace="/main/header::header_js"></script>
+	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+	<script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
 </body>
 <script type="text/javascript">
 
@@ -202,6 +188,5 @@
 			$this.prev('input').prop('type','text');
 		}
 	});
-
 </script>
 </html>
