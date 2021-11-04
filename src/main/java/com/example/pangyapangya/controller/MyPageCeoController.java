@@ -1,10 +1,13 @@
 package com.example.pangyapangya.controller;
 
+import com.example.pangyapangya.beans.dao.BakeryDAO;
 import com.example.pangyapangya.beans.vo.*;
 import com.example.pangyapangya.services.BakeryService;
+import com.example.pangyapangya.services.CEOService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +25,7 @@ import java.util.List;
 public class MyPageCeoController {
 
     private final BakeryService bakeryService;
-
+    private final CEOService ceoService;
     //마이페이지(사장님)-글 등록[빵집 소개]
     @GetMapping("bakery")
     public String myPageCeoBakery(Model model, HttpSession session){
@@ -61,12 +64,13 @@ public class MyPageCeoController {
 
     //마이페이지(사장님)-회원 탈퇴
     @GetMapping("delete")
-    public String myPageCeoDelete(HttpSession session){
+    public String myPageCeoDelete(HttpSession session, CeoVO ceoVO){
         String sessionU = (String)session.getAttribute("sessionU");
         String sessionC = (String)session.getAttribute("sessionC");
         if(sessionU == null && sessionC == null){
             return "/user/login";
         }
+
         return "myPageCeo/delete";
     }
 
@@ -193,6 +197,39 @@ public class MyPageCeoController {
         return bakeryService.getAttachList(bno);
     }*/
 
+
+    /*@PostMapping("delete")
+    public String delete(RedirectAttributes rttr, CeoVO ceoVO, HttpServletRequest req){
+        HttpSession session = req.getSession(); // session 생성
+        if(!ceoService.loginCEO(ceoVO)) {
+            log.info("-------로그인 실패-------");
+            session.setAttribute("sessionC", null);  // session 저장하기
+            rttr.addFlashAttribute("check", "false");
+            return "user/login";
+        }
+        log.info("-------로그인 성공-------");
+        CeoVO ceoInfo= ceoService.ceoInfo(ceoVO.getCeoId());
+        session.setAttribute("sessionC", ceoInfo.getCeoId()); //session 저장하기
+
+
+
+        if(ceoService.(ceoVO)){
+            session = req.getSession(false);    // false: 세션이 없을 경우 null 반환. 기본값 true
+            if(session != null){
+                session.invalidate();   //세션 삭제
+                return new RedirectView("main/mainPage");
+            }
+        }*/
+
+
+
+//        쿼리 스트링으로 전달
+//        rttr.addAttribute("bno", boardVO.getBno());
+//        세션의 flash영역을 이용하여 전달
+
+//        RedirectView를 사용하면 redirect방식으로 전송이 가능하다.
+   /*     return "main/mainPage";
+    }*/
 }
 
 

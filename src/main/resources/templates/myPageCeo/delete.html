@@ -140,7 +140,7 @@
 
 							<div id="myRightDiv">
 
-								<form enctype="multipart/form-data">
+								<form method="post" action="/myPageCeo/delete" id="registForm">
 									<!--전체-->
 									<div id="contentDiv">
 
@@ -151,13 +151,13 @@
 											<hr>
 											<div class="table-1">
 												<div class="table-title">비밀번호</div>
-												<div class="table-content"><input type="password"/></div>
+												<div class="table-content"><input type="password" name="ceoPw"/></div>
 											</div>
 
 										</div><!--밑에 상세정보 입력Div-->
 
 										<div id="registDiv">
-											<input type="button" class="primary" value="회원 탈퇴">
+											<input type="submit" class="primary" value="회원 탈퇴">
 										</div>
 									</div><!--전체DIv-->
 

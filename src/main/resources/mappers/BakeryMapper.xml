@@ -104,7 +104,7 @@
 
     <update id="ceoDelete">
         UPDATE TBL_CEO
-        SET STATUS = 2
-        WHERE CEOID = #{ceoId} AND CEOPW = #{ceoPw}
+        SET STATUS = 1
+        WHERE CEOPW = #{ceoPw}
     </update>
 </mapper>
