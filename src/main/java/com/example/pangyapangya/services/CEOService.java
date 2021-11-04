@@ -48,7 +48,10 @@ public class CEOService {
             if(!passwordEncoder.matches(ceoVO.getCeoPw(), ceoInfo.getCeoPw())){
                 System.out.println("비밀번호가 일치하지 않습니다.");
                 return false;
-            }else{
+            }else if(ceoInfo.getStatus() == 1){
+                System.out.println("이미 탈퇴한 회원입니다.");
+                return false;
+            } else{
                 System.out.println("비밀번호가 일치합니다.");
                 ceoDAO.loginCEO(ceoVO);
                 return true;
