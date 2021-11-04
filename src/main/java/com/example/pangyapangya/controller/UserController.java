@@ -40,7 +40,15 @@ public class UserController {
 
     /* 로그인 */
     @GetMapping("login")
-    public String login(){ return "user/login"; }
+    public String login(HttpSession session){
+        // session이 일반회원, 사장님일 경우 막기
+        String sessionU = (String)session.getAttribute("sessionU");
+        String sessionC = (String)session.getAttribute("sessionC");
+        if(sessionU != null || sessionC != null){
+            return "/main/mainPage";
+        }
+        return "user/login";
+    }
 
     @PostMapping("login")
     public String login(UserVO userVO, HttpServletRequest req, RedirectAttributes rttr){
