@@ -1,13 +1,13 @@
 package com.example.pangyapangya.controller;
 
+import com.example.pangyapangya.beans.vo.CeoVO;
 import com.example.pangyapangya.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Random;
 /*
     [ Task ]		    [ URL ]			    [ Method ]		[ Parameter ]			    [ Form ]	[ URL이동 ]
@@ -49,7 +49,12 @@ public class mainController {
     public String mainPage(){ return "main/mainPage"; }
 
     @GetMapping("mainPage_test")
-    public String mainPage_test(){
+    public String mainPage_test(HttpSession session){
+        String sessionU = (String)session.getAttribute("sessionU");
+        String sessionC = (String)session.getAttribute("sessionC");
+        if(sessionU == null && sessionC == null){
+            return "/user/login";
+        }
         return "main/mainPage_test";
     }
 

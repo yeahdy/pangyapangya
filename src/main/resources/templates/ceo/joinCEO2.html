@@ -10,6 +10,7 @@
 	<meta name="keywords" content="" />
 	<link rel="stylesheet" href="/css/main.css" />
 	<link rel="stylesheet" href="/css/login.css" />
+	<link rel="icon" type="image/png"  href="/images/favicon.png"/>
 	<style th:replace="/main/header::header_style"></style>
 	<style>
 		.form_title{
@@ -28,9 +29,10 @@
 </header>
 
 <!-- Wrapper -->
+<!-- 전송전송 -->
 <!-- Main -->
 <section class="cont_login container">
-	<form action="#" method="post" id="joinCEO2Form">
+	<form action="/ceo/createCEO2" method="post" id="joinCEO2Form">
 		<div class="box_login login_email" style="height: 850px">
 			<h2 class="tit">빵야빵야(屋) 사장님의<br><strong style="color: #F9A825">가게 정보를</strong><br>입력 해주세요.</h2>
 			<div class="box_inp">
@@ -51,10 +53,10 @@
 				</div>
 				<div class="line_inp">
 					<p class="form_title">가게 주소</p>
-					<input type="text" class="inp" id="shopZipcode" placeholder="우편번호" style="width: calc(100% - 110px);float: left;">
+					<input type="text" class="inp" name="shopZipcode" id="shopZipcode" placeholder="우편번호" style="width: calc(100% - 110px);float: left;">
 					<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" style="width: 100px;padding: 0px;font-size: 13px"><br>
-					<input type="text" id="shopAddress" placeholder="주소">
-					<input type="text" id="shopAddressDetail" placeholder="상세주소">
+					<input type="text" name="shopAddress" id="shopAddress" placeholder="주소">
+					<input type="text" name="shopAddressDetail" id="shopAddressDetail" placeholder="상세주소">
 					<p class="info_error" id="shopAddressError1">가게 주소를 입력해주세요.</p>
 				</div>
 			</div>
@@ -62,6 +64,10 @@
 				<ul class="actions fit" style="margin-bottom: 3em;">
 					<li><input type="button" id="nextButton" class="button primary fit" value="다음" style="margin-top: 1em;"/></li>
 				</ul>
+				<!-- joinCEO1에서 보낸 회원정보 -->
+				<div style="display: none" th:if="${not #maps.isEmpty(ceoVO_1)}">
+					<input type="hidden" th:each="key, status : ${ceoVO_1.keySet()}" th:name="${key}" th:value="${ceoVO_1.get(key)}" />
+				</div>
 			</div>
 		</div>
 	</form>
@@ -72,6 +78,7 @@
 
 <!-- Scripts -->
 <script src="/js/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
 <script src="/js/browser.min.js"></script>
 <script src="/js/breakpoints.min.js"></script>
@@ -80,7 +87,7 @@
 <script th:replace="/main/header::header_js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
-	let joinCEO2Form = $(document.joinCEO2Form);
+	let joinCEO2Form = $("#joinCEO2Form");
 
 	//비밀번호 숨기기
 	$('.type_pwd').on('click',function() {
@@ -132,7 +139,6 @@
 		}
 
 		joinCEO2Form.submit();
-		location.href= '/user/joinConfirm';
 	})
 
 

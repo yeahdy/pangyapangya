@@ -50,27 +50,26 @@
 
 </header>
 
-<!-- Wrapper -->
+<!-- Wrapper수정 -->
 	<!-- Main -->
 	<section class="cont_login container">
-		<form action="/user/login" method="post" id="loginForm">
+		<form action="/ceo/loginCEO" method="post" id="loginForm">
 			<div class="box">
 				<li style="border-right: 1px solid #dcdcdc">
-					<h4><a href="/user/login"><strong style="color: #F9A825; border-bottom: 1px solid">일반회원</strong></a></h4>
+					<h4><a href="/user/login"><strong>일반회원</strong></a></h4>
 				</li>
 				<li>
-					<h4><a href="/ceo/loginCEO"><strong>사장님</strong></a></h4>
+					<h4><a href="/ceo/loginCEO"><strong style="color: #F9A825; border-bottom: 1px solid">사장님</strong></a></h4>
 				</li>
 			</div>
 			<div class="box_login login_email" style="grid-template-rows: 130px auto 170px;">
 				<h2 class="tit">간편하게 로그인하고<br><strong style="color: #F9A825">빵야빵야(屋)의</strong><br> 다양한 빵을 먹어보세요.</h2>
 				<div class="box_inp">
 					<div class="line_inp">
-						<input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요">
-						<p class="info_error" id="userIdError1">아이디를 입력해주세요.</p>
+						<input type="text" name="ceoId" id="userId" placeholder="아이디를 입력해주세요">
 					</div>
 					<div class="line_inp line_pw">
-						<input type="password" name="userPw" id="userPw" placeholder="비밀번호를 입력해주세요">
+						<input type="password" name="ceoPw" id="userPw" placeholder="비밀번호를 입력해주세요">
 						<button type="button" class="type_pwd hide" id="viewPass"></button>
 						<p class="info_error" id="userPwError1">비밀번호를 입력해주세요.</p>
 						<p class="info_error" id="loginError">아이디 또는 비밀번호가 일치하지 않습니다.</p>
@@ -79,24 +78,21 @@
 				<div class="col-6 col-12-medium">
 					<ul class="actions fit" style="margin-bottom: 1em;">
 						<li><input type="button" class="button primary fit" id="loginButton" value="로그인 하기" style="margin-top: 3em;"/></li>
+
 					</ul>
 					<div class="box_btn">
-						<a style="padding-left: 0px;" class="btn" href="/user/idFind">아이디 찾기</a>
-						<a class="btn" href="/user/pwFind">비밀번호 찾기</a>
-						<a class="btn" href="/user/join">회원가입</a>
+						<a style="padding-left: 0px;" class="btn" href="/ceo/idFindCEO">아이디 찾기</a>
+						<a class="btn" href="/ceo/pwFindCEO">비밀번호 찾기</a>
+						<a class="btn" href="/ceo/joinCEO">회원가입</a>
 					</div>
-				</div>
-				<!-- 로그인 상태 -->
-				<div th:if="${check == 'false'}">
-					<input type="hidden" id="loginChk" th:value="${check}" />
-				</div>
-				<!-- 아이디 찾기 컨트롤러 -->
-				<div id="resultId" th:if="${resultId == 0}" style="display: none">
-					<span th:text="${resultId}"></span>
-				</div>
-				<!-- 비밀번호 찾기 컨트롤러 -->
-				<div id="resultPw" th:if="${resultPw == 0}" style="display: none">
-					<span th:text="${resultPw}"></span>
+					<!-- 로그인 상태 -->
+					<div th:if="${not #strings.isEmpty(check)}">
+						<input type="hidden" id="loginCheck" th:value="${check}">
+					</div>
+					<!-- 비밀번호 찾기 컨트롤러 -->
+					<div id="resultPw" th:if="${resultPw == 0}" style="display: none">
+						<span th:text="${resultPw}"></span>
+					</div>
 				</div>
 			</div>
 		</form>
@@ -114,7 +110,7 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
-<script type="text/javascript">
+<script type="text/javascript" th:inline="javascript">
 	let loginForm = $("#loginForm");
 
 	//비밀번호 숨기기
@@ -147,21 +143,9 @@
 				$("#userPwError1").hide();
 			}
 			loginForm.submit();
-
-			/* 로그인 실패 컨트롤러(왜 안들어오지) */
-			console.log("loginChk: " + $("#loginChk").val());
-			if($("#loginChk").val() == 'undefined'){
-				alert("아이디 또는 비밀번호가 일치하지 않습니다.");
-			}
 		})
-
-		/* 아이디 찾기 컨트롤러 */
-		let resultId = $("#resultId span").text();
-		console.log("아이디 찾기 실패 결과: " + resultId);
-
-		if(resultId == 0 && resultId != ''){
-			alert("해당 전화번호로 가입된 이력이 존재하지 않습니다.");
-		}
+		// 왜 컨트롤러에서 데이터를 못받아올까...
+		console.log("loginCheck: " + $("#loginCheck").val())
 
 		/* 비밀번호 찾기 컨트롤러 */
 		let resultPw = $("#resultPw span").text();
@@ -171,6 +155,7 @@
 			alert("비밀번호 변경이 완료되었습니다. 다시 로그인 해주세요.");
 		}
 	})
+
 
 
 </script>

@@ -19,7 +19,7 @@
 </head>
 <body class="is-preload" style="padding: 5em 200px 0 200px;background-color: white;">
 
-<!-- Header -->
+<!-- Header 수정 -->
 <header id="header" th:include="/main/header::header_body">
 
 </header>
@@ -41,20 +41,20 @@
 								<span style="border-bottom: 1px solid #dcdcdc;padding-bottom: 5px;">가입하신 이름</span>
 							</div>
 						</li>
-						<th:block th:each="userVO : ${userList}">
-							<li th:object="${userVO}" style="border-bottom: 0px solid;padding: 0px;">
+						<th:block th:each="ceoVO : ${ceoList}">
+							<li th:object="${ceoVO}" style="border-bottom: 0px solid;padding: 0px;">
 								<div class="id">
-									<p th:text="*{userId}"></p>
+									<p th:text="*{ceoId}"></p>
 								</div>
 								<div class="name">
-									<p th:text="*{userName}"></p>
+									<p th:text="*{ceoName}"></p>
 								</div>
 							</li>
 						</th:block>
 					</ul>
 					<div class="col-6 col-12-medium">
 						<ul class="actions fit" style="margin-bottom: 1em;">
-							<li><a href="/user/login" class="button primary fit" style="margin-top: 1em;margin-left: 1.1em;">로그인창으로 돌아가기</a></li>
+							<li><a href="/ceo/loginCEO" class="button primary fit" style="margin-top: 1em;margin-left: 1.1em;">로그인창으로 돌아가기</a></li>
 						</ul>
 					</div>
 				</div>
@@ -74,8 +74,17 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
-<script type="text/javascript" th:inline="javascript">
+<script type="text/javascript">
+	$(document).ready(function () {
+		/* 아이디 찾기 컨트롤러 */
+		let idFindCnt = $(".info_text span").text();
+		console.log("아이디갯수: " + idFindCnt);
 
+		if(idFindCnt < 1){
+			alert("해당 전화번호로 가입된 이력이 존재하지 않습니다.");
+			location.href= "/user/login";
+		}
+	})
 </script>
 </body>
 </html>

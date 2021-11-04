@@ -148,41 +148,39 @@
 
 							<div id="myRightDiv">
 
-								<form method="post" action="/myPageCeo/edit" id="registForm">
+								<form enctype="multipart/form-data">
 									<!--전체-->
 									<div id="contentDiv">
 
 										<!--밑에 상세정보 입력Div-->
 
-										<div id="subDiv2" th:object="${ceo}">
+										<div id="subDiv2">
 											<p id="title2">회원 정보 관리</p>
 											<hr>
 											<div class="table-1" style="margin-bottom: 10px;">
 												<div class="table-title">이름</div>
-												<div class="table-content"><input type="text" name="ceoName" th:field="*{ceoName}" readonly/></div>
+												<div class="table-content"><input type="text" value="한준규"/></div>
 											</div>
 
 											<div class="table-1">
 												<div class="table-title">비밀번호</div>
-												<div class="table-content"><input name="ceoPw" type="password"/></div>
+												<div class="table-content"><input type="password"/></div>
 											</div>
 
 											<div class="table-1">
 												<div class="table-title">비밀번호 확인</div>
-												<div class="table-content"><input type="password" name="ceoPwCheck"/></div>
-											</div>
-
-											<div class="table-1">
-												<div class="table-title">휴대폰 번호</div>
-												<div class="table-content"><input type="text"  name="phoneNum" th:field="*{phoneNum}"/></div>
+												<div class="table-content"><input type="password"/></div>
 											</div>
 
 											<div class="table-1">
 												<div class="table-title">업체명</div>
-												<div class="table-content"><input type="text" name="shopName" th:field="*{shopName}"/></div>
+												<div class="table-content"><input type="text" value="TOUS les JOURS"/></div>
 											</div>
 
-
+											<div class="table-1">
+												<div class="table-title">휴대폰 번호</div>
+												<div class="table-content"><input type="text" value="010-1234-5678"/></div>
+											</div>
 
 											<!--하나-->
 											<div class="table-1" style="margin-bottom: 10px;">
@@ -193,17 +191,17 @@
 													<div class="table-content" style="width: 100%;">
 														<div style="display:flex; width: 100%; margin-bottom: 10px;">
 															<div id="address-num">
-																<input type="text" name="shopZipcode" id="shopZipcode" class="postcodify_postcode5" th:field="*{shopZipcode}"/>
+																<input type="text" name="member_zipcode" id="member_zipcode" class="postcodify_postcode5" value=""/>
 															</div>
 															<div id="address-search">
 																<input type="button" id="postcodify_search_button" class="button primary" style="border-radius:0; margin: 0;" value="검색">
 															</div>
 														</div>
 														<div class="address-div">
-															<input type="text" name="shopAddress" id="shopAddress" class="postcodify_address" th:field="*{shopAddress}"/>
+															<input type="text" name="member_address" id="member_address" class="postcodify_address" value=""/>
 														</div>
 														<div class="address-div" style="margin-bottom: 0;">
-														<input type="text" name="shopAddressDetail" id="shopAddressDetail" class="postcodify_details" th:field="*{shopAddressDetail}"/>
+														<input type="text" name="member_address_detail" id="member_address_detail" class="postcodify_details" value=""/>
 														</div>
 													</div>
 												</div>
@@ -212,12 +210,12 @@
 
 											<div class="table-1">
 												<div class="table-title">사업장 등록 번호</div>
-												<div class="table-content"><input type="text" name="shopRegNum" th:field="*{shopRegNum}"/></div>
+												<div class="table-content"><input type="text"/></div>
 											</div>
 
 											<div class="table-1">
 												<div class="table-title">사업장 전화번호</div>
-												<div class="table-content"><input type="text" name="shopCallNumber" th:field="*{shopCallNumber}"/></div>
+												<div class="table-content"><input type="text" value="010-1234-5678"/></div>
 											</div>
 
 
@@ -239,7 +237,7 @@
 										</div><!--밑에 상세정보 입력Div-->
 
 										<div id="registDiv">
-											<input type="submit" class="primary" value="회원 정보 수정">
+											<input type="button" class="primary" value="회원 정보 수정">
 										</div>
 									</div><!--전체DIv-->
 

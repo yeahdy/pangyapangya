@@ -100,7 +100,6 @@
 			<!-- 일반회원일 경우 -->
 			<!--
 			<li>
-				<input type="hidden" id="sessionU" th:value="${session['sessionU']}" />
 				<a href="#" class="icon solid fa-angle-down"><img src="/images/iconPerson.png" alt="myPage" class="headerIcon"/></a>
 				<ul>
 					<li><a href="/mypage/breadOrderList">주문 내역</a></li>
@@ -113,7 +112,6 @@
 			<!-- 사장님일 경우 -->
 			<!--
 			<li>
-				<input type="hidden" id="sessionC" th:value="${session['sessionC']}" />
 				<a href="#" class="icon solid fa-angle-down"><img src="/images/iconPerson.png" alt="myPage" class="headerIcon"/></a>
 				<ul>
 					<li>
@@ -196,13 +194,6 @@
 		}
 		searchForm.submit();
 	})
-
-	// 세션값 확인
-	if($('#sessionU').val() != null){
-		console.log("session: " + $('#sessionU').val());
-	}else if ($('#sessionC').val() != null){
-		console.log("session: " + $('#sessionC').val());
-	}
 
 </script>
 </body>

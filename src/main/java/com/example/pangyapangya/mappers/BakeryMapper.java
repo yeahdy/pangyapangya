@@ -1,7 +1,6 @@
 package com.example.pangyapangya.mappers;
 
 import com.example.pangyapangya.beans.vo.BakeryVO;
-import com.example.pangyapangya.beans.vo.CeoVO;
 import com.example.pangyapangya.beans.vo.Criteria;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -23,10 +22,4 @@ public interface BakeryMapper {
     public int delete(Long bno);
     //    게시글 전체 개수
     public int getTotal(Criteria criteria);
-    // 해당 회원의 게시글 전체 갯수
-    public int myTotal(String ceoId);
-    // 사장님 회원 정보 수정
-    public int ceoUpdate(CeoVO ceoVO);
-    // 사장님 회원 탈퇴
-    public int ceoDelete(CeoVO ceoVO);
 }

@@ -33,15 +33,24 @@ public class UserDAO {
         return mapper.idFind(userPhoneNum);
     }
 
+    // 동일한 전화번호의 아이디 갯수
+    public int idFindCnt (String userPhoneNum) {return mapper.idFindCnt(userPhoneNum); }
+
     // 비밀번호 찾기 : 아이디 조회
     public boolean pwFind (String userId){
         return mapper.pwFind(userId) == 1;
     }
 
+    // 비밀번호 찾기: 아이디 + 전화번호 + 이름 같아야 인증 가능
+    public boolean pwFindAuth (UserVO userVO) { return mapper.pwFindAuth(userVO) == 1; }
+
+    // 비밀번호 변경
+    public boolean pwUpdate (UserVO userVO) { return mapper.pwUpdate(userVO) == 1; }
+
     // 회원정보 조회(일반회원)
     public UserVO userInfo (String userId){
         return mapper.userInfo(userId);
-    };
+    }
 
     // 수정
 }

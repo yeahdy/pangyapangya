@@ -168,35 +168,35 @@
     <!-- Main -->
     <section class="main">
         <div class="wrapper">
-            <!-- class_information 좌측 정보-->
-            <div class="titleimg">
-                <div id="title">
-                    <p class="title">원데이 클래스 타이틀</p>
+                <!-- class_information 좌측 정보-->
+                <div class="titleimg">
+                    <div id="title">
+                        <p class="title">원데이 클래스 타이틀</p>
+                    </div>
+                    <div class="img">
+                        <img src="/images/bread1.jpeg" alt="" id="ceoimg">
+                    </div>
                 </div>
-                <div class="img">
-                    <img src="/images/bread1.jpeg" alt="" id="ceoimg">
+                <!-- //class_information -->
+                <div id="reservation">
+                    <table id="content">
+                        <tr><th>예약자</th>
+                            <td colspan="2">사용자 ID</td>
+                        </tr>
+                        <tr><th rowspan="3">예약 내역</th>
+                            <td colspan="2">날짜 및 시간</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">인원 수</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">빵집 이름</td>
+                        </tr>
+                    </table>
                 </div>
-            </div>
-            <!-- //class_information -->
-            <div id="reservation">
-                <table id="content">
-                    <tr><th>예약자</th>
-                        <td colspan="2">사용자 ID</td>
-                    </tr>
-                    <tr><th rowspan="3">예약 내역</th>
-                        <td colspan="2">날짜 및 시간</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">인원 수</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">빵집 이름</td>
-                    </tr>
-                </table>
-            </div>
 
 
-            <!-- //section_discount -->
+                <!-- //section_discount -->
             <!-- section_receipt 우측 결제박스 -->
             <div class="r_box section_receipt">
                 <h3 class="title_section">최종 결제 금액</h3>
@@ -221,9 +221,9 @@
                     </tbody>
                 </table>
 
-                <div>
-                    <button type="submit" id="pay_kakao" onclick="requestPay()">만원 결제하기</button>
-                </div>
+                    <div>
+                        <button type="submit" id="pay_kakao" onclick="requestPay()">만원 결제하기</button>
+                    </div>
             </div>
             <!-- //section_receipt -->
         </div>
@@ -247,6 +247,64 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
+
+<!--<script>-->
+<!--    var IMP = window.IMP;-->
+<!--    IMP.init('imp37396046');-->
+<!--    IMP.request_pay({-->
+<!--        pg : "kakaopay",-->
+<!--        pay_method : 'card',-->
+<!--        merchant_uid : 'merchant_' + new Date().getTime(),-->
+<!--        name : '결제',-->
+<!--        amount : 주문개수,-->
+<!--        buyer_email : '구매자 이메일',-->
+<!--        buyer_name : '구매자 이름',-->
+<!--        buyer_tel : '구매자 번호',-->
+<!--        buyer_addr : '구매자 주소',-->
+<!--        buyer_postcode : '구매자 주소',-->
+<!--        m_redirect_url : 'redirect url'-->
+<!--    }, function(rsp) {-->
+<!--        if ( rsp.success ) {-->
+<!--            var msg = '결제가 완료되었습니다.';-->
+<!--            location.href='결제완료후 갈 url';-->
+<!--        } else {-->
+<!--            var msg = '결제에 실패하였습니다.';-->
+<!--            rsp.error_msg;-->
+
+<!--        }-->
+<!--    });-->
+
+<!--</script>-->
+
+<!--<script>-->
+<!--    $("#pay_kakao").click(function () {-->
+<!--        var IMP = window.IMP;-->
+<!--        IMP.init('imp37396046');-->
+<!--        IMP.request_pay({-->
+<!--            pg : "kakaopay",-->
+<!--            pay_method : 'card',-->
+<!--            merchant_uid : 'merchant_' + new Date().getTime(),-->
+<!--            name : '결제',-->
+<!--            amount : 주문개수,-->
+<!--            buyer_email : '구매자 이메일',-->
+<!--            buyer_name : '구매자 이름',-->
+<!--            buyer_tel : '구매자 번호',-->
+<!--            buyer_addr : '구매자 주소',-->
+<!--            buyer_postcode : '구매자 주소',-->
+<!--            m_redirect_url : 'redirect url'-->
+<!--        }, function(rsp) {-->
+<!--            if ( rsp.success ) {-->
+<!--                var msg = '결제가 완료되었습니다.';-->
+<!--                document.location.href="/class/classPay";-->
+<!--            } else {-->
+<!--                var msg = '결제에 실패하였습니다.';-->
+<!--                rsp.error_msg;-->
+
+<!--            }-->
+<!--        });-->
+
+<!--    });-->
+<!--</script>-->
 
 <!--<script>-->
 

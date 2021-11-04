@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.pangyapangya.mappers.CEOMapper">
+    <!-- 아이디 중복 검사 -->
+    <select id="checkIdCEO" resultType="_int">
+        SELECT COUNT (CEOID) FROM TBL_CEO
+        WHERE CEOID = #{ceoId}
+    </select>
+
+    <!-- 회원가입 -->
+    <insert id="joinCEO">
+        INSERT INTO TBL_CEO
+        (CEOID, CEOPW, CEONAME, SHOPNAME, SHOPCALLNUMBER, SHOPADDRESS, SHOPADDRESSDETAIL, SHOPREGNUM, SHOPZIPCODE, PHONENUM)
+        VALUES(#{ceoId}, #{ceoPw}, #{ceoName}, #{shopName}, #{shopCallNumber}, #{shopAddress}, #{shopAddressDetail}, #{shopRegNum}, #{shopZipcode}, #{phoneNum})
+    </insert>
+
+    <!-- 로그인 -->
+    <select id="loginCEO" resultType="_int">
+        SELECT COUNT(CEOID) FROM TBL_CEO
+        WHERE CEOID = #{ceoId} AND CEOPW = #{ceoPw}
+    </select>
+
+    <!-- 전화번호로 아이디 찾기 -->
+    <select id="idFindCEO" resultType="CeoVO">
+        SELECT CEOID, CEOPW, CEONAME, SHOPNAME, SHOPCALLNUMBER, SHOPADDRESS, SHOPADDRESSDETAIL, SHOPPHOTO, SHOPREGNUM, SHOPZIPCODE, PHONENUM, STATUS
+        FROM TBL_CEO WHERE PHONENUM = #{phoneNum}
+    </select>
+
+    <!-- 동일한 전화번호의 아이디 갯수 -->
+    <select id="idFindCntCEO" resultType="_int">
+        SELECT COUNT(CEOID) FROM TBL_CEO
+        WHERE PHONENUM = #{phoneNum}
+    </select>
+
+    <!-- 비밀번호 찾기 : 아이디 유무 조회 -->
+    <select id="pwFindCEO" resultType="_int">
+        SELECT COUNT(CEOID) FROM TBL_CEO
+        WHERE CEOID = #{ceoId}
+    </select>
+
+    <!-- 비밀번호 찾기: 아이디 + 전화번호 + 이름 같아야 인증 가능 -->
+    <select id="pwFindAuthCEO" resultType="_int">
+        SELECT COUNT(CEOID) FROM TBL_CEO
+        WHERE CEOID = #{ceoId} AND PHONENUM = #{phoneNum} AND CEONAME = #{ceoName}
+    </select>
+
+    <!-- 비밀번호 변경 -->
+    <update id="pwUpdateCEO">
+        UPDATE TBL_CEO
+        SET CEOPW= #{ceoPw}
+        WHERE CEOID= #{ceoId}
+    </update>
+
+    <!-- 회원 정보 조회-->
+    <select id="ceoInfo" resultType="CeoVO">
+        SELECT CEOID, CEOPW, CEONAME, SHOPNAME, SHOPCALLNUMBER, SHOPADDRESS, SHOPADDRESSDETAIL, SHOPPHOTO, SHOPREGNUM, SHOPZIPCODE, PHONENUM, STATUS
+        FROM TBL_CEO WHERE CEOID= #{ceoId}
+    </select>
+</mapper>
