@@ -1,10 +1,13 @@
 package com.example.pangyapangya.controller;
 
+import com.example.pangyapangya.beans.dao.BakeryDAO;
 import com.example.pangyapangya.beans.vo.*;
 import com.example.pangyapangya.services.BakeryService;
+import com.example.pangyapangya.services.CEOService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +25,7 @@ import java.util.List;
 public class MyPageCeoController {
 
     private final BakeryService bakeryService;
-
+    private final CEOService ceoService;
     //마이페이지(사장님)-글 등록[빵집 소개]
     @GetMapping("bakery")
     public String myPageCeoBakery(Model model, HttpSession session){
@@ -49,11 +52,27 @@ public class MyPageCeoController {
 
     //마이페이지(사장님)-내 정보 수정
     @GetMapping("edit")
-    public String myPageCeoEdit(){ return "myPageCeo/edit"; }
+    public String myPageCeoEdit(Model model, HttpSession session){
+        String sessionU = (String)session.getAttribute("sessionU");
+        String sessionC = (String)session.getAttribute("sessionC");
+        if(sessionU == null && sessionC == null){
+            return "/user/login";
+        }
+        model.addAttribute("ceo", bakeryService.getCeo(sessionC));
+        return "myPageCeo/edit";
+    }
 
     //마이페이지(사장님)-회원 탈퇴
     @GetMapping("delete")
-    public String myPageCeoDelete(){ return "myPageCeo/delete"; }
+    public String myPageCeoDelete(HttpSession session, Model model){
+        String sessionU = (String)session.getAttribute("sessionU");
+        String sessionC = (String)session.getAttribute("sessionC");
+        if(sessionU == null && sessionC == null){
+            return "/user/login";
+        }
+        model.addAttribute("ceo", bakeryService.getCeo(sessionC));
+        return "myPageCeo/delete";
+    }
 
     @PostMapping("bakery")
     public RedirectView bakery(BakeryVO bakeryVO, RedirectAttributes rttr, CeoVO ceoVO){
@@ -73,6 +92,31 @@ public class MyPageCeoController {
         return new RedirectView("bakeryRe");
     }
 
+    @PostMapping("edit")
+    public RedirectView edit(RedirectAttributes rttr, CeoVO ceoVO, HttpSession session){
+        String sessionU = (String)session.getAttribute("sessionU");
+        String sessionC = (String)session.getAttribute("sessionC");
+        if(sessionU == null && sessionC == null){
+            return new RedirectView("login");
+        }
+
+        log.info("-------------------------------");
+        log.info("ceo : " + ceoVO.toString());
+        log.info("-------------------------------");
+        ceoVO.setCeoPw(ceoVO.getCeoPw());
+        ceoVO.setCeoId(sessionC);
+       /* if(bakeryVO.getAttachList() != null){
+            bakeryVO.getAttachList().forEach(attach -> log.info(attach.toString()));
+        }*/
+        bakeryService.ceoUpdate(ceoVO);
+//        쿼리 스트링으로 전달
+//        rttr.addAttribute("bno", boardVO.getBno());
+//        세션의 flash영역을 이용하여 전달
+        rttr.addFlashAttribute("ceo", bakeryService.getCeo(ceoVO.getCeoId()));
+//        RedirectView를 사용하면 redirect방식으로 전송이 가능하다.
+        return new RedirectView("edit");
+    }
+
     @GetMapping("bakeryRe")
     public String bakeryRe(Criteria criteria, Model model){
 
@@ -86,8 +130,14 @@ public class MyPageCeoController {
     }
 
     //    여러 요청을 하나의 메소드로 받을 때에는 {}를 사용하여 콤마로 구분한다.
-   /* @GetMapping({"read", "modify"})
-    public void read(@RequestParam("bno") Long bno, Criteria criteria, Model model, HttpServletRequest request, CeoVO ceoVO){
+    @GetMapping("modify")
+    public String modify(@RequestParam("bno") Long bno, Criteria criteria, Model model, HttpServletRequest request, HttpSession session){
+        String sessionU = (String)session.getAttribute("sessionU");
+        String sessionC = (String)session.getAttribute("sessionC");
+        if(sessionU == null && sessionC == null){
+            return "/user/login";
+        }
+
         String reqURI = request.getRequestURI();
         String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
         //read 요청 시 read 출력
@@ -95,11 +145,12 @@ public class MyPageCeoController {
         log.info("-------------------------------");
         log.info(reqType + " : " + bno);
         log.info("-------------------------------");
-        ceoVO.setCeoId("wnsrbod");
-        model.addAttribute("ceo", bakeryService.getCeo("wnsrbod"));
+
+        model.addAttribute("ceo", bakeryService.getCeo(sessionC));
         model.addAttribute("bakery", bakeryService.get(bno));
         model.addAttribute("criteria", criteria);
-    }*/
+        return "myPageCeo/bakeryModify";
+    }
 
     //    /modify 요청을 처리할 수 있는 비지니스 로직 작성
 //    수정 성공시 result에 "success"를 담아서 전달한다.
@@ -114,7 +165,7 @@ public class MyPageCeoController {
             rttr.addAttribute("result", "success");
             rttr.addAttribute("bno", bakeryVO.getBno());
         }
-        return new RedirectView("bakeryModify");
+        return new RedirectView("bakeryRe");
     }
 
     //    /remove 요청을 처리할 수 있는 비지니스 로직 작성
@@ -146,6 +197,27 @@ public class MyPageCeoController {
         return bakeryService.getAttachList(bno);
     }*/
 
+
+    /*@PostMapping("delete")
+    public String delete(CeoVO ceoVO, HttpServletRequest req, RedirectAttributes rttr){
+        log.info("---------로그인-----------");
+        log.info("ceoId: " + ceoVO.getCeoId());
+        log.info("ceoPw: " + ceoVO.getCeoPw());
+        log.info("--------------------------");
+
+        HttpSession session = req.getSession(); // session 생성
+        if(!ceoService.loginCEO(ceoVO)) {
+            log.info("-------로그인 실패-------");
+            session.setAttribute("sessionC", null);
+            rttr.addAttribute("check", "false");
+            return "ceo/loginCEO";
+        }else{
+            log.info("-------로그인 성공-------");
+            CeoVO ceoInfo= ceoService.ceoInfo(ceoVO.getCeoId());
+            session.setAttribute("sessionC", ceoInfo.getCeoId());
+            return mainView;
+        }
+    }*/
 }
 
 

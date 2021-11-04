@@ -72,7 +72,7 @@
 		.myPageSelectMenu{margin-top: 5px; margin-bottom: 5px;}
 		#subDiv1 {display: flex;}
 		#subDiv2 {padding-right: 27px;}
-		.first-file{width: 60%; padding-top: 150px; border-right: 1px solid #000;}
+		.first-file{width: 100%; padding: 77px 0; border-right: 1px solid #000;}
 		.files {text-align: center; border: 5px solid #F9A825; margin-right: 15px; margin-bottom: 10px;}
 		.image{position: fixed;}
 		.table-1{display: flex; margin-bottom: 10px;}
@@ -169,65 +169,7 @@
 												<input id="board_file1" name="bakery_photo1" type="file" multiple>
 
 											</div>
-											<!--사진6개-->
-											<div id="subFileDiv">
-												<div class="files sub-files">
-													<div>
-														<label for="board_file2" style="display:inline;">
-															<img id="board_file2Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
-														</label>
-													</div>
-													<input id="board_file2" name="board_file2" type="file" multiple>
 
-												</div>
-												<div class="files sub-files">
-													<div>
-														<label for="board_file3" style="display:inline;">
-															<img id="board_file3Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
-														</label>
-													</div>
-													<input id="board_file3" name="board_file3" type="file" multiple>
-
-												</div>
-												<div class="files sub-files">
-													<div>
-														<label for="board_file4" style="display:inline;">
-															<img id="board_file4Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
-														</label>
-													</div>
-													<input id="board_file4" name="board_file4" type="file" multiple>
-
-												</div>
-											</div>
-											<div id="subFileDiv2">
-												<div class="files sub-files">
-													<div>
-														<label for="board_file5" style="display:inline;">
-															<img id="board_file5Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
-														</label>
-													</div>
-													<input id="board_file5" name="board_file5" type="file" multiple>
-
-												</div>
-												<div class="files sub-files">
-													<div>
-														<label for="board_file6" style="display:inline;">
-															<img id="board_file6Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
-														</label>
-													</div>
-													<input id="board_file6" name="board_file6" type="file" multiple>
-
-												</div>
-												<div class="files sub-files">
-													<div>
-														<label for="board_file7" style="display:inline;">
-															<img id="board_file7Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
-														</label>
-													</div>
-													<input id="board_file7" name="board_file7" type="file" multiple>
-
-												</div>
-											</div>
 										</div><!--사진부분-->
 
 										<!--밑에 상세정보 입력Div-->
@@ -258,8 +200,33 @@
 												<div class="table-title">전화번호</div>
 												<div class="table-content"><input type="text" name="shopCallNum" th:field="*{shopCallNumber}" readonly/></div>
 											</div>
+											<!--하나-->
+											<div class="table-1" style="margin-bottom: 10px;">
 
+												<div class="table-title">상품 등록</div>
 
+												<div style="width: 75%;">
+													<div class="table-content" style="display: flex; width: 100%;">
+
+														<div style="width: 30%">
+															<select name="breadType">
+																<option value="">종류</option>
+																<option value="케이크">케이크</option>
+																<option value="제과">제과</option>
+																<option value="제빵">제빵</option>
+															</select>
+														</div>
+														<div style="width: 35%;">
+															<input type="text" name="breadName" placeholder="빵 이름" style="margin-bottom: 1px;">
+														</div>
+														<div style="width: 35%; margin-right: 0;">
+															<input type="text" name="breadPrice" placeholder="빵 가격">
+														</div>
+
+													</div>
+												</div>
+
+											</div>
 
 											<div class="table-1">
 												<div class="table-title">배송비</div>
@@ -272,333 +239,6 @@
 											</div>
 
 										</div><!--밑에 상세정보 입력Div-->
-
-										<div id="subDiv3">
-											<p id="title3">상품 등록 <sub> 상품을 등록해주세요.</sub></p>
-											<hr>
-
-											<!--하나-->
-											<div class="table-1" style="margin-bottom: 10px;" id="breadDiv1">
-
-												<div class="table-title">제품 등록</div>
-
-												<div style="width: 75%;">
-													<div class="table-content" style="display: flex; width: 100%;">
-
-														<div>
-															<select name="breadType1">
-																<option value="">종류</option>
-																<option value="케이크">케이크</option>
-																<option value="제과">제과</option>
-																<option value="제빵">제빵</option>
-															</select>
-														</div>
-														<div>
-															<input type="text" name="breadName1" placeholder="빵 이름" style="margin-bottom: 1px;">
-														</div>
-														<div>
-															<input type="text" name="breadPrice1" placeholder="빵 가격">
-														</div>
-														<div style="width: 10%;">
-															<label for="plusImg1" style="margin: 0; position: relative; top: 13px;" >
-																<img id="plusImg1" src="/images/plus.png" width="20px" height="20px" style="display:inline;">
-															</label>
-														</div>
-													</div>
-												</div>
-
-											</div>
-
-											<!--둘-->
-											<div class="table-1" style="margin-bottom: 10px; display: none;" id="breadDiv2">
-
-												<div class="table-title"></div>
-
-												<div style="width: 75%;">
-													<div class="table-content" style="display: flex; width: 100%;">
-
-														<div>
-															<select name="breadType2">
-																<option value="">종류</option>
-																<option value="케이크">케이크</option>
-																<option value="제과">제과</option>
-																<option value="제빵">제빵</option>
-															</select>
-														</div>
-														<div>
-															<input type="text" name="breadName2" placeholder="빵 이름" style="margin-bottom: 1px;">
-														</div>
-														<div>
-															<input type="text" name="breadPrice2" placeholder="빵 가격">
-														</div>
-														<div style="width: 10%;">
-															<label for="plusImg2" style="margin: 0; position: relative; top: 13px;" >
-																<img id="plusImg2" src="/images/plus.png" width="20px" height="20px" style="display:inline;">
-															</label>
-														</div>
-													</div>
-												</div>
-
-											</div>
-
-											<!--셋-->
-											<div class="table-1" style="margin-bottom: 10px; display: none;" id="breadDiv3">
-
-												<div class="table-title"></div>
-
-												<div style="width: 75%;">
-													<div class="table-content" style="display: flex; width: 100%;">
-
-														<div>
-															<select name="breadType3">
-																<option value="">종류</option>
-																<option value="케이크">케이크</option>
-																<option value="제과">제과</option>
-																<option value="제빵">제빵</option>
-															</select>
-														</div>
-														<div>
-															<input type="text" name="breadName3" placeholder="빵 이름" style="margin-bottom: 1px;">
-														</div>
-														<div>
-															<input type="text" name="breadPrice3" placeholder="빵 가격">
-														</div>
-														<div style="width: 10%;">
-															<label for="plusImg3" style="margin: 0; position: relative; top: 13px;" >
-																<img id="plusImg3" src="/images/plus.png" width="20px" height="20px" style="display:inline;">
-															</label>
-														</div>
-													</div>
-												</div>
-
-											</div>
-
-
-										<!--넷-->
-											<div class="table-1" style="margin-bottom: 10px; display: none;" id="breadDiv4">
-
-												<div class="table-title"></div>
-
-												<div style="width: 75%;">
-													<div class="table-content" style="display: flex; width: 100%;">
-
-														<div>
-															<select name="breadType4">
-																<option value="">종류</option>
-																<option value="케이크">케이크</option>
-																<option value="제과">제과</option>
-																<option value="제빵">제빵</option>
-															</select>
-														</div>
-														<div>
-															<input type="text" name="breadName4" placeholder="빵 이름" style="margin-bottom: 1px;">
-														</div>
-														<div>
-															<input type="text" name="breadPrice4" placeholder="빵 가격">
-														</div>
-														<div style="width: 10%;">
-															<label for="plusImg4" style="margin: 0; position: relative; top: 13px;" >
-																<img id="plusImg4" src="/images/plus.png" width="20px" height="20px" style="display:inline;">
-															</label>
-														</div>
-													</div>
-												</div>
-
-											</div>
-
-
-										<!--다섯-->
-											<div class="table-1" style="margin-bottom: 10px; display: none;" id="breadDiv5">
-
-												<div class="table-title"></div>
-
-												<div style="width: 75%;">
-													<div class="table-content" style="display: flex; width: 100%;">
-
-														<div>
-															<select name="breadType5">
-																<option value="">종류</option>
-																<option value="케이크">케이크</option>
-																<option value="제과">제과</option>
-																<option value="제빵">제빵</option>
-															</select>
-														</div>
-														<div>
-															<input type="text" name="breadName5" placeholder="빵 이름" style="margin-bottom: 1px;">
-														</div>
-														<div>
-															<input type="text" name="breadPrice5" placeholder="빵 가격">
-														</div>
-														<div style="width: 10%;">
-															<label for="plusImg5" style="margin: 0; position: relative; top: 13px;" >
-																<img id="plusImg5" src="/images/plus.png" width="20px" height="20px" style="display:inline;">
-															</label>
-														</div>
-													</div>
-												</div>
-
-											</div>
-
-										<!--여섯-->
-											<div class="table-1" style="margin-bottom: 10px; display: none;" id="breadDiv6">
-
-												<div class="table-title"></div>
-
-												<div style="width: 75%;">
-													<div class="table-content" style="display: flex; width: 100%;">
-
-														<div>
-															<select name="breadType6">
-																<option value="">종류</option>
-																<option value="케이크">케이크</option>
-																<option value="제과">제과</option>
-																<option value="제빵">제빵</option>
-															</select>
-														</div>
-														<div>
-															<input type="text" name="breadName6" placeholder="빵 이름" style="margin-bottom: 1px;">
-														</div>
-														<div>
-															<input type="text" name="breadPrice6" placeholder="빵 가격">
-														</div>
-														<div style="width: 10%;">
-															<label for="plusImg6" style="margin: 0; position: relative; top: 13px;" >
-																<img id="plusImg6" src="/images/plus.png" width="20px" height="20px" style="display:inline;">
-															</label>
-														</div>
-													</div>
-												</div>
-
-											</div>
-
-											<!--일곱-->
-											<div class="table-1" style="margin-bottom: 10px; display: none;" id="breadDiv7">
-
-												<div class="table-title"></div>
-
-												<div style="width: 75%;">
-													<div class="table-content" style="display: flex; width: 100%;">
-
-														<div>
-															<select name="breadType7">
-																<option value="">종류</option>
-																<option value="케이크">케이크</option>
-																<option value="제과">제과</option>
-																<option value="제빵">제빵</option>
-															</select>
-														</div>
-														<div>
-															<input type="text" name="breadName7" placeholder="빵 이름" style="margin-bottom: 1px;">
-														</div>
-														<div>
-															<input type="text" name="breadPrice7" placeholder="빵 가격">
-														</div>
-														<div style="width: 10%;">
-															<label for="plusImg7" style="margin: 0; position: relative; top: 13px;" >
-																<img id="plusImg7" src="/images/plus.png" width="20px" height="20px" style="display:inline;">
-															</label>
-														</div>
-													</div>
-												</div>
-
-											</div>
-
-											<!--여덟-->
-											<div class="table-1" style="margin-bottom: 10px; display: none;" id="breadDiv8">
-
-												<div class="table-title"></div>
-
-												<div style="width: 75%;">
-													<div class="table-content" style="display: flex; width: 100%;">
-
-														<div>
-															<select name="breadType8">
-																<option value="">종류</option>
-																<option value="케이크">케이크</option>
-																<option value="제과">제과</option>
-																<option value="제빵">제빵</option>
-															</select>
-														</div>
-														<div>
-															<input type="text" name="breadName8" placeholder="빵 이름" style="margin-bottom: 1px;">
-														</div>
-														<div>
-															<input type="text" name="breadPrice8" placeholder="빵 가격">
-														</div>
-														<div style="width: 10%;">
-															<label for="plusImg8" style="margin: 0; position: relative; top: 13px;" >
-																<img id="plusImg8" src="/images/plus.png" width="20px" height="20px" style="display:inline;">
-															</label>
-														</div>
-													</div>
-												</div>
-
-											</div>
-
-											<!--아홉-->
-											<div class="table-1" style="margin-bottom: 10px; display: none;" id="breadDiv9">
-
-												<div class="table-title"></div>
-
-												<div style="width: 75%;">
-													<div class="table-content" style="display: flex; width: 100%;">
-
-														<div>
-															<select name="breadType9">
-																<option value="">종류</option>
-																<option value="케이크">케이크</option>
-																<option value="제과">제과</option>
-																<option value="제빵">제빵</option>
-															</select>
-														</div>
-														<div>
-															<input type="text" name="breadName9" placeholder="빵 이름" style="margin-bottom: 1px;">
-														</div>
-														<div>
-															<input type="text" name="breadPrice9" placeholder="빵 가격">
-														</div>
-														<div style="width: 10%;">
-															<label for="plusImg9" style="margin: 0; position: relative; top: 13px;" >
-																<img id="plusImg9" src="/images/plus.png" width="20px" height="20px" style="display:inline;">
-															</label>
-														</div>
-													</div>
-												</div>
-
-											</div>
-
-											<!--아홉-->
-											<div class="table-1" style="margin-bottom: 10px; display: none;" id="breadDiv10">
-
-												<div class="table-title"></div>
-
-												<div style="width: 75%;">
-													<div class="table-content" style="display: flex; width: 100%;">
-
-														<div>
-															<select name="breadType10">
-																<option value="">종류</option>
-																<option value="케이크">케이크</option>
-																<option value="제과">제과</option>
-																<option value="제빵">제빵</option>
-															</select>
-														</div>
-														<div>
-															<input type="text" name="breadName10" placeholder="빵 이름" style="margin-bottom: 1px;">
-														</div>
-														<div>
-															<input type="text" name="breadPrice10" placeholder="빵 가격">
-														</div>
-														<div style="width: 10%;">
-
-														</div>
-													</div>
-												</div>
-
-											</div>
-
-										</div><!--밑에 상세정보 입력Div-->
-
 
 
 										<div id="registDiv">

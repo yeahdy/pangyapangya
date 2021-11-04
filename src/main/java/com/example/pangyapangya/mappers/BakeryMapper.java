@@ -25,4 +25,8 @@ public interface BakeryMapper {
     public int getTotal(Criteria criteria);
     // 해당 회원의 게시글 전체 갯수
     public int myTotal(String ceoId);
+    // 사장님 회원 정보 수정
+    public int ceoUpdate(CeoVO ceoVO);
+    // 사장님 회원 탈퇴
+    public int ceoDelete(CeoVO ceoVO);
 }

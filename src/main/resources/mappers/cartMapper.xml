@@ -42,7 +42,8 @@
     </select>-->
 
     <select id="getCartList" resultType="CartVO">
-        SELECT * FROM TBL_CART WHERE USERID=#{userId}
+        SELECT CARTNUM, USERID, BREADNAME, PRICEOFBREAD, DELIVERCHARGE, BREADCNT, BREADIMG, CEOID
+        FROM TBL_CART WHERE USERID = #{userId}
     </select>
 
 

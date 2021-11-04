@@ -3,405 +3,215 @@
 
 <html>
 <head>
-	<title>빵야빵야(屋)</title>
-	<meta charset="utf-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-	<meta name="description" content=""/>
-	<meta name="keywords" content=""/>
-	<link rel="stylesheet" href="/css/main.css"/>
+	<title>로그인 | 빵야빵야(屋)</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="/css/main.css" />
+	<link rel="stylesheet" href="/css/login.css" />
+	<link rel="icon" type="image/png"  href="/images/favicon.png"/>
+	<style th:include="/main/header::header_style"></style>
 	<style>
-		p {
+		. info_error{
 			margin: 0 0 1em 0;
 		}
 
-		.spotlights h5 {
-			font-weight: bold;
-			font-size: small;
-		}
-
-		.spotlights p {
-			font-size: small;
-		}
-
-		.spotlights > article {
-			padding: 1.0em 2.25em 0.5em 2.25em;
-			border-style: solid;
-			border-width: 1px 1px 0px 0px;
-			width: 25%;
-		}
-
-		.image.fit img {
-			border-radius: 4px;
-		}
-
-		h4 {
-			font-weight: 700;
-			font-size: large;
-			color: black;
-			display: inline-block;
-		}
-
-		.spotlights h5 {
-			color: black;
-		}
-
-
-		/* header */
-		.headerIcon {
-			width: 40px;
-			display: block;
-			margin: auto;
-		"
-		}
-
-		.icon.solid:before {
-			font-weight: 100;
-			content: none;
-		}
-
-		.spotlights h5 {
-			font-weight: bold;
-			font-size: small;
-		}
-
-		.spotlights p {
-			font-size: small;
-		}
-
-		.headerIcon {
-			width: 40px;
-			display: block;
-			margin: auto;
-		"
-		}
-
-		.icon.solid:before {
-			font-weight: 100;
-			content: none;
-		}
-
-		.spotlights h5 {
-			font-weight: bold;
-			font-size: small;
-		}
-
-		.spotlights p {
-			font-size: small;
-		}
-
-		/* 검색창 */
-		.search {
-			position: relative;
-			text-align: center;
-			width: 400px;
+		/* 로그인 구분 */
+		.box {
+			display: flex;
+			justify-content: center;
+			width: 460px;
 			margin: 0 auto;
+			cursor: pointer;
+			padding: 1em;
 		}
 
-		input {
-			width: 100%;
-			border-radius: 20px;
-			border: 1px solid #bbb;
-			margin: 10px 0;
-			padding: 10px 12px;
+		.box li {
+			width: 50%;
+			cursor: pointer;
+			list-style: none;
+			float: left;
 		}
 
-		.fa-search {
-			position: absolute;
-			left: 90%;
-			top: 35%;
-			margin: 0;
+		.box h4{
+			margin-bottom: 0em;
 		}
 
-		form {
-			margin: 0;
+		.box a {
+			font-size: 18px;
 		}
 
-		.headerIcon {
-			width: 40px;
+		/* 카카오, 네이버 로그인*/
+		.iconSpan{
+			padding: 0 0 0 26px;
+			background-position: 2px;
+			color: #666;
+			font-size: 14px;
+		}
+		.kakaoIcon {
+			background: url(https://image.oliveyoung.co.kr/pc-static-root/image/comm/logo_kakao_40.png) no-repeat 0 0;
+			background-size: 19px auto;
+		}
+		.naverIcon {
+			background: url(//www.saraminimage.co.kr/ui/social_login/icon_sns_naver_m.png) no-repeat 0 0;
+			background-size: 16px auto;
 		}
 
-		.icon.solid:before {
-			font-weight: 100;
-			content: none;
+		.iconA{
+			height: 2.9em;
+			width: 48% !important;
+			border-radius: 0.7em;
+			margin: 2px;
 		}
 
-		div#wrap {
-			display: flex;
+		.kakaoA{
+			background-color: #f9e003;
+			border: solid 0px !important;
 		}
 
-		.spotlights h5 {
-			font-weight: bold;
-		}
-
-		/* 검색창 */
-		.search {
-			position: relative;
-			text-align: center;
-			width: 400px;
-			margin: 0 auto;
-		}
-
-		input {
-			width: 100%;
-			border-radius: 20px;
-			border: 1px solid #bbb;
-			margin: 10px 0;
-			padding: 10px 12px;
-		}
-
-		.fa-search {
-			position: absolute;
-			left: 90%;
-			top: 35%;
-			margin: 0;
-		}
-
-		.img-warp {
-			position: relative;
-			display: block;
-			width: 100%;
-			height: auto;
-		}
-
-		.review {
-			width: 252px;
-			margin-left: 0;
-			padding-left: 0;
-			margin-top: 0;
-			padding-top: 0;
-			margin-bottom: 16px;
-			display: block;
-			border: 1px solid #d9d9d9;
-			border-radius: 4px;
-			overflow: hidden;
-		}
-
-		.img {
-			position: relative;
-			display: block;
-			width: 100%;
-			height: auto;
-			background-size: cover;
-			background-repeat: no-repeat;
-			background-position: center;
-		}
-
-		.img:after {
-			content: '' !important;
-			display: block !important;
-			padding-bottom: 66.66667% !important;
-		}
-
-		.txt {
-			margin-bottom: 4px;
-			font-size: 12px;
-			color: #999;
-			display: inherit;
-		}
-
-		a {
-			text-decoration: none !important;
-			border-bottom: none;
-			color: #333 !important;
-		}
-
-		.flexsearch {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-		}
-
-		.testSearch {
-			height: 45px !important;
-			width: 152px !important;
-
-		}
-
-		input[type="text"]:focus {
-			outline: none;
-			box-shadow: none;
-			border: 1px solid #f9a825 !important;
-		}
-
-		.searchButton {
-			background-color: #f9a825 !important;
-			box-shadow: none;
-			width: 14%;
-			border-radius: 0 !important;
-			height: 45px !important;
-			display: flex !important;
-			justify-content: space-evenly !important;
-			color: black !important;
-		}
-
-		#bannerDiv {
-			position: fixed;
-			top: 87px;
-			z-index: 999;
-		}
-
-		.warpdiv {
-			display: flex;
-			align-items: center;
-			justify-content: flex-end;
+		.naverA{
+			border-color: #dcdcdc !important;
 		}
 	</style>
 </head>
-<body class="is-preload" style="padding: 3.6% 200px 200px 200px">
+<body class="is-preload" style="padding: 5em 200px 0 200px;background-color: white;">
 
-<!-- ----------------------------------------------------------------------------------------------------Header---------------------------------------------------------------------------------- -->
+<!-- Header -->
 <header id="header" th:include="/main/header::header_body">
 
 </header>
-<!-- ----------------------------------------------------------------------------------------------------Header---------------------------------------------------------------------------------- -->
-<div class="wrapper">
-	<div id="bannerDiv">
-		<img src="/images/test3.png" style="width: 1433.66px">
-	</div>
-</div>
-<!-- -----------------------------------------------------------------------------------------------------section----------------------------------------------------------------------------------- -->
-<div class="wrapper">
-	<!-- Main -->
-	<section class="main">
-		<!-- Blurb -->
-		<section style="padding-top: 0em;padding-bottom: 0em; padding-left: 5.5em; padding-right: 5.5em;">
-			<div class="flexsearch">
-				<select name="category" id="category" onchange="location.href=this.value"
-						style="width: 8em;font-size: 17px !important;">
-					<option value="">--전체--</option>
-					<option value="1">케이크</option>
-					<option value="1">제과</option>
-					<option value="1">제빵</option>
-				</select>
-				<div class="warpdiv">
-					<input type="text" name="search" class="testSearch" onkeyup="enterkey()" placeholder="검색어를 입력해주세요."
-						   style="width: 30%; color: #333 !important; margin: 0 0px 0 0%; width: 150px; border: none; border-bottom-color: white; font-size: 12px; font-family: 'Nanum Gothic Coding', monospace;">
-					<input type="button" onclick="search()" value="검색" class="searchButton"
-						   style="color: black !important; border: 0 !important;">
+
+<!-- Wrapper -->
+<!-- Main -->
+<section class="cont_login container">
+	<form action="/user/login" method="post" id="loginForm">
+		<div class="box">
+			<li style="border-right: 1px solid #dcdcdc">
+				<h4><a href="/user/login"><strong style="color: #F9A825; border-bottom: 1px solid">일반회원</strong></a></h4>
+			</li>
+			<li>
+				<h4><a href="/ceo/loginCEO"><strong>사장님</strong></a></h4>
+			</li>
+		</div>
+		<div class="box_login login_email" style="grid-template-rows: 130px auto 170px;">
+			<h2 class="tit">간편하게 로그인하고<br><strong style="color: #F9A825">빵야빵야(屋)의</strong><br> 다양한 빵을 먹어보세요.</h2>
+			<div class="box_inp">
+				<div class="line_inp">
+					<input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요">
+					<p class="info_error" id="userIdError1">아이디를 입력해주세요.</p>
+				</div>
+				<div class="line_inp line_pw">
+					<input type="password" name="userPw" id="userPw" placeholder="비밀번호를 입력해주세요">
+					<button type="button" class="type_pwd hide" id="viewPass"></button>
+					<p class="info_error" id="userPwError1">비밀번호를 입력해주세요.</p>
+					<p class="info_error" id="loginError">아이디 또는 비밀번호가 일치하지 않습니다.</p>
 				</div>
 			</div>
-		</section>
-		<section>
-			<section class="spotlights alt" id="list">
-				<article style="border-width: 0px 1px 0px 0px;">
-					<a href="#" class="image fit"><img src="/images/garlicBread2.jpg" alt=""></a>
-					<h5>만동제과</h5>
-					<p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
-				</article>
-				<article style="border-width: 0px 1px 0px 0px;">
-					<a href="#" class="image fit"><img src="/images/까눌레1.jpg" alt=""></a>
-					<h5>리코 베이커리</h5>
-					<p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
-				</article>
-				<article style="border-width: 0px 1px 0px 0px;">
-					<a href="#" class="image fit"><img src="/images/휘낭시에2.png" alt=""></a>
-					<h5>버터랏츠</h5>
-					<p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
-				</article>
-				<article style="border-width: 0px 0px 0px 0px;">
-					<a href="#" class="image fit"><img src="/images/donut2.jpg" alt=""></a>
-					<h5>카페노티드</h5>
-					<p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
-				</article>
-				<article>
-					<a href="#" class="image fit"><img src="/images/휘낭시에3.png" alt=""></a>
-					<h5>만동제과</h5>
-					<p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
-				</article>
-				<article>
-					<a href="#" class="image fit"><img src="/images/스콘1.jpg" alt=""></a>
-					<h5>리코 베이커리</h5>
-					<p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
-				</article>
-				<article>
-					<a href="#" class="image fit"><img src="/images/donut1.jpg" alt=""></a>
-					<h5>버터랏츠</h5>
-					<p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
-				</article>
-				<article>
-					<a href="#" class="image fit"><img src="/images/melon1.jpg" alt=""></a>
-					<h5>카페노티드</h5>
-					<p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
-				</article>
-			</section>
-		</section>
-	</section>
-</div>
-<div class="list"></div>
-<p id="sentinel"></p>
-
-<!-- ----------------------------------------------------------------------------------------------Footer-------------------------------------------------------------------------------------------------------------------------- -->
+			<div class="col-6 col-12-medium">
+				<ul class="actions fit" style="margin-bottom: 0em;">
+					<li><input type="button" class="button primary fit" id="loginButton" value="로그인 하기" style="margin-top: 0em;"/></li>
+				</ul>
+				<ul class="actions fit" style="margin-bottom: 0em;">
+					<li>
+						<a href="#" class="button fit iconA kakaoA"><span class="iconSpan kakaoIcon">카카오로 시작하기</span></a>
+						<a href="#" class="button fit iconA naverA"><span class="iconSpan naverIcon">네이버로 시작하기</span></a>
+					</li>
+				</ul>
+				<div class="box_btn">
+					<a style="padding-left: 0px;" class="btn" href="/user/idFind">아이디 찾기</a>
+					<a class="btn" href="/user/pwFind">비밀번호 찾기</a>
+					<a class="btn" href="/user/join">회원가입</a>
+				</div>
+			</div>
+			<!-- 로그인 상태 -->
+			<div th:if="${check == 'false'}">
+				<input type="hidden" id="loginChk" th:value="${check}" />
+			</div>
+			<!-- 아이디 찾기 컨트롤러 -->
+			<div id="resultId" th:if="${resultId == 0}" style="display: none">
+				<span th:text="${resultId}"></span>
+			</div>
+			<!-- 비밀번호 찾기 컨트롤러 -->
+			<div id="resultPw" th:if="${resultPw == 0}" style="display: none">
+				<span th:text="${resultPw}"></span>
+			</div>
+		</div>
+	</form>
+</section>
 <!-- Footer -->
+<footer id="footer" th:include="/main/footer::footer_body"></footer>
+
 
 <!-- Scripts -->
-<script src="https://kit.fontawesome.com/8eb5905426.js" crossorigin="anonymous"></script>
 <script src="/js/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
 <script src="/js/browser.min.js"></script>
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script th:replace="/main/header::header_js"></script>
-<script>
+<script type="text/javascript">
+	let loginForm = $("#loginForm");
+
+	//비밀번호 숨기기
+	$('.type_pwd').on('click',function() {
+		let $this = $(this);
+		$this.toggleClass('hide');
+		if($this.hasClass('hide')){
+			$this.prev('input').prop('type','password');
+		}else{
+			$this.prev('input').prop('type','text');
+		}
+	});
+
+	// 아이디, 비밀번호 공백 막기
+	$(document).ready(function () {
+		$('#loginButton').on("click", function () {
+			if(!$("#userId").val()){
+				$("#userId").focus();
+				$("#userIdError1").show();
+				return;
+			}else{
+				$("#userIdError1").hide();
+			}
+
+			if(!$('#userPw').val()){
+				$("#userPw").focus();
+				$("#userPwError1").show();
+				return;
+			}else{
+				$("#userPwError1").hide();
+			}
+			loginForm.submit();
+
+			/* 로그인 실패 컨트롤러(왜 안들어오지) */
+			console.log("loginChk: " + $("#loginChk").val());
+			if($("#loginChk").val() == 'undefined'){
+				alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+			}
+		})
+
+		/* 아이디 찾기 컨트롤러 */
+		let resultId = $("#resultId span").text();
+		console.log("아이디 찾기 실패 결과: " + resultId);
+
+		if(resultId == 0 && resultId != ''){
+			alert("해당 전화번호로 가입된 이력이 존재하지 않습니다.");
+		}
+
+		/* 비밀번호 찾기 컨트롤러 */
+		let resultPw = $("#resultPw span").text();
+		console.log("비밀번호 변경 결과: " + resultPw);
+
+		if(resultPw == 0 && resultPw != ''){
+			alert("비밀번호 변경이 완료되었습니다. 다시 로그인 해주세요.");
+		}
+	})
+
+
 </script>
 </body>
-<script>
-	let currentPage = 1
-
-	const DATA_PER_PAGE = 10,
-			lastPage = 100;
-
-	const msgLoading = document.getElementById("msg-loading")
-
-
-	// 데이터 추가 함수
-	function addData(currentPage) {
-		$("#list").append("<article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article>");
-	}
-
-	// IntersectionObserver 갱신 함수
-	function observeLastChild(intersectionObserver) {
-
-		const listChildren = document.querySelectorAll("#list article")
-		listChildren.forEach(el => {
-
-			if (!el.nextSibling && currentPage < lastPage) {
-				intersectionObserver.observe(el) // el에 대하여 관측 시작
-			} else if (currentPage >= lastPage) {
-				intersectionObserver.disconnect()
-			}
-
-		})
-	}
-
-	// IntersectionObeserver 부분
-	const observerOption = {
-		root: null,
-		rootMargin: "0px 0px 0px 0px",
-		threshold: 0.5
-	}
-
-	// IntersectionObserver 인스턴스 생성
-	const io = new IntersectionObserver((entries, observer) => {
-		entries.forEach(entry => {
-
-			// entry.isIntersecting: 특정 요소가 뷰포트와 50%(threshold 0.5) 교차되었으면
-			if (entry.isIntersecting) {
-
-				// 다음 데이터 가져오기: 자연스러운 연출을 위해 setTime-out 사용
-				setTimeout(() => {
-					addData(++currentPage)
-					observer.unobserve(entry.target)
-					observeLastChild(observer)
-
-				}, 1000)
-			}
-		})
-	}, observerOption)
-
-
-	// 초기 데이터 생성
-	addData(currentPage)
-	observeLastChild(io)
-</script>
 </html>

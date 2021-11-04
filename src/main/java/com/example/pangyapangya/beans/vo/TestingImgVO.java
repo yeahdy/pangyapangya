@@ -9,5 +9,4 @@ public class TestingImgVO {
     Long ino;
     String img;
     Long tno;
-    int status;
 }
