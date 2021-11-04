@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @RequestMapping("/main/*")
 @RequiredArgsConstructor
-public class breadListController {
+public class BreadListController {
 
     @GetMapping("breadList")
     public String breadList(){ return "main/breadList"; }
