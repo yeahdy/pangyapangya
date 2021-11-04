@@ -16,5 +16,8 @@ public class BakeryVO {
     private String shopName;
     private String bakeryPhoto;
     private String regDate;
+    private String breadType;
+    private String breadName;
+    private int breadPrice;
     /*private List<BakeryFileVO> attachList;*/
 }

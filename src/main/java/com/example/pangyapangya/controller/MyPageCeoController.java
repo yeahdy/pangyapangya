@@ -64,13 +64,13 @@ public class MyPageCeoController {
 
     //마이페이지(사장님)-회원 탈퇴
     @GetMapping("delete")
-    public String myPageCeoDelete(HttpSession session, CeoVO ceoVO){
+    public String myPageCeoDelete(HttpSession session, Model model){
         String sessionU = (String)session.getAttribute("sessionU");
         String sessionC = (String)session.getAttribute("sessionC");
         if(sessionU == null && sessionC == null){
             return "/user/login";
         }
-
+        model.addAttribute("ceo", bakeryService.getCeo(sessionC));
         return "myPageCeo/delete";
     }
 
@@ -199,36 +199,24 @@ public class MyPageCeoController {
 
 
     /*@PostMapping("delete")
-    public String delete(RedirectAttributes rttr, CeoVO ceoVO, HttpServletRequest req){
+    public String delete(CeoVO ceoVO, HttpServletRequest req, RedirectAttributes rttr){
+        log.info("---------로그인-----------");
+        log.info("ceoId: " + ceoVO.getCeoId());
+        log.info("ceoPw: " + ceoVO.getCeoPw());
+        log.info("--------------------------");
+
         HttpSession session = req.getSession(); // session 생성
         if(!ceoService.loginCEO(ceoVO)) {
             log.info("-------로그인 실패-------");
-            session.setAttribute("sessionC", null);  // session 저장하기
-            rttr.addFlashAttribute("check", "false");
-            return "user/login";
+            session.setAttribute("sessionC", null);
+            rttr.addAttribute("check", "false");
+            return "ceo/loginCEO";
+        }else{
+            log.info("-------로그인 성공-------");
+            CeoVO ceoInfo= ceoService.ceoInfo(ceoVO.getCeoId());
+            session.setAttribute("sessionC", ceoInfo.getCeoId());
+            return mainView;
         }
-        log.info("-------로그인 성공-------");
-        CeoVO ceoInfo= ceoService.ceoInfo(ceoVO.getCeoId());
-        session.setAttribute("sessionC", ceoInfo.getCeoId()); //session 저장하기
-
-
-
-        if(ceoService.(ceoVO)){
-            session = req.getSession(false);    // false: 세션이 없을 경우 null 반환. 기본값 true
-            if(session != null){
-                session.invalidate();   //세션 삭제
-                return new RedirectView("main/mainPage");
-            }
-        }*/
-
-
-
-//        쿼리 스트링으로 전달
-//        rttr.addAttribute("bno", boardVO.getBno());
-//        세션의 flash영역을 이용하여 전달
-
-//        RedirectView를 사용하면 redirect방식으로 전송이 가능하다.
-   /*     return "main/mainPage";
     }*/
 }
 
