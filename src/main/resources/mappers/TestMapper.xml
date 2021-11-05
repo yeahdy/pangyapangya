@@ -2,39 +2,5 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.pangyapangya.mappers.TestMapper">
-    <select id="read" resultType="TestingVO">
-        <![CDATA[
-            SELECT * FROM
-            (
-                SELECT ROWNUM R,TNO, STARTDATE, ENDDATE, CEOID, TITLE, BREADTYPE, BREADNAME, PEOPLE, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REGDATE
-                FROM TBL_TESTING
-                ORDER BY TNO DESC
-            )
-            WHERE R<=20
-        ]]>
-    </select>
 
-    <select id="addData" resultType="TestingVO">
-        <![CDATA[
-            SELECT * FROM
-            (
-                SELECT ROWNUM R,TNO, STARTDATE, ENDDATE, CEOID, TITLE, BREADTYPE, BREADNAME, PEOPLE, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REGDATE
-                FROM TBL_TESTING
-                ORDER BY TNO DESC
-            )
-            WHERE R > #{temp} AND R <= #{temp}+20
-        ]]>
-    </select>
-
-    <select id="getTotal" resultType="_int">
-        SELECT COUNT(TNO) FROM TBL_TESTING
-    </select>
-
-    <select id="getRead" resultType="TestingVO">
-        SELECT * FROM TBL_TESTING WHERE TNO = #{tno}
-    </select>
-
-    <select id="getReadImgs" resultType="TestingImgVO">
-        SELECT * FROM TBL_TESTING_IMG WHERE TNO = #{tno}
-    </select>
 </mapper>

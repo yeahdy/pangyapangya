@@ -20,6 +20,48 @@ public class ClassCeoController {
 
     private final ClassCeoService classCeoService;
 
+    //마이페이지(사장님)-글 등록[원데이 클래스]
+    @GetMapping("oneDay")
+    public String myPageCeoOneDay(Model model, String ceoId){
+        ceoId="wnsrbod";
+        model.addAttribute("ceo", classCeoService.getCeo(ceoId));
+        return "myPageCeo/oneDay"; }
+
+
+    @PostMapping("oneDay")
+    public RedirectView oneDay(ClassCeoVO classCeoVO, RedirectAttributes rttr){
+        classCeoService.register(classCeoVO);
+        rttr.addFlashAttribute("bno", classCeoVO.getBno());
+        return new RedirectView("oneDayRe");
+    }
+
+    //마이페이지(사장님) - 내가 작성한 글(원데이 클래스)
+    @GetMapping("oneDayRe")
+    public String oneDayRe(Criteria criteria, Model model){
+
+        log.info("-------------------------------");
+        log.info("oneDayRe");
+        log.info("-------------------------------");
+        model.addAttribute("total", classCeoService.myTotal("wnsrbod"));
+        model.addAttribute("list", classCeoService.getList(criteria));
+        model.addAttribute("pageMaker", new PageDTO(classCeoService.getTotal(criteria), 10, criteria));
+        return "myPageCeo/oneDayRe";
+    }
+
+    //내가 작성한 글에서 원데이클래스 게시글 수정
+    @PostMapping("oneDayModify")
+    public RedirectView oneDayModify(ClassCeoVO classCeoVO, RedirectAttributes rttr){
+        log.info("-------------------------------");
+        log.info("modify : " + classCeoVO.toString());
+        log.info("-------------------------------");
+
+        if(classCeoService.modify(classCeoVO)){
+            rttr.addAttribute("result", "success");
+            rttr.addAttribute("bno", classCeoVO.getBno());
+        }
+        return new RedirectView("oneDayModify");
+    }
+
 
     //마이페이지(사장님)-글 등록[빵집 소개]
     /*@GetMapping("bakeryModify")
@@ -32,43 +74,6 @@ public class ClassCeoController {
         return "myPageCeo/bakeryModify";
     }*/
 
-    //마이페이지(사장님)-글 등록[원데이 클래스]
-    @GetMapping("oneDay")
-    public String myPageCeoOneDay(Model model, String ceoId){
-        ceoId="wnsrbod";
-        model.addAttribute("ceo", classCeoService.getCeo(ceoId));
-        return "myPageCeo/oneDay"; }
-
-
-    @PostMapping("oneDay")
-    public RedirectView oneDay(ClassCeoVO classCeoVO, RedirectAttributes rttr, CeoVO ceoVO){
-        log.info("-------------------------------");
-        log.info("oneDay : " + classCeoVO.toString());
-        log.info("-------------------------------");
-
-       /* if(bakeryVO.getAttachList() != null){
-            bakeryVO.getAttachList().forEach(attach -> log.info(attach.toString()));
-        }*/
-        classCeoService.register(classCeoVO);
-//        쿼리 스트링으로 전달
-//        rttr.addAttribute("bno", boardVO.getBno());
-//        세션의 flash영역을 이용하여 전달
-        rttr.addFlashAttribute("bno", classCeoVO.getBno());
-//        RedirectView를 사용하면 redirect방식으로 전송이 가능하다.
-        return new RedirectView("oneDayRe");
-    }
-
-    @GetMapping("oneDayRe")
-    public String oneDayRe(Criteria criteria, Model model){
-
-        log.info("-------------------------------");
-        log.info("oneDayRe");
-        log.info("-------------------------------");
-        model.addAttribute("total", classCeoService.myTotal("wnsrbod"));
-        model.addAttribute("list", classCeoService.getList(criteria));
-        model.addAttribute("pageMaker", new PageDTO(classCeoService.getTotal(criteria), 10, criteria));
-        return "myPageCeo/oneDayRe";
-    }
 
     //    여러 요청을 하나의 메소드로 받을 때에는 {}를 사용하여 콤마로 구분한다.
    /* @GetMapping({"oneDayRe", "modify"})
@@ -85,22 +90,6 @@ public class ClassCeoController {
         model.addAttribute("bakery", classCeoService.get(bno));
         model.addAttribute("criteria", criteria);
     }*/
-
-    //    /modify 요청을 처리할 수 있는 비지니스 로직 작성
-//    수정 성공시 result에 "success"를 담아서 전달한다.
-//    단위 테스트로 View에 전달할 파라미터를 조회한다.
-    @PostMapping("oneDayModify")
-    public RedirectView oneDayModify(ClassCeoVO classCeoVO, RedirectAttributes rttr){
-        log.info("-------------------------------");
-        log.info("modify : " + classCeoVO.toString());
-        log.info("-------------------------------");
-
-        if(classCeoService.modify(classCeoVO)){
-            rttr.addAttribute("result", "success");
-            rttr.addAttribute("bno", classCeoVO.getBno());
-        }
-        return new RedirectView("oneDayModify");
-    }
 
     //    /remove 요청을 처리할 수 있는 비지니스 로직 작성
 //    삭제 성공 시 result에 "success"를 flash에 담아서 전달한다.

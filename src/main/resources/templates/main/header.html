@@ -62,7 +62,7 @@
 
 	<!-- Logo -->
 	<span class="logo">
-		<a href="/main/mainPage"><img src="/images/mainLogo2.png" alt="myPage" style="width: 100px;margin-top: 1.3em;"/></a>
+		<a href="/main/mainPage"><img src="/images/breadLogo_re.png" alt="myPage" style="width: 100px;margin-top: 1.3em;"/></a>
 		<span></span>
 	</span>
 
@@ -87,27 +87,31 @@
 				<input type="hidden" class="box" value="검색">
 			</form>
 			<!-- 비회원일 경우 -->
-			<li th:if="${session.sessionU == null && session.sessionC == null}">
+
+			<li>
 				<a href="#" class="icon solid fa-angle-down"><img src="/images/iconPerson.png" alt="myPage" class="headerIcon"/></a>
 				<ul>
 					<li><a href="/user/login">로그인</a></li>
 					<li><a href="/user/join">회원가입</a></li>
 				</ul>
 			</li>
+
+
 			<!-- 일반회원일 경우 -->
-			<li th:if="${session.sessionU != null}">
-				<input type="hidden" id="sessionU" th:value="${session['sessionU']}" />
+			<!--
+			<li>
 				<a href="#" class="icon solid fa-angle-down"><img src="/images/iconPerson.png" alt="myPage" class="headerIcon"/></a>
 				<ul>
 					<li><a href="/mypage/breadOrderList">주문 내역</a></li>
 					<li><a href="/mypage/myWriting_new">내 글보기</a></li>
 					<li><a href=" /mypage/checkPassword_new">내 정보관리</a></li>
-					<li><a th:href="@{/user/logout}">로그아웃</a></li>
 				</ul>
 			</li>
+			-->
+
 			<!-- 사장님일 경우 -->
-			<li th:if="${session.sessionC != null}">
-				<input type="hidden" id="sessionC" th:value="${session['sessionC']}" />
+			<!--
+			<li>
 				<a href="#" class="icon solid fa-angle-down"><img src="/images/iconPerson.png" alt="myPage" class="headerIcon"/></a>
 				<ul>
 					<li>
@@ -133,10 +137,9 @@
 							<li><a href="/myPageCeo/delete">회원 탈퇴</a></li>
 						</ul>
 					</li>
-					<li><a th:href="@{/user/logout}">로그아웃</a></li>
 				</ul>
 			</li>
-
+			-->
 			<li style="margin-left: -1em;">
 				<a href="/mypage/cart"><img src="/images/iconCart.png" alt="cart" class="headerIcon"/></a>
 			</li>
@@ -191,13 +194,6 @@
 		}
 		searchForm.submit();
 	})
-
-	// 세션값 확인
-	if($('#sessionU').val() != null){
-		console.log("session: " + $('#sessionU').val());
-	}else if ($('#sessionC').val() != null){
-		console.log("session: " + $('#sessionC').val());
-	}
 
 </script>
 </body>
