@@ -19,5 +19,5 @@ public class ClassCeoVO {
     private String description;
     private String breadType;
     private String breadName;
-    private int breadPrice;
+    private String bakeryShopname;
 }
