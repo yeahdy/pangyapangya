@@ -48,6 +48,7 @@
         }
         #img-view{
             width: 560px;
+            height: 560px;
         }
         #img-view img{
             width: 560px;
@@ -263,51 +264,50 @@
 
 <div class="inner">
     <form method="post" action="" id="registForm">
-      <th:block class="field" th:object="${info}">
+        <th:block class="field" th:object="${info}">
+            <div>
+                <div id="info">
+                    <section id="img-section">
+                        <div id="img-view">
+                            <img th:src="*{bakeryPhoto}">
+                        </div>
+                    </section>
+                    <!-- 구매창 -->
+                    <aside id="box">
+                        <div class="payment">
+                            <div class="maker-card">
+                                <input type="hidden">
+                                <a href="#" th:text="*{shopName}"></a>
+                            </div>
+                            <h2 class="bread-name" th:text="*{breadName}">브라우니🍞</h2>
+                            <div class="price-detail">
+                            <span>
+                                <strong th:text="*{breadPrice}">3000</strong>
+                                원
+                            </span>
+                            </div>
 
+                            <fieldset><!---->
+                                <button type="submit">
+                                    장바구니
+                                </button>
 
-        <div>
-        <div id="info">
-            <section id="img-section">
-                <div id="img-view">
-                    <img th:src="*{bakeryPhoto}">
+                                <button class="kakao" type="submit"
+                                        style="overflow: hidden; width: 100px; background-color: #ffeb00;">
+                                    <img src="/images/kakao.png">
+                                </button>
+
+                                <button type="submit">
+                                    구매
+                                </button>
+                            </fieldset>
+                        </div>
+                    </aside>
                 </div>
-            </section>
-            <!-- 구매창 -->
-            <aside id="box">
-                <div class="payment">
-                    <div class="maker-card">
-                        <input type="hidden" >
-                        <a href="#" th:text="*{shopName}"></a>
-                    </div>
-                    <h2 class="bread-name" th:text="*{breadName}">브라우니🍞</h2>
-                    <div class="price-detail">
-                        <span>
-                            <strong th:text="*{breadPrice}">3000</strong>
-                            원
-                        </span>
-                    </div>
-
-                    <fieldset><!---->
-                        <button type="submit">
-                            장바구니
-                        </button>
-
-                        <button class="kakao" type="submit" style="overflow: hidden; width: 100px; background-color: #ffeb00;">
-                            <img src="/images/kakao.png">
-                        </button>
-
-                        <button type="submit">
-                            구매
-                        </button>
-                    </fieldset>
-                </div>
-            </aside>
-        </div>
-    </div>
+            </div>
     <section id="prd-info">
         <p th:text="*{content}">
-            제품 배송 안내❗<br>
+            <!--제품 배송 안내❗<br>
             매주 월, 목요일 출고 진행합니다.<br>
             목 ~ 일까지 주문건 👉🏻 (월)출고<br>
             월 ~ 수까지 주문건 👉🏻 (목)출고<br>
@@ -341,11 +341,9 @@
             <br>
             ❗ 주의사항 ❗<br>
             ✔ opp포장 → 보냉포장 → 친환경 보냉박스로 포장되어 발송됩니다.<br>
-            ✔ 수제로 만들어지는 제품이므로 식품에 대한 합당한 하자가 발생하지 않는 한 교환, 반품이 불가합니다.<br>
+            ✔ 수제로 만들어지는 제품이므로 식품에 대한 합당한 하자가 발생하지 않는 한 교환, 반품이 불가합니다.<br>-->
         </p>
     </section>
-      </th:block>
-    </form>
     <section id="prd-review">
         <div id="review-title">
             구매 후기
@@ -520,6 +518,8 @@
             </a>
         </ul>
     </section>
+    </th:block>
+    </form>
 </div>
 <!-- Scripts -->
 <script src="/js/jquery.min.js"></script>
