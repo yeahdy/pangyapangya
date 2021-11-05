@@ -1,5 +1,6 @@
 package com.example.pangyapangya.controller;
 
+import com.example.pangyapangya.beans.vo.KakaoUserVO;
 import com.example.pangyapangya.beans.vo.UserVO;
 import com.example.pangyapangya.services.UserService;
 import com.google.gson.JsonElement;
@@ -207,13 +208,13 @@ public class UserController {
         String reqUrl =
                 "https://kauth.kakao.com/oauth/authorize"
                         + "?client_id=56ca7f16524140167e76230ff811876e"
-                        + "&redirect_uri=http://localhost:10009/user/login"
+                        + "&redirect_uri=http://localhost:10009/main/mainPage"
                         + "&response_type=code";
 
         return reqUrl;
     }
 
-    // 카카오 연동정보 조회
+    // 카카오 연동정보 조회 + DB에 회원 정보넣기
     @RequestMapping(value = "/selectMyAccessTocken")
     public String oauthKakao(
             @RequestParam(value = "code", required = false) String code
@@ -229,14 +230,25 @@ public class UserController {
 
         // 토큰을 이용해 사용자 정보 가져오기
         HashMap<String, Object> userInfo = getUserInfo(access_Token);
-        System.out.println("###access_Token#### : " + access_Token);
-        System.out.println("###userInfo#### : " + userInfo.get("email"));
-        System.out.println("###nickname#### : " + userInfo.get("nickname"));
+        System.out.println("------- access_Token ------- : " + access_Token);
+        System.out.println("------- userInfo ------- : " + userInfo.get("email"));
+        System.out.println("------- nickname ------- : " + userInfo.get("nickname"));
 
-        JSONObject kakaoInfo =  new JSONObject(userInfo);
-        model.addAttribute("kakaoInfo", kakaoInfo);
+        // 가져온 회원 정보 DB에 넣어 회원가입 시키기
+        UserVO userVO = new UserVO();
+        String kakao_email = (String)userInfo.get("email"); // 회원 아이디
+        String kakao_nickname = (String)userInfo.get("nickname");   // 회원 이름
 
-        return "user/login"; //본인 원하는 경로 설정
+        // 만약 DB에 해당 회원의 ID가 없다면 회원가입 시키기
+        if(!userService.checkId(kakao_email)){
+            log.info("유저 회원가입");
+            userVO.setUserId(kakao_email);
+            userVO.setUserName(kakao_nickname);
+            userService.joinKakao(userVO);
+        }
+        // 만약 이미 회원가입 된 회원이라면? 로그인하기
+
+        return "main/mainPage"; //본인 원하는 경로 설정
     }
 
     //토큰발급
@@ -259,7 +271,7 @@ public class UserController {
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=56ca7f16524140167e76230ff811876e");  //본인이 발급받은 key
-            sb.append("&redirect_uri=http://localhost:10009/user/login");     // 본인이 설정해 놓은 경로
+            sb.append("&redirect_uri=http://localhost:10009/main/mainPage");     // 본인이 설정해 놓은 경로
             sb.append("&code=" + authorize_code);
             bw.write(sb.toString());
             bw.flush();

@@ -121,6 +121,13 @@
 						</a>
 						<a href="javascript:void(0)" onclick="selectMyAccessTocken();" class="button fit iconA naverA">
 							<span class="iconSpan naverIcon">토큰 가져오기</span>
+							<!-- 회원정보 가져오기 -->
+							<div th:if="${kakaoUser_chk == '0'}" style="display: none">
+								<div th:object="${kakaoUserVO}">
+								<input type="hidden" id="kakao_email" th:value="*{userId}">
+								<input type="hidden" id="kakao_nickname" th:value="*{userName}">
+								</div>
+							</div>
 						</a>
 					</li>
 				</ul>
@@ -231,53 +238,6 @@
 			}
 		});
 	}
-
-	// 인가코드 가져오기
-	let codeURL = new URL(window.location.href);
-	let code= codeURL.searchParams.get('code');
-
-	// 인가코드 확인
-	if(code != null){
-		console.log("codeURL: " + codeURL);
-		console.log("code: " + code);
-	}else {
-		console.log("코드 존재하지 않음")
-	}
-
-	/* 토큰 가져오기 */
-	function selectMyAccessTocken() {
-		let param = {"code" : code}
-
-		$.ajax({
-			url  : '/user/selectMyAccessTocken',
-			type : 'get',
-			data : param,
-			dataType : "JSON",
-			contentType: "application/x-www-form-urlencoded;charset=utf-8",
-			success : function(result){
-				console.log(result);
-				if(result != ""){
-					let data = JSON.stringify(result);
-					console.log("kakaoInfo Json: " + data)
-
-					alert("카카오로그인 성공 accessToken : " + data['accessToken']);
-					alert(
-							"user : \n" + "email : "
-							+ data['email']
-							+ "\nnickname : "
-							+ data['nickname']);
-				}
-			},
-			error: function(xhr, type){
-				console.log(xhr);
-				console.log(type);
-			}
-		})
-	}
-
-
-
-
 
 
 
