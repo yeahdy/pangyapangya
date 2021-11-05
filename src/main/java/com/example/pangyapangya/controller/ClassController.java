@@ -16,7 +16,7 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/class/*")
 @RequiredArgsConstructor
-public class classController {
+public class ClassController {
 
     @GetMapping("classMain")
     public String classMain(){ return "class/classMain"; }

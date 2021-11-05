@@ -49,7 +49,12 @@ public class mainController {
     public String mainPage(){ return "main/mainPage"; }
 
     @GetMapping("mainPage_test")
-    public String mainPage_test(){
+    public String mainPage_test(HttpSession session){
+        String sessionU = (String)session.getAttribute("sessionU");
+        String sessionC = (String)session.getAttribute("sessionC");
+        if(sessionU == null && sessionC == null){
+            return "/user/login";
+        }
         return "main/mainPage_test";
     }
 

@@ -3,75 +3,16 @@
 
 <html>
 <head>
-	<title>로그인 | 빵야빵야(屋)</title>
+	<title>아이디 찾기 | 빵야빵야(屋)</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<link rel="stylesheet" href="/css/main.css" />
-	<link rel="stylesheet" href="/css/login.css" />
-	<link rel="icon" type="image/png"  href="/images/favicon.png"/>
-	<style th:include="/main/header::header_style"></style>
-	<style>
-		. info_error{
-			margin: 0 0 1em 0;
-		}
-
-		/* 로그인 구분 */
-		.box {
-			display: flex;
-			justify-content: center;
-			width: 460px;
-			margin: 0 auto;
-			cursor: pointer;
-			padding: 1em;
-		}
-
-		.box li {
-			width: 50%;
-			cursor: pointer;
-			list-style: none;
-			float: left;
-		}
-
-		.box h4{
-			margin-bottom: 0em;
-		}
-
-		.box a {
-			font-size: 18px;
-		}
-
-		/* 카카오, 네이버 로그인*/
-		.iconSpan{
-			padding: 0 0 0 26px;
-			background-position: 2px;
-			color: #666;
-			font-size: 14px;
-		}
-		.kakaoIcon {
-			background: url(https://image.oliveyoung.co.kr/pc-static-root/image/comm/logo_kakao_40.png) no-repeat 0 0;
-			background-size: 19px auto;
-		}
-		.naverIcon {
-			background: url(//www.saraminimage.co.kr/ui/social_login/icon_sns_naver_m.png) no-repeat 0 0;
-			background-size: 16px auto;
-		}
-
-		.iconA{
-			height: 2.9em;
-			width: 48% !important;
-			border-radius: 0.7em;
-			margin: 2px;
-		}
-
-		.kakaoA{
-			background-color: #f9e003;
-			border: solid 0px !important;
-		}
-
-		.naverA{
-			border-color: #dcdcdc !important;
+	<link rel="stylesheet" href="/css/idFind.css" />
+	<style th:include="/main/header::header_style">
+		.line_inp :not(button){
+			border: solid 0px;
 		}
 	</style>
 </head>
@@ -85,133 +26,137 @@
 <!-- Wrapper -->
 <!-- Main -->
 <section class="cont_login container">
-	<form action="/user/login" method="post" id="loginForm">
-		<div class="box">
-			<li style="border-right: 1px solid #dcdcdc">
-				<h4><a href="/user/login"><strong style="color: #F9A825; border-bottom: 1px solid">일반회원</strong></a></h4>
-			</li>
-			<li>
-				<h4><a href="/ceo/loginCEO"><strong>사장님</strong></a></h4>
-			</li>
-		</div>
-		<div class="box_login login_email" style="grid-template-rows: 130px auto 170px;">
-			<h2 class="tit">간편하게 로그인하고<br><strong style="color: #F9A825">빵야빵야(屋)의</strong><br> 다양한 빵을 먹어보세요.</h2>
+	<form action="#" method="post" id="frm-login">
+		<div class="box_login login_email" style="height: 850px">
 			<div class="box_inp">
 				<div class="line_inp">
-					<input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요">
-					<p class="info_error" id="userIdError1">아이디를 입력해주세요.</p>
+					<p class="form_title">사업자 등록번호</p>
+					<input type="tel" name="shopRegNum" id="shopRegNum" placeholder="사업자 등록번호를 입력해주세요">
+					<p class="info_error" id="shopRegNumError1">가게 이름을 입력해주세요.</p>
 				</div>
-				<div class="line_inp line_pw">
-					<input type="password" name="userPw" id="userPw" placeholder="비밀번호를 입력해주세요">
-					<button type="button" class="type_pwd hide" id="viewPass"></button>
-					<p class="info_error" id="userPwError1">비밀번호를 입력해주세요.</p>
-					<p class="info_error" id="loginError">아이디 또는 비밀번호가 일치하지 않습니다.</p>
+				<div class="line_inp">
+					<p class="form_title">가게 이름</p>
+					<input type="text" name="shopName" id="shopName" placeholder="가게 이름을 입력해주세요">
+					<p class="info_error" id="shopNameError1">가게 이름을 입력해주세요.</p>
+				</div>
+				<div class="line_inp">
+					<p class="form_title">가게 전화번호</p>
+					<input type="tel" name="shopCallNumber" id="shopCallNumber" placeholder="전화번호를 - 없이 입력해주세요">
+					<p class="info_error" id="shopCallNumberError1">전화번호 입력해주세요.</p>
+				</div>
+				<div class="line_inp">
+					<p class="form_title">가게 주소</p>
+					<input type="text" id="sample6_postcode" placeholder="우편번호">
+					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+					<input type="text" id="sample6_address" placeholder="주소"><br>
+					<input type="text" id="sample6_detailAddress" placeholder="상세주소">
+					<input type="text" id="sample6_extraAddress" placeholder="참고항목">
+					<p class="info_error" id="shopAddressError1">가게 주소를 입력해주세요.</p>
 				</div>
 			</div>
 			<div class="col-6 col-12-medium">
-				<ul class="actions fit" style="margin-bottom: 0em;">
-					<li><input type="button" class="button primary fit" id="loginButton" value="로그인 하기" style="margin-top: 0em;"/></li>
+				<ul class="actions fit" style="margin-bottom: 3em;">
+					<li><a href="/main/joinConfirm" class="button primary fit" style="margin-top: 1em;">다음</a></li>
 				</ul>
-				<ul class="actions fit" style="margin-bottom: 0em;">
-					<li>
-						<a href="#" class="button fit iconA kakaoA"><span class="iconSpan kakaoIcon">카카오로 시작하기</span></a>
-						<a href="#" class="button fit iconA naverA"><span class="iconSpan naverIcon">네이버로 시작하기</span></a>
-					</li>
-				</ul>
-				<div class="box_btn">
-					<a style="padding-left: 0px;" class="btn" href="/user/idFind">아이디 찾기</a>
-					<a class="btn" href="/user/pwFind">비밀번호 찾기</a>
-					<a class="btn" href="/user/join">회원가입</a>
-				</div>
-			</div>
-			<!-- 로그인 상태 -->
-			<div th:if="${check == 'false'}">
-				<input type="hidden" id="loginChk" th:value="${check}" />
-			</div>
-			<!-- 아이디 찾기 컨트롤러 -->
-			<div id="resultId" th:if="${resultId == 0}" style="display: none">
-				<span th:text="${resultId}"></span>
-			</div>
-			<!-- 비밀번호 찾기 컨트롤러 -->
-			<div id="resultPw" th:if="${resultPw == 0}" style="display: none">
-				<span th:text="${resultPw}"></span>
 			</div>
 		</div>
 	</form>
 </section>
-<!-- Footer -->
-<footer id="footer" th:include="/main/footer::footer_body"></footer>
 
+
+
+<section class="cont_login container">
+	<div class="box_login find_id">
+		<h2 class="title">입력하신 휴대폰 번호로 탈잉에<br>가입된 내역은 다음과 같습니다.</h2>
+		<p class="info_text">총 1건의 가입 내역이 확인되었습니다.</p>
+		<div class="list_id mCustomScrollbar _mCS_1 mCS-autoHide" style="position: relative; overflow: visible;"><div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" style="max-height: 126px;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container" style="position: relative; top: 0px; left: 0px;" dir="ltr">
+			<ul>
+				<li>
+					<div class="id">
+						<span>카카오톡 아이디</span>
+						<p>yejine98@nate.com</p>
+					</div>
+					<div class="date">
+						<span>가입일자</span>
+						<p>2020.08.07</p>
+					</div>
+				</li>
+			</ul>
+		</div></div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; display: block; height: 125px; max-height: 116px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 50px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div>
+		<a href="/Account/LoginPage.php" class="btn">로그인 창으로 돌아가기</a>
+	</div>
+</section>
+<!-- Footer -->
+<footer id="footer">
+	<div class="inner">
+		<section class="info">
+			<div class="team">
+				<article>
+					<p>
+						<strong class="name">Policies</strong>
+						<a href="/main/rule" class="title">서비스 이용약관</a><br>
+						<a href="/main/privacy" class="title">개인정보 처리 방침</a>
+					</p>
+				</article>
+			</div>
+			<div class="team">
+				<article>
+					<p>
+						<strong class="name">제휴문의</strong>
+						<span class="title">BBangya@gmail.com</span><br>
+					</p>
+				</article>
+				<article>
+					<p>
+						<strong class="name">빵야빵야(屋) 고객센터</strong>
+						<span class="title">1588-8888(주 7일 오전 10시~저녁 10시까지)</span>
+					</p>
+				</article>
+			</div>
+			<div class="team">
+				<p>
+					<strong class="name">Follow</strong>
+				</p>
+				<ul class="contact-icons">
+					<li class="icon brands fa-dribbble">
+						<span><strong>Blog</strong></span><br>
+						<a href="https://blog.naver.com/yejine98" target="_blank">yeahdy</a><br>
+					</li>
+					<li class="icon brands fa-github">
+						<span><strong>Github</strong></span><br>
+						<a href="https://github.com/yeahdy" target="_blank">yeahdy</a>
+						<a href="https://github.com/HanJunKyu" target="_blank">HanJunKyu</a><br>
+						<a href="https://github.com/gomjiyun" target="_blank">gomjiyun</a>
+						<a href="https://github.com/hyeongjin0706" target="_blank">hyeongjin0706</a><br>
+						<a href="https://github.com/hyunjuu" target="_blank">hyunjuu</a>
+						<a href="https://github.com/CraBk94" target="_blank">CraBk94</a><br>
+					</li>
+				</ul>
+			</div>
+		</section>
+	</div>
+
+	<div class="copyright">
+		&copy; Copyright 2021 BBangyaBBangya(屋) inc, ltd. All rights reserved
+	</div>
+</footer>
 
 <!-- Scripts -->
 <script src="/js/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
 <script src="/js/browser.min.js"></script>
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script th:replace="/main/header::header_js"></script>
 <script type="text/javascript">
-	let loginForm = $("#loginForm");
-
-	//비밀번호 숨기기
-	$('.type_pwd').on('click',function() {
-		let $this = $(this);
-		$this.toggleClass('hide');
-		if($this.hasClass('hide')){
-			$this.prev('input').prop('type','password');
-		}else{
-			$this.prev('input').prop('type','text');
-		}
-	});
-
-	// 아이디, 비밀번호 공백 막기
-	$(document).ready(function () {
-		$('#loginButton').on("click", function () {
-			if(!$("#userId").val()){
-				$("#userId").focus();
-				$("#userIdError1").show();
-				return;
-			}else{
-				$("#userIdError1").hide();
-			}
-
-			if(!$('#userPw').val()){
-				$("#userPw").focus();
-				$("#userPwError1").show();
-				return;
-			}else{
-				$("#userPwError1").hide();
-			}
-			loginForm.submit();
-
-			/* 로그인 실패 컨트롤러(왜 안들어오지) */
-			console.log("loginChk: " + $("#loginChk").val());
-			if($("#loginChk").val() == 'undefined'){
-				alert("아이디 또는 비밀번호가 일치하지 않습니다.");
-			}
-		})
-
-		/* 아이디 찾기 컨트롤러 */
-		let resultId = $("#resultId span").text();
-		console.log("아이디 찾기 실패 결과: " + resultId);
-
-		if(resultId == 0 && resultId != ''){
-			alert("해당 전화번호로 가입된 이력이 존재하지 않습니다.");
-		}
-
-		/* 비밀번호 찾기 컨트롤러 */
-		let resultPw = $("#resultPw span").text();
-		console.log("비밀번호 변경 결과: " + resultPw);
-
-		if(resultPw == 0 && resultPw != ''){
-			alert("비밀번호 변경이 완료되었습니다. 다시 로그인 해주세요.");
-		}
-	})
-
-
+	// 스크롤 효과
+	scrollPlugin();
+	function scrollPlugin(){
+		$('.list_id').mCustomScrollbar({
+			// 테마
+			theme:"minimal-dark"
+		});
+	}
 </script>
 </body>
 </html>

@@ -8,5 +8,7 @@
         <typeAlias type="com.example.pangyapangya.beans.vo.UserVO" alias="UserVO"></typeAlias>
         <typeAlias type="com.example.pangyapangya.beans.vo.ClassCeoVO" alias="ClassCeoVO"></typeAlias>
         <typeAlias type="com.example.pangyapangya.beans.vo.CeoVO" alias="CeoVO"/>
+        <typeAlias type="com.example.pangyapangya.beans.vo.ClassReplyVO" alias="ClassReplyVO"></typeAlias>
+
     </typeAliases>
 </configuration>
