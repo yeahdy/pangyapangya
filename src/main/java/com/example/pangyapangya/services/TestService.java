@@ -2,6 +2,7 @@ package com.example.pangyapangya.services;
 
 import com.example.pangyapangya.beans.dao.TestDAO;
 import com.example.pangyapangya.beans.vo.TestingImgVO;
+import com.example.pangyapangya.beans.vo.TestingRequestVO;
 import com.example.pangyapangya.beans.vo.TestingVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,4 +35,6 @@ public class TestService {
     public List<TestingImgVO> getReadImgs(Long tno){
         return testDAO.getReadImgs(tno);
     }
+
+    public void addTestingRequest(TestingRequestVO testingRequestVO){testDAO.addTestingRequest(testingRequestVO);}
 }
