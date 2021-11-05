@@ -3,6 +3,8 @@
 
 <html>
 <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>로그인 | 빵야빵야(屋)</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -41,6 +43,38 @@
 		.box a {
 			font-size: 18px;
 		}
+
+		/* 카카오, 네이버 로그인*/
+		.iconSpan{
+			padding: 0 0 0 26px;
+			background-position: 2px;
+			color: #666;
+			font-size: 14px;
+		}
+		.kakaoIcon {
+			background: url(https://image.oliveyoung.co.kr/pc-static-root/image/comm/logo_kakao_40.png) no-repeat 0 0;
+			background-size: 19px auto;
+		}
+		.naverIcon {
+			background: url(//www.saraminimage.co.kr/ui/social_login/icon_sns_naver_m.png) no-repeat 0 0;
+			background-size: 16px auto;
+		}
+
+		.iconA{
+			height: 2.9em;
+			width: 48% !important;
+			border-radius: 0.7em;
+			margin: 2px;
+		}
+
+		.kakaoA{
+			background-color: #f9e003;
+			border: solid 0px !important;
+		}
+
+		.naverA{
+			border-color: #dcdcdc !important;
+		}
 	</style>
 </head>
 <body class="is-preload" style="padding: 5em 200px 0 200px;background-color: white;">
@@ -51,56 +85,73 @@
 </header>
 
 <!-- Wrapper -->
-	<!-- Main -->
-	<section class="cont_login container">
-		<form action="/user/login" method="post" id="loginForm">
-			<div class="box">
-				<li style="border-right: 1px solid #dcdcdc">
-					<h4><a href="/user/login"><strong style="color: #F9A825; border-bottom: 1px solid">일반회원</strong></a></h4>
-				</li>
-				<li>
-					<h4><a href="/ceo/loginCEO"><strong>사장님</strong></a></h4>
-				</li>
-			</div>
-			<div class="box_login login_email" style="grid-template-rows: 130px auto 170px;">
-				<h2 class="tit">간편하게 로그인하고<br><strong style="color: #F9A825">빵야빵야(屋)의</strong><br> 다양한 빵을 먹어보세요.</h2>
-				<div class="box_inp">
-					<div class="line_inp">
-						<input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요">
-						<p class="info_error" id="userIdError1">아이디를 입력해주세요.</p>
-					</div>
-					<div class="line_inp line_pw">
-						<input type="password" name="userPw" id="userPw" placeholder="비밀번호를 입력해주세요">
-						<button type="button" class="type_pwd hide" id="viewPass"></button>
-						<p class="info_error" id="userPwError1">비밀번호를 입력해주세요.</p>
-						<p class="info_error" id="loginError">아이디 또는 비밀번호가 일치하지 않습니다.</p>
-					</div>
+<!-- Main -->
+<section class="cont_login container">
+	<form action="/user/login" method="post" id="loginForm">
+		<div class="box">
+			<li style="border-right: 1px solid #dcdcdc">
+				<h4><a href="/user/login"><strong style="color: #F9A825; border-bottom: 1px solid">일반회원</strong></a></h4>
+			</li>
+			<li>
+				<h4><a href="/ceo/loginCEO"><strong>사장님</strong></a></h4>
+			</li>
+		</div>
+		<div class="box_login login_email" style="grid-template-rows: 130px auto 170px;">
+			<h2 class="tit">간편하게 로그인하고<br><strong style="color: #F9A825">빵야빵야(屋)의</strong><br> 다양한 빵을 먹어보세요.</h2>
+			<div class="box_inp">
+				<div class="line_inp">
+					<input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요">
+					<p class="info_error" id="userIdError1">아이디를 입력해주세요.</p>
 				</div>
-				<div class="col-6 col-12-medium">
-					<ul class="actions fit" style="margin-bottom: 1em;">
-						<li><input type="button" class="button primary fit" id="loginButton" value="로그인 하기" style="margin-top: 3em;"/></li>
-					</ul>
-					<div class="box_btn">
-						<a style="padding-left: 0px;" class="btn" href="/user/idFind">아이디 찾기</a>
-						<a class="btn" href="/user/pwFind">비밀번호 찾기</a>
-						<a class="btn" href="/user/join">회원가입</a>
-					</div>
-				</div>
-				<!-- 로그인 상태 -->
-				<div th:if="${check == 'false'}">
-					<input type="hidden" id="loginChk" th:value="${check}" />
-				</div>
-				<!-- 아이디 찾기 컨트롤러 -->
-				<div id="resultId" th:if="${resultId == 0}" style="display: none">
-					<span th:text="${resultId}"></span>
-				</div>
-				<!-- 비밀번호 찾기 컨트롤러 -->
-				<div id="resultPw" th:if="${resultPw == 0}" style="display: none">
-					<span th:text="${resultPw}"></span>
+				<div class="line_inp line_pw">
+					<input type="password" name="userPw" id="userPw" placeholder="비밀번호를 입력해주세요">
+					<button type="button" class="type_pwd hide" id="viewPass"></button>
+					<p class="info_error" id="userPwError1">비밀번호를 입력해주세요.</p>
+					<p class="info_error" id="loginError">아이디 또는 비밀번호가 일치하지 않습니다.</p>
 				</div>
 			</div>
-		</form>
-	</section>
+			<div class="col-6 col-12-medium">
+				<ul class="actions fit" style="margin-bottom: 0em;">
+					<li><input type="button" class="button primary fit" id="loginButton" value="로그인 하기" style="margin-top: 0em;"/></li>
+				</ul>
+				<ul class="actions fit" style="margin-bottom: 0em;">
+					<li>
+						<a href="javascript:void(0)" onclick="kakaoLogin();" class="button fit iconA kakaoA">
+							<span class="iconSpan kakaoIcon">카카오로 시작하기</span>
+						</a>
+						<a href="javascript:void(0)" onclick="selectMyAccessTocken();" class="button fit iconA naverA">
+							<span class="iconSpan naverIcon">토큰 가져오기</span>
+							<!-- 회원정보 가져오기 -->
+							<div th:if="${kakaoUser_chk == '0'}" style="display: none">
+								<div th:object="${kakaoUserVO}">
+								<input type="hidden" id="kakao_email" th:value="*{userId}">
+								<input type="hidden" id="kakao_nickname" th:value="*{userName}">
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+				<div class="box_btn">
+					<a style="padding-left: 0px;" class="btn" href="/user/idFind">아이디 찾기</a>
+					<a class="btn" href="/user/pwFind">비밀번호 찾기</a>
+					<a class="btn" href="/user/join">회원가입</a>
+				</div>
+			</div>
+			<!-- 로그인 상태 -->
+			<div th:if="${check == 'false'}">
+				<input type="hidden" id="loginChk" th:value="${check}" />
+			</div>
+			<!-- 아이디 찾기 컨트롤러 -->
+			<div id="resultId" th:if="${resultId == 0}" style="display: none">
+				<span th:text="${resultId}"></span>
+			</div>
+			<!-- 비밀번호 찾기 컨트롤러 -->
+			<div id="resultPw" th:if="${resultPw == 0}" style="display: none">
+				<span th:text="${resultPw}"></span>
+			</div>
+		</div>
+	</form>
+</section>
 <!-- Footer -->
 <footer id="footer" th:include="/main/footer::footer_body"></footer>
 
@@ -113,6 +164,7 @@
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script th:replace="/main/header::header_js"></script>
 <script type="text/javascript">
 	let loginForm = $("#loginForm");
@@ -170,8 +222,53 @@
 		if(resultPw == 0 && resultPw != ''){
 			alert("비밀번호 변경이 완료되었습니다. 다시 로그인 해주세요.");
 		}
+
+
 	})
 
+	/* 카카오 로그인 */
+	function kakaoLogin() {
+		$.ajax({
+			url: '/user/login/getKakaoAuthUrl',
+			type: 'get',
+			async: false,
+			dataType: 'text',
+			success: function (res) {
+				location.href = res;
+			}
+		});
+	}
+
+
+
+
+
+
+
+
+	/*
+	Kakao.init('2465241f2a949966552234d75ef14dee'); //발급받은 키 중 javascript키를 사용해준다.
+	console.log("sdk초기화여부판단" + Kakao.isInitialized()); // sdk초기화여부판단
+	//카카오로그인
+	function kakaoLogin() {
+		Kakao.Auth.login({
+			success: function (response) {
+				Kakao.API.request({
+					url: '/v2/user/me',
+					success: function (response) {
+						console.log(response)
+					},
+					fail: function (error) {
+						console.log(error)
+					},
+				})
+			},
+			fail: function (error) {
+				console.log(error)
+			},
+		})
+	}
+	*/
 
 </script>
 </body>

@@ -13,6 +13,9 @@ public interface UserMapper {
     // 회원가입(일반회원)
     public void join(UserVO userVO);
 
+    // 회원가입(일반회원)
+    public void joinKakao(UserVO userVO);
+
     // 로그인(일반회원)
     public int login (UserVO userVO);
 

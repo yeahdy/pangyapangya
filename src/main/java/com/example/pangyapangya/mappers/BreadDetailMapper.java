@@ -7,6 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface BreadDetailMapper {
-    //  빵집 이름 가져오기
-    public BakeryVO call(Long bno);
+    //  빵집 정보 가져오기
+    public BakeryVO breadInfo(Long bno);
+
 }
