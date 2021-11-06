@@ -102,7 +102,7 @@
 					<li><a href="/mypage/breadOrderList">주문 내역</a></li>
 					<li><a href="/mypage/myWriting_new">내 글보기</a></li>
 					<li><a href=" /mypage/checkPassword_new">내 정보관리</a></li>
-					<li><a th:href="@{/user/logout}">로그아웃</a></li>
+					<li><a onclick="kakaoLogout()" th:href="@{/user/logout}">로그아웃</a></li>
 				</ul>
 			</li>
 			<!-- 사장님일 경우 -->
@@ -148,6 +148,7 @@
 
 <!-- Scripts -->
 <script src="https://kit.fontawesome.com/8eb5905426.js" crossorigin="anonymous"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
 <script src="/js/browser.min.js"></script>
@@ -197,6 +198,26 @@
 		console.log("session: " + $('#sessionU').val());
 	}else if ($('#sessionC').val() != null){
 		console.log("session: " + $('#sessionC').val());
+	}
+
+
+	Kakao.init('2465241f2a949966552234d75ef14dee'); //발급받은 키 중 javascript키를 사용해준다.
+	console.log("sdk초기화여부판단" + Kakao.isInitialized()); // sdk초기화여부판단
+	// 카카오톡 로그아웃
+	function kakaoLogout() {
+		if (Kakao.Auth.getAccessToken()) {
+			Kakao.API.request({
+				url: '/v1/user/unlink',
+				success: function (response) {
+					alert("로그아웃 성공");
+					console.log(response)
+				},
+				fail: function (error) {
+					console.log(error)
+				},
+			})
+			Kakao.Auth.setAccessToken(undefined)
+		}
 	}
 
 </script>

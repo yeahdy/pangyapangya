@@ -119,15 +119,8 @@
 						<a href="javascript:void(0)" onclick="kakaoLogin();" class="button fit iconA kakaoA">
 							<span class="iconSpan kakaoIcon">카카오로 시작하기</span>
 						</a>
-						<a href="javascript:void(0)" onclick="selectMyAccessTocken();" class="button fit iconA naverA">
-							<span class="iconSpan naverIcon">토큰 가져오기</span>
-							<!-- 회원정보 가져오기 -->
-							<div th:if="${kakaoUser_chk == '0'}" style="display: none">
-								<div th:object="${kakaoUserVO}">
-								<input type="hidden" id="kakao_email" th:value="*{userId}">
-								<input type="hidden" id="kakao_nickname" th:value="*{userName}">
-								</div>
-							</div>
+						<a href="javascript:void(0)" class="button fit iconA naverA">
+							<span class="iconSpan naverIcon">네이버로 시작하기</span>
 						</a>
 					</li>
 				</ul>
@@ -239,14 +232,7 @@
 		});
 	}
 
-
-
-
-
-
-
-
-	/*
+/*
 	Kakao.init('2465241f2a949966552234d75ef14dee'); //발급받은 키 중 javascript키를 사용해준다.
 	console.log("sdk초기화여부판단" + Kakao.isInitialized()); // sdk초기화여부판단
 	//카카오로그인
@@ -268,7 +254,7 @@
 			},
 		})
 	}
-	*/
+*/
 
 </script>
 </body>

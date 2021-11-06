@@ -1,6 +1,5 @@
 package com.example.pangyapangya.controller;
 
-import com.example.pangyapangya.beans.vo.KakaoUserVO;
 import com.example.pangyapangya.beans.vo.UserVO;
 import com.example.pangyapangya.services.UserService;
 import com.google.gson.JsonElement;
@@ -8,7 +7,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -196,6 +194,12 @@ public class UserController {
         return "user/joinSuccess";
     }
 
+    /* 로딩페이지 */
+    @GetMapping("loading")
+    public String loading(){
+        return "user/loading";
+    }
+
     /* ************************************* Rest Api 로 카카오톡 로그인 ************************************* */
 
     // 카카오톡 로그인 연동 (인가코드 발급)
@@ -208,7 +212,7 @@ public class UserController {
         String reqUrl =
                 "https://kauth.kakao.com/oauth/authorize"
                         + "?client_id=56ca7f16524140167e76230ff811876e"
-                        + "&redirect_uri=http://localhost:10009/main/mainPage"
+                        + "&redirect_uri=http://localhost:10009/user/loading"
                         + "&response_type=code";
 
         return reqUrl;
@@ -218,7 +222,7 @@ public class UserController {
     @RequestMapping(value = "/selectMyAccessTocken")
     public String oauthKakao(
             @RequestParam(value = "code", required = false) String code
-            , Model model) throws Exception {
+            , HttpServletRequest req) throws Exception {
 
         System.out.println("--------- 카카오 정보조회 들어옴 ---------");
 
@@ -247,6 +251,8 @@ public class UserController {
             userService.joinKakao(userVO);
         }
         // 만약 이미 회원가입 된 회원이라면? 로그인하기
+        HttpSession session = req.getSession(); // session 생성
+        session.setAttribute("sessionU", kakao_email); //session 저장하기
 
         return "main/mainPage"; //본인 원하는 경로 설정
     }
@@ -271,7 +277,7 @@ public class UserController {
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=56ca7f16524140167e76230ff811876e");  //본인이 발급받은 key
-            sb.append("&redirect_uri=http://localhost:10009/main/mainPage");     // 본인이 설정해 놓은 경로
+            sb.append("&redirect_uri=http://localhost:10009/user/loading");     // 본인이 설정해 놓은 경로
             sb.append("&code=" + authorize_code);
             bw.write(sb.toString());
             bw.flush();
