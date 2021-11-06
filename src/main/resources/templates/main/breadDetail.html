@@ -288,16 +288,16 @@
                             </div>
 
                             <fieldset><!---->
-                                <button type="submit">
+                                <button type="button" onclick="addCart()">
                                     장바구니
                                 </button>
 
-                                <button class="kakao" type="submit"
+                                <button class="kakao" type="button" onclick="kakaoPay()"
                                         style="overflow: hidden; width: 100px; background-color: #ffeb00;">
                                     <img src="/images/kakao.png">
                                 </button>
 
-                                <button type="submit">
+                                <button type="button" onclick="buyNow()">
                                     구매
                                 </button>
                             </fieldset>
@@ -306,43 +306,7 @@
                 </div>
             </div>
     <section id="prd-info">
-        <p th:text="*{content}">
-            <!--제품 배송 안내❗<br>
-            매주 월, 목요일 출고 진행합니다.<br>
-            목 ~ 일까지 주문건 👉🏻 (월)출고<br>
-            월 ~ 수까지 주문건 👉🏻 (목)출고<br>
-            <br>
-            ✔ 주문량에 따라 지연될 수도 있습니다.<br>
-            (단체 대량 주문건은 따로 연락 부탁드립니다.)<br>
-            <br>
-            💛 쌀 브라우니 조각 케이크 🎂<br>
-            꾸덕꾸덕하고 진한 초콜릿의 케이크 브라우니, 이보다 더 좋은 설명은 없다고 생각합니다.<br>
-            밀가루가 아닌 100% 국산 쌀가루와 벨기에산 고급 다크 초콜릿을 사용 했습니다.<br>
-            진한 초콜릿의 브라우니와 쌉싸름한 커피를 같이 드시면 더욱 맛있게 드실 수 있습니다.<br>
-            <br>
-            💛사이즈, 중량💛<br>
-            5 X 4.5 X 2.5 (cm) , 60g내외<br>
-            (두툼한 사각형)&#xFEFF;<br>
-            <br>
-            ✅유통기한 및 보관 방법<br>
-            실온보관 3일, 냉동보관 1주일<br>
-            <br>
-            🌾 쌀 디저트 전문 카페, 모닐이네하우스입니다. 🌾<br>
-            <br>
-            국내산 100% 우리 쌀가루를 사용하며, 모든 제품 글루텐 FREE 입니다.<br>
-            밀가루를 사용하지 않아 촉촉하면서 속이 편안한 디저트를 만들고 있습니다. <br>
-            귀여운 마닐이와 모닐이가 만드는 쌀 디저트 세상에 초대합니다!<br>
-            <br>
-            ✅ No 밀가루 • 100% 국내산 쌀가루를 사용합니다.<br>
-            ✅ No 보존제 • No 색소<br>
-            ✅ 글루텐 Free<br>
-            ✅ 100% 뉴질랜드 우유버터<br>
-            ✅ 알루미늄 Free<br>
-            <br>
-            ❗ 주의사항 ❗<br>
-            ✔ opp포장 → 보냉포장 → 친환경 보냉박스로 포장되어 발송됩니다.<br>
-            ✔ 수제로 만들어지는 제품이므로 식품에 대한 합당한 하자가 발생하지 않는 한 교환, 반품이 불가합니다.<br>-->
-        </p>
+        <p th:text="*{content}"></p>
     </section>
     <section id="prd-review">
         <div id="review-title">
@@ -528,7 +492,62 @@
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dbbd6cafd6a9270f3ff84ad1d9873ab9"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script th:replace="/main/header::header_js"></script>
+<script th:inline="javascript">
+    function addCart() {
+        if($('#sessionU').val() == null && $('#sessionC').val() == null){
+            alert("로그인 후 이용 가능합니다!" +
+                " 로그인 하시겠습니까?")
+            document.location.href("/user/login.html")
+        }else{
+            alert("로그인 ")
+        }
+    }
+
+    function kakaoPay() {
+        if($('#sessionU').val() == null && $('#sessionC').val() == null){
+            alert("로그인 후 이용 가능합니다!")
+        }else {
+            IMP.init('imp37396046');
+            // 예: imp00000000
+            // IMP.request_pay(param, callback) 결제창 호출
+            IMP.request_pay({ // param
+                pg: "html5_inicis",
+                pay_method: "card",
+                merchant_uid: "ORD20180131-0000013",
+                name: "원데이클래스1",
+                amount: 64900,
+                buyer_email: "gildong@gmail.com",
+                buyer_name: "홍길동",
+                buyer_tel: "010-4242-4242",
+                buyer_addr: "서울특별시 강남구 신사동",
+                buyer_postcode: "01181"
+            }, function (rsp) { // callback
+                if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+                    var msg = '결제가 완료되었습니다.';
+                    msg += '고유ID : ' + rsp.imp_uid;
+                    msg += '상점 거래ID : ' + rsp.merchant_uid;
+                    msg += '결제 금액 : ' + rsp.paid_amount;
+                    msg += '카드 승인번호 : ' + rsp.apply_num;
+                } else {
+                    alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+                }
+            });
+        }
+    }
+    function buyNow() {
+        if($('#sessionU').val() == null && $('#sessionC').val() == null){
+            alert("로그인 후 이용 가능합니다!")
+        }else{
+
+        }
+    }
+
+</script>
 
 </body>
 <!-- Footer -->
