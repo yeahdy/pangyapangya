@@ -21,6 +21,6 @@ public interface BakeryService {
     public boolean ceoUpdate(CeoVO ceoVO);
     public boolean ceoDelete(CeoVO ceoVO);
     public List<BakeryVO> breadList();
-//    public List<BakeryFileVO> getAttachList(Long bno);
+    public List<BakeryFileVO> getAttachList(Long bno);
 
 }

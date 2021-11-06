@@ -91,6 +91,24 @@
 		#rightHeader-first{width: 14%;}
 		#main-box{border-bottom: 0.5px solid #efd0d0;}
 		#goModify, #goRemove {color: #7e7a7a; font-size: 0.8em; position: relative; top: 16px;}
+		.big-width {display: block;}
+		.small-width {display: none;}
+		div#searchWrap{display: flex;}
+		select[name='type']{width: 30%;}
+		input[name='keyword']{width: 60%;}
+		form[name='searchForm']{overflow: hidden;}
+
+		@media (max-width: 918px) {
+			.writer {display: none;}
+			.regDate {display: none;}
+			.updateDate {display: none;}
+			.big-width {display: none;}
+			.small-width {display: block;}
+			div#searchWrap{display: block;}
+			select[name='type']{width: 100%;}
+			input[name='keyword']{width: 100%;}
+			a.search{width: 100%;}
+		}
 	</style>
 </head>
 <body class="is-preload" style="padding: 200px">
@@ -165,28 +183,31 @@
 										</th:block>
 									</div>
 
-									<ul class="pagination" th:object="${pageMaker}">
-										<li>
-											<a class="changePage" th:if="*{prev}" th:href="*{startPage - 1}">
-												<span class="disabled changePage"><</span>
+									<div th:object="${pageMaker}">
+
+
+									<ul class="pagination">
+										<li th:if="*{prev}" th:href="*{startPage - 1}">
+											<a class="changePage">
+												<span class="changePage"><</span>
 											</a>
 										</li>
-										<li th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), pageMaker.getEndPage())}">
-											<th:block th:if="${pageMaker.criteria.getPageNum() == num}">
-												<a class="page active changePage" th:text="${num}"></a>
-												<a class="page active changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="${num}" th:text="${num}"></a>
-											</th:block>
-										</li>
+										<th:block th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), pageMaker.getEndPage())}">
+											<li>
+												<a href="#" class="page active" th:if="${pageMaker.criteria.getPageNum() == num}" th:text="${num}"></a>
+												<a class="page changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="${num}" th:text="${num}"></a>
+											</li>
+										</th:block>
 										<li>
-											<a class="changePage" th:if="*{next}" th:href="*{endPage + 1}">
-												<span class="disabled">></span>
-											</a>
+											<a class="changePage" th:if="*{next}" th:href="*{endPage + 1}"><span class="page">&gt;</span></a>
 										</li>
+
 										<form action="/myPageCeo/bakeryRe" th:object="${criteria}" name="pageForm">
 											<input type="hidden" name="pageNum" th:field="*{pageNum}">
 											<input type="hidden" name="amount" th:field="*{amount}">
 										</form>
 									</ul>
+									</div>
 								</div>
 							</div>
 						</section>
@@ -240,5 +261,7 @@
 		e.preventDefault();
 		location.href = "/myPageCeo/bakeryModify" + paging + "&bno=" + $(this).attr("href");
 	})
+
+
 </script>
 </html>

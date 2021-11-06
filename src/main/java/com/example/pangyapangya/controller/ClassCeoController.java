@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @Slf4j
 @RequestMapping("/myPageCeo/*")
@@ -37,12 +39,16 @@ public class ClassCeoController {
 
     //마이페이지(사장님) - 내가 작성한 글(원데이 클래스)
     @GetMapping("oneDayRe")
-    public String oneDayRe(Criteria criteria, Model model){
-
+    public String oneDayRe(Criteria criteria, Model model, HttpSession session){
+        String sessionU = (String)session.getAttribute("sessionU");
+        String sessionC = (String)session.getAttribute("sessionC");
+        if(sessionU == null && sessionC == null){
+            return "/user/login";
+        }
         log.info("-------------------------------");
         log.info("oneDayRe");
         log.info("-------------------------------");
-        model.addAttribute("total", classCeoService.myTotal("wnsrbod"));
+        model.addAttribute("total", classCeoService.myTotal(sessionC));
         model.addAttribute("list", classCeoService.getList(criteria));
         model.addAttribute("pageMaker", new PageDTO(classCeoService.getTotal(criteria), 10, criteria));
         return "myPageCeo/oneDayRe";

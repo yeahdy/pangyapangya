@@ -40,14 +40,14 @@ public class MyPageCeoController {
     }
 
     @PostMapping("bakery")
-    public RedirectView bakery(BakeryVO bakeryVO, RedirectAttributes rttr, CeoVO ceoVO){
+    public RedirectView bakery(BakeryVO bakeryVO, RedirectAttributes rttr){
         log.info("-------------------------------");
         log.info("bakery : " + bakeryVO.toString());
         log.info("-------------------------------");
 
-       /* if(bakeryVO.getAttachList() != null){
+        if(bakeryVO.getAttachList() != null){
             bakeryVO.getAttachList().forEach(attach -> log.info(attach.toString()));
-        }*/
+        }
         bakeryService.register(bakeryVO);
 //        쿼리 스트링으로 전달
 //        rttr.addAttribute("bno", boardVO.getBno());
@@ -59,12 +59,16 @@ public class MyPageCeoController {
 
     //마이페이지(사장님) 내가 작성한 글 - 빵집소개
     @GetMapping("bakeryRe")
-    public String bakeryRe(Criteria criteria, Model model){
-
+    public String bakeryRe(Criteria criteria, Model model, HttpSession session){
+        String sessionU = (String)session.getAttribute("sessionU");
+        String sessionC = (String)session.getAttribute("sessionC");
+        if(sessionU == null && sessionC == null){
+            return "/user/login";
+        }
         log.info("-------------------------------");
         log.info("bakeryRe");
         log.info("-------------------------------");
-        model.addAttribute("total", bakeryService.myTotal("wnsrbod"));
+        model.addAttribute("total", bakeryService.myTotal(sessionC));
         model.addAttribute("list", bakeryService.getList(criteria));
         model.addAttribute("pageMaker", new PageDTO(bakeryService.getTotal(criteria), 10, criteria));
         return "myPageCeo/bakeryRe";
@@ -140,12 +144,12 @@ public class MyPageCeoController {
     }*/
 
     //    게시글 첨부파일
-    /*@GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<BakeryFileVO> getAttachList(Long bno){
         log.info("getAttachList " + bno);
         return bakeryService.getAttachList(bno);
-    }*/
+    }
 
     //마이페이지(사장님)-내 정보 수정
     @GetMapping("edit")

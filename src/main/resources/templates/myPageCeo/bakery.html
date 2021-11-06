@@ -150,11 +150,12 @@
 												<!--대표사진-->
 												<div class="files first-file uploadResult">
 													<div id="mainFileDiv">
+														<ul></ul>
 														<label for="board_file1" style="display:inline;">
 															<img id="board_file1Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
 														</label>
 													</div>
-													<input id="board_file1" name="bakery_photo1" type="file" multiple>
+													<input id="board_file1" name="uploadFiles" type="file" multiple>
 												</div>
 											</div><!--사진부분-->
 
@@ -241,7 +242,24 @@
 	<script src="/js/main.js"></script>
 	<script th:replace="/main/header::header_js"></script>
 </body>
-<script th:inline="javascript">
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
 	let check = false;
 	function showImage(fileCallPath){
 		if(check) {return;}
@@ -286,34 +304,42 @@
 			form.append(str).submit();
 		})
 
-		function showUploadFile(board_file1){
+		function showUploadFile(uploadFiles){
 			let str = "";
-			$(board_file1).each(function(i, obj){
+			$(uploadFiles).each(function(i, obj){
 				if(!obj.image){
 					let fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.fileName);
 
-					str += "<li data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-name='" + obj.fileName.substring(obj.fileName.indexOf("_") + 1) + "' data-type='" + obj.image +"'>";
+					str += "<div data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-name='" + obj.fileName.substring(obj.fileName.indexOf("_") + 1) + "' data-type='" + obj.image +"'>";
 					str += "<div>";
 					str += "<a href='/upload/download?fileName=" + fileCallPath + "'>";
-					str += "<img src='/img/attach.png' width='100px'>" + obj.fileName.substring(obj.fileName.indexOf("_") + 1);
+					str += "<img src='images/no1.png' width='110px' height='110px' style='display:inline;'src='/images/no1.png'>" + obj.fileName.substring(obj.fileName.indexOf("_") + 1);
 					str += "</a>"
 					str += "<span data-file='" + fileCallPath + "' data-type='file'>x</span>";
 					str += "</div>";
-					str += "</li>";
+					str += "</div>";
 				}else{
+
+					let firstFile = $(".files");
+					firstFile.css("padding", 0);
+					let ul = $("ul");
+					ul.css("margin", 0);
+					ul.css("padding", 0);
+					ul.css("list-style", "none");
 					let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.fileName);
 					let originPath = encodeURIComponent(obj.uploadPath + "/" + obj.fileName);
-
-					str += "<li data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-name='" + obj.fileName.substring(obj.fileName.indexOf("_") + 1) + "' data-type='" + obj.image +"'>";
+					str += "<div data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-name='" + obj.fileName.substring(obj.fileName.indexOf("_") + 1) + "' data-type='" + obj.image +"'>";
 					str += "<div>";
 					str += "<a href=\"javascript:showImage(\'" + originPath + "\')\">";
-					str += "<img src='/upload/display?fileName=" + fileCallPath + "'>" + obj.fileName.substring(obj.fileName.indexOf("_") + 1);
+					str += "<img style='width: 100%; height: 100%;' src='/upload/display?fileName=" + fileCallPath + "'>" /*+ obj.fileName.substring(obj.fileName.indexOf("_") + 1)*/;
 					str += "</a>";
-					str += "<span data-file='" + fileCallPath + "' data-type='image'>x</span>";
+					/*str += "<span data-file='" + fileCallPath + "' data-type='image'>x</span>"*/;
 					str += "</div>";
-					str += "</li>";
+					str += "</div>";
 				}
 			});
+			let noImg = $("#board_file1Img");
+			noImg.hide();
 			uploadResult.append(str);
 		}
 
@@ -333,7 +359,7 @@
 				}
 			});
 
-		})
+		});
 
 		//확장자 별 업로드 제한, 특정 크기 이상의 파일은 업로드 제한
 		function checkExtension(fileName, fileSize){
@@ -371,6 +397,4 @@
 			});
 		});
 	})
-
 </script>
-</html>

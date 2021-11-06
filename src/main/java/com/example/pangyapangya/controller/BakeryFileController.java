@@ -1,5 +1,6 @@
 package com.example.pangyapangya.controller;
 
+import com.example.pangyapangya.beans.vo.AttachFileVO;
 import com.example.pangyapangya.beans.vo.BakeryFileVO;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
@@ -33,9 +34,9 @@ public class BakeryFileController {
 
     @PostMapping(value = "uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<BakeryFileVO> uploadAjaxAction(MultipartFile[] uploadFiles){
+    public List<AttachFileVO> uploadAjaxAction(MultipartFile[] uploadFiles){
         log.info("upload ajax action...........");
-        List<BakeryFileVO> fileList = new ArrayList<>();
+        List<AttachFileVO> fileList = new ArrayList<>();
 
         String uploadFolder = "C:/upload";
         String uploadFolderPath = getFolder();
@@ -50,7 +51,7 @@ public class BakeryFileController {
             log.info("Upload File Name : " + multipartFile.getOriginalFilename());
             log.info("Upload File Size : " + multipartFile.getSize());
 
-            BakeryFileVO bakeryFileVO = new BakeryFileVO();
+            AttachFileVO attachFileVO = new AttachFileVO();
 
             String uploadFileName = multipartFile.getOriginalFilename();
 
@@ -68,20 +69,20 @@ public class BakeryFileController {
             uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
             log.info("file name : " + uploadFileName);
 
-            bakeryFileVO.setFileName(uploadFileName);
+            attachFileVO.setFileName(uploadFileName);
 
             try {
                 File saveFile = new File(uploadPath,uploadFileName);
                 multipartFile.transferTo(saveFile);
                 InputStream in = new FileInputStream(saveFile);
 
-                bakeryFileVO.setUuid(uuid.toString());
-                bakeryFileVO.setUploadPath(uploadFolderPath);
+                attachFileVO.setUuid(uuid.toString());
+                attachFileVO.setUploadPath(uploadFolderPath);
 
                 if(checkImageType(saveFile)) {
-                    bakeryFileVO.setImage(true);
+                    attachFileVO.setImage(true);
                     FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
-                    Thumbnailator.createThumbnail(in, thumbnail, 100, 100);
+                    Thumbnailator.createThumbnail(in, thumbnail, 477, 93);
                     thumbnail.close();
                 }
                 in.close();
@@ -91,7 +92,7 @@ public class BakeryFileController {
                 //가비지 컬렉터가 포착한 해제 필드들을 모두 즉시 해제
                 System.runFinalization();
 
-                fileList.add(bakeryFileVO);
+                fileList.add(attachFileVO);
             } catch (IOException e) {
                 log.error(e.getMessage());
             } catch (ArrayIndexOutOfBoundsException e){
@@ -175,6 +176,7 @@ public class BakeryFileController {
         }
         return new ResponseEntity<>("deleted", HttpStatus.OK);
     }
+
 
 }
 

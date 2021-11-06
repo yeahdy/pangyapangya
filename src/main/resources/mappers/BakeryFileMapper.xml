@@ -17,4 +17,14 @@
         WHERE BNO = #{bno}
     </select>
 
+    <delete id="deleteAll">
+        DELETE FROM TBL_BREAD_IMG WHERE BNO = #{bno}
+    </delete>
+
+    <select id="getOldFiles" resultType="bakeryFileVO">
+        SELECT UUID, UPLOADPATH, FILENAME, IMAGE, BNO
+        FROM TBL_BREAD_IMG
+        WHERE UPLOADPATH = TO_CHAR(SYSDATE - 1, 'YYYY/MM/DD')
+    </select>
+
 </mapper>
