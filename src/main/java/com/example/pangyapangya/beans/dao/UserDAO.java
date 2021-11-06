@@ -57,5 +57,5 @@ public class UserDAO {
     }
 
     // 메인 검색
-    public List<BakeryVO> searchBakery_main (BakeryVO bakeryVO) { return mapper.searchBakery_main(bakeryVO); }
+    public List<BakeryVO> searchBakery_main () { return mapper.searchBakery_main(); }
 }

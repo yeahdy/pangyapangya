@@ -79,7 +79,7 @@
 				</ul>
 			</li>
 			<!-- 검색창 -->
-			<form method="post" action="/main/breadList" id="searchForm" name="searchForm">
+			<form action="/main/header_search" id="searchForm">
 				<div class="search">
 					<a href="#" id="iconSearch"><i class="fas fa-search"></i></a>
 					<input type="text" id="searchInput" placeholder="먹고 싶은 빵 종류를 검색 해 보세요" maxlength="17" style="background-color: wheat;border-radius: 10px;color: darkgray">
@@ -156,7 +156,7 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 <script type="text/javascript" th:fragment="header_js">
-	let searchForm = $(document.searchForm);	// 검색창
+	let searchForm = $("#searchForm");	// 검색창
 
 	// 메뉴 색상 변경
 	let div= $("#nav").find(".changeColor");

@@ -39,5 +39,5 @@ public interface UserMapper {
     public UserVO userInfo (String userId);
 
     // 메인 검색
-    public List<BakeryVO> searchBakery_main (BakeryVO bakeryVO);
+    public List<BakeryVO> searchBakery_main ();
 }

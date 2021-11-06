@@ -123,7 +123,7 @@ public class UserService {
     }
 
     // 메인 검색
-    public List<BakeryVO> searchBakery_main (BakeryVO bakeryVO) { return userDAO.searchBakery_main(bakeryVO); }
+    public List<BakeryVO> searchBakery_main () { return userDAO.searchBakery_main(); }
 
 }
 

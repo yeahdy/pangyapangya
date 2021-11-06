@@ -2,6 +2,7 @@ package com.example.pangyapangya.controller;
 
 import com.example.pangyapangya.services.BakeryService;
 import com.example.pangyapangya.services.TestService;
+import com.example.pangyapangya.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ import java.util.Random;
 @RequestMapping("/main/*")
 @RequiredArgsConstructor
 public class mainController {
+    private final UserService userService;
     private final BakeryService bakeryService;
     private final TestService testService;
 
@@ -46,6 +48,12 @@ public class mainController {
     @GetMapping("header")
     public String header(){ return "main/header"; }
 
+    @GetMapping("header_search")
+    public String header_search(){
+        userService.searchBakery_main();
+        return "main/breadList";
+    }
+
     /* 메인페이지 */
     @GetMapping("mainPage")
     public String breadList(Model model){
@@ -61,6 +69,8 @@ public class mainController {
         return "main/mainPage";
     }
 
+
+
     @GetMapping("mainPage_test")
     public String mainPage_test(HttpSession session){
         String sessionU = (String)session.getAttribute("sessionU");
@@ -70,7 +80,6 @@ public class mainController {
         }
         return "main/mainPage_test";
     }
-
 
 
     /* footer */

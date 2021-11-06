@@ -173,8 +173,8 @@
 		}
 	});
 
-	// 아이디, 비밀번호 공백 막기
 	$(document).ready(function () {
+		// 로그인 클릭(공백막기)
 		$('#loginButton').on("click", function () {
 			if(!$("#userId").val()){
 				$("#userId").focus();
@@ -199,6 +199,28 @@
 				alert("아이디 또는 비밀번호가 일치하지 않습니다.");
 			}
 		})
+		// 엔터키로 로그인(공백막기)
+		$("#userPw").on("keydown", function(e){
+			if(e.keyCode == 13){
+				if(!$("#userId").val()){
+					$("#userId").focus();
+					$("#userIdError1").show();
+					return;
+				}else{
+					$("#userIdError1").hide();
+				}
+
+				if(!$('#userPw').val()){
+					$("#userPw").focus();
+					$("#userPwError1").show();
+					return;
+				}else{
+					$("#userPwError1").hide();
+				}
+
+				loginForm.submit();
+			}
+		})
 
 		/* 아이디 찾기 컨트롤러 */
 		let resultId = $("#resultId span").text();
@@ -215,7 +237,6 @@
 		if(resultPw == 0 && resultPw != ''){
 			alert("비밀번호 변경이 완료되었습니다. 다시 로그인 해주세요.");
 		}
-
 
 	})
 
