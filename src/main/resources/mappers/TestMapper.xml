@@ -2,27 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.pangyapangya.mappers.TestMapper">
-    <select id="read" resultType="TestingVO">
+    <!-- 예진님 -->
+    <select id="mainTest" resultType="TestingVO">
         <![CDATA[
-            SELECT * FROM
+            SELECT TNO, STARTDATE, ENDDATE, CEOID, TITLE, BREADTYPE, BREADNAME, PEOPLE, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REGDATE, STATUS FROM
             (
-                SELECT ROWNUM R,TNO, STARTDATE, ENDDATE, CEOID, TITLE, BREADTYPE, BREADNAME, PEOPLE, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REGDATE
-                FROM TBL_TESTING
-                ORDER BY TNO DESC
+            SELECT ROW_NUMBER() OVER(ORDER BY TNO DESC) R, TNO, STARTDATE, ENDDATE, CEOID, TITLE, BREADTYPE, BREADNAME, PEOPLE, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REGDATE, STATUS FROM TBL_TESTING
             )
-            WHERE R<=20
+            WHERE R<=3 AND STATUS = 0
         ]]>
+    </select>
+
+    <select id="mainReview" resultType="TestingReviewBoardVO">
+        <![CDATA[
+            SELECT TNO, CEOID, TITLE, BREADTYPE, BREADNAME, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REVIEWCNT FROM
+            (
+            SELECT ROW_NUMBER() OVER(ORDER BY TNO DESC) R, TNO, CEOID, TITLE, BREADTYPE, BREADNAME, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REVIEWCNT FROM TBL_TESTING_REVIEW_BOARD
+            )
+            WHERE R<=3
+        ]]>
+
     </select>
 
     <select id="addData" resultType="TestingVO">
         <![CDATA[
-            SELECT * FROM
+            SELECT TNO, STARTDATE, ENDDATE, CEOID, TITLE, BREADTYPE, BREADNAME, PEOPLE, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REGDATE, STATUS FROM
             (
-                SELECT ROWNUM R,TNO, STARTDATE, ENDDATE, CEOID, TITLE, BREADTYPE, BREADNAME, PEOPLE, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REGDATE
-                FROM TBL_TESTING
-                ORDER BY TNO DESC
+            SELECT ROW_NUMBER() OVER(ORDER BY TNO DESC) R, TNO, STARTDATE, ENDDATE, CEOID, TITLE, BREADTYPE, BREADNAME, PEOPLE, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REGDATE, STATUS FROM TBL_TESTING
             )
-            WHERE R > #{temp} AND R <= #{temp}+20
+            WHERE R > #{temp} AND R <= #{temp}+20 AND STATUS = 0
         ]]>
     </select>
 

@@ -3,6 +3,7 @@ package com.example.pangyapangya.services;
 import com.example.pangyapangya.beans.dao.TestDAO;
 import com.example.pangyapangya.beans.vo.TestingImgVO;
 import com.example.pangyapangya.beans.vo.TestingRequestVO;
+import com.example.pangyapangya.beans.vo.TestingReviewBoardVO;
 import com.example.pangyapangya.beans.vo.TestingVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,4 +38,8 @@ public class TestService {
     }
 
     public void addTestingRequest(TestingRequestVO testingRequestVO){testDAO.addTestingRequest(testingRequestVO);}
+
+    //    예진님
+    public List<TestingVO> mainTest(){return testDAO.mainTest();}
+    public List<TestingReviewBoardVO> mainReview(){return testDAO.mainReview();}
 }

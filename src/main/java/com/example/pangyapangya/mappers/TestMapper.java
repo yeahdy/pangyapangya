@@ -2,6 +2,7 @@ package com.example.pangyapangya.mappers;
 
 import com.example.pangyapangya.beans.vo.TestingImgVO;
 import com.example.pangyapangya.beans.vo.TestingRequestVO;
+import com.example.pangyapangya.beans.vo.TestingReviewBoardVO;
 import com.example.pangyapangya.beans.vo.TestingVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -46,4 +47,9 @@ public interface TestMapper {
 
     public List<TestingRequestVO> getRequestUser(Long tno);
 
+//    예진님
+//    빵 체험단 신청 게시판
+    public List<TestingVO> mainTest();
+//    빵 체험단 리뷰 게시판
+    public List<TestingReviewBoardVO> mainReview();
 }

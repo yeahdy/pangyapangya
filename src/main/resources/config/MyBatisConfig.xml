@@ -10,9 +10,10 @@
         <typeAlias type="com.example.pangyapangya.beans.vo.CeoVO" alias="CeoVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.ClassCeoVO" alias="classCeoVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.TestingVO" alias="testingVO"/>
-        <typeAlias type="com.example.pangyapangya.beans.vo.TestingImgVO" alias="TestingImgVO"/>
+        <typeAlias type="com.example.pangyapangya.beans.vo.TestingImgVO" alias="testingImgVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.ClassReplyVO" alias="classReplyVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.ClassReviewFileVO" alias="classReviewFileVO"/>
-        <typeAlias type="com.example.pangyapangya.beans.vo.TestingRequestVO" alias="TestingRequestVO"/>
+        <typeAlias type="com.example.pangyapangya.beans.vo.TestingRequestVO" alias="testingRequestVO"/>
+        <typeAlias type="com.example.pangyapangya.beans.vo.TestingReviewBoardVO" alias="testingReviewBoardVO"/>
     </typeAliases>
 </configuration>
