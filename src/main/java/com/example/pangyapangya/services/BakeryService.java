@@ -18,6 +18,11 @@ public interface BakeryService {
     public int getTotal(Criteria criteria);
     public int myTotal(String ceoId);
     public CeoVO getCeo(String ceoId);
+    public boolean ceoUpdate(CeoVO ceoVO);
+    public boolean ceoDelete(CeoVO ceoVO);
+    public List<BakeryVO> breadList();
 //    public List<BakeryFileVO> getAttachList(Long bno);
 
+    // 메인페이지 글가져오기
+    public List<BakeryVO> breadList_main();
 }

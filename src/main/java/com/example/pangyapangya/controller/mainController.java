@@ -1,12 +1,12 @@
 package com.example.pangyapangya.controller;
 
-import com.example.pangyapangya.services.UserService;
+import com.example.pangyapangya.services.BakeryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.util.Random;
 /*
     [ Task ]		    [ URL ]			    [ Method ]		[ Parameter ]			    [ Form ]	[ URL이동 ]
@@ -26,7 +26,7 @@ import java.util.Random;
 @RequestMapping("/main/*")
 @RequiredArgsConstructor
 public class mainController {
-    private final UserService userService;
+    private final BakeryService bakeryService;
 
     @GetMapping("index")
     public String index(){ return "main/index"; }
@@ -45,12 +45,18 @@ public class mainController {
 
     /* 메인페이지 */
     @GetMapping("mainPage")
-    public String mainPage(){ return "main/mainPage"; }
+    public String breadList(Model model){
+        // 오늘의 빵
+        model.addAttribute("list", bakeryService.breadList_main());
+        return "main/mainPage";
+    }
 
     @GetMapping("mainPage_test")
     public String mainPage_test(){
         return "main/mainPage_test";
     }
+
+
 
     /* footer */
     @GetMapping("footer")
