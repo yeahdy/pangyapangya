@@ -17,9 +17,7 @@ import java.util.List;
 public class TestService {
     private final TestDAO testDAO;
 
-    public List<TestingVO> read(){
-        return testDAO.read();
-    }
+    public List<TestingVO> read() throws NullPointerException{return testDAO.read();}
 
     public List<TestingVO> addData(int temp){
         return testDAO.addData(temp);
@@ -29,8 +27,12 @@ public class TestService {
         return testDAO.getTotal();
     }
 
+
     public TestingVO getRead(Long tno){
-        return testDAO.getRead(tno);
+        TestingVO vo = testDAO.getRead(tno);
+        vo.setStartDate(vo.getStartDate().substring(0,10));
+        vo.setEndDate(vo.getEndDate().substring(0,10));
+        return vo;
     }
 
     public List<TestingImgVO> getReadImgs(Long tno){
