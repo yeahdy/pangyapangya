@@ -65,20 +65,7 @@ public class ClassCeoController {
         return new RedirectView("oneDayModify");
     }
 
-    //    여러 요청을 하나의 메소드로 받을 때에는 {}를 사용하여 콤마로 구분한다.
-    @GetMapping({"read", "modify"})
-    public void read(@RequestParam("bno") Long bno, Criteria criteria, Model model, HttpServletRequest request){
-        String reqURI = request.getRequestURI();
-        String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
-        //read 요청 시 read 출력
-        //modify 요청 시 modify 출력
-        log.info("-------------------------------");
-        log.info(reqType + " : " + bno);
-        log.info("-------------------------------");
 
-        model.addAttribute("board", classCeoService.get(bno));
-        model.addAttribute("criteria", criteria);
-    }
     //마이페이지(사장님)-글 등록[빵집 소개]
     /*@GetMapping("bakeryModify")
     public String bakeryModify(@RequestParam("bno") Long bno, HttpServletRequest request,  Model model, BakeryVO bakeryVO, Criteria criteria){
