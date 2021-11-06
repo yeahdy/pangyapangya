@@ -207,16 +207,15 @@
             </article>
         </section>
 
+
+        <div class="fields" th:object="${class}">
         <!-- Blurb -->
         <section>
-            <div>
             <h1>타이틀</h1>
-                <input name="title" type="text" readonly/>
-            <h4>| 빵집 이름 </h4>
-            </div>
+                <input name="title" type="text" th:field="*{title}"readonly/>
         </section>
 
-        <!-- TAB -->
+<!--         TAB -->
 
         <div class="main1">
             <input id="tab1" type="radio" name="tabs" checked> <!--디폴트 메뉴-->
@@ -230,18 +229,20 @@
             <section id="content1">
                 <div>
                 <h4>이런 분들이 들으면 좋아요!</h4>
-                    <textarea name="content" rows="6" style="resize:none" readonly></textarea>
+                    <textarea name="content" rows="6" style="resize:none" th:text="*{description}" readonly></textarea>
                 </div>
                 <div>
                 <h4>가격</h4>
-                <input type="text" style="background-color: white; border-color: white">
+                    <textarea name="content" rows="6" style="resize:none" th:text="*{classPrice}" readonly></textarea>
                 </div>
                 <div>
                 <h4>날짜 및 시간</h4>
                 <input type="text" style="background-color: white; border-color: white">
+                    <textarea name="content" rows="6" style="resize:none" th:text="*{classDate}" readonly></textarea>
                 </div>
                 <div>
                 <h4>인원 수</h4>
+                    <textarea name="content" rows="6" style="resize:none" th:text="*{recruitment}" readonly></textarea>
                 <input type="text" style="background-color: white; border-color: white">
                 </div>
                 <div>
@@ -298,8 +299,8 @@
                 <div class="paging" style="text-align: center"></div>
             </section>
 
+            </div>
         </div>
-
     </section>
 
     <!-- Sidebar -->
@@ -328,7 +329,7 @@
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
-<script src="/js/reply.js"></script>
+<script src="/js/classreply.js"></script>
 <script th:replace="/main/header::header_js"></script>
 <script>
     $('#star a').click(function(){
@@ -383,7 +384,7 @@
     });
 </script>
 <script th:inline="javascript">
-
+    let bno = [[${class.getBno()}]];
     let replyUL = $("ul.replies");
     let pageNum = 1;
 
@@ -397,21 +398,21 @@
 
     $(".finish").on("click", function(e){
         e.preventDefault();
-        let replier = $("input[name='replier']").val();
         let reply = $("textarea[name='reply']").val();
 
+        console.log("들어옴ㅁㅁㅁㅁㅁ");
         // if(!userId || !content){return;}
 
         classReplyService.add({bno:bno, reply:reply},
             function(result){
                 alert(result);
-                $("input[name='replier']").val("");
                 $("textarea[name='reply']").val("");
                 $(".register-form").hide();
                 $(".register").show();
                 showList(pageNum);
             }
         )
+
     });
 
     // $("a#goList").on("click", function(){
