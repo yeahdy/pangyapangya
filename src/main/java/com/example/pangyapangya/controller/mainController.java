@@ -1,7 +1,7 @@
 package com.example.pangyapangya.controller;
 
 import com.example.pangyapangya.services.BakeryService;
-import com.example.pangyapangya.services.UserService;
+import com.example.pangyapangya.services.TestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -29,7 +29,7 @@ import java.util.Random;
 @RequiredArgsConstructor
 public class mainController {
     private final BakeryService bakeryService;
-    private final UserService userService;
+    private final TestService testService;
 
     @GetMapping("index")
     public String index(){ return "main/index"; }
@@ -50,7 +50,14 @@ public class mainController {
     @GetMapping("mainPage")
     public String breadList(Model model){
         // 오늘의 빵
-        model.addAttribute("list", bakeryService.breadList_main());
+        model.addAttribute("breadList", bakeryService.breadList_main());
+        // 원데이 클래스
+
+        // 빵 체험단(모집)
+        model.addAttribute("tasting", testService.mainTest());
+        // 빵 체험단(리뷰)
+        model.addAttribute("tastingRe", testService.mainReview());
+        /*model.addAttribute("reviewTotal", testService) 리뷰갯수*/
         return "main/mainPage";
     }
 
