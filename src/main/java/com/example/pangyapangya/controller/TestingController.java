@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @Slf4j
 @RequestMapping("/myPageCeo/*")
@@ -38,12 +40,16 @@ public class TestingController {
 
     //마이페이지(사장님) - 내가 작성한 글 List(빵 체험단)
     @GetMapping("expRe")
-    public String expRe(Criteria criteria, Model model){
-
+    public String expRe(Criteria criteria, Model model, HttpSession session){
+        String sessionU = (String)session.getAttribute("sessionU");
+        String sessionC = (String)session.getAttribute("sessionC");
+        if(sessionU == null && sessionC == null){
+            return "/user/login";
+        }
         log.info("-------------------------------");
         log.info("expRe");
         log.info("-------------------------------");
-        model.addAttribute("total", testingService.myTotal("wnsrbod"));
+        model.addAttribute("total", testingService.myTotal(sessionC));
         model.addAttribute("list", testingService.getList(criteria));
         model.addAttribute("pageMaker", new PageDTO(testingService.getTotal(criteria), 10, criteria));
         return "myPageCeo/expRe";
