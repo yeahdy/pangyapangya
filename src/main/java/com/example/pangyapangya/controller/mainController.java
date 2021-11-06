@@ -1,12 +1,14 @@
 package com.example.pangyapangya.controller;
 
 import com.example.pangyapangya.services.BakeryService;
+import com.example.pangyapangya.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Random;
 /*
     [ Task ]		    [ URL ]			    [ Method ]		[ Parameter ]			    [ Form ]	[ URL이동 ]
@@ -27,6 +29,7 @@ import java.util.Random;
 @RequiredArgsConstructor
 public class mainController {
     private final BakeryService bakeryService;
+    private final UserService userService;
 
     @GetMapping("index")
     public String index(){ return "main/index"; }

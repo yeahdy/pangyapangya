@@ -1,6 +1,7 @@
 package com.example.pangyapangya.services;
 
 import com.example.pangyapangya.beans.dao.UserDAO;
+import com.example.pangyapangya.beans.vo.BakeryVO;
 import com.example.pangyapangya.beans.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -121,6 +122,8 @@ public class UserService {
         }
     }
 
+    // 메인 검색
+    public List<BakeryVO> searchBakery_main (BakeryVO bakeryVO) { return userDAO.searchBakery_main(bakeryVO); }
 
 }
 

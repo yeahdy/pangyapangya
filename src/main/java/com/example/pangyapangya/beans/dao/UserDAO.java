@@ -1,5 +1,6 @@
 package com.example.pangyapangya.beans.dao;
 
+import com.example.pangyapangya.beans.vo.BakeryVO;
 import com.example.pangyapangya.beans.vo.CeoVO;
 import com.example.pangyapangya.beans.vo.UserVO;
 import com.example.pangyapangya.mappers.UserMapper;
@@ -55,5 +56,6 @@ public class UserDAO {
         return mapper.userInfo(userId);
     }
 
-    // 수정
+    // 메인 검색
+    public List<BakeryVO> searchBakery_main (BakeryVO bakeryVO) { return mapper.searchBakery_main(bakeryVO); }
 }

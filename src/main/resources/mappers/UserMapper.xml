@@ -68,4 +68,47 @@
     </select>
 
 
+
+    <!-- 메인 검색 -->
+    <sql id="search">
+        <if test="type != null and keyword != null">
+            <trim prefix="(" suffix=") AND " prefixOverrides="OR">
+                <foreach item="type" collection="typeArr">
+                    <trim prefix="OR">
+                        <choose>
+                            <when test="type == 'T'.toString()">
+                                (TITLE LIKE '%'||#{keyword}||'%')
+                            </when>
+                            <when test="type == 'C'.toString()">
+                                (CONTENT LIKE '%'||#{keyword}||'%')
+                            </when>
+                            <when test="type == 'W'.toString()">
+                                (WRITER LIKE '%'||#{keyword}||'%')
+                            </when>
+                        </choose>
+                    </trim>
+                </foreach>
+            </trim>
+        </if>
+    </sql>
+
+    <select id="searchBakery_main" resultType="bakeryVO">
+        <![CDATA[
+            SELECT BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, BAKERYPHOTO, REGDATE, BREADTYPE, BREADNAME, BREADPRICE FROM
+            (
+                SELECT ROWNUM R, BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, BAKERYPHOTO, REGDATE, BREADTYPE, BREADNAME, BREADPRICE
+                FROM TBL_BAKERY
+                ORDER BY BNO DESC
+            )
+            WHERE
+        ]]>
+        <include refid="search"></include>
+        <![CDATA[
+        ROWNUM <= #{pageNum} * #{amount}
+        )
+        WHERE R > (#{pageNum} - 1) * #{amount}
+        ]]>
+    </select>
+
+
 </mapper>

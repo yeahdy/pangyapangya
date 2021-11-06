@@ -114,7 +114,7 @@
 			<article data-position="center">
 				<div class="inner">
 					<img src="/images/휘낭시에1.jpg" alt="메인베너3">
-					<h2 style="font-weight: bolder;font-size: xx-large;">인기 빵집에서 무료로 빵 먹자!</h2>
+					<h2 style="font-weight: bolder;font-size: xx-large;"><span style="color: antiquewhite">인기 빵집</span>에서 무료로 빵 먹자!</h2>
 					<p>3초만에 빵 체험단 신청하고, 맛집 빵 무료로 맛보기</p>
 					<ul class="actions">
 						<li><a class="button" href="/test/list">실시간 모집 보러가기</a></li>
@@ -140,7 +140,7 @@
 
 		<!-- 오늘의 빵 -->
 		<section class="spotlights alt">
-			<article style="border-width: 0px 1px 0px 0px;" th:each="bakery : ${list}"
+			<article style="border-width: 0px 1px 0px 0px;" th:each="bakery : ${list}">
 			<th:block  th:object="${bakery}">
 				<a th:href="*{bno}" class="image fit goInfo"><img th:src="*{bakeryPhoto}" alt=""></a>
 				<a th:href="*{bno}" class="bakery-name goInfo" name="shopName" th:text="*{shopName}"></a>
@@ -151,7 +151,7 @@
 			<br>
 			<div class="col-6 col-12-medium">
 				<ul class="actions fit">
-					<li><a href="#" class="button primary fit" style="margin-top: 1em;">오늘의 빵 더보기</a></li>
+					<li><a href="/main/breadList" class="button primary fit" style="margin-top: 1em;">오늘의 빵 더보기</a></li>
 				</ul>
 			</div>
 		</section>
@@ -215,7 +215,7 @@
 			<br>
 			<div class="col-6 col-12-medium">
 				<ul class="actions fit">
-					<li><a href="#" class="button primary fit" style="margin-top: 1em;">원데이 클래스 더보기</a></li>
+					<li><a href="/class/classMain" class="button primary fit" style="margin-top: 1em;">원데이 클래스 더보기</a></li>
 				</ul>
 			</div>
 		</section>
