@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class ClassReplyDAO {
-    private final ClassReplyMapper classReplyMapper;
+    private final ClassReplyMapper classReplyMapper ;
 
     public int register(ClassReplyVO classReplyVO){
         log.info("register..............");
@@ -32,7 +32,7 @@ public class ClassReplyDAO {
 //
 //    public int modify(ClassReplyVO classReplyVO){
 //        log.info("modify..............");
-//        return classReplyMapper.update(replyVO);
+//        return classReplyMapper.update(classReplyVO);
 //    }
 
     public List<ClassReplyVO> getList(Long bno, Criteria criteria){

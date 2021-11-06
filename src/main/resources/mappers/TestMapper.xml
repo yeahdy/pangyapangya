@@ -2,27 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.pangyapangya.mappers.TestMapper">
-    <select id="read" resultType="TestingVO">
+    <!-- 예진님 -->
+    <select id="mainTest" resultType="TestingVO">
         <![CDATA[
-            SELECT * FROM
+            SELECT TNO, STARTDATE, ENDDATE, CEOID, TITLE, BREADTYPE, BREADNAME, PEOPLE, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REGDATE, STATUS FROM
             (
-                SELECT ROWNUM R,TNO, STARTDATE, ENDDATE, CEOID, TITLE, BREADTYPE, BREADNAME, PEOPLE, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REGDATE
-                FROM TBL_TESTING
-                ORDER BY TNO DESC
+            SELECT ROW_NUMBER() OVER(ORDER BY TNO DESC) R, TNO, STARTDATE, ENDDATE, CEOID, TITLE, BREADTYPE, BREADNAME, PEOPLE, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REGDATE, STATUS FROM TBL_TESTING
             )
-            WHERE R<=20
+            WHERE R<=3 AND STATUS = 0
         ]]>
+    </select>
+
+    <select id="mainReview" resultType="TestingReviewBoardVO">
+        <![CDATA[
+            SELECT TNO, CEOID, TITLE, BREADTYPE, BREADNAME, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REVIEWCNT FROM
+            (
+            SELECT ROW_NUMBER() OVER(ORDER BY TNO DESC) R, TNO, CEOID, TITLE, BREADTYPE, BREADNAME, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REVIEWCNT FROM TBL_TESTING_REVIEW_BOARD
+            )
+            WHERE R<=3
+        ]]>
+
     </select>
 
     <select id="addData" resultType="TestingVO">
         <![CDATA[
-            SELECT * FROM
+            SELECT TNO, STARTDATE, ENDDATE, CEOID, TITLE, BREADTYPE, BREADNAME, PEOPLE, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REGDATE, STATUS FROM
             (
-                SELECT ROWNUM R,TNO, STARTDATE, ENDDATE, CEOID, TITLE, BREADTYPE, BREADNAME, PEOPLE, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REGDATE
-                FROM TBL_TESTING
-                ORDER BY TNO DESC
+            SELECT ROW_NUMBER() OVER(ORDER BY TNO DESC) R, TNO, STARTDATE, ENDDATE, CEOID, TITLE, BREADTYPE, BREADNAME, PEOPLE, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REGDATE, STATUS FROM TBL_TESTING
             )
-            WHERE R > #{temp} AND R <= #{temp}+20
+            WHERE R > #{temp} AND R <= #{temp}+20 AND STATUS = 0
         ]]>
     </select>
 
@@ -36,5 +44,58 @@
 
     <select id="getReadImgs" resultType="TestingImgVO">
         SELECT * FROM TBL_TESTING_IMG WHERE TNO = #{tno}
+    </select>
+
+    <insert id="addTestingRequest">
+        INSERT INTO TBL_TESTING_REQUEST
+        (REQUESTNUM, USERID, TNO, STATUS)
+        VALUES(SEQTESTINGREQUEST.NEXTVAL, #{userid}, #{tno}, 0)
+    </insert>
+
+<!--  모집기간이 끝난 글들 색출해냄  -->
+    <select id="getEndList" resultType="TestingVO">
+        SELECT * FROM TBL_TESTING
+        WHERE ENDDATE = TO_CHAR(SYSDATE - 1, 'YYYY/MM/DD')
+    </select>
+
+    <!-- request 테이블에서 tno로 count 조회 -->
+    <select id="getRequestCnt" resultType="_int">
+        SELECT COUNT(REQUESTNUM) FROM TBL_TESTING_REQUEST
+        WHERE TNO = #{tno}
+    </select>
+
+    <!-- 신청 인원이 모집 인원보다 적을경우 -->
+    <update id="updateAllWinning">
+        UPDATE TBL_TESTING_REQUEST
+        SET STATUS = 1
+        WHERE TNO = #{tno}
+    </update>
+
+    <update id="updateWinning">
+        UPDATE TBL_TESTING_REQUEST
+        SET STATUS = 1
+        WHERE TNO = #{tno} AND USERID = #{userId}
+    </update>
+
+    <update id="updateFail">
+        UPDATE TBL_TESTING_REQUEST
+        SET STATUS = -1
+        WHERE TNO = #{tno} AND USERID = #{userId}
+    </update>
+
+    <delete id="endTest">
+        UPDATE TBL_TESTING
+        SET STATUS = -1
+        WHERE TNO = #{tno}
+    </delete>
+
+    <update id="resetUserApplyCnt">
+        UPDATE TBL_USER
+        SET applyCnt = 0
+    </update>
+
+    <select id="getRequestUser" resultType="testingRequestVO">
+        SELECT * FROM TBL_TESTING_REQUEST
+        WHERE TNO = #{tno}
     </select>
 </mapper>
