@@ -39,6 +39,11 @@ public class UserService {
         }
     }
 
+    // 카카오 회원가입
+    public void joinKakao(UserVO userVO){
+        userDAO.joinKakao(userVO);
+    }
+
     // 로그인 + 비밀번호 암호화 비교하기
     @Transactional(rollbackFor = Exception.class)
     public boolean login (UserVO userVO){
