@@ -1,5 +1,6 @@
 package com.example.pangyapangya.mappers;
 
+import com.example.pangyapangya.beans.vo.BakeryReviewVO;
 import com.example.pangyapangya.beans.vo.BakeryVO;
 import com.example.pangyapangya.beans.vo.CeoVO;
 import com.example.pangyapangya.beans.vo.Criteria;
@@ -43,4 +44,8 @@ public interface BakeryMapper {
     public List<BakeryVO> breadList();
     //    게시글 상세정보
     public BakeryVO breadInfo(Long bno);
+    //  빵 후기
+    public List<BakeryReviewVO> bakeryReviewList();
+    //  후기 댓글 한개
+    public BakeryReviewVO reply(Long bno);
 }

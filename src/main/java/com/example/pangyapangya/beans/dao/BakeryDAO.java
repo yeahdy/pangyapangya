@@ -1,5 +1,6 @@
 package com.example.pangyapangya.beans.dao;
 
+import com.example.pangyapangya.beans.vo.BakeryReviewVO;
 import com.example.pangyapangya.beans.vo.BakeryVO;
 import com.example.pangyapangya.beans.vo.CeoVO;
 import com.example.pangyapangya.beans.vo.Criteria;

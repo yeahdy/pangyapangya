@@ -4,6 +4,7 @@ package com.example.pangyapangya.services;
 import com.example.pangyapangya.beans.dao.BakeryDAO;
 import com.example.pangyapangya.beans.dao.BakeryFileDAO;
 import com.example.pangyapangya.beans.dao.CEODAO;
+import com.example.pangyapangya.beans.vo.BakeryReviewVO;
 import com.example.pangyapangya.beans.vo.BakeryVO;
 import com.example.pangyapangya.beans.vo.CeoVO;
 import com.example.pangyapangya.beans.vo.Criteria;
@@ -91,6 +92,7 @@ public class BakeryServiceImple implements BakeryService{
     public List<BakeryVO> breadList() {
         return bakeryDAO.breadList();
     }
+
 
     /* @Override
     public List<BakeryFileVO> getAttachList(Long bno) {

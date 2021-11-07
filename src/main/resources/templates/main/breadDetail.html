@@ -278,12 +278,13 @@
                                 <input type="hidden">
                                 <a href="#" th:text="*{shopName}"></a>
                             </div>
-                            <h2 class="bread-name" th:text="*{breadName}">브라우니🍞</h2>
+                            <h2 class="bread-name" th:text="*{breadName}"></h2>
                             <div class="price-detail">
                             <span>
-                                <strong th:text="*{breadPrice}">3000</strong>
+                                <strong th:text="*{breadPrice}"></strong>
                                 원
                             </span>
+                                <p>배송비 3000원</p>
                             </div>
 
                             <fieldset><!---->
@@ -311,33 +312,58 @@
             구매 후기
         </div>
         <ul>
+            <th:block class="field" th:object="${reply}">
             <a class="review-box"><!--리뷰 상세 보기를 할 경우 링크를 담기 위한 a태그-->
                 <div class="review-header">
                     <div class="reviewer-info">
                         <span class="reviewer">
                             hgs1234
                         </span>
-                        <span class="review-date">
+                        <span class="review-date" th:text="*{replydate}">
                             2021년 12월 21일
                         </span>
                     </div>
-                    <div class="review-star">
-                        <span>
+                    <div class="review-star" th:switch="*{star}">
+                        <span th:case="1">
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_unstar.png"/>
+                            <img class="star-one" src="/images/cookie_unstar.png"/>
+                            <img class="star-one" src="/images/cookie_unstar.png"/>
+                            <img class="star-one" src="/images/cookie_unstar.png"/>
+                        </span>
+                        <span th:case="2">
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_unstar.png"/>
+                            <img class="star-one" src="/images/cookie_unstar.png"/>
+                            <img class="star-one" src="/images/cookie_unstar.png"/>
+                        </span>
+                        <span th:case="3">
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_unstar.png"/>
+                            <img class="star-one" src="/images/cookie_unstar.png"/>
+                        </span>
+                        <span th:case="4">
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_unstar.png"/>
+                        </span>
+                        <span th:case="5">
                             <img class="star-one" src="/images/cookie_star.png"/>
                             <img class="star-one" src="/images/cookie_star.png"/>
                             <img class="star-one" src="/images/cookie_star.png"/>
                             <img class="star-one" src="/images/cookie_star.png"/>
                             <img class="star-one" src="/images/cookie_star.png"/>
-
-                            <!--<i class="star-one">
-                                ⭐
-                            </i>-->
                         </span>
                     </div>
                 </div>
                 <div class="review-body">
                     <img class="review-img" src="/images/bread1.jpg">
-                    <div class="review-text">
+                    <div class="review-text" th:text="*{reply}">
                         정말..얼른 9월이 되서, 또 사서 먹고 싶어요🥺♥️
                         여기 정착..하고 텅장이 후회되지 않는 맛있는 그 맛!!
                         건강한 재료라서 다이어트 중이지만 찔림이 덜해요 힣ㅎㅎㅎ‼️
@@ -478,6 +504,7 @@
                     </div>
                 </div>
             </a>
+            </th:block>
         </ul>
     </section>
     </th:block>
