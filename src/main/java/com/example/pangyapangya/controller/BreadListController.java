@@ -10,13 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @RequestMapping("/main/*")
 @RequiredArgsConstructor
-public class breadListController {
-
-    @GetMapping("breadList")
-    public String breadList(){ return "main/breadList"; }
-
-    @GetMapping("breadDetail")
-    public String breadDetail(){ return "main/breadDetail"; }
+public class BreadListController {
 
     @GetMapping("delivery")
     public String delivery(){ return "main/delivery"; }

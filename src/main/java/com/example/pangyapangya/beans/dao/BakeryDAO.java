@@ -35,4 +35,10 @@ public class BakeryDAO {
     public int getTotal(Criteria criteria){ return mapper.getTotal(criteria); }
 
     public int myTotal(String ceoId){ return mapper.myTotal(ceoId); }
+
+    public boolean ceoUpdate(CeoVO ceoVO){ return mapper.ceoUpdate(ceoVO) == 1; }
+
+    public boolean ceoDelete(CeoVO ceoVO){ return mapper.ceoDelete(ceoVO) == 1;}
+
+    public List<BakeryVO> breadList(){ return mapper.breadList();}
 }
