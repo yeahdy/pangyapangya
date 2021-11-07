@@ -64,10 +64,13 @@ public class BakeryServiceImple implements BakeryService{
     }
 
     @Override
-    public List<BakeryVO> getList(Criteria criteria) { return bakeryDAO.getList(criteria); }
+    public List<BakeryVO> getList(Criteria criteria) {
+        return bakeryDAO.getList(criteria);
+    }
 
     @Override
     public int getTotal(Criteria criteria) { return bakeryDAO.getTotal(criteria); }
+
     @Override
     public int myTotal(String ceoId) { return bakeryDAO.myTotal(ceoId); }
 
@@ -91,6 +94,11 @@ public class BakeryServiceImple implements BakeryService{
     @Override
     public List<BakeryVO> breadList() {
         return bakeryDAO.breadList();
+    }
+
+    @Override
+    public List<BakeryVO> breadListCeo(BakeryVO bakeryVO) {
+        return bakeryDAO.breadListCeo(bakeryVO);
     }
 
      @Override

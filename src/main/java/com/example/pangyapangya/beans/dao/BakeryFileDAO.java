@@ -1,6 +1,5 @@
 package com.example.pangyapangya.beans.dao;
 
-import com.example.pangyapangya.beans.vo.AttachFileVO;
 import com.example.pangyapangya.beans.vo.BakeryFileVO;
 import com.example.pangyapangya.mappers.BakeryFileMapper;
 import org.springframework.beans.factory.annotation.Autowired;

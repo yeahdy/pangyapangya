@@ -38,8 +38,7 @@
         ]]>
     </select>
 
-    <!-- 메인페이지 글 가져오기 -->
-    <select id="breadList_main" resultType="bakeryVO">
+    <select id="breadListCeo" resultType="bakeryVO">
         <![CDATA[
             SELECT * FROM
             (
@@ -47,7 +46,7 @@
                 FROM TBL_BAKERY
                 ORDER BY BNO DESC
             )
-            WHERE R<= 8
+            WHERE R<=20
         ]]>
     </select>
 
@@ -62,7 +61,6 @@
             FROM TBL_BAKERY
             WHERE
         ]]>
-        <include refid="search"></include>
         <![CDATA[
         ROWNUM <= #{pageNum} * #{amount}
         )

@@ -2,79 +2,76 @@ package com.example.pangyapangya.controller;
 
 import com.example.pangyapangya.beans.vo.*;
 import com.example.pangyapangya.services.ClassCeoService;
+import com.example.pangyapangya.services.TestingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Controller
 @Slf4j
 @RequestMapping("/myPageCeo/*")
 @RequiredArgsConstructor
-public class ClassCeoController {
+public class TestingController {
 
-    private final ClassCeoService classCeoService;
+    private final TestingService testingService;
 
     //마이페이지(사장님)-글 등록[원데이 클래스]
-    @GetMapping("oneDay")
-    public String myPageCeoOneDay(Model model, HttpSession session){
+    @GetMapping("exp")
+    public String myPageCeoExp(Model model, HttpSession session){
         String sessionU = (String)session.getAttribute("sessionU");
         String sessionC = (String)session.getAttribute("sessionC");
         if(sessionU == null && sessionC == null){
             return "/user/login";
         }
-        model.addAttribute("ceo", classCeoService.getCeo(sessionC));
-        return "myPageCeo/oneDay"; }
+        model.addAttribute("ceo", testingService.getCeo(sessionC));
+        return "myPageCeo/exp"; }
 
 
-    @PostMapping("oneDay")
-    public RedirectView oneDay(ClassCeoVO classCeoVO, RedirectAttributes rttr){
-        classCeoService.register(classCeoVO);
-        rttr.addFlashAttribute("bno", classCeoVO.getBno());
-        return new RedirectView("oneDayRe");
+    @PostMapping("exp")
+    public RedirectView exp(TestingVO testingVO, RedirectAttributes rttr){
+        testingService.register(testingVO);
+        rttr.addFlashAttribute("tno", testingVO.getTno());
+        return new RedirectView("expRe");
     }
 
-    //마이페이지(사장님) - 내가 작성한 글(원데이 클래스)
-    @GetMapping("oneDayRe")
-    public String oneDayRe(Criteria criteria, Model model, HttpSession session){
+    //마이페이지(사장님) - 내가 작성한 글 List(빵 체험단)
+    @GetMapping("expRe")
+    public String expRe(Criteria criteria, Model model, HttpSession session){
         String sessionU = (String)session.getAttribute("sessionU");
         String sessionC = (String)session.getAttribute("sessionC");
         if(sessionU == null && sessionC == null){
             return "/user/login";
         }
         log.info("-------------------------------");
-        log.info("oneDayRe");
+        log.info("expRe");
         log.info("-------------------------------");
-        model.addAttribute("total", classCeoService.myTotal(sessionC));
-        model.addAttribute("list", classCeoService.getList(criteria));
-        model.addAttribute("pageMaker", new PageDTO(classCeoService.getTotal(criteria), 10, criteria));
-        return "myPageCeo/oneDayRe";
+        model.addAttribute("total", testingService.myTotal(sessionC));
+        model.addAttribute("list", testingService.getList(criteria));
+        model.addAttribute("pageMaker", new PageDTO(testingService.getTotal(criteria), 10, criteria));
+        return "myPageCeo/expRe";
     }
 
-    //내가 작성한 글에서 원데이클래스 게시글 수정
-    @PostMapping("oneDayModify")
-    public RedirectView oneDayModify(ClassCeoVO classCeoVO, RedirectAttributes rttr){
+    //내가 작성한 글에서 선택한 게시글 수정
+    @GetMapping("expModify")
+    public String expModify(TestingVO testingVO, RedirectAttributes rttr){
         log.info("-------------------------------");
-        log.info("modify : " + classCeoVO.toString());
+        log.info("expModify : " + testingVO.toString());
         log.info("-------------------------------");
 
-        if(classCeoService.modify(classCeoVO)){
+        if(testingService.modify(testingVO)){
             rttr.addAttribute("result", "success");
-            rttr.addAttribute("bno", classCeoVO.getBno());
+            rttr.addAttribute("tno", testingVO.getTno());
         }
-        return new RedirectView("oneDayModify");
+        return "myPageCeo/expModify";
     }
-
 
     //마이페이지(사장님)-글 등록[빵집 소개]
     /*@GetMapping("bakeryModify")
@@ -87,9 +84,8 @@ public class ClassCeoController {
         return "myPageCeo/bakeryModify";
     }*/
 
-
     //    여러 요청을 하나의 메소드로 받을 때에는 {}를 사용하여 콤마로 구분한다.
-   /* @GetMapping({"oneDayRe", "modify"})
+   /* @GetMapping({"read", "modify"})
     public void read(@RequestParam("bno") Long bno, Criteria criteria, Model model, HttpServletRequest request, CeoVO ceoVO){
         String reqURI = request.getRequestURI();
         String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
@@ -104,6 +100,7 @@ public class ClassCeoController {
         model.addAttribute("criteria", criteria);
     }*/
 
+    
     //    /remove 요청을 처리할 수 있는 비지니스 로직 작성
 //    삭제 성공 시 result에 "success"를 flash에 담아서 전달한다.
 //    삭제 실패 시 result에 "fail"을 flash에 담아서 전달한다.
@@ -123,11 +120,11 @@ public class ClassCeoController {
     }*/
 
     //    게시글 첨부파일
-   /* @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
+    /*@GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<ClassCeoFileVO> getAttachList(Long bno){
-        log.info("getAttachList " + bno);
-        return classCeoService.getAttachList(bno);
+    public List<TesingFileVO> getAttachList(Long tno){
+        log.info("getAttachList " + tno);
+        return testingService.getAttachList(tno);
     }*/
 
 }

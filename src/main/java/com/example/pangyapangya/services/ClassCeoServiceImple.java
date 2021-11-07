@@ -4,7 +4,9 @@ package com.example.pangyapangya.services;
 import com.example.pangyapangya.beans.dao.BakeryFileDAO;
 import com.example.pangyapangya.beans.dao.CEODAO;
 import com.example.pangyapangya.beans.dao.ClassCeoDAO;
+import com.example.pangyapangya.beans.dao.ClassCeoFileDAO;
 import com.example.pangyapangya.beans.vo.CeoVO;
+import com.example.pangyapangya.beans.vo.ClassCeoFileVO;
 import com.example.pangyapangya.beans.vo.ClassCeoVO;
 import com.example.pangyapangya.beans.vo.Criteria;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +29,7 @@ import java.util.List;
 public class ClassCeoServiceImple implements ClassCeoService{
 
     private final ClassCeoDAO classCeoDAO;
-    private final BakeryFileDAO bakeryFileDAO;
+    private final ClassCeoFileDAO classCeoFileDAO;
     private final CEODAO ceodao;
 
     @Transactional(rollbackFor = Exception.class)
@@ -35,14 +37,14 @@ public class ClassCeoServiceImple implements ClassCeoService{
     public void register(ClassCeoVO classCeoVO) {
 
         classCeoDAO.register(classCeoVO);
-       /* if(bakeryVO.getAttachList() == null || bakeryVO.getAttachList().size() == 0){
+        if(classCeoVO.getAttachList() == null || classCeoVO.getAttachList().size() == 0){
             return;
-        }*/
+        }
 
-       /* bakeryVO.getAttachList().forEach(attach -> {
-            attach.setBno(bakeryVO.getBno());
-            bakeryFileDAO.insert(attach);
-        });*/
+        classCeoVO.getAttachList().forEach(attach -> {
+            attach.setBno(classCeoVO.getBno());
+            classCeoFileDAO.insert(attach);
+        });
     }
 
     @Override
@@ -71,8 +73,9 @@ public class ClassCeoServiceImple implements ClassCeoService{
     @Override
     public CeoVO getCeo(String ceoId) { return ceodao.ceoInfo(ceoId); }
 
-    /* @Override
-    public List<BakeryFileVO> getAttachList(Long bno) {
-        return bakeryFileDAO.findByBno(bno);
-    }*/
+    @Override
+    public List<ClassCeoFileVO> getAttachList(Long bno) {
+        return classCeoFileDAO.findByBno(bno);
+    }
+
 }

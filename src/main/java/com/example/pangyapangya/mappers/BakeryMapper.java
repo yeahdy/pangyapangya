@@ -4,12 +4,14 @@ import com.example.pangyapangya.beans.vo.BakeryVO;
 import com.example.pangyapangya.beans.vo.CeoVO;
 import com.example.pangyapangya.beans.vo.Criteria;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 @Mapper
 public interface BakeryMapper {
     //    게시글 목록
+
     public List<BakeryVO> getList(Criteria criteria);
 
     //    게시글 추가
@@ -39,11 +41,11 @@ public interface BakeryMapper {
     // 사장님 회원 탈퇴
     public int ceoDelete(CeoVO ceoVO);
 
-    // 사장님이 등록한 게시글 가져오기
     public List<BakeryVO> breadList();
+
     //    게시글 상세정보
     public BakeryVO breadInfo(Long bno);
 
-    // 메인페이지 글가져오기
-    public List<BakeryVO> breadList_main();
+    // 사장님이 등록한 게시글 가져오기
+    public List<BakeryVO> breadListCeo(BakeryVO bakeryVO);
 }

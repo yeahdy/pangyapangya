@@ -1,7 +1,7 @@
 package com.example.pangyapangya.controller;
 
-import com.example.pangyapangya.beans.vo.AttachFileVO;
 import com.example.pangyapangya.beans.vo.BakeryFileVO;
+import com.example.pangyapangya.beans.vo.ClassCeoFileVO;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.core.io.FileSystemResource;
@@ -34,9 +34,9 @@ public class BakeryFileController {
 
     @PostMapping(value = "uploadAjaxAction", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<AttachFileVO> uploadAjaxAction(MultipartFile[] uploadFiles){
+    public List<BakeryFileVO> uploadAjaxAction(MultipartFile[] uploadFiles){
         log.info("upload ajax action...........");
-        List<AttachFileVO> fileList = new ArrayList<>();
+        List<BakeryFileVO> fileList = new ArrayList<>();
 
         String uploadFolder = "C:/upload";
         String uploadFolderPath = getFolder();
@@ -51,7 +51,7 @@ public class BakeryFileController {
             log.info("Upload File Name : " + multipartFile.getOriginalFilename());
             log.info("Upload File Size : " + multipartFile.getSize());
 
-            AttachFileVO attachFileVO = new AttachFileVO();
+            BakeryFileVO attachFileVO = new BakeryFileVO();
 
             String uploadFileName = multipartFile.getOriginalFilename();
 
