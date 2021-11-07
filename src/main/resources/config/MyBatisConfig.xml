@@ -12,7 +12,7 @@
         <typeAlias type="com.example.pangyapangya.beans.vo.TestingVO" alias="testingVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.TestingImgVO" alias="TestingImgVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.ClassReplyVO" alias="classReplyVO"/>
-        <typeAlias type="com.example.pangyapangya.beans.vo.ClassReviewFileVO" alias="classReviewFileVO"/>
+        <typeAlias type="com.example.pangyapangya.beans.vo.ClassReplyFileVO" alias="classReplyFileVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.BakeryReviewVO" alias="bakeryReviewVO"/>
     </typeAliases>
 </configuration>
