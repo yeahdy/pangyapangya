@@ -15,6 +15,7 @@
         <typeAlias type="com.example.pangyapangya.beans.vo.TestingImgVO" alias="testingImgVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.ClassReplyVO" alias="classReplyVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.ClassReviewFileVO" alias="classReviewFileVO"/>
+        <typeAlias type="com.example.pangyapangya.beans.vo.BakeryReviewVO" alias="bakeryReviewVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.TestingRequestVO" alias="testingRequestVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.TestingReviewBoardVO" alias="testingReviewBoardVO"/>
     </typeAliases>

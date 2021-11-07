@@ -127,4 +127,16 @@
         SELECT * FROM TBL_BAKERY
         WHERE BNO = #{bno}
     </select>
+
+    <select id="reply" resultType="BakeryReviewVO">
+        <![CDATA[
+            SELECT * FROM
+            (
+                SELECT ROWNUM R, RNO, BNO, STAR, REPLY, USERID, REPLYDATE
+                FROM TBL_BAKERYREVIEWREPLY
+                ORDER BY RNO DESC
+            )
+            WHERE R<=10
+        ]]>
+    </select>
 </mapper>
