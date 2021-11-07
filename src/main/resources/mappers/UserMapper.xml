@@ -60,5 +60,10 @@
         WHERE USERID= #{userId}
     </select>
 
+    <update id="modifyMyInfo">
+        UPDATE TBL_USER
+        SET USERPW= #{userPw}
+        WHERE USERID= #{userId}
+    </update>
 
 </mapper>

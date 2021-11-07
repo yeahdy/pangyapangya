@@ -6,18 +6,17 @@ import com.example.pangyapangya.services.CartService;
 import com.example.pangyapangya.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.RedirectViewControllerRegistration;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 import org.thymeleaf.model.IModel;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @Slf4j
@@ -25,10 +24,9 @@ import javax.servlet.http.HttpServletRequest;
 @RequiredArgsConstructor
 public class MypageController {
     private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
     //mypage_user
-
-
     @GetMapping("order")
     public String order(){ return "mypage/order"; }
     @GetMapping("bread_review")
@@ -38,11 +36,32 @@ public class MypageController {
     @GetMapping("testing_review")
     public String testing_review(){ return "mypage/testing_review"; }
 
-    @GetMapping("modifyMyInfo")
-    public String modifyMyInfo(String userId, Model model){
-        model.addAttribute("userInfo",userService.userInfo("kjy1234"));
+
+    /*@PostMapping("checkPassword")
+    public String checkPassword(String password, HttpSession session){
+        String sessionU = (String)session.getAttribute("sessionU");
+        log.info("session 회원아이디: " + sessionU);
+        if (!passwordEncoder.matches(userService.userInfo(sessionU).getUserPw(), password)){
+            log.info("****************비밀번호 불일치****************");
+            return "mypage/checkPassword_new";
+        }
+
+    }*/
+
+    @PostMapping("modifyMyInfo")
+    public String modifyMyInfo(Model model, HttpSession session){
+        String sessionU = (String)session.getAttribute("sessionU");
+        log.info("session 회원아이디: " + sessionU);
+        if(sessionU == null){
+            return "/user/login";
+        }
+        model.addAttribute("userInfo", userService.userInfo(sessionU));
+
         return "mypage/modifyMyInfo";
     }
+
+
+
     /*@GetMapping("checkPassword")
     public String checkPassword(){ return "mypage/checkPassword"; }*/
     @GetMapping("breadOrderList")

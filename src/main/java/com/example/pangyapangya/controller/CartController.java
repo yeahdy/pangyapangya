@@ -68,15 +68,7 @@ public class CartController {
     /* 추가 해야할 것 : 장바구니 모두 비우기
     * service까지 해놓음 */
 
-    @GetMapping("updateCnt")
-    public String updateCnt(@RequestParam("cartNum") Long cartNum, int breadCnt){
-        log.info("-------------------------------------");
-        log.info(cartNum+"번 장바구니 수량변경");
-        log.info("-------------------------------------");
 
-        cartService.updateCnt(cartNum, breadCnt);
-        return "mypage/cart";
-    }
 
     @GetMapping("test")
     public String test(Model model){

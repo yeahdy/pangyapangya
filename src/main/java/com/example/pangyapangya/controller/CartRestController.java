@@ -39,6 +39,32 @@ public class CartRestController {
         return entity;
 
     }
+    @RequestMapping(value = "{cartNum}/{cnt}")
+    public ResponseEntity<String> updateCnt(@PathVariable("cartNum") Long cartNum, @PathVariable("cnt") int cnt) throws UnsupportedEncodingException {
+        ResponseEntity<String> entity = null;
+        log.info("수량 변경 Cart 번호: " + cartNum);
+        log.info("변경할 수량: " + cnt);
+        try {
+            cartService.updateCnt(cartNum, cnt);
+            /* 삭제 성공 */
+            entity = new ResponseEntity<String>("success", HttpStatus.OK);
+        } catch (Exception e) {
+            // 삭제 실패
+            log.info("------------------- 장바구니 수량변경 오류 -------------------");
+            entity = new ResponseEntity<String >(e.getMessage(),HttpStatus.BAD_REQUEST);
+        }
+        // 삭제 처리 메세지 리턴
+        return entity;
 
+    }
 
+    /*@GetMapping("updateCnt")
+    public String updateCnt(@RequestParam("cartNum") Long cartNum, int breadCnt){
+        log.info("-------------------------------------");
+        log.info(cartNum+"번 장바구니 수량변경");
+        log.info("-------------------------------------");
+
+        cartService.updateCnt(cartNum, breadCnt);
+        return "mypage/cart";
+    }*/
 }
