@@ -1,8 +1,6 @@
 package com.example.pangyapangya.task;
 
-import com.example.pangyapangya.beans.dao.ClassReviewFileDAO;
 import com.example.pangyapangya.beans.dao.TestDAO;
-import com.example.pangyapangya.beans.dao.TestingDAO;
 import com.example.pangyapangya.beans.vo.TestingRequestVO;
 import com.example.pangyapangya.beans.vo.TestingVO;
 import com.example.pangyapangya.beans.vo.WinDTO;
@@ -14,7 +12,6 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 @Component
 @Slf4j
@@ -53,7 +50,7 @@ public class TestCheckTask {
         }
     }
 
-    @Scheduled(cron = "0 46 19 * * *")
+    @Scheduled(cron = "0 20 20 * * *")
     public void sendMessage(){
         List<TestingRequestVO> winList= testDAO.getWinList();
         List<WinDTO> winDTOList= new ArrayList();
