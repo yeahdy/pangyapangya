@@ -22,13 +22,15 @@
 			content: none;
 		}
 
-		.spotlights h5{
+		.spotlights a{
 			font-weight: bold;
 			font-size: small;
+			color: black;
 		}
 
 		.spotlights p{
 			font-size: small;
+			margin-bottom: 1em;
 		}
 
 		/* 검색창 */
@@ -73,10 +75,6 @@
 			color: black;
 			display: inline-block;
 		}
-
-		.spotlights h5{
-			color: black;
-		}
 	</style>
 </head>
 <body class="is-preload" style="padding: 10em 200px 0 200px;">
@@ -96,7 +94,18 @@
 		<section id="banner">
 			<article data-position="bottom right">
 				<div class="inner">
-					<img src="/images/mainBread1.jpg" alt="메인빵1">
+					<img src="/images/mainBanner_re.jpg" alt="메인베너2">
+					<h2 style="font-weight: bolder;font-size: xx-large;text-align: end"><span style="color: #FFD9EC">달콤 특별한💕</span><br>막대 과자 좌표는 여기!</h2>
+					<p style="text-align: end">가족, 연인, 친구 등 고마운 사람들에게 감동을 전하세요!</p>
+					<ul class="actions" style="justify-content: end;">
+						<li><a class="button" href="/main/breadList">빵 담으러 가기</a></li>
+					</ul>
+				</div>
+
+			</article>
+			<article data-position="top right">
+				<div class="inner">
+					<img src="/images/mainBread1.jpg" alt="메인베너1">
 					<h2 style="font-weight: bolder;font-size: xx-large;">엄선된 재료로 만든 영양가득 통밀빵</h2>
 					<p>10여가지 이상의 곡물이 첨가된 다양한 종류의 빵을 만나보세요</p>
 					<ul class="actions">
@@ -104,20 +113,10 @@
 					</ul>
 				</div>
 			</article>
-			<article data-position="top right">
-				<div class="inner">
-					<img src="/images/mainBread2.jpg" alt="메인빵2">
-					<h2 style="font-weight: bolder;font-size: xx-large;">빵순이 빵돌이 다 모여라</h2>
-					<p>집에서도 바삭한 빵 먹으러 가자!</p>
-					<ul class="actions">
-						<li><a class="button" href="/main/breadList">빵 담으러 가기</a></li>
-					</ul>
-				</div>
-			</article>
 			<article data-position="center">
 				<div class="inner">
-					<img src="/images/휘낭시에1.jpg" alt="">
-					<h2 style="font-weight: bolder;font-size: xx-large;">인기 빵집에서 무료로 빵 먹자!</h2>
+					<img src="/images/휘낭시에1.jpg" alt="메인베너3">
+					<h2 style="font-weight: bolder;font-size: xx-large;"><span style="color: antiquewhite">인기 빵집</span>에서 무료로 빵 먹자!</h2>
 					<p>3초만에 빵 체험단 신청하고, 맛집 빵 무료로 맛보기</p>
 					<ul class="actions">
 						<li><a class="button" href="/test/list">실시간 모집 보러가기</a></li>
@@ -126,9 +125,9 @@
 			</article>
 			<article data-position="right">
 				<div class="inner">
-					<img src="/images/mainBread3.jpg" alt="메인빵3">
-					<h2 style="font-weight: bolder;font-size: xx-large;">빵순이 빵돌이 다 모여라</h2>
-					<p>직접 맛집 빵 만들러 가자!</p>
+					<img src="/images/mainBread2.jpg" alt="메인베너4">
+					<h2 style="font-weight: bolder;font-size: xx-large;">빵순이 빵돌이 다 모여라🍞</h2>
+					<p>베이킹? 아무것도 몰라도 괜찮아! 직접 맛집 빵 만들러 가자!</p>
 					<ul class="actions">
 						<li><a class="button" href="/class/classMain">실시간 신청하기</a></li>
 					</ul>
@@ -141,60 +140,20 @@
 			<h4>따끈따끈 오늘의 빵</h4>
 		</section>
 
-		<!-- Spotlights 1 -->
+		<!-- 오늘의 빵 -->
 		<section class="spotlights alt">
-			<article style="border-width: 0px 1px 0px 0px;">
-				<a href="#" class="image fit"><img src="/images/garlicBread1.jpg" alt=""></a>
-				<h5>만동제과</h5>
-				<p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
+			<article style="border-width: 0px 1px 0px 0px;" th:each="bakery : ${breadList}">
+			<th:block  th:object="${bakery}">
+				<a th:href="*{bno}" class="image fit goInfo"><img th:src="*{bakeryPhoto}" alt=""></a>
+				<a th:href="*{bno}" class="bakery-name goInfo" name="shopName" th:text="*{shopName}"></a>
+				<p th:text="*{content}"></p>
 				<p style="font-weight: 600;">리뷰 0개</p>
-			</article>
-			<article style="border-width: 0px 1px 0px 0px;">
-				<a href="#" class="image fit"><img src="/images/melon1.jpg" alt=""></a>
-				<h5>리코 베이커리</h5>
-				<p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
-				<p style="font-weight: 600;">리뷰 0개</p>
-			</article>
-			<article style="border-width: 0px 1px 0px 0px;">
-				<a href="#" class="image fit"><img src="/images/스콘1.jpg" alt=""></a>
-				<h5>버터랏츠</h5>
-				<p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
-				<p style="font-weight: 600;">리뷰 0개</p>
-			</article>
-			<article style="border-width: 0px 0px 0px 0px;">
-				<a href="#" class="image fit"><img src="/images/donut1.jpg" alt=""></a>
-				<h5>카페노티드</h5>
-				<p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
-				<p style="font-weight: 600;">리뷰 0개</p>
-			</article>
-			<article>
-				<a href="#" class="image fit"><img src="/images/donut1.jpg" alt=""></a>
-				<h5>만동제과</h5>
-				<p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
-				<p style="font-weight: 600;">리뷰 0개</p>
-			</article>
-			<article>
-				<a href="#" class="image fit"><img src="/images/donut1.jpg" alt=""></a>
-				<h5>리코 베이커리</h5>
-				<p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
-				<p style="font-weight: 600;">리뷰 0개</p>
-			</article>
-			<article>
-				<a href="#" class="image fit"><img src="/images/까눌레1.jpg" alt=""></a>
-				<h5>버터랏츠</h5>
-				<p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
-				<p style="font-weight: 600;">리뷰 0개</p>
-			</article>
-			<article>
-				<a href="#" class="image fit"><img src="/images/휘낭시에3.png" alt=""></a>
-				<h5>카페노티드</h5>
-				<p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
-				<p style="font-weight: 600;">리뷰 0개</p>
+			</th:block>
 			</article>
 			<br>
 			<div class="col-6 col-12-medium">
 				<ul class="actions fit">
-					<li><a href="#" class="button primary fit" style="margin-top: 1em;">오늘의 빵 더보기</a></li>
+					<li><a href="/main/breadList" class="button primary fit" style="margin-top: 1em;">오늘의 빵 더보기</a></li>
 				</ul>
 			</div>
 		</section>
@@ -205,60 +164,21 @@
 			<h4>요즘 인기 빵 직접 만드는 원데이 클래스</h4>
 		</section>
 
-		<!-- Spotlights 2 -->
+		<!-- 원데이 클래스 -->
 		<section class="spotlights alt">
-			<article style="border-width: 0px 1px 0px 0px;">
-				<a href="#" class="image fit"><img src="/images/garlicBread2.jpg" alt=""></a>
-				<h5>만동제과</h5>
-				<p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
-				<p style="font-weight: 600;">리뷰 0개</p>
+			<th:block th:each="class : ${classList}">
+			<article style="border-width: 0px 1px 0px 0px;"  th:object="${class}">
+				<a th:href="*{bno}" class="image fit goRead_class"><img th:src="*{classPhoto}" alt=""></a>
+				<a class="goRead_class" th:href="*{bno}" th:text="*{bakeryShopname}"></a>
+				<p th:text="*{title}"></p>
+				<p style="font-weight: 600;margin: 0px;font-size: 18px;color: #F9A825;text-align: end;">￦ <span th:text="*{classPrice}"></span></p>
+				<p style="font-weight: 600;text-align: end;">리뷰 0개</p>
 			</article>
-			<article style="border-width: 0px 1px 0px 0px;">
-				<a href="#" class="image fit"><img src="/images/까눌레1.jpg" alt=""></a>
-				<h5>리코 베이커리</h5>
-				<p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
-				<p style="font-weight: 600;">리뷰 0개</p>
-			</article>
-			<article style="border-width: 0px 1px 0px 0px;">
-				<a href="#" class="image fit"><img src="/images/휘낭시에2.png" alt=""></a>
-				<h5>버터랏츠</h5>
-				<p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
-				<p style="font-weight: 600;">리뷰 0개</p>
-			</article>
-			<article style="border-width: 0px 0px 0px 0px;">
-				<a href="#" class="image fit"><img src="/images/donut2.jpg" alt=""></a>
-				<h5>카페노티드</h5>
-				<p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
-				<p style="font-weight: 600;">리뷰 0개</p>
-			</article>
-			<article>
-				<a href="#" class="image fit"><img src="/images/휘낭시에3.png" alt=""></a>
-				<h5>만동제과</h5>
-				<p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
-				<p style="font-weight: 600;">리뷰 0개</p>
-			</article>
-			<article>
-				<a href="#" class="image fit"><img src="/images/스콘1.jpg" alt=""></a>
-				<h5>리코 베이커리</h5>
-				<p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
-				<p style="font-weight: 600;">리뷰 0개</p>
-			</article>
-			<article>
-				<a href="#" class="image fit"><img src="/images/donut1.jpg" alt=""></a>
-				<h5>버터랏츠</h5>
-				<p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
-				<p style="font-weight: 600;">리뷰 0개</p>
-			</article>
-			<article>
-				<a href="#" class="image fit"><img src="/images/melon1.jpg" alt=""></a>
-				<h5>카페노티드</h5>
-				<p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
-				<p style="font-weight: 600;">리뷰 0개</p>
-			</article>
+			</th:block>
 			<br>
 			<div class="col-6 col-12-medium">
 				<ul class="actions fit">
-					<li><a href="#" class="button primary fit" style="margin-top: 1em;">원데이 클래스 더보기</a></li>
+					<li><a href="/class/classMain" class="button primary fit" style="margin-top: 1em;">원데이 클래스 더보기</a></li>
 				</ul>
 			</div>
 		</section>
@@ -266,58 +186,41 @@
 		<!-- Blurb 3 -->
 		<section style="padding-top: 2.0em;padding-bottom: 0em;border-top: none;">
 			<h4>빵 체험단 실시간 모집!</h4>
-			<a href="#" style="text-align: right;float: right;font-weight: 700;">더보기</a>
+			<a href="/test/list" style="text-align: right;float: right;font-weight: 700;">더보기</a>
 		</section>
 
-		<!-- Spotlights 3 -->
-		<section class="spotlights alt">
-			<article style="border-width: 0px 0px 0px 0px;width: 33.33333%;">
-				<a href="#" class="image fit"><img src="/images/garlicBread1.jpg" alt=""></a>
-				<h5>만동제과</h5>
-				<p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
-				<p style="font-weight: 600;">리뷰 0개</p>
+		<!-- 빵체험단 모집 -->
+		<section class="spotlights alt" id="testList">
+			<th:block th:each="item : ${tasting}">
+			<article style="border-width: 0px 0px 0px 0px;width: 33.33333%;" th:object="${item}" class="item">
+				<a th:href="*{tno}" class="image fit goRead"><img th:src="*{testingPhoto}" alt=""></a>
+				<a th:href="*{tno}" th:text="*{shopName}" class="goRead"></a>
+				<p th:text="*{title}"></p>
 			</article>
-			<article style="border-width: 0px 0px 0px 0px;width: 33.33333%;">
-				<a href="#" class="image fit"><img src="/images/휘낭시에3.png" alt=""></a>
-				<h5>리코 베이커리</h5>
-				<p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
-				<p style="font-weight: 600;">리뷰 0개</p>
-			</article>
-			<article style="border-width: 0px 0px 0px 0px;width: 33.33333%;">
-				<a href="#" class="image fit"><img src="/images/donut3.jpg" alt=""></a>
-				<h5>카페노티드</h5>
-				<p>생크림이 가득 심슨 도넛/ 딸기, 우유, 초코 등</p>
-				<p style="font-weight: 600;">리뷰 0개</p>
-			</article>
+			</th:block>
 			<br>
 		</section>
 
 		<!-- Blurb 4 -->
 		<section style="padding-top: 2.0em;padding-bottom: 0em;border-top: none;">
 			<h4>빵 체험단 실시간 리뷰!</h4>
-			<a href="#" style="text-align: right;float: right;font-weight: 700;">더보기</a>
+			<a href="/test/review" style="text-align: right;float: right;font-weight: 700;">더보기</a>
 		</section>
 
-		<!-- Spotlights 4 -->
+		<!-- 빵 체험단 리뷰 -->
 		<section class="spotlights alt">
-			<article style="border-width: 0px 0px 0px 0px;width: 33.33333%;">
-				<a href="#" class="image fit"><img src="/images/garlicBread2.jpg" alt=""></a>
-				<h5>만동제과</h5>
-				<p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
+			<th:block th:each="review : ${tastingRe}">
+			<article style="border-width: 0px 0px 0px 0px;width: 33.33333%;" th:object="${review}">
+				<a th:href="*{tno}" class="image fit goRead"><img  th:src="*{testingPhoto}" alt=""></a>
+				<a th:href="*{tno}" th:text="*{shopName}" class="goRead"></a>
+				<p th:text="*{title}"></p>
 				<p style="font-weight: 600;">리뷰 0개</p>
+				<div class="box" style="background: #f5f5f5;margin-bottom: 1em">
+					<span style="font-size: small;">yedee123 님</span>
+					<p th:text="*{description}"></p>
+				</div>
 			</article>
-			<article style="border-width: 0px 0px 0px 0px;width: 33.33333%;">
-				<a href="#" class="image fit"><img src="/images/melon1.jpg" alt=""></a>
-				<h5>리코 베이커리</h5>
-				<p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
-				<p style="font-weight: 600;">리뷰 0개</p>
-			</article>
-			<article style="border-width: 0px 0px 0px 0px;width: 33.33333%;">
-				<a href="#" class="image fit"><img src="/images/스콘1.jpg" alt=""></a>
-				<h5>버터랏츠</h5>
-				<p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
-				<p style="font-weight: 600;">리뷰 0개</p>
-			</article>
+			</th:block>
 			<br>
 		</section>
 
@@ -404,7 +307,23 @@
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
 <script type="text/javascript">
+	// 오늘의 빵
+	$("a.goInfo").on("click", function(e){
+		e.preventDefault();
+		location.href = "/main/breadDetail?bno=" + $(this).attr("href");
+	})
 
+	//원데이 클래스
+	$("a.goRead_class").on("click", function(e){
+		e.preventDefault();
+		location.href = "/class/classDetail?bno=" + $(this).attr("href");
+	})
+
+	// 빵체험단
+	$("a.goRead").on("click", function(e){
+		e.preventDefault();
+		location.href = "/test/read?tno=" + $(this).attr("href");
+	})
 </script>
 </body>
 </html>
