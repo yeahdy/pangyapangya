@@ -88,8 +88,8 @@ public class BakeryServiceImple implements BakeryService{
     }
 
     @Override
-    public List<BakeryVO> breadList() {
-        return bakeryDAO.breadList();
+    public List<BakeryVO> breadList(String keyword) {
+        return bakeryDAO.breadList(keyword);
     }
 
     /* @Override

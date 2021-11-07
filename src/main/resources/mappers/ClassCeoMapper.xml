@@ -94,4 +94,19 @@
         SELECT COUNT(BNO) FROM TBL_CEO_CLASS
         WHERE CEOID = #{ceoId}
     </select>
+
+
+
+    <!-- 메인페이지 글 가져오기 -->
+    <select id="classList_main" resultType="classCeoVO">
+        <![CDATA[
+            SELECT * FROM
+            (
+                SELECT ROWNUM R, BNO, TITLE, CEOID, CLASSPHOTO, CLASSPRICE, REGDATE, ENDDATE, CLASSDATE, RECRUITMENT, DESCRIPTION, BREADTYPE, BREADNAME, CEONAME, BAKERYSHOPNAME
+                FROM TBL_CEO_CLASS
+                ORDER BY BNO DESC
+            )
+            WHERE R<= 8
+        ]]>
+    </select>
 </mapper>

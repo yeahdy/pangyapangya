@@ -75,4 +75,8 @@ public class ClassCeoServiceImple implements ClassCeoService{
     public List<BakeryFileVO> getAttachList(Long bno) {
         return bakeryFileDAO.findByBno(bno);
     }*/
+
+
+    // 메인페이지 글 가져오기
+    public List<ClassCeoVO> classList_main() { return  classCeoDAO.classList_main(); }
 }

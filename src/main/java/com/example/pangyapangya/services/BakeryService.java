@@ -20,7 +20,7 @@ public interface BakeryService {
     public CeoVO getCeo(String ceoId);
     public boolean ceoUpdate(CeoVO ceoVO);
     public boolean ceoDelete(CeoVO ceoVO);
-    public List<BakeryVO> breadList();
+    public List<BakeryVO> breadList(String keyword);
 //    public List<BakeryFileVO> getAttachList(Long bno);
 
     // 메인페이지 글가져오기

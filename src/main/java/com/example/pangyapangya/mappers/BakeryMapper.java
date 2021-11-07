@@ -40,7 +40,7 @@ public interface BakeryMapper {
     public int ceoDelete(CeoVO ceoVO);
 
     // 사장님이 등록한 게시글 가져오기
-    public List<BakeryVO> breadList();
+    public List<BakeryVO> breadList(String keyword);
     //    게시글 상세정보
     public BakeryVO breadInfo(Long bno);
 

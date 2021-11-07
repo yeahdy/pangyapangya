@@ -79,10 +79,11 @@
 				</ul>
 			</li>
 			<!-- 검색창 -->
-			<form action="/main/header_search" id="searchForm">
+			<form action="/main/breadList" id="searchForm">
 				<div class="search">
 					<a href="#" id="iconSearch"><i class="fas fa-search"></i></a>
-					<input type="text" id="searchInput" placeholder="먹고 싶은 빵 종류를 검색 해 보세요" maxlength="17" style="background-color: wheat;border-radius: 10px;color: darkgray">
+					<input type="text" id="keyword" name="keyword" placeholder="먹고 싶은 빵 종류를 검색 해 보세요" maxlength="17" style="background-color: wheat;border-radius: 10px;color: darkgray">
+
 				</div>
 				<input type="hidden" class="box" value="검색">
 			</form>
@@ -175,8 +176,8 @@
 	// 검색창 공백막기
 	$("form[name='searchForm']").on("keydown", function (e) {
 		if(e.keyCode == 13){
-			console.log($("#searchInput").val())
-			if(!$("#searchInput").val()){
+			console.log($("#keyword").val())
+			if(!$("#keyword").val()){
 				alert("빵 종류를 입력 해 주세요");
 				return false;
 			}
@@ -186,7 +187,7 @@
 
 	// 돋보기 눌렀을때 공백 막기
 	$('.fas').on("click", function () {
-		if(!$("#searchInput").val()){
+		if(!$("#keyword").val()){
 			alert("빵 종류를 입력 해 주세요");
 			return false;
 		}
@@ -200,6 +201,7 @@
 		console.log("session: " + $('#sessionC').val());
 	}
 
+/*
 
 	Kakao.init('2465241f2a949966552234d75ef14dee'); //발급받은 키 중 javascript키를 사용해준다.
 	console.log("sdk초기화여부판단" + Kakao.isInitialized()); // sdk초기화여부판단
@@ -219,6 +221,7 @@
 			Kakao.Auth.setAccessToken(undefined)
 		}
 	}
+*/
 
 </script>
 </body>
