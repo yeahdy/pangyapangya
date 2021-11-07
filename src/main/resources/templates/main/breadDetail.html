@@ -308,13 +308,13 @@
     <section id="prd-info">
     </section>
     <section id="prd-review">
-        <th:block th:object="${reply}">
         <div id="review-title">
             구매 후기
         </div>
         <ul>
+            <th:block th:each="reply : ${replyList}">
             <a class="review-box"><!--리뷰 상세 보기를 할 경우 링크를 담기 위한 a태그-->
-                <div class="review-header">
+                <div class="review-header"><!-- th:object="${reply}"-->
                     <div class="reviewer-info">
                         <span class="reviewer" th:text="*{userid}">
                             hgs1234
@@ -369,140 +369,7 @@
                         건강한 재료라서 다이어트 중이지만 찔림이 덜해요 힣ㅎㅎㅎ‼️
                     </div>
                 </div>
-            </a>
-            <a class="review-box"><!--리뷰 상세 보기를 할 경우 링크를 담기 위한 a태그-->
-                <div class="review-header">
-                    <div class="reviewer-info">
-                        <span class="reviewer">
-                            lyj2222
-                        </span>
-                        <span class="review-date">
-                            2021년 12월 21일
-                        </span>
-                    </div>
-                    <div class="review-star">
-                        <span>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
 
-                            <!--<i class="star-one">
-                                ⭐
-                            </i>-->
-                        </span>
-                    </div>
-                </div>
-                <div class="review-body">
-                    <img class="review-img" src="https://image.idus.com/image/files/f0d9719407384a68bdca47ff0c0b2b16_1440.jpg">
-                    <div class="review-text">
-                        정말..얼른 9월이 되서, 또 사서 먹고 싶어요🥺♥️
-                        여기 정착..하고 텅장이 후회되지 않는 맛있는 그 맛!!
-                        건강한 재료라서 다이어트 중이지만 찔림이 덜해요 힣ㅎㅎㅎ‼️
-                    </div>
-                </div>
-            </a>
-            <a class="review-box"><!--리뷰 상세 보기를 할 경우 링크를 담기 위한 a태그-->
-                <div class="review-header">
-                    <div class="reviewer-info">
-                        <span class="reviewer">
-                            kjh5565
-                        </span>
-                        <span class="review-date">
-                            2021년 12월 21일
-                        </span>
-                    </div>
-                    <div class="review-star">
-                        <span>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-
-                            <!--<i class="star-one">
-                                ⭐
-                            </i>-->
-                        </span>
-                    </div>
-                </div>
-                <div class="review-body">
-                    <img class="review-img" src="https://image.idus.com/image/files/5629c38711b14297a7430b308b0f4139_512.jpg">
-                    <div class="review-text">
-                        배송하루만에 빨리도착했습니다~~^^
-                        얼음이넘작아서 다녹구,브라우니도 만지면 물껑거려서 먹을수가 없어서,바로 냉동실에 넣습니다 ~~~아직먹어보진않아서 맛은아직모르겠지만,생각보다 작아서 한번더 놀라긴했네요~~ㅋㅋㅋ
-                        냉동실에 얼려놓고 먹고서 다시 후기남기겠습니다~~배송은 꼼꼼히 잘도착했어요...
-                    </div>
-                </div>
-            </a>
-            <a class="review-box"><!--리뷰 상세 보기를 할 경우 링크를 담기 위한 a태그-->
-                <div class="review-header">
-                    <div class="reviewer-info">
-                        <span class="reviewer">
-                            hjk7852
-                        </span>
-                        <span class="review-date">
-                            2021년 12월 21일
-                        </span>
-                    </div>
-                    <div class="review-star">
-                        <span>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-
-                            <!--<i class="star-one">
-                                ⭐
-                            </i>-->
-                        </span>
-                    </div>
-                </div>
-                <div class="review-body">
-                    <img class="review-img" src="https://image.idus.com/image/files/fb07ecd53f914d3797e19398c16808ac_512.jpg">
-                    <div class="review-text">
-                        별5개로 모자라는 맛이에요 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 별 10개 더 드립니다
-                        그냥 기대 없이 브라우니가 브라우니겠지 하는 생각으로 정말 생각없이 한개만 주문했던 저를 원망하게 하는 맛이에요🥲🥲
-                        진짜 미쳤어요.. 이건 미챴어요 너무너무너무 부드럽고 속은 그냥 초콜릿가나슈처럼 그냥 녹아요ㅠㅠㅠ 너무 맛있어요ㅠㅠ
-                        행복해지는 맛이네요 감사해요💞
-
-                        재구매 의사 : ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
-                    </div>
-                </div>
-            </a>
-            <a class="review-box"><!--리뷰 상세 보기를 할 경우 링크를 담기 위한 a태그-->
-                <div class="review-header">
-                    <div class="reviewer-info">
-                        <span class="reviewer">
-                            kjy8650
-                        </span>
-                        <span class="review-date">
-                            2021년 12월 21일
-                        </span>
-                    </div>
-                    <div class="review-star">
-                        <span>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-
-                            <!--<i class="star-one">
-                                ⭐
-                            </i>-->
-                        </span>
-                    </div>
-                </div>
-                <div class="review-body">
-                    <img class="review-img" src="https://image.idus.com/image/files/11f6cb7645514085bdbb2b635f0afcb4_512.jpg">
-                    <div class="review-text">
-                        쫀득+바삭의 조합이 최고인 브라우니입니다🤎
-                        1/3은 쫀득하고 나머지는 살짝 바삭한게 너무 마음에 들어요! 파운드를 가장 기대하고 시켰는데 브라우니도 완전 맛있었어요😊
-                    </div>
-                </div>
             </a>
             </th:block>
         </ul>

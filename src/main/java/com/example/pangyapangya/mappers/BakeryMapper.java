@@ -5,6 +5,7 @@ import com.example.pangyapangya.beans.vo.BreadReviewVO;
 import com.example.pangyapangya.beans.vo.CeoVO;
 import com.example.pangyapangya.beans.vo.Criteria;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -44,6 +45,8 @@ public interface BakeryMapper {
     public List<BakeryVO> breadList();
     //    게시글 상세정보
     public BakeryVO breadInfo(Long bno);
-
+    //  댓글 목록
+    public List<BreadReviewVO> getListWithPaging(@Param("bno") Long bno, @Param("criteria") Criteria criteria);
+    //  댓글 내용
     public BreadReviewVO breadReply(Long bno);
 }
