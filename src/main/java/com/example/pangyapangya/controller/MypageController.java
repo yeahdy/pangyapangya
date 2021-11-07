@@ -54,16 +54,22 @@ public class MypageController {
 
         //check_pw에서 비밀번호를 잘못 입력할 경우
         //ajax 사용해서 틀렸을 때 alter 띄워주는거 가능할듯
-        //userInfo.getUserPw()
-        if (!passwordEncoder.matches(userInfo.getUserPw(), pw)){
+
+        /*if (!passwordEncoder.matches(userInfo.getUserPw(), pw)){
+            log.info("비밀번호 틀림.");
               return "mypage/checkPassword_new";
-        }
-        //비밀번호 받아야함.
+        }*/
         model.addAttribute("userInfo",userInfo);
         return "mypage/modifyMyInfo";
     }
-    /*@GetMapping("checkPassword")
-    public String checkPassword(){ return "mypage/checkPassword"; }*/
+
+    //새로 작성한 비밀번호 updqte
+    @PostMapping("modifyMyInfo_new")
+    public String modifyMyInfo(UserVO userVO){
+        userService.pwUpdate(userVO);
+        log.info("개인 정보 수정 완료");
+        return "mypage/modifyMyInfo";
+    }
     @GetMapping("breadOrderList")
     public String breadOrderList(){ return "mypage/breadOrderList"; }
     @GetMapping("oneDayClassList")
