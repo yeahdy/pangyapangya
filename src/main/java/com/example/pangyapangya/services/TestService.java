@@ -41,6 +41,19 @@ public class TestService {
 
     public void addTestingRequest(TestingRequestVO testingRequestVO){testDAO.addTestingRequest(testingRequestVO);}
 
+    public List<TestingReviewBoardVO> getReviewBoardList(){return testDAO.getReviewBoardList();}
+    public List<TestingReviewBoardVO> addReviewBoard(int cnt){return testDAO.addReviewBoard(cnt);}
+
+    public int getReviewBoardTotal(){return testDAO.getReviewBoardTotal();};
+
+    public List<TestingRequestVO> getWinList(){return testDAO.getWinList();}
+
+    public String getUserNamae(String userId){return testDAO.getUserNamae(userId);}
+    public String getUserTel(String userId){return testDAO.getUserTel(userId);}
+    public String getBreadName(Long tno){return testDAO.getBreadName(tno);}
+    public String getShopName(Long tno){return testDAO.getShopName(tno);}
+
+
     //    예진님
     public List<TestingVO> mainTest(){return testDAO.mainTest();}
     public List<TestingReviewBoardVO> mainReview(){return testDAO.mainReview();}

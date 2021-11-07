@@ -376,7 +376,7 @@
     <div class="maker-card">
         <span class="pxorm">모집 인원</span>
     </div>
-    <p style="margin-bottom: 12px; color: black; font-size: 20px;" th:text="*{people}"></p>
+    <p style="margin-bottom: 12px; color: black; font-size: 20px;" th:text="*{people} + '명'"></p>
     <div class="maker-card">
         <span class="pxorm">신청 기간</span>
     </div>
@@ -399,26 +399,13 @@
         <div>
             <div>
                 <section id="banner" style="width: 560px; height: 560px; margin: 0 auto; margin-left: 16%;">
-                    <article data-position="bottom right">
-                        <div class="inner">
-                            <img src="/images/mainBread1.jpg" alt="메인빵1">
-                        </div>
-                    </article>
-                    <article data-position="top right">
-                        <div class="inner">
-                            <img src="/images/mainBread2.jpg" alt="메인빵2">
-                        </div>
-                    </article>
-                    <article data-position="center">
-                        <div class="inner">
-                            <img src="/images/휘낭시에1.jpg" alt="">
-                        </div>
-                    </article>
-                    <article data-position="right">
-                        <div class="inner">
-                            <img src="/images/mainBread3.jpg" alt="메인빵3">
-                        </div>
-                    </article>
+                    <th:block th:each="img : ${imgs}">
+                        <article data-position="bottom right" th:object="${img}">
+                            <div class="inner">
+                                <img th:src="*{img}" alt="메인빵">
+                            </div>
+                        </article>
+                    </th:block>
                 </section>
             </div>
             <div>

@@ -40,30 +40,28 @@
         VALUES(SEQTESTINGREQUEST.NEXTVAL, #{userid}, #{tno}, 0)
     </insert>
 
-<!--  모집기간이 끝난 글들 색출해냄  -->
     <select id="getEndList" resultType="TestingVO">
         SELECT * FROM TBL_TESTING
-        WHERE ENDDATE = TO_CHAR(SYSDATE - 1, 'YYYY/MM/DD')
+        WHERE TO_CHAR(ENDDATE, 'YYYY/MM/DD') = TO_CHAR(SYSDATE - 1, 'YYYY/MM/DD')
     </select>
 
-    <!-- request 테이블에서 tno로 count 조회 -->
     <select id="getRequestCnt" resultType="_int">
         SELECT COUNT(REQUESTNUM) FROM TBL_TESTING_REQUEST
         WHERE TNO = #{tno}
     </select>
 
-    <!-- 신청 인원이 모집 인원보다 적을경우 -->
     <update id="updateAllWinning">
         UPDATE TBL_TESTING_REQUEST
-        SET STATUS = 1
+        SET WINNINGDATAE= SYSDATE ,STATUS = 1
         WHERE TNO = #{tno}
     </update>
 
     <update id="updateWinning">
         UPDATE TBL_TESTING_REQUEST
-        SET STATUS = 1
+        SET WINNINGDATAE= SYSDATE ,STATUS = 1
         WHERE TNO = #{tno} AND USERID = #{userId}
     </update>
+
 
     <update id="updateFail">
         UPDATE TBL_TESTING_REQUEST
@@ -71,27 +69,75 @@
         WHERE TNO = #{tno} AND USERID = #{userId}
     </update>
 
+
     <delete id="endTest">
         UPDATE TBL_TESTING
         SET STATUS = -1
         WHERE TNO = #{tno}
     </delete>
 
+
     <update id="resetUserApplyCnt">
         UPDATE TBL_USER
         SET applyCnt = 0
     </update>
 
-    <select id="getRequestUser" resultType="testingRequestVO">
+
+    <select id="getRequestUser" resultType="TestingRequestVO">
         SELECT * FROM TBL_TESTING_REQUEST
         WHERE TNO = #{tno}
     </select>
 
 
+    <select id="getReviewBoardList" resultType="TestingReviewBoardVO">
+        <![CDATA[
+            SELECT * FROM
+            (
+            SELECT ROW_NUMBER() OVER(ORDER BY TNO DESC) R, TNO, CEOID, TITLE, BREADTYPE, BREADNAME, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REVIEWCNT FROM TBL_TESTING_REVIEW_BOARD
+            )
+            WHERE R<=20
+        ]]>
+    </select>
 
 
+    <select id="addReviewBoard" resultType="TestingReviewBoardVO">
+        <![CDATA[
+            SELECT TNO, CEOID, TITLE, BREADTYPE, BREADNAME, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REVIEWCNT FROM
+            (
+            SELECT ROW_NUMBER() OVER(ORDER BY TNO DESC) R, TNO, CEOID, TITLE, BREADTYPE, BREADNAME, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REVIEWCNT FROM TBL_TESTING_REVIEW_BOARD
+            )
+            WHERE R > #{temp} AND R <= #{temp}+20
+        ]]>
+    </select>
 
+    <select id="getReviewBoardTotal" resultType="_int">
+        SELECT COUNT(TNO) FROM TBL_TESTING_REVIEW_BOARD
+    </select>
 
+    <select id="getWinList" resultType="TestingRequestVO">
+        SELECT * FROM TBL_TESTING_REQUEST ttr
+        WHERE TO_CHAR(WINNINGDATAE , 'YYYY/MM/DD') = TO_CHAR(SYSDATE, 'YYYY/MM/DD')
+    </select>
+
+    <select id="getUserNamae" resultType="string">
+        SELECT USERNAME FROM TBL_USER
+        WHERE USERID = #{userId}
+    </select>
+
+    <select id="getUserTel" resultType="string">
+        SELECT USERPHONENUM FROM TBL_USER
+        WHERE USERID = #{userId}
+    </select>
+
+    <select id="getBreadName" resultType="string">
+        SELECT BREADNAME FROM TBL_TESTING tt
+        WHERE TNO = #{tno}
+    </select>
+
+    <select id="getShopName" resultType="string">
+        SELECT SHOPNAME FROM TBL_TESTING tt
+        WHERE TNO = #{tno}
+    </select>
 
 
 
