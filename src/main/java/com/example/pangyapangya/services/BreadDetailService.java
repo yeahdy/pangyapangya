@@ -1,8 +1,8 @@
 package com.example.pangyapangya.services;
 
 import com.example.pangyapangya.beans.dao.BreadDetailDAO;
-import com.example.pangyapangya.beans.vo.BakeryReviewVO;
 import com.example.pangyapangya.beans.vo.BakeryVO;
+import com.example.pangyapangya.beans.vo.BreadReviewVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +14,5 @@ public class BreadDetailService {
 
     public BakeryVO getInfo(Long bno){return breadDetailDAO.get(bno);}
 
-    public BakeryReviewVO getRep(Long bno){ return breadDetailDAO.load(bno); }
-
+    public BreadReviewVO getReply(Long bno){ return breadDetailDAO.read(bno);}
 }

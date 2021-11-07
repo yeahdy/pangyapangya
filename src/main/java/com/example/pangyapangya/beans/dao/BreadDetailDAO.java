@@ -1,12 +1,10 @@
 package com.example.pangyapangya.beans.dao;
 
-import com.example.pangyapangya.beans.vo.BakeryReviewVO;
 import com.example.pangyapangya.beans.vo.BakeryVO;
+import com.example.pangyapangya.beans.vo.BreadReviewVO;
 import com.example.pangyapangya.mappers.BakeryMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -16,7 +14,6 @@ public class BreadDetailDAO {
 
     public BakeryVO get(Long bno) { return mapper.breadInfo(bno); }
 
-    public BakeryReviewVO load(Long bno) { return mapper.reply(bno);}
+    public BreadReviewVO read(Long bno) { return mapper.breadReply(bno); }
 
-    public List<BakeryReviewVO> replyList(){ return mapper.bakeryReviewList(); }
 }

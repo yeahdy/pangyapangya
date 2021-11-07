@@ -37,7 +37,7 @@
             position: fixed;
             background-color: white;
             width: 400px;
-            height: 500px;
+            height: 300px;
             padding: 17px;
             border: solid 1px #0000001a;
             box-shadow: 0 2px 4px 0 #0000001a;
@@ -63,7 +63,7 @@
         }
         #box{
             position: relative;
-            top: -604px;
+            top: -570px;
             right: -590px;
             padding: 0 !important;
             box-shadow: none !important;
@@ -91,7 +91,7 @@
         }
         .price-detail{
             font-size: large;
-            height: 320px;
+            height: 130px;
             margin-bottom: 15px;
         }
 
@@ -304,19 +304,19 @@
                     </aside>
                 </div>
             </div>
+        </th:block>
     <section id="prd-info">
-        <p th:text="*{content}"></p>
     </section>
     <section id="prd-review">
+        <th:block th:object="${reply}">
         <div id="review-title">
             구매 후기
         </div>
         <ul>
-            <th:block class="field" th:object="${reply}">
             <a class="review-box"><!--리뷰 상세 보기를 할 경우 링크를 담기 위한 a태그-->
                 <div class="review-header">
                     <div class="reviewer-info">
-                        <span class="reviewer">
+                        <span class="reviewer" th:text="*{userid}">
                             hgs1234
                         </span>
                         <span class="review-date" th:text="*{replydate}">
@@ -507,7 +507,6 @@
             </th:block>
         </ul>
     </section>
-    </th:block>
 </div>
 <!-- Scripts -->
 <script src="/js/jquery.min.js"></script>

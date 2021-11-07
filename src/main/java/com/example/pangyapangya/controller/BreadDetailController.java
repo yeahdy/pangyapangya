@@ -27,14 +27,14 @@ public class BreadDetailController {
 
     @GetMapping("breadList")
     public String breadList(Model model){
-       model.addAttribute("list", bakeryService.breadList());
+        model.addAttribute("list", bakeryService.breadList());
         return "main/breadList";
     }
 
     @GetMapping("breadDetail")
     public String breadDetail(@RequestParam("bno") Long bno, Model model){
         model.addAttribute("info", breadDetailService.getInfo(bno));
-        /*model.addAttribute("reply", breadDetailService.getRep(bno));*/
+        model.addAttribute("reply", breadDetailService.getReply(bno));
         return "main/breadDetail";
     }
 

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Data
-public class BakeryReviewVO {
+public class BreadReviewVO {
     private Long rno;
     private Long bno;
     private Long star;
