@@ -1,10 +1,13 @@
 package com.example.pangyapangya.controller;
 
-import com.example.pangyapangya.beans.vo.CeoVO;
+import com.example.pangyapangya.services.BakeryService;
+import com.example.pangyapangya.services.ClassCeoService;
+import com.example.pangyapangya.services.TestService;
 import com.example.pangyapangya.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -28,6 +31,9 @@ import java.util.Random;
 @RequiredArgsConstructor
 public class mainController {
     private final UserService userService;
+    private final BakeryService bakeryService;
+    private final TestService testService;
+    private final ClassCeoService classCeoService;
 
     @GetMapping("index")
     public String index(){ return "main/index"; }
@@ -46,12 +52,31 @@ public class mainController {
 
     /* 메인페이지 */
     @GetMapping("mainPage")
-    public String mainPage(){ return "main/mainPage"; }
+    public String breadList(Model model){
+        // 오늘의 빵
+        model.addAttribute("breadList", bakeryService.breadList_main());
+        // 원데이 클래스
+        model.addAttribute("classList", classCeoService.classList_main());
+        // 빵 체험단(모집)
+        model.addAttribute("tasting", testService.mainTest());
+        // 빵 체험단(리뷰)
+        model.addAttribute("tastingRe", testService.mainReview());
+        /*model.addAttribute("reviewTotal", testService) 리뷰갯수*/
+        return "main/mainPage";
+    }
+
+
 
     @GetMapping("mainPage_test")
-    public String mainPage_test(){
+    public String mainPage_test(HttpSession session){
+        String sessionU = (String)session.getAttribute("sessionU");
+        String sessionC = (String)session.getAttribute("sessionC");
+        if(sessionU == null && sessionC == null){
+            return "/user/login";
+        }
         return "main/mainPage_test";
     }
+
 
     /* footer */
     @GetMapping("footer")

@@ -15,6 +15,13 @@
         VALUES(#{userId}, #{userPw}, #{userName}, #{userZipcode}, #{userAddress}, #{userAddress_detail}, #{userPhoneNum})
     </insert>
 
+    <!-- 카카오 회원가입 -->
+    <insert id="joinKakao">
+        INSERT INTO TBL_USER
+        (USERID, USERNAME)
+        VALUES(#{userId}, #{userName})
+    </insert>
+
     <!-- 로그인 -->
     <select id="login" resultType="_int">
         SELECT COUNT(USERID) FROM TBL_USER
@@ -59,6 +66,8 @@
         FROM TBL_USER
         WHERE USERID= #{userId}
     </select>
+
+
 
 
 </mapper>

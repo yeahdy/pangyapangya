@@ -92,8 +92,8 @@ public class BakeryServiceImple implements BakeryService{
     }
 
     @Override
-    public List<BakeryVO> breadList() {
-        return bakeryDAO.breadList();
+    public List<BakeryVO> breadList(String keyword) {
+        return bakeryDAO.breadList(keyword);
     }
 
     @Override
@@ -105,6 +105,9 @@ public class BakeryServiceImple implements BakeryService{
     public List<BakeryFileVO> getAttachList(Long bno) {
         return bakeryFileDAO.findByBno(bno);
     }
+
+    // 메인페이지 글가져오기
+    public List<BakeryVO> breadList_main() { return bakeryDAO.breadList_main(); }
 
 
 }

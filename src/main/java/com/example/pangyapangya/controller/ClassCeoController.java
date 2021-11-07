@@ -123,11 +123,11 @@ public class ClassCeoController {
     }*/
 
     //    게시글 첨부파일
-   /* @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
+    /*@GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<ClassCeoFileVO> getAttachList(Long bno){
+    public List<BakeryFileVO> getAttachList(Long bno){
         log.info("getAttachList " + bno);
-        return classCeoService.getAttachList(bno);
+        return bakeryService.getAttachList(bno);
     }*/
 
 }

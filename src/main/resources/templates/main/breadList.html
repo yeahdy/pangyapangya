@@ -208,7 +208,7 @@
     <section class="spotlights alt">
         <article th:each="bakery : ${list}">
             <div th:object="${bakery}">
-                <input type="hidden" name="bno" th:text="*{bno}" >
+                <!--<input type="hidden" name="bno" th:text="*{bno}" >-->
 
             <a th:href="*{bno}" class="image fit goInfo">
                 <img th:src="*{bakeryPhoto}" alt="">
@@ -343,12 +343,12 @@
             <p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
             <p style="font-weight: 600;">리뷰 0개</p>
         </article>-->
-        <br>
+<!--        <br>
         <div class="col-6 col-12-medium">
             <ul class="actions fit">
                 <li><a href="#" class="button primary fit" style="margin-top: 1em;">오늘의 빵 더보기</a></li>
             </ul>
-        </div>
+        </div>-->
     </section>
 </div>
 

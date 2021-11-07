@@ -83,12 +83,13 @@
 					<input type="password" name="ceoPw" id="userPw" placeholder="비밀번호를 입력해주세요">
 					<button type="button" class="type_pwd hide"></button>
 					<p class="info_error" id="userPwError1">비밀번호를 입력해주세요.</p>
-					<p class="info_error" id="userPwError2">비밀번호는 영문 숫자조합 8자리 이상 입력해주세요.</p>
+					<p class="info_error" id="userPwError2">비밀번호는 영문+숫자+특수문자를 포함한 8~20자 까지 입니다.</p>
 				</div>
 				<div class="line_inp line_pw">
 					<input type="password" name="confirmPw" id="confirmPw" placeholder="비밀번호 확인">
 					<button type="button" class="type_pwd hide"></button>
 					<p class="info_error" id="confirmPwError1">입력하신 비밀번호가 서로 다릅니다.</p>
+					<p class="info_error" id="confirmPwError2">비밀번호가 일치합니다.</p>
 				</div>
 				<div class="line_inp">
 					<p class="form_title">이름</p>
@@ -132,8 +133,9 @@
 <script th:replace="/main/header::header_js"></script>
 <script type="text/javascript">
 	let joinCEOform = $("#joinCEOform");	//<form>
-	let cnfCheck= false;	// 인증번호 check 확인
 	let idCheck= false;		// 아이디 중복검사
+	let pwCheck= false;		// 비밀번호 확인
+	let cnfCheck= false;	// 인증번호 check 확인
 
 	//비밀번호 숨기기
 	$('.type_pwd').on('click',function() {
@@ -192,14 +194,16 @@
 			return;
 		}
 
-		console.log("체크여부: "+cnfCheck);
-		if(cnfCheck && idCheck){
+		console.log("비밀번호 체크: "+pwCheck);
+		if(idCheck && pwCheck && cnfCheck){
 			joinCEOform.submit();
 			$('#authNumber').val("");
 		}else if(!idCheck){
 			$("#userId").focus();
-		}else if(!cnfCheck){
+		}else if(!pwCheck){
 			alert("비밀번호를 다시 확인 해 주세요");
+		}else if(!cnfCheck){
+			alert("인증번호를 확인 해 주세요");
 		}
 	})
 
@@ -247,23 +251,25 @@
 		let pwCheck= /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/
 		if(!pwCheck.test($('#userPw').val())){
 			$("#userPwError2").show();
-			cnfCheck = false;
+			pwCheck = false;
 			return;
 		}else {
 			$("#userPwError2").hide();
-			cnfCheck = true;
+			pwCheck = true;
 		}
 	})
 
 	// 비밀번호 일치 확인
-	$("#confirmPw").focusout(function () {
+	$("#confirmPw").on("keyup",function () {
 		if($("#userPw").val() !== $("#confirmPw").val()){
 			$("#confirmPwError1").show();
-			cnfCheck = false;
+			$("#confirmPwError2").hide();
+			pwCheck = false;
 			return;
 		}else{
+			$("#confirmPwError2").show();
 			$("#confirmPwError1").hide();
-			cnfCheck = true;
+			pwCheck = true;
 		}
 	})
 
@@ -291,7 +297,7 @@
 						cnfCheck = true;
 						alert('휴대폰 번호 인증이 완료되었습니다. 감사합니다.');
 						clearInterval(interval);	// 타이머 종료
-						// 사용자 전화번호 저장하기
+						console.log("인증번호 체크여부: "+cnfCheck);
 					} else {
 						alert('인증번호가 일치하지 않습니다.');
 						cnfCheck = false;

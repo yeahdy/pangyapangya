@@ -152,8 +152,9 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" th:inline="javascript">
 	let joinForm = $("#joinForm");	//<form>
-	let cnfCheck= false;	// 인증번호 check 확인
 	let idCheck= false;		// 아이디 중복검사
+	let pwCheck= false;		// 비밀번호 확인
+	let cnfCheck= false;	// 인증번호 check 확인
 
 	//비밀번호 숨기기
 	$('.type_pwd').on('click',function() {
@@ -220,14 +221,16 @@
 			$("#addressError1").hide();
 		}
 
-		console.log("체크여부: "+cnfCheck);
-		if(cnfCheck && idCheck){
+		console.log("비밀번호 체크: "+pwCheck);
+		if(idCheck && pwCheck && cnfCheck){
 			joinForm.submit();
 			$('#authNumber').val("");
 		}else if(!idCheck){
 			$("#userId").focus();
-		}else if(!cnfCheck){
+		}else if(!pwCheck){
 			alert("비밀번호를 다시 확인 해 주세요");
+		}else if(!cnfCheck){
+			alert("인증번호를 확인 해 주세요");
 		}
 	})
 
@@ -275,11 +278,11 @@
 		let pwCheck= /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/
 		if(!pwCheck.test($('#userPw').val())){
 			$("#userPwError2").show();
-			cnfCheck = false;
+			pwCheck = false;
 			return;
 		}else {
 			$("#userPwError2").hide();
-			cnfCheck = true;
+			pwCheck = true;
 		}
 	})
 
@@ -287,11 +290,11 @@
 	$("#confirmPw").focusout(function () {
 		if($("#userPw").val() !== $("#confirmPw").val()){
 			$("#confirmPwError1").show();
-			cnfCheck = false;
+			pwCheck = false;
 			return;
 		}else{
 			$("#confirmPwError1").hide();
-			cnfCheck = true;
+			pwCheck = true;
 		}
 	})
 
@@ -318,8 +321,7 @@
 						cnfCheck = true;
 						alert('휴대폰 번호 인증이 완료되었습니다. 감사합니다.');
 						clearInterval(interval);	// 타이머 종료
-						console.log("체크여부: "+cnfCheck);
-						// 사용자 전화번호 저장하기
+						console.log("인증번호 체크여부: "+cnfCheck);
 
 					} else {
 						alert('인증번호가 일치하지 않습니다.');

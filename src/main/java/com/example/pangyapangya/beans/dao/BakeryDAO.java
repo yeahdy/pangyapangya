@@ -43,4 +43,8 @@ public class BakeryDAO {
     public List<BakeryVO> breadList(){ return mapper.breadList();}
 
     public List<BakeryVO> breadListCeo(BakeryVO bakeryVO){ return mapper.breadListCeo(bakeryVO);}
+    public List<BakeryVO> breadList(String keyword){ return mapper.breadList(keyword);}
+
+    // 메인페이지 글가져오기
+    public List<BakeryVO> breadList_main() { return mapper.breadList_main(); }
 }

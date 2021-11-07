@@ -25,4 +25,8 @@ public interface ClassCeoMapper {
     public int getTotal(Criteria criteria);
     // 해당 회원의 게시글 전체 갯수
     public int myTotal(String ceoId);
+
+
+    // 메인페이지 글 가져오기
+    public List<ClassCeoVO> classList_main();
 }
