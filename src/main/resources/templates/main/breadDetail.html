@@ -197,7 +197,6 @@
             height: 32px;
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
             padding-left: 7px;
         }
         .reviewer-info{
@@ -218,12 +217,12 @@
         }
         .reviewer{
             color: black;
-            font-size: 16px;
+            font-size: 13px;
             margin-bottom: -6px;
         }
         .review-date{
             color: #5a5a5a;
-            font-size: 12px;
+            font-size: 11px;
         }
         .star-one{
             height: 15px;
@@ -314,16 +313,16 @@
         <ul>
             <th:block th:each="reply : ${replyList}">
             <a class="review-box"><!--리뷰 상세 보기를 할 경우 링크를 담기 위한 a태그-->
+                <div th:object="${reply}">
                 <div class="review-header"><!-- th:object="${reply}"-->
                     <div class="reviewer-info">
                         <span class="reviewer" th:text="*{userid}">
-                            hgs1234
                         </span>
                         <span class="review-date" th:text="*{replydate}">
-                            2021년 12월 21일
                         </span>
                     </div>
-                    <div class="review-star" th:switch="*{star}">
+                    <div class="review-star">
+                        <span th:switch="*{star}">
                         <span th:case="1">
                             <img class="star-one" src="/images/cookie_star.png"/>
                             <img class="star-one" src="/images/cookie_unstar.png"/>
@@ -359,17 +358,16 @@
                             <img class="star-one" src="/images/cookie_star.png"/>
                             <img class="star-one" src="/images/cookie_star.png"/>
                         </span>
+                    </span>
                     </div>
                 </div>
                 <div class="review-body">
                     <img class="review-img" src="/images/bread1.jpg">
-                    <div class="review-text" th:text="*{reply}">
-                        정말..얼른 9월이 되서, 또 사서 먹고 싶어요🥺♥️
-                        여기 정착..하고 텅장이 후회되지 않는 맛있는 그 맛!!
-                        건강한 재료라서 다이어트 중이지만 찔림이 덜해요 힣ㅎㅎㅎ‼️
+                    <div class="review-text">
+                        <p  th:text="*{reply}"></p>
                     </div>
                 </div>
-
+                </div>
             </a>
             </th:block>
         </ul>

@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public interface BreadDetailService {
     public BakeryVO getInfo(Long bno);
-   /* public BreadReviewVO getReply(Long bno);*/
+    /*public BreadReviewVO getReply(Long bno);*/
     public List<BreadReviewVO> getListWithPaging(Long bno, Criteria criteria);
 
 }

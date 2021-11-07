@@ -117,10 +117,19 @@
         WHERE BNO = #{bno}
     </select>
 
-<!--    <select id="breadReply" resultType="breadReviewVO">
-        SELECT * FROM TBL_BAKERYREVIEWREPLY
-        WHERE BNO = #{bno}
-    </select>-->
+    <select id="breadReply" resultType="breadReviewVO">
+        <![CDATA[
+            SELECT * FROM
+            (
+                SELECT ROWNUM R, RNO, BNO, STAR, REPLY, USERID, REPLYDATE
+                FROM TBL_BAKERYREVIEWREPLY
+                ORDER BY BNO DESC
+            )
+            WHERE R<=20
+        ]]>
+        /*SELECT * FROM TBL_BAKERYREVIEWREPLY
+        WHERE BNO = #{bno}*/
+    </select>
 
     <select id="getListWithPaging" resultType="breadReviewVO">
         <![CDATA[
