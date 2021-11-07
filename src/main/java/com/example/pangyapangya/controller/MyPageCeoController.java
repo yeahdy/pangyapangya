@@ -16,6 +16,9 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
@@ -58,8 +61,9 @@ public class MyPageCeoController {
     }
 
     //마이페이지(사장님) 내가 작성한 글 - 빵집소개
+
     @GetMapping("bakeryRe")
-    public String bakeryRe(Criteria criteria, Model model, HttpSession session){
+    public String bakeryRe(Criteria criteria, Model model, HttpSession session, BakeryVO bakeryVO){
         String sessionU = (String)session.getAttribute("sessionU");
         String sessionC = (String)session.getAttribute("sessionC");
         if(sessionU == null && sessionC == null){
@@ -68,32 +72,31 @@ public class MyPageCeoController {
         log.info("-------------------------------");
         log.info("bakeryRe");
         log.info("-------------------------------");
+
         model.addAttribute("total", bakeryService.myTotal(sessionC));
         model.addAttribute("list", bakeryService.getList(criteria));
         model.addAttribute("pageMaker", new PageDTO(bakeryService.getTotal(criteria), 10, criteria));
         return "myPageCeo/bakeryRe";
     }
+//상세보기 페이지로 넘길건데
+    // main/breadDetail
 
 
-    //마이페이지(사장님)-글 수정[빵집 소개]
-    /*@GetMapping("bakeryModify")
-    public String bakeryModify(@RequestParam("bno") Long bno, HttpServletRequest request,  Model model, BakeryVO bakeryVO, Criteria criteria){
+    //마이페이지(사장님)-상세보기 페이지로 이동[빵집 소개]
+    @GetMapping("breadDetail")
+    public String breadDetail(@RequestParam("bno") Long bno, HttpServletRequest request,  Model model, BakeryVO bakeryVO, Criteria criteria){
         String reqURI = request.getRequestURI();
         String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
         model.addAttribute("ceo", bakeryService.getCeo(bakeryVO.getCeoId()));
         model.addAttribute("bakery", bakeryService.get(bno));
         model.addAttribute("criteria", criteria);
-        return "myPageCeo/bakeryModify";
-    }*/
+        return "main/breadDetail";
+    }
 
     //    여러 요청을 하나의 메소드로 받을 때에는 {}를 사용하여 콤마로 구분한다.
-    @GetMapping("modify")
-    public String modify(@RequestParam("bno") Long bno, Criteria criteria, Model model, HttpServletRequest request, HttpSession session){
-        String sessionU = (String)session.getAttribute("sessionU");
+    @GetMapping("bakeryModify")
+    public void bakeryModify(@RequestParam("bno") Long bno, Criteria criteria, Model model, HttpServletRequest request, HttpSession session){
         String sessionC = (String)session.getAttribute("sessionC");
-        if(sessionU == null && sessionC == null){
-            return "/user/login";
-        }
 
         String reqURI = request.getRequestURI();
         String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
@@ -106,14 +109,14 @@ public class MyPageCeoController {
         model.addAttribute("ceo", bakeryService.getCeo(sessionC));
         model.addAttribute("bakery", bakeryService.get(bno));
         model.addAttribute("criteria", criteria);
-        return "myPageCeo/bakeryModify";
     }
+
 
     //    /modify 요청을 처리할 수 있는 비지니스 로직 작성
 //    수정 성공시 result에 "success"를 담아서 전달한다.
 //    단위 테스트로 View에 전달할 파라미터를 조회한다.
-    @PostMapping("modify")
-    public RedirectView modify(BakeryVO bakeryVO, RedirectAttributes rttr){
+    @PostMapping("bakeryModify")
+    public RedirectView bakeryModify(BakeryVO bakeryVO, RedirectAttributes rttr){
         log.info("-------------------------------");
         log.info("modify : " + bakeryVO.toString());
         log.info("-------------------------------");
@@ -129,19 +132,47 @@ public class MyPageCeoController {
 //    삭제 성공 시 result에 "success"를 flash에 담아서 전달한다.
 //    삭제 실패 시 result에 "fail"을 flash에 담아서 전달한다.
 //    단위 테스트로 전달할 파라미터를 조회한다.
-    /*@PostMapping("remove")
+    @PostMapping("remove")
     public RedirectView remove(@RequestParam("bno") Long bno, RedirectAttributes rttr) {
         log.info("-------------------------------");
         log.info("remove : " + bno);
         log.info("-------------------------------");
 
+        List<BakeryFileVO> attachList = bakeryService.getAttachList(bno);
+
         if (bakeryService.remove(bno)) {
+            deleteFiles(attachList);
             rttr.addFlashAttribute("result", "success");
         } else {
             rttr.addFlashAttribute("result", "fail");
         }
         return new RedirectView("bakeryRe");
-    }*/
+    }
+
+    private void deleteFiles(List<BakeryFileVO> attachList){
+        if(attachList == null || attachList.size() == 0){
+            return;
+        }
+
+        log.info("delete attach files...........");
+        log.info(attachList.toString());
+
+        attachList.forEach(attach -> {
+            try {
+                Path file = Paths.get("C:/upload/" + attach.getUploadPath() + "/" + attach.getUuid() + "_" + attach.getFileName());
+                Files.delete(file);
+
+                if(Files.probeContentType(file).startsWith("image")){
+                    Path thumbnail = Paths.get("C:/upload/" + attach.getUploadPath() + "/s_" + attach.getUuid() + "_" + attach.getFileName());
+                    Files.delete(thumbnail);
+                }
+            } catch (Exception e) {
+                log.error("delete file error " + e.getMessage());
+            }
+        });
+
+
+    }
 
     //    게시글 첨부파일
     @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)

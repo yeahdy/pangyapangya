@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.pangyapangya.mappers.ClassCeoFileMapper">
+    <insert id="insert">
+        INSERT INTO TBL_CLASS_IMG (UUID, UPLOADPATH, FILENAME, IMAGE, BNO)
+        VALUES (#{uuid}, #{uploadPath}, #{fileName}, #{image}, #{bno})
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM TBL_CLASS_IMG WHERE UUID = #{uuid}
+    </delete>
+
+    <select id="findByBno" resultType="classCeoFileVO">
+        SELECT UUID, UPLOADPATH, FILENAME, IMAGE, BNO
+        FROM TBL_CLASS_IMG
+        WHERE BNO = #{bno}
+    </select>
+
+    <delete id="deleteAll">
+        DELETE FROM TBL_CLASS_IMG WHERE BNO = #{bno}
+    </delete>
+
+    <select id="getOldFiles" resultType="classCeoFileVO">
+        SELECT UUID, UPLOADPATH, FILENAME, IMAGE, BNO
+        FROM TBL_CLASS_IMG
+        WHERE UPLOADPATH = TO_CHAR(SYSDATE - 1, 'YYYY/MM/DD')
+    </select>
+
+</mapper>

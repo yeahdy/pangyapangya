@@ -55,6 +55,7 @@
 		}
 		#all{display: flex;}
 		.wrapper{width: 75%;}
+		.table-wrapper{overflow-x: visible;}
 		#mainSection{padding: 0;}
 		#rightHeader h2{color: #F9A825; font-size: 1.2em; font-weight: 900;}
 		sub{top: 0; margin-left: 10px;}
@@ -64,7 +65,7 @@
 		#ad img{width: 100%; height: 600px;}
 		#myMainSection{display: flex;}
 		#myLeftSection{width: 20%; background: #f9efef;}
-		#myRightSection{width: 80%; padding: 37px 50px 15px 50px;}
+		#myRightSection{width: 80%; padding: 37px 50px 37px 50px;}
 		.myPageTitle{background: #F9A825; margin: 0; padding: 7px 7px 7px 15px;}
 		.myPageTitle p{margin: 0; color: #fff;}
 		#allDiv{padding:15px;}
@@ -161,18 +162,19 @@
 												<a href="/myPageCeo/bakery" class="button primary small" style="width: 60px; padding: 0; font-size: 0.7em; border-radius: 0;">글쓰기</a>
 											</div>
 										</div>
+
 										<th:block id="section-box" th:each="bakery : ${list}">
 											<div class="table-boxes" style="display: flex;" th:object="${bakery}">
 												<div class="table-first" >
 													<div class="col-6 col-12-small">
-														<input type="checkbox" id="*{bno}" name="*{bno}">
-														<label for="*{bno}"></label>
+														<input type="checkbox" id="checkBox" name="checkBox">
+														<label for="checkBox"></label>
 													</div>
 												</div>
 												<div class="table-second">
 													<a id="goRead" th:href="*{bno}">
 														<div style="display: flex;">
-															<div class="second-top"><p th:text="*{title}">빵집 제목</p></div>
+															<div class="second-top"><p th:text="*{title}"></p></div>
 															<div class="second-under-date"><span>·</span><p th:text="*{regDate}"></p></div>
 														</div>
 													</a>
@@ -181,8 +183,35 @@
 												<div class="table-fourth"><a id="goRemove" th:href="*{bno}" >삭제</a></div>
 											</div>
 										</th:block>
+
 									</div>
 
+									<!--<div th:object="${pageMaker}">
+
+										<div class="big-width" style="text-align: center">
+											<a class="changePage" th:if="*{prev}" th:href="*{startPage - 1}"><code>&lt;</code></a>
+
+											<th:block th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), pageMaker.getEndPage())}">
+												<code th:if="${pageMaker.criteria.getPageNum() == num}" th:text="${num}"></code>
+												<a class="changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="${num}"><code th:text="${num}"></code></a>
+											</th:block>
+
+											<a class="changePage" th:if="*{next}" th:href="*{endPage + 1}"><code>&gt;</code></a>
+										</div>
+
+
+										<div class="small-width" style="text-align: center">
+											<a class="changePage" th:if="*{criteria.pageNum > 1}" th:href="*{criteria.pageNum - 1}"><code>&lt;</code></a>
+											<code th:text="*{criteria.pageNum}"></code>
+											<a class="changePage" th:if="*{criteria.pageNum < realEnd}" th:href="*{criteria.pageNum + 1}"><code>&gt;</code></a>
+										</div>
+										<form action="/board/list" th:object="${criteria}" name="pageForm">
+											<input type="hidden" name="pageNum" th:field="*{pageNum}">
+											<input type="hidden" name="amount" th:field="*{amount}">
+											<input type="hidden" name="type" th:field="*{type}">
+											<input type="hidden" name="keyword" th:field="*{keyword}">
+										</form>
+									</div>-->
 									<div th:object="${pageMaker}">
 
 
@@ -208,6 +237,7 @@
 										</form>
 									</ul>
 									</div>
+									<div class="paging" style="text-align: center"></div>
 								</div>
 							</div>
 						</section>
@@ -233,9 +263,15 @@
 </body>
 <script th:inline="javascript">
 	// 글 등록 시 전달받는 게시글 번호를 alert으로 출력
-	let pageForm = $(document.pageForm);
-	let paging = [[${pageMaker.criteria.listLink}]];
-	let searchForm = $(document.searchForm);
+
+	let paging = [[${criteria.listLink}]];
+	let pageNum = 1;
+
+	$("div.paging").on("click", "a.changePage", function(e){
+		e.preventDefault();
+		pageNum = parseInt($(this).attr("href"));
+		showList(pageNum);
+	});
 
 	$(document).ready(function(){
 		let bno = [[${bno}]];
@@ -254,7 +290,7 @@
 
 	$("a#goRead").on("click", function(e){
 		e.preventDefault();
-		location.href = "/myPageCeo/bakeryRe" + paging + "&bno=" + $(this).attr("href");
+		location.href = "/main/breadDetail?bno=" + $(this).attr("href");
 	})
 
 	$("a#goModify").on("click", function(e){

@@ -25,9 +25,13 @@ public class TestingController {
 
     //마이페이지(사장님)-글 등록[원데이 클래스]
     @GetMapping("exp")
-    public String myPageCeoExp(Model model, String ceoId){
-        ceoId="wnsrbod";
-        model.addAttribute("ceo", testingService.getCeo(ceoId));
+    public String myPageCeoExp(Model model, HttpSession session){
+        String sessionU = (String)session.getAttribute("sessionU");
+        String sessionC = (String)session.getAttribute("sessionC");
+        if(sessionU == null && sessionC == null){
+            return "/user/login";
+        }
+        model.addAttribute("ceo", testingService.getCeo(sessionC));
         return "myPageCeo/exp"; }
 
 
@@ -118,9 +122,9 @@ public class TestingController {
     //    게시글 첨부파일
     /*@GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<BakeryFileVO> getAttachList(Long bno){
-        log.info("getAttachList " + bno);
-        return bakeryService.getAttachList(bno);
+    public List<TesingFileVO> getAttachList(Long tno){
+        log.info("getAttachList " + tno);
+        return testingService.getAttachList(tno);
     }*/
 
 }
