@@ -98,5 +98,8 @@ public class BakeryServiceImple implements BakeryService{
         return bakeryFileDAO.findByBno(bno);
     }
 
+    // 메인페이지 글가져오기
+    public List<BakeryVO> breadList_main() { return bakeryDAO.breadList_main(); }
+
 
 }

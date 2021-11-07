@@ -41,4 +41,7 @@ public class BakeryDAO {
     public boolean ceoDelete(CeoVO ceoVO){ return mapper.ceoDelete(ceoVO) == 1;}
 
     public List<BakeryVO> breadList(){ return mapper.breadList();}
+
+    // 메인페이지 글가져오기
+    public List<BakeryVO> breadList_main() { return mapper.breadList_main(); }
 }

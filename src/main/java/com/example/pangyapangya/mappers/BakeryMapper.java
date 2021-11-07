@@ -43,4 +43,7 @@ public interface BakeryMapper {
     public List<BakeryVO> breadList();
     //    게시글 상세정보
     public BakeryVO breadInfo(Long bno);
+
+    // 메인페이지 글가져오기
+    public List<BakeryVO> breadList_main();
 }

@@ -1,6 +1,7 @@
 package com.example.pangyapangya.services;
 
 import com.example.pangyapangya.beans.dao.UserDAO;
+import com.example.pangyapangya.beans.vo.BakeryVO;
 import com.example.pangyapangya.beans.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +40,11 @@ public class UserService {
         }
     }
 
+    // 카카오 회원가입
+    public void joinKakao(UserVO userVO){
+        userDAO.joinKakao(userVO);
+    }
+
     // 로그인 + 비밀번호 암호화 비교하기
     @Transactional(rollbackFor = Exception.class)
     public boolean login (UserVO userVO){
@@ -46,14 +52,11 @@ public class UserService {
         if(userDAO.checkId(userVO.getUserId())){
             // 저장된 사용자의 정보를 불러옴
             UserVO userInfo = userDAO.userInfo(userVO.getUserId());
-            // 사용자가 입력한 비밀번호와 저장된 사용자의 비밀번호를 비교 + 회원의 상태
+            // 사용자가 입력한 비밀번호와 저장된 사용자의 비밀번호를 비교
             if(!passwordEncoder.matches(userVO.getUserPw(), userInfo.getUserPw())){
-                System.out.println("비밀번호가 일치하지 않거나 탈퇴한 회원입니다.");
+                System.out.println("비밀번호가 일치하지 않습니다.");
                 return false;
-            }else if(userInfo.getStatus() == 1){
-                System.out.println("이미 탈퇴한 회원입니다.");
-                return false;
-            } else{
+            }else{
                 userDAO.login(userVO);
                 System.out.println("비밀번호가 일치합니다.");
                 return true;
@@ -119,6 +122,8 @@ public class UserService {
         }
     }
 
+    // 메인 검색
+    public List<BakeryVO> searchBakery_main () { return userDAO.searchBakery_main(); }
 
 }
 

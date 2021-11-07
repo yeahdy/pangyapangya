@@ -18,4 +18,5 @@ public class TestingVO {
     private String testingPhoto;
     private String regDate;
     private String shopName;
+    private int status;
 }

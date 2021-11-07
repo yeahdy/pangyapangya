@@ -27,6 +27,14 @@ public class Criteria {
                 .queryParam("amount", amount);
         return builder.toUriString();
     }
+//    public String getListLink(){
+//        UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
+//                .queryParam("pageNum", pageNum)
+//                .queryParam("amount", amount)
+//                .queryParam("type", type)
+//                .queryParam("keyword", keyword);
+//        return builder.toUriString();
+//    }
 
     public String[] getTypeArr(){
         return type == null ? new String[] {} : type.split("");

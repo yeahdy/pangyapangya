@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+    <title>빵야빵야(屋)</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="icon" type="image/png"  href="/images/favicon.png"/>
+    <style>
+        .box {
+            text-align: center;
+            background: white;
+            border: white;
+        }
+        .box img {
+            width: 250px;
+        }
+    </style>
+</head>
+<body class="is-preload" style="background: white;">
+
+    <!-- Main -->
+    <div class="box">
+        <img src="/images/loading.gif" alt="로딩중..." style="border-bottom: 2px solid #E1B848;"/>
+        <h4 style="margin: 1em;font-weight: bold">열심히 반죽중 이에요! 잠시만 기다려 주세요</h4>
+    </div>
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    // 카카오 최초 로그인시 DB에 정보넣기
+    $(document).ready(function () {
+        // 인가코드 가져오기
+        let codeURL = new URL(window.location.href);
+        let code= codeURL.searchParams.get('code');
+
+        // 인가코드 확인
+        if(code != null){
+            console.log("codeURL: " + codeURL);
+            console.log("code: " + code);
+            /* 토큰 가져오기 */
+            function selectMyAccessTocken() {
+                let param = {"code" : code}
+
+                $.ajax({
+                    url  : '/user/selectMyAccessTocken',
+                    type : 'get',
+                    data : param,
+                    contentType: "application/json; charset=UTF-8",
+                    success : function(){
+                        location.href="/main/mainPage"
+                    },
+                    error: function(xhr, type){
+                        console.log(xhr);
+                        console.log(type);
+                    }
+                })
+            }
+            selectMyAccessTocken();
+        }else {
+            console.log("코드 존재하지 않음")
+        }
+
+    })
+</script>
+</body>
+</html>

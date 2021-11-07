@@ -20,6 +20,10 @@ public class TestRestController {
 
     @GetMapping("/testrest/{temp}")
     public List<TestingVO> addList(@PathVariable("temp") int temp){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+        }
         return testService.addData(temp);
     }
 }
