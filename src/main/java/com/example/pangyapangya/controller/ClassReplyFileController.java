@@ -38,7 +38,9 @@ public class ClassReplyFileController {
         log.info("upload ajax action...........");
         List<ClassReplyFileVO> fileList = new ArrayList<>();
 
-        String uploadFolder = "/Users/iseungmin/Desktop/upload";
+//        String uploadFolder = "/Users/iseungmin/Desktop/upload";
+        String uploadFolder = "C:/upload";
+
         String uploadFolderPath = getFolder();
 
 //        년/월/일 폴더 생성
@@ -51,7 +53,7 @@ public class ClassReplyFileController {
             log.info("Upload File Name : " + multipartFile.getOriginalFilename());
             log.info("Upload File Size : " + multipartFile.getSize());
 
-            ClassReplyFileVO attachFileVO = new ClassReplyFileVO();
+            ClassReplyFileVO classReplyFileVO = new ClassReplyFileVO();
 
             String uploadFileName = multipartFile.getOriginalFilename();
 
@@ -69,18 +71,18 @@ public class ClassReplyFileController {
             uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
             log.info("file name : " + uploadFileName);
 
-            attachFileVO.setFileName(uploadFileName);
+            classReplyFileVO.setFileName(uploadFileName);
 
             try {
                 File saveFile = new File(uploadPath,uploadFileName);
                 multipartFile.transferTo(saveFile);
                 InputStream in = new FileInputStream(saveFile);
 
-                attachFileVO.setUuid(uuid.toString());
-                attachFileVO.setUploadPath(uploadFolderPath);
+                classReplyFileVO.setUuid(uuid.toString());
+                classReplyFileVO.setUploadPath(uploadFolderPath);
 
                 if(checkImageType(saveFile)) {
-                    attachFileVO.setImage(true);
+                    classReplyFileVO.setImage(true);
                     FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
                     Thumbnailator.createThumbnail(in, thumbnail, 100, 100);
                     thumbnail.close();
@@ -92,7 +94,7 @@ public class ClassReplyFileController {
                 //가비지 컬렉터가 포착한 해제 필드들을 모두 즉시 해제
                 System.runFinalization();
 
-                fileList.add(attachFileVO);
+                fileList.add(classReplyFileVO);
             } catch (IOException e) {
                 log.error(e.getMessage());
             } catch (ArrayIndexOutOfBoundsException e){
@@ -126,7 +128,8 @@ public class ClassReplyFileController {
     @GetMapping("display")
     @ResponseBody
     public ResponseEntity<byte[]> getFile(String fileName){
-        File file = new File("/Users/iseungmin/Desktop/upload" + fileName);
+//        File file = new File("/Users/iseungmin/Desktop/upload" + fileName);
+        File file = new File("C:/upload" + fileName);
         log.info("file : " + file);
         HttpHeaders header = new HttpHeaders();
         ResponseEntity<byte[]> result = null;
@@ -139,41 +142,4 @@ public class ClassReplyFileController {
         }
         return result;
     }
-
-//    @GetMapping(value = "download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-//    @ResponseBody
-//    public ResponseEntity<Resource> downloadFile(String fileName){
-//        log.info("download file : " + fileName);
-//        Resource resource = new FileSystemResource("C:/upload/" + fileName);
-//        log.info("resource : " + resource);
-//        String resourceName = resource.getFilename();
-//        HttpHeaders headers = new HttpHeaders();
-////        UUID 제거
-//        String resourceOriginalName = resourceName.substring(resourceName.indexOf("_") + 1);
-//        try {
-//            headers.add("Content-Disposition", "attachment; filename=" + new String(resourceOriginalName.getBytes("UTF-8"), "ISO-8859-1"));
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        }
-//        return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
-//    }
-//
-//    @PostMapping("deleteFile")
-//    @ResponseBody
-//    public ResponseEntity<String> deleteFile(String fileName, String type){
-//        log.info("deleteFile : " + fileName);
-//        try {
-//            fileName = URLDecoder.decode(fileName, "UTF-8");
-//            File file = new File("C:/upload/" + fileName);
-//            file.delete();
-//            if(type.equals("image")){
-//                //원본 삭제
-//                new File(file.getPath().replace("s_", "")).delete();
-//            }
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//        return new ResponseEntity<>("deleted", HttpStatus.OK);
-//    }
 }

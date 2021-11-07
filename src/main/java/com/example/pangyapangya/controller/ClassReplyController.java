@@ -11,8 +11,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
@@ -60,6 +65,9 @@ public class ClassReplyController {
         return classReplyService.get(rno);
     }
 
+    @GetMapping("register")
+    public void register(){}
+
     //    게시글 첨부파일
     @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -69,29 +77,50 @@ public class ClassReplyController {
     }
 
 
-    //    댓글 수정
-//    PUT : 자원의 전체 수정, 자원 내 모든 필드를 전달해야 함, 일부만 전달할 경우 오류
-//    PATCH : 자원의 일부 수정, 수정할 필드만 전송(자동 주입이 아닌 부분만 수정하는 쿼리문에서 사용)
-//    PATCH가 PUT을 담고 있기 때문에 전체를 전달 받아서 전체를 수정하는 상황, 전체 중 부분만 수정하는 상황 모두 PATCH를 사용하는 것이 좋다.
-//    @RequestMapping(
-//            method={RequestMethod.PUT, RequestMethod.PATCH},
-//            value="{rno}", consumes = "application/json", produces = "text/plain; charset=UTF-8"
-//    )
-//    public ResponseEntity<String> modify(@RequestBody ClassReplyVO classReplyVO , @PathVariable("rno") Long rno) throws UnsupportedEncodingException {
-//        log.info("modify...............");
-//        classReplyVO.setRno(rno);
-//        return classReplyService.modify(classReplyVO) == 1 ?
-//                new ResponseEntity<>(new String("댓글 수정 성공".getBytes(), "UTF-8"), HttpStatus.OK) :
-//                new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//    }
+    //    /remove 요청을 처리할 수 있는 비지니스 로직 작성
+//    삭제 성공 시 result에 "success"를 flash에 담아서 전달한다.
+//    삭제 실패 시 result에 "fail"을 flash에 담아서 전달한다.
+//    단위 테스트로 전달할 파라미터를 조회한다.
+//    @PostMapping("remove")
+//    public RedirectView remove(@RequestParam("bno") Long bno, RedirectAttributes rttr) {
+//        log.info("-------------------------------");
+//        log.info("remove : " + bno);
+//        log.info("-------------------------------");
 //
-//    //    댓글 삭제
-////    URI로 댓글 번호를 전달받은 후 성공 시 댓글 삭제 성공 전달
-//    @DeleteMapping(value="{rno}", produces = "text/plain; charset=utf-8")
-//    public ResponseEntity<String> remove(@PathVariable("rno") Long rno) throws UnsupportedEncodingException{
-//        log.info("remove.............");
-//        return classReplyService.remove(rno) == 1 ?
-//                new ResponseEntity<>(new String("댓글 삭제 성공".getBytes(), "UTF-8"), HttpStatus.OK) :
-//                new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        List<AttachFileVO> attachList = boardService.getAttachList(bno);
+//
+//        if (boardService.remove(bno)) {
+//            deleteFiles(attachList);
+//            rttr.addFlashAttribute("result", "success");
+//        } else {
+//            rttr.addFlashAttribute("result", "fail");
+//        }
+//        return new RedirectView("list");
 //    }
+
+//    private void deleteFiles(List<AttachFileVO> attachList){
+//        if(attachList == null || attachList.size() == 0){
+//            return;
+//        }
+//
+//        log.info("delete attach files...........");
+//        log.info(attachList.toString());
+//
+//        attachList.forEach(attach -> {
+//            try {
+//                Path file = Paths.get("C:/upload/" + attach.getUploadPath() + "/" + attach.getUuid() + "_" + attach.getFileName());
+//                Files.delete(file);
+//
+//                if(Files.probeContentType(file).startsWith("image")){
+//                    Path thumbnail = Paths.get("C:/upload/" + attach.getUploadPath() + "/s_" + attach.getUuid() + "_" + attach.getFileName());
+//                    Files.delete(thumbnail);
+//                }
+//            } catch (Exception e) {
+//                log.error("delete file error " + e.getMessage());
+//            }
+//        });
+//
+//
+//    }
+
 }

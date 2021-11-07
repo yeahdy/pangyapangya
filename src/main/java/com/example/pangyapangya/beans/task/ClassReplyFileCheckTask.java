@@ -60,12 +60,16 @@ public class ClassReplyFileCheckTask {
 
         //원본 경로
         List<Path> fileListPaths = fileVOList.stream().map(attach ->
-                Paths.get("/Users/iseungmin/Desktop/upload", attach.getUploadPath(), attach.getUuid() + "_" + attach.getFileName())
+//                Paths.get("/Users/iseungmin/Desktop/upload", attach.getUploadPath(), attach.getUuid() + "_" + attach.getFileName())
+                Paths.get("C:/upload", attach.getUploadPath(), attach.getUuid() + "_" + attach.getFileName())
+
         ).collect(Collectors.toList());
 
         //썸네일 경로를 원본 경로 List에 추가
         fileVOList.stream().filter(attach -> attach.isImage()).map(attach ->
-                Paths.get("/Users/iseungmin/Desktop/upload", attach.getUploadPath(), "s_" + attach.getUuid() + "_" + attach.getFileName()))
+//                Paths.get("/Users/iseungmin/Desktop/upload", attach.getUploadPath(), "s_" + attach.getUuid() + "_" + attach.getFileName()))
+                Paths.get("C:/upload", attach.getUploadPath(), "s_" + attach.getUuid() + "_" + attach.getFileName()))
+
                 .forEach(path -> fileListPaths.add(path));
 
         //어제 업로드 된 폴더의 경로

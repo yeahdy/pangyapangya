@@ -25,9 +25,6 @@ public class ClassController {
 
     private final ClassCeoService classCeoService;
 
-    @GetMapping("classApply")
-    public String classApply(){ return "class/classApply"; }
-
     @GetMapping("practice")
     public String practice(){ return "class/practice"; }
 
@@ -60,7 +57,23 @@ public class ClassController {
         model.addAttribute("class", classCeoService.get(bno));
 //        model.addAttribute("criteria", criteria);
 
-
         return "class/classDetail";
     }
+
+    @GetMapping("classApply")
+    public String classApply(@RequestParam("bno") Long bno, Model model, HttpServletRequest request){
+        String reqURI = request.getRequestURI();
+        String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
+        //read 요청 시 read 출력
+        //modify 요청 시 modify 출력
+        log.info("-------------------------------");
+        log.info(reqType + " : " + bno);
+        log.info("-------------------------------");
+
+        model.addAttribute("pay", classCeoService.get(bno));
+//        model.addAttribute("criteria", criteria);
+
+        return "class/classApply";
+    }
+
 }

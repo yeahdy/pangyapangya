@@ -178,7 +178,7 @@
 </header>
 
 <!-- Wrapper -->
-<div class="wrapper">
+<div class="wrapper" th:object="${class}">
 
     <!-- Main -->
     <section class="main left">
@@ -208,7 +208,7 @@
         </section>
 
 
-        <div class="fields" th:object="${class}">
+        <div class="fields">
         <!-- Blurb -->
         <section>
             <input name="title" type="text" th:field="*{bakeryShopname}"readonly style="background-color: white; border: 0px;"/>
@@ -216,7 +216,6 @@
         </section>
 
 <!--         TAB -->
-
         <div class="main1">
             <input id="tab1" type="radio" name="tabs" checked> <!--디폴트 메뉴-->
             <label for="tab1">상세 설명</label>
@@ -227,25 +226,44 @@
 
 
             <section id="content1">
-                <div>
-                <h4>이런 분들이 들으면 좋아요!</h4>
-                    <textarea name="content" rows="6" style="resize:none" th:text="*{description}" readonly></textarea>
+                <div style="height: 100px">
+                    <div style="float: left; width: 20%;">
+                        이렇게 진행됩니다.
+                    </div>
+                    <div style="float:right; width: 80%">
+                        <textarea name="content" rows="6" style="height:50px " th:text="*{description}" readonly></textarea>
+                    </div>
                 </div>
-                <div>
-                <h4>가격</h4>
-                    <textarea name="content" rows="6" style="resize:none" th:text="*{classPrice}" readonly></textarea>
+
+                <div style="height: 50px">
+                    <div style="float: left; width: 20%;">
+                        가격
+                    </div>
+                    <div style="float:right; width: 80%; height: 20%;" >
+                        <textarea name="content" rows="6" style="height:50px" th:text="*{classPrice}" readonly ></textarea>
+                    </div>
                 </div>
-                <div>
-                <h4>날짜 및 시간</h4>
-                    <textarea name="content" rows="6" style="resize:none" th:text="*{classDate}" readonly></textarea>
+
+                <div style="height: 50px">
+                    <div style="float: left; width: 20%;">
+                        날짜 및 시간
+                    </div>
+                    <div style="float:right; width: 80%; height: 20%;">
+                        <textarea name="content" rows="6" style="height:50px " th:text="*{classDate}" readonly></textarea>
+                    </div>
                 </div>
-                <div>
-                <h4>인원 수</h4>
-                    <textarea name="content" rows="6" style="resize:none" th:text="*{recruitment}" readonly></textarea>
-                <input type="text" style="background-color: white; border-color: white">
+
+                <div style="height: 50px">
+                    <div style="float: left; width: 20%;">
+                        인원 수
+                    </div>
+                    <div style="float:right; width: 80%; height: 20%;">
+                        <textarea name="content" rows="6" style="height:50px " th:text="*{recruitment}" readonly></textarea>
+                    </div>
                 </div>
+
                 <div>
-                <h4>위치</h4>
+                    위치
                 </div>
                 <p style="margin-top:-12px">
                     <em class="link">
@@ -329,7 +347,8 @@
                 <p>장소 : </p>
                 <p>일정 : </p>
                 <ul class="actions">
-                    <li><a href="/class/classApply" class="button">신청하기</a></li>
+                    <a id="goRead" th:href="*{bno}">신청하기</a>
+<!--                    <li><a href="/class/classApply" class="button">신청하기</a></li>-->
                 </ul>
             </section>
             </div>
@@ -510,7 +529,7 @@
                 let str = "";
                 for(let i=0, len=list.length; i<len; i++){
                     str += "<li style='display: block' data-rno='" + list[i].rno + "'>"
-                    str += "<strong>" + list[i].replier + "</strong>"
+                    // str += "<strong>" + list[i].replier + "</strong>"
                     str += "<div>"
                     str += "<p class='reply" + list[i].rno +"'>" + list[i].reply + "</p>"
                     str += "<p><strong class='date'>" + classReplyService.displayTime(list[i].replyDate);
@@ -689,6 +708,14 @@
                 }
             });
         });
+    })
+
+
+</script>
+<script th:inline="javascript">
+    $("a#goRead").on("click", function(e){
+        e.preventDefault();
+        location.href = "/class/classApply?bno=" + $(this).attr("href");
     })
 </script>
 </body>
