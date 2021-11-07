@@ -35,16 +35,24 @@ public class ClassReplyService {
 //    }
 //
 //    public int modify(ClassReplyVO classReplyVO ){
-//        log.info("modify..............");
+//        log.info("modify…………..");
 //        return classReplyDAO.modify(classReplyVO);
 //    }
 
     public ClassReplyPageDTO getList(Long bno, Criteria criteria){
-        log.info("getList..............");
+        log.info("getList…………..");
         return new ClassReplyPageDTO(classReplyDAO.getTotal(bno), classReplyDAO.getList(bno, criteria));
     }
 
-    public List<ClassReplyFileVO> getAttachList(Long bno) {
-        return classReplyFileDAO.findByBno(bno);
+    public List<ClassReplyFileVO> getAttachList(Long rno) {
+        return classReplyFileDAO.findByBno(rno);
     }
+
+
+//    public List<ClassReplyFileVO> getAttachList(Long rno){
+//        log.info("getList…………..");
+//
+//    }
+
 }
+

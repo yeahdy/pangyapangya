@@ -1,5 +1,6 @@
 package com.example.pangyapangya.controller;
 
+import com.example.pangyapangya.beans.vo.ClassReplyFileVO;
 import com.example.pangyapangya.beans.vo.ClassReplyPageDTO;
 import com.example.pangyapangya.beans.vo.ClassReplyVO;
 import com.example.pangyapangya.beans.vo.Criteria;
@@ -7,10 +8,12 @@ import com.example.pangyapangya.services.ClassReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -56,6 +59,15 @@ public class ClassReplyController {
         log.info("get............");
         return classReplyService.get(rno);
     }
+
+    //    게시글 첨부파일
+    @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<ClassReplyFileVO> getAttachList(Long rno){
+        log.info("getAttachList " + rno);
+        return classReplyService.getAttachList(rno);
+    }
+
 
     //    댓글 수정
 //    PUT : 자원의 전체 수정, 자원 내 모든 필드를 전달해야 함, 일부만 전달할 경우 오류

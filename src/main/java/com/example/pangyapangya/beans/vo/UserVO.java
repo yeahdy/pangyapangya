@@ -14,5 +14,4 @@ public class UserVO {
     private String userAddress_detail;
     private String userPhoneNum;
     private int status;
-    private int applyCnt;
 }
