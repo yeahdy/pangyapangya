@@ -5,11 +5,13 @@ import com.example.pangyapangya.beans.dao.TestDAO;
 import com.example.pangyapangya.beans.dao.TestingDAO;
 import com.example.pangyapangya.beans.vo.TestingRequestVO;
 import com.example.pangyapangya.beans.vo.TestingVO;
+import com.example.pangyapangya.beans.vo.WinDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -23,7 +25,6 @@ public class TestCheckTask {
     @Scheduled(cron = "0 0 0 * * *")
     public void checkTesting() {
         List<TestingVO> endList = testDAO.getEndList();
-        Random r = new Random();
 
         for (TestingVO testingVO : endList) {
             Long tno = testingVO.getTno();
@@ -35,26 +36,42 @@ public class TestCheckTask {
             }else {
                 List<TestingRequestVO> requestList = testDAO.getRequestUser(tno);
                 TestingRequestVO item = null;
-                int temp = 0;
 
                 Collections.shuffle(requestList);
 
-                for (int i = 0; i < peopleCnt; i++) {
+                for (int i = 0; i < requestList.size(); i++) {
                     item = requestList.get(i);
-                    temp++;
 
-                    testDAO.updateWinning(tno, item.getUserID());
-                }
-                for (int i = 0; i < requestCnt-peopleCnt; i++) {
-                    item = requestList.get(temp);
-                    temp++;
-
-                    testDAO.updateFail(tno, item.getUserID());
+                    if(i<peopleCnt){
+                        testDAO.updateWinning(tno, item.getUserID());
+                    }else {
+                        testDAO.updateFail(tno, item.getUserID());
+                    }
                 }
             }
             testDAO.endTest(tno);
         }
     }
+
+    @Scheduled(cron = "0 46 19 * * *")
+    public void sendMessage(){
+        List<TestingRequestVO> winList= testDAO.getWinList();
+        List<WinDTO> winDTOList= new ArrayList();
+        WinDTO dto = new WinDTO();
+
+        for (TestingRequestVO vo : winList) {
+            dto.setBreadName(testDAO.getBreadName(vo.getTno()));
+            dto.setShopName(testDAO.getShopName(vo.getTno()));
+            dto.setPhoneNumber(testDAO.getUserTel(vo.getUserID()));
+            dto.setUserName(testDAO.getUserNamae(vo.getUserID()));
+
+            testDAO.sendWinMessage(dto);
+
+            dto = new WinDTO();
+        }
+
+    }
+
 
 //  매일 회원 신청횟수 초기화
     @Scheduled(cron = "0 0 0 * * *")

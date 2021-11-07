@@ -47,6 +47,23 @@ public interface TestMapper {
 
     public List<TestingRequestVO> getRequestUser(Long tno);
 
+    public List<TestingReviewBoardVO> getReviewBoardList();
+    public List<TestingReviewBoardVO> addReviewBoard(int cnt);
+
+    public int getReviewBoardTotal();
+
+    public List<TestingRequestVO> getWinList();
+
+
+    public String getUserNamae(String userId);
+    public String getUserTel(String userId);
+    public String getBreadName(Long tno);
+    public String getShopName(Long tno);
+
+
+
+
+
 //    예진님
 //    빵 체험단 신청 게시판
     public List<TestingVO> mainTest();

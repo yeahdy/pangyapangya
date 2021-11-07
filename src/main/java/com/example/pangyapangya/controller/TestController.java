@@ -46,7 +46,11 @@ public class TestController {
     public String readSuccess(){return "test/readSuccess";}
 
     @GetMapping("review")
-    public String review(){return "test/review";}
+    public String review(Model model){
+        model.addAttribute("list",testService.getReviewBoardList());
+        model.addAttribute("total",testService.getReviewBoardTotal());
+        return "test/review";
+    }
 
     @GetMapping("reviewinfo")
     public String reviewinfo(){return "test/reviewinfo";}
