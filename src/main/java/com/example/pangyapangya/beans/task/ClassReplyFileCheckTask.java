@@ -1,7 +1,7 @@
-package com.example.pangyapangya.task;
+package com.example.pangyapangya.beans.task;
 
-import com.example.pangyapangya.beans.dao.ClassReviewFileDAO;
-import com.example.pangyapangya.beans.vo.ClassReviewFileVO;
+import com.example.pangyapangya.beans.dao.ClassReplyFileDAO;
+import com.example.pangyapangya.beans.vo.ClassReplyFileVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Component
 @Slf4j
-public class ClassReviewFileCheckTask {
+public class ClassReplyFileCheckTask {
     //    Quartz format
 //    [Seconds] [Minutes] [Hours] [Day-of-Month] [Month] [Day-of-Week] [Year-생략가능]
 //    - Seconds : 0 ~ 59
@@ -48,7 +48,7 @@ public class ClassReviewFileCheckTask {
 //    매월 1일 마다 : 0 0 0 1 * ?
 
     @Autowired
-    private ClassReviewFileDAO classReviewFileDAO;
+    private ClassReplyFileDAO classReplyFileDAO;
 
     @Scheduled(cron = "* * 2 * * *")
     public void checkFiles() {
@@ -56,16 +56,20 @@ public class ClassReviewFileCheckTask {
         log.warn("----------------------------------");
 
         //어제 첨부파일 목록
-        List<ClassReviewFileVO> fileVOList = classReviewFileDAO.getOldFiles();
+        List<ClassReplyFileVO> fileVOList = classReplyFileDAO.getOldFiles();
 
         //원본 경로
         List<Path> fileListPaths = fileVOList.stream().map(attach ->
+//                Paths.get("/Users/iseungmin/Desktop/upload", attach.getUploadPath(), attach.getUuid() + "_" + attach.getFileName())
                 Paths.get("C:/upload", attach.getUploadPath(), attach.getUuid() + "_" + attach.getFileName())
+
         ).collect(Collectors.toList());
 
         //썸네일 경로를 원본 경로 List에 추가
         fileVOList.stream().filter(attach -> attach.isImage()).map(attach ->
+//                Paths.get("/Users/iseungmin/Desktop/upload", attach.getUploadPath(), "s_" + attach.getUuid() + "_" + attach.getFileName()))
                 Paths.get("C:/upload", attach.getUploadPath(), "s_" + attach.getUuid() + "_" + attach.getFileName()))
+
                 .forEach(path -> fileListPaths.add(path));
 
         //어제 업로드 된 폴더의 경로

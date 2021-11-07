@@ -1,5 +1,6 @@
 package com.example.pangyapangya.controller;
 
+import com.example.pangyapangya.beans.vo.ClassReplyFileVO;
 import com.example.pangyapangya.beans.vo.ClassReplyPageDTO;
 import com.example.pangyapangya.beans.vo.ClassReplyVO;
 import com.example.pangyapangya.beans.vo.Criteria;
@@ -7,10 +8,17 @@ import com.example.pangyapangya.services.ClassReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -19,7 +27,7 @@ import java.io.UnsupportedEncodingException;
 public class ClassReplyController {
     private final ClassReplyService classReplyService;
 
-    //    댓글 등록
+//    댓글 등록
 //    브라우저에서 JSON타입으로 데이터를 전송하고 서버에서는 댓글의 처리 결과에 따라 문자열로 결과를 리턴한다.
 //    consumes : Ajax를 통해 전달받은 데이터의 타입
 //    produces : Ajax의 success:function(result)에 있는 result로 전달할 데이터 타입
@@ -30,6 +38,7 @@ public class ClassReplyController {
     @PostMapping(value = "/new", consumes = "application/json", produces = "text/plain; charset=utf-8")
     public ResponseEntity<String> create(@RequestBody ClassReplyVO classReplyVO) throws UnsupportedEncodingException {
 
+        log.info("dddd");
         int replyCount = classReplyService.register(classReplyVO);
         log.info("ClassReplyVO : " + classReplyVO);
         log.info("REPLY INSERT COUNT : " + replyCount);
@@ -55,4 +64,63 @@ public class ClassReplyController {
         log.info("get............");
         return classReplyService.get(rno);
     }
+
+    @GetMapping("register")
+    public void register(){}
+
+    //    게시글 첨부파일
+    @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<ClassReplyFileVO> getAttachList(Long rno){
+        log.info("getAttachList " + rno);
+        return classReplyService.getAttachList(rno);
+    }
+
+
+    //    /remove 요청을 처리할 수 있는 비지니스 로직 작성
+//    삭제 성공 시 result에 "success"를 flash에 담아서 전달한다.
+//    삭제 실패 시 result에 "fail"을 flash에 담아서 전달한다.
+//    단위 테스트로 전달할 파라미터를 조회한다.
+//    @PostMapping("remove")
+//    public RedirectView remove(@RequestParam("bno") Long bno, RedirectAttributes rttr) {
+//        log.info("-------------------------------");
+//        log.info("remove : " + bno);
+//        log.info("-------------------------------");
+//
+//        List<AttachFileVO> attachList = boardService.getAttachList(bno);
+//
+//        if (boardService.remove(bno)) {
+//            deleteFiles(attachList);
+//            rttr.addFlashAttribute("result", "success");
+//        } else {
+//            rttr.addFlashAttribute("result", "fail");
+//        }
+//        return new RedirectView("list");
+//    }
+
+//    private void deleteFiles(List<AttachFileVO> attachList){
+//        if(attachList == null || attachList.size() == 0){
+//            return;
+//        }
+//
+//        log.info("delete attach files...........");
+//        log.info(attachList.toString());
+//
+//        attachList.forEach(attach -> {
+//            try {
+//                Path file = Paths.get("C:/upload/" + attach.getUploadPath() + "/" + attach.getUuid() + "_" + attach.getFileName());
+//                Files.delete(file);
+//
+//                if(Files.probeContentType(file).startsWith("image")){
+//                    Path thumbnail = Paths.get("C:/upload/" + attach.getUploadPath() + "/s_" + attach.getUuid() + "_" + attach.getFileName());
+//                    Files.delete(thumbnail);
+//                }
+//            } catch (Exception e) {
+//                log.error("delete file error " + e.getMessage());
+//            }
+//        });
+//
+//
+//    }
+
 }
