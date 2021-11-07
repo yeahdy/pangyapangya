@@ -1,7 +1,6 @@
 package com.example.pangyapangya.beans.dao;
 
 import com.example.pangyapangya.beans.vo.CartVO;
-import com.example.pangyapangya.beans.vo.Cart_shopName_VO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,7 @@ public class CartDAO_test {
 
     @Test
     public void testGetCart() throws Exception{
-        cartDAO.getCart("hds1234").forEach(cart ->log.info(cart.toString()));
+        cartDAO.getCart("yejine000").forEach(cart ->log.info(cart.toString()));
     }
 
     @Test

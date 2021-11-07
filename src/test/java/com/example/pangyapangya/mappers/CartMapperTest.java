@@ -40,8 +40,7 @@ public class CartMapperTest {
     public void testInsertSelect_cartNum() {
         CartVO cart = new CartVO();
         cart.setUserId("kjyun7777");
-        cart.setBreadName("겉바속촉 크루와상\uD83E\uDD50");
-        /*쫀득 찹쌀빵*/
+        cart.setBreadName("쫀득 찹쌀빵");
         /*겉바속촉 크루와상🥐*/
         cart.setBreadImg("bread1.jpg");
         cart.setBreadCnt(1);

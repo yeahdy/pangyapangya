@@ -291,9 +291,6 @@
                         <p th:text="*{title}"></p>
                     </article>
                 </th:block>
-<!--                <div id="loading">
-                    <img src="/images/loading.gif" alt="로딩중..." style=""/>
-                </div>-->
             </section>
             <!-- 관측 대상 -->
             <p id="sentinel"></p>
@@ -326,20 +323,10 @@
     /* AJAX 실행중 판단 */
     let loading = false;
 
-    let maindom = $("#testList");
-
     $("a#goRead").on("click", function(e){
         e.preventDefault();
         location.href = "/test/read?tno=" + $(this).attr("href");
     })
-    
-    function loadingshow() {
-        sectionDom.append("<div id='loading'><img src='/images/loading.gif' alt='로딩중...'/></div>");
-    }
-    
-    function loadingEnd() {
-        $("div").remove("#loading");
-    }
 
     // IntersectionObeserver 부분
     const observerOption = {
@@ -397,7 +384,6 @@
             beforeSend: function () {
                 //로딩중 flag
                 loading = true;
-                loadingshow();
                 //skeleton을 그리는 함수를 이용해 DOM에 추가해줍니다.
                 // document.getElementById('list').appendChild(skeleton.show());
                 //loading animation을 가진 요소를 보여줍니다.
@@ -408,7 +394,6 @@
                 loading = false;
                 // 로딩끝나서 숨겨줌
                 // $(".loading").hide();
-                loadingEnd();
                 //loading animation 요소와 skeleton을 지우는 함수를 이용해 DOM에서 지워줍니다.
                 // skeleton.hide();
             }

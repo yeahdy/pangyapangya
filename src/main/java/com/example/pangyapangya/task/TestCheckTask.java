@@ -1,6 +1,9 @@
+/*
 package com.example.pangyapangya.task;
 
-import com.example.pangyapangya.beans.dao.ClassReviewFileDAO;
+*/
+/*import com.example.pangyapangya.beans.dao.ClassReviewFileDAO;*//*
+
 import com.example.pangyapangya.beans.dao.TestDAO;
 import com.example.pangyapangya.beans.dao.TestingDAO;
 import com.example.pangyapangya.beans.vo.TestingRequestVO;
@@ -62,3 +65,4 @@ public class TestCheckTask {
         testDAO.resetUserApplyCnt();
     }
 }
+*/

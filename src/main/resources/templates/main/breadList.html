@@ -204,16 +204,22 @@
     <!-- Blurb 1 -->
 
     <!-- Spotlights 1 -->
+
     <section class="spotlights alt">
-        <article>
-            <a href="/main/breadDetail?bno=1" class="image fit"><img src="https://image.idus.com/image/files/695f8f487f8b4dbdba9cfa26aea2e1e4_1440.jpg" alt=""></a>
+        <article th:each="bakery : ${list}">
+            <div th:object="${bakery}">
+                <input type="hidden" name="bno" th:text="*{bno}" >
+
+            <a th:href="*{bno}" class="image fit goInfo">
+                <img th:src="*{bakeryPhoto}" alt="">
+            </a>
             <div class="info-header">
                 <div>
-                    <a href="" class="bakery-name">만동제과</a>
+                    <a th:href="*{bno}" class="bakery-name goInfo" name="shopName" th:text="*{shopName}"></a>
                 </div>
                 <div class="bread-title">
                     <div>
-                        <a href="/main/breadDetail?bno=1" class="bread-name">맛있는 브라우니</a>
+                        <a th:href="*{bno}" class="bread-name goInfo" name="breadName" th:text="*{title}"></a>
                     </div>
                     <div class="review-star">
                         <span>
@@ -227,13 +233,14 @@
                 </div>
             </div>
             <div class="bread-content">
-                <p>오픈 하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트!오픈 하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트!오픈 하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트!오픈 하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트!오픈 하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트!</p>
+                <p th:text="*{content}"></p>
             </div>
             <div class="review-cnt">
                 <a href="">리뷰 0개</a>
             </div>
+            </div>
         </article>
-        <article>
+       <!-- <article>
             <a href="#" class="image fit"><img src="/images/melon1.jpg" alt=""></a>
             <div class="info-header">
                 <div>
@@ -335,7 +342,7 @@
             <h5>카페노티드</h5>
             <p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
             <p style="font-weight: 600;">리뷰 0개</p>
-        </article>
+        </article>-->
         <br>
         <div class="col-6 col-12-medium">
             <ul class="actions fit">
@@ -362,7 +369,13 @@
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
-<script>
+<script th:inline="javascript">
+
+    $("a.goInfo").on("click", function(e){
+        e.preventDefault();
+        location.href = "/main/breadDetail?bno=" + $(this).attr("href");
+    })
+
     let currentPage = 1
 
     const DATA_PER_PAGE = 10,

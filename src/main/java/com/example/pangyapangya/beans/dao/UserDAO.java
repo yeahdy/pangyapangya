@@ -1,6 +1,5 @@
 package com.example.pangyapangya.beans.dao;
 
-import com.example.pangyapangya.beans.vo.BakeryVO;
 import com.example.pangyapangya.beans.vo.CeoVO;
 import com.example.pangyapangya.beans.vo.UserVO;
 import com.example.pangyapangya.mappers.UserMapper;
@@ -19,13 +18,10 @@ public class UserDAO {
         return mapper.checkId(userId) == 1;
     }
 
-    // 회원가입
+    // 회원가입(일반회원)
     public void join(UserVO userVO){
         mapper.join(userVO);
     }
-
-    // 회원가입 카카오
-    public void joinKakao(UserVO userVO){ mapper.joinKakao(userVO); }
 
     // 로그인(일반회원)
     public boolean login (UserVO userVO){
@@ -56,6 +52,5 @@ public class UserDAO {
         return mapper.userInfo(userId);
     }
 
-    // 메인 검색
-    public List<BakeryVO> searchBakery_main () { return mapper.searchBakery_main(); }
+    // 수정
 }

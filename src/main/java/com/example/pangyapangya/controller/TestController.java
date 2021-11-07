@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpSession;
-
 @Controller
 @Slf4j
 @RequestMapping("/test/*")
@@ -31,16 +29,6 @@ public class TestController {
         model.addAttribute("imgs", testService.getReadImgs(tno));
         return "test/read";
     }
-
-/*    @GetMapping("mainPage_test")
-    public String mainPage_test(HttpSession session,@RequestParam("tno") Long tno){
-        String sessionU = (String)session.getAttribute("sessionU");
-        String sessionC = (String)session.getAttribute("sessionC");
-        if(sessionU == null && sessionC == null){
-            return "/user/login";
-        }
-        return "main/mainPage_test";
-    }*/
 
     @GetMapping("readSuccess")
     public String readSuccess(){return "test/readSuccess";}

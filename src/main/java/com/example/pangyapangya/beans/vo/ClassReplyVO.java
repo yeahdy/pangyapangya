@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 public class ClassReplyVO {
     private Long rno;
     private Long bno;
-    private String reply;
-    private String replyDate;
+    private String content;
+    private String userid;
+    private String star;
+    private String reviewDate;
+
 }

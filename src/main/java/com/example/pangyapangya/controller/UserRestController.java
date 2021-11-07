@@ -4,7 +4,14 @@ import com.example.pangyapangya.services.CEOService;
 import com.example.pangyapangya.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 
 /*
     [ Task ]		    [ URL ]			    [ Method ]		[ Parameter ]			    [ Form ]	[ URL이동 ]
@@ -40,7 +47,6 @@ public class UserRestController {
         boolean check= ceoService.checkIdCEO(userId);
         return check + "";
     }
-
 
 
     // @RequestBody 를 사용하게 되면 content-Type이 application/json 에 해당된다.

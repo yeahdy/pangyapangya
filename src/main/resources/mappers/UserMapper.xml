@@ -15,13 +15,6 @@
         VALUES(#{userId}, #{userPw}, #{userName}, #{userZipcode}, #{userAddress}, #{userAddress_detail}, #{userPhoneNum})
     </insert>
 
-    <!-- 카카오 회원가입 -->
-    <insert id="joinKakao">
-        INSERT INTO TBL_USER
-        (USERID, USERNAME)
-        VALUES(#{userId}, #{userName})
-    </insert>
-
     <!-- 로그인 -->
     <select id="login" resultType="_int">
         SELECT COUNT(USERID) FROM TBL_USER
@@ -65,30 +58,6 @@
         SELECT USERID, USERPW, USERNAME, USERZIPCODE, USERADDRESS, USERADDRESS_DETAIL, USERPHONENUM, STATUS
         FROM TBL_USER
         WHERE USERID= #{userId}
-    </select>
-
-
-
-    <!-- 메인 검색 -->
-    <sql id="search">
-        <if test="keyword != null">
-            <trim prefix="(" suffix=") AND " prefixOverrides="OR">
-                <foreach item="type" collection="typeArr">
-                    <trim prefix="OR">
-                        (CONTENT LIKE '%'||#{keyword}||'%')
-                    </trim>
-                </foreach>
-            </trim>
-        </if>
-    </sql>
-    <select id="searchBakery_main" resultType="bakeryVO">
-        <![CDATA[
-            SELECT BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, BAKERYPHOTO, REGDATE, BREADTYPE, BREADNAME, BREADPRICE FROM
-            (
-            SELECT ROW_NUMBER() OVER(ORDER BY TNO DESC) R, ROWNUM R, BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, BAKERYPHOTO, REGDATE, BREADTYPE, BREADNAME, BREADPRICE FROM TBL_BAKERY
-            )
-            WHERE R<=20
-        ]]>
     </select>
 
 
