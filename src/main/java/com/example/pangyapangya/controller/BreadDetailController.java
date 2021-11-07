@@ -34,7 +34,7 @@ public class BreadDetailController {
     @GetMapping("breadDetail")
     public String breadDetail(@RequestParam("bno") Long bno, Model model){
         model.addAttribute("info", breadDetailService.getInfo(bno));
-        model.addAttribute("reply", breadDetailService.getRep(bno));
+        /*model.addAttribute("reply", breadDetailService.getRep(bno));*/
         return "main/breadDetail";
     }
 
