@@ -56,7 +56,10 @@ public class UserService {
             if(!passwordEncoder.matches(userVO.getUserPw(), userInfo.getUserPw())){
                 System.out.println("비밀번호가 일치하지 않습니다.");
                 return false;
-            }else{
+            }else if(userInfo.getStatus() == 1) {
+                System.out.println("이미 탈퇴한 회원입니다.");
+                return false;
+            } else{
                 userDAO.login(userVO);
                 System.out.println("비밀번호가 일치합니다.");
                 return true;
@@ -114,16 +117,13 @@ public class UserService {
         params.put("app_version", "test app 1.2"); // application name and version
 
         try {
-            JSONObject obj = (JSONObject) coolsms.send(params);
+            JSONObject obj = coolsms.send(params);
             System.out.println(obj.toString());
         } catch (CoolsmsException e) {
             System.out.println(e.getMessage());
             System.out.println(e.getCode());
         }
     }
-
-    // 메인 검색
-    public List<BakeryVO> searchBakery_main () { return userDAO.searchBakery_main(); }
 
 }
 

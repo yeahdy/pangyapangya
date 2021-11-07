@@ -47,7 +47,7 @@ public class UserController {
     public String login(){ return "user/login"; }
 
     @PostMapping("login")
-    public String login(UserVO userVO, HttpServletRequest req, RedirectAttributes rttr){
+    public RedirectView login(UserVO userVO, HttpServletRequest req, RedirectAttributes rttr){
         log.info("---------로그인-----------");
         log.info("ceoId: " + userVO.getUserId());
         log.info("ceoPw: " + userVO.getUserPw());
@@ -57,13 +57,14 @@ public class UserController {
         if(!userService.login(userVO)) {
             log.info("-------로그인 실패-------");
             session.setAttribute("sessionU", null);  // session 저장하기
+            // 아이디 비번 틀렸을 경우
             rttr.addFlashAttribute("check", "false");
-            return "user/login";
+            return new RedirectView("login");
         }
         log.info("-------로그인 성공-------");
         UserVO userInfo= userService.userInfo(userVO.getUserId());
         session.setAttribute("sessionU", userInfo.getUserId()); //session 저장하기
-        return mainView;
+        return new RedirectView("/main/mainPage");
     }
 
     /* 로그아웃 */
