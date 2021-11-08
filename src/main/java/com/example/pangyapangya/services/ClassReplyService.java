@@ -1,8 +1,6 @@
 package com.example.pangyapangya.services;
 
 import com.example.pangyapangya.beans.dao.ClassReplyDAO;
-import com.example.pangyapangya.beans.dao.ClassReplyFileDAO;
-import com.example.pangyapangya.beans.vo.ClassReplyFileVO;
 import com.example.pangyapangya.beans.vo.ClassReplyPageDTO;
 import com.example.pangyapangya.beans.vo.ClassReplyVO;
 import com.example.pangyapangya.beans.vo.Criteria;
@@ -17,7 +15,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ClassReplyService {
     private final ClassReplyDAO classReplyDAO;
-    private final ClassReplyFileDAO classReplyFileDAO;
 
     public int register(ClassReplyVO classReplyVO){
         log.info("register..............");
@@ -44,7 +41,4 @@ public class ClassReplyService {
         return new ClassReplyPageDTO(classReplyDAO.getTotal(bno), classReplyDAO.getList(bno, criteria));
     }
 
-    public List<ClassReplyFileVO> getAttachList(Long bno) {
-        return classReplyFileDAO.findByBno(bno);
-    }
 }
