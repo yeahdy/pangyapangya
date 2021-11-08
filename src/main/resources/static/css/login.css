@@ -1,0 +1,480 @@
+/* 로그인 */
+body.on{
+    overflow: hidden;
+    margin-right: 18px;
+}
+
+.cont_login {
+    min-height: calc(100vh - 484px);
+    padding: 130px 0 180px;
+    text-align: center;
+}
+
+.box_login {
+    width: 460px;
+    margin: 0 auto;
+    padding: 35px 20px;
+    border: 1px solid #eee;
+}
+
+.box_login .tit {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    font-size: 24px;
+    color: #000;
+    font-weight: 300;
+    line-height: 33px;
+    letter-spacing: -0.6px;
+}
+
+.box_login .tit b {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.box_login p {
+    color: #666;
+}
+
+.box_login .info_error {
+    display: none;
+    padding-left: 25px;
+    text-align: left;
+    font-size: 12px;
+    color: #F9A825;
+    background: url("/images/iconAlert.png") no-repeat 5px bottom/16px;
+    margin: 0.5em;
+}
+
+.box_login .info_error.act {
+    display: block;
+}
+
+.box_login .box_btn {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    font-size: 0;
+}
+
+.box_login .box_btn .btn {
+    display: inline-block;
+    position: relative;
+    height: 20px;
+    margin-top: 10px;
+    padding: 0 17px 0 14px;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.35px;
+    color: #666;
+}
+
+.box_login .box_btn .btn::before {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 5px;
+    width: 1px;
+    height: 10px;
+    background-color: #666;
+}
+
+.box_login .box_btn .btn:last-child {
+    padding-right: 0;
+}
+
+.box_login .box_btn .btn:last-child::before {
+    display: none;
+}
+
+.btn_kakao {
+    display: block;
+    width: 100%;
+    height: 48px;
+    margin: 26px 0 12px;
+    padding-left: 25px;
+    border-radius: 2px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #381e1f;
+    line-height: 48px;
+    background: url(https://front-img.taling.me/Content/app3/images/login/login_kakao.png) #feeb4a no-repeat 103px 16px/19px 18px;
+}
+
+.btn_apple {
+    display: block;
+    width: 100%;
+    height: 48px;
+    margin-bottom: 90px;
+    padding-left: 19px;
+    border-radius: 2px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 48px;
+    background: url(https://front-img.taling.me/Content/app3/images/login/login_apple.png) #222 no-repeat 124px center/13px 16px;
+}
+
+.btn_apple:hover,.btn_apple:visited, .btn_apple:active{
+    color: #fff;
+}
+
+.btn_facebook {
+    width: 40px;
+    padding: 0;
+    text-indent: -9999px;
+    background: url(https://front-img.taling.me/Content/app3/images/login/login_facebook.png) no-repeat 12px center/8px 14px;
+}
+
+.login_email {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-rows: 72px auto 88px;
+    grid-template-rows: 130px auto 130px;
+    -ms-grid-columns: 100%;
+    grid-template-columns: 100%;
+    height: 600px;
+}
+
+.login_email .box_btn .btn {
+    margin-top: 20px;
+}
+
+.cont_login .btn_submit {
+    width: 100%;
+    height: 48px;
+    border-radius: 2px;
+    font-size: 16px;
+    color: #fff;
+    line-height: 48px;
+    background-color: #F9A825;
+}
+
+.cont_login a.btn_submit {
+    display: block;
+}
+
+.cont_login .btn_submit:disabled {
+    background-color: #ccc;
+}
+
+.cont_login .box_inp {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    margin-top: 35px;
+    padding: 0 15px;
+}
+
+.cont_login .box_inp .line_inp {
+    margin-bottom: 20px;
+}
+
+.cont_login .box_inp .line_inp input {
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-bottom: 1px solid #eee;
+    color: black;
+    border-radius: 5px;
+}
+
+.cont_login .box_inp .line_inp .error {
+    border-color: #F9A825;
+}
+
+.line_pw {
+    position: relative;
+}
+
+.line_pw input {
+    padding: 0 40px 0 14px;
+}
+
+.line_pw .type_pwd {
+    position: absolute;
+    right: 0;
+    top: 4px;
+    width: 40px;
+    height: 40px;
+    background-image: url(https://front-img.taling.me/Content/app3/images/login/inp_txt.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 19px 12px;
+    border: solid 0px !important;
+}
+
+.line_pw .type_pwd.hide {
+    background-image: url(https://front-img.taling.me/Content/app3/images/login/inp_pwd.png);
+    background-position: center 11px;
+    background-size: 19px 17px;
+}
+
+.find_pwd {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 100%;
+    grid-template-columns: 100%;
+    -ms-grid-rows: 72px auto 48px;
+    grid-template-rows: 72px auto 48px;
+    height: 379px;
+}
+
+.box_join {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 100%;
+    grid-template-columns: 100%;
+    -ms-grid-rows: 72px auto 48px;
+    grid-template-rows: 72px auto 48px;
+    min-height: 577px;
+}
+
+.cont_login .box_terms {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 100%;
+    grid-template-columns: 100%;
+    -ms-grid-rows: 138px auto 48px;
+    grid-template-rows: 138px auto 90px;
+    height: 644px;
+}
+
+.cont_login .label_wrap {
+    overflow: hidden;
+}
+
+.cont_login .label_wrap .inp_chkbox {
+    float: left;
+    line-height: 20px;
+}
+
+.cont_login .label_wrap .inp_chkbox::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 9px;
+    vertical-align: middle;
+    background-image: url(https://front-img.taling.me/Content/app3/images/mb_check_off.png);
+    background-repeat: no-repeat;
+    background-size: 18px;
+}
+
+.cont_login .label_wrap .inp_label:checked + label::before {
+    background-image: url("/images/checkBtn.png");
+}
+
+.cont_login .label_wrap .link_more {
+    float: right;
+    font-size: 12px;
+    color: #888;
+    line-height: 20px;
+}
+
+.cont_login .terms_lst {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+}
+
+.cont_login .terms_lst li {
+    margin: 25px 0;
+    text-align: left;
+}
+
+.cont_login .terms_lst .terms_chk_all {
+    padding-bottom: 22px;
+    border-bottom: 1px solid #eee;
+}
+
+.cont_login .terms_lst .terms_chk_all label {
+    color: #F9A825;
+}
+
+.cont_login .terms_lst article {
+    padding: 8px 0 0 28px;
+}
+
+.cont_login .terms_lst article p {
+    font-size: 12px;
+    color: #888;
+}
+
+.cont_login .terms_lst .info_error {
+    margin-top: 20px;
+}
+
+/* íŒì—… */
+.modal {
+    display: none;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1500;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal.db{
+    display: block;
+}
+
+.modal .layer {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.modal .layer::after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.modal .popup {
+    display: inline-block;
+    overflow-y: hidden;
+    position: relative;
+    width: 420px;
+    padding: 30px 30px 35px 30px;
+    border-radius: 4px;
+    vertical-align: middle;
+    background-color: #fff;
+    /*
+     * ì•„ëž˜ëŠ” íŒì—… css ì¤‘ë³µìœ¼ë¡œ ìž„ì‹œë¡œ ë„£ì–´ë‘ 
+     * hedaer_pc.cssì— ìžˆëŠ” popup ì‚­ì œí•œë’¤ ì§€ìš¸ ê²ƒ
+     */
+    top: initial;
+    left: initial;
+    height: auto;
+}
+
+.modal .cont {
+    text-align: left;
+}
+
+.modal .top_tit {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 33px;
+    letter-spacing: -0.6px;
+    color: #000;
+}
+
+.modal .btn_area {
+    text-align: center;
+}
+
+.modal .btn_area .btn {
+    display: block;
+    width: 100%;
+    height: 48px;
+    border-radius: 2px;
+    font-size: 16px;
+    line-height: 48px;
+    letter-spacing: -0.4px;
+    color: #fff;
+    background-color: #F9A825;
+}
+.modal .btn_area .btn:hover,.modal .btn_area .btn:visited,.modal .btn_area .btn:link,.modal .btn_area .btn:active{
+    color: #fff ;
+}
+
+
+.modal .btn_close {
+    position: absolute;
+    right: 13px;
+    top: 18px;
+    width: 48px;
+    height: 48px;
+    background: url("https://front-img.taling.me/Content/Images/Vod/btn/btn_close.png") no-repeat center/15px;
+}
+
+/* ì´ë©”ì¼ í†µí•© íŒì—… */
+.email_combine .sub_tit {
+    margin-bottom: 30px;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.4px;
+}
+
+.email_combine .info {
+    margin-bottom: 30px;
+    padding: 20px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.email_combine .info p {
+    margin-bottom: 4px;
+    line-height: 22px;
+    letter-spacing: -0.35px;
+}
+
+.email_combine .info p:last-child {
+    margin-bottom: 0;
+}
+
+.email_combine .noti {
+    margin-bottom: 10px;
+    padding-left: 22px;
+    line-height: 20px;
+    letter-spacing: -0.35px;
+    color: #666;
+    background: url(https://front-img.taling.me/Content/app3/images/icon_info_gray.png) no-repeat left 2px/16px;
+}
+
+.email_combine ul {
+    margin-bottom: 30px;
+}
+
+.email_combine li {
+    position: relative;
+    margin-bottom: 2px;
+    padding-left: 22px;
+    line-height: 22px;
+    letter-spacing: -0.35px;
+    color: #666;
+}
+
+.email_combine li::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 17px;
+    top: 10px;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background-color: #111;
+}
+
+.email_combine li:last-child {
+    margin-bottom: 0;
+}
+
+.email_combine .btn_create {
+    display: inline-block;
+    margin-top: 30px;
+    font-size: 14px;
+    letter-spacing: -0.35px;
+}
+
+.email_combine .btn_create:hover,.email_combine .btn_create:link,.email_combine .btn_create:visited,.email_combine .btn_create:active{
+    color: #111;
+}
+
+.email_combine .btn_create::after {
+    content: '';
+    display: block;
+    position: relative;
+    top: -2px;
+    width: 100%;
+    height: 1px;
+    background-color: #111;
+}

@@ -1,0 +1,400 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+	<title>마이페이지 | 빵 체험단(글 등록)</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="/css/main.css" />
+	<link rel="stylesheet" href="/css/login.css" />
+	<link rel="icon" type="image/png"  href="/images/favicon.png"/>
+	<style>
+		.headerIcon{
+			width: 40px;
+			display: block;
+			margin: auto;"
+		}
+		.icon.solid:before {
+			font-weight: 100;
+			content: none;
+		}
+
+		.spotlights h5{
+			font-weight: bold;
+			font-size: small;
+		}
+
+		.spotlights p{
+			font-size: small;
+		}
+
+		/* 검색창 */
+		.search {
+			position: relative;
+			text-align: center;
+			width: 400px;
+			margin: 0 auto;
+		}
+		input {
+			width: 100%;
+			border-radius: 20px;
+			border: 1px solid #bbb;
+			margin: 10px 0;
+			padding: 10px 12px;
+		}
+		.fa-search {
+			position: absolute;
+			left: 90%;
+			top: 35%;
+			margin: 0;
+		}
+		form {
+			margin: 0;
+		}
+		#all{display: flex;}
+		.wrapper{width: 75%;}
+		#mainSection{padding: 0;}
+		#rightHeader h2{color: #F9A825; font-size: 1.2em; font-weight: 900;}
+		#explain p{font-size: 0.8em; background: #fbf6f6; height: 80px; padding: 20px 10px;}
+		#ad{background: none; width: 15%; height: 10px;}
+		#ad img{width: 100%; height: 600px;}
+		#myMainSection{display: flex;}
+		#myLeftSection{width: 20%; background: #f9efef;}
+		#myRightSection{width: 80%; padding: 37px 35px 15px 45px;}
+		.myPageTitle{background: #F9A825; margin: 0; padding: 7px 7px 7px 15px;}
+		.myPageTitle p{margin: 0; color: #fff;}
+		#allDiv{padding:15px;}
+		#allDiv p{margin: 0; font-size: 0.85em; font-weight: bold; color: #000;}
+		.contentDiv{margin-top: 15px; margin-bottom: 15px;}
+		.contentDiv a{color: #3b3b3b; font-weight: lighter; border: none; font-size: 0.8rem;}
+		.myPageSelectMenu{margin-top: 5px; margin-bottom: 5px;}
+		#subDiv1 {display: flex;}
+		#subDiv2 {padding-right: 27px;}
+		.first-file{width: 100%; padding: 77px 0; border-right: 1px solid #000;}
+		.files {text-align: center; border: 5px solid #F9A825; margin-right: 15px; margin-bottom: 10px;}
+		.image{position: fixed;}
+		.table-1{display: flex; margin-bottom: 10px;}
+		.table-1 div p{margin: 0; padding: 10px 17px 0;}
+		.table-title{width: 28%; color: #F9A825; font-weight: 600; padding-top: 10px; padding-left: 15px;}
+		.table-content{width: 75%;}
+		.table-content div{width: 200px; margin-right: 5px;}
+		#title1 p{margin-bottom: 1em; font-size: 1.3em; font-weight: 600; color: #3c4b51;}
+		#title2{margin-top: 2em; margin-bottom: 1em; font-size: 1.3em; font-weight: 600; color: #000;}
+		#title3{margin-top: 3em; margin-bottom: 1em; font-size: 1.3em; font-weight: 600; color: #000;}
+		hr {margin: 1em 0 2em;}
+		sub {font-size: 0.5em; font-weight: lighter; top: 0.3em; left: 0.8em; color: #888}
+		input[type="text"], textarea{border: none; margin: 0;}
+		input[type="file"]{display: none;}
+		#registDiv{width: 18%; margin: 0 auto;}
+		select{border: none;}
+		.sub-files{width: 150px;}
+		#water{ padding: 0; position: relative; top: 12px;}
+		#table-date{display: flex;}
+		.input-date{border: none; background-color: rgba(144, 144, 144, 0.075); border-radius: 0; margin: 0; padding-left: 16px; color: #a77070;}
+	</style>
+</head>
+<body class="is-preload" style="padding: 200px">
+
+<header id="header" th:include="/main/header::header_body"></header>
+
+<!-- Wrapper -->
+<div>
+	<div id="all">
+		<div class="wrapper">
+			<!-- Main -->
+
+			<section class="main second-main">
+				<section id="mainSection">
+					<section id="myMainSection">
+						<section id="myLeftSection">
+							<div id="myLeftDiv">
+								<div class="myPageMenu">
+									<div class="myPageTitle"><p>MY PAGE</p></div>
+									<div id="allDiv">
+										<div class="myPageSelect1"><p>글 등록하기</p></div>
+										<div class="contentDiv">
+											<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakery">빵집 소개</a></p></div>
+											<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDay">원데이클래스</a></a></p></div>
+											<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/exp">빵 체험단</a></a></p></div>
+										</div>
+										<div class="myPageSelect1"><p>내 글 보기</p></div>
+										<div class="contentDiv">
+											<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakeryRe">빵집 리뷰</a></p></div>
+											<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDayRe">원데이 클래스</a></a></p></div>
+											<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/expRe" style="text-decoration: underline; color: chocolate;">빵 체험단</a></a></p></div>
+										</div>
+										<div class="myPageSelect1"><p>내 정보</p></div>
+										<div class="contentDiv">
+											<div class="myPageSelectMenu"><p><a href="/myPageCeo/edit">내 정보 수정</a></p></div>
+											<div class="myPageSelectMenu"><p><a href="/myPageCeo/delete">회원 탈퇴</a></a></p></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<section id="myRightSection">
+							<div id="myRightDiv">
+								<div id="rightHeader">
+									<h2>빵 체험단</h2>
+								</div>
+								<div id="explain">
+									<p>자신의 매장에 있는 대표 메뉴 빵을 홍보하고 공유할 수 있는<br>시식단을 모집하여 빵의 레시피 및 맛을 직접 경험해볼 수 있는 기회를 제공합니다.</p>
+								</div>
+								<form method="post" action="/myPageCeo/expModify" id="registForm">
+									<input name="tno" type="hidden" th:field="{$testing.tno}" readonly/>
+									<!--전체-->
+									<div id="contentDiv">
+										<!--사진부분-->
+										<div id="title1">
+											<p>빵 체험단 모집 이미지 등록</p>
+										</div>
+										<div id="subDiv1">
+											<!--대표사진-->
+											<div class="files first-file uploadResult" style="padding: 0; border: none;">
+												<div id="mainFileDiv">
+													<ul></ul>
+													<!--<label for="board_file1" style="display:inline;">
+                                                        <img id="board_file1Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
+                                                    </label>-->
+													<img id="board_file1Img" src="/images/옥수수빵1.jpg" style="width: 50%;">
+												</div>
+												<input id="board_file1" name="uploadFiles" type="file" multiple>
+											</div>
+
+
+										</div><!--사진부분-->
+
+										<!--밑에 상세정보 입력Div-->
+										<div id="subDiv2" th:object="${ceo}">
+											<p id="title2">필수 정보 입력 <sub> 등록에 필요한 기본 정보입니다. 모두 입력해주세요.</sub></p>
+											<hr>
+											<div class="table-1" style="margin-bottom: 10px;">
+												<div class="table-title">제목</div>
+												<div class="table-content"><input type="text" name="title" th:field="${testing.title}" placeholder="제목 입력"></div>
+											</div>
+											<div class="table-1">
+												<div class="table-title">작성자</div>
+												<div class="table-content">
+													<input type="text" name="ceoName" th:field="*{ceoName}" readonly/>
+													<input type="hidden" name="ceoId" th:field="*{ceoId}" readonly/>
+												</div>
+											</div>
+											<div class="table-1">
+												<div class="table-title">업체명</div>
+												<div class="table-content"><input type="text" name="shopName" th:field="*{shopName}" readonly/></div>
+											</div>
+											<div class="table-1">
+												<div class="table-title">전화번호</div>
+												<div class="table-content"><input type="text" name="shopCallNumber" th:field="*{shopCallNumber}" readonly/></div>
+											</div>
+											<div class="table-1" style="margin-bottom: 10px;">
+												<div class="table-title">제품 등록</div>
+												<div style="width: 75%;">
+													<div class="table-content" style="display: flex; width: 100%;">
+														<div style="width: 30%">
+															<select name="breadType">
+																<option value="">종류</option>
+																<option value="케이크">케이크</option>
+																<option value="제과">제과</option>
+																<option value="제빵">제빵</option>
+															</select>
+														</div>
+														<div style="width: 80%; margin-right: 0;">
+															<input type="text" name="breadName" th:field="${testing.breadName}" placeholder="빵 이름" style="margin-bottom: 1px;">
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="table-1">
+												<div class="table-title">최대 모집 인원 수 </div>
+												<div class="table-content"><input type="text" name="people" th:field="${testing.people}" placeholder="예)10명"/></div>
+											</div>
+											<div class="table-1">
+												<div class="table-title">모집 날짜</div>
+												<div class="table-content" id="table-date">
+													<div>
+														<input type="date" name="startDate" th:field="${testing.startDate}" class="input-date"/>
+													</div>
+													<div style="width: 10px;"><p id="water">~</p></div>
+													<div>
+														<input type="date" name="endDate" th:field="${testing.endDate}" class="input-date"/>
+													</div>
+												</div>
+											</div>
+											<div class="table-1">
+												<div class="table-title">상세 정보</div>
+												<div class="table-content"><textarea name="description" th:text="${testing.description}" cols="30" rows="8" maxlength="50" placeholder="상세 정보를 입력하세요." style="resize: none;"></textarea></div>
+											</div>
+										</div><!--밑에 상세정보 입력Div-->
+
+										<div id="registDiv">
+											<input type="submit" value="수정하기">
+										</div>
+									</div><!--전체DIv-->
+								</form>
+							</div>
+						</section>
+					</section>
+				</section>
+			</section>
+		</div>
+		<div id="ad">
+			<span class="image"><img src="/images/ECdDwLmUIAIAX7k.jpg" alt=""></span>
+		</div>
+	</div>
+</div>
+<!-- Footer -->
+<footer id="footer" th:include="/main/footer::footer_body"></footer>
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script th:replace="/main/header::header_js"></script>
+</body>
+<script>
+	let check = false;
+	function showImage(fileCallPath){
+		if(check) {return;}
+		$(".bigPictureWrapper").css("display", "flex").show();
+		$(".bigPicture").html("<img src='/upload/display?fileName=" + encodeURIComponent(fileCallPath) + "'>")
+				.animate({width:"100%", height:"100%"}, 1000);
+		check = true;
+	}
+
+	$(".bigPictureWrapper").on("click", function(){
+		if(!check){return;}
+		$(".bigPicture").animate({width: "0%", height: "0%"}, 1000);
+		setTimeout(function(){
+			check = false;
+			$(".bigPictureWrapper").hide();
+		}, 1000)
+	})
+
+	$(document).ready(function(){
+		let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+		let maxSize = 5242880;// 5MB
+		let inputFile = $(".uploadDiv input");
+		let uploadResult = $(".uploadResult ul");
+
+		//form태그에 input hidden 생성 실습
+		//서버 쪽으로 전달할 첨부파일의 데이터를 input type hidden으로 추가하기
+		//추가된 li태그를 모두 가져와서 data속성을 통해 알맞는 값을 설정한다.
+		//form.append("추가할 HTML") : HTML 추가
+		//submit을 눌렀을 때 click 이벤트를 발생하고, 기존 submit이벤트는 막아줘야 한다.
+		//input태그가 모두 추가된 후 submit()해준다.
+
+		$("input[type='submit']").on("click", function(e){
+			e.preventDefault();
+			let form = $("form#registForm");
+			let str = "";
+			$(".uploadResult ul li").each(function(i, obj){
+				str += "<input type='hidden' name='attachList[" + i + "].fileName' value='" + $(obj).data('name') + "'>"
+				str += "<input type='hidden' name='attachList[" + i + "].uuid' value='" + $(obj).data('uuid') + "'>"
+				str += "<input type='hidden' name='attachList[" + i + "].uploadPath' value='" + $(obj).data('path') + "'>"
+				str += "<input type='hidden' name='attachList[" + i + "].image' value='" + $(obj).data('type') + "'>"
+			});
+			form.append(str).submit();
+		})
+
+		function showUploadFile(uploadFiles){
+			let str = "";
+			$(uploadFiles).each(function(i, obj){
+				if(!obj.image){
+					let fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.fileName);
+
+					str += "<div data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-name='" + obj.fileName.substring(obj.fileName.indexOf("_") + 1) + "' data-type='" + obj.image +"'>";
+					str += "<div>";
+					str += "<a href='/upload/download?fileName=" + fileCallPath + "'>";
+					str += "<img src='images/no1.png' width='110px' height='110px' style='display:inline;'src='/images/no1.png'>" + obj.fileName.substring(obj.fileName.indexOf("_") + 1);
+					str += "</a>"
+					str += "<span data-file='" + fileCallPath + "' data-type='file'>x</span>";
+					str += "</div>";
+					str += "</div>";
+				}else{
+
+					let firstFile = $(".files");
+					firstFile.css("padding", 0);
+					let ul = $("ul");
+					ul.css("margin", 0);
+					ul.css("padding", 0);
+					ul.css("list-style", "none");
+					let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.fileName);
+					let originPath = encodeURIComponent(obj.uploadPath + "/" + obj.fileName);
+					str += "<div data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-name='" + obj.fileName.substring(obj.fileName.indexOf("_") + 1) + "' data-type='" + obj.image +"'>";
+					str += "<div>";
+					str += "<a href=\"javascript:showImage(\'" + originPath + "\')\">";
+					str += "<img style='width: 100%; height: 100%;' src='/upload/display?fileName=" + fileCallPath + "'>" /*+ obj.fileName.substring(obj.fileName.indexOf("_") + 1)*/;
+					str += "</a>";
+					/*str += "<span data-file='" + fileCallPath + "' data-type='image'>x</span>"*/;
+					str += "</div>";
+					str += "</div>";
+				}
+			});
+			let noImg = $("#board_file1Img");
+			noImg.hide();
+			uploadResult.append(str);
+		}
+
+		$(".uploadResult").on("click", "span", function(){
+			let targetFile = $(this).data("file");
+			let type = $(this).data("type");
+			let li = $(this).parents("li");
+
+			$.ajax({
+				url: "/upload/deleteFile",
+				type: "POST",
+				data: {fileName:targetFile, type:type},
+				dataType: "text",
+				success: function(result){
+					alert(result);
+					li.remove();
+				}
+			});
+
+		});
+
+		//확장자 별 업로드 제한, 특정 크기 이상의 파일은 업로드 제한
+		function checkExtension(fileName, fileSize){
+			if(regex.test(fileName)){
+				alert("업로드 할 수 없는 파일의 형식입니다.");
+				return false;
+			}
+			if(fileSize >= maxSize){
+				alert("파일 사이즈 초과");
+				return false;
+			}
+			return true;
+		}
+
+		$("input[type='file']").change(function(){
+			let formData = new FormData();
+			let inputFile = $("input[name='uploadFiles']");
+			let files = inputFile[0].files;
+
+			for(let i=0; i<files.length; i++){
+				if(!checkExtension(files[i].name, files[i].size)){ return; }
+				formData.append("uploadFiles", files[i]);
+			}
+
+			$.ajax({
+				url: "/upload/uploadAjaxAction",
+				type: "post",
+				data: formData,
+				contentType: false,
+				processData: false,
+				success: function(fileList){
+					showUploadFile(fileList);
+					inputFile.val("");
+				}
+			});
+		});
+	})
+</script>
+</html>

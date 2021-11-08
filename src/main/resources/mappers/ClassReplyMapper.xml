@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.pangyapangya.mappers.ClassReplyMapper">
+    <insert id="insert">
+        INSERT INTO TBL_CLASSREVIEWREPLY (RNO, BNO, REPLY, USERID)
+        VALUES (SEQ_CLASSREVIEWREPLY.NEXTVAL, #{bno}, #{reply}, #{userId})
+    </insert>
+
+    <select id="read" resultType="ClassReplyVO">
+        SELECT RNO, BNO, REPLY, REPLYDATE, USERID FROM TBL_CLASSREVIEWREPLY
+        WHERE RNO = #{rno}
+    </select>
+
+    <select id="getListWithPaging" resultType="ClassReplyVO">
+        <![CDATA[
+        SELECT RNO, BNO, REPLY, USERID, REPLYDATE
+        FROM
+        (
+            SELECT /*+ INDEX_DESC(TBL_REPLY PK_REPLY) */
+            ROWNUM R, RNO, BNO, REPLY, USERID, REPLYDATE
+            FROM TBL_CLASSREVIEWREPLY
+            WHERE BNO = #{bno}
+            AND ROWNUM <= #{criteria.pageNum} * #{criteria.amount}
+        )
+        WHERE R > (#{criteria.pageNum} - 1) * #{criteria.amount}
+        ]]>
+    </select>
+
+    <select id="getTotal" resultType="_int">
+        SELECT COUNT(RNO) FROM TBL_CLASSREVIEWREPLY WHERE BNO = #{bno}
+    </select>
+</mapper>

@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+    <title>원데이클래스 | 결제완료 </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/login.css" />
+    <link rel="icon" type="image/png"  href="/images/favicon.png"/>
+    <style th:include="/main/header::header_style">
+
+        . info_error{
+            margin: 0 0 1em 0;
+        }
+
+        .box_login {
+            width: 400px;
+            margin: 0 auto;
+            padding: 35px 20px;
+            border: 1px solid #eee;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body class="is-preload" style="background-color: white;">
+
+<!-- Header -->
+<header id="header" th:include="/main/header::header_body">
+
+</header>
+
+<!-- Wrapper -->
+<!-- Main -->
+<section class="cont_login container">
+    <div class="box_login login_main">
+        <div>
+            <h2 class="tit"><strong style="color: #F9A825; text-align: center;">결제가 완료되었습니다.</strong></h2>
+            <br>기타 궁금하신 사항은 고객센터로 연락주시면<br> 성심껏 답변드리겠습니다.
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer id="footer" th:include="/main/footer::footer_body"></footer>
+
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script th:replace="/main/header::header_js"></script>
+
+</body>
+</html>

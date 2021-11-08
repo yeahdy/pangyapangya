@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.pangyapangya.mappers.TestingMapper">
+
+    <sql id="search">
+        <if test="type != null and keyword != null">
+            <trim prefix="(" suffix=") AND " prefixOverrides="OR">
+                <foreach item="type" collection="typeArr">
+                    <trim prefix="OR">
+                        <choose>
+                            <when test="type == 'T'.toString()">
+                                (TITLE LIKE '%'||#{keyword}||'%')
+                            </when>
+                            <when test="type == 'C'.toString()">
+                                (CONTENT LIKE '%'||#{keyword}||'%')
+                            </when>
+                            <when test="type == 'W'.toString()">
+                                (WRITER LIKE '%'||#{keyword}||'%')
+                            </when>
+                        </choose>
+                    </trim>
+                </foreach>
+            </trim>
+        </if>
+    </sql>
+
+    <select id="getList" resultType="testingVO">
+        <![CDATA[
+        SELECT TNO, STARTDATE, ENDDATE, CEOID, TITLE, BREADTYPE, BREADNAME, PEOPLE, DESCRIPTION, SHOPNAME, REGDATE, TESTINGPHOTO
+        FROM
+        (
+            SELECT /*+ INDEX_DESC(TBL_BOARD PK_BOARD) */
+            ROWNUM R, TNO, STARTDATE, ENDDATE, CEOID, TITLE, BREADTYPE, BREADNAME, PEOPLE, DESCRIPTION, SHOPNAME, REGDATE, TESTINGPHOTO
+            FROM TBL_TESTING
+            WHERE
+        ]]>
+        <include refid="search"></include>
+        <![CDATA[
+        ROWNUM <= #{pageNum} * #{amount}
+        )
+        WHERE R > (#{pageNum} - 1) * #{amount}
+        ]]>
+    </select>
+
+    <!--작업은 완료되지만 현재 추가된 데이터의 PK값은 알 수 없다.-->
+    <insert id="insert">
+        INSERT INTO TBL_TESTING (TNO, STARTDATE, ENDDATE, CEOID, TITLE, BREADTYPE, BREADNAME, PEOPLE, DESCRIPTION, SHOPNAME, REGDATE, TESTINGPHOTO)
+        VALUES(SEQTESTING.NEXTVAL, #{startDate}, #{endDate}, #{ceoId}, #{title}, #{breadType}, #{breadName}, #{people}, #{description}, #{shopName}, SYSDATE, '/images/옥수수빵1.jpg')
+    </insert>
+
+    <!--
+        PK값을 미리 SQL을 통해서 처리해 두고 지정한 이름으로 결과를 보관하는 방식이다.
+        SQL을 한 번 더 실행하는 부담이 있기는 하지만 자동으로 추가되는 PK값을 확인해야 하는 상황에서는
+        유용하게 사용될 수 있다.
+    -->
+    <insert id="insertSelectKey_tno">
+        /*태그 안에서는 이와 같은 주석으로 사용해야 한다.*/
+        /*게시글 등록 전 다음 시퀀스를 가져와서 insertSelectKey_bno메소드의 매개변수로 매핑후 전달한다.*/
+        <selectKey keyProperty="tno" order="BEFORE" resultType="long">
+            SELECT SEQTESTING.NEXTVAL FROM DUAL
+        </selectKey>
+        /*위에서 전달받은 bno를 사용한다.*/
+        INSERT INTO TBL_TESTING (TNO, STARTDATE, ENDDATE, CEOID, TITLE, BREADTYPE, BREADNAME, PEOPLE, DESCRIPTION, TESTINGPHOTO, SHOPNAME,REGDATE)
+        VALUES(#{tno}, #{startDate}, #{endDate}, #{ceoId}, #{title}, #{breadType}, #{breadName}, #{people}, #{description}, '/images/옥수수빵1.jpg', #{shopName}, SYSDATE)
+    </insert>
+
+    <select id="read" resultType="testingVO">
+        SELECT TNO, STARTDATE, ENDDATE, CEOID, TITLE, BREADTYPE, BREADNAME, PEOPLE, DESCRIPTION, TESTINGPHOTO, SHOPNAME, REGDATE
+        FROM TBL_TESTING
+        WHERE TNO = #{tno}
+    </select>
+
+    <update id="update">
+        UPDATE TBL_TESTING
+        SET TITLE = #{title}, DESCRIPTION = #{description}
+        WHERE TNO = #{tno}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM TBL_TESTING WHERE TNO = #{tno}
+    </delete>
+
+    <select id="getTotal" resultType="_int">
+        SELECT COUNT(TNO) FROM TBL_TESTING
+        <where>
+            <trim suffixOverrides="AND">
+                <include refid="search"></include>
+            </trim>
+        </where>
+    </select>
+
+    <select id="myTotal" resultType="_int">
+        SELECT COUNT(TNO) FROM TBL_TESTING
+        WHERE CEOID = #{ceoId}
+    </select>
+</mapper>

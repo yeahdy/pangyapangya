@@ -1,0 +1,286 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<head>
+    <title>Untitled</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <style>
+        .headerIcon{
+            width: 40px;
+            display: block;
+            margin: auto;"
+        }
+        .icon.solid:before {
+            font-weight: 100;
+            content: none;
+        }
+
+        .spotlights h5{
+            font-weight: bold;
+            font-size: small;
+        }
+
+        .spotlights p{
+            font-size: small;
+        }
+
+        /* 검색창 */
+        .search {
+            position: relative;
+            text-align: center;
+            width: 400px;
+            margin: 0 auto;
+        }
+        input {
+            width: 100%;
+            border-radius: 20px;
+            border: 1px solid #bbb;
+            margin: 10px 0;
+            padding: 10px 12px;
+        }
+        .fa-search {
+            position: absolute;
+            left: 90%;
+            top: 35%;
+            margin: 0;
+        }
+        form {
+            margin: 0;
+        }
+        #all{display: flex;}
+        .wrapper{width: 75%;}
+        #mainSection{padding: 0;}
+        #rightHeader h2{color: #F9A825; font-size: 1.2em; font-weight: 900;}
+        sub{top: 0; margin-left: 10px;}
+        #rightHeader-second{width:80%;}
+        #explain p{font-size: 0.8em; background: antiquewhite; height: 75px; padding: 20px 10px;}
+        #ad{background: #fff; width: 15%; height: 10px;}
+        #ad img{width: 100%; height: 600px;}
+        #myMainSection{display: flex;}
+        #myLeftSection{width: 20%; background: #f9efef;}
+        #myRightSection{width: 80%; padding: 37px 50px 15px 50px;}
+        .myPageTitle{background: #F9A825; margin: 0; padding: 7px 7px 7px 15px;}
+        .myPageTitle p{margin: 0; color: #fff;}
+        #allDiv{padding:15px;}
+        #allDiv p{margin: 0; font-size: 0.85em; font-weight: bold; color: #000;}
+        .contentDiv{margin-top: 15px; margin-bottom: 15px;}
+        .contentDiv a{color: #3b3b3b; font-weight: lighter; border: none; font-size: 0.8rem;}
+        .myPageSelectMenu{margin-top: 5px; margin-bottom: 5px;}
+        table tbody tr:nth-child(2n + 1) {background-color: #fff;}
+        .second-top{display: flex; margin-right: 10px;}
+        .second-top p{margin:0; color: #3b3b3b; font-weight: 600; font-size: 1em;}
+        .second-under p{margin: 0 10px 0 0; color: #8cb1f3; font-weight:600;}
+        .col-6{padding: 27px 10px;}
+        .table-boxes{border-top: 0.5px solid #efd0d0; height: 80px;}
+        .table-second{width: 80%; padding: 27px 0;}
+        input[type="button"]{border-radius: 0;}
+        .table-third{margin-right: 4px; padding: 10px 0;}
+        .table-fourth{padding: 10px 0;}
+        .pagination{text-align: center;}
+        ul.pagination {margin-top: 25px;}
+        .table-third input[type="button"], .table-fourth input[type="button"]{font-weight: bold}
+        input[type="button"].bs{padding: 0; border: none !important;}
+        .second-under-date{color: #d5b3b3;}
+        input[type="checkbox"] + label:before {background: #fff; border-color: rgba(144, 144, 144, 0.25);}
+        #rightHeader-first{width: 14%;}
+    </style>
+</head>
+<body class="is-preload" style="padding: 200px">
+<!-- Header -->
+<header id="header" th:include="/main/header::header_body">
+
+</header>
+
+<!-- Wrapper -->
+<div id="all">
+    <div class="wrapper">
+
+        <!-- Main -->
+        <section class="main second-main">
+
+            <section id="mainSection">
+
+                <section id="myMainSection">
+                    <section id="myLeftSection">
+                        <div id="myLeftDiv">
+                            <div class="myPageMenu">
+                                <div class="myPageTitle"><p>MY PAGE</p></div>
+                                <div id="allDiv">
+                                    <div class="myPageSelect1"><p>주문 내역</p></div>
+                                    <div class="contentDiv">
+                                        <div class="myPageSelectMenu"><p><a href="/mypage/breadOrderList">빵 결제 내역</a></p></div>
+                                        <div class="myPageSelectMenu"><p><a href="/mypage/oneDayClassList">원데이 클래스 신청 내역</a></a></p></div>
+                                        <div class="myPageSelectMenu floorDiv"><p><a href="/mypage/testingList">빵 체험단 신청 내역</a></a></p></div>
+                                    </div>
+
+                                    <div class="myPageSelect1"><p>내 글 보기</p></div>
+                                    <div class="contentDiv">
+                                        <div class="myPageSelectMenu"><p><a href="/mypage/bread_review" style="text-decoration: underline; color: chocolate;">빵집 리뷰</a></p></div>
+                                        <div class="myPageSelectMenu"><p><a href="/mypage/oneDayClass_review">원데이 클래스</a></a></p></div>
+                                        <div class="myPageSelectMenu floorDiv"><p><a href="/mypage/testing_review">빵 체험단</a></a></p></div>
+                                    </div>
+
+                                    <div class="myPageSelect1"><p>내 정보</p></div>
+                                    <div class="contentDiv">
+                                        <div class="myPageSelectMenu"><p><a href="/mypage/modifyMyInfo">내 정보 수정</a></p></div>
+                                        <div class="myPageSelectMenu"><p><a href="#">회원 탈퇴</a></a></p></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                    <section id="myRightSection">
+                        <div id="myRightDiv">
+
+
+                            <div class="table-wrapper">
+                                <div id="main-box">
+                                    <div id="rightHeader" style="display: flex;">
+                                        <div id="rightHeader-first"><h2>빵집 리뷰</h2></div>
+                                        <div id="rightHeader-second"><sub>1,500</sub></div>
+                                        <div id="rightHeader-third"><input type="button" class="primary" value="글쓰기" style="width: 60px; padding: 0; font-size: 0.7em;"/><span id="img"><img src=""></span></div>
+                                    </div>
+                                    <div id="section-box">
+                                        <div class="table-boxes" style="display: flex;">
+                                            <div class="table-first">
+                                                <div class="col-6 col-12-small">
+                                                    <input type="checkbox" id="list1" name="list1">
+                                                    <label for="list1"></label>
+                                                </div>
+
+                                            </div>
+                                            <div class="table-second">
+                                                <a href="#">
+                                                    <div style="display: flex;">
+                                                        <div class="second-top"><p>빵집 제목</p></div>
+                                                        <div class="second-under-date"><span>·</span>2021-10-11</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="table-third"><input type="button" class="button small bs" value="수정"></div>
+                                            <div class="table-fourth"><input type="button" class="button small bs" value="삭제"></div>
+                                        </div>
+                                        <div class="table-boxes" style="display: flex;">
+                                            <div class="table-first">
+                                                <div class="col-6 col-12-small">
+                                                    <input type="checkbox" id="list2" name="list2" >
+                                                    <label for="list2"></label>
+                                                </div>
+
+                                            </div>
+                                            <div class="table-second">
+                                                <a href="#">
+                                                    <div style="display: flex;">
+                                                        <div class="second-top"><p>빵집 제목</p></div>
+                                                        <div class="second-under-date"><span>·</span>2021-10-11</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="table-third"><input type="button" class="button small bs" value="수정"></div>
+                                            <div class="table-fourth"><input type="button" class="button small bs" value="삭제"></div>
+                                        </div>
+                                        <div class="table-boxes" style="display: flex;">
+                                            <div class="table-first">
+                                                <div class="col-6 col-12-sm all">
+                                                    <input type="checkbox" id="list3" name="list3" >
+                                                    <label for="list3"></label>
+                                                </div>
+
+                                            </div>
+                                            <div class="table-second">
+                                                <a href="#">
+                                                    <div style="display: flex;">
+                                                        <div class="second-top"><p>빵집 제목</p></div>
+                                                        <div class="second-under-date"><span>·</span>2021-10-11</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="table-third"><input type="button" class="button small bs" value="수정"></div>
+                                            <div class="table-fourth"><input type="button" class="button small bs" value="삭제"></div>
+                                        </div>
+
+                                        <div class="table-boxes" style="display: flex;">
+                                            <div class="table-first">
+                                                <div class="col-6 col-12-small">
+                                                    <input type="checkbox" id="list4" name="list4" >
+                                                    <label for="list4"></label>
+                                                </div>
+
+                                            </div>
+                                            <div class="table-second">
+                                                <a href="#">
+                                                    <div style="display: flex;">
+                                                        <div class="second-top"><p>빵집 제목</p></div>
+                                                        <div class="second-under-date"><span>·</span>2021-10-11</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="table-third"><input type="button" class="button small bs" value="수정"></div>
+                                            <div class="table-fourth"><input type="button" class="button small bs" value="삭제"></div>
+                                        </div>
+
+                                        <div class="table-boxes" style="display: flex; border-bottom: 0.5px solid #efd0d0;" >
+                                            <div class="table-first">
+                                                <div class="col-6 col-12-small">
+                                                    <input type="checkbox" id="list5" name="list5">
+                                                    <label for="list5"></label>
+                                                </div>
+
+                                            </div>
+                                            <div class="table-second">
+                                                <a href="#">
+                                                    <div style="display: flex;">
+                                                        <div class="second-top"><p>빵집 제목</p></div>
+                                                        <div class="second-under-date"><span>·</span>2021-10-11</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="table-third"><input type="button" class="button small bs" value="수정"></div>
+                                            <div class="table-fourth"><input type="button" class="button small bs" value="삭제"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <ul class="pagination">
+                                    <li><span class="disabled"><</span></li>
+                                    <li><a href="#" class="page active">1</a></li>
+                                    <li><a href="#" class="page">2</a></li>
+                                    <li><a href="#" class="page">3</a></li>
+                                    <li><span>&hellip;</span></li>
+                                    <li><a href="#" class="page">8</a></li>
+                                    <li><a href="#" class="page">9</a></li>
+                                    <li><a href="#" class="page">10</a></li>
+                                    <li><a href="#">></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </div>
+    <div id="ad">
+        <span class="image"><img src="/images/ECdDwLmUIAIAX7k.jpg" alt=""></span>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer id="footer" th:include="/main/footer::footer_body"></footer>
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script th:replace="/main/header::header_js"></script></body>
+</body>
+</html>

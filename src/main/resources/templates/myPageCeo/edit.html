@@ -1,0 +1,263 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+	<title>마이페이지 | 회원 정보 수정</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="/css/main.css" />
+	<link rel="stylesheet" href="/css/login.css" />
+	<link rel="icon" type="image/png"  href="/images/favicon.png"/>
+	<style>
+		.headerIcon{
+			width: 40px;
+			display: block;
+			margin: auto;"
+		}
+		.icon.solid:before {
+			font-weight: 100;
+			content: none;
+		}
+
+		.spotlights h5{
+			font-weight: bold;
+			font-size: small;
+		}
+
+		.spotlights p{
+			font-size: small;
+		}
+
+		/* 검색창 */
+		.search {
+			position: relative;
+			text-align: center;
+			width: 400px;
+			margin: 0 auto;
+		}
+		input {
+			width: 100%;
+			border-radius: 20px;
+			border: 1px solid #bbb;
+			margin: 10px 0;
+			padding: 10px 12px;
+		}
+		.fa-search {
+			position: absolute;
+			left: 90%;
+			top: 35%;
+			margin: 0;
+		}
+		form {
+			margin: 0;
+		}
+		#all{display: flex;}
+		.wrapper{width: 75%;}
+		#mainSection{padding: 0;}
+		#rightHeader h2{color: #F9A825; font-size: 1.2em; font-weight: 900;}
+		#explain p{font-size: 0.8em; background: #fbf6f6; height: 80px; padding: 20px 10px;}
+		#ad{background: none; width: 15%; height: 10px;}
+		#ad img{width: 100%; height: 600px;}
+		#myMainSection{display: flex;}
+		#myLeftSection{width: 20%; background: #f9efef;}
+		#myRightSection{width: 80%; padding: 37px 35px 15px 45px;}
+		.myPageTitle{background: #F9A825; margin: 0; padding: 7px 7px 7px 15px;}
+		.myPageTitle p{margin: 0; color: #fff;}
+		#allDiv{padding:15px;}
+		#allDiv p{margin: 0; font-size: 0.85em; font-weight: bold; color: #000;}
+		.contentDiv{margin-top: 15px; margin-bottom: 15px;}
+		.contentDiv a{color: #3b3b3b; font-weight: lighter; border: none; font-size: 0.8rem;}
+		.myPageSelectMenu{margin-top: 5px; margin-bottom: 5px;}
+		#subDiv1 {display: flex;}
+		#subDiv2 {padding-right: 27px;}
+		.first-file{width: 100%; padding: 40px;}
+		.files {text-align: center; border: 0.1px solid #F9A825;}
+		.image{position: fixed;}
+		.table-1{display: flex; width: 80%; margin: 0 auto 10px;}
+		.table-1 div p{margin: 0; padding: 10px 17px 0;}
+		.table-title{width: 25%; color: #F9A825; font-weight: 600; padding-top: 10px; padding-left: 15px;}
+		.table-content{width: 75%;}
+		.table-content div{width: 200px; margin-right: 5px;}
+		#title1 p{margin-bottom: 1em; font-size: 1.3em; font-weight: 600; color: #3c4b51;}
+		#title2{margin-bottom: 1em; font-size: 1.3em; font-weight: 600; color: #000; width: 20%; margin: 0 auto;}
+		hr {margin: 1em 0 2em;}
+		sub {font-size: 0.5em; font-weight: lighter; top: 0.3em; left: 0.8em; color: #888}
+		input[type="text"], textarea{border: none; margin: 0;}
+		input[type="file"]{display: none;}
+		#registDiv{width: 20%; margin: 0 auto;}
+		select{border: none;}
+		#table-date{display: flex;}
+		.input-date{border: none; background-color: rgba(144, 144, 144, 0.075); border-radius: 0; margin: 0; padding-left: 16px; color: #a77070;}
+		input[type="password"]{border: none; margin: 0;}
+		.address-div{width: 100% !important; margin-bottom: 10px;}
+		#address-num{width: 40%}
+		#address-search{margin: 0; width: 20%;}
+		#mainFileDiv{width: 100%;}
+	</style>
+</head>
+<body class="is-preload" style="padding: 200px">
+
+	<header id="header" th:include="/main/header::header_body"></header>
+	<div th:if="${check == 'true'}">
+		<input type="hidden" id="updateChk" th:value="${check}" />
+	</div>
+	<!-- Wrapper -->
+	<div>
+		<div id="all">
+			<div class="wrapper">
+				<!-- Main -->
+
+				<section class="main second-main">
+					<section id="mainSection">
+						<section id="myMainSection">
+							<section id="myLeftSection">
+								<div id="myLeftDiv">
+									<div class="myPageMenu">
+										<div class="myPageTitle"><p>MY PAGE</p></div>
+										<div id="allDiv">
+											<div class="myPageSelect1"><p>글 등록하기</p></div>
+											<div class="contentDiv">
+												<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakery">빵집 소개</a></p></div>
+												<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDay">원데이클래스</a></a></p></div>
+												<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/exp">빵 체험단</a></a></p></div>
+											</div>
+											<div class="myPageSelect1"><p>내 글 보기</p></div>
+											<div class="contentDiv">
+												<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakeryRe">빵집 리뷰</a></p></div>
+												<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDayRe">원데이 클래스</a></a></p></div>
+												<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/expRe">빵 체험단</a></a></p></div>
+											</div>
+											<div class="myPageSelect1"><p>내 정보</p></div>
+											<div class="contentDiv">
+												<div class="myPageSelectMenu"><p><a href="/myPageCeo/edit" style="text-decoration: underline; color: chocolate;">내 정보 수정</a></p></div>
+												<div class="myPageSelectMenu"><p><a href="/myPageCeo/delete">회원 탈퇴</a></a></p></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+
+							<section id="myRightSection">
+								<div id="myRightDiv">
+									<form method="post" action="/myPageCeo/edit" id="registForm">
+										<!--전체-->
+										<div id="contentDiv">
+											<!--밑에 상세정보 입력Div-->
+											<div id="subDiv2" th:object="${ceo}">
+												<p id="title2">회원 정보 관리</p>
+												<hr>
+												<div class="table-1" style="margin-bottom: 10px;">
+													<div class="table-title">이름</div>
+													<div class="table-content"><input type="text" name="ceoName" th:field="*{ceoName}" readonly/></div>
+												</div>
+												<div class="table-1">
+													<div class="table-title">비밀번호</div>
+													<div class="table-content"><input name="ceoPw" type="password"/></div>
+												</div>
+												<div class="table-1">
+													<div class="table-title">비밀번호 확인</div>
+													<div class="table-content"><input type="password" name="ceoPwCheck"/></div>
+												</div>
+												<div class="table-1">
+													<div class="table-title">휴대폰 번호</div>
+													<div class="table-content"><input type="text"  name="phoneNum" th:field="*{phoneNum}"/></div>
+												</div>
+												<div class="table-1">
+													<div class="table-title">업체명</div>
+													<div class="table-content"><input type="text" name="shopName" th:field="*{shopName}"/></div>
+												</div>
+												<div class="table-1" style="margin-bottom: 10px;">
+													<div class="table-title">사업장 주소</div>
+													<div style="width: 75%;">
+														<div class="table-content" style="width: 100%;">
+															<div style="display:flex; width: 100%; margin-bottom: 10px;">
+																<div id="address-num">
+																	<input type="text" name="shopZipcode" id="shopZipcode" class="postcodify_postcode5" th:field="*{shopZipcode}"/>
+																</div>
+																<div id="address-search">
+																	<input type="button" id="postcodify_search_button" class="button primary" style="border-radius:0; margin: 0;" value="검색">
+																</div>
+															</div>
+															<div class="address-div">
+																<input type="text" name="shopAddress" id="shopAddress" class="postcodify_address" th:field="*{shopAddress}"/>
+															</div>
+															<div class="address-div" style="margin-bottom: 0;">
+															<input type="text" name="shopAddressDetail" id="shopAddressDetail" class="postcodify_details" th:field="*{shopAddressDetail}"/>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="table-1">
+													<div class="table-title">사업장 등록 번호</div>
+													<div class="table-content"><input type="text" name="shopRegNum" th:field="*{shopRegNum}"/></div>
+												</div>
+												<div class="table-1">
+													<div class="table-title">사업장 전화번호</div>
+													<div class="table-content"><input type="text" name="shopCallNumber" th:field="*{shopCallNumber}"/></div>
+												</div>
+												<div class="table-1">
+													<div class="table-title">사업장 이미지</div>
+													<div class="table-content">
+														<!--대표사진-->
+														<div class="files first-file" style="width: 100%;">
+															<div id="mainFileDiv">
+																<label for="board_file1" style="display:inline;">
+																	<img id="board_file1Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
+																</label>
+															</div>
+															<input id="board_file1" name="board_file1" type="file">
+														</div>
+													</div>
+												</div>
+											</div><!--밑에 상세정보 입력Div-->
+											<div id="registDiv">
+												<input type="submit" class="primary" value="회원 정보 수정">
+											</div>
+										</div><!--전체DIv-->
+									</form>
+								</div>
+							</section>
+						</section>
+					</section>
+				</section>
+			</div>
+			<div id="ad">
+				<span class="image"><img src="/images/ECdDwLmUIAIAX7k.jpg" alt=""></span>
+			</div>
+		</div>
+	</div>
+	<!-- Footer -->
+	<footer id="footer" th:include="/main/footer::footer_body"></footer>
+	<!-- Scripts -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/jquery.dropotron.min.js"></script>
+	<script src="/js/browser.min.js"></script>
+	<script src="/js/breakpoints.min.js"></script>
+	<script src="/js/util.js"></script>
+	<script src="/js/main.js"></script>
+	<script th:replace="/main/header::header_js"></script>
+	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+	<script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
+</body>
+<script type="text/javascript">
+	//비밀번호 숨기기
+	$('.type_pwd').on('click',function() {
+		var $this = $(this);
+		$this.toggleClass('hide');
+		if($this.hasClass('hide')){
+			$this.prev('input').prop('type','password');
+		}else{
+			$this.prev('input').prop('type','text');
+		}
+	});
+
+	/* 로그인 실패 컨트롤러*/
+	if($("#updateChk").val() == 'true'){
+		alert("회원정보 수정이 완료되었습니다.");
+	}
+
+</script>
+</html>

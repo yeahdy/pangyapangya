@@ -1,0 +1,274 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<head>
+	<title>마이페이지 | 원데이 클래스(작성한 글)</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="/css/main.css" />
+	<link rel="icon" type="image/png"  href="/images/favicon.png"/>ㄴ
+	<style>
+		.headerIcon{
+			width: 40px;
+			display: block;
+			margin: auto;"
+		}
+		.icon.solid:before {
+			font-weight: 100;
+			content: none;
+		}
+
+		.spotlights h5{
+			font-weight: bold;
+			font-size: small;
+		}
+
+		.spotlights p{
+			font-size: small;
+		}
+
+		/* 검색창 */
+		.search {
+			position: relative;
+			text-align: center;
+			width: 400px;
+			margin: 0 auto;
+		}
+		input {
+			width: 100%;
+			border-radius: 20px;
+			border: 1px solid #bbb;
+			margin: 10px 0;
+			padding: 10px 12px;
+		}
+		.fa-search {
+			position: absolute;
+			left: 90%;
+			top: 35%;
+			margin: 0;
+		}
+		form {
+			margin: 0;
+		}
+		#all{display: flex;}
+		.wrapper{width: 75%;}
+		.table-wrapper{overflow-x: visible;}
+		#mainSection{padding: 0;}
+		#rightHeader h2{color: #F9A825; font-size: 1.2em; font-weight: 900;}
+		sub{top: 0; margin-left: 10px;}
+		#rightHeader-first{width: 20%;}
+		#rightHeader-second{width:80%;}
+		#explain p{font-size: 0.8em; background: antiquewhite; height: 80px; padding: 20px 10px;}
+		#ad{background: #fff; width: 15%; height: 10px;}
+		#ad img{width: 100%; height: 600px;}
+		#myMainSection{display: flex;}
+		#myLeftSection{width: 20%; background: #f9efef;}
+		#myRightSection{width: 80%; padding: 37px 50px 37px 50px;}
+		.myPageTitle{background: #F9A825; margin: 0; padding: 7px 7px 7px 15px;}
+		.myPageTitle p{margin: 0; color: #fff;}
+		#allDiv{padding:15px;}
+		#allDiv p{margin: 0; font-size: 0.85em; font-weight: bold; color: #000;}
+		.contentDiv{margin-top: 15px; margin-bottom: 15px;}
+		.contentDiv a{color: #3b3b3b; font-weight: lighter; border: none; font-size: 0.8rem;}
+		.myPageSelectMenu{margin-top: 5px; margin-bottom: 5px;}
+		table tbody tr:nth-child(2n + 1) {background-color: #fff;}
+		.second-top{display: flex; margin-right: 10px;}
+		.second-top p{margin:0; color: #3b3b3b; font-weight: 600; font-size: 1em;}
+		.second-under p{margin: 0 10px 0 0; color: #8cb1f3; font-weight:600;}
+		.col-6{padding: 27px 10px;}
+		.table-boxes{border-top: 0.5px solid #efd0d0; height: 80px;}
+		.table-second{width: 80%; padding: 27px 0;}
+		input[type="button"]{border-radius: 0;}
+		.table-third{margin-right: 4px; padding: 10px 0;}
+		.table-fourth{padding: 10px 0;}
+		.pagination{text-align: center;}
+		ul.pagination {margin-top: 25px;}
+		.table-third input[type="button"], .table-fourth input[type="button"]{font-weight: bold}
+		input[type="button"].bs{padding: 0; border: none !important;}
+		.second-under-date{color: #d5b3b3; display: flex;}
+		input[type="checkbox"] + label:before {background: #fff; border-color: rgba(144, 144, 144, 0.25);}
+		#rightHeader-first{width: 18%;}
+		#main-box{border-bottom: 0.5px solid #efd0d0;}
+		#goModify, #goRemove {color: #7e7a7a; font-size: 0.8em; position: relative; top: 16px;}
+	</style>
+</head>
+<body class="is-preload" style="padding: 200px">
+<!-- Header -->
+<header id="header" th:include="/main/header::header_body"></header>
+<div th:if="${result == 'true'}">
+	<input type="hidden" id="updateChk" th:value="${result}" />
+</div>
+<!-- Wrapper -->
+<div id="all">
+	<div class="wrapper">
+
+		<!-- Main -->
+		<section class="main second-main">
+
+			<section id="mainSection">
+
+				<section id="myMainSection">
+					<section id="myLeftSection">
+						<div id="myLeftDiv">
+							<div class="myPageMenu">
+								<div class="myPageTitle"><p>MY PAGE</p></div>
+								<div id="allDiv">
+									<div class="myPageSelect1"><p>글 등록하기</p></div>
+									<div class="contentDiv">
+										<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakery">빵집 소개</a></p></div>
+										<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDay">원데이클래스</a></a></p></div>
+										<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/exp">빵 체험단</a></a></p></div>
+									</div>
+
+									<div class="myPageSelect1"><p>내 글 보기</p></div>
+									<div class="contentDiv">
+										<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakeryRe">빵집 리뷰</a></p></div>
+										<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDayRe" style="text-decoration: underline; color: chocolate;">원데이 클래스</a></a></p></div>
+										<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/expRe">빵 체험단</a></a></p></div>
+									</div>
+
+									<div class="myPageSelect1"><p>내 정보</p></div>
+									<div class="contentDiv">
+										<div class="myPageSelectMenu"><p><a href="/myPageCeo/edit">내 정보 수정</a></p></div>
+										<div class="myPageSelectMenu"><p><a href="/myPageCeo/delete">회원 탈퇴</a></a></p></div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</section>
+					<section id="myRightSection">
+						<div id="myRightDiv">
+
+
+							<div class="table-wrapper">
+								<div id="main-box">
+									<div id="rightHeader" style="display: flex;">
+										<div id="rightHeader-first"><h2>원데이 클래스</h2></div>
+										<div id="rightHeader-second"><sub th:text="${total}"</sub></div>
+										<div id="rightHeader-third"><a href="/myPageCeo/oneDay" class="button primary small" style="width: 60px; padding: 0; font-size: 0.7em; border-radius: 0;">글쓰기</a></div>
+									</div>
+									<th:block id="section-box"  th:each="oneDay : ${list}">
+										<div class="table-boxes" style="display: flex;" th:object="${oneDay}">
+											<div class="table-first">
+												<div class="col-6 col-12-small">
+													<input type="checkbox"  id="checkBox" name="checkBox">
+													<label for="checkBox"></label>
+												</div>
+
+											</div>
+											<div class="table-second">
+												<a id="goRead" th:href="*{bno}">
+													<div style="display: flex;">
+														<div class="second-top"><p th:text="*{title}"></p></div>
+														<div class="second-under-date"><span>·</span><p th:text="*{classDate}"></p></div>
+													</div>
+												</a>
+											</div>
+											<div class="table-third"><a id="goModify" th:href="*{bno}">수정</a></div>
+											<div class="table-fourth"><a id="goRemove" th:href="*{bno}">삭제</a></div>
+										</div>
+
+									</th:block>
+								</div>
+
+								<div th:object="${pageMaker}">
+									<ul class="pagination">
+										<li th:if="*{prev}" th:href="*{startPage - 1}">
+											<a class="changePage">
+												<span class="changePage"><</span>
+											</a>
+										</li>
+										<th:block th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), pageMaker.getEndPage())}">
+											<li>
+												<a href="#" class="page active" th:if="${pageMaker.criteria.getPageNum() == num}" th:text="${num}"></a>
+												<a class="page changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="${num}" th:text="${num}"></a>
+											</li>
+										</th:block>
+										<li>
+											<a class="changePage" th:if="*{next}" th:href="*{endPage + 1}"><span class="page">&gt;</span></a>
+										</li>
+
+										<form action="/myPageCeo/bakeryRe" th:object="${criteria}" name="pageForm">
+											<input type="hidden" name="pageNum" th:field="*{pageNum}">
+											<input type="hidden" name="amount" th:field="*{amount}">
+										</form>
+									</ul>
+								</div>
+								<div class="paging" style="text-align: center"></div>
+							</div>
+						</div>
+					</section>
+				</section>
+			</section>
+		</section>
+	</div>
+	<div id="ad">
+		<span class="image"><img src="/images/ECdDwLmUIAIAX7k.jpg" alt=""></span>
+	</div>
+</div>
+
+<!-- Footer -->
+<footer id="footer" th:include="/main/footer::footer_body"></footer>
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script th:replace="/main/header::header_js"></script></body>
+</body>
+<script th:inline="javascript">
+	// 글 등록 시 전달받는 게시글 번호를 alert으로 출력
+
+	let paging = [[${criteria.listLink}]];
+	let pageNum = 1;
+
+	$("div.paging").on("click", "a.changePage", function(e){
+		e.preventDefault();
+		pageNum = parseInt($(this).attr("href"));
+		showList(pageNum);
+	});
+
+	$(document).ready(function(){
+		let bno = [[${bno}]];
+		if(bno == null || history.state){
+			return;
+		}
+		alert("게시글 " + bno + "번이 등록되었습니다.");
+		history.replaceState({}, null, null);
+	});
+
+	$("a.changePage").click(function(e){
+		e.preventDefault();
+		pageForm.find("input[name='pageNum']").val($(this).attr("href"));
+		pageForm.submit();
+	});
+
+	$("a#goRead").on("click", function(e){
+		e.preventDefault();
+		location.href = "/class/classDetail?bno=" + $(this).attr("href");
+	})
+
+	$("a#goModify").on("click", function(e){
+		e.preventDefault();
+		location.href = "/myPageCeo/oneDayModify" + paging + "&bno=" + $(this).attr("href");
+	})
+
+	$("a#goRemove").on("click", function(e){
+		e.preventDefault();
+		location.href = "/myPageCeo/oneDayRemove?bno=" + $(this).attr("href");
+	})
+
+	/* 로그인 실패 컨트롤러*/
+	if($("#updateChk").val() == 'success'){
+		alert("삭제 완료");
+	}
+
+</script>
+</html>

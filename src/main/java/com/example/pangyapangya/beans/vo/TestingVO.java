@@ -3,6 +3,8 @@ package com.example.pangyapangya.beans.vo;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @Data
 public class TestingVO {
@@ -15,8 +17,10 @@ public class TestingVO {
     private String breadName;
     private int people;
     private String description;
-    private String testingPhoto;
     private String regDate;
     private String shopName;
     private int status;
+    private String testingPhoto;
+    private List<TestingFileVO> attachList;
+
 }

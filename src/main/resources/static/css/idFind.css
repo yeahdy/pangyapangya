@@ -1,0 +1,415 @@
+/* 로그인 */
+body.on{
+    overflow: hidden;
+    margin-right: 18px;
+}
+
+.cont_login {
+    min-height: calc(100vh - 484px);
+    padding: 130px 0 230px;
+    text-align: left;
+}
+
+.box_login {
+    width: 420px;
+    margin: 0 auto;
+    padding: 35px 20px;
+    border: 1px solid #eee;
+}
+
+.box_login .tit {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    font-size: 24px;
+    color: #000;
+    font-weight: 300;
+    line-height: 33px;
+    letter-spacing: -0.6px;
+}
+
+.box_login .tit b {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.box_login p {
+    color: #666;
+}
+
+.box_login .info_error {
+    display: none;
+    margin-top: 10px;
+    padding-left: 25px;
+    text-align: left;
+    font-size: 12px;
+    color: #F9A825;
+    background: url("/images/iconAlert.png") no-repeat 5px bottom/16px;
+}
+
+.box_login .info_error.act {
+    display: block;
+}
+
+.box_login .box_btn {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    font-size: 0;
+}
+
+.box_login .box_btn .btn {
+    display: inline-block;
+    position: relative;
+    height: 20px;
+    margin-top: 10px;
+    padding: 0 17px 0 14px;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.35px;
+    color: #666;
+}
+
+.box_login .box_btn .btn::before {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 5px;
+    width: 1px;
+    height: 10px;
+    background-color: #666;
+}
+
+.box_login .box_btn .btn:last-child {
+    padding-right: 0;
+}
+
+.box_login .box_btn .btn:last-child::before {
+    display: none;
+}
+
+.login_email {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-rows: 72px auto 88px;
+    grid-template-rows: 45px auto 273px;
+    -ms-grid-columns: 100%;
+    grid-template-columns: 100%;
+    height: 380px;
+    width: 580px;
+}
+
+.login_email .box_btn .btn {
+    margin-top: 20px;
+}
+
+.cont_login .btn_submit {
+    width: 100%;
+    height: 48px;
+    border-radius: 2px;
+    font-size: 16px;
+    color: #fff;
+    line-height: 48px;
+    background-color: #F9A825;
+}
+
+.cont_login a.btn_submit {
+    display: block;
+}
+
+.cont_login .btn_submit:disabled {
+    background-color: #ccc;
+}
+
+.cont_login .box_inp {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    margin-top: 35px;
+    padding: 0 15px;
+    margin-left: -15px;
+}
+
+.cont_login .box_inp .line_inp {
+    margin-bottom: 18px;
+}
+
+.cont_login .box_inp .line_inp input {
+    width: 104%;
+    height: 48px;
+    border: none;
+    border-bottom: 1px solid #eee;
+    color: black;
+    border-radius: 4px;
+}
+
+.cont_login .box_inp .line_inp .error {
+    border-color: #F9A825;
+}
+
+.line_pw {
+    position: relative;
+}
+
+.line_pw input {
+    padding: 0 40px 0 14px;
+}
+
+.line_pw .type_pwd {
+    position: absolute;
+    right: 0;
+    top: 4px;
+    width: 40px;
+    height: 40px;
+    background-image: url(https://front-img.taling.me/Content/app3/images/login/inp_txt.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 19px 12px;
+    border: solid 0px !important;
+}
+
+.line_pw .type_pwd.hide {
+    background-image: url(https://front-img.taling.me/Content/app3/images/login/inp_pwd.png);
+    background-position: center 11px;
+    background-size: 19px 17px;
+}
+
+.find_pwd {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 100%;
+    grid-template-columns: 100%;
+    -ms-grid-rows: 72px auto 48px;
+    grid-template-rows: 72px auto 48px;
+    height: 379px;
+}
+
+.box_join {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 100%;
+    grid-template-columns: 100%;
+    -ms-grid-rows: 72px auto 48px;
+    grid-template-rows: 72px auto 48px;
+    min-height: 577px;
+}
+
+.cont_login .box_terms {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 100%;
+    grid-template-columns: 100%;
+    -ms-grid-rows: 138px auto 48px;
+    grid-template-rows: 138px auto 48px;
+    height: 644px;
+}
+
+.cont_login .label_wrap {
+    overflow: hidden;
+}
+
+.cont_login .label_wrap .inp_chkbox {
+    float: left;
+    line-height: 20px;
+}
+
+.cont_login .label_wrap .inp_chkbox::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 9px;
+    vertical-align: middle;
+    background-image: url(https://front-img.taling.me/Content/app3/images/mb_check_off.png);
+    background-repeat: no-repeat;
+    background-size: 18px;
+}
+
+.cont_login .label_wrap .inp_label:checked + label::before {
+    background-image: url("https://front-img.taling.me/Content/app3/images/mb_check_on.png");
+}
+
+.cont_login .label_wrap .link_more {
+    float: right;
+    font-size: 12px;
+    color: #888;
+    line-height: 20px;
+}
+
+.cont_login .terms_lst {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+}
+
+.cont_login .terms_lst li {
+    margin: 25px 0;
+    text-align: left;
+}
+
+.cont_login .terms_lst .terms_chk_all {
+    padding-bottom: 22px;
+    border-bottom: 1px solid #eee;
+}
+
+.cont_login .terms_lst .terms_chk_all label {
+    color: #F9A825;
+}
+
+.cont_login .terms_lst .terms_chk_all .inp_chkbox::before {
+    background-image: url("https://front-img.taling.me/Content/app3/images/mb_check_off_over.png");
+}
+
+.cont_login .terms_lst article {
+    padding: 8px 0 0 28px;
+}
+
+.cont_login .terms_lst article p {
+    font-size: 12px;
+    color: #888;
+}
+
+.cont_login .terms_lst .info_error {
+    margin-top: 20px;
+}
+
+/* ì•„ì´ë”” ì°¾ê¸° */
+.find_id {
+    width: 550px;
+    padding: 25px;
+    text-align: left;
+}
+
+.find_id .title {
+    margin-bottom: 16px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 29px;
+    letter-spacing: -0.5px;
+}
+
+.find_id .info_text {
+    margin-bottom: 29px;
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: -0.4px;
+    color: #666;
+}
+
+.find_id .form_title {
+    margin-bottom: 5px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: -0.35px;
+    color: #666;
+}
+
+.find_id .line {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.find_id .line .inp {
+    width: calc(100% - 110px);
+    height: 46px;
+    border-color: #e0e0e0;
+    border-radius: 4px;
+    letter-spacing: -0.35px;
+}
+
+.find_id .line button {
+    width: 100px;
+    height: 46px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    line-height: 44px;
+    letter-spacing: -0.35px;
+    color: #666;
+    padding: 0px;
+}
+
+.find_id .count {
+    padding-top: 5px;
+    letter-spacing: -0.35px;
+    color: #ff5d5d;
+}
+
+.find_id .list_id {
+    overflow-y: scroll;
+    z-index: 1;
+    max-height: 334px;
+    margin-top: 53px;
+    margin-bottom: -48px;
+}
+
+
+.find_id .list_id ul {
+    padding-bottom: 0px;
+}
+
+.find_id .list_id li {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.find_id .list_id li:first-child {
+    padding-top: 0;
+}
+
+.find_id .list_id li:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.find_id .list_id span {
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: -0.3px;
+    line-height: 20px;
+    color: #666;
+}
+
+.find_id .list_id p {
+    word-break: break-all;
+    line-height: 20px;
+    letter-spacing: -0.35px;
+    color: #111;
+}
+
+.find_id .btn {
+    display: block;
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    height: 48px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 48px;
+    letter-spacing: -0.38px;
+    color: #fff;
+    text-align: center;
+    background-color: #F9A825;
+}
+
+.find_id .btn:disabled {
+    background-color: #ccc;
+}
+
+.find_id .btn_next {
+    margin-top: 28px;
+}

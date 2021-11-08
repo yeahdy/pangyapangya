@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+    <title>원데이클래스 | Main</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="icon" type="image/png"  href="/images/favicon.png"/>
+</head>
+<style>
+    .headerIcon{
+        width: 40px;
+        display: block;
+        margin: auto;"
+    }
+    .icon.solid:before {
+        font-weight: 100;
+        content: none;
+    }
+
+    .spotlights h5{
+        font-weight: bold;
+        font-size: small;
+    }
+
+    .spotlights p{
+        font-size: small;
+    }
+
+    /* 검색창 */
+    .search {
+        position: relative;
+        text-align: center;
+        width: 400px;
+        margin: 0 auto;
+    }
+    input {
+        width: 100%;
+        border-radius: 20px;
+        border: 1px solid #bbb;
+        margin: 10px 0;
+        padding: 10px 12px;
+    }
+    .fa-search {
+        position: absolute;
+        left: 90%;
+        top: 35%;
+        margin: 0;
+    }
+    form {
+        margin: 0;
+    }
+    p {
+        margin: 0 0 1em 0;
+    }
+
+    .spotlights h5{
+        font-weight: bold;
+        font-size: small;
+    }
+
+    .spotlights p{
+        font-size: small;
+    }
+
+    .spotlights > article {
+        padding: 1.0em 2.25em 0.5em 2.25em;
+        border-style: solid;
+        border-width: 1px 1px 0px 0px;
+        width: 25%;
+    }
+
+    .image.fit img {
+        border-radius: 4px;
+    }
+
+    h4 {
+        font-weight: 700;
+        font-size: large;
+        color: black;
+        display: inline-block;
+    }
+
+    .spotlights h5{
+        color: black;
+    }
+
+
+    /* header */
+    .headerIcon{
+        width: 40px;
+        display: block;
+        margin: auto;"
+    }
+    .icon.solid:before {
+        font-weight: 100;
+        content: none;
+    }
+
+    .spotlights h5{
+        font-weight: bold;
+        font-size: small;
+    }
+
+    .spotlights p{
+        font-size: small;
+    }
+
+    /* 검색창 */
+    .search {
+        position: relative;
+        text-align: center;
+        width: 400px;
+        margin: 0 auto;
+    }
+    input {
+        width: 100%;
+        border-radius: 20px;
+        border: 1px solid #bbb;
+        margin: 10px 0;
+        padding: 10px 12px;
+    }
+    .fa-search {
+        position: absolute;
+        left: 90%;
+        top: 35%;
+        margin: 0;
+    }
+    form {
+        margin: 0;
+    }
+    #bannerDiv{
+        position: fixed;
+        top: 66.66px;
+        z-index: 999;
+    }
+
+    .image.fit img {
+        border-radius: 4px;
+    }
+
+</style>
+<body class="is-preload" style="padding: 200px">
+
+<!-- Header -->
+<header id="header" th:include="/main/header::header_body">
+</header>
+<div id="bannerDiv">
+    <img src="/images/classbanner.png" style="width: 86%; padding: 20px; padding-top: 0px;">
+</div>
+
+<!-- Wrapper -->
+<div class="wrapper">
+
+    <!-- Main -->
+    <section class="main">
+<!--        <div>-->
+<!--            <img src="/images/classbanner.jpeg" alt="" width="200px">-->
+<!--        </div>-->
+
+        <!-- Spotlights 2 -->
+            <section class="spotlights alt" id="class">
+                <th:block th:each="class : ${list}">
+                    <article th:object="${class}" class="item">
+                        <a id="goRead" th:href="*{bno}">cdczxxd<img th:src="*{classPhoto}" alt=""></a>
+<!--                        <h5 th:text="*{shopName}"></h5>-->
+                        <p th:text="*{bakeryShopname}"></p>
+                        <p th:text="*{title}"></p>
+                    </article>
+                </th:block>
+            </section>
+    </section>
+</div>
+
+<!-- Footer -->
+<footer id="footer" th:include="/main/footer::footer_body"></footer>
+
+<!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script th:replace="/main/header::header_js"></script>
+<script th:inline="javascript">
+    $("a#goRead").on("click", function(e){
+        e.preventDefault();
+        location.href = "/class/classDetail?bno=" + $(this).attr("href");
+    })
+</script>
+</body>
+</html>
