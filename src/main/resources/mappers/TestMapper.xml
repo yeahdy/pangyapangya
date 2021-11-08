@@ -37,7 +37,7 @@
     <insert id="addTestingRequest">
         INSERT INTO TBL_TESTING_REQUEST
         (REQUESTNUM, USERID, TNO, STATUS)
-        VALUES(SEQTESTINGREQUEST.NEXTVAL, #{userid}, #{tno}, 0)
+        VALUES(SEQTESTINGREQUEST.NEXTVAL, #{userId}, #{tno}, 0)
     </insert>
 
     <select id="getEndList" resultType="TestingVO">
@@ -70,11 +70,11 @@
     </update>
 
 
-    <delete id="endTest">
+    <update id="endTest">
         UPDATE TBL_TESTING
         SET STATUS = -1
         WHERE TNO = #{tno}
-    </delete>
+    </update>
 
 
     <update id="resetUserApplyCnt">
@@ -82,6 +82,11 @@
         SET applyCnt = 0
     </update>
 
+    <update id="requestUser">
+        UPDATE TBL_USER
+        SET applyCnt = 1
+        WHERE USERID = #{userId}
+    </update>
 
     <select id="getRequestUser" resultType="TestingRequestVO">
         SELECT * FROM TBL_TESTING_REQUEST
@@ -137,6 +142,16 @@
     <select id="getShopName" resultType="string">
         SELECT SHOPNAME FROM TBL_TESTING tt
         WHERE TNO = #{tno}
+    </select>
+
+    <select id="checkRe" resultType="_int">
+        SELECT COUNT(REQUESTNUM) FROM TBL_TESTING_REQUEST
+        WHERE USERID = #{userId} AND TNO = #{tno}
+    </select>
+
+    <select id="checkApplyCnt" resultType="_int">
+        SELECT APPLYCNT FROM TBL_USER
+        WHERE USERID = #{userId}
     </select>
 
 

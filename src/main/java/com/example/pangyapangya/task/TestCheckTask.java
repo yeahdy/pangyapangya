@@ -40,9 +40,9 @@ public class TestCheckTask {
                     item = requestList.get(i);
 
                     if(i<peopleCnt){
-                        testDAO.updateWinning(tno, item.getUserID());
+                        testDAO.updateWinning(tno, item.getUserId());
                     }else {
-                        testDAO.updateFail(tno, item.getUserID());
+                        testDAO.updateFail(tno, item.getUserId());
                     }
                 }
             }
@@ -50,7 +50,7 @@ public class TestCheckTask {
         }
     }
 
-    @Scheduled(cron = "0 20 20 * * *")
+    @Scheduled(cron = "0 0 12 * * *")
     public void sendMessage(){
         List<TestingRequestVO> winList= testDAO.getWinList();
         List<WinDTO> winDTOList= new ArrayList();
@@ -59,8 +59,8 @@ public class TestCheckTask {
         for (TestingRequestVO vo : winList) {
             dto.setBreadName(testDAO.getBreadName(vo.getTno()));
             dto.setShopName(testDAO.getShopName(vo.getTno()));
-            dto.setPhoneNumber(testDAO.getUserTel(vo.getUserID()));
-            dto.setUserName(testDAO.getUserNamae(vo.getUserID()));
+            dto.setPhoneNumber(testDAO.getUserTel(vo.getUserId()));
+            dto.setUserName(testDAO.getUserNamae(vo.getUserId()));
 
             testDAO.sendWinMessage(dto);
 

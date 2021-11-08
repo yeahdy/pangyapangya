@@ -52,6 +52,9 @@ public class TestService {
     public String getUserTel(String userId){return testDAO.getUserTel(userId);}
     public String getBreadName(Long tno){return testDAO.getBreadName(tno);}
     public String getShopName(Long tno){return testDAO.getShopName(tno);}
+    public int checkRe(TestingRequestVO requestVO){return  testDAO.checkRe(requestVO);}
+    public int checkApplyCnt(String userId){return testDAO.checkApplyCnt(userId);}
+    public boolean requestUser(String userId){return testDAO.requestUser(userId);}
 
 
     //    예진님

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Data
 public class TestingRequestVO {
     Long requestNum;
-    String UserID;
+    String userId;
     Long tno;
-    int Status;
+    int status;
 }
