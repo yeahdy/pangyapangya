@@ -53,7 +53,6 @@ public class TestCheckTask {
     @Scheduled(cron = "0 0 12 * * *")
     public void sendMessage(){
         List<TestingRequestVO> winList= testDAO.getWinList();
-        List<WinDTO> winDTOList= new ArrayList();
         WinDTO dto = new WinDTO();
 
         for (TestingRequestVO vo : winList) {

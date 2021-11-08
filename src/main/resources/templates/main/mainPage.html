@@ -169,7 +169,7 @@
 			<th:block th:each="class : ${classList}">
 			<article style="border-width: 0px 1px 0px 0px;"  th:object="${class}">
 				<a th:href="*{bno}" class="image fit goRead_class"><img th:src="*{classPhoto}" alt=""></a>
-				<a class="goRead_class" th:href="*{bno}" th:text="*{bakeryShopname}"></a>
+				<a class="goRead_class" th:href="*{bno}" th:text="*{shopName}"></a>
 				<p th:text="*{title}"></p>
 				<p style="font-weight: 600;margin: 0px;font-size: 18px;color: #F9A825;text-align: end;">￦ <span th:text="*{classPrice}"></span></p>
 				<p style="font-weight: 600;text-align: end;">리뷰 0개</p>

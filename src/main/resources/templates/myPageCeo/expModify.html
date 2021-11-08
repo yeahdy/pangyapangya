@@ -145,7 +145,7 @@
 									<p>자신의 매장에 있는 대표 메뉴 빵을 홍보하고 공유할 수 있는<br>시식단을 모집하여 빵의 레시피 및 맛을 직접 경험해볼 수 있는 기회를 제공합니다.</p>
 								</div>
 								<form method="post" action="/myPageCeo/expModify" id="registForm">
-									<input name="tno" type="hidden" th:field="{$testing.tno}" readonly/>
+									<input name="tno" type="hidden" th:field="${testing.tno}" readonly/>
 									<!--전체-->
 									<div id="contentDiv">
 										<!--사진부분-->
@@ -158,8 +158,8 @@
 												<div id="mainFileDiv">
 													<ul></ul>
 													<!--<label for="board_file1" style="display:inline;">
-                                                        <img id="board_file1Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
-                                                    </label>-->
+                                                                     <img id="board_file1Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
+                                                                 </label>-->
 													<img id="board_file1Img" src="/images/옥수수빵1.jpg" style="width: 50%;">
 												</div>
 												<input id="board_file1" name="uploadFiles" type="file" multiple>
