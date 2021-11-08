@@ -239,7 +239,7 @@
 										</form>
 									</ul>
 									</div>
-									<div class="paging" style="text-align: center"></div>
+
 								</div>
 							</div>
 						</section>
@@ -265,8 +265,8 @@
 </body>
 <script th:inline="javascript">
 	// 글 등록 시 전달받는 게시글 번호를 alert으로 출력
-
-	let paging = [[${criteria.listLink}]];
+	let pageForm = $(document.pageForm);
+	let paging = [[${pageMaker.criteria.listLink}]];
 	let pageNum = 1;
 
 	$("div.paging").on("click", "a.changePage", function(e){
