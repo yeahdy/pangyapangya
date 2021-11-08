@@ -291,9 +291,6 @@
                         <p th:text="*{title}"></p>
                     </article>
                 </th:block>
-<!--                <div id="loading">
-                    <img src="/images/loading.gif" alt="로딩중..." style=""/>
-                </div>-->
             </section>
             <!-- 관측 대상 -->
             <p id="sentinel"></p>
@@ -303,6 +300,7 @@
 
 <!-- ----------------------------------------------------------------------------------------------Footer-------------------------------------------------------------------------------------------------------------------------- -->
 <!-- Footer -->
+<footer id="footer" th:include="/main/footer::footer_body"></footer>
 
 <!-- Scripts -->
 <script src="https://kit.fontawesome.com/8eb5905426.js" crossorigin="anonymous"></script>
@@ -325,8 +323,6 @@
     let sectionDom = $("#testList");
     /* AJAX 실행중 판단 */
     let loading = false;
-
-    let maindom = $("#testList");
 
     $("a#goRead").on("click", function(e){
         e.preventDefault();

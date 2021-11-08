@@ -33,6 +33,45 @@ let classReplyService = (function(){
             }
         });
     }
+    //
+    // 댓글 삭제
+    // function remove(rno, callback, error){
+    //     $.ajax({
+    //         type:"DELETE",
+    //         url:"/replies/" + rno,
+    //         success:function(result){
+    //             if(callback){
+    //                 callback(result);
+    //             }
+    //         },
+    //         error:function(xhr, status, er){
+    //             if(error){
+    //                 error(er);
+    //             }
+    //         }
+    //     });
+    // }
+
+    // 댓글 수정
+    // function update(reply, callback, error){
+    //     console.log("update...........");
+    //     $.ajax({
+    //         type:"patch",
+    //         url:"/replies/" + reply.rno,
+    //         data:JSON.stringify(reply),
+    //         contentType:"application/json; charset=utf-8",
+    //         success:function(result, status, xhr){
+    //             if(callback){
+    //                 callback(result);
+    //             }
+    //         },
+    //         error:function(xhr, status, err){
+    //             if(error){
+    //                 error(err);
+    //             }
+    //         }
+    //     });
+    // }
 
     //댓글 목록
     function getList(params, callback, error){
