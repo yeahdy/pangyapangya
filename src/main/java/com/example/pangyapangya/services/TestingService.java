@@ -16,5 +16,6 @@ public interface TestingService {
     public int myTotal(String ceoId);
     public CeoVO getCeo(String ceoId);
     public List<TestingFileVO> getAttachList(Long tno);
+    public List<TestingReviewVO> getTestingReview(String userId);
 
 }

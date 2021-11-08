@@ -85,4 +85,12 @@
         SELECT COUNT(TNO) FROM TBL_TESTING
         WHERE CEOID = #{ceoId}
     </select>
+
+    <!--<select id="getTestingRequest" resultType="TestingRequestVO">
+        SELECT * FROM TBL_TESTING_REQUEST WHERE USERID=#{userId}
+    </select>-->
+
+    <select id="getTestingReview" resultType="TestingReviewVO">
+        SELECT * FROM TBL_TESTING_REVIEW WHERE USERID=#{userId}
+    </select>
 </mapper>

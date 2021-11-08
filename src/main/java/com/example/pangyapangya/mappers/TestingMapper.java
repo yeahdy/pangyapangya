@@ -2,6 +2,7 @@ package com.example.pangyapangya.mappers;
 
 import com.example.pangyapangya.beans.vo.ClassCeoVO;
 import com.example.pangyapangya.beans.vo.Criteria;
+import com.example.pangyapangya.beans.vo.TestingReviewVO;
 import com.example.pangyapangya.beans.vo.TestingVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -25,4 +26,6 @@ public interface TestingMapper {
     public int getTotal(Criteria criteria);
     // 해당 회원의 게시글 전체 갯수
     public int myTotal(String ceoId);
+    // 마이페이지 리뷰
+    public List<TestingReviewVO> getTestingReview(String userId);
 }

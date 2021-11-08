@@ -40,19 +40,4 @@
     <select id="getTotal" resultType="_int">
         SELECT COUNT(RNO) FROM TBL_CLASSREVIEWREPLY WHERE BNO = #{bno}
     </select>
-
-    <select id="getList_user" resultType="ClassReplyVO">
-<![CDATA[
-        SELECT RNO, BNO, CONTENT, REVIEWDATE, STAR
-        FROM TBL_CART WHERE USERID = #{userId}
-        (
-        SELECT /*+ INDEX_DESC(TBL_REPLY PK_REPLY) */
-        ROWNUM R, RNO, BNO, CONTENT, REVIEWDATE, STAR
-        FROM TBL_CLASSREVIEWREPLY
-        WHERE BNO = #{bno}
-        AND ROWNUM <= #{criteria.pageNum} * #{criteria.amount}
-        )
-        WHERE R > (#{criteria.pageNum} - 1) * #{criteria.amount}
-        ]]>
-    </select>
 </mapper>

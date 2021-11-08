@@ -71,4 +71,9 @@ public class TestingServiceImple implements TestingService{
     public List<TestingFileVO> getAttachList(Long tno) {
         return testingFileDAO.findByTno(tno);
     }
+
+    @Override
+    public List<TestingReviewVO> getTestingReview(String userId) {
+        return getTestingReview(userId);
+    }
 }

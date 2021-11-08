@@ -1,11 +1,10 @@
 package com.example.pangyapangya.mappers;
 
-import com.example.pangyapangya.beans.vo.Criteria;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-/*@Mapper
+@Mapper
 public interface BreadListMapper {
     //  빵 이름 조회
     public void getBreadName (String breadName);

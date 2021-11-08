@@ -47,6 +47,7 @@ public class CartMapperTest {
         cart.setDeliverCharge(3000);
         cart.setPriceOfBread(13000);
         cart.setCeoId("A");
+        cart.setShopName("루엘빵집");
         mapper.insertSelect_cartNum(cart);
     }
 

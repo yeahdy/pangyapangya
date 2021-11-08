@@ -13,4 +13,5 @@ public class CartVO {
     private int breadCnt;
     private String breadImg;
     private String ceoId;
+    private String shopName;
 }

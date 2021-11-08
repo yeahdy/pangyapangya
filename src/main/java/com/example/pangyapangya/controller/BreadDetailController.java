@@ -1,5 +1,6 @@
 package com.example.pangyapangya.controller;
 
+import com.example.pangyapangya.beans.vo.BakeryVO;
 import com.example.pangyapangya.beans.vo.Criteria;
 import com.example.pangyapangya.beans.vo.PageDTO;
 import com.example.pangyapangya.services.BakeryService;
@@ -26,16 +27,18 @@ public class BreadDetailController {
     private final BreadDetailService breadDetailService;
 
     @GetMapping("breadList")
-    public String breadList(Model model){
-       model.addAttribute("list", bakeryService.breadList());
+    public String breadList(Model model, BakeryVO bakeryVO){
+        model.addAttribute("list", bakeryService.breadList(bakeryVO.getKeyword()));
         return "main/breadList";
     }
 
     @GetMapping("breadDetail")
     public String breadDetail(@RequestParam("bno") Long bno, Model model){
         model.addAttribute("info", breadDetailService.getInfo(bno));
+        /*model.addAttribute("reply", breadDetailService.getRep(bno));*/
         return "main/breadDetail";
     }
+
     /*@GetMapping({"breadDetail", "modify"})
     public void breadDetail(@RequestParam("bno") Long bno, Criteria criteria, Model model, HttpServletRequest request, HttpSession session){
         String sessionU = (String)session.getAttribute("sessionU");

@@ -2,6 +2,7 @@ package com.example.pangyapangya.beans.dao;
 
 import com.example.pangyapangya.beans.vo.ClassCeoVO;
 import com.example.pangyapangya.beans.vo.Criteria;
+import com.example.pangyapangya.beans.vo.TestingReviewVO;
 import com.example.pangyapangya.beans.vo.TestingVO;
 import com.example.pangyapangya.mappers.ClassCeoMapper;
 import com.example.pangyapangya.mappers.TestingMapper;
@@ -36,4 +37,6 @@ public class TestingDAO {
     public int getTotal(Criteria criteria){ return mapper.getTotal(criteria); }
 
     public int myTotal(String ceoId){ return mapper.myTotal(ceoId); }
+
+    public List<TestingReviewVO> getTestingReview(String userId){return mapper.getTestingReview(userId);}
 }

@@ -1,9 +1,11 @@
 package com.example.pangyapangya.mappers;
 
+import com.example.pangyapangya.beans.vo.BakeryReviewVO;
 import com.example.pangyapangya.beans.vo.BakeryVO;
 import com.example.pangyapangya.beans.vo.CeoVO;
 import com.example.pangyapangya.beans.vo.Criteria;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -43,7 +45,16 @@ public interface BakeryMapper {
     public List<BakeryVO> breadList(String keyword);
     //    게시글 상세정보
     public BakeryVO breadInfo(Long bno);
+    //  빵 후기
+    public List<BakeryReviewVO> bakeryReviewList();
+    //  후기 댓글 한개
+    public BakeryReviewVO reply(Long bno);
+
+    // 사장님이 등록한 게시글 가져오기
+    public List<BakeryVO> breadListCeo(BakeryVO bakeryVO);
 
     // 메인페이지 글가져오기
     public List<BakeryVO> breadList_main();
+    // 마이페이지 빵집 이름 가져오기
+    public String getBakeryName(Long bno);
 }

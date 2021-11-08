@@ -20,6 +20,28 @@ public class MypageRestController {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
 
+    /*@RequestMapping(value = "password", method = RequestMethod.POST)
+    public ResponseEntity<String> modifyMyInfo(HttpSession session, @PathVariable("password") String password) throws UnsupportedEncodingException{
+        ResponseEntity<String> entity = null;
+
+        String sessionU = (String)session.getAttribute("sessionU");
+        log.info("session 회원아이디: " + sessionU);
+
+        try {
+            if (passwordEncoder.matches(userService.userInfo(sessionU).getUserPw(), password)){
+                entity = new ResponseEntity<String>("success", HttpStatus.OK);
+            }
+            else{
+                entity = new ResponseEntity<String>("success", HttpStatus.OK);
+                *//*entity = new ResponseEntity<String>("fail", HttpStatus.BAD_REQUEST);*//*
+            }
+        } catch (Exception e) {
+            // 오류
+            log.info("------------------- (정보수정)비밀번호 오류 -------------------");
+            entity = new ResponseEntity<String >(e.getMessage(),HttpStatus.BAD_REQUEST);
+            }
+        return entity;
+        }*/
     @RequestMapping(value = "password", method = RequestMethod.POST)
     public ResponseEntity<String> modifyMyInfo(HttpSession session, @PathVariable("password") String password) throws UnsupportedEncodingException{
         ResponseEntity<String> entity = null;

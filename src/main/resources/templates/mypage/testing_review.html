@@ -130,7 +130,7 @@
 
                                     <div class="myPageSelect1"><p>내 정보</p></div>
                                     <div class="contentDiv">
-                                        <div class="myPageSelectMenu"><p><a href="/mypage/modifyMyInfo">내 정보 수정</a></p></div>
+                                        <div class="myPageSelectMenu"><p><a href="/mypage/checkPassword_new">내 정보 수정</a></p></div>
                                         <div class="myPageSelectMenu"><p><a href="#">회원 탈퇴</a></a></p></div>
                                     </div>
                                 </div>
@@ -150,6 +150,7 @@
                                         <div id="rightHeader-third"><input type="button" class="primary" value="글쓰기" style="width: 60px; padding: 0; font-size: 0.7em;"/><span id="img"><img src=""></span></div>
                                     </div>
                                     <div id="section-box">
+                                        <th:block th:each="review : ${TestingReview}">
                                         <div class="table-boxes" style="display: flex;">
                                             <div class="table-first">
                                                 <div class="col-6 col-12-small">
@@ -158,12 +159,12 @@
                                                 </div>
 
                                             </div>
-                                            <div class="table-second">
+                                            <div class="table-second" th:object="${review}">
                                                 <a href="#">
                                                     <div class="star">⭐⭐⭐⭐</div>
                                                     <div style="display: flex;">
-                                                        <div class="second-top"><p>빵 체험단 제목</p></div>
-                                                        <div class="second-under-date"><span>·</span>2021-10-11</div>
+                                                        <div class="second-top"><p th:text="*{title}" 빵 체험단 제목</p></div>
+                                                        <div class="second-under-date" th:text="*{reviewDate}"><span>·</span>2021-10-11</div>
                                                     </div>
                                                 </a>
                                             </div>
@@ -177,8 +178,10 @@
                                                     <label for="list2"></label>
                                                 </div>
 
-                                            </div>
-                                            <div class="table-second">
+                                    </div>
+                                        </div>
+                                        </th:block>
+                                        <div class="table-second">
                                                 <a href="#">
                                                     <div class="star">⭐⭐⭐⭐⭐</div>
                                                     <div style="display: flex;">
@@ -268,7 +271,6 @@
                                     <li><a href="#">></a></li>
                                 </ul>
                             </div>
-                        </div>
                     </section>
                 </section>
             </section>

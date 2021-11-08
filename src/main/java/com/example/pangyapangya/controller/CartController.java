@@ -1,6 +1,8 @@
 package com.example.pangyapangya.controller;
 
 import com.example.pangyapangya.beans.vo.CartVO;
+import com.example.pangyapangya.beans.vo.CeoVO;
+import com.example.pangyapangya.services.CEOService;
 import com.example.pangyapangya.services.CartService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -50,7 +52,9 @@ public class CartController {
         log.info("-------------------------------------");
         log.info("cartList: " + cartList.toString());
         log.info("-------------------------------------");
-        model.addAttribute("cartList", cartService.getCartList(sessionU));
+
+//        String shopName = ceoService.ceoInfo(cart)
+        model.addAttribute("cartList", cartList);
         return "mypage/cart";
     }
 

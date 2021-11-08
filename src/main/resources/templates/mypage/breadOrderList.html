@@ -197,7 +197,7 @@
 
                         <div class="myPageSelect1"><p>내 정보</p></div>
                         <div class="contentDiv">
-                            <div class="myPageSelectMenu"><p><a href="/mypage/modifyMyInfo">내 정보 수정</a></p></div>
+                            <div class="myPageSelectMenu"><p><a href="/mypage/checkPassword_new">내 정보 수정</a></p></div>
                             <div class="myPageSelectMenu"><p><a href="#">회원 탈퇴</a></a></p></div>
                         </div>
                     </div>
@@ -231,8 +231,10 @@
 
                                 <tbody>
                                 <!--첫 번째 빵집-->
-                                <tr>
+                                <th:block th:each="order : ${orderList}">
+                                <tr th:object="${order}">
                                     <td>
+                                        <input type="hidden" th:value="*{bno}">
                                         <div class="firstSection">
                                             <div class="date">2021-10-07</div>
                                             <div class="bread_table"><img class="bread_img" src="/images/bread1.jpg"></div>
@@ -240,7 +242,7 @@
 
                                         <div class="secondSection">
                                             <div class="breadTable_top">
-                                                <div class="bakery_name">리에땅</div>
+                                                <div class="bakery_name" >리에땅</div>
                                                 <span class="bread_title"><strong>9無 🌿비건통밀파운드케이크 👉6종</strong></span>
                                                 <br>
                                                 <ul>
@@ -252,137 +254,14 @@
                                     <td class="breadTable_bottom_td">
                                         <div class="breadTable_bottom">
                                             <div class="bread_cnt"><span>수량 : </span></div>
-                                            <div class="" id="cnt1"><b>1</b></div>
+                                            <div class="" id="cnt1"><b th:text="*{breadCnt}"></b></div>
                                         </div>
                                         <br>
                                         <div class="bread_price price">25,800</div>
                                         <div class="won">원</div>
-
-
-
                                     </td>
                                 </tr>
-                                <!--두 번째 빵집-->
-                                <tr>
-                                    <td>
-                                        <div class="firstSection">
-                                            <div class="date">2021-10-07</div>
-                                            <div class="bread_table"><img class="bread_img" src="/images/bread1.jpg"></div>
-                                        </div>
-
-                                        <div class="secondSection">
-                                            <div class="breadTable_top">
-                                                <div class="bakery_name">리에땅</div>
-                                                <span class="bread_title"><strong>9無 🌿비건통밀파운드케이크 👉6종 Half_Size</strong></span>
-                                                <br>
-                                                <ul>
-                                                    <li><span class="bread_name">파운드케이크선택 : 흑임자칙피스프레드</span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="breadTable_bottom_td">
-                                        <div class="breadTable_bottom">
-                                            <div class="bread_cnt"><span>수량 : </span></div>
-                                            <div class="" id="cnt2"><b>1</b></div>
-                                        </div>
-                                        <br>
-                                        <div class="bread_price price">25,800</div>
-                                        <div class="won">원</div>
-
-                                    </td>
-                                </tr>
-                                <!--세 번째 빵집-->
-                                <tr>
-                                    <td>
-                                        <div class="firstSection">
-                                            <div class="date">2021-10-07</div>
-                                            <div class="bread_table"><img class="bread_img" src="/images/bread1.jpg"></div>
-                                        </div>
-
-                                        <div class="secondSection">
-                                            <div class="breadTable_top">
-                                                <div class="bakery_name">리에땅</div>
-                                                <span class="bread_title"><strong>9無 🌿비건통밀파운드케이크 👉6종 Half_Size</strong></span>
-                                                <br>
-                                                <ul>
-                                                    <li><span class="bread_name">파운드케이크선택 : 흑임자칙피스프레드</span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="breadTable_bottom_td">
-                                        <div class="breadTable_bottom">
-                                            <div class="bread_cnt"><span>수량 : </span></div>
-                                            <div class="" id="cnt3"><b>1</b></div>
-                                        </div>
-                                        <br>
-                                        <div class="bread_price price">25,800</div>
-                                        <div class="won">원</div>
-
-                                    </td>
-                                </tr>
-                                <!--네 번째 빵집-->
-                                <tr>
-                                    <td>
-                                        <div class="firstSection">
-                                            <div class="date">2021-10-07</div>
-                                            <div class="bread_table"><img class="bread_img" src="/images/bread1.jpg"></div>
-                                        </div>
-
-                                        <div class="secondSection">
-                                            <div class="breadTable_top">
-                                                <div class="bakery_name">리에땅</div>
-                                                <span class="bread_title"><strong>9無 🌿비건통밀파운드케이크 👉6종 Half_Size</strong></span>
-                                                <br>
-                                                <ul>
-                                                    <li><span class="bread_name">파운드케이크선택 : 흑임자칙피스프레드</span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="breadTable_bottom_td">
-                                        <div class="breadTable_bottom">
-                                            <div class="bread_cnt"><span>수량 : </span></div>
-                                            <div class="" id="cnt4"><b>1</b></div>
-                                        </div>
-                                        <br>
-                                        <div class="bread_price price">25,800</div>
-                                        <div class="won">원</div>
-
-                                    </td>
-                                </tr>
-                                <!--다섯 번째 빵집-->
-                                <tr>
-                                    <td>
-                                        <div class="firstSection">
-                                            <div class="date">2021-10-07</div>
-                                            <div class="bread_table"><img class="bread_img" src="/images/bread1.jpg"></div>
-                                        </div>
-
-                                        <div class="secondSection">
-                                            <div class="breadTable_top">
-                                                <div class="bakery_name">리에땅</div>
-                                                <span class="bread_title"><strong>9無 🌿비건통밀파운드케이크 👉6종 Half_Size</strong></span>
-                                                <br>
-                                                <ul>
-                                                    <li><span class="bread_name">파운드케이크선택 : 흑임자칙피스프레드</span></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="breadTable_bottom_td">
-                                        <div class="breadTable_bottom">
-                                            <div class="bread_cnt"><span>수량 : </span></div>
-                                            <div class="" id="cnt5"><b>1</b></div>
-                                        </div>
-                                        <br>
-                                        <div class="bread_price price">25,800</div>
-                                        <div class="won">원</div>
-
-                                    </td>
-                                </tr>
-
+                                </th:block>
                                 </tbody>
                             </table>
                             <!--button-->

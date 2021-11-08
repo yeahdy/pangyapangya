@@ -2,8 +2,9 @@ package com.example.pangyapangya.controller;
 
 import com.example.pangyapangya.beans.dao.CartDAO;
 import com.example.pangyapangya.beans.vo.CartVO;
-import com.example.pangyapangya.services.CartService;
-import com.example.pangyapangya.services.UserService;
+import com.example.pangyapangya.beans.vo.Criteria;
+import com.example.pangyapangya.beans.vo.PageDTO;
+import com.example.pangyapangya.services.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,16 +26,35 @@ import javax.servlet.http.HttpSession;
 public class MypageController {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
+    private final OrderService orderService;
+    private final BakeryService bakeryService;
+    private final TestingService testingService;
+
 
     //mypage_user
     @GetMapping("order")
-    public String order(){ return "mypage/order"; }
+    public String order(){ return "main/delivery"; }
     @GetMapping("bread_review")
     public String bread_review(){ return "mypage/bread_review"; }
     @GetMapping("oneDayClass_review")
     public String oneDayClass_review(){ return "mypage/oneDayClass_review"; }
+
+    //마이페이지(일반 회원) - 내가 작성한 글 List(빵 체험단)
     @GetMapping("testing_review")
-    public String testing_review(){ return "mypage/testing_review"; }
+    public String testingReview(Criteria criteria, Model model, HttpSession session){
+        String sessionU = (String)session.getAttribute("sessionU");
+        String sessionC = (String)session.getAttribute("sessionC");
+        if(sessionU == null && sessionC == null){
+            return "/user/login";
+        }
+        log.info("-------------------------------");
+        log.info("testingReview");
+        log.info("-------------------------------");
+        model.addAttribute("TestingReview", testingService.getTestingReview(sessionU));
+        /*model.addAttribute("list", testingService.getList(criteria));
+        model.addAttribute("pageMaker", new PageDTO(testingService.getTotal(criteria), 10, criteria));*/
+        return "mypage/testing_review";
+    }
 
 
     /*@PostMapping("checkPassword")
@@ -60,12 +80,19 @@ public class MypageController {
         return "mypage/modifyMyInfo";
     }
 
-
-
-    /*@GetMapping("checkPassword")
-    public String checkPassword(){ return "mypage/checkPassword"; }*/
     @GetMapping("breadOrderList")
-    public String breadOrderList(){ return "mypage/breadOrderList"; }
+    public String breadOrderList(Model model, HttpSession session, @RequestParam("bno") Long bno){
+        String sessionU = (String)session.getAttribute("sessionU");
+        log.info("session 회원아이디: " + sessionU);
+        if(sessionU == null){
+            return "/user/login";
+        }
+        model.addAttribute("orderList", orderService.getOrderList(sessionU));
+        //shopName필요
+        model.addAttribute("shopName", bakeryService.getBakeryName(bno));
+
+        return "mypage/breadOrderList";
+    }
     @GetMapping("oneDayClassList")
     public String oneDayClassList(){ return "mypage/oneDayClassList"; }
     @GetMapping("testingList")
