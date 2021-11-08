@@ -244,6 +244,10 @@
         ul{
             padding-left: 0em;
         }
+        p{
+            margin: -3px 0px -3px 0px;
+            color: black;
+        }
         .kakao{
             display: flex;
             justify-content: center;
@@ -386,11 +390,9 @@
 <script th:inline="javascript">
     function addCart() {
         if($('#sessionU').val() == null && $('#sessionC').val() == null){
-            alert("로그인 후 이용 가능합니다!" +
-                " 로그인 하시겠습니까?")
-            document.location.href("/user/login.html")
+            alert("로그인 후 이용 가능합니다!")
         }else{
-            alert("로그인 ")
+            $(#'insertCart')
         }
     }
 
@@ -398,7 +400,7 @@
         if($('#sessionU').val() == null && $('#sessionC').val() == null){
             alert("로그인 후 이용 가능합니다!")
         }else {
-            /*IMP.init('imp37396046');
+            IMP.init('imp37396046');
             // 예: imp00000000
             // IMP.request_pay(param, callback) 결제창 호출
             IMP.request_pay({ // param
@@ -423,17 +425,17 @@
                     alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
                 }
             });
-        }*/
-            $("#kakaoBtn").on("click", function(){
+        }
+            /*$("#kakaoBtn").on("click", function(){
                 window.open("", "popup_window", "width=500, height=700, scrollbars=no");
             });
-        }
+        }*/
     }
     function buyNow() {
         if($('#sessionU').val() == null && $('#sessionC').val() == null){
             alert("로그인 후 이용 가능합니다!")
         }else{
-
+            window.location.href("/main/delivery")
         }
     }
 
