@@ -52,5 +52,9 @@ public class UserDAO {
         return mapper.userInfo(userId);
     }
 
-    // 수정
+    // 전체 회원 정보 수정()
+    public boolean modifyMyInfo (UserVO userVO){
+        return mapper.modifyMyInfo(userVO)==1;
+    }
+
 }

@@ -91,8 +91,6 @@ public class CEOService {
     // 회원정보 조회
     public CeoVO ceoInfo (String ceoId){ return ceoDAO.ceoInfo(ceoId); }
 
-    //getShopName
-    public List<CeoVO> getShopName (){ return ceoDAO.getShopName(); }
 
 }
 

@@ -95,6 +95,9 @@ public class UserService {
     // 회원 정보 조회
     public UserVO userInfo (String userId) {return  userDAO.userInfo(userId);}
 
+    // 회원 전체 정보 수정
+    public boolean modifyMyInfo (UserVO userVO) {return  userDAO.modifyMyInfo(userVO);}
+
     // 인증번호(전화번호, 인증번호)
     public void certifiedPhoneNumber(String phoneNumber, String cerNum) {
 

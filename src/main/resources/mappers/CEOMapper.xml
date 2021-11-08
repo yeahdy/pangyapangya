@@ -58,8 +58,4 @@
         FROM TBL_CEO WHERE CEOID= #{ceoId}
     </select>
 
-    <select id="getShopName" resultType="CeoVO">
-        SELECT CEOID, SHOPNAME
-        FROM TBL_CEO
-    </select>
 </mapper>

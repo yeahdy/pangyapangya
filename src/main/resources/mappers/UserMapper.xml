@@ -66,4 +66,12 @@
         WHERE USERID= #{userId}
     </update>
 
+    <update id="modifyMyInfo">
+        UPDATE TBL_USER
+        SET USERPW= #{userPw}, USERAIPCODE=#{userAipCode}, USERADDRESS=#{userAddress}, USERADDRESS_DETAIL=#{userAddress_detail}, USERPHONENUM=#{userPhoneNum}
+        WHERE USERID= #{userId}
+    </update>
+
+
+
 </mapper>

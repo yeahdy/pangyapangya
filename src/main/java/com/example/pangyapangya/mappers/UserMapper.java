@@ -1,6 +1,7 @@
 package com.example.pangyapangya.mappers;
 
 import com.example.pangyapangya.beans.vo.UserVO;
+import org.apache.catalina.User;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -33,4 +34,7 @@ public interface UserMapper {
 
     // 회원정보 조회(일반회원)
     public UserVO userInfo (String userId);
+
+    //회원 정보 수정
+    public int modifyMyInfo(UserVO userVO);
 }

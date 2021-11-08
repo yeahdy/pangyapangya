@@ -174,13 +174,15 @@
                     <!--<form method="post" action="/mypage/modifyMyInfo_new" id="modityForm">-->
                     <section id="myRightSection" class="form">
                         <div id="myRightDiv">
+                            <form method="post" action="/myPageCeo/edit" id="registForm">
+
                             <header>
                                 <h2 id="title">회원 정보 관리</h2>
                             </header>
                             <table id="form" th:object="${userInfo}">
-                                <tr >
+                                <tr>
                                     <td>이름</td>
-                                    <td><input th:value="*{userName}" readonly></td>
+                                    <td><input th:field="*{userName}" readonly></td>
                                 </tr>
                                 <tr>
                                     <td>아이디</td>
@@ -233,6 +235,7 @@
                             <section>
                                 <button id="modify_button" class="primary bac">정보 수정 하기</button>
                             </section>
+                            </form>
                         </div>
                     </section>
                     <!--</form>-->

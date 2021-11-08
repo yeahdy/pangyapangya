@@ -1,9 +1,6 @@
 package com.example.pangyapangya.controller;
 
-import com.example.pangyapangya.beans.dao.CartDAO;
-import com.example.pangyapangya.beans.vo.CartVO;
-import com.example.pangyapangya.beans.vo.Criteria;
-import com.example.pangyapangya.beans.vo.PageDTO;
+import com.example.pangyapangya.beans.vo.*;
 import com.example.pangyapangya.services.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -57,7 +54,7 @@ public class MypageController {
     }
 
 
-    /*@PostMapping("checkPassword")
+    @PostMapping("checkPassword")
     public String checkPassword(String password, HttpSession session){
         String sessionU = (String)session.getAttribute("sessionU");
         log.info("session 회원아이디: " + sessionU);
@@ -66,9 +63,9 @@ public class MypageController {
             return "mypage/checkPassword_new";
         }
         return "mypage/modifyMyInfo";
-    }*/
+    }
 
-    @PostMapping("modifyMyInfo")
+    @GetMapping("modifyMyInfo")
     public String modifyMyInfo(Model model, HttpSession session){
         String sessionU = (String)session.getAttribute("sessionU");
         log.info("session 회원아이디: " + sessionU);
@@ -78,6 +75,23 @@ public class MypageController {
         model.addAttribute("userInfo", userService.userInfo(sessionU));
 
         return "mypage/modifyMyInfo";
+    }
+    @PostMapping("modifyMyInfo")
+    public RedirectView modify(RedirectAttributes rttr, UserVO userVO, HttpSession session){
+        String sessionU = (String)session.getAttribute("sessionU");
+        log.info("session 회원아이디: " + sessionU);
+        if(sessionU == null){
+            return new RedirectView("login");
+        }
+       userVO.setUserPw(userVO.getUserPw());
+        userVO.setUserZipcode(userVO.getUserZipcode());
+        userVO.setUserAddress(userVO.getUserAddress());
+        userVO.setUserAddress_detail(userVO.getUserAddress_detail());
+        userVO.setUserPhoneNum(userVO.getUserPhoneNum());
+
+        userService.modifyMyInfo(userVO);
+        rttr.addFlashAttribute("user", bakeryService.getCeo(userVO.getUserId()));
+        return new RedirectView("modifyMyInfo");
     }
 
     @GetMapping("breadOrderList")
