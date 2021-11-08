@@ -27,8 +27,9 @@
         .spotlights > article {
             padding: 1.0em 2.25em 0.5em 2.25em;
             border-style: solid;
-            border-width: 1px 1px 0px 0px;
-            width: 25%;
+            border-width: 1px 1px 1px 1px !important;
+            margin: 5px;
+            width: 24%;
         }
 
         .image.fit img {
@@ -264,24 +265,6 @@
 <div class="wrapper">
     <!-- Main -->
     <section class="main">
-        <!-- Blurb -->
-        <section style="padding-top: 0em;padding-bottom: 0em; padding-left: 5.5em; padding-right: 5.5em;">
-            <div class="flexsearch">
-                <select name="category" id="category" onchange="location.href=this.value"
-                        style="width: 8em;font-size: 17px !important;">
-                    <option value="">--전체--</option>
-                    <option value="1">케이크</option>
-                    <option value="1">제과</option>
-                    <option value="1">제빵</option>
-                </select>
-                <div class="warpdiv">
-                    <input type="text" name="search" class="testSearch" onkeyup="enterkey()" placeholder="검색어를 입력해주세요."
-                           style="width: 30%; color: #333 !important; margin: 0 0px 0 0%; width: 150px; border: none; border-bottom-color: white; font-size: 12px; font-family: 'Nanum Gothic Coding', monospace;">
-                    <input type="button" onclick="search()" value="검색" class="searchButton"
-                           style="color: black !important; border: 0 !important;">
-                </div>
-            </div>
-        </section>
         <section>
             <section class="spotlights alt" id="testList">
                 <th:block th:each="item : ${list}">
@@ -375,7 +358,7 @@
                 let str="";
                 for(let i=0;i<result.length;i++){
                     str += "<article>" +
-                        "<a href='#' class='image fit'>" +
+                        "<a href='/test/read?tno="+result[i].tno+"' class='image fit'>" +
                         "<img src="+result[i].testingPhoto+" alt=''>" +
                         "</a>" +
                         "<h5>"+ result[i].shopName+"</h5>" +

@@ -1,13 +1,17 @@
 package com.example.pangyapangya.controller;
 
+import com.example.pangyapangya.beans.vo.TestingRequestVO;
 import com.example.pangyapangya.services.TestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +21,22 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 public class TestController {
     private final TestService testService;
+
+    @PostMapping("request")
+    public String request(TestingRequestVO vo, Model model){
+        log.info("vo : "+vo.toString());
+        model.addAttribute("item", vo);
+        return "test/request";
+    }
+
+    @PostMapping("requestSuccess")
+    public String application(TestingRequestVO vo,Model model){
+        model.addAttribute("item", vo);
+        testService.addTestingRequest(vo);
+        testService.requestUser(vo.getUserId());
+
+        return "test/requestSuccess";
+    }
 
     @GetMapping("list")
     public String list(Model model){

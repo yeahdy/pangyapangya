@@ -153,18 +153,28 @@
 
         /* 별점 */
         #star a{ text-decoration: none; color: gray; } #star a.on{ color: orange; }
-         #star{
-             margin-left: 0px;
-             margin-top: 40px;
-             margin-bottom: 10px;
-         }
-
-        #Toggle{
-            border-top: 1px solid #e0e0e0;
+        #star{
+            margin-left: 0px;
+            margin-top: 40px;
+            margin-bottom: 10px;
         }
+
 
         #btn_write{
             margin-bottom: 10px;
+        }
+
+        .text1{
+            border: none;
+            background-color: white;
+        }
+
+        .chapter{
+            height: 50px; margin-bottom: 13px;vertical-align: middle;
+        }
+
+        #tabtab{
+            margin-left: 2em;
         }
 
     </style>
@@ -209,152 +219,160 @@
 
 
         <div class="fields">
-        <!-- Blurb -->
-        <section>
-            <input name="title" type="text" th:field="*{bakeryShopname}"readonly style="background-color: white; border: 0px;"/>
-            <input name="title" type="text" th:field="*{title}"readonly style="background-color: white; border: 0px;"/>
-        </section>
-
-<!--         TAB -->
-        <div class="main1">
-            <input id="tab1" type="radio" name="tabs" checked> <!--디폴트 메뉴-->
-            <label for="tab1">상세 설명</label>
-
-
-            <input id="tab2" type="radio" name="tabs">
-            <label for="tab2">후기</label>
-
-
-            <section id="content1">
-                <div style="height: 100px">
-                    <div style="float: left; width: 20%;">
-                        이렇게 진행됩니다.
-                    </div>
-                    <div style="float:right; width: 80%">
-                        <textarea name="content" rows="6" style="height:50px " th:text="*{description}" readonly></textarea>
-                    </div>
-                </div>
-
-                <div style="height: 50px">
-                    <div style="float: left; width: 20%;">
-                        가격
-                    </div>
-                    <div style="float:right; width: 80%; height: 20%;" >
-                        <textarea name="content" rows="6" style="height:50px" th:text="*{classPrice}" readonly ></textarea>
-                    </div>
-                </div>
-
-                <div style="height: 50px">
-                    <div style="float: left; width: 20%;">
-                        날짜 및 시간
-                    </div>
-                    <div style="float:right; width: 80%; height: 20%;">
-                        <textarea name="content" rows="6" style="height:50px " th:text="*{classDate}" readonly></textarea>
-                    </div>
-                </div>
-
-                <div style="height: 50px">
-                    <div style="float: left; width: 20%;">
-                        인원 수
-                    </div>
-                    <div style="float:right; width: 80%; height: 20%;">
-                        <textarea name="content" rows="6" style="height:50px " th:text="*{recruitment}" readonly></textarea>
-                    </div>
-                </div>
-
-                <div>
-                    위치
-                </div>
-                <p style="margin-top:-12px">
-                    <em class="link">
-                        <a href="javascript:void(0);" onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
-                            혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요.
-                        </a>
-                    </em>
-                </p>
-                <div id="map" style="width:100%;height:350px;"></div>
+            <!-- Blurb -->
+            <section id="tabtab">
+                <strong>
+                    <input name="title" type="text" th:field="*{bakeryShopname}"readonly style="background-color: white; border: 0px; width: 75%; font-size: 15px"/>
+                </strong>
+                <input name="title" type="text" th:field="*{title}"readonly style="background-color: white; border: 0px; width: 75%;"/>
             </section>
 
-            <section id="content2">
-                <div id="replywrite">
-                    <div id="btn_write">
-<!--                        <button type="submit" id="btn_toggle">리뷰 쓰기</button>-->
-                        <a href="javascript:void(0)" class="register button primary small" style="width: 10%">댓글등록</a>
+            <!--         TAB -->
+            <div class="main1">
+                <input id="tab1" type="radio" name="tabs" checked> <!--디폴트 메뉴-->
+                <label for="tab1">상세 설명</label>
+
+
+                <input id="tab2" type="radio" name="tabs">
+                <label for="tab2">후기</label>
+
+
+                <section id="content1">
+                    <div class="chapter">
+                        <div style="float: left; margin-top: 0.7em;">
+                            이렇게 진행됩니다.
+                        </div>
+                        <div style="float:right; width: 80%; background-color: white;">
+                            <textarea name="content" rows="6" style="height:50px " th:text="*{description}" readonly class="text1"></textarea>
+                        </div>
                     </div>
-                </div>
 
-<!--                <a href="javascript:void(0)" class="register button primary small" style="width: 10%">댓글등록</a>-->
+                    <div class="chapter">
+                        <div style="float: left; width: 20%; margin-top: 0.7em;">
+                            가격
+                        </div>
+                        <div style="float:right; width: 80%; height: 20%; background-color: white;" >
+                            <textarea name="content" rows="6" style="height:50px" th:text="*{classPrice}" readonly class="text1" >원</textarea>
+                        </div>
+                    </div>
 
-                <div>
-                    <div style="display: none" class="register-form">
-                        <form method="post" action="/class/classDetail" id="registForm">
-<!--                        <div>-->
-<!--                            <span id="userid" style="float:left; margin-top: 1em;" >사용자 아이디</span>-->
-<!--&lt;!&ndash;                            <input type="text" name="replier" placeholder="Replier">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <span id="date" style="float:right; margin-top: 1em;">날짜</span>&ndash;&gt;-->
-<!--                        </div>-->
-                            <div>
-                            <div id="star" > <!-- 부모 -->
-                                <a href="#" onclick="return false" value="1">★</a> <!-- 자식들-->
-                                <a href="#" onclick="return false" value="2">★</a>
-                                <a href="#" onclick="return false" value="3">★</a>
-                                <a href="#" onclick="return false" value="4">★</a>
-                                <a href="#" onclick="return false" value="5">★</a>
-                            </div>
-                            </div>
-<!--                        <div>-->
-<!--                            <div class="files">-->
-<!--                                <input id="reviewimg" name="reviewimg" type="file">-->
-<!--                            </div>-->
-<!--                        </div>-->
-                        <div class="field">
-                            <input type="file" name="uploadFiles" multiple style="border: 0px">
+                    <div class="chapter">
+                        <div style="float: left; width: 20%; margin-top: 0.7em;">
+                            날짜 및 시간
                         </div>
-                        <div class="field">
-                            <div class="uploadResult">
-                                <ul></ul>
+                        <div style="float:right; width: 80%; height: 20%; background-color: white;">
+                            <textarea name="content" rows="6" style="height:50px " th:text="*{classDate}" readonly class="text1"></textarea>
+                        </div>
+                    </div>
+
+                    <div style="height: 50px; margin-bottom: 13px;">
+                        <div style="float: left; width: 20%; margin-top: 0.7em;">
+                            인원 수
+                        </div>
+                        <div style="float:right; width: 80%; height: 20%; background-color: white;">
+                            <textarea name="content" rows="6" style="height:50px " th:text="*{recruitment}" readonly class="text1">명</textarea>
+                        </div>
+                    </div>
+
+                    <div class="chapter">
+                        <div style="float: left; width: 20%; margin-top: 0.7em;">
+                            위치
+                        </div>
+                    </div>
+                    <p style="margin-top:-12px">
+                        <em class="link">
+                            <a href="javascript:void(0);" onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
+                                혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요.
+                            </a>
+                        </em>
+                    </p>
+                    <div id="map" style="width:100%;height:350px;"></div>
+                </section>
+
+                <section id="content2">
+                    <form method="post" action="/class/classDetail" id="registForm">
+
+                        <div id="replywrite">
+                            <div id="btn_write">
+                                <!--                        <button type="submit" id="btn_toggle">리뷰 쓰기</button>-->
+                                <a href="javascript:void(0)" class="register button primary small" style="width: 10%">댓글등록</a>
                             </div>
                         </div>
-                        <div class="bigPictureWrapper">
-                            <div class="bigPicture"></div>
-                        </div>
-                        <div><textarea rows="6" name="reply" placeholder="Reply" style="resize: none"></textarea></div>
+
+                        <!--                <a href="javascript:void(0)" class="register button primary small" style="width: 10%">댓글등록</a>-->
+
                         <div>
-                            <a href="javascript:void(0)" type="submit" id="save" class="finish button primary small" style="float: right">등록</a>
-                            <a href="javascript:void(0)" class="cancel button primary small" style="float: right; border-radius: 20px; margin: 10px;">취소</a>
+                            <div style="display: none" class="register-form">
+                                <div>
+<!--                                    <span id="userid" style="float:left; margin-top: 1em;" >사용자 아이디</span>-->
+                                    <div th:if="${session.sessionU != null}">
+                                    <input type="text" id="sessionU" th:value="${session['sessionU']}" style="background-color: white" name="userId" />
+                                    </div>
+<!--                                        <input type="text" name="replier" placeholder="Replier">-->
+                                </div>
+                                <div>
+                                    <div id="star" > <!-- 부모 -->
+                                        <a href="#" onclick="return false" value="1">★</a> <!-- 자식들-->
+                                        <a href="#" onclick="return false" value="2">★</a>
+                                        <a href="#" onclick="return false" value="3">★</a>
+                                        <a href="#" onclick="return false" value="4">★</a>
+                                        <a href="#" onclick="return false" value="5">★</a>
+                                    </div>
+                                </div>
+                                <!--                        <div>-->
+                                <!--                            <div class="files">-->
+                                <!--                                <input id="reviewimg" name="reviewimg" type="file">-->
+                                <!--                            </div>-->
+                                <!--                        </div>-->
+<!--                                <div class="field">-->
+<!--                                    <input type="file" name="uploadFiles" multiple style="border: 0px">-->
+<!--                                </div>-->
+<!--                                <div class="field">-->
+<!--                                    <div class="uploadResult">-->
+<!--                                        <ul></ul>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="bigPictureWrapper">-->
+<!--                                    <div class="bigPicture"></div>-->
+<!--                                </div>-->
+                                <div><textarea rows="6" name="reply" placeholder="Reply" style="resize: none"></textarea></div>
+                                <div>
+                                    <a href="javascript:void(0)" type="submit" id="save" class="finish button primary small" style="float: right">등록</a>
+                                    <a href="javascript:void(0)" class="cancel button primary small" style="float: right; border-radius: 20px; margin: 10px;">취소</a>
+                                </div>
+                                <!--                        <ul class="actions special">-->
+                                <!--                            <li><input type="submit" class="button" value="등록" /></li>-->
+                                <!--                        </ul>-->
+                            </div>
+                            <ul class="replies" style="margin-top: 3em"></ul>
                         </div>
-<!--                        <ul class="actions special">-->
-<!--                            <li><input type="submit" class="button" value="등록" /></li>-->
-<!--                        </ul>-->
-                        </form>
-                    </div>
-                    <ul class="replies" style="margin-top: 3em"></ul>
-                </div>
-
-                <div class="paging" style="text-align: center"></div>
-            </section>
-
-            </div>
+                    </form>
+                    <div class="paging" style="text-align: center"></div>
+                </section>
+        </div>
         </div>
     </section>
 
     <!-- Sidebar -->
-        <!-- 우측 결제하기 box -->
-        <div id="apply">
-            <div class="summary">
+    <!-- 우측 결제하기 box -->
+    <div id="apply">
+        <div class="summary">
             <section>
                 <h2>장소 및 일정</h2>
                 <p>장소 : </p>
-                <p>일정 : </p>
+                <p>일정 : <span th:text="*{classDate}"></span></p>
                 <ul class="actions">
                     <a id="goRead" th:href="*{bno}">신청하기</a>
-<!--                    <li><a href="/class/classApply" class="button">신청하기</a></li>-->
+                    <!--                    <li><a href="/class/classApply" class="button">신청하기</a></li>-->
                 </ul>
             </section>
-            </div>
         </div>
+    </div>
 </div>
+</div>
+<p>
 
+</p>
 <!-- Footer -->
 <footer id="footer" th:include="/main/footer::footer_body"></footer>
 
@@ -369,6 +387,12 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:replace="/main/header::header_js"></script>
 <script>
+
+    // 세션값 확인
+    if($('#sessionU').val() != null){
+        console.log("session: " + $('#sessionU').val());
+    }
+
     $('#star a').click(function(){
         $(this).parent().children("a").removeClass("on");
         $(this).addClass("on").prevAll("a").addClass("on");
@@ -426,6 +450,17 @@
     let replyUL = $("ul.replies");
     let uploadResult = $(".uploadResult ul");
     let pageNum = 1;
+    let userId = $('#sessionU').val();
+
+
+    $(".bigPictureWrapper").on("click", function(){
+        if(!check){return;}
+        $(".bigPicture").animate({width: "0%", height: "0%"}, 1000);
+        setTimeout(function(){
+            check = false;
+            $(".bigPictureWrapper").hide();
+        }, 1000)
+    })
 
     // 댓글 (쓰기 전) 등록 버튼 누르면 보이게하기
     $(".register").on("click", function(e){
@@ -442,25 +477,7 @@
         $(".register").show();
     })
 
-    // 댓글 (다 쓴 후) 등록 버튼
-    $(".finish").on("click", function(e){
-        e.preventDefault();
-        let reply = $("textarea[name='reply']").val();
 
-        console.log("들어옴ㅁㅁㅁㅁㅁ");
-        // if(!userId || !content){return;}
-
-        classReplyService.add({bno:bno, reply:reply},
-            function(result){
-                alert(result);
-                $("textarea[name='reply']").val("");
-                $(".register-form").hide();
-                $(".register").show();
-                showList(pageNum);
-            }
-        )
-
-    });
 
     // $("a#goList").on("click", function(){
     //     location.href = "/class/list" + paging;
@@ -520,6 +537,9 @@
     });
 
     function showList(page){
+
+        console.log("들어와ㅏ라라ㅏ");
+
         classReplyService.getList({bno:bno, page:page || 1},
             function(replyCnt, list){
                 if(list == null || list.length == 0){
@@ -529,7 +549,7 @@
                 let str = "";
                 for(let i=0, len=list.length; i<len; i++){
                     str += "<li style='display: block' data-rno='" + list[i].rno + "'>"
-                    // str += "<strong>" + list[i].replier + "</strong>"
+                    str += "<strong>" + list[i].userId + "</strong>"
                     str += "<div>"
                     str += "<p class='reply" + list[i].rno +"'>" + list[i].reply + "</p>"
                     str += "<p><strong class='date'>" + classReplyService.displayTime(list[i].replyDate);
@@ -544,11 +564,11 @@
         );
     }
 
-    let check1 = false;
+    let check = false;
 
     $(".replies").on("click", "a.modify", function(e){
         e.preventDefault();
-        if(check1){alert("수정 중인 댓글이 있습니다."); return;}
+        if(check){alert("수정 중인 댓글이 있습니다."); return;}
         let rnoValue = $(this).attr("href");
         $("p.reply" + rnoValue).html("<textarea class='" + rnoValue + "'>" + $("p.reply" + rnoValue).text() + "</textarea>")
         $(this).hide();
@@ -557,46 +577,62 @@
         for(let i=0; i<arFinish.length; i++){
             if($(arFinish[i]).attr("href") == rnoValue){
                 $(arFinish[i]).show();
-                check1 = true;
+                check = true;
                 break;
             }
         }
     });
 
-    $(".replies").on("click", "a.finish", function(e){
+    // $(".replies").on("click", "a.finish", function(e){
+    //     e.preventDefault();
+    //
+    //     let rnoValue = $(this).attr("href");
+    //     let newReply = $("." + rnoValue).val();
+    //
+    //     if(newReply == ""){return;}
+    //
+    //     classReplyService.update({rno:rnoValue, reply:newReply},
+    //         function(result){
+    //             alert(result);
+    //             check = false;
+    //             showList(pageNum);
+    //         }
+    //     )
+    // })
+
+    // 댓글 (다 쓴 후) 등록 버튼
+    $(".finish").on("click", function(e){
         e.preventDefault();
+        let reply = $("textarea[name='reply']").val();
 
-        let rnoValue = $(this).attr("href");
-        let newReply = $("." + rnoValue).val();
+        console.log("들어옴ㅁㅁㅁㅁㅁ");
+        // if(!userId || !content){return;}
 
-        if(newReply == ""){return;}
-
-        classReplyService.update({rno:rnoValue, reply:newReply},
+        classReplyService.add({bno:bno, reply:reply},
             function(result){
                 alert(result);
-                check = false;
+
+                console.log(result);
+
+                $("input[name='userId']").val(userId);
+                $("textarea[name='reply']").val("");
+                $(".register-form").hide();
+                $(".register").show();
                 showList(pageNum);
             }
         )
-    })
 
-    let check = false;
-    function showImage(fileCallPath){
-        if(check) {return;}
-        $(".bigPictureWrapper").css("display", "flex").show();
-        $(".bigPicture").html("<img src='/uploadcr/display?fileName=" + encodeURIComponent(fileCallPath) + "'>")
-            .animate({width:"100%", height:"100%"}, 1000);
-        check = true;
-    }
+    });
 
-    $(".bigPictureWrapper").on("click", function(){
-        if(!check){return;}
-        $(".bigPicture").animate({width: "0%", height: "0%"}, 1000);
-        setTimeout(function(){
-            check = false;
-            $(".bigPictureWrapper").hide();
-        }, 1000)
-    })
+    // let check = false;
+    // function showImage(fileCallPath){
+    //     if(check) {return;}
+    //     $(".bigPictureWrapper").css("display", "flex").show();
+    //     $(".bigPicture").html("<img src='/uploadcr/display?fileName=" + encodeURIComponent(fileCallPath) + "'>")
+    //         .animate({width:"100%", height:"100%"}, 1000);
+    //     check = true;
+    // }
+
 
     $(document).ready(function(){
         let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");

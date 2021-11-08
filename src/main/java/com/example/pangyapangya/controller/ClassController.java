@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,8 +61,18 @@ public class ClassController {
         return "class/classDetail";
     }
 
+
     @GetMapping("classApply")
-    public String classApply(@RequestParam("bno") Long bno, Model model, HttpServletRequest request){
+    public String classApply(@RequestParam("bno") Long bno, Model model, RedirectAttributes rttr, HttpSession session, HttpServletRequest request){
+//        HttpSession session = request.getSession(); // session 생성
+
+        String sessionU = (String)session.getAttribute("sessionU");
+        String sessionC = (String)session.getAttribute("sessionC");
+
+        if(sessionU == null && sessionC == null){
+            return "/user/login";
+        }
+
         String reqURI = request.getRequestURI();
         String reqType = reqURI.substring(reqURI.indexOf(request.getContextPath()) + 7);
         //read 요청 시 read 출력

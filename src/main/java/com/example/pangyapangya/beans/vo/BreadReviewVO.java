@@ -3,15 +3,13 @@ package com.example.pangyapangya.beans.vo;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 @Data
-public class ClassReplyVO {
+public class BreadReviewVO {
     private Long rno;
     private Long bno;
+    private Long star;
     private String reply;
-    private String replyDate;
-    private String userId;
-//    private List<ClassReplyFileVO> attachList;
+    private String userid;
+    private String replydate;
 }

@@ -38,8 +38,8 @@ public class ClassReplyFileController {
         log.info("upload ajax action...........");
         List<ClassReplyFileVO> fileList = new ArrayList<>();
 
-//        String uploadFolder = "/Users/iseungmin/Desktop/upload";
-        String uploadFolder = "C:/upload";
+        String uploadFolder = "/Users/iseungmin/Desktop/upload";
+//        String uploadFolder = "C:/upload";
 
         String uploadFolderPath = getFolder();
 
@@ -128,8 +128,8 @@ public class ClassReplyFileController {
     @GetMapping("display")
     @ResponseBody
     public ResponseEntity<byte[]> getFile(String fileName){
-//        File file = new File("/Users/iseungmin/Desktop/upload" + fileName);
-        File file = new File("C:/upload" + fileName);
+        File file = new File("/Users/iseungmin/Desktop/upload" + fileName);
+//        File file = new File("C:/upload" + fileName);
         log.info("file : " + file);
         HttpHeaders header = new HttpHeaders();
         ResponseEntity<byte[]> result = null;

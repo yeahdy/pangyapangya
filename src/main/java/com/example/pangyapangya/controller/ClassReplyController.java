@@ -5,19 +5,17 @@ import com.example.pangyapangya.beans.vo.ClassReplyPageDTO;
 import com.example.pangyapangya.beans.vo.ClassReplyVO;
 import com.example.pangyapangya.beans.vo.Criteria;
 import com.example.pangyapangya.services.ClassReplyService;
+import com.example.pangyapangya.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
@@ -26,6 +24,7 @@ import java.util.List;
 @RequestMapping("/replies/*")
 public class ClassReplyController {
     private final ClassReplyService classReplyService;
+    private final UserService userService;
 
 //    댓글 등록
 //    브라우저에서 JSON타입으로 데이터를 전송하고 서버에서는 댓글의 처리 결과에 따라 문자열로 결과를 리턴한다.
@@ -36,7 +35,14 @@ public class ClassReplyController {
     //    문자열을 전달할 때 한글이 깨지지 않게 하기 위해서는 text/plain; charset=utf-8을 작성한다.
 //    ResponseEntity : 서버의 상태 코드, 응답 메세지 등을 담을 수 있는 타입이다.
     @PostMapping(value = "/new", consumes = "application/json", produces = "text/plain; charset=utf-8")
-    public ResponseEntity<String> create(@RequestBody ClassReplyVO classReplyVO) throws UnsupportedEncodingException {
+    public ResponseEntity<String> create(@RequestBody ClassReplyVO classReplyVO, HttpSession session) throws UnsupportedEncodingException {
+
+
+        String sessionU = (String)session.getAttribute("sessionU");
+        String sessionC = (String)session.getAttribute("sessionC");
+//        model.addAttribute("sessionU", sessionU);
+
+        classReplyVO.setUserId(sessionU);
 
         log.info("dddd");
         int replyCount = classReplyService.register(classReplyVO);
@@ -64,17 +70,17 @@ public class ClassReplyController {
         log.info("get............");
         return classReplyService.get(rno);
     }
+//
+//    @GetMapping("register")
+//    public void register(){}
 
-    @GetMapping("register")
-    public void register(){}
-
-    //    게시글 첨부파일
-    @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public List<ClassReplyFileVO> getAttachList(Long rno){
-        log.info("getAttachList " + rno);
-        return classReplyService.getAttachList(rno);
-    }
+//    //    게시글 첨부파일
+//    @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseBody
+//    public List<ClassReplyFileVO> getAttachList(Long rno){
+//        log.info("getAttachList " + rno);
+//        return classReplyService.getAttachList(rno);
+//    }
 
 
     //    /remove 요청을 처리할 수 있는 비지니스 로직 작성
@@ -98,29 +104,6 @@ public class ClassReplyController {
 //        return new RedirectView("list");
 //    }
 
-//    private void deleteFiles(List<AttachFileVO> attachList){
-//        if(attachList == null || attachList.size() == 0){
-//            return;
-//        }
-//
-//        log.info("delete attach files...........");
-//        log.info(attachList.toString());
-//
-//        attachList.forEach(attach -> {
-//            try {
-//                Path file = Paths.get("C:/upload/" + attach.getUploadPath() + "/" + attach.getUuid() + "_" + attach.getFileName());
-//                Files.delete(file);
-//
-//                if(Files.probeContentType(file).startsWith("image")){
-//                    Path thumbnail = Paths.get("C:/upload/" + attach.getUploadPath() + "/s_" + attach.getUuid() + "_" + attach.getFileName());
-//                    Files.delete(thumbnail);
-//                }
-//            } catch (Exception e) {
-//                log.error("delete file error " + e.getMessage());
-//            }
-//        });
-//
-//
-//    }
+
 
 }
