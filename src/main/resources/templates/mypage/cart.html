@@ -1,0 +1,440 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+    <title>장바구니</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="icon" type="image/png"  href="/images/favicon.png"/>
+    <style>
+        .headerIcon{
+            width: 40px;
+            display: block;
+            margin: auto;"
+        }
+        .icon.solid:before {
+            font-weight: 100;
+            content: none;
+        }
+
+        .spotlights h5{
+            font-weight: bold;
+            font-size: small;
+        }
+
+        .spotlights p{
+            font-size: small;
+        }
+
+        /* 검색창 */
+        .search {
+            position: relative;
+            text-align: center;
+            width: 400px;
+            margin: 0 auto;
+        }
+        input {
+            width: 100%;
+            border-radius: 20px;
+            border: 1px solid #bbb;
+            margin: 10px 0;
+            padding: 10px 12px;
+        }
+        .fa-search {
+            position: absolute;
+            left: 90%;
+            top: 35%;
+            margin: 0;
+        }
+        form {
+            margin: 0;
+        }
+        /*여기까지*/
+
+        h1, table{
+            width: 80%;
+            margin: 30px auto;
+        }
+        table td{
+            background-color: white;
+        }
+        .bread_table{
+            float: left; padding: 0px 5px;
+            /*font-size: 13px;*/
+        }
+        th{
+            padding: 10px;
+        }
+        .cnt_button{
+            /*width:5%;*/
+            float:left;
+            height: 20px;
+            width: 20px;
+            border-radius: 0;
+            padding: 10px;
+            line-height: 0px;
+            margin: 0px 5px;
+        }
+        .cnt_buttonDiv{
+            float: left;
+        }
+        .bread_img{
+            width: 100px;
+            margin-right: 35px;
+        }
+        .delete_icon{
+            float:right;
+            width: 30px;
+        }
+        .price div{
+            padding: 0 45px;
+            font-size: 14px;
+        }
+        .resultWindow{
+
+            border-collapse: separate;
+            /*width: 45%;*/
+            /*float: right;*/
+            text-align: center;
+            border: solid 1px;
+            padding: 10px;
+            /*margin: 0 10%;*/
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+      .resultWindow_th{
+        background-color: white;
+        padding: 2%;
+        text-align: center;
+        }
+        .resultWindow_th img{
+            width: 30%;
+        }
+
+
+        .bread_title{
+            font-size: 15px;
+        }
+        .bread_name{
+            font-size: 13px;
+        }
+        .breadTable_top{
+            width: 50%;
+            float: left;
+        }
+        .breadTable_bottom{
+            float: right;
+        }
+
+        #priceResult, #deliveryPrice{
+            font-size: 20px;
+        }
+        #totalPrice{
+            font-size: 25px;
+        }
+        /*영수증처럼 했던거..*/
+        /*#orderButton{
+            !*display: block;*!
+            margin: 31px auto;
+            width: 38%;
+            border-radius: 0;
+            padding-top: 95px;
+            padding-bottom: 125px;
+            background-color: wheat;
+        }
+        #resultDiv{
+            width: 52%;
+            float: left;
+        }*/
+
+        #orderButton{
+            display: block;
+            margin: 0 auto;
+            width: 75%;
+            background-color: #F9A825;
+            border-radius: 0px;
+        }
+        #orderButton div{
+            color:white;
+            font-size: 15px;
+        }
+        #resultDiv{
+
+        }
+
+        #title{
+            color: #F9A825;
+            /*font-size: 1.2em;*/
+            font-weight: 900;
+        }
+        .topLine th, .topLine td{
+            border-top: 1px solid #dee2e6;
+        }
+        .cart_bottom{
+           /* margin-left: 5%;*/
+        }
+        #orderButton:not(input[type="submit"], input[type="reset"], input[type="button"], button, .button){
+            border: solid 0px;
+        }
+        .bt tr{
+            background-color: white !important;
+            border: none;
+        }
+        .bt td{
+            padding: 0;
+        }
+        .bt{
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body class="is-preload" style="padding: 200px">
+
+<!-- Header -->
+<header id="header" th:include="/main/header::header_body">
+
+</header>
+
+
+<!-- Wrapper -->
+<div class="wrapper">
+
+    <!-- Main -->
+    <section class="main">
+        <form action="/main/delivery" method="get">
+        <section style="    margin: 100px 0;">
+
+            <header>
+                <h1 id="title">장바구니</h1>
+            </header>
+            <table border="1" class="bakery1">
+                <tbody>
+                <th:block th:each="cart : ${cartList}">
+
+                    <tr>
+<!--                    <th class="bakeryName">빵집이름2</th>-->
+                </tr>
+                <tr>
+                    <td><div class="bread_table"><img class="bread_img" th:src="@{/images/}+${cart.getBreadImg()}" width="200px"></div>
+                        <div class="breadTable_top">
+                            <input type="hidden" id="ceoId" th:text="${cart.getCeoId()}">
+                            <span class="bread_title"><strong th:text="${cart.getShopName()}">빵집이름</strong></span>
+                            <br>
+                            <ul>
+                                <li><span class="bread_name" th:text="${cart.getBreadName()}"></span></li>
+                            </ul>
+                        </div>
+                        <div class="breadTable_bottom">
+                            <div class="cnt_buttonDiv">
+                                <table class="bt">
+                                    <tr class="bt">
+                                        <td class="bt_minus"><button type="button" class="cnt_button"><span>-</span></button></td>
+                                        <td><div class="bread_table" id="cnt1" th:text="${cart.getBreadCnt()}"></div></td>
+                                        <td class="bt_plus"><button type="button" class="cnt_button">+</button></td>
+                                        <td class="price">
+                                                <div class="bread_table breadPrice" id="price1" th:text="${cart.getBreadCnt()*cart.getPriceOfBread()}"></div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="bread_table"><a id="cartNum" th:href="${cart.getCartNum()}"><img class="delete_icon" src="/images/delete_icon.png"></a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </th:block>
+                </tbody></table>
+            <!--총 결제-->
+            <div class="cart_bottom">
+            <div id="resultDiv">
+            <table class="resultWindow">
+                <tr>
+                    <th class="resultWindow_th">상품 금액</th>
+                    <th class="resultWindow_th">배달료</th>
+                    <th class="resultWindow_th">총 상품 금액</th>
+                </tr>
+                <tr>
+                    <td class="resultWindow_th" id="priceResult">3000</td>
+                    <td class="resultWindow_th" id="deliveryPrice">3000</td>
+                    <td class="resultWindow_th" id="totalPrice">42000</td>
+                </tr>
+                </table>
+            </div>
+            <div>
+            <button id="orderButton"><div>주문하기</div></button>
+            </div>
+            </div>
+        </section>
+        </form>
+    </section>
+</div>
+
+<!-- Footer -->
+<footer id="footer" th:include="/main/footer::footer_body"></footer>
+
+<!-- Scripts -->
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.dropotron.min.js"></script>
+<script src="/js/browser.min.js"></script>
+<script src="/js/breakpoints.min.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/main.js"></script>
+<script th:replace="/main/header::header_js"></script>
+<!--장바구니 삭제-->
+<script>
+    let p;
+    let cnt;
+    let totalPrice;
+    let bakeryCnt;
+    let deliveryCharge;
+    let resultPrice;
+
+    //console.log("장바구니의 개수는 "+$(".bread_table").length/4);
+    //console.log("하나 가격은 "+(parseInt($("#price1").text())+parseInt($("#price2").text())));
+    // console.log("총 금액은 "+$(".bread_table").length/4);
+    totalPrice = 0;
+    bakeryCnt=$(".bread_table").length/4;
+    let totalPriceResult = $(function () {
+        for (let i = 0; i < bakeryCnt; i++) {
+        totalPrice += parseInt($(".breadPrice").eq(i).text());
+        }
+
+        console.log("총 금액" + totalPrice);
+
+        //상품 금액
+        $("#priceResult").text(totalPrice);
+        //배달료
+        deliveryCharge = 3000 * bakeryCnt;
+        $("#deliveryPrice").text(deliveryCharge);
+        //총 상품 금액
+        resultPrice = parseInt(totalPrice) + parseInt(deliveryCharge);
+        $("#totalPrice").text(resultPrice);
+
+        // for (let i=0; i<bakeryCnt; i++) {
+        //     totalPrice += parseInt(document.getElementsByClassName('breadPrice')[i]);
+        //     console.log(totalPrice);
+        // }
+        // console.log(totalPrice);
+    });
+
+
+    $(document).ready(function () {
+        //사진 모두 출력
+        /*for(i = 1;i <= 9; i++){
+            p = $("<img>").attr("src", "image/photo_" + i + ".jpg");
+            $(".pic").append( p );
+        }*/
+
+        //이미지에 커서 올리면 바뀜
+        $(".delete_icon").mouseover(function() {
+            $(this).css("cursor", "pointer");
+        });
+
+        //이미지 x클릭하면 장바구니 지워짐
+        $("#cartNum").click(function (e) {
+            // a 태그 막기
+            e.preventDefault();
+
+            let cartNum = $("#cartNum").attr("href");
+            console.log("선택한 상품 번호: " + cartNum);
+            $.ajax({
+                type: "delete",
+                url: "/mypage/" + cartNum,
+                success: function (result) {
+                    console.log("삭제 result: " + result);
+                    if(result == "success"){
+                        alert("해당 상품이 장바구니에서 삭제되었습니다.");
+                        $(this).closest("tr").remove();
+                        location.href= "/mypage/cart";
+                    }
+                },
+                error: function (e) {
+                    console.log("장바구니 삭제 에러");
+                }
+            });
+
+        })
+
+        // 주문하기 버튼
+        $("#orderButton").click(function () {
+            // 장바구니 수량 1이하일 경우
+            if($(".delete_icon").length < 1){
+                alert("1개 이상부터 주문이 가능합니다.");
+            }
+        })
+        //console에 test
+        // let price = document.getElementsByClassName('breadPrice')[1];
+        // console.log("이거는 뭐엮지"+price);
+        // console.log("여기"+$(this).closest("tr").children("td:eq(3)").children("div").text());
+
+        //수량 버튼
+        $(".bt_plus").click(function(){
+            cnt = parseInt($(this).closest("tr").children("td:eq(1)").text());
+            price = parseInt($(this).closest("tr").children("td:eq(3)").children("div").text());
+            price = parseInt(price/cnt);//상품 1개의 가격
+            $(this).closest("tr").children("td:eq(1)").children(".bread_table").text(++cnt);
+            price = price * cnt;
+            // $(this).closest("tr").children("td:eq(3)").text(price);
+            $(this).closest("tr").children("td:eq(3)").children("div").text(price);
+
+            let cartNum = $("#cartNum").attr("href");
+
+            $.ajax({
+                type: "get",
+                url: "/mypage/" + cartNum +"/"+ cnt,
+                success: function (result) {
+                    console.log("수량 변경 result: " + result);
+                    if(result == "success"){
+                        location.href= "/mypage/cart";
+                    }
+                },
+                error: function (e) {
+                    console.log("상품 수량 변경 에러");
+                }
+            });
+        });
+
+        $(".bt_minus").click(function(){
+            cnt = parseInt($(this).closest("tr").children("td:eq(1)").text());
+            price = parseInt($(this).closest("tr").children("td:eq(3)").children("div").text())
+            price = parseInt(price/cnt);//상품 1개의 가격
+
+            if(cnt>1){
+            $(this).closest("tr").children("td:eq(1)").children(".bread_table").text(--cnt);
+                price = price * cnt;
+                $(this).closest("tr").children("td:eq(3)").children("div").text(price);
+
+                let cartNum = $("#cartNum").attr("href");
+                $.ajax({
+                    type: "get",
+                    url: "/mypage/" + cartNum +"/"+ cnt,
+                    success: function (result) {
+                        console.log("수량 변경 result: " + result);
+                        if(result == "success"){
+                            location.href= "/mypage/cart";
+                        }
+                    },
+                    error: function (e) {
+                        console.log("상품 수량 변경 에러");
+                    }
+                });
+            }else{
+                alert("1개 이상부터 주문 가능합니다.");
+            }
+
+
+        });
+
+        var ceoId = $('#test_id').val();
+
+    });
+
+</script>
+</body>
+</html>
