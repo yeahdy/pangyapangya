@@ -25,6 +25,15 @@
         </if>
     </sql>
 
+    <select id="getAllList" resultType="classCeoVO">
+        <![CDATA[
+            SELECT * FROM
+            (
+            SELECT ROW_NUMBER() OVER(ORDER BY BNO DESC) R, BNO, TITLE, CEOID, CLASSPHOTO, CLASSPRICE, REGDATE, ENDDATE, CLASSDATE, RECRUITMENT, DESCRIPTION, BREADTYPE, BREADNAME, CEONAME, STATUS, SHOPNAME FROM TBL_CEO_CLASS
+            )
+        ]]>
+    </select>
+
     <select id="getList" resultType="classCeoVO">
         <![CDATA[
         SELECT BNO, TITLE, CEOID, CLASSPRICE, REGDATE, ENDDATE, CLASSDATE, RECRUITMENT, DESCRIPTION, BREADTYPE, BREADNAME, CEONAME, CLASSPHOTO, SHOPNAME

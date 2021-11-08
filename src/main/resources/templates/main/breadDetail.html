@@ -37,7 +37,7 @@
             position: fixed;
             background-color: white;
             width: 400px;
-            height: 300px;
+            height: 500px;
             padding: 17px;
             border: solid 1px #0000001a;
             box-shadow: 0 2px 4px 0 #0000001a;
@@ -59,11 +59,17 @@
             width: 560px;
             display: flex;
             justify-content: center;
-            margin: 0px 69px;
+            margin: 0px 0px;;
         }
+
+        #product-info pre{
+            margin: 30px 0 0 0;
+            text-align: center
+        }
+
         #box{
             position: relative;
-            top: -570px;
+            top: 36px;
             right: -590px;
             padding: 0 !important;
             box-shadow: none !important;
@@ -91,7 +97,7 @@
         }
         .price-detail{
             font-size: large;
-            height: 130px;
+            height: 325px;
             margin-bottom: 15px;
         }
 
@@ -231,15 +237,15 @@
             display: flex;
             margin-bottom: 11px;
         }
-        .review-img{
+        /*.review-img{
             height: 128px;
             width: 128px;
             object-fit: cover;
             flex: none;
-        }
+        }*/
         .review-text{
             color: black;
-            margin-left: 10px;
+            margin-left: 5px;
         }
         ul{
             padding-left: 0em;
@@ -257,7 +263,7 @@
         }
     </style>
 </head>
-<body class="is-preload" style="padding: 10em 200px 0 200px;">
+<body class="is-preload" style="padding: 10em 200px 0 200px; background-color: white;">
 
 <header id="header" th:include="/main/header::header_body">
 
@@ -266,52 +272,55 @@
 <!-- Wrapper -->
 
 <div class="inner">
-        <th:block class="field" th:object="${info}">
-            <div>
-                <div id="info">
-                    <section id="img-section">
-                        <div id="img-view">
-                            <img th:src="*{bakeryPhoto}">
+    <th:block class="field" th:object="${info}">
+        <div>
+            <div id="info">
+                <!-- 구매창 -->
+                <aside id="box">
+                    <div class="payment">
+                        <div class="maker-card">
+                            <input type="hidden">
+                            <a href="#" th:text="*{shopName}"></a>
                         </div>
-                    </section>
-                    <!-- 구매창 -->
-                    <aside id="box">
-                        <div class="payment">
-                            <div class="maker-card">
-                                <input type="hidden">
-                                <a href="#" th:text="*{shopName}"></a>
-                            </div>
-                            <h2 class="bread-name" th:text="*{breadName}"></h2>
-                            <div class="price-detail">
+                        <h2 class="bread-name" th:text="*{breadName}"></h2>
+                        <div class="price-detail">
                             <span>
                                 <strong th:text="*{breadPrice}"></strong>
                                 원
                             </span>
-                                <p>배송비 3000원</p>
-                            </div>
+                            <p>배송비 3000원</p>
+                        </div>
 
-                            <fieldset><!---->
-                                <form>
+                        <fieldset><!---->
+                            <form>
                                 <button type="button" onclick="addCart()">
                                     장바구니
                                 </button>
-                                </form>
-                                <form>
+                            </form>
+                            <form>
                                 <button type="button" class="kakao" id="kakaoBtn" onclick="kakaoPay()" style="overflow: hidden; width: 100px; background-color: #ffeb00;">
                                     <img src="/images/kakao.png">
                                 </button>
-                                </form>
-                                <form>
+                            </form>
+                            <form>
                                 <button type="button" onclick="buyNow()">
                                     구매
                                 </button>
-                                </form>
-                            </fieldset>
-                        </div>
-                    </aside>
-                </div>
+                            </form>
+                        </fieldset>
+                    </div>
+                </aside>
+                <section id="img-section">
+                    <div id="img-view">
+                        <img th:src="*{bakeryPhoto}">
+                    </div>
+                    <div id="product-info">
+                        <pre th:text="*{content}"></pre>
+                    </div>
+                </section>
             </div>
-        </th:block>
+        </div>
+    </th:block>
     <section id="prd-info">
     </section>
     <section id="prd-review">
@@ -320,16 +329,16 @@
         </div>
         <ul>
             <th:block th:each="reply : ${replyList}">
-            <a class="review-box"><!--리뷰 상세 보기를 할 경우 링크를 담기 위한 a태그-->
-                <div th:object="${reply}">
-                <div class="review-header"><!-- th:object="${reply}"-->
-                    <div class="reviewer-info">
+                <a class="review-box"><!--리뷰 상세 보기를 할 경우 링크를 담기 위한 a태그-->
+                    <div th:object="${reply}">
+                        <div class="review-header"><!-- th:object="${reply}"-->
+                            <div class="reviewer-info">
                         <span class="reviewer" th:text="*{userid}">
                         </span>
-                        <span class="review-date" th:text="*{replydate}">
+                                <span class="review-date" th:text="*{replydate}">
                         </span>
-                    </div>
-                    <div class="review-star">
+                            </div>
+                            <div class="review-star">
                         <span th:switch="*{star}">
                         <span th:case="1">
                             <img class="star-one" src="/images/cookie_star.png"/>
@@ -367,16 +376,15 @@
                             <img class="star-one" src="/images/cookie_star.png"/>
                         </span>
                     </span>
+                            </div>
+                        </div>
+                        <div class="review-body">
+                            <!--<img class="review-img" src="/images/bread1.jpg">-->
+                            <div class="review-text" th:text="*{reply}">
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="review-body">
-                    <img class="review-img" src="/images/bread1.jpg">
-                    <div class="review-text">
-                        <p  th:text="*{reply}"></p>
-                    </div>
-                </div>
-                </div>
-            </a>
+                </a>
             </th:block>
         </ul>
     </section>
@@ -430,10 +438,10 @@
                 }
             });
         }
-            /*$("#kakaoBtn").on("click", function(){
-                window.open("", "popup_window", "width=500, height=700, scrollbars=no");
-            });
-        }*/
+        /*$("#kakaoBtn").on("click", function(){
+            window.open("", "popup_window", "width=500, height=700, scrollbars=no");
+        });
+    }*/
     }
     function buyNow() {
         if($('#sessionU').val() == null && $('#sessionC').val() == null){
@@ -447,9 +455,9 @@
 
 </body>
 <!-- Footer -->
-<footer id="footer" style="background-color: #f5f5f5">
+<!--<footer id="footer" style="background-color: #f5f5f5">
     <div class="copyright">
         &copy; Untitled. All rights reserved.
     </div>
-</footer>
+</footer>-->
 </html>
