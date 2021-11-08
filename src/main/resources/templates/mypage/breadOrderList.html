@@ -197,7 +197,7 @@
 
                         <div class="myPageSelect1"><p>내 정보</p></div>
                         <div class="contentDiv">
-                            <div class="myPageSelectMenu"><p><a href="/mypage/checkPassword_new">내 정보 수정</a></p></div>
+                            <div class="myPageSelectMenu"><p><a href="/mypage/modifyMyInfo">내 정보 수정</a></p></div>
                             <div class="myPageSelectMenu"><p><a href="#">회원 탈퇴</a></a></p></div>
                         </div>
                     </div>
@@ -231,18 +231,16 @@
 
                                 <tbody>
                                 <!--첫 번째 빵집-->
-                                <th:block th:each="order : ${orderList}">
-                                <tr th:object="${order}">
+                                <tr>
                                     <td>
-                                        <input type="hidden" th:value="*{bno}">
                                         <div class="firstSection">
-                                            <div class="date">2021-10-07</div>
+                                            <div class="date">2021-11-09</div>
                                             <div class="bread_table"><img class="bread_img" src="/images/bread1.jpg"></div>
                                         </div>
 
                                         <div class="secondSection">
                                             <div class="breadTable_top">
-                                                <div class="bakery_name" >리에땅</div>
+                                                <div class="bakery_name">리에땅</div>
                                                 <span class="bread_title"><strong>9無 🌿비건통밀파운드케이크 👉6종</strong></span>
                                                 <br>
                                                 <ul>
@@ -254,14 +252,137 @@
                                     <td class="breadTable_bottom_td">
                                         <div class="breadTable_bottom">
                                             <div class="bread_cnt"><span>수량 : </span></div>
-                                            <div class="" id="cnt1"><b th:text="*{breadCnt}"></b></div>
+                                            <div class="" id="cnt1"><b>1</b></div>
                                         </div>
                                         <br>
-                                        <div class="bread_price price">25,800</div>
+                                        <div class="bread_price price">8,800</div>
                                         <div class="won">원</div>
+
+
+
                                     </td>
                                 </tr>
-                                </th:block>
+                                <!--두 번째 빵집-->
+                                <tr>
+                                    <td>
+                                        <div class="firstSection">
+                                            <div class="date">2021-11-07</div>
+                                            <div class="bread_table"><img class="bread_img" src="/images/bread1_kjy.jpg"></div>
+                                        </div>
+
+                                        <div class="secondSection">
+                                            <div class="breadTable_top">
+                                                <div class="bakery_name">봄에온달과점</div>
+                                                <span class="bread_title"><strong>[NO밀가루 칙피파운드] 리얼치즈 비건빵</strong></span>
+                                                <br>
+                                                <ul>
+                                                    <li><span class="bread_name">비건빵 선택 : 오리지널 비건빵</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="breadTable_bottom_td">
+                                        <div class="breadTable_bottom">
+                                            <div class="bread_cnt"><span>수량 : </span></div>
+                                            <div class="" id="cnt2"><b>3</b></div>
+                                        </div>
+                                        <br>
+                                        <div class="bread_price price">12,000</div>
+                                        <div class="won">원</div>
+
+                                    </td>
+                                </tr>
+                                <!--세 번째 빵집-->
+                                <tr>
+                                    <td>
+                                        <div class="firstSection">
+                                            <div class="date">2021-10-07</div>
+                                            <div class="bread_table"><img class="bread_img" src="/images/bread2_kjy.jpg"></div>
+                                        </div>
+
+                                        <div class="secondSection">
+                                            <div class="breadTable_top">
+                                                <div class="bakery_name">핑크브라운</div>
+                                                <span class="bread_title"><strong>🍪꾸덕! 묵직!🍪 Toddle쿠키</strong></span>
+                                                <br>
+                                                <ul>
+                                                    <li><span class="bread_name">쿠키 선택 : 스모어 쿠키</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="breadTable_bottom_td">
+                                        <div class="breadTable_bottom">
+                                            <div class="bread_cnt"><span>수량 : </span></div>
+                                            <div class="" id="cnt3"><b>5</b></div>
+                                        </div>
+                                        <br>
+                                        <div class="bread_price price">18,000</div>
+                                        <div class="won">원</div>
+
+                                    </td>
+                                </tr>
+                                <!--네 번째 빵집-->
+                                <tr>
+                                    <td>
+                                        <div class="firstSection">
+                                            <div class="date">2021-11-07</div>
+                                            <div class="bread_table"><img class="bread_img" src="/images/bread5_kjy.jpg"></div>
+                                        </div>
+
+                                        <div class="secondSection">
+                                            <div class="breadTable_top">
+                                                <div class="bakery_name">디저트단디</div>
+                                                <span class="bread_title"><strong>생일케이크❤레터링 크리스마스케이크</strong></span>
+                                                <br>
+                                                <ul>
+                                                    <li><span class="bread_name">레터링케이크</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="breadTable_bottom_td">
+                                        <div class="breadTable_bottom">
+                                            <div class="bread_cnt"><span>수량 : </span></div>
+                                            <div class="" id="cnt4"><b>7</b></div>
+                                        </div>
+                                        <br>
+                                        <div class="bread_price price">21,000</div>
+                                        <div class="won">원</div>
+
+                                    </td>
+                                </tr>
+                                <!--다섯 번째 빵집-->
+                                <tr>
+                                    <td>
+                                        <div class="firstSection">
+                                            <div class="date">2021-11-02</div>
+                                            <div class="bread_table"><img class="bread_img" src="/images/bread4_kjy.jpg"></div>
+                                        </div>
+
+                                        <div class="secondSection">
+                                            <div class="breadTable_top">
+                                                <div class="bakery_name">다앤하</div>
+                                                <span class="bread_title"><strong>❤두툼묵직❤아낌없이 만든 수제쿠키</strong></span>
+                                                <br>
+                                                <ul>
+                                                    <li><span class="bread_name">쿠키 선택 : 초코듬뿍 못난이쿠키</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="breadTable_bottom_td">
+                                        <div class="breadTable_bottom">
+                                            <div class="bread_cnt"><span>수량 : </span></div>
+                                            <div class="" id="cnt5"><b>1</b></div>
+                                        </div>
+                                        <br>
+                                        <div class="bread_price price">6,000</div>
+                                        <div class="won">원</div>
+
+                                    </td>
+                                </tr>
+
                                 </tbody>
                             </table>
                             <!--button-->
