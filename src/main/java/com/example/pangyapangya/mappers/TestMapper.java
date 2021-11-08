@@ -57,8 +57,13 @@ public interface TestMapper {
 
     public String getUserNamae(String userId);
     public String getUserTel(String userId);
+    public boolean requestUser(String userId);
     public String getBreadName(Long tno);
     public String getShopName(Long tno);
+
+    public int checkRe(TestingRequestVO requestVO);
+
+    public int checkApplyCnt(String userId);
 
 
 

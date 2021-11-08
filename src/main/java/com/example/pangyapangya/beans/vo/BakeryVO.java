@@ -19,6 +19,7 @@ public class BakeryVO {
     private String breadType;
     private String breadName;
     private int breadPrice;
+    private List<BakeryFileVO> attachList;
     private String keyword;
     /*private List<BakeryFileVO> attachList;*/
 }

@@ -161,17 +161,24 @@
 
 <!-- Header -->
 <header id="header" th:include="/main/header::header_body">
+    <li th:if="${session.sessionU == null && session.sessionC == null}">
+        <a href="#" class="icon solid fa-angle-down"><img src="/images/iconPerson.png" alt="myPage" class="headerIcon"/></a>
+        <ul>
+            <li><a href="/user/login">로그인</a></li>
+            <li><a href="/user/join">회원가입</a></li>
+        </ul>
+    </li>
 </header>
 <!-- Wrapper -->
 <div class="wrapper">
 
     <!-- Main -->
     <section class="main">
-        <div class="wrapper">
+        <div class="wrapper" th:object="${pay}">
                 <!-- class_information 좌측 정보-->
                 <div class="titleimg">
                     <div id="title">
-                        <p class="title">원데이 클래스 타이틀</p>
+                        <strong><p class="title" th:field="*{title}"></p></strong>
                     </div>
                     <div class="img">
                         <img src="/images/bread1.jpeg" alt="" id="ceoimg">
@@ -184,13 +191,13 @@
                             <td colspan="2">사용자 ID</td>
                         </tr>
                         <tr><th rowspan="3">예약 내역</th>
-                            <td colspan="2">날짜 및 시간</td>
+                            <td colspan="2" th:text="*{classDate}">날짜 및 시간</td>
                         </tr>
                         <tr>
                             <td colspan="2">인원 수</td>
                         </tr>
                         <tr>
-                            <td colspan="2">빵집 이름</td>
+                            <td colspan="2" th:text="*{bakeryShopname}">빵집 이름</td>
                         </tr>
                     </table>
                 </div>
@@ -204,8 +211,7 @@
                     <tbody>
                     <tr>
                         <th>수업료</th>
-                        <td>46,200원 <b class="fz12">(총 1회, 1시간)
-                        </b></td>
+                        <td th:text="*{classPrice}">원 </td>
                     </tr>
                     <tr>
                         <th>신청 인원</th>
@@ -215,20 +221,21 @@
                     <tr class="total_price">
                         <th>총 결제 금액</th>
                         <td>
-                            <span id="spn-total-price">46,200</span>원
+                            <span id="spn-total-price" th:text="*{classPrice}"></span>원
                         </td>
                     </tr>
                     </tbody>
                 </table>
 
                     <div>
-                        <button type="submit" id="pay_kakao" onclick="requestPay()">만원 결제하기</button>
+                        <a type="submit" id="pay_kakao" onclick="requestPay()"><span th:text="*{classPrice}"></span> 원 결제하기</a>
                     </div>
             </div>
             <!-- //section_receipt -->
         </div>
 
     </section>
+
 </div>
 <!-- Footer -->
 <footer id="footer" th:include="/main/footer::footer_body"></footer>
@@ -239,72 +246,18 @@
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:replace="/main/header::header_js"></script>
 <script>
     document.querySelector("#content > div.wrapper")
     document.querySelector("#content > div.wrapper > div.r_box.section_receipt")
 </script>
+<script th:inline="javascript">
+    let bno = [[${pay.getBno()}]];
+</script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
-
-<!--<script>-->
-<!--    var IMP = window.IMP;-->
-<!--    IMP.init('imp37396046');-->
-<!--    IMP.request_pay({-->
-<!--        pg : "kakaopay",-->
-<!--        pay_method : 'card',-->
-<!--        merchant_uid : 'merchant_' + new Date().getTime(),-->
-<!--        name : '결제',-->
-<!--        amount : 주문개수,-->
-<!--        buyer_email : '구매자 이메일',-->
-<!--        buyer_name : '구매자 이름',-->
-<!--        buyer_tel : '구매자 번호',-->
-<!--        buyer_addr : '구매자 주소',-->
-<!--        buyer_postcode : '구매자 주소',-->
-<!--        m_redirect_url : 'redirect url'-->
-<!--    }, function(rsp) {-->
-<!--        if ( rsp.success ) {-->
-<!--            var msg = '결제가 완료되었습니다.';-->
-<!--            location.href='결제완료후 갈 url';-->
-<!--        } else {-->
-<!--            var msg = '결제에 실패하였습니다.';-->
-<!--            rsp.error_msg;-->
-
-<!--        }-->
-<!--    });-->
-
-<!--</script>-->
-
-<!--<script>-->
-<!--    $("#pay_kakao").click(function () {-->
-<!--        var IMP = window.IMP;-->
-<!--        IMP.init('imp37396046');-->
-<!--        IMP.request_pay({-->
-<!--            pg : "kakaopay",-->
-<!--            pay_method : 'card',-->
-<!--            merchant_uid : 'merchant_' + new Date().getTime(),-->
-<!--            name : '결제',-->
-<!--            amount : 주문개수,-->
-<!--            buyer_email : '구매자 이메일',-->
-<!--            buyer_name : '구매자 이름',-->
-<!--            buyer_tel : '구매자 번호',-->
-<!--            buyer_addr : '구매자 주소',-->
-<!--            buyer_postcode : '구매자 주소',-->
-<!--            m_redirect_url : 'redirect url'-->
-<!--        }, function(rsp) {-->
-<!--            if ( rsp.success ) {-->
-<!--                var msg = '결제가 완료되었습니다.';-->
-<!--                document.location.href="/class/classPay";-->
-<!--            } else {-->
-<!--                var msg = '결제에 실패하였습니다.';-->
-<!--                rsp.error_msg;-->
-
-<!--            }-->
-<!--        });-->
-
-<!--    });-->
-<!--</script>-->
 
 <!--<script>-->
 
@@ -384,7 +337,14 @@
 
 <!--    });-->
 <!--</script>-->
-
+<script>
+    // 세션값 확인
+    if($('#sessionU').val() != null){
+        console.log("session: " + $('#sessionU').val());
+    }else if ($('#sessionC').val() != null){
+        console.log("session: " + $('#sessionC').val());
+    }
+</script>
 <script>
     function requestPay() {
         IMP.init('imp37396046'); // 예: imp00000000
@@ -392,14 +352,14 @@
         IMP.request_pay({ // param
             pg: "html5_inicis",
             pay_method: "card",
-            merchant_uid: "ORD20180131-0000013",
-            name: "원데이클래스1",
+            merchant_uid: "ORD20180131-000002",
+            name: "원데이클래스4",
             amount: 64900,
             buyer_email: "gildong@gmail.com",
             buyer_name: "홍길동",
             buyer_tel: "010-4242-4242",
             buyer_addr: "서울특별시 강남구 신사동",
-            buyer_postcode: "01181"
+            buyer_postcode: "01181",
         }, function (rsp) { // callback
             if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
                 var msg = '결제가 완료되었습니다.';
@@ -407,6 +367,7 @@
                 msg += '상점 거래ID : ' + rsp.merchant_uid;
                 msg += '결제 금액 : ' + rsp.paid_amount;
                 msg += '카드 승인번호 : ' + rsp.apply_num;
+                document.location.href="/class/classPay";
             } else {
                 alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
             }

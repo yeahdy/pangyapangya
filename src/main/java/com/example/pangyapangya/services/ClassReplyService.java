@@ -8,8 +8,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -26,19 +24,9 @@ public class ClassReplyService {
         return classReplyDAO.get(rno);
     }
 
-//    public int remove(Long rno){
-//        log.info("remove..............");
-//        return classReplyDAO.remove(rno);
-//    }
-//
-//    public int modify(ClassReplyVO classReplyVO ){
-//        log.info("modify..............");
-//        return classReplyDAO.modify(classReplyVO);
-//    }
 
     public ClassReplyPageDTO getList(Long bno, Criteria criteria){
         log.info("getList..............");
         return new ClassReplyPageDTO(classReplyDAO.getTotal(bno), classReplyDAO.getList(bno, criteria));
     }
-
 }

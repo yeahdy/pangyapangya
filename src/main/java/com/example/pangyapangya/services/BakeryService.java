@@ -23,6 +23,10 @@ public interface BakeryService {
     public List<BakeryVO> breadList(String keyword);
 //    public List<BakeryFileVO> getAttachList(Long bno);
 
+    public List<BakeryVO> breadListCeo(BakeryVO bakeryVO);
+    public List<BakeryFileVO> getAttachList(Long bno);
+
     // 메인페이지 글가져오기
     public List<BakeryVO> breadList_main();
+
 }

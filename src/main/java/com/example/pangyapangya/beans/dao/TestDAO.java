@@ -64,20 +64,24 @@ public class TestDAO {
     public String getUserTel(String userId){return mapper.getUserTel(userId);}
     public String getBreadName(Long tno){return mapper.getBreadName(tno);}
     public String getShopName(Long tno){return mapper.getShopName(tno);}
+    public int checkRe(TestingRequestVO requestVO){return  mapper.checkRe(requestVO);}
+    public int checkApplyCnt(String userId){return mapper.checkApplyCnt(userId);}
+    public boolean requestUser(String userId){return mapper.requestUser(userId);}
+
 
 
 
     public void sendWinMessage(WinDTO win) {
-        String api_key = "NCSN0HFQEQCH6CCP";
-        String api_secret = "L8DIVGTW6H2102YO2NFSJL11FTULSBBS";
+        String api_key = "NCSQNB02FGNIJWVJ";
+        String api_secret = "XKUECSFOHIBWYHNANPTKSRVMTZQLEIPP";
         Message coolsms = new Message(api_key, api_secret);
 
         // 4 params(to, from, type, text) are mandatory. must be filled
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("to", win.getPhoneNumber());    // 수신전화번호
-        params.put("from", win.getPhoneNumber());    // 발신전화번호
-        params.put("type", "SMS");
-        params.put("text", "[빵야빵야(屋)]\n축하드립니다 "+win.getUserName()+"님!"+"\n빵야빵야(屋) "+ win.getShopName()+"빵집 "+ win.getBreadName()+ "빵\n" + " 빵 체험단에 당첨되셨습니다.\n자세한 내용은 빵야빵야(屋) 홈페이지를 참고해 주세요.");
+        params.put("from", "01085362558");    // 발신전화번호
+        params.put("type", "lms");
+        params.put("text", "[빵야빵야(屋)]\n축하드립니다 "+win.getUserName()+"님!"+"\n빵야빵야(屋) "+ win.getShopName()+" "+ win.getBreadName() + "\n빵 체험단에 당첨되셨습니다.\n자세한 내용은 빵야빵야(屋) 홈페이지를 참고해 주세요.\nwww.PangyaPangya.com");
         params.put("app_version", "test app 1.2"); // application name and version
 
         try {

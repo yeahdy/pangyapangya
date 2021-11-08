@@ -55,6 +55,7 @@
 		}
 		#all{display: flex;}
 		.wrapper{width: 75%;}
+		.table-wrapper{overflow-x: visible;}
 		#mainSection{padding: 0;}
 		#rightHeader h2{color: #F9A825; font-size: 1.2em; font-weight: 900;}
 		sub{top: 0; margin-left: 10px;}
@@ -65,7 +66,7 @@
 		#ad img{width: 100%; height: 600px;}
 		#myMainSection{display: flex;}
 		#myLeftSection{width: 20%; background: #f9efef;}
-		#myRightSection{width: 80%; padding: 37px 50px 15px 50px;}
+		#myRightSection{width: 80%; padding: 37px 50px 37px 50px;}
 		.myPageTitle{background: #F9A825; margin: 0; padding: 7px 7px 7px 15px;}
 		.myPageTitle p{margin: 0; color: #fff;}
 		#allDiv{padding:15px;}
@@ -96,10 +97,10 @@
 </head>
 <body class="is-preload" style="padding: 200px">
 <!-- Header -->
-<header id="header" th:include="/main/header::header_body">
-
-</header>
-
+<header id="header" th:include="/main/header::header_body"></header>
+<div th:if="${result == 'true'}">
+	<input type="hidden" id="updateChk" th:value="${result}" />
+</div>
 <!-- Wrapper -->
 <div id="all">
 	<div class="wrapper">
@@ -154,8 +155,8 @@
 										<div class="table-boxes" style="display: flex;" th:object="${oneDay}">
 											<div class="table-first">
 												<div class="col-6 col-12-small">
-													<input type="checkbox"  id="*{bno}" name="*{bno}">
-													<label for="*{bno}"></label>
+													<input type="checkbox"  id="checkBox" name="checkBox">
+													<label for="checkBox"></label>
 												</div>
 
 											</div>
@@ -174,29 +175,30 @@
 									</th:block>
 								</div>
 
-								<ul class="pagination" th:object="${pageMaker}">
-
-									<li>
-										<a class="changePage" th:if="*{prev}" th:href="*{startPage - 1}">
-											<span class="disabled changePage"><</span>
-										</a>
-									</li>
-									<li th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), pageMaker.getEndPage())}">
-										<th:block th:if="${pageMaker.criteria.getPageNum() == num}">
-											<a class="page active changePage" th:text="${num}"></a>
-											<a class="page active changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="${num}" th:text="${num}"></a>
+								<div th:object="${pageMaker}">
+									<ul class="pagination">
+										<li th:if="*{prev}" th:href="*{startPage - 1}">
+											<a class="changePage">
+												<span class="changePage"><</span>
+											</a>
+										</li>
+										<th:block th:each="num : ${#numbers.sequence(pageMaker.getStartPage(), pageMaker.getEndPage())}">
+											<li>
+												<a href="#" class="page active" th:if="${pageMaker.criteria.getPageNum() == num}" th:text="${num}"></a>
+												<a class="page changePage" th:unless="${pageMaker.criteria.getPageNum() == num}" th:href="${num}" th:text="${num}"></a>
+											</li>
 										</th:block>
-									</li>
-									<li>
-										<a class="changePage" th:if="*{next}" th:href="*{endPage + 1}">
-											<span class="disabled">></span>
-										</a>
-									</li>
-									<form action="/myPageCeo/oneDayRe" th:object="${criteria}" name="pageForm">
-										<input type="hidden" name="pageNum" th:field="*{pageNum}">
-										<input type="hidden" name="amount" th:field="*{amount}">
-									</form>
-								</ul>
+										<li>
+											<a class="changePage" th:if="*{next}" th:href="*{endPage + 1}"><span class="page">&gt;</span></a>
+										</li>
+
+										<form action="/myPageCeo/bakeryRe" th:object="${criteria}" name="pageForm">
+											<input type="hidden" name="pageNum" th:field="*{pageNum}">
+											<input type="hidden" name="amount" th:field="*{amount}">
+										</form>
+									</ul>
+								</div>
+								<div class="paging" style="text-align: center"></div>
 							</div>
 						</div>
 					</section>
@@ -223,9 +225,15 @@
 </body>
 <script th:inline="javascript">
 	// 글 등록 시 전달받는 게시글 번호를 alert으로 출력
-	let pageForm = $(document.pageForm);
-	let paging = [[${pageMaker.criteria.listLink}]];
-	let searchForm = $(document.searchForm);
+
+	let paging = [[${criteria.listLink}]];
+	let pageNum = 1;
+
+	$("div.paging").on("click", "a.changePage", function(e){
+		e.preventDefault();
+		pageNum = parseInt($(this).attr("href"));
+		showList(pageNum);
+	});
 
 	$(document).ready(function(){
 		let bno = [[${bno}]];
@@ -244,13 +252,23 @@
 
 	$("a#goRead").on("click", function(e){
 		e.preventDefault();
-		location.href = "/myPageCeo/oneDayRe" + paging + "&bno=" + $(this).attr("href");
+		location.href = "/class/classDetail?bno=" + $(this).attr("href");
 	})
 
 	$("a#goModify").on("click", function(e){
 		e.preventDefault();
 		location.href = "/myPageCeo/oneDayModify" + paging + "&bno=" + $(this).attr("href");
 	})
+
+	$("a#goRemove").on("click", function(e){
+		e.preventDefault();
+		location.href = "/myPageCeo/oneDayRemove?bno=" + $(this).attr("href");
+	})
+
+	/* 로그인 실패 컨트롤러*/
+	if($("#updateChk").val() == 'success'){
+		alert("삭제 완료");
+	}
 
 </script>
 </html>

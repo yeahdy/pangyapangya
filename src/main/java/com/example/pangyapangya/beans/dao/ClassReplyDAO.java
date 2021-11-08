@@ -25,16 +25,6 @@ public class ClassReplyDAO {
         return classReplyMapper.read(rno);
     }
 
-//    public int remove(Long rno){
-//        log.info("remove..............");
-//        return classReplyMapper.delete(rno);
-//    }
-//
-//    public int modify(ClassReplyVO classReplyVO){
-//        log.info("modify..............");
-//        return classReplyMapper.update(classReplyVO);
-//    }
-
     public List<ClassReplyVO> getList(Long bno, Criteria criteria){
         log.info("getList..............");
         return classReplyMapper.getListWithPaging(bno, criteria);

@@ -1,7 +1,7 @@
 package com.example.pangyapangya.controller;
 
 import com.example.pangyapangya.services.BakeryService;
-import com.example.pangyapangya.services.ClassCeoService;
+//import com.example.pangyapangya.services.ClassCeoService;
 import com.example.pangyapangya.services.TestService;
 import com.example.pangyapangya.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +33,7 @@ public class mainController {
     private final UserService userService;
     private final BakeryService bakeryService;
     private final TestService testService;
-    private final ClassCeoService classCeoService;
+//    private final ClassCeoService classCeoService;
 
     @GetMapping("index")
     public String index(){ return "main/index"; }
@@ -55,8 +55,8 @@ public class mainController {
     public String breadList(Model model){
         // 오늘의 빵
         model.addAttribute("breadList", bakeryService.breadList_main());
-        // 원데이 클래스
-        model.addAttribute("classList", classCeoService.classList_main());
+//        // 원데이 클래스
+//        model.addAttribute("classList", classCeoService.classList_main());
         // 빵 체험단(모집)
         model.addAttribute("tasting", testService.mainTest());
         // 빵 체험단(리뷰)

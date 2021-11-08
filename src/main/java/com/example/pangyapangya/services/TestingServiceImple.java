@@ -1,14 +1,8 @@
 package com.example.pangyapangya.services;
 
 
-import com.example.pangyapangya.beans.dao.BakeryFileDAO;
-import com.example.pangyapangya.beans.dao.CEODAO;
-import com.example.pangyapangya.beans.dao.ClassCeoDAO;
-import com.example.pangyapangya.beans.dao.TestingDAO;
-import com.example.pangyapangya.beans.vo.CeoVO;
-import com.example.pangyapangya.beans.vo.ClassCeoVO;
-import com.example.pangyapangya.beans.vo.Criteria;
-import com.example.pangyapangya.beans.vo.TestingVO;
+import com.example.pangyapangya.beans.dao.*;
+import com.example.pangyapangya.beans.vo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,7 +23,7 @@ import java.util.List;
 public class TestingServiceImple implements TestingService{
 
     private final TestingDAO testingDAO;
-    private final BakeryFileDAO bakeryFileDAO;
+    private final TestingFileDAO testingFileDAO;
     private final CEODAO ceodao;
 
     @Transactional(rollbackFor = Exception.class)
@@ -37,14 +31,14 @@ public class TestingServiceImple implements TestingService{
     public void register(TestingVO testingVO) {
 
         testingDAO.register(testingVO);
-       /* if(bakeryVO.getAttachList() == null || bakeryVO.getAttachList().size() == 0){
+        if(testingVO.getAttachList() == null || testingVO.getAttachList().size() == 0){
             return;
-        }*/
+        }
 
-       /* bakeryVO.getAttachList().forEach(attach -> {
-            attach.setBno(bakeryVO.getBno());
-            bakeryFileDAO.insert(attach);
-        });*/
+        testingVO.getAttachList().forEach(attach -> {
+            attach.setTno(testingVO.getTno());
+            testingFileDAO.insert(attach);
+        });
     }
 
     @Override
@@ -73,8 +67,8 @@ public class TestingServiceImple implements TestingService{
     @Override
     public CeoVO getCeo(String ceoId) { return ceodao.ceoInfo(ceoId); }
 
-    /* @Override
-    public List<BakeryFileVO> getAttachList(Long bno) {
-        return bakeryFileDAO.findByBno(bno);
-    }*/
+     @Override
+    public List<TestingFileVO> getAttachList(Long tno) {
+        return testingFileDAO.findByTno(tno);
+    }
 }

@@ -23,6 +23,10 @@ public class BakeryFileDAO {
     public List<BakeryFileVO> findByBno(Long bno){
         return bakeryFileMapper.findByBno(bno);
     }
+
+    public void deleteAll(Long bno){bakeryFileMapper.deleteAll(bno);}
+
+    public List<BakeryFileVO> getOldFiles() {return bakeryFileMapper.getOldFiles();}
 }
 
 

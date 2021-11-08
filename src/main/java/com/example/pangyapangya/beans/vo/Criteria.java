@@ -24,7 +24,9 @@ public class Criteria {
     public String getListLink(){
         UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
                 .queryParam("pageNum", pageNum)
-                .queryParam("amount", amount);
+                .queryParam("amount", amount)
+                .queryParam("type", type)
+                .queryParam("keyword", keyword);
         return builder.toUriString();
     }
 //    public String getListLink(){

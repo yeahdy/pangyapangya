@@ -37,7 +37,7 @@
             position: fixed;
             background-color: white;
             width: 400px;
-            height: 500px;
+            height: 300px;
             padding: 17px;
             border: solid 1px #0000001a;
             box-shadow: 0 2px 4px 0 #0000001a;
@@ -48,6 +48,7 @@
         }
         #img-view{
             width: 560px;
+            height: 560px;
         }
         #img-view img{
             width: 560px;
@@ -62,7 +63,7 @@
         }
         #box{
             position: relative;
-            top: -604px;
+            top: -570px;
             right: -590px;
             padding: 0 !important;
             box-shadow: none !important;
@@ -90,7 +91,7 @@
         }
         .price-detail{
             font-size: large;
-            height: 320px;
+            height: 130px;
             margin-bottom: 15px;
         }
 
@@ -181,6 +182,7 @@
             font-size: x-large;
             font-weight: bold;
             padding-top: 64px;
+            padding-left: 10px;
             border-bottom: 1px solid #d9d9d9;
         }
         #prd-info{
@@ -195,8 +197,7 @@
             height: 32px;
             display: flex;
             justify-content: space-between;
-            margin-bottom: 16px
-        ;
+            padding-left: 7px;
         }
         .reviewer-info{
             width: 150px;
@@ -207,7 +208,7 @@
         }
         .review-box{
             display: block;
-            padding: 18px 0;
+            padding: 9px 5px;
             border-bottom: 1px solid #cccccc;
         }
         .star-one{
@@ -216,11 +217,12 @@
         }
         .reviewer{
             color: black;
-            font-size: 16px;
+            font-size: 13px;
+            margin-bottom: -6px;
         }
         .review-date{
             color: #5a5a5a;
-            font-size: 12px;
+            font-size: 11px;
         }
         .star-one{
             height: 15px;
@@ -242,6 +244,10 @@
         ul{
             padding-left: 0em;
         }
+        p{
+            margin: -3px 0px -3px 0px;
+            color: black;
+        }
         .kakao{
             display: flex;
             justify-content: center;
@@ -260,221 +266,118 @@
 <!-- Wrapper -->
 
 <div class="inner">
-    <div>
-        <div id="info">
-            <section id="img-section">
-                <div id="img-view">
-                    <img src="https://image.idus.com/image/files/695f8f487f8b4dbdba9cfa26aea2e1e4_1440.jpg">
-                </div>
-            </section>
-            <!-- 구매창 -->
-            <aside id="box" th:object="${info}">
-                <div class="payment">
-                    <div class="maker-card">
-                        <a href="" th:text="*{shopName}"></a>
-                    </div>
-                    <h2 class="bread-name"></h2>
-                    <div class="price-detail">
-                        <span>
-                            <strong>3000</strong>
-                            원
-                        </span>
-                    </div>
+        <th:block class="field" th:object="${info}">
+            <div>
+                <div id="info">
+                    <section id="img-section">
+                        <div id="img-view">
+                            <img th:src="*{bakeryPhoto}">
+                        </div>
+                    </section>
+                    <!-- 구매창 -->
+                    <aside id="box">
+                        <div class="payment">
+                            <div class="maker-card">
+                                <input type="hidden">
+                                <a href="#" th:text="*{shopName}"></a>
+                            </div>
+                            <h2 class="bread-name" th:text="*{breadName}"></h2>
+                            <div class="price-detail">
+                            <span>
+                                <strong th:text="*{breadPrice}"></strong>
+                                원
+                            </span>
+                                <p>배송비 3000원</p>
+                            </div>
 
-                    <fieldset><!---->
-                        <button type="submit">
-                            장바구니
-                        </button>
-                        <form method="post" action="/kakaoPay">
-                        <button class="kakao" type="submit" style="overflow: hidden; width: 100px; background-color: #ffeb00;">
-                            <img src="/images/kakao.png">
-                        </button>
-                        </form>
-                        <button type="submit">
-                            구매
-                        </button>
-                    </fieldset>
+                            <fieldset><!---->
+                                <form>
+                                <button type="button" onclick="addCart()">
+                                    장바구니
+                                </button>
+                                </form>
+                                <form>
+                                <button type="button" class="kakao" id="kakaoBtn" onclick="kakaoPay()" style="overflow: hidden; width: 100px; background-color: #ffeb00;">
+                                    <img src="/images/kakao.png">
+                                </button>
+                                </form>
+                                <form>
+                                <button type="button" onclick="buyNow()">
+                                    구매
+                                </button>
+                                </form>
+                            </fieldset>
+                        </div>
+                    </aside>
                 </div>
-            </aside>
-        </div>
-    </div>
+            </div>
+        </th:block>
     <section id="prd-info">
-        <p th:text="${info.content}">
-
-        </p>
     </section>
     <section id="prd-review">
         <div id="review-title">
             구매 후기
         </div>
         <ul>
+            <th:block th:each="reply : ${replyList}">
             <a class="review-box"><!--리뷰 상세 보기를 할 경우 링크를 담기 위한 a태그-->
-                <div class="review-header">
+                <div th:object="${reply}">
+                <div class="review-header"><!-- th:object="${reply}"-->
                     <div class="reviewer-info">
-                        <span class="reviewer">
-                            hgs1234
+                        <span class="reviewer" th:text="*{userid}">
                         </span>
-                        <span class="review-date">
-                            2021년 12월 21일
+                        <span class="review-date" th:text="*{replydate}">
                         </span>
                     </div>
                     <div class="review-star">
-                        <span>
+                        <span th:switch="*{star}">
+                        <span th:case="1">
                             <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-
-                            <!--<i class="star-one">
-                                ⭐
-                            </i>-->
+                            <img class="star-one" src="/images/cookie_unstar.png"/>
+                            <img class="star-one" src="/images/cookie_unstar.png"/>
+                            <img class="star-one" src="/images/cookie_unstar.png"/>
+                            <img class="star-one" src="/images/cookie_unstar.png"/>
                         </span>
+                        <span th:case="2">
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_unstar.png"/>
+                            <img class="star-one" src="/images/cookie_unstar.png"/>
+                            <img class="star-one" src="/images/cookie_unstar.png"/>
+                        </span>
+                        <span th:case="3">
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_unstar.png"/>
+                            <img class="star-one" src="/images/cookie_unstar.png"/>
+                        </span>
+                        <span th:case="4">
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_unstar.png"/>
+                        </span>
+                        <span th:case="5">
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                            <img class="star-one" src="/images/cookie_star.png"/>
+                        </span>
+                    </span>
                     </div>
                 </div>
                 <div class="review-body">
                     <img class="review-img" src="/images/bread1.jpg">
                     <div class="review-text">
-                        정말..얼른 9월이 되서, 또 사서 먹고 싶어요🥺♥️
-                        여기 정착..하고 텅장이 후회되지 않는 맛있는 그 맛!!
-                        건강한 재료라서 다이어트 중이지만 찔림이 덜해요 힣ㅎㅎㅎ‼️
+                        <p  th:text="*{reply}"></p>
                     </div>
+                </div>
                 </div>
             </a>
-            <a class="review-box"><!--리뷰 상세 보기를 할 경우 링크를 담기 위한 a태그-->
-                <div class="review-header">
-                    <div class="reviewer-info">
-                        <span class="reviewer">
-                            lyj2222
-                        </span>
-                        <span class="review-date">
-                            2021년 12월 21일
-                        </span>
-                    </div>
-                    <div class="review-star">
-                        <span>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-
-                            <!--<i class="star-one">
-                                ⭐
-                            </i>-->
-                        </span>
-                    </div>
-                </div>
-                <div class="review-body">
-                    <img class="review-img" src="https://image.idus.com/image/files/f0d9719407384a68bdca47ff0c0b2b16_1440.jpg">
-                    <div class="review-text">
-                        정말..얼른 9월이 되서, 또 사서 먹고 싶어요🥺♥️
-                        여기 정착..하고 텅장이 후회되지 않는 맛있는 그 맛!!
-                        건강한 재료라서 다이어트 중이지만 찔림이 덜해요 힣ㅎㅎㅎ‼️
-                    </div>
-                </div>
-            </a>
-            <a class="review-box"><!--리뷰 상세 보기를 할 경우 링크를 담기 위한 a태그-->
-                <div class="review-header">
-                    <div class="reviewer-info">
-                        <span class="reviewer">
-                            kjh5565
-                        </span>
-                        <span class="review-date">
-                            2021년 12월 21일
-                        </span>
-                    </div>
-                    <div class="review-star">
-                        <span>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-
-                            <!--<i class="star-one">
-                                ⭐
-                            </i>-->
-                        </span>
-                    </div>
-                </div>
-                <div class="review-body">
-                    <img class="review-img" src="https://image.idus.com/image/files/5629c38711b14297a7430b308b0f4139_512.jpg">
-                    <div class="review-text">
-                        배송하루만에 빨리도착했습니다~~^^
-                        얼음이넘작아서 다녹구,브라우니도 만지면 물껑거려서 먹을수가 없어서,바로 냉동실에 넣습니다 ~~~아직먹어보진않아서 맛은아직모르겠지만,생각보다 작아서 한번더 놀라긴했네요~~ㅋㅋㅋ
-                        냉동실에 얼려놓고 먹고서 다시 후기남기겠습니다~~배송은 꼼꼼히 잘도착했어요...
-                    </div>
-                </div>
-            </a>
-            <a class="review-box"><!--리뷰 상세 보기를 할 경우 링크를 담기 위한 a태그-->
-                <div class="review-header">
-                    <div class="reviewer-info">
-                        <span class="reviewer">
-                            hjk7852
-                        </span>
-                        <span class="review-date">
-                            2021년 12월 21일
-                        </span>
-                    </div>
-                    <div class="review-star">
-                        <span>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-
-                            <!--<i class="star-one">
-                                ⭐
-                            </i>-->
-                        </span>
-                    </div>
-                </div>
-                <div class="review-body">
-                    <img class="review-img" src="https://image.idus.com/image/files/fb07ecd53f914d3797e19398c16808ac_512.jpg">
-                    <div class="review-text">
-                        별5개로 모자라는 맛이에요 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 별 10개 더 드립니다
-                        그냥 기대 없이 브라우니가 브라우니겠지 하는 생각으로 정말 생각없이 한개만 주문했던 저를 원망하게 하는 맛이에요🥲🥲
-                        진짜 미쳤어요.. 이건 미챴어요 너무너무너무 부드럽고 속은 그냥 초콜릿가나슈처럼 그냥 녹아요ㅠㅠㅠ 너무 맛있어요ㅠㅠ
-                        행복해지는 맛이네요 감사해요💞
-
-                        재구매 의사 : ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
-                    </div>
-                </div>
-            </a>
-            <a class="review-box"><!--리뷰 상세 보기를 할 경우 링크를 담기 위한 a태그-->
-                <div class="review-header">
-                    <div class="reviewer-info">
-                        <span class="reviewer">
-                            kjy8650
-                        </span>
-                        <span class="review-date">
-                            2021년 12월 21일
-                        </span>
-                    </div>
-                    <div class="review-star">
-                        <span>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-
-                            <!--<i class="star-one">
-                                ⭐
-                            </i>-->
-                        </span>
-                    </div>
-                </div>
-                <div class="review-body">
-                    <img class="review-img" src="https://image.idus.com/image/files/11f6cb7645514085bdbb2b635f0afcb4_512.jpg">
-                    <div class="review-text">
-                        쫀득+바삭의 조합이 최고인 브라우니입니다🤎
-                        1/3은 쫀득하고 나머지는 살짝 바삭한게 너무 마음에 들어요! 파운드를 가장 기대하고 시켰는데 브라우니도 완전 맛있었어요😊
-                    </div>
-                </div>
-            </a>
+            </th:block>
         </ul>
     </section>
 </div>
@@ -485,7 +388,62 @@
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script th:replace="/main/header::header_js"></script>
+<script th:inline="javascript">
+    function addCart() {
+        if($('#sessionU').val() == null && $('#sessionC').val() == null){
+            alert("로그인 후 이용 가능합니다!")
+        }else{
+
+        }
+    }
+
+    function kakaoPay() {
+        if($('#sessionU').val() == null && $('#sessionC').val() == null){
+            alert("로그인 후 이용 가능합니다!")
+        }else {
+            IMP.init('imp37396046');
+            // 예: imp00000000
+            // IMP.request_pay(param, callback) 결제창 호출
+            IMP.request_pay({ // param
+                pg: "html5_inicis",
+                pay_method: "card",
+                merchant_uid: "ORD20211101-0000024",
+                name: "초코 케이크",
+                amount: 64900,
+                buyer_email: "gildong@gmail.com",
+                buyer_name: "홍길동",
+                buyer_tel: "010-4242-4242",
+                buyer_addr: "서울특별시 강남구 신사동",
+                buyer_postcode: "01182"
+            }, function (rsp) { // callback
+                if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+                    var msg = '결제가 완료되었습니다.';
+                    msg += '고유ID : ' + rsp.imp_uid;
+                    msg += '상점 거래ID : ' + rsp.merchant_uid;
+                    msg += '결제 금액 : ' + rsp.paid_amount;
+                    msg += '카드 승인번호 : ' + rsp.apply_num;
+                } else {
+                    alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+                }
+            });
+        }
+            /*$("#kakaoBtn").on("click", function(){
+                window.open("", "popup_window", "width=500, height=700, scrollbars=no");
+            });
+        }*/
+    }
+    function buyNow() {
+        if($('#sessionU').val() == null && $('#sessionC').val() == null){
+            alert("로그인 후 이용 가능합니다!")
+        }else{
+            window.location.href("/main/delivery")
+        }
+    }
+
+</script>
 
 </body>
 <!-- Footer -->

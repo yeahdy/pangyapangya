@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Data
-public class ClassReviewFileVO {
+public class ClassCeoFileVO {
     private String fileName;
     private String uploadPath;
     private String uuid;
