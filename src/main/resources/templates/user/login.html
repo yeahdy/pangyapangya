@@ -119,15 +119,8 @@
 						<a href="javascript:void(0)" onclick="kakaoLogin();" class="button fit iconA kakaoA">
 							<span class="iconSpan kakaoIcon">카카오로 시작하기</span>
 						</a>
-						<a href="javascript:void(0)" onclick="selectMyAccessTocken();" class="button fit iconA naverA">
-							<span class="iconSpan naverIcon">토큰 가져오기</span>
-							<!-- 회원정보 가져오기 -->
-							<div th:if="${kakaoUser_chk == '0'}" style="display: none">
-								<div th:object="${kakaoUserVO}">
-								<input type="hidden" id="kakao_email" th:value="*{userId}">
-								<input type="hidden" id="kakao_nickname" th:value="*{userName}">
-								</div>
-							</div>
+						<a href="javascript:void(0)" class="button fit iconA naverA">
+							<span class="iconSpan naverIcon">네이버로 시작하기</span>
 						</a>
 					</li>
 				</ul>
@@ -180,8 +173,8 @@
 		}
 	});
 
-	// 아이디, 비밀번호 공백 막기
 	$(document).ready(function () {
+		// 로그인 클릭(공백막기)
 		$('#loginButton').on("click", function () {
 			if(!$("#userId").val()){
 				$("#userId").focus();
@@ -206,6 +199,28 @@
 				alert("아이디 또는 비밀번호가 일치하지 않습니다.");
 			}
 		})
+		// 엔터키로 로그인(공백막기)
+		$("#userPw").on("keydown", function(e){
+			if(e.keyCode == 13){
+				if(!$("#userId").val()){
+					$("#userId").focus();
+					$("#userIdError1").show();
+					return;
+				}else{
+					$("#userIdError1").hide();
+				}
+
+				if(!$('#userPw').val()){
+					$("#userPw").focus();
+					$("#userPwError1").show();
+					return;
+				}else{
+					$("#userPwError1").hide();
+				}
+
+				loginForm.submit();
+			}
+		})
 
 		/* 아이디 찾기 컨트롤러 */
 		let resultId = $("#resultId span").text();
@@ -223,7 +238,6 @@
 			alert("비밀번호 변경이 완료되었습니다. 다시 로그인 해주세요.");
 		}
 
-
 	})
 
 	/* 카카오 로그인 */
@@ -239,14 +253,7 @@
 		});
 	}
 
-
-
-
-
-
-
-
-	/*
+/*
 	Kakao.init('2465241f2a949966552234d75ef14dee'); //발급받은 키 중 javascript키를 사용해준다.
 	console.log("sdk초기화여부판단" + Kakao.isInitialized()); // sdk초기화여부판단
 	//카카오로그인
@@ -268,7 +275,7 @@
 			},
 		})
 	}
-	*/
+*/
 
 </script>
 </body>

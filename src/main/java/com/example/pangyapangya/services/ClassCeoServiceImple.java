@@ -1,7 +1,7 @@
 package com.example.pangyapangya.services;
 
 
-import com.example.pangyapangya.beans.dao.BakeryFileDAO;
+//import com.example.pangyapangya.beans.dao.BakeryFileDAO;
 import com.example.pangyapangya.beans.dao.CEODAO;
 import com.example.pangyapangya.beans.dao.ClassCeoDAO;
 import com.example.pangyapangya.beans.vo.CeoVO;
@@ -27,7 +27,7 @@ import java.util.List;
 public class ClassCeoServiceImple implements ClassCeoService{
 
     private final ClassCeoDAO classCeoDAO;
-    private final BakeryFileDAO bakeryFileDAO;
+//    private final BakeryFileDAO bakeryFileDAO;
     private final CEODAO ceodao;
 
     @Transactional(rollbackFor = Exception.class)

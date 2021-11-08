@@ -1,5 +1,6 @@
 package com.example.pangyapangya.mappers;
 
+import com.example.pangyapangya.beans.vo.BakeryVO;
 import com.example.pangyapangya.beans.vo.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -36,4 +37,7 @@ public interface UserMapper {
 
     // 회원정보 조회(일반회원)
     public UserVO userInfo (String userId);
+
+    // 메인 검색
+    public List<BakeryVO> searchBakery_main ();
 }

@@ -3,22 +3,22 @@
 
 <mapper namespace="com.example.pangyapangya.mappers.ClassReplyMapper">
     <insert id="insert">
-        INSERT INTO TBL_CLASSREVIEWREPLY (RNO, BNO, REPLY)
-        VALUES (SEQ_CLASSREVIEWREPLY.NEXTVAL, #{bno}, #{reply})
+        INSERT INTO TBL_CLASSREVIEWREPLY (RNO, BNO, REPLY, USERID)
+        VALUES (SEQ_CLASSREVIEWREPLY.NEXTVAL, #{bno}, #{reply}, #{userId})
     </insert>
 
     <select id="read" resultType="ClassReplyVO">
-        SELECT RNO, BNO, REPLY, REPLYDATE FROM TBL_CLASSREVIEWREPLY
+        SELECT RNO, BNO, REPLY, REPLYDATE, USERID FROM TBL_CLASSREVIEWREPLY
         WHERE RNO = #{rno}
     </select>
 
     <select id="getListWithPaging" resultType="ClassReplyVO">
         <![CDATA[
-        SELECT RNO, BNO, REPLY, REPLYDATE
+        SELECT RNO, BNO, REPLY, USERID, REPLYDATE
         FROM
         (
             SELECT /*+ INDEX_DESC(TBL_REPLY PK_REPLY) */
-            ROWNUM R, RNO, BNO, REPLY, REPLYDATE
+            ROWNUM R, RNO, BNO, REPLY, USERID, REPLYDATE
             FROM TBL_CLASSREVIEWREPLY
             WHERE BNO = #{bno}
             AND ROWNUM <= #{criteria.pageNum} * #{criteria.amount}
