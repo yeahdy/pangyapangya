@@ -115,7 +115,9 @@
 <body class="is-preload" style="padding: 200px">
 	<!-- Header -->
 	<header id="header" th:include="/main/header::header_body"></header>
-
+	<div th:if="${result == 'true'}">
+		<input type="hidden" id="updateChk" th:value="${result}" />
+	</div>
 	<!-- Wrapper -->
 	<div id="all">
 		<div class="wrapper">
@@ -298,6 +300,15 @@
 		location.href = "/myPageCeo/bakeryModify" + paging + "&bno=" + $(this).attr("href");
 	})
 
+	$("a#goRemove").on("click", function(e){
+		e.preventDefault();
+		location.href = "/myPageCeo/remove?bno=" + $(this).attr("href");
+	})
+
+	/* 로그인 실패 컨트롤러*/
+	if($("#updateChk").val() == 'success'){
+		alert("삭제 완료");
+	}
 
 </script>
 </html>

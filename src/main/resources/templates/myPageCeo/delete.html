@@ -93,6 +93,9 @@
 
 	<header id="header" th:include="/main/header::header_body"></header>
 
+	<div th:if="${check == 'true'}">
+		<input type="hidden" id="updateChk" th:value="${check}" />
+	</div>
 	<!-- Wrapper -->
 	<div>
 		<div id="all">
@@ -188,5 +191,9 @@
 			$this.prev('input').prop('type','text');
 		}
 	});
+	/* 로그인 실패 컨트롤러*/
+	if($("#updateChk").val() == 'true'){
+		alert("회원 탈퇴가 완료되었습니다.\n이용해주셔서 감사합니다.");
+	}
 </script>
 </html>

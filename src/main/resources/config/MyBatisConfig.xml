@@ -3,7 +3,7 @@
 <configuration>
     <typeAliases>
         <typeAlias type="com.example.pangyapangya.beans.vo.CartVO" alias="CartVO"/>
-        <typeAlias type="com.example.pangyapangya.beans.vo.Cart_shopName_VO" alias="Cart_shopName_VO"/>
+        <!--<typeAlias type="com.example.pangyapangya.beans.vo.Cart_shopName_VO" alias="Cart_shopName_VO"/>-->
         <typeAlias type="com.example.pangyapangya.beans.vo.BakeryVO" alias="bakeryVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.BakeryFileVO" alias="bakeryFileVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.ClassCeoFileVO" alias="classCeoFileVO"/>
@@ -14,7 +14,7 @@
         <typeAlias type="com.example.pangyapangya.beans.vo.TestingVO" alias="testingVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.TestingImgVO" alias="testingImgVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.ClassReplyVO" alias="classReplyVO"/>
-        <typeAlias type="com.example.pangyapangya.beans.vo.ClassReviewFileVO" alias="classReviewFileVO"/>
+        <typeAlias type="com.example.pangyapangya.beans.vo.ClassReplyFileVO" alias="classReplyFileVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.BakeryReviewVO" alias="bakeryReviewVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.TestingRequestVO" alias="testingRequestVO"/>
         <typeAlias type="com.example.pangyapangya.beans.vo.TestingReviewBoardVO" alias="testingReviewBoardVO"/>

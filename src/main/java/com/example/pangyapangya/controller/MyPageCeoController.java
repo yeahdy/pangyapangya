@@ -132,7 +132,7 @@ public class MyPageCeoController {
 //    삭제 성공 시 result에 "success"를 flash에 담아서 전달한다.
 //    삭제 실패 시 result에 "fail"을 flash에 담아서 전달한다.
 //    단위 테스트로 전달할 파라미터를 조회한다.
-    @PostMapping("remove")
+    @GetMapping("remove")
     public RedirectView remove(@RequestParam("bno") Long bno, RedirectAttributes rttr) {
         log.info("-------------------------------");
         log.info("remove : " + bno);
@@ -141,7 +141,7 @@ public class MyPageCeoController {
         List<BakeryFileVO> attachList = bakeryService.getAttachList(bno);
 
         if (bakeryService.remove(bno)) {
-            deleteFiles(attachList);
+            /*deleteFiles(attachList);*/
             rttr.addFlashAttribute("result", "success");
         } else {
             rttr.addFlashAttribute("result", "fail");
@@ -205,7 +205,9 @@ public class MyPageCeoController {
         ceoVO.setCeoPw(ceoVO.getCeoPw());
         ceoVO.setCeoId(sessionC);
 
-        bakeryService.ceoUpdate(ceoVO);
+        if(bakeryService.ceoUpdate(ceoVO)){
+            rttr.addFlashAttribute("check", "true");
+        }
         rttr.addFlashAttribute("ceo", bakeryService.getCeo(ceoVO.getCeoId()));
         return new RedirectView("edit");
     }
@@ -231,6 +233,7 @@ public class MyPageCeoController {
             return "myPageCeo/delete";
         }else{
             if(bakeryService.ceoDelete(ceoVO)){
+                rttr.addFlashAttribute("check", "true");
                 session.invalidate();
                 return "main/mainPage";
             }

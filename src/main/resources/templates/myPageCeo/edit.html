@@ -101,7 +101,9 @@
 <body class="is-preload" style="padding: 200px">
 
 	<header id="header" th:include="/main/header::header_body"></header>
-
+	<div th:if="${check == 'true'}">
+		<input type="hidden" id="updateChk" th:value="${check}" />
+	</div>
 	<!-- Wrapper -->
 	<div>
 		<div id="all">
@@ -251,5 +253,11 @@
 			$this.prev('input').prop('type','text');
 		}
 	});
+
+	/* 로그인 실패 컨트롤러*/
+	if($("#updateChk").val() == 'true'){
+		alert("회원정보 수정이 완료되었습니다.");
+	}
+
 </script>
 </html>

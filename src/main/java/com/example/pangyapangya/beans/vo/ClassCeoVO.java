@@ -21,7 +21,6 @@ public class ClassCeoVO {
     private String description;
     private String breadType;
     private String breadName;
-    private int breadPrice;
+    private String shopName;
     private List<ClassCeoFileVO> attachList;
-    private String bakeryShopname;
 }

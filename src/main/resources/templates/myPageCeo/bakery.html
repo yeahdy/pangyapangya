@@ -148,13 +148,14 @@
 											</div>
 											<div id="subDiv1">
 												<!--대표사진-->
-												<div class="files first-file uploadResult">
+												<div class="files first-file uploadResult" style="border: none; padding: 0;">
 													<div id="mainFileDiv">
-														<label for="board_file1" style="display:inline;">
+														<!--<label for="board_file1" style="display:inline;">
 															<img id="board_file1Img" src="/images/no1.png" width="110px" height="110px" style="display:inline;">
-														</label>
+														</label>-->
+														<img id="board_file1Img" src="/images/brownie.jpg" style="width: 50%;"/>
 													</div>
-													<input id="board_file1" name="bakery_photo1" type="file" multiple>
+													<input id="board_file1" name="bakeryPhoto" type="file" multiple>
 												</div>
 											</div><!--사진부분-->
 
@@ -242,7 +243,7 @@
 	<script th:replace="/main/header::header_js"></script>
 </body>
 <script th:inline="javascript">
-	let check = false;
+	/*let check = false;
 	function showImage(fileCallPath){
 		if(check) {return;}
 		$(".bigPictureWrapper").css("display", "flex").show();
@@ -295,7 +296,7 @@
 					str += "<li data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-name='" + obj.fileName.substring(obj.fileName.indexOf("_") + 1) + "' data-type='" + obj.image +"'>";
 					str += "<div>";
 					str += "<a href='/upload/download?fileName=" + fileCallPath + "'>";
-					str += "<img src='/img/attach.png' width='100px'>" + obj.fileName.substring(obj.fileName.indexOf("_") + 1);
+					str += "<img src='/images/no1.png' width='100px'>" + obj.fileName.substring(obj.fileName.indexOf("_") + 1);
 					str += "</a>"
 					str += "<span data-file='" + fileCallPath + "' data-type='file'>x</span>";
 					str += "</div>";
@@ -371,6 +372,6 @@
 			});
 		});
 	})
-
+*/
 </script>
 </html>

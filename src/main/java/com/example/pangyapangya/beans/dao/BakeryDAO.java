@@ -40,8 +40,6 @@ public class BakeryDAO {
 
     public boolean ceoDelete(CeoVO ceoVO){ return mapper.ceoDelete(ceoVO) == 1;}
 
-    public List<BakeryVO> breadList(){ return mapper.breadList();}
-
     public List<BakeryVO> breadListCeo(BakeryVO bakeryVO){ return mapper.breadListCeo(bakeryVO);}
     public List<BakeryVO> breadList(String keyword){ return mapper.breadList(keyword);}
 

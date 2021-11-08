@@ -97,10 +97,10 @@
 </head>
 <body class="is-preload" style="padding: 200px">
 <!-- Header -->
-<header id="header" th:include="/main/header::header_body">
-
-</header>
-
+<header id="header" th:include="/main/header::header_body"></header>
+<div th:if="${result == 'true'}">
+	<input type="hidden" id="updateChk" th:value="${result}" />
+</div>
 <!-- Wrapper -->
 <div id="all">
 	<div class="wrapper">
@@ -155,8 +155,8 @@
 										<div class="table-boxes" style="display: flex;" th:object="${oneDay}">
 											<div class="table-first">
 												<div class="col-6 col-12-small">
-													<input type="checkbox"  id="*{bno}" name="*{bno}">
-													<label for="*{bno}"></label>
+													<input type="checkbox"  id="checkBox" name="checkBox">
+													<label for="checkBox"></label>
 												</div>
 
 											</div>
@@ -225,9 +225,15 @@
 </body>
 <script th:inline="javascript">
 	// 글 등록 시 전달받는 게시글 번호를 alert으로 출력
-	let pageForm = $(document.pageForm);
-	let paging = [[${pageMaker.criteria.listLink}]];
-	let searchForm = $(document.searchForm);
+
+	let paging = [[${criteria.listLink}]];
+	let pageNum = 1;
+
+	$("div.paging").on("click", "a.changePage", function(e){
+		e.preventDefault();
+		pageNum = parseInt($(this).attr("href"));
+		showList(pageNum);
+	});
 
 	$(document).ready(function(){
 		let bno = [[${bno}]];
@@ -246,13 +252,23 @@
 
 	$("a#goRead").on("click", function(e){
 		e.preventDefault();
-		location.href = "/myPageCeo/oneDayRe" + paging + "&bno=" + $(this).attr("href");
+		location.href = "/class/classDetail?bno=" + $(this).attr("href");
 	})
 
 	$("a#goModify").on("click", function(e){
 		e.preventDefault();
 		location.href = "/myPageCeo/oneDayModify" + paging + "&bno=" + $(this).attr("href");
 	})
+
+	$("a#goRemove").on("click", function(e){
+		e.preventDefault();
+		location.href = "/myPageCeo/oneDayRemove?bno=" + $(this).attr("href");
+	})
+
+	/* 로그인 실패 컨트롤러*/
+	if($("#updateChk").val() == 'success'){
+		alert("삭제 완료");
+	}
 
 </script>
 </html>
