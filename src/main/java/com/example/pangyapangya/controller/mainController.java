@@ -98,7 +98,7 @@ public class mainController {
         System.out.println("인증번호 : " + numStr);
 
         // 문자 보내기
-        //userService.certifiedPhoneNumber(userPhoneNum , numStr);
+        userService.certifiedPhoneNumber(userPhoneNum , numStr);
         return numStr;
     }
 

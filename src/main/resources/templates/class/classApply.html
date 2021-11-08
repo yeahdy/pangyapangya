@@ -9,155 +9,57 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/login.css" />
     <link rel="icon" type="image/png"  href="/images/favicon.png"/>
+    <style th:include="/main/header::header_style"></style>
     <style>
-        .headerIcon{
-            width: 40px;
-            display: block;
-            margin: auto;"
-        }
-        .icon.solid:before {
-            font-weight: 100;
-            content: none;
+        . info_error{
+            margin: 0 0 1em 0;
         }
 
-        .spotlights h5{
-            font-weight: bold;
-            font-size: small;
-        }
-
-        .spotlights p{
-            font-size: small;
-        }
-
-        /* 검색창 */
-        .search {
-            position: relative;
-            text-align: center;
-            width: 400px;
+        /* 로그인 구분 */
+        .box {
+            display: flex;
+            justify-content: center;
+            width: 460px;
             margin: 0 auto;
-        }
-        input {
-            width: 100%;
-            border-radius: 20px;
-            border: 1px solid #bbb;
-            margin: 10px 0;
-            padding: 10px 12px;
-        }
-        .fa-search {
-            position: absolute;
-            left: 90%;
-            top: 35%;
-            margin: 0;
-        }
-        form {
-            margin: 0;
-        }
-        .section_receipt {
-            width: 350px;
-            margin-top: 6em;
-            margin-right: 5px ;
-            padding: 30px 35px;
-            border: 1px solid #eee;
+            cursor: pointer;
+            padding: 1em;
         }
 
-        .title_section {
-            font-weight: 400;
+        .box li {
+            width: 50%;
+            cursor: pointer;
+            list-style: none;
+            float: left;
+        }
+
+        .box h4{
+            margin-bottom: 0em;
+        }
+
+        .box a {
             font-size: 18px;
-            line-height: 30px;
-            letter-spacing: -0.45px;
-            color: #333;
-            text-align: center;
-        }
-
-        .tb_pay {
-            margin-bottom: 93px;
-            border-top: 1px solid #eee;
-        }
-
-
-        /*img{*/
-        /*    width: 30%;*/
-        /*}*/
-
-        .wrapper{
-            justify-content: space-between;
-        }
-
-        .titleimg{
-            width: 250px;
-        }
-
-        #reservation{
-            width: 250px;
-            margin-top: 3em;
-        }
-
-
-        #infotitle{
-            font-size: 1em;
-            font-weight: 600;
-            padding: 0 0.75em 0.75em 0.75em;
-            text-align: left;
-        }
-
-
-        p {
-            margin: 2.3em 0 0.8em 1.5em;
-            font-size: 23px;
-        }
-
-        #l_box w406{
-            margin: 3em 3em 3em 3em;
         }
 
         table tbody tr:nth-child(2n + 1) {
             background-color: white;
         }
 
-        table tbody tr {
-            border: solid 0px;
-            border-left: 0;
-            border-right: 0;
+        .login_email {
+            display: -ms-grid;
+            display: grid;
+            -ms-grid-rows: 72px auto 88px;
+            grid-template-rows: 100px auto 100px;
+            -ms-grid-columns: 100%;
+            grid-template-columns: 100%;
+            height: 550px;
         }
-
-        table td {
-            padding: 0.75em 0.75em;
-            font-size: 15px;
-        }
-
-        table th{
-            font-size: 16px;
-        }
-
-        #content th{
-            width: 40%;
-            margin: 0 0 2em 2em;
-        }
-
-        #ceoimg{
-            width: 80%;
-        }
-
-        .img{
-            margin: 0 0 0.5em 2em;
-        }
-
-        .title{
-            color: orange;
-        }
-
-        #reservation {
-            width: 250px;
-            margin-top: 6em;
-        }
-
 
     </style>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
-
-<body class="is-preload" style="padding: 200px">
+<body class="is-preload" style="padding: 5em 200px 0 200px;background-color: white;">
 
 <!-- Header -->
 <header id="header" th:include="/main/header::header_body">
@@ -169,174 +71,73 @@
         </ul>
     </li>
 </header>
-<!-- Wrapper -->
-<div class="wrapper">
 
-    <!-- Main -->
-    <section class="main">
-        <div class="wrapper" th:object="${pay}">
-                <!-- class_information 좌측 정보-->
-                <div class="titleimg">
-                    <div id="title">
-                        <strong><p class="title" th:field="*{title}"></p></strong>
-                    </div>
-                    <div class="img">
-                        <img src="/images/bread1.jpeg" alt="" id="ceoimg">
-                    </div>
-                </div>
-                <!-- //class_information -->
-                <div id="reservation">
-                    <table id="content">
-                        <tr><th>예약자</th>
-                            <td colspan="2">사용자 ID</td>
-                        </tr>
-                        <tr><th rowspan="3">예약 내역</th>
-                            <td colspan="2" th:text="*{classDate}">날짜 및 시간</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">인원 수</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" th:text="*{shopName}">빵집 이름</td>
-                        </tr>
-                    </table>
-                </div>
+<!-- Wrapper수정 -->
+<!-- Main -->
+<section class="cont_login container">
+    <!--        <div class="box">-->
+    <!--            <li style="border-right: 1px solid #dcdcdc">-->
+    <!--                <h4><a href="/user/login"><strong>원데이 클래스 결제 내용</strong></a></h4>-->
+    <!--            </li>-->
 
+    <!--        </div>-->
+    <div class="box_login login_email" style="grid-template-rows: 100px auto 100px;" th:object="${pay}">
+        <h2 class="tit"><strong style="color: #F9A825">원데이 클래스 결제 내용</strong></h2>
 
-                <!-- //section_discount -->
-            <!-- section_receipt 우측 결제박스 -->
-            <div class="r_box section_receipt">
-                <h3 class="title_section">최종 결제 금액</h3>
-                <table class="tb_pay">
-                    <tbody>
-                    <tr>
-                        <th>수업료</th>
-                        <td th:text="*{classPrice}">원 </td>
-                    </tr>
-                    <tr>
-                        <th>신청 인원</th>
-                        <td>1명</td>
-                    </tr>
+        <div class="r_box section_receipt">
+            <table class="tb_pay">
+                <tbody>
+                <tr>
+                    <th>진행 날짜</th>
+                    <td th:text="*{classDate}"> </td>
+                </tr>
+                <tr>
+                    <th>빵집 이름</th>
+                    <td th:text="*{shopName}"> </td>
+                </tr>
+                <tr>
+                    <th>수업료</th>
+                    <td th:text="*{classPrice}"> </td>
+                </tr>
+                <tr>
+                    <th>신청 인원</th>
+                    <td>1명</td>
+                </tr>
 
-                    <tr class="total_price">
-                        <th>총 결제 금액</th>
-                        <td>
-                            <span id="spn-total-price" th:text="*{classPrice}"></span>원
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                <tr class="total_price">
+                    <th>총 결제 금액</th>
+                    <td>
+                        <span id="spn-total-price" th:text="*{classPrice}"></span>원
+                    </td>
+                </tr>
+                </tbody>
+            </table>
 
-                    <div>
-                        <a type="submit" id="pay_kakao" onclick="requestPay()"><span th:text="*{classPrice}"></span> 원 결제하기</a>
-                    </div>
+            <div>
+                <button type="submit" id="pay_kakao" onclick="requestPay()"><span th:text="*{classPrice}"></span> 원 결제하기</button>
             </div>
-            <!-- //section_receipt -->
         </div>
-
-    </section>
-
-</div>
+    </div>
+</section>
 <!-- Footer -->
 <footer id="footer" th:include="/main/footer::footer_body"></footer>
+
+
 <!-- Scripts -->
 <script src="/js/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
 <script src="/js/browser.min.js"></script>
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:replace="/main/header::header_js"></script>
-<script>
-    document.querySelector("#content > div.wrapper")
-    document.querySelector("#content > div.wrapper > div.r_box.section_receipt")
-</script>
 <script th:inline="javascript">
     let bno = [[${pay.getBno()}]];
 </script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
-
-<!--<script>-->
-
-<!--    $("#pay_kakao").click(function(){-->
-
-<!--        //@@@@@@ 1번 @@@@@@@-->
-<!--        var IMP = window.IMP; // 생략가능-->
-<!--        IMP.init('imp37396046'); //가맹점 식별코드 삽입-->
-<!--        var msg;-->
-
-<!--        //@@@@@@@@ 2번 @@@@@@@@-->
-<!--        //url에서 parameter 가져오기 &ndash;&gt; price값 알기 위해서-->
-<!--        var getParam = function(key){-->
-<!--            var _parammap = {};-->
-<!--            document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {-->
-<!--                function decode(s) {-->
-<!--                    return decodeURIComponent(s.split("+").join(" "));-->
-<!--                }-->
-
-<!--                _parammap[decode(arguments[1])] = decode(arguments[2]);-->
-<!--            });-->
-
-<!--            return _parammap[key];-->
-<!--        };-->
-
-<!--        //@@@@@@ 3번 @@@@@@@-->
-<!--        IMP.request_pay({-->
-<!--            pg : 'kakaopay',-->
-<!--            pay_method : 'card',-->
-<!--            merchant_uid : 'merchant_' + new Date().getTime(),-->
-<!--            name : 'vivipayment',-->
-<!--            amount : getParam("price"),-->
-<!--            buyer_email : '이메일 넣기',-->
-<!--            buyer_name : '이름 넣기',-->
-<!--            buyer_tel : '번호 넣기',-->
-<!--            buyer_addr : '주소 넣기',-->
-<!--            buyer_postcode : '123-456',-->
-<!--            // m_redirect_url : '결제 완료후 이동할 페이지'-->
-<!--        }, function(rsp) {-->
-<!--            if ( rsp.success ) {-->
-<!--                //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기-->
-<!--                jQuery.ajax({-->
-<!--                    url: "/class/classPay", //cross-domain error가 발생하지 않도록 주의해주세요-->
-<!--                    type: 'POST',-->
-<!--                    dataType: 'json',-->
-<!--                    contentType: 'application/json',-->
-<!--                    data: JSON.stringify({-->
-<!--                        uid : rsp.imp_uid,-->
-<!--                        price: rsp.paid_amount-->
-<!--                        //기타 필요한 데이터가 있으면 추가 전달-->
-<!--                    })-->
-<!--                }).done(function(data) {-->
-<!--                    //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우-->
-<!--                    if ( everythings_fine ) {-->
-<!--                        msg = '결제가 완료되었습니다.';-->
-<!--                        msg += '\n고유ID : ' + rsp.imp_uid;-->
-<!--                        msg += '\n상점 거래ID : ' + rsp.merchant_uid;-->
-<!--                        msg += '\n결제 금액 : ' + rsp.paid_amount;-->
-<!--                        msg += '카드 승인번호 : ' + rsp.apply_num;-->
-
-<!--                        alert(msg);-->
-<!--                    } else {-->
-<!--                        //[3] 아직 제대로 결제가 되지 않았습니다.-->
-<!--                        //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.-->
-<!--                    }-->
-<!--                });-->
-<!--                //성공시 이동할 페이지-->
-<!--                location.href='<%=request.getContextPath()%>/class/classPay?msg='+msg;-->
-<!--            } else {-->
-<!--                msg = '결제에 실패하였습니다.';-->
-<!--                msg += '에러내용 : ' + rsp.error_msg;-->
-<!--                //실패시 이동할 페이지-->
-<!--                location.href="<%=request.getContextPath()%>/class/classMain";-->
-<!--                alert(msg);-->
-<!--            }-->
-<!--        });-->
-
-<!--    });-->
-<!--</script>-->
 <script>
     // 세션값 확인
     if($('#sessionU').val() != null){
@@ -352,7 +153,7 @@
         IMP.request_pay({ // param
             pg: "html5_inicis",
             pay_method: "card",
-            merchant_uid: "ORD20180131-000002",
+            merchant_uid: "ORD20180131-000006",
             name: "원데이클래스4",
             amount: 64900,
             buyer_email: "gildong@gmail.com",

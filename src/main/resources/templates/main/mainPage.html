@@ -147,7 +147,7 @@
 				<a th:href="*{bno}" class="image fit goInfo"><img th:src="*{bakeryPhoto}" alt=""></a>
 				<a th:href="*{bno}" class="bakery-name goInfo" name="shopName" th:text="*{shopName}"></a>
 				<p th:text="*{content}"></p>
-				<p style="font-weight: 600;">리뷰 0개</p>
+				<p style="font-weight: 600; "th:text="'리뷰 '+*{reviewCnt}+'개'"></p>
 			</th:block>
 			</article>
 			<br>
@@ -171,8 +171,8 @@
 				<a th:href="*{bno}" class="image fit goRead_class"><img th:src="*{classPhoto}" alt=""></a>
 				<a class="goRead_class" th:href="*{bno}" th:text="*{shopName}"></a>
 				<p th:text="*{title}"></p>
-				<p style="font-weight: 600;margin: 0px;font-size: 18px;color: #F9A825;text-align: end;">￦ <span th:text="*{classPrice}"></span></p>
-				<p style="font-weight: 600;text-align: end;">리뷰 0개</p>
+				<p style="font-weight: 600;margin: 0px;font-size: 18px;color: #F9A825;text-align: end;"> <span th:text="*{classPrice}"></span></p>
+				<p style="font-weight: 600;text-align: end;" th:text="'리뷰 '+*{reviewCnt}+'개'"></p>
 			</article>
 			</th:block>
 			<br>
@@ -214,7 +214,7 @@
 				<a th:href="*{tno}" class="image fit goRead"><img  th:src="*{testingPhoto}" alt=""></a>
 				<a th:href="*{tno}" th:text="*{shopName}" class="goRead"></a>
 				<p th:text="*{title}"></p>
-				<p style="font-weight: 600;">리뷰 0개</p>
+				<p style="font-weight: 600;" th:text="'리뷰 '+*{reviewCnt}+'개'"></p>
 				<!-- 사용자 댓글 -->
 				<div class="box" style="background: #f5f5f5;margin-bottom: 1em">
 					<span style="font-size: small;">yedee123 님</span>

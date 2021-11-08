@@ -72,8 +72,8 @@
         .cnt_button{
             /*width:5%;*/
             float:left;
-            height: 20px;
-            width: 20px;
+            height: 25px;
+            width: 30px;
             border-radius: 0;
             padding: 10px;
             line-height: 0px;
@@ -107,10 +107,10 @@
             margin-bottom: 15px;
         }
 
-      .resultWindow_th{
-        background-color: white;
-        padding: 2%;
-        text-align: center;
+        .resultWindow_th{
+            background-color: white;
+            padding: 2%;
+            text-align: center;
         }
         .resultWindow_th img{
             width: 30%;
@@ -176,7 +176,7 @@
             border-top: 1px solid #dee2e6;
         }
         .cart_bottom{
-           /* margin-left: 5%;*/
+            /* margin-left: 5%;*/
         }
         #orderButton:not(input[type="submit"], input[type="reset"], input[type="button"], button, .button){
             border: solid 0px;
@@ -207,69 +207,69 @@
     <!-- Main -->
     <section class="main">
         <form action="/main/delivery" method="get">
-        <section style="    margin: 100px 0;">
+            <section style="    margin: 100px 0;">
 
-            <header>
-                <h1 id="title">장바구니</h1>
-            </header>
-            <table border="1" class="bakery1">
-                <tbody>
-                <th:block th:each="cart : ${cartList}">
+                <header>
+                    <h1 id="title">장바구니</h1>
+                </header>
+                <table border="1" class="bakery1">
+                    <tbody>
+                    <th:block th:each="cart : ${cartList}">
 
-                    <tr>
-<!--                    <th class="bakeryName">빵집이름2</th>-->
-                </tr>
-                <tr>
-                    <td><div class="bread_table"><img class="bread_img" th:src="@{/images/}+${cart.getBreadImg()}" width="200px"></div>
-                        <div class="breadTable_top">
-                            <input type="hidden" id="ceoId" th:text="${cart.getCeoId()}">
-                            <span class="bread_title"><strong th:text="${cart.getShopName()}">빵집이름</strong></span>
-                            <br>
-                            <ul>
-                                <li><span class="bread_name" th:text="${cart.getBreadName()}"></span></li>
-                            </ul>
-                        </div>
-                        <div class="breadTable_bottom">
-                            <div class="cnt_buttonDiv">
-                                <table class="bt">
-                                    <tr class="bt">
-                                        <td class="bt_minus"><button type="button" class="cnt_button"><span>-</span></button></td>
-                                        <td><div class="bread_table" id="cnt1" th:text="${cart.getBreadCnt()}"></div></td>
-                                        <td class="bt_plus"><button type="button" class="cnt_button">+</button></td>
-                                        <td class="price">
-                                                <div class="bread_table breadPrice" id="price1" th:text="${cart.getBreadCnt()*cart.getPriceOfBread()}"></div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="bread_table"><a id="cartNum" th:href="${cart.getCartNum()}"><img class="delete_icon" src="/images/delete_icon.png"></a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                </th:block>
-                </tbody></table>
-            <!--총 결제-->
-            <div class="cart_bottom">
-            <div id="resultDiv">
-            <table class="resultWindow">
-                <tr>
-                    <th class="resultWindow_th">상품 금액</th>
-                    <th class="resultWindow_th">배달료</th>
-                    <th class="resultWindow_th">총 상품 금액</th>
-                </tr>
-                <tr>
-                    <td class="resultWindow_th" id="priceResult">3000</td>
-                    <td class="resultWindow_th" id="deliveryPrice">3000</td>
-                    <td class="resultWindow_th" id="totalPrice">42000</td>
-                </tr>
-                </table>
-            </div>
-            <div>
-            <button id="orderButton"><div>주문하기</div></button>
-            </div>
-            </div>
-        </section>
+                        <tr>
+                            <!--                    <th class="bakeryName">빵집이름2</th>-->
+                        </tr>
+                        <tr>
+                            <td><div class="bread_table"><img class="bread_img" th:src="@{/images/}+${cart.getBreadImg()}" width="200px"></div>
+                                <div class="breadTable_top">
+                                    <input type="hidden" id="ceoId" th:text="${cart.getCeoId()}">
+                                    <span class="bread_title"><strong th:text="${cart.getShopName()}">빵집이름</strong></span>
+                                    <br>
+                                    <ul>
+                                        <li><span class="bread_name" th:text="${cart.getBreadName()}"></span></li>
+                                    </ul>
+                                </div>
+                                <div class="breadTable_bottom">
+                                    <div class="cnt_buttonDiv">
+                                        <table class="bt">
+                                            <tr class="bt">
+                                                <td class="bt_minus"><button type="button" class="cnt_button"><span>-</span></button></td>
+                                                <td><div class="bread_table" id="cnt1" th:text="${cart.getBreadCnt()}"></div></td>
+                                                <td class="bt_plus"><button type="button" class="cnt_button">+</button></td>
+                                                <td class="price">
+                                                    <div class="bread_table breadPrice" id="price1" th:text="${cart.getBreadCnt()*cart.getPriceOfBread()}"></div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="bread_table"><a id="cartNum" th:href="${cart.getCartNum()}"><img class="delete_icon" src="/images/delete_icon.png"></a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </th:block>
+                    </tbody></table>
+                <!--총 결제-->
+                <div class="cart_bottom">
+                    <div id="resultDiv">
+                        <table class="resultWindow">
+                            <tr>
+                                <th class="resultWindow_th">상품 금액</th>
+                                <th class="resultWindow_th">배달료</th>
+                                <th class="resultWindow_th">총 상품 금액</th>
+                            </tr>
+                            <tr>
+                                <td class="resultWindow_th" id="priceResult">3000</td>
+                                <td class="resultWindow_th" id="deliveryPrice">3000</td>
+                                <td class="resultWindow_th" id="totalPrice">42000</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <button id="orderButton"><div>주문하기</div></button>
+                    </div>
+                </div>
+            </section>
         </form>
     </section>
 </div>
@@ -302,7 +302,7 @@
     bakeryCnt=$(".bread_table").length/4;
     let totalPriceResult = $(function () {
         for (let i = 0; i < bakeryCnt; i++) {
-        totalPrice += parseInt($(".breadPrice").eq(i).text());
+            totalPrice += parseInt($(".breadPrice").eq(i).text());
         }
 
         console.log("총 금액" + totalPrice);
@@ -406,7 +406,7 @@
             price = parseInt(price/cnt);//상품 1개의 가격
 
             if(cnt>1){
-            $(this).closest("tr").children("td:eq(1)").children(".bread_table").text(--cnt);
+                $(this).closest("tr").children("td:eq(1)").children(".bread_table").text(--cnt);
                 price = price * cnt;
                 $(this).closest("tr").children("td:eq(3)").children("div").text(price);
 

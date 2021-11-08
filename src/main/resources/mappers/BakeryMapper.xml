@@ -13,7 +13,7 @@
     <select id="breadList" resultType="bakeryVO">
         SELECT * FROM
         (
-        SELECT ROWNUM R, BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, BAKERYPHOTO, REGDATE, BREADTYPE, BREADNAME, BREADPRICE
+        SELECT ROWNUM R, BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, BAKERYPHOTO, REGDATE, BREADTYPE, BREADNAME, BREADPRICE, REVIEWCNT
         FROM TBL_BAKERY
         ORDER BY BNO DESC
         )
@@ -28,7 +28,7 @@
         <![CDATA[
             SELECT * FROM
             (
-                SELECT ROWNUM R, BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, BAKERYPHOTO, REGDATE, BREADTYPE, BREADNAME, BREADPRICE
+                SELECT ROWNUM R, BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, BAKERYPHOTO, REGDATE, BREADTYPE, BREADNAME, BREADPRICE, REVIEWCNT
                 FROM TBL_BAKERY
                 ORDER BY BNO DESC
             )
@@ -67,18 +67,18 @@
     </select>
 
     <insert id="insert">
-        INSERT INTO TBL_BAKERY (BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, REGDATE, BREADTYPE, BREADNAME, BREADPRICE, BAKERYPHOTO)
+        INSERT INTO TBL_BAKERY (BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, REGDATE, BREADTYPE, BREADNAME, BREADPRICE, BAKERYPHOTO, REVIEWCNT)
         VALUES(TBL_BAKERY_SEQ.NEXTVAL, #{title}, #{content}, #{ceoId}, #{ceoName}, #{shopName}, SYSDATE, #{breadType}, #{breadName}, #{breadPrice}, '
-/images/brownie.jpg')
+/images/brownie.jpg',0)
     </insert>
 
     <insert id="insertSelectKey_bno">
         <selectKey keyProperty="bno" order="BEFORE" resultType="long">
             SELECT TBL_BAKERY_SEQ.NEXTVAL FROM DUAL
         </selectKey>
-        INSERT INTO TBL_BAKERY (BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, REGDATE, BREADTYPE, BREADNAME, BREADPRICE, BAKERYPHOTO)
+        INSERT INTO TBL_BAKERY (BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, REGDATE, BREADTYPE, BREADNAME, BREADPRICE, BAKERYPHOTO,REVIEWCNT)
         VALUES(#{bno}, #{title}, #{content}, #{ceoId}, #{ceoName}, #{shopName}, SYSDATE, #{breadType}, #{breadName}, #{breadPrice}, '
-        /images/brownie.jpg')
+        /images/brownie.jpg',0)
     </insert>
 
     <select id="read" resultType="bakeryVO">

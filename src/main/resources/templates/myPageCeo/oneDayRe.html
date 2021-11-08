@@ -192,7 +192,7 @@
 											<a class="changePage" th:if="*{next}" th:href="*{endPage + 1}"><span class="page">&gt;</span></a>
 										</li>
 
-										<form action="/myPageCeo/bakeryRe" th:object="${criteria}" name="pageForm">
+										<form action="/myPageCeo/oneDayRe" th:object="${criteria}" name="pageForm">
 											<input type="hidden" name="pageNum" th:field="*{pageNum}">
 											<input type="hidden" name="amount" th:field="*{amount}">
 										</form>
@@ -225,8 +225,8 @@
 </body>
 <script th:inline="javascript">
 	// 글 등록 시 전달받는 게시글 번호를 alert으로 출력
-
-	let paging = [[${criteria.listLink}]];
+	let pageForm = $(document.pageForm);
+	let paging = [[${pageMaker.criteria.listLink}]];
 	let pageNum = 1;
 
 	$("div.paging").on("click", "a.changePage", function(e){

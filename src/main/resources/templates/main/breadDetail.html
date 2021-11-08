@@ -37,7 +37,7 @@
             position: fixed;
             background-color: white;
             width: 400px;
-            height: 500px;
+            height: 420px;
             padding: 17px;
             border: solid 1px #0000001a;
             box-shadow: 0 2px 4px 0 #0000001a;
@@ -94,16 +94,39 @@
             margin-bottom: 12px;
             color: black;
             font-weight: bold;
+            height: 80px;
         }
         .price-detail{
             font-size: large;
-            height: 325px;
+            height: 165px;
             margin-bottom: 15px;
+        }
+
+        .price-detail del{
+            font-size: x-large;
         }
 
         .price-detail strong{
             font-size: xx-large;
+            color: #ff7b30;
         }
+        #delivery tr{
+            background-color: white;
+            border-color: white;
+        }
+        .td1{
+            text-align: left;
+            font-size: medium;
+            width: 93px;
+            padding: 0.2em 0em;
+        }
+
+        .td2{
+            text-align: left;
+            font-size: medium;
+            padding: 0.2em 0em;
+        }
+
         .headerIcon{
             width: 40px;
             display: block;
@@ -168,8 +191,12 @@
             border-width: 1px 1px 0px 0px;
             width: 25%;
         }
-        .button{
-
+        #discount{
+            font-size: xx-large;
+            color: #ff7b30;
+        }
+        .star-avg{
+            height: 25px;
         }
         fieldset{
             display: flex;
@@ -244,8 +271,9 @@
             flex: none;
         }*/
         .review-text{
-            color: black;
+            color: #5a5a5a;
             margin-left: 5px;
+            font-size: smaller;
         }
         ul{
             padding-left: 0em;
@@ -257,6 +285,7 @@
         .kakao{
             display: flex;
             justify-content: center;
+            align-items: center
         }
         fieldset button{
             border-radius: 5px;
@@ -282,13 +311,32 @@
                             <input type="hidden">
                             <a href="#" th:text="*{shopName}"></a>
                         </div>
-                        <h2 class="bread-name" th:text="*{breadName}"></h2>
-                        <div class="price-detail">
-                            <span>
-                                <strong th:text="*{breadPrice}"></strong>
-                                원
+                        <h2 class="bread-name" th:text="*{title}"></h2>
+                        <span>
+                                <img class="star-avg" src="/images/cookie_star.png"/>
+                                <img class="star-avg" src="/images/cookie_star.png"/>
+                                <img class="star-avg" src="/images/cookie_star.png"/>
+                                <img class="star-avg" src="/images/cookie_star.png"/>
+                                <img class="star-avg" src="/images/cookie_unstar.png"/>
                             </span>
-                            <p>배송비 3000원</p>
+                        <div class="price-detail">
+                            <div>
+                                <p id="discount">10%</p>
+                                <span><del th:text="*{breadPrice}"></del><strong>18000</strong></span>
+                                원
+                            </div>
+                            <div>
+                                <table id="delivery">
+                                    <tr>
+                                        <td class="td1">배송비</td>
+                                        <td class="td2">3000원</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td1">배송 시작</td>
+                                        <td class="td2">평균 1일, 최대 5일 이내</td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
 
                         <fieldset><!---->
@@ -418,9 +466,9 @@
             IMP.request_pay({ // param
                 pg: "html5_inicis",
                 pay_method: "card",
-                merchant_uid: "ORD20211101-0000024",
+                merchant_uid: "ORD20201009-000121",
                 name: "초코 케이크",
-                amount: 64900,
+                amount: 23000,
                 buyer_email: "gildong@gmail.com",
                 buyer_name: "홍길동",
                 buyer_tel: "010-4242-4242",
@@ -433,6 +481,7 @@
                     msg += '상점 거래ID : ' + rsp.merchant_uid;
                     msg += '결제 금액 : ' + rsp.paid_amount;
                     msg += '카드 승인번호 : ' + rsp.apply_num;
+                    alert("결제가 완료되었습니다.");
                 } else {
                     alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
                 }

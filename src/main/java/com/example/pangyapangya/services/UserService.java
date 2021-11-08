@@ -103,7 +103,6 @@ public class UserService {
 
     // 인증번호(전화번호, 인증번호)
     public void certifiedPhoneNumber(String phoneNumber, String cerNum) {
-
         String api_key = "NCSQNB02FGNIJWVJ";
         String api_secret = "XKUECSFOHIBWYHNANPTKSRVMTZQLEIPP";
         Message coolsms = new Message(api_key, api_secret);
