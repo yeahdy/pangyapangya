@@ -40,4 +40,10 @@ public class BreadDetailController {
         return "main/breadDetail";
     }
 
+    @GetMapping("delivery")
+    public String delivery(String userId, Model model){
+        model.addAttribute("userInfo", userService.userInfo(userId));
+        return "main/delivery";
+    }
+
 }

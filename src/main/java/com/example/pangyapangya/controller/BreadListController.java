@@ -12,8 +12,4 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class BreadListController {
 
-    @GetMapping("delivery")
-    public String delivery(){ return "main/delivery"; }
-
-
 }

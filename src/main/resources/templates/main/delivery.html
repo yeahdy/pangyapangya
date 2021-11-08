@@ -130,7 +130,7 @@
     <header id="header" th:include="/main/header::header_body">
 
     </header>
-
+    <th:block th:object="${userInfo}">
     <div class="body">
         <!-- 주문 정보 확인 -->
         <div id="order-header">
@@ -156,23 +156,23 @@
                         이름
                     </td>
                     <td class="col-2">
-                        홍길동
+                        <p th:text="*{userName}">
                     </td>
                 </tr>
-                <tr>
+                <!--<tr>
                     <td class="col-1">
                         이메일
                     </td>
                     <td class="col-2">
                         abcd1234@naver.com
                     </td>
-                </tr>
+                </tr>-->
                 <tr>
                     <td class="col-1">
                         휴대폰 번호
                     </td>
                     <td class="col-2">
-                        010-1234-5678
+                        <p th:text="*{userPhoneNum}">
                     </td>
                 </tr>
                 </tbody>
@@ -189,15 +189,21 @@
                         이름
                     </td>
                     <td class="col-2">
-                        홍길동
+                        <p th:text="*{userName}">
                     </td>
                 </tr>
                 <tr>
                     <td class="col-1">
-                        배송지
+                        배송지 주소
                     </td>
                     <td class="col-2">
-                        경기도 과천시 별양로 11 위버필드
+                        <p th:text="*{userAddress}">
+                    </td>
+                    <td class="col-1">
+                        상세 주소
+                    </td>
+                    <td class="col-2">
+                        <p th:text="*{userAddress_detail}">
                     </td>
                 </tr>
                 <tr>
@@ -205,17 +211,17 @@
                         휴대폰 번호
                     </td>
                     <td class="col-2">
-                        010-1234-5678
+                        <p th:text="*{userPhoneNum}">
                     </td>
                 </tr>
-                <tr>
+                <!--<tr>
                     <td class="col-1">
                         요청 사항
                     </td>
                     <td class="col-2">
                         없음
                     </td>
-                </tr>
+                </tr>-->
                 </tbody>
             </table>
             <!-- 결제 정보 -->
@@ -238,7 +244,7 @@
                         배송비
                     </td>
                     <td class="col-2">
-                        <strong>0</strong>
+                        <strong>3000</strong>
                         원
                     </td>
                 </tr>
@@ -299,7 +305,7 @@
         </div>
 
     </div>
-
+    </th:block>
 
     <!-- Scripts -->
     <script src="/js/jquery.min.js"></script>

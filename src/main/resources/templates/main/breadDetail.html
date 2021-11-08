@@ -291,17 +291,21 @@
                             </div>
 
                             <fieldset><!---->
+                                <form>
                                 <button type="button" onclick="addCart()">
                                     장바구니
                                 </button>
-                                <form method="post" action="/kakaoPay" target="popup_window">
-                                <button class="kakao" id="kakaoBtn" style="overflow: hidden; width: 100px; background-color: #ffeb00;">
+                                </form>
+                                <form>
+                                <button class="kakao" id="kakaoBtn" onclick="kakaoPay()" style="overflow: hidden; width: 100px; background-color: #ffeb00;">
                                     <img src="/images/kakao.png">
                                 </button>
                                 </form>
+                                <form>
                                 <button type="button" onclick="buyNow()">
                                     구매
                                 </button>
+                                </form>
                             </fieldset>
                         </div>
                     </aside>
@@ -392,7 +396,7 @@
         if($('#sessionU').val() == null && $('#sessionC').val() == null){
             alert("로그인 후 이용 가능합니다!")
         }else{
-            $(#'insertCart')
+
         }
     }
 
