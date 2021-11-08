@@ -52,11 +52,11 @@ public class UserService {
         if(userDAO.checkId(userVO.getUserId())){
             // 저장된 사용자의 정보를 불러옴
             UserVO userInfo = userDAO.userInfo(userVO.getUserId());
-            // 사용자가 입력한 비밀번호와 저장된 사용자의 비밀번호를 비교 + 회원의 상태
+            // 사용자가 입력한 비밀번호와 저장된 사용자의 비밀번호를 비교
             if(!passwordEncoder.matches(userVO.getUserPw(), userInfo.getUserPw())){
-                System.out.println("비밀번호가 일치하지 않거나 탈퇴한 회원입니다.");
+                System.out.println("비밀번호가 일치하지 않습니다.");
                 return false;
-            }else if(userInfo.getStatus() == 1){
+            }else if(userInfo.getStatus() == 1) {
                 System.out.println("이미 탈퇴한 회원입니다.");
                 return false;
             } else{
@@ -117,16 +117,13 @@ public class UserService {
         params.put("app_version", "test app 1.2"); // application name and version
 
         try {
-            JSONObject obj = (JSONObject) coolsms.send(params);
+            JSONObject obj = coolsms.send(params);
             System.out.println(obj.toString());
         } catch (CoolsmsException e) {
             System.out.println(e.getMessage());
             System.out.println(e.getCode());
         }
     }
-
-    // 메인 검색
-    public List<BakeryVO> searchBakery_main () { return userDAO.searchBakery_main(); }
 
 }
 

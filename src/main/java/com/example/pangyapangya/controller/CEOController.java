@@ -44,7 +44,7 @@ public class CEOController {
     public String loginCEO(){ return "ceo/loginCEO"; }
 
     @PostMapping("loginCEO")
-    public String loginCEO(CeoVO ceoVO, HttpServletRequest req, RedirectAttributes rttr){
+    public RedirectView loginCEO(CeoVO ceoVO, HttpServletRequest req, RedirectAttributes rttr){
         log.info("---------로그인-----------");
         log.info("ceoId: " + ceoVO.getCeoId());
         log.info("ceoPw: " + ceoVO.getCeoPw());
@@ -54,13 +54,13 @@ public class CEOController {
         if(!ceoService.loginCEO(ceoVO)) {
             log.info("-------로그인 실패-------");
             session.setAttribute("sessionC", null);
-            rttr.addAttribute("check", "false");
-            return "ceo/loginCEO";
+            rttr.addFlashAttribute("check", "false");
+            return new RedirectView("loginCEO");
         }else{
             log.info("-------로그인 성공-------");
             CeoVO ceoInfo= ceoService.ceoInfo(ceoVO.getCeoId());
             session.setAttribute("sessionC", ceoInfo.getCeoId());
-            return mainView;
+            return new RedirectView("/main/mainPage");
         }
     }
 

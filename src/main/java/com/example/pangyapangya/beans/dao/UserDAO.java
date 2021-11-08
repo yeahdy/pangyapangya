@@ -55,7 +55,4 @@ public class UserDAO {
     public UserVO userInfo (String userId){
         return mapper.userInfo(userId);
     }
-
-    // 메인 검색
-    public List<BakeryVO> searchBakery_main () { return mapper.searchBakery_main(); }
 }
