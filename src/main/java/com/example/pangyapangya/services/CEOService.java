@@ -2,7 +2,6 @@ package com.example.pangyapangya.services;
 
 import com.example.pangyapangya.beans.dao.CEODAO;
 import com.example.pangyapangya.beans.vo.CeoVO;
-import com.example.pangyapangya.beans.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -51,7 +50,7 @@ public class CEOService {
             }else if(ceoInfo.getStatus() == 1){
                 System.out.println("이미 탈퇴한 회원입니다.");
                 return false;
-            } else{
+            }else{
                 System.out.println("비밀번호가 일치합니다.");
                 ceoDAO.loginCEO(ceoVO);
                 return true;
@@ -77,12 +76,12 @@ public class CEOService {
 
     // 비밀번호 변경
     public boolean pwUpdateCEO (CeoVO ceoVO) {
-        String ceoPw = ceoVO.getCeoPw();
+        String ceoPw= ceoVO.getCeoPw();
 
         System.out.print("변경할 비밀번호: " + ceoPw);
         String encodedPw = passwordEncoder.encode(ceoPw);
         System.out.println("암호화된 비밀번호: " + encodedPw);
-        // 암호화된 비밀번호로 다시 세팅
+        // 암호화된 비밀번호로 다시
         ceoVO.setCeoPw(encodedPw);
 
         return ceoDAO.pwUpdateCEO(ceoVO);
@@ -90,7 +89,5 @@ public class CEOService {
 
     // 회원정보 조회
     public CeoVO ceoInfo (String ceoId){ return ceoDAO.ceoInfo(ceoId); }
-
-
 }
 

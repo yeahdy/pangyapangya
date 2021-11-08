@@ -86,8 +86,8 @@
 						<a class="btn" href="/ceo/joinCEO">회원가입</a>
 					</div>
 					<!-- 로그인 상태 -->
-					<div th:if="${not #strings.isEmpty(check)}">
-						<input type="hidden" id="loginCheck" th:value="${check}">
+					<div th:if="${check == 'false'}">
+						<input type="hidden" id="loginChk" th:value="${check}" />
 					</div>
 					<!-- 비밀번호 찾기 컨트롤러 -->
 					<div id="resultPw" th:if="${resultPw == 0}" style="display: none">
@@ -144,8 +144,36 @@
 			}
 			loginForm.submit();
 		})
-		// 왜 컨트롤러에서 데이터를 못받아올까...
-		console.log("loginCheck: " + $("#loginCheck").val())
+
+		// 엔터키로 로그인(공백막기)
+		$("#userPw").on("keydown", function(e){
+			if(e.keyCode == 13){
+				if(!$("#userId").val()){
+					$("#userId").focus();
+					$("#userIdError1").show();
+					return;
+				}else{
+					$("#userIdError1").hide();
+				}
+
+				if(!$('#userPw').val()){
+					$("#userPw").focus();
+					$("#userPwError1").show();
+					return;
+				}else{
+					$("#userPwError1").hide();
+				}
+
+				loginForm.submit();
+			}
+		})
+
+
+		/* 로그인 실패 컨트롤러*/
+		console.log("loginChk: " + $("#loginChk").val());
+		if($("#loginChk").val() == 'false'){
+			alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+		}
 
 		/* 비밀번호 찾기 컨트롤러 */
 		let resultPw = $("#resultPw span").text();

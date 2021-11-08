@@ -4,18 +4,16 @@ import com.example.pangyapangya.beans.vo.*;
 import com.example.pangyapangya.services.ClassCeoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpSession;
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @Slf4j
@@ -27,13 +25,9 @@ public class ClassCeoController {
 
     //마이페이지(사장님)-글 등록[원데이 클래스]
     @GetMapping("oneDay")
-    public String myPageCeoOneDay(Model model, HttpSession session){
-        String sessionU = (String)session.getAttribute("sessionU");
-        String sessionC = (String)session.getAttribute("sessionC");
-        if(sessionU == null && sessionC == null){
-            return "/user/login";
-        }
-        model.addAttribute("ceo", classCeoService.getCeo(sessionC));
+    public String myPageCeoOneDay(Model model, String ceoId){
+        ceoId="wnsrbod";
+        model.addAttribute("ceo", classCeoService.getCeo(ceoId));
         return "myPageCeo/oneDay"; }
 
 
@@ -46,16 +40,12 @@ public class ClassCeoController {
 
     //마이페이지(사장님) - 내가 작성한 글(원데이 클래스)
     @GetMapping("oneDayRe")
-    public String oneDayRe(Criteria criteria, Model model, HttpSession session){
-        String sessionU = (String)session.getAttribute("sessionU");
-        String sessionC = (String)session.getAttribute("sessionC");
-        if(sessionU == null && sessionC == null){
-            return "/user/login";
-        }
+    public String oneDayRe(Criteria criteria, Model model){
+
         log.info("-------------------------------");
         log.info("oneDayRe");
         log.info("-------------------------------");
-        model.addAttribute("total", classCeoService.myTotal(sessionC));
+        model.addAttribute("total", classCeoService.myTotal("wnsrbod"));
         model.addAttribute("list", classCeoService.getList(criteria));
         model.addAttribute("pageMaker", new PageDTO(classCeoService.getTotal(criteria), 10, criteria));
         return "myPageCeo/oneDayRe";
@@ -123,11 +113,11 @@ public class ClassCeoController {
     }*/
 
     //    게시글 첨부파일
-   /* @GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
+    /*@GetMapping(value = "getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<ClassCeoFileVO> getAttachList(Long bno){
+    public List<BakeryFileVO> getAttachList(Long bno){
         log.info("getAttachList " + bno);
-        return classCeoService.getAttachList(bno);
+        return bakeryService.getAttachList(bno);
     }*/
 
 }

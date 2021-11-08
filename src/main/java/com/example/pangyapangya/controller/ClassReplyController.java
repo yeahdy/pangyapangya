@@ -30,6 +30,7 @@ public class ClassReplyController {
     @PostMapping(value = "/new", consumes = "application/json", produces = "text/plain; charset=utf-8")
     public ResponseEntity<String> create(@RequestBody ClassReplyVO classReplyVO) throws UnsupportedEncodingException {
 
+        log.info("dddd");
         int replyCount = classReplyService.register(classReplyVO);
         log.info("ClassReplyVO : " + classReplyVO);
         log.info("REPLY INSERT COUNT : " + replyCount);

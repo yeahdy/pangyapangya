@@ -4,7 +4,6 @@ package com.example.pangyapangya.services;
 import com.example.pangyapangya.beans.dao.BakeryDAO;
 import com.example.pangyapangya.beans.dao.BakeryFileDAO;
 import com.example.pangyapangya.beans.dao.CEODAO;
-import com.example.pangyapangya.beans.vo.BakeryFileVO;
 import com.example.pangyapangya.beans.vo.BakeryVO;
 import com.example.pangyapangya.beans.vo.CeoVO;
 import com.example.pangyapangya.beans.vo.Criteria;
@@ -38,14 +37,14 @@ public class BakeryServiceImple implements BakeryService{
     public void register(BakeryVO bakeryVO) {
 
         bakeryDAO.register(bakeryVO);
-        if(bakeryVO.getAttachList() == null || bakeryVO.getAttachList().size() == 0){
+       /* if(bakeryVO.getAttachList() == null || bakeryVO.getAttachList().size() == 0){
             return;
-        }
+        }*/
 
-        bakeryVO.getAttachList().forEach(attach -> {
+       /* bakeryVO.getAttachList().forEach(attach -> {
             attach.setBno(bakeryVO.getBno());
             bakeryFileDAO.insert(attach);
-        });
+        });*/
     }
 
     @Override
@@ -64,13 +63,10 @@ public class BakeryServiceImple implements BakeryService{
     }
 
     @Override
-    public List<BakeryVO> getList(Criteria criteria) {
-        return bakeryDAO.getList(criteria);
-    }
+    public List<BakeryVO> getList(Criteria criteria) { return bakeryDAO.getList(criteria); }
 
     @Override
     public int getTotal(Criteria criteria) { return bakeryDAO.getTotal(criteria); }
-
     @Override
     public int myTotal(String ceoId) { return bakeryDAO.myTotal(ceoId); }
 
@@ -96,22 +92,13 @@ public class BakeryServiceImple implements BakeryService{
         return bakeryDAO.breadList(keyword);
     }
 
-    @Override
-    public List<BakeryVO> breadListCeo(BakeryVO bakeryVO) {
-        return bakeryDAO.breadListCeo(bakeryVO);
-    }
-
-    @Override
+    /* @Override
     public List<BakeryFileVO> getAttachList(Long bno) {
         return bakeryFileDAO.findByBno(bno);
-    }
+    }*/
 
     // 메인페이지 글가져오기
     public List<BakeryVO> breadList_main() { return bakeryDAO.breadList_main(); }
-    @Override
-    public String getBakeryName(Long bno) {
-        return bakeryDAO.getBakeryName(bno);
-    }
 
 
 }

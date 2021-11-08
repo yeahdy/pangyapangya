@@ -17,4 +17,7 @@ public interface ClassCeoService {
     public CeoVO getCeo(String ceoId);
     public List<ClassCeoFileVO> getAttachList(Long bno);
 
+    // 메인페이지 글 가져오기
+    public List<ClassCeoVO> classList_main();
+
 }

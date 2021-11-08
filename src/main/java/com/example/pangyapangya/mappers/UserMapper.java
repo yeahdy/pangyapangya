@@ -1,7 +1,7 @@
 package com.example.pangyapangya.mappers;
 
+import com.example.pangyapangya.beans.vo.BakeryVO;
 import com.example.pangyapangya.beans.vo.UserVO;
-import org.apache.catalina.User;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -13,6 +13,9 @@ public interface UserMapper {
 
     // 회원가입(일반회원)
     public void join(UserVO userVO);
+
+    // 회원가입(일반회원)
+    public void joinKakao(UserVO userVO);
 
     // 로그인(일반회원)
     public int login (UserVO userVO);

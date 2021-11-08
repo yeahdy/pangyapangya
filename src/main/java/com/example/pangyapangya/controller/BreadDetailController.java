@@ -28,17 +28,15 @@ public class BreadDetailController {
 
     @GetMapping("breadList")
     public String breadList(Model model, BakeryVO bakeryVO){
-        model.addAttribute("list", bakeryService.breadList(bakeryVO.getKeyword()));
+       model.addAttribute("list", bakeryService.breadList(bakeryVO.getKeyword()));
         return "main/breadList";
     }
 
     @GetMapping("breadDetail")
     public String breadDetail(@RequestParam("bno") Long bno, Model model){
         model.addAttribute("info", breadDetailService.getInfo(bno));
-        /*model.addAttribute("reply", breadDetailService.getRep(bno));*/
         return "main/breadDetail";
     }
-
     /*@GetMapping({"breadDetail", "modify"})
     public void breadDetail(@RequestParam("bno") Long bno, Criteria criteria, Model model, HttpServletRequest request, HttpSession session){
         String sessionU = (String)session.getAttribute("sessionU");

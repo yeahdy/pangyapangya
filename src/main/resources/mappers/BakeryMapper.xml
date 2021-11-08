@@ -12,13 +12,13 @@
     </sql>
 
     <select id="breadList" resultType="bakeryVO">
-        SELECT * FROM
-        (
-        SELECT ROWNUM R, BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, REGDATE, BREADTYPE, BREADNAME, BREADPRICE, BAKERYPHOTO
-        FROM TBL_BAKERY
-        ORDER BY BNO DESC
-        )
-        WHERE
+           SELECT * FROM
+            (
+                SELECT ROWNUM R, BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, BAKERYPHOTO, REGDATE, BREADTYPE, BREADNAME, BREADPRICE
+                FROM TBL_BAKERY
+                ORDER BY BNO DESC
+            )
+            WHERE
         <include refid="search"></include>
         <![CDATA[
             R<= 20
@@ -30,7 +30,7 @@
         <![CDATA[
             SELECT * FROM
             (
-                SELECT ROWNUM R, BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, REGDATE, BREADTYPE, BREADNAME, BREADPRICE, BAKERYPHOTO
+                SELECT ROWNUM R, BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, BAKERYPHOTO, REGDATE, BREADTYPE, BREADNAME, BREADPRICE
                 FROM TBL_BAKERY
                 ORDER BY BNO DESC
             )
@@ -38,29 +38,18 @@
         ]]>
     </select>
 
-    <select id="breadListCeo" resultType="bakeryVO">
-        <![CDATA[
-            SELECT * FROM
-            (
-                SELECT ROWNUM R, BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, REGDATE, BREADTYPE, BREADNAME, BREADPRICE, BAKERYPHOTO
-                FROM TBL_BAKERY
-                ORDER BY BNO DESC
-            )
-            WHERE R<=20
-        ]]>
-    </select>
-
     <select id="getList" resultType="bakeryVO">
         <![CDATA[
-        SELECT BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, REGDATE, BREADTYPE, BREADNAME, BREADPRICE, BAKERYPHOTO
+        SELECT BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, BAKERYPHOTO, REGDATE, BREADTYPE, BREADNAME, BREADPRICE
         FROM
         (
             /*알리아스를 붙인 컬럼에 WHERE절에서 접근할 때에는 FROM절에 작성된 테이블의 컬럼과 동일한 이름으로만 사용이 가능하다.*/
             SELECT /*+ INDEX_DESC(TBL_BOARD PK_BOARD) */
-            ROWNUM R, BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, REGDATE, BREADTYPE, BREADNAME, BREADPRICE, BAKERYPHOTO
+            ROWNUM R, BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, BAKERYPHOTO, REGDATE, BREADTYPE, BREADNAME, BREADPRICE
             FROM TBL_BAKERY
             WHERE
         ]]>
+        <include refid="search"></include>
         <![CDATA[
         ROWNUM <= #{pageNum} * #{amount}
         )
@@ -69,22 +58,20 @@
     </select>
 
     <insert id="insert">
-        INSERT INTO TBL_BAKERY (BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, REGDATE, BREADTYPE, BREADNAME, BREADPRICE, BAKERYPHOTO)
-        VALUES(TBL_BAKERY_SEQ.NEXTVAL, #{title}, #{content}, #{ceoId}, #{ceoName}, #{shopName}, SYSDATE, #{breadType}, #{breadName}, #{breadPrice}, '
-/images/brownie.jpg')
+        INSERT INTO TBL_BAKERY (BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, BAKERYPHOTO, REGDATE, BREADTYPE, BREADNAME, BREADPRICE)
+        VALUES(TBL_BAKERY_SEQ.NEXTVAL, #{title}, #{content}, #{ceoId}, #{ceoName}, #{shopName}, '아무거나', SYSDATE, #{breadType}, #{breadName}, #{breadPrice})
     </insert>
 
     <insert id="insertSelectKey_bno">
         <selectKey keyProperty="bno" order="BEFORE" resultType="long">
             SELECT TBL_BAKERY_SEQ.NEXTVAL FROM DUAL
         </selectKey>
-        INSERT INTO TBL_BAKERY (BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, REGDATE, BREADTYPE, BREADNAME, BREADPRICE, BAKERYPHOTO)
-        VALUES(#{bno}, #{title}, #{content}, #{ceoId}, #{ceoName}, #{shopName}, SYSDATE, #{breadType}, #{breadName}, #{breadPrice}, '
-        /images/brownie.jpg')
+        INSERT INTO TBL_BAKERY (BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, BAKERYPHOTO, REGDATE, BREADTYPE, BREADNAME, BREADPRICE)
+        VALUES(#{bno}, #{title}, #{content}, #{ceoId}, #{ceoName}, #{shopName}, '아무거나', SYSDATE, #{breadType}, #{breadName}, #{breadPrice})
     </insert>
 
     <select id="read" resultType="bakeryVO">
-        SELECT BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, REGDATE, BREADTYPE, BREADNAME, BREADPRICE, BAKERYPHOTO
+        SELECT BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, BAKERYPHOTO, REGDATE, BREADTYPE, BREADNAME, BREADPRICE
         FROM TBL_BAKERY
         WHERE BNO = #{bno}
     </select>
@@ -115,7 +102,7 @@
 
     <update id="ceoUpdate">
         UPDATE TBL_CEO
-        SET CEOPW = #{ceoPw}, SHOPNAME = #{shopName}, SHOPCALLNUMBER = #{shopCallNumber}, SHOPZIPCODE = #{shopZipcode}, SHOPADDRESS = #{shopAddress}, SHOPADDRESSDETAIL = #{shopAddressDetail}, PHONENUM = #{phoneNum}, SHOPREGNUM = #{shopRegNum}
+        SET CEOPW = #{ceoPw}, SHOPNAME = #{shopName}, SHOPCALLNUMBER = #{shopCallNumber}, SHOPZIPCODE = #{shopZipcode}, SHOPADDRESS = #{shopAddress}, SHOPADDRESSDETAIL = #{shopAddressDetail}, SHOPPHOTO = '수정된 가게 이미지', PHONENUM = #{phoneNum}, SHOPREGNUM = #{shopRegNum}
         WHERE CEOID = #{ceoId}
     </update>
 
@@ -128,21 +115,5 @@
     <select id="breadInfo" resultType="bakeryVO">
         SELECT * FROM TBL_BAKERY
         WHERE BNO = #{bno}
-    </select>
-
- <!--   <select id="reply" resultType="BakeryReviewVO">
-        <![CDATA[
-            SELECT * FROM
-            (
-                SELECT ROWNUM R, RNO, BNO, STAR, REPLY, USERID, REPLYDATE
-                FROM TBL_BAKERYREVIEWREPLY
-                ORDER BY RNO DESC
-            )
-            WHERE R<=10
-        ]]>
-    </select>-->
-
-    <select id="getBakeryName" resultType="String">
-        SELECT BAKERYNAME FROM TBL_BAKERY WHERE BNO=#{bno}
     </select>
 </mapper>
