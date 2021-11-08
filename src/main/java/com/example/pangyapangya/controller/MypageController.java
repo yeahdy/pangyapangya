@@ -41,14 +41,14 @@ public class MypageController {
 
     //마이페이지(일반 회원) - 내가 작성한 글 List(빵 체험단)
     @GetMapping("testing_review")
-    public String testingReview(Criteria criteria, Model model, HttpSession session){
+    public String testingReview( Model model, HttpSession session){
         String sessionU = (String)session.getAttribute("sessionU");
         String sessionC = (String)session.getAttribute("sessionC");
         if(sessionU == null && sessionC == null){
             return "/user/login";
         }
         log.info("-------------------------------");
-        log.info("testingReview");
+        log.info(sessionU);
         log.info("-------------------------------");
         model.addAttribute("TestingReview", testingService.getTestingReview(sessionU));
         /*model.addAttribute("list", testingService.getList(criteria));
@@ -65,7 +65,7 @@ public class MypageController {
             log.info("****************비밀번호 불일치****************");
             return "mypage/checkPassword_new";
         }
-
+        return "mypage/modifyMyInfo";
     }*/
 
     @PostMapping("modifyMyInfo")
