@@ -82,19 +82,20 @@
             display: flex;
             align-items: center;
             width: 100%;
-            margin-bottom: 12px;
+            margin-bottom: 5px;
         }
         .maker-card a{
-            font-size: xx-small;
+            font-size: unset;
             color: #888888;
             border-bottom : none;
         }
 
         .bread-name{
+            overflow: hidden;
+            height: 72px;
             margin-bottom: 12px;
             color: black;
-            font-weight: bold;
-            height: 80px;
+            font-size: xx-large;
         }
         .price-detail{
             font-size: large;
@@ -194,6 +195,7 @@
         #discount{
             font-size: xx-large;
             color: #ff7b30;
+            margin-bottom: -15px;
         }
         .star-avg{
             height: 25px;
@@ -466,8 +468,9 @@
             IMP.request_pay({ // param
                 pg: "html5_inicis",
                 pay_method: "card",
-                merchant_uid: "ORD20201009-000121",
-                name: "초코 케이크",
+                merchant_uid: "ORD20211109-000033",
+                name: "디디얌 마카롱 수제 뚱카",
+                amount: 21000,
                 amount: 23000,
                 buyer_email: "gildong@gmail.com",
                 buyer_name: "홍길동",
