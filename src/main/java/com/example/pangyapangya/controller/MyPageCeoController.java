@@ -138,7 +138,7 @@ public class MyPageCeoController {
         log.info("remove : " + bno);
         log.info("-------------------------------");
 
-        List<BakeryFileVO> attachList = bakeryService.getAttachList(bno);
+//        List<BakeryFileVO> attachList = bakeryService.getAttachList(bno);
 
         if (bakeryService.remove(bno)) {
             /*deleteFiles(attachList);*/

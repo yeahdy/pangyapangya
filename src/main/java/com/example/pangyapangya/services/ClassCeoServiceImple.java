@@ -66,6 +66,9 @@ public class ClassCeoServiceImple implements ClassCeoService{
     public List<ClassCeoVO> getList(Criteria criteria) { return classCeoDAO.getList(criteria); }
 
     @Override
+    public List<ClassCeoVO> getAllList() {return classCeoDAO.getAllList();}
+
+    @Override
     public int getTotal(Criteria criteria) { return classCeoDAO.getTotal(criteria); }
     @Override
     public int myTotal(String ceoId) { return classCeoDAO.myTotal(ceoId); }

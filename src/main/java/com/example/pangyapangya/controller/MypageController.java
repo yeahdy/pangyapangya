@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @Slf4j
@@ -27,8 +28,13 @@ public class MypageController {
     public String testing_review(){ return "mypage/testing_review"; }
 
     @GetMapping("modifyMyInfo")
-    public String modifyMyInfo(String userId, Model model){
-        model.addAttribute("userInfo",userService.userInfo("kjy1234"));
+    public String modifyMyInfo(Model model, HttpSession session){
+        String sessionU = (String)session.getAttribute("sessionU");
+        log.info("session 회원아이디: " + sessionU);
+        if(sessionU == null){
+            return "/user/login";
+        }
+        model.addAttribute("userInfo",userService.userInfo(sessionU));
         return "mypage/modifyMyInfo";
     }
     /*@GetMapping("checkPassword")

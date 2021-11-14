@@ -115,13 +115,13 @@
 									<div id="allDiv">
 										<div class="myPageSelect1"><p>글 등록하기</p></div>
 										<div class="contentDiv">
-											<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakery">빵집 소개</a></p></div>
+											<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakery">오늘의 빵</a></p></div>
 											<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDay">원데이클래스</a></a></p></div>
 											<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/exp">빵 체험단</a></a></p></div>
 										</div>
 										<div class="myPageSelect1"><p>내 글 보기</p></div>
 										<div class="contentDiv">
-											<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakeryRe">빵집 리뷰</a></p></div>
+											<div class="myPageSelectMenu"><p><a href="/myPageCeo/bakeryRe">오늘의 빵</a></p></div>
 											<div class="myPageSelectMenu"><p><a href="/myPageCeo/oneDayRe">원데이 클래스</a></a></p></div>
 											<div class="myPageSelectMenu floorDiv"><p><a href="/myPageCeo/expRe" style="text-decoration: underline; color: chocolate;">빵 체험단</a></a></p></div>
 										</div>
@@ -204,7 +204,7 @@
 												<a class="changePage" th:if="*{next}" th:href="*{endPage + 1}"><span class="page">&gt;</span></a>
 											</li>
 
-											<form action="/myPageCeo/bakeryRe" th:object="${criteria}" name="pageForm">
+											<form action="/myPageCeo/expRe" th:object="${criteria}" name="pageForm">
 												<input type="hidden" name="pageNum" th:field="*{pageNum}">
 												<input type="hidden" name="amount" th:field="*{amount}">
 											</form>
@@ -236,8 +236,8 @@
 </body>
 <script th:inline="javascript">
 	// 글 등록 시 전달받는 게시글 번호를 alert으로 출력
-
-	let paging = [[${criteria.listLink}]];
+	let pageForm = $(document.pageForm);
+	let paging = [[${pageMaker.criteria.listLink}]];
 	let pageNum = 1;
 
 	$("div.paging").on("click", "a.changePage", function(e){

@@ -37,7 +37,7 @@
             position: fixed;
             background-color: white;
             width: 400px;
-            height: 300px;
+            height: 420px;
             padding: 17px;
             border: solid 1px #0000001a;
             box-shadow: 0 2px 4px 0 #0000001a;
@@ -59,11 +59,17 @@
             width: 560px;
             display: flex;
             justify-content: center;
-            margin: 0px 69px;
+            margin: 0px 0px;;
         }
+
+        #product-info pre{
+            margin: 30px 0 0 0;
+            text-align: center
+        }
+
         #box{
             position: relative;
-            top: -570px;
+            top: 36px;
             right: -590px;
             padding: 0 !important;
             box-shadow: none !important;
@@ -76,28 +82,52 @@
             display: flex;
             align-items: center;
             width: 100%;
-            margin-bottom: 12px;
+            margin-bottom: 5px;
         }
         .maker-card a{
-            font-size: xx-small;
+            font-size: unset;
             color: #888888;
             border-bottom : none;
         }
 
         .bread-name{
+            overflow: hidden;
+            height: 72px;
             margin-bottom: 12px;
             color: black;
-            font-weight: bold;
+            font-size: xx-large;
         }
         .price-detail{
             font-size: large;
-            height: 130px;
+            height: 165px;
             margin-bottom: 15px;
+        }
+
+        .price-detail del{
+            font-size: x-large;
         }
 
         .price-detail strong{
             font-size: xx-large;
+            color: #ff7b30;
         }
+        #delivery tr{
+            background-color: white;
+            border-color: white;
+        }
+        .td1{
+            text-align: left;
+            font-size: medium;
+            width: 93px;
+            padding: 0.2em 0em;
+        }
+
+        .td2{
+            text-align: left;
+            font-size: medium;
+            padding: 0.2em 0em;
+        }
+
         .headerIcon{
             width: 40px;
             display: block;
@@ -162,8 +192,13 @@
             border-width: 1px 1px 0px 0px;
             width: 25%;
         }
-        .button{
-
+        #discount{
+            font-size: xx-large;
+            color: #ff7b30;
+            margin-bottom: -15px;
+        }
+        .star-avg{
+            height: 25px;
         }
         fieldset{
             display: flex;
@@ -231,15 +266,16 @@
             display: flex;
             margin-bottom: 11px;
         }
-        .review-img{
+        /*.review-img{
             height: 128px;
             width: 128px;
             object-fit: cover;
             flex: none;
-        }
+        }*/
         .review-text{
-            color: black;
-            margin-left: 10px;
+            color: #5a5a5a;
+            margin-left: 5px;
+            font-size: smaller;
         }
         ul{
             padding-left: 0em;
@@ -251,13 +287,14 @@
         .kakao{
             display: flex;
             justify-content: center;
+            align-items: center
         }
         fieldset button{
             border-radius: 5px;
         }
     </style>
 </head>
-<body class="is-preload" style="padding: 10em 200px 0 200px;">
+<body class="is-preload" style="padding: 10em 200px 0 200px; background-color: white;">
 
 <header id="header" th:include="/main/header::header_body">
 
@@ -266,52 +303,74 @@
 <!-- Wrapper -->
 
 <div class="inner">
-        <th:block class="field" th:object="${info}">
-            <div>
-                <div id="info">
-                    <section id="img-section">
-                        <div id="img-view">
-                            <img th:src="*{bakeryPhoto}">
+    <th:block class="field" th:object="${info}">
+        <div>
+            <div id="info">
+                <!-- 구매창 -->
+                <aside id="box">
+                    <div class="payment">
+                        <div class="maker-card">
+                            <input type="hidden">
+                            <a href="#" th:text="*{shopName}"></a>
                         </div>
-                    </section>
-                    <!-- 구매창 -->
-                    <aside id="box">
-                        <div class="payment">
-                            <div class="maker-card">
-                                <input type="hidden">
-                                <a href="#" th:text="*{shopName}"></a>
-                            </div>
-                            <h2 class="bread-name" th:text="*{breadName}"></h2>
-                            <div class="price-detail">
-                            <span>
-                                <strong th:text="*{breadPrice}"></strong>
-                                원
+                        <h2 class="bread-name" th:text="*{title}"></h2>
+                        <span>
+                                <img class="star-avg" src="/images/cookie_star.png"/>
+                                <img class="star-avg" src="/images/cookie_star.png"/>
+                                <img class="star-avg" src="/images/cookie_star.png"/>
+                                <img class="star-avg" src="/images/cookie_star.png"/>
+                                <img class="star-avg" src="/images/cookie_unstar.png"/>
                             </span>
-                                <p>배송비 3000원</p>
+                        <div class="price-detail">
+                            <div>
+                                <p id="discount">10%</p>
+                                <span><del th:text="*{breadPrice}"></del><strong>18000</strong></span>
+                                원
                             </div>
+                            <div>
+                                <table id="delivery">
+                                    <tr>
+                                        <td class="td1">배송비</td>
+                                        <td class="td2">3000원</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td1">배송 시작</td>
+                                        <td class="td2">평균 1일, 최대 5일 이내</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
 
-                            <fieldset><!---->
-                                <form>
+                        <fieldset><!---->
+                            <form>
                                 <button type="button" onclick="addCart()">
                                     장바구니
                                 </button>
-                                </form>
-                                <form>
+                            </form>
+                            <form>
                                 <button type="button" class="kakao" id="kakaoBtn" onclick="kakaoPay()" style="overflow: hidden; width: 100px; background-color: #ffeb00;">
                                     <img src="/images/kakao.png">
                                 </button>
-                                </form>
-                                <form>
+                            </form>
+                            <form>
                                 <button type="button" onclick="buyNow()">
                                     구매
                                 </button>
-                                </form>
-                            </fieldset>
-                        </div>
-                    </aside>
-                </div>
+                            </form>
+                        </fieldset>
+                    </div>
+                </aside>
+                <section id="img-section">
+                    <div id="img-view">
+                        <img th:src="*{bakeryPhoto}">
+                    </div>
+                    <div id="product-info">
+                        <pre th:text="*{content}"></pre>
+                    </div>
+                </section>
             </div>
-        </th:block>
+        </div>
+    </th:block>
     <section id="prd-info">
     </section>
     <section id="prd-review">
@@ -320,16 +379,16 @@
         </div>
         <ul>
             <th:block th:each="reply : ${replyList}">
-            <a class="review-box"><!--리뷰 상세 보기를 할 경우 링크를 담기 위한 a태그-->
-                <div th:object="${reply}">
-                <div class="review-header"><!-- th:object="${reply}"-->
-                    <div class="reviewer-info">
+                <a class="review-box"><!--리뷰 상세 보기를 할 경우 링크를 담기 위한 a태그-->
+                    <div th:object="${reply}">
+                        <div class="review-header"><!-- th:object="${reply}"-->
+                            <div class="reviewer-info">
                         <span class="reviewer" th:text="*{userid}">
                         </span>
-                        <span class="review-date" th:text="*{replydate}">
+                                <span class="review-date" th:text="*{replydate}">
                         </span>
-                    </div>
-                    <div class="review-star">
+                            </div>
+                            <div class="review-star">
                         <span th:switch="*{star}">
                         <span th:case="1">
                             <img class="star-one" src="/images/cookie_star.png"/>
@@ -367,16 +426,15 @@
                             <img class="star-one" src="/images/cookie_star.png"/>
                         </span>
                     </span>
+                            </div>
+                        </div>
+                        <div class="review-body">
+                            <!--<img class="review-img" src="/images/bread1.jpg">-->
+                            <div class="review-text" th:text="*{reply}">
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="review-body">
-                    <img class="review-img" src="/images/bread1.jpg">
-                    <div class="review-text">
-                        <p  th:text="*{reply}"></p>
-                    </div>
-                </div>
-                </div>
-            </a>
+                </a>
             </th:block>
         </ul>
     </section>
@@ -410,9 +468,10 @@
             IMP.request_pay({ // param
                 pg: "html5_inicis",
                 pay_method: "card",
-                merchant_uid: "ORD20211101-0000024",
-                name: "초코 케이크",
-                amount: 64900,
+                merchant_uid: "ORD20211109-000033",
+                name: "디디얌 마카롱 수제 뚱카",
+                amount: 21000,
+                amount: 23000,
                 buyer_email: "gildong@gmail.com",
                 buyer_name: "홍길동",
                 buyer_tel: "010-4242-4242",
@@ -425,15 +484,16 @@
                     msg += '상점 거래ID : ' + rsp.merchant_uid;
                     msg += '결제 금액 : ' + rsp.paid_amount;
                     msg += '카드 승인번호 : ' + rsp.apply_num;
+                    alert("결제가 완료되었습니다.");
                 } else {
                     alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
                 }
             });
         }
-            /*$("#kakaoBtn").on("click", function(){
-                window.open("", "popup_window", "width=500, height=700, scrollbars=no");
-            });
-        }*/
+        /*$("#kakaoBtn").on("click", function(){
+            window.open("", "popup_window", "width=500, height=700, scrollbars=no");
+        });
+    }*/
     }
     function buyNow() {
         if($('#sessionU').val() == null && $('#sessionC').val() == null){
@@ -447,9 +507,9 @@
 
 </body>
 <!-- Footer -->
-<footer id="footer" style="background-color: #f5f5f5">
+<!--<footer id="footer" style="background-color: #f5f5f5">
     <div class="copyright">
         &copy; Untitled. All rights reserved.
     </div>
-</footer>
+</footer>-->
 </html>

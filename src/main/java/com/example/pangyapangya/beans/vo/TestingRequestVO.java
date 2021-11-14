@@ -10,4 +10,5 @@ public class TestingRequestVO {
     String userId;
     Long tno;
     int status;
+    String winningDate;
 }

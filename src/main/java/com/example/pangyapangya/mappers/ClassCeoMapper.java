@@ -11,6 +11,8 @@ import java.util.List;
 public interface ClassCeoMapper {
     //    게시글 목록
     public List<ClassCeoVO> getList(Criteria criteria);
+//    게시글 전체 목록
+    public List<ClassCeoVO> getAllList();
     //    게시글 추가
     public void insert(ClassCeoVO classCeoVO);
     //    게시글 추가(PK가져오기)

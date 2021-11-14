@@ -33,10 +33,10 @@ public class TestRestController {
     @PostMapping(value = "/check", consumes = "application/json", produces = "text/plain; charset=utf-8")
     public ResponseEntity<String> create(@RequestBody TestingRequestVO requestVO) throws UnsupportedEncodingException {
         log.info("requestVO : "+requestVO);
-        if(testService.checkApplyCnt(requestVO.getUserId())==1){
-            return new ResponseEntity<>(new String("신청은 하루에 한번만 가능합니다.".getBytes(), "UTF-8"), HttpStatus.OK);
-        }else if(testService.checkRe(requestVO) != 0){
+        if(testService.checkRe(requestVO) != 0){
             return new ResponseEntity<>(new String("이미 신청하신 체험단입니다.".getBytes(), "UTF-8"), HttpStatus.OK);
+        }else if(testService.checkApplyCnt(requestVO.getUserId())==1){
+            return new ResponseEntity<>(new String("신청은 하루에 한번만 가능합니다.".getBytes(), "UTF-8"), HttpStatus.OK);
         }
         return new ResponseEntity<>(new String("pass".getBytes(), "UTF-8"), HttpStatus.OK);
 

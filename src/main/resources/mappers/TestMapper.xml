@@ -37,7 +37,7 @@
     <insert id="addTestingRequest">
         INSERT INTO TBL_TESTING_REQUEST
         (REQUESTNUM, USERID, TNO, STATUS)
-        VALUES(SEQTESTINGREQUEST.NEXTVAL, #{userId}, #{tno}, 0)
+        VALUES(SEQREQUESTNUM.NEXTVAL, #{userId}, #{tno}, 0)
     </insert>
 
     <select id="getEndList" resultType="TestingVO">

@@ -132,7 +132,7 @@
     .image.fit{
         overflow: hidden;
         margin: 0 0 0.5em 0;
-        height: 10vw;
+        /*height: 10vw;*/
     }
     .image.fit img{
         width: 100%;
@@ -210,18 +210,18 @@
             <div th:object="${bakery}">
                 <!--<input type="hidden" name="bno" th:text="*{bno}" >-->
 
-            <a th:href="*{bno}" class="image fit goInfo">
-                <img th:src="*{bakeryPhoto}" alt="">
-            </a>
-            <div class="info-header">
-                <div>
-                    <a th:href="*{bno}" class="bakery-name goInfo" name="shopName" th:text="*{shopName}"></a>
-                </div>
-                <div class="bread-title">
+                <a th:href="*{bno}" class="image fit goInfo">
+                    <img th:src="*{bakeryPhoto}" alt="">
+                </a>
+                <div class="info-header">
                     <div>
-                        <a th:href="*{bno}" class="bread-name goInfo" name="breadName" th:text="*{title}"></a>
+                        <a th:href="*{bno}" class="bakery-name goInfo" name="shopName" th:text="*{shopName}"></a>
                     </div>
-                    <div class="review-star">
+                    <div class="bread-title">
+                        <div>
+                            <a th:href="*{bno}" class="bread-name goInfo" name="breadName" th:text="*{title}"></a>
+                        </div>
+                        <div class="review-star">
                         <span>
                             <img class="star-one" src="/images/cookie_star.png"/>
                             <img class="star-one" src="/images/cookie_star.png"/>
@@ -229,126 +229,18 @@
                             <img class="star-one" src="/images/cookie_star.png"/>
                             <img class="star-one" src="/images/cookie_star.png"/>
                         </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="bread-content">
-                <p th:text="*{content}"></p>
-            </div>
-            <div class="review-cnt">
-                <a href="">리뷰 0개</a>
-            </div>
-            </div>
-        </article>
-       <!-- <article>
-            <a href="#" class="image fit"><img src="/images/melon1.jpg" alt=""></a>
-            <div class="info-header">
-                <div>
-                    <a href="" class="bakery-name">리코 베이커리</a>
+                <div class="bread-content">
+                    <p th:text="*{content}"></p>
                 </div>
-                <div class="bread-title">
-                    <div>
-                        <a href="" class="bread-name">레인보우 번 빵</a>
-                    </div>
-                    <div class="review-star">
-                        <span>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                        </span>
-                    </div>
+                <div class="review-cnt">
+                    <a href="" th:text="'리뷰 '+*{reviewCnt}+'개'">리뷰 0개</a>
                 </div>
             </div>
-            <div class="bread-content">
-                <p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
-            </div>
-            <div class="review-cnt">
-                <a href="">리뷰 2개</a>
-            </div>
         </article>
-        <article>
-            <a href="#" class="image fit"><img src="/images/스콘1.jpg" alt=""></a>
-            <div class="info-header">
-                <div>
-                    <a href="" class="bakery-name">버터랏츠</a>
-                </div>
-                <div class="bread-title">
-                    <div>
-                        <a href="" class="bread-name">과일 스콘</a>
-                    </div>
-                    <div class="review-star">
-                        <span>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="bread-content">
-                <p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
-            </div>
-            <div class="review-cnt">
-                <a href="">리뷰 1개</a>
-            </div>
-        </article>
-        <article>
-            <a href="#" class="image fit"><img src="/images/donut1.jpg" alt=""></a>
-            <div class="info-header">
-                <div>
-                    <a href="" class="bakery-name">카페 노티드</a>
-                </div>
-                <div class="bread-title">
-                    <div>
-                        <a href="" class="bread-name">스트로베리 도넛</a>
-                    </div>
-                    <div class="review-star">
-                        <span>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="bread-content">
-                <p></p>
-            </div>
-            <div class="review-cnt">
-                <a href="">리뷰 1개</a>
-            </div>
-        </article>
-        <article>
-            <a href="#" class="image fit"><img src="https://image.idus.com/image/files/70824f216c4b4d7bb5931414b8d08cf0_1440.jpg" alt=""></a>
-            <h5>만동제과</h5>
-            <p>오픈하자마자 매진되는 마늘향 솔솔, 맛 최고 마늘 바게트</p>
-            <p style="font-weight: 600;">리뷰 0개</p>
-        </article>
-        <article>
-            <a href="#" class="image fit"><img src="https://image.idus.com/image/files/a80cb9f6daf547dd96a532ef63d9f8db_1440.png" alt=""></a>
-            <h5>리코 베이커리</h5>
-            <p>동네 빵집 1순위 겉바속촉 메론빵/ 담백한 소금빵</p>
-            <p style="font-weight: 600;">리뷰 0개</p>
-        </article>
-        <article>
-            <a href="#" class="image fit"><img src="/images/까눌레1.jpg" alt=""></a>
-            <h5>버터랏츠</h5>
-            <p>달콤한 생크림이 가득 들어간 크로와상/ 딸기, 우유, 초코, 메론 등</p>
-            <p style="font-weight: 600;">리뷰 0개</p>
-        </article>
-        <article>
-            <a href="#" class="image fit"><img src="/images/휘낭시에3.png" alt=""></a>
-            <h5>카페노티드</h5>
-            <p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p>
-            <p style="font-weight: 600;">리뷰 0개</p>
-        </article>-->
-<!--        <br>
-        <div class="col-6 col-12-medium">
-            <ul class="actions fit">
-                <li><a href="#" class="button primary fit" style="margin-top: 1em;">오늘의 빵 더보기</a></li>
-            </ul>
-        </div>-->
+
     </section>
 </div>
 

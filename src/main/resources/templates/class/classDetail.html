@@ -63,8 +63,9 @@
             min-width: 320px;
             max-width: 800px;
             padding: 0px 30px 30px 20px;
-            margin: 0 auto;
-            background: #ffffff;}
+            margin-left: 2em;
+            background: #ffffff;
+        }
 
         section #content1{
             display: none;
@@ -197,22 +198,22 @@
         <section id="banner">
             <article data-position="bottom right">
                 <div class="inner">
-                    <img src="/images/bread1.jpeg" alt="">
+                    <img src="/images/bread1.jpg" alt="">
                 </div>
             </article>
             <article data-position="top right">
                 <div class="inner">
-                    <img src="/images/bread2.png" alt="">
+                    <img src="/images/bread2.jpg" alt="">
                 </div>
             </article>
             <article data-position="right">
                 <div class="inner">
-                    <img src="/images/bread3.jpeg" alt="">
+                    <img src="/images/bread3.jpg" alt="">
                 </div>
             </article>
             <article data-position="center">
                 <div class="inner">
-                    <img src="/images/bread4.jpeg" alt="">
+                    <img src="/images/bread4.jpg" alt="">
                 </div>
             </article>
         </section>
@@ -222,7 +223,7 @@
             <!-- Blurb -->
             <section id="tabtab">
                 <strong>
-                    <input name="title" type="text" th:field="*{bakeryShopname}"readonly style="background-color: white; border: 0px; width: 75%; font-size: 15px"/>
+                    <input name="title" type="text" th:field="*{shopName}"readonly style="background-color: white; border: 0px; width: 75%; font-size: 15px"/>
                 </strong>
                 <input name="title" type="text" th:field="*{title}"readonly style="background-color: white; border: 0px; width: 75%;"/>
             </section>
@@ -243,7 +244,7 @@
                             이렇게 진행됩니다.
                         </div>
                         <div style="float:right; width: 80%; background-color: white;">
-                            <textarea name="content" rows="6" style="height:50px " th:text="*{description}" readonly class="text1"></textarea>
+                            <textarea name="content" rows="6" style="height:250px " th:text="*{description}" readonly class="text1"></textarea>
                         </div>
                     </div>
 
@@ -258,10 +259,10 @@
 
                     <div class="chapter">
                         <div style="float: left; width: 20%; margin-top: 0.7em;">
-                            날짜 및 시간
+                            모집기간
                         </div>
                         <div style="float:right; width: 80%; height: 20%; background-color: white;">
-                            <textarea name="content" rows="6" style="height:50px " th:text="*{classDate}" readonly class="text1"></textarea>
+                            <textarea name="content" rows="6" style="height:50px " th:text="*{regDate}+' ~ '+ *{endDate}" readonly class="text1"></textarea>
                         </div>
                     </div>
 
@@ -304,11 +305,11 @@
                         <div>
                             <div style="display: none" class="register-form">
                                 <div>
-<!--                                    <span id="userid" style="float:left; margin-top: 1em;" >사용자 아이디</span>-->
+                                    <!--                                    <span id="userid" style="float:left; margin-top: 1em;" >사용자 아이디</span>-->
                                     <div th:if="${session.sessionU != null}">
-                                    <input type="text" id="sessionU" th:value="${session['sessionU']}" style="background-color: white" name="userId" />
+                                        <input type="text" id="sessionU" th:value="${session['sessionU']}" style="background-color: white" name="userId" />
                                     </div>
-<!--                                        <input type="text" name="replier" placeholder="Replier">-->
+                                    <!--                                        <input type="text" name="replier" placeholder="Replier">-->
                                 </div>
                                 <div>
                                     <div id="star" > <!-- 부모 -->
@@ -324,17 +325,17 @@
                                 <!--                                <input id="reviewimg" name="reviewimg" type="file">-->
                                 <!--                            </div>-->
                                 <!--                        </div>-->
-<!--                                <div class="field">-->
-<!--                                    <input type="file" name="uploadFiles" multiple style="border: 0px">-->
-<!--                                </div>-->
-<!--                                <div class="field">-->
-<!--                                    <div class="uploadResult">-->
-<!--                                        <ul></ul>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="bigPictureWrapper">-->
-<!--                                    <div class="bigPicture"></div>-->
-<!--                                </div>-->
+                                <div class="field">
+                                    <input type="file" name="uploadFiles" multiple style="border: 0px">
+                                </div>
+                                <div class="field">
+                                    <div class="uploadResult">
+                                        <ul></ul>
+                                    </div>
+                                </div>
+                                <div class="bigPictureWrapper">
+                                    <div class="bigPicture"></div>
+                                </div>
                                 <div><textarea rows="6" name="reply" placeholder="Reply" style="resize: none"></textarea></div>
                                 <div>
                                     <a href="javascript:void(0)" type="submit" id="save" class="finish button primary small" style="float: right">등록</a>
@@ -349,7 +350,7 @@
                     </form>
                     <div class="paging" style="text-align: center"></div>
                 </section>
-        </div>
+            </div>
         </div>
     </section>
 

@@ -39,7 +39,7 @@ public class ClassController {
         log.info("-------------------------------");
         log.info("list");
         log.info("-------------------------------");
-        model.addAttribute("list", classCeoService.getList(criteria));
+        model.addAttribute("list", classCeoService.getAllList());
         model.addAttribute("pageMaker", new PageDTO(classCeoService.getTotal(criteria), 10, criteria));
         return "class/classMain";
     }

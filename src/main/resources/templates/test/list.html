@@ -269,7 +269,8 @@
             <section class="spotlights alt" id="testList">
                 <th:block th:each="item : ${list}">
                     <article th:object="${item}" class="item">
-                        <a id="goRead" th:href="*{tno}" class="image fit"><img th:src="*{testingPhoto}" alt=""></a>
+                        <a id="goRead" th:href="*{tno}" class="image fit">
+                            <img th:src="*{testingPhoto}" alt=""></a>
                         <h5 th:text="*{shopName}"></h5>
                         <p th:text="*{title}"></p>
                     </article>

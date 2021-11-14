@@ -45,10 +45,10 @@ public interface BakeryMapper {
     public List<BakeryVO> breadList(String keyword);
     //    게시글 상세정보
     public BakeryVO breadInfo(Long bno);
-    //  빵 후기
-    public List<BreadReviewVO> bakeryReviewList();
-    //  후기 댓글 한개
-    public BreadReviewVO reply(Long bno);
+//    //  빵 후기
+//    public List<BreadReviewVO> bakeryReviewList();
+//    //  후기 댓글 한개
+//    public BreadReviewVO reply(Long bno);
 
     // 사장님이 등록한 게시글 가져오기
     public List<BakeryVO> breadListCeo(BakeryVO bakeryVO);

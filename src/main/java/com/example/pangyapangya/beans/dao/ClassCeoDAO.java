@@ -32,6 +32,7 @@ public class ClassCeoDAO {
     public List<ClassCeoVO> getList(Criteria criteria){
         return mapper.getList(criteria);
     }
+    public List<ClassCeoVO> getAllList(){return mapper.getAllList();}
 
     public int getTotal(Criteria criteria){ return mapper.getTotal(criteria); }
 

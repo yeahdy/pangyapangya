@@ -29,6 +29,7 @@
 
     .spotlights p{
         font-size: small;
+        margin-bottom: 1em;
     }
 
     /* 검색창 */
@@ -63,15 +64,12 @@
         font-size: small;
     }
 
-    .spotlights p{
-        font-size: small;
-    }
-
     .spotlights > article {
         padding: 1.0em 2.25em 0.5em 2.25em;
         border-style: solid;
-        border-width: 1px 1px 0px 0px;
-        width: 25%;
+        border-width: 1px 1px 1px 1px !important;
+        margin: 5px;
+        width: 24%;
     }
 
     .image.fit img {
@@ -89,6 +87,11 @@
         color: black;
     }
 
+    .spotlights a{
+        font-weight: bold;
+        font-size: small;
+        color: black;
+    }
 
     /* header */
     .headerIcon{
@@ -106,9 +109,6 @@
         font-size: small;
     }
 
-    .spotlights p{
-        font-size: small;
-    }
 
     /* 검색창 */
     .search {
@@ -143,14 +143,23 @@
         border-radius: 4px;
     }
 
+    #bannerDiv {
+        position: fixed;
+        top: 87px;
+        z-index: 999;
+    }
+
 </style>
 <body class="is-preload" style="padding: 200px">
 
 <!-- Header -->
 <header id="header" th:include="/main/header::header_body">
 </header>
-<div id="bannerDiv">
-    <img src="/images/classbanner.png" style="width: 86%; padding: 20px; padding-top: 0px;">
+
+<div class="wrapper" style="margin: 0 auto 0em;">
+    <div id="bannerDiv">
+        <img src="/images/classbanner.png" style="width: 1433.66px">
+    </div>
 </div>
 
 <!-- Wrapper -->
@@ -158,21 +167,22 @@
 
     <!-- Main -->
     <section class="main">
-<!--        <div>-->
-<!--            <img src="/images/classbanner.jpeg" alt="" width="200px">-->
-<!--        </div>-->
+        <!--        <div>-->
+        <!--            <img src="/images/classbanner.jpeg" alt="" width="200px">-->
+        <!--        </div>-->
 
         <!-- Spotlights 2 -->
-            <section class="spotlights alt" id="class">
-                <th:block th:each="class : ${list}">
-                    <article th:object="${class}" class="item">
-                        <a id="goRead" th:href="*{bno}">cdczxxd<img th:src="*{classPhoto}" alt=""></a>
-<!--                        <h5 th:text="*{shopName}"></h5>-->
-                        <p th:text="*{bakeryShopname}"></p>
-                        <p th:text="*{title}"></p>
-                    </article>
-                </th:block>
-            </section>
+        <section class="spotlights alt" id="class">
+            <th:block th:each="class : ${list}">
+                <article th:object="${class}" class="item" style="border-width: 0px 1px 0px 0px;" >
+                    <a id="goRead" th:href="*{bno}"class="image fit">
+                        <img th:src="*{classPhoto}" alt=""></a>
+                    <!--                        <h5 th:text="*{shopName}"></h5>-->
+                    <p th:text="*{shopName}"></p>
+                    <p th:text="*{title}"></p>
+                </article>
+            </th:block>
+        </section>
     </section>
 </div>
 
