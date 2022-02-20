@@ -3,7 +3,7 @@
 
 <html>
 <head>
-	<title>회원가입-사장님 | 빵야빵야(屋)</title>
+	<title>회원가입 빵야빵야(屋)</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<meta name="description" content="" />
@@ -194,7 +194,7 @@
 			return;
 		}
 
-		console.log("비밀번호 체크: "+pwCheck);
+		// 아이디, 비밀번호, 인증번호가 모두 true 일 경우
 		if(idCheck && pwCheck && cnfCheck){
 			joinCEOform.submit();
 			$('#authNumber').val("");
@@ -246,9 +246,9 @@
 		});
 	});
 
-	// 비밀번호 정규식
+	// 비밀번호 정규식 (영문+숫자+특수문자를 포함한 8~20자 까지)
 	$("#userPw").focusout(function () {
-		let pwCheck= /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/
+		let pwCheck= /^(?=.*[a-zA-Z])(?=.*[~!@#$%^*+=-])(?=.*[0-9]).{8,20}$/
 		if(!pwCheck.test($('#userPw').val())){
 			$("#userPwError2").show();
 			pwCheck = false;
@@ -259,7 +259,7 @@
 		}
 	})
 
-	// 비밀번호 일치 확인
+	// 비밀번호-비밀번호 확인 일치 체크
 	$("#confirmPw").on("keyup",function () {
 		if($("#userPw").val() !== $("#confirmPw").val()){
 			$("#confirmPwError1").show();
@@ -279,8 +279,10 @@
 	// 휴대폰 인증 버튼 클릭시 해당 태그의 값으로 사용자가 입력한 '숫자'만 가져온다
 	$(document).ready(function(){
 		$('#userPhoneNum').on('keyup', function () {
-			$(this).val($(this).val().replace(/[^0-9]/g, ""));	// 문자열에서 숫자(/[^0-9]/g)만 가져오기
-		});
+			$(this).val($(this).val().replace(/[^0-9]/g, ""));	// 문자열에서 숫자만 가져오기
+
+			// ※ /[^0-9]/g 는 숫자가 아닌 문자를 모두 선택 → replace 선택된 문자들을 모두 공백처리
+	});
 
 		// 인증번호 확인
 		$(document).on('click', '#confirmBnt', function () {
@@ -424,6 +426,13 @@
 		}).open();
 	}
 
+
+	/* 미디어 쿼리 */
+	if(window.matchMedia('(max-width: 980px)').matches){
+		$('#footer_inner').css({
+			"display": "none"
+		});
+	}
 </script>
 </body>
 </html>

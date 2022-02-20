@@ -3,89 +3,295 @@
 
 <html>
 <head>
-	<title>아이디 찾기 | 빵야빵야(屋)</title>
+	<title>빵야빵야(屋)</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<link rel="stylesheet" href="/css/main.css" />
-	<link rel="stylesheet" href="/css/idFind.css" />
-	<style th:include="/main/header::header_style">
-		.line_inp :not(button){
-			border: solid 0px;
+	<link rel="icon" type="image/png"  href="/images/favicon.png"/>
+
+	<style>
+		body{
+			padding: 10em 200px 0 200px;
+		}
+
+		.headerIcon{
+			width: 40px;
+			display: block;
+			margin: auto;"
+		}
+		.icon.solid:before {
+			font-weight: 100;
+			content: none;
+		}
+
+		.spotlights a{
+			font-weight: bold;
+			font-size: small;
+			color: black;
+		}
+
+		.spotlights p{
+			font-size: small;
+			margin-bottom: 1em;
+		}
+
+		/* 검색창 */
+		.search {
+			position: relative;
+			text-align: center;
+			width: 400px;
+			margin: 0 auto;
+		}
+		input {
+			width: 100%;
+			border-radius: 20px;
+			border: 1px solid #bbb;
+			margin: 10px 0;
+			padding: 10px 12px;
+		}
+		.fa-search {
+			position: absolute;
+			left: 90%;
+			top: 35%;
+			margin: 0;
+		}
+		form {
+			margin: 0;
+		}
+
+		/* 갤러리 */
+		.spotlights > article {
+			padding: 1.0em 2.25em 0.5em 2.25em;
+			border-style: solid;
+			border-width: 0px 1px 0px 0px;
+			width: 25%;
+		}
+
+		.image.fit img {
+			border-radius: 4px;
+		}
+
+		h4 {
+			font-weight: 700;
+			font-size: large;
+			color: black;
+			display: inline-block;
+			border-bottom: 2px solid #666;
+		}
+
+		h2{
+			font-weight: bolder;
+			font-size: xx-large;
+		}
+
+		.class_price{
+			font-weight: 600;
+			margin: 0px;
+			font-size: 17px;
+			color: #F9A825;
+			text-align: end;
+		}
+
+		.moreView{
+			text-align: right;
+			float: right;
+			font-weight: 700;
+		}
+	</style>
+	<!-- 미디어 쿼리 -->
+	<style>
+		@media screen and (max-width: 980px) {
+			body{
+				padding: 0px;
+			}
+
+			.wrapper{
+				width: calc(100% - 0em);
+			}
+
+			.spotlights > article {
+				width: 25%;
+				border-width: 0px;
+			}
+
+			.spotlights p {
+				font-size: x-small;
+			}
+
+			.spotlights a {
+				font-size: x-small;
+			}
+
+			h4{
+				font-size: inherit;
+			}
+
+			h2{
+				font-size: x-large;
+			}
+
+			.class_price{
+				font-size: 15px;
+			}
+
+			.moreView{
+				font-size: 11px;
+			}
 		}
 	</style>
 </head>
-<body class="is-preload" style="padding: 5em 200px 0 200px;background-color: white;">
+<body class="is-preload">
 
 <!-- Header -->
 <header id="header" th:include="/main/header::header_body">
-
 </header>
 
 <!-- Wrapper -->
-<!-- Main -->
-<section class="cont_login container">
-	<form action="#" method="post" id="frm-login">
-		<div class="box_login login_email" style="height: 850px">
-			<div class="box_inp">
-				<div class="line_inp">
-					<p class="form_title">사업자 등록번호</p>
-					<input type="tel" name="shopRegNum" id="shopRegNum" placeholder="사업자 등록번호를 입력해주세요">
-					<p class="info_error" id="shopRegNumError1">가게 이름을 입력해주세요.</p>
+<div class="wrapper">
+
+	<!-- Main -->
+	<section class="main">
+
+		<!-- Banner -->
+		<section id="banner">
+			<article data-position="bottom right">
+				<div class="inner">
+					<img src="/images/mainBanner_re.jpg" alt="메인베너2">
+					<h2 style="text-align: end;"><span style="color: #FFD9EC">달콤 특별한💕</span><br>막대 과자 좌표는 여기!</h2>
+					<p style="text-align: end">가족, 연인, 친구 등 고마운 사람들에게 감동을 전하세요!</p>
+					<ul class="actions" style="justify-content: end;">
+						<li><a class="button" href="/main/breadList">빵 담으러 가기</a></li>
+					</ul>
 				</div>
-				<div class="line_inp">
-					<p class="form_title">가게 이름</p>
-					<input type="text" name="shopName" id="shopName" placeholder="가게 이름을 입력해주세요">
-					<p class="info_error" id="shopNameError1">가게 이름을 입력해주세요.</p>
+
+			</article>
+			<article data-position="top right">
+				<div class="inner">
+					<img src="/images/mainBread1.jpg" alt="메인베너1">
+					<h2>엄선된 재료로 만든 영양가득 통밀빵</h2>
+					<p>10여가지 이상의 곡물이 첨가된 다양한 종류의 빵을 만나보세요</p>
+					<ul class="actions">
+						<li><a class="button" href="/main/breadList">바로 구경가기</a></li>
+					</ul>
 				</div>
-				<div class="line_inp">
-					<p class="form_title">가게 전화번호</p>
-					<input type="tel" name="shopCallNumber" id="shopCallNumber" placeholder="전화번호를 - 없이 입력해주세요">
-					<p class="info_error" id="shopCallNumberError1">전화번호 입력해주세요.</p>
+			</article>
+			<article data-position="center">
+				<div class="inner">
+					<img src="/images/휘낭시에1.jpg" alt="메인베너3">
+					<h2><span style="color: antiquewhite">인기 빵집</span>에서 무료로 빵 먹자!</h2>
+					<p>3초만에 빵 체험단 신청하고, 맛집 빵 무료로 맛보기</p>
+					<ul class="actions">
+						<li><a class="button" href="/test/list">실시간 모집 보러가기</a></li>
+					</ul>
 				</div>
-				<div class="line_inp">
-					<p class="form_title">가게 주소</p>
-					<input type="text" id="sample6_postcode" placeholder="우편번호">
-					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-					<input type="text" id="sample6_address" placeholder="주소"><br>
-					<input type="text" id="sample6_detailAddress" placeholder="상세주소">
-					<input type="text" id="sample6_extraAddress" placeholder="참고항목">
-					<p class="info_error" id="shopAddressError1">가게 주소를 입력해주세요.</p>
+			</article>
+			<article data-position="right">
+				<div class="inner">
+					<img src="/images/mainBread2.jpg" alt="메인베너4">
+					<h2>빵순이 빵돌이 다 모여라🍞</h2>
+					<p>베이킹? 아무것도 몰라도 괜찮아! 직접 맛집 빵 만들러 가자!</p>
+					<ul class="actions">
+						<li><a class="button" href="/class/classMain">실시간 신청하기</a></li>
+					</ul>
 				</div>
-			</div>
+			</article>
+		</section>
+
+		<!-- Blurb 1 -->
+		<section style="padding-top: 2.0em;padding-bottom: 0em;">
+			<h4>따끈따끈 오늘의 빵</h4>
+		</section>
+
+		<!-- 오늘의 빵 -->
+		<section class="spotlights alt">
+			<article th:each="bakery : ${breadList}">
+				<th:block  th:object="${bakery}">
+					<a th:href="*{bno}" class="image fit goInfo"><img th:src="*{bakeryPhoto}" alt=""></a>
+					<a th:href="*{bno}" class="bakery-name goInfo" name="shopName" th:text="*{shopName}"></a>
+					<p th:text="|*{#strings.substring(content,0,50)}...|"></p>
+					<p th:text="|리뷰 *{replyCount} 개|" style="font-weight: 600;"></p>
+				</th:block>
+			</article>
+			<br>
 			<div class="col-6 col-12-medium">
-				<ul class="actions fit" style="margin-bottom: 3em;">
-					<li><a href="/main/joinConfirm" class="button primary fit" style="margin-top: 1em;">다음</a></li>
+				<ul class="actions fit">
+					<li><a href="/main/breadList" class="button primary fit" style="margin-top: 1em;">오늘의 빵 더보기</a></li>
 				</ul>
 			</div>
-		</div>
-	</form>
-</section>
+		</section>
 
 
+		<!-- Blurb 2 -->
+		<section style="padding-top: 2.0em;padding-bottom: 0em;border-top: none;">
+			<h4>요즘 인기 빵 직접 만드는 원데이 클래스</h4>
+		</section>
 
-<section class="cont_login container">
-	<div class="box_login find_id">
-		<h2 class="title">입력하신 휴대폰 번호로 탈잉에<br>가입된 내역은 다음과 같습니다.</h2>
-		<p class="info_text">총 1건의 가입 내역이 확인되었습니다.</p>
-		<div class="list_id mCustomScrollbar _mCS_1 mCS-autoHide" style="position: relative; overflow: visible;"><div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" style="max-height: 126px;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container" style="position: relative; top: 0px; left: 0px;" dir="ltr">
-			<ul>
-				<li>
-					<div class="id">
-						<span>카카오톡 아이디</span>
-						<p>yejine98@nate.com</p>
+		<!-- 원데이 클래스 -->
+		<section class="spotlights alt">
+			<th:block th:each="class : ${classList}">
+				<article th:object="${class}">
+					<a th:href="*{bno}" class="image fit goRead_class"><img th:src="*{classPhoto}" alt=""></a>
+					<p th:text="*{shopName}" style="margin-bottom: 0em"></p>
+					<a class="goRead_class" th:href="*{bno}" th:text="*{title}"></a>
+					<p class="class_price"><span th:text="|*{#numbers.formatInteger(classPrice,3,'COMMA')} ₩|"></span></p>
+					<p th:text="|리뷰 *{replyCount} 개|" style="font-weight: 600;text-align: end;"></p>
+				</article>
+			</th:block>
+			<br>
+			<div class="col-6 col-12-medium">
+				<ul class="actions fit">
+					<li><a href="/class/classMain" class="button primary fit" style="margin-top: 1em;">원데이 클래스 더보기</a></li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- Blurb 3 -->
+		<section style="padding-top: 2.0em;padding-bottom: 0em;border-top: none;">
+			<h4>빵 체험단 실시간 모집!</h4>
+			<a href="/test/list" class="moreView">더보기</a>
+		</section>
+
+		<!-- 빵체험단 모집 -->
+		<section class="spotlights alt" id="testList">
+			<th:block th:each="item : ${tasting}">
+				<article style="border-width: 0px 0px 0px 0px;width: 33.33333%;" th:object="${item}" class="item">
+					<a th:href="*{tno}" class="image fit goRead"><img th:src="*{testingPhoto}" alt=""></a>
+					<a th:href="*{tno}" th:text="*{shopName}" class="goRead"></a>
+					<p th:text="*{title}"></p>
+				</article>
+			</th:block>
+			<br>
+		</section>
+
+		<!-- Blurb 4 -->
+		<section style="padding-top: 2.0em;padding-bottom: 0em;border-top: none;">
+			<h4>빵 체험단 실시간 리뷰!</h4>
+			<a href="/test/review" class="moreView">더보기</a>
+		</section>
+
+		<!-- 빵 체험단 리뷰 -->
+		<section class="spotlights alt">
+			<th:block th:each="review : ${tastingRe}">
+				<article style="border-width: 0px 0px 0px 0px;width: 33.33333%;" th:object="${review}">
+					<a th:href="*{tno}" class="image fit goRead"><img  th:src="*{testingPhoto}" alt=""></a>
+					<a th:href="*{tno}" th:text="*{shopName}" class="goRead"></a>
+					<p th:text="*{title}"></p>
+					<p style="font-weight: 600;">리뷰 0 개</p>
+					<!-- 사용자 댓글 -->
+					<div class="box" style="background: #f5f5f5;margin-bottom: 1em;border: solid 0px;border-radius: 5px">
+						<span style="font-size: small;">yedee123 님</span>
+						<p>팔미까레 모두 맛있었어요><♡ 정성스레 적어주신 손편지에 감동~~~부산 가면 꼭 들리겠습니다:</p>
 					</div>
-					<div class="date">
-						<span>가입일자</span>
-						<p>2020.08.07</p>
-					</div>
-				</li>
-			</ul>
-		</div></div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; display: block; height: 125px; max-height: 116px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 50px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div>
-		<a href="/Account/LoginPage.php" class="btn">로그인 창으로 돌아가기</a>
-	</div>
-</section>
+				</article>
+			</th:block>
+			<br>
+		</section>
+
+	</section>
+</div>
+
 <!-- Footer -->
 <footer id="footer">
 	<div class="inner">
@@ -98,12 +304,25 @@
 						<a href="/main/privacy" class="title">개인정보 처리 방침</a>
 					</p>
 				</article>
+				<article>
+					<p>
+						<strong class="name">Support</strong>
+						<a href="/main/error" class="title">자주 묻는 질문</a><br>
+						<a href="/test/list" class="title">이벤트</a>
+					</p>
+				</article>
 			</div>
 			<div class="team">
 				<article>
 					<p>
-						<strong class="name">제휴문의</strong>
+						<strong class="name">메일</strong>
 						<span class="title">BBangya@gmail.com</span><br>
+					</p>
+				</article>
+				<article>
+					<p>
+						<strong class="name">제휴문의</strong>
+						<span class="title">BBangyaSupport@gmail.com</span><br>
 					</p>
 				</article>
 				<article>
@@ -115,7 +334,7 @@
 			</div>
 			<div class="team">
 				<p>
-					<strong class="name">Follow</strong>
+					<strong class="name">Follow us</strong>
 				</p>
 				<ul class="contact-icons">
 					<li class="icon brands fa-dribbble">
@@ -124,12 +343,12 @@
 					</li>
 					<li class="icon brands fa-github">
 						<span><strong>Github</strong></span><br>
-						<a href="https://github.com/yeahdy" target="_blank">yeahdy</a>
+						<a href="https://github.com/yeahdy" target="_blank">yeahdy</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<a href="https://github.com/HanJunKyu" target="_blank">HanJunKyu</a><br>
-						<a href="https://github.com/gomjiyun" target="_blank">gomjiyun</a>
+						<a href="https://github.com/gomjiyun" target="_blank">gomjiyun</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<a href="https://github.com/hyeongjin0706" target="_blank">hyeongjin0706</a><br>
-						<a href="https://github.com/hyunjuu" target="_blank">hyunjuu</a>
-						<a href="https://github.com/CraBk94" target="_blank">CraBk94</a><br>
+						<a href="https://github.com/hyunjuu" target="_blank">hyunjuu</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="https://github.com/CraBk94" target="_blank">CraBk94</a>
 					</li>
 				</ul>
 			</div>
@@ -141,22 +360,35 @@
 	</div>
 </footer>
 
+
 <!-- Scripts -->
+<script src="https://kit.fontawesome.com/8eb5905426.js" crossorigin="anonymous"></script>
 <script src="/js/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
 <script src="/js/browser.min.js"></script>
 <script src="/js/breakpoints.min.js"></script>
 <script src="/js/util.js"></script>
 <script src="/js/main.js"></script>
+<script th:replace="/main/header::header_js"></script>
 <script type="text/javascript">
-	// 스크롤 효과
-	scrollPlugin();
-	function scrollPlugin(){
-		$('.list_id').mCustomScrollbar({
-			// 테마
-			theme:"minimal-dark"
-		});
-	}
+	// 오늘의 빵
+	$("a.goInfo").on("click", function(e){
+		e.preventDefault();
+		location.href = "/main/breadDetail?bno=" + $(this).attr("href");
+	})
+
+	//원데이 클래스
+	$("a.goRead_class").on("click", function(e){
+		e.preventDefault();
+		location.href = "/class/classDetail?bno=" + $(this).attr("href");
+	})
+
+	// 빵체험단
+	$("a.goRead").on("click", function(e){
+		e.preventDefault();
+		location.href = "/test/read?tno=" + $(this).attr("href");
+	})
 </script>
 </body>
 </html>

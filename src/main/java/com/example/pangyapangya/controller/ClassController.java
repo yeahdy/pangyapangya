@@ -56,6 +56,7 @@ public class ClassController {
         log.info("-------------------------------");
 
         model.addAttribute("class", classCeoService.get(bno));
+        classCeoService.updateReplyCount(bno);
 //        model.addAttribute("criteria", criteria);
 
         return "class/classDetail";

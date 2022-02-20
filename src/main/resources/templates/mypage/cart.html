@@ -10,51 +10,8 @@
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="icon" type="image/png"  href="/images/favicon.png"/>
+    <style th:include="/main/header::header_style"></style>
     <style>
-        .headerIcon{
-            width: 40px;
-            display: block;
-            margin: auto;"
-        }
-        .icon.solid:before {
-            font-weight: 100;
-            content: none;
-        }
-
-        .spotlights h5{
-            font-weight: bold;
-            font-size: small;
-        }
-
-        .spotlights p{
-            font-size: small;
-        }
-
-        /* 검색창 */
-        .search {
-            position: relative;
-            text-align: center;
-            width: 400px;
-            margin: 0 auto;
-        }
-        input {
-            width: 100%;
-            border-radius: 20px;
-            border: 1px solid #bbb;
-            margin: 10px 0;
-            padding: 10px 12px;
-        }
-        .fa-search {
-            position: absolute;
-            left: 90%;
-            top: 35%;
-            margin: 0;
-        }
-        form {
-            margin: 0;
-        }
-        /*여기까지*/
-
         h1, table{
             width: 80%;
             margin: 30px auto;
@@ -137,21 +94,6 @@
         #totalPrice{
             font-size: 25px;
         }
-        /*영수증처럼 했던거..*/
-        /*#orderButton{
-            !*display: block;*!
-            margin: 31px auto;
-            width: 38%;
-            border-radius: 0;
-            padding-top: 95px;
-            padding-bottom: 125px;
-            background-color: wheat;
-        }
-        #resultDiv{
-            width: 52%;
-            float: left;
-        }*/
-
         #orderButton{
             display: block;
             margin: 0 auto;
@@ -163,10 +105,6 @@
             color:white;
             font-size: 15px;
         }
-        #resultDiv{
-
-        }
-
         #title{
             color: #F9A825;
             /*font-size: 1.2em;*/
@@ -196,21 +134,18 @@
 <body class="is-preload" style="padding: 200px">
 
 <!-- Header -->
-<header id="header" th:include="/main/header::header_body">
-
-</header>
+<header id="header" th:include="/main/header::header_body"></header>
 
 
 <!-- Wrapper -->
 <div class="wrapper">
-
     <!-- Main -->
     <section class="main">
         <form action="/main/delivery" method="get">
             <section style="    margin: 100px 0;">
-
                 <header>
                     <h1 id="title">장바구니</h1>
+                    <input type="hidden" id="sessionU" th:value="${session['sessionU']}" />
                 </header>
                 <table border="1" class="bakery1">
                     <tbody>

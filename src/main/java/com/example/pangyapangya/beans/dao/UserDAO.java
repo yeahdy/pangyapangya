@@ -55,4 +55,10 @@ public class UserDAO {
     public UserVO userInfo (String userId){
         return mapper.userInfo(userId);
     }
+
+    // 회원정보 수정
+    public boolean userUpdate(UserVO userVO){return mapper.userUpdate(userVO) == 1;}
+
+    // 회원탈퇴
+    public boolean userDelete(String userId){return mapper.userDelete(userId) == 1;}
 }

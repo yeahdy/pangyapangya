@@ -21,5 +21,7 @@ public interface ClassCeoService {
 
     // 메인페이지 글 가져오기
     public List<ClassCeoVO> classList_main();
+    // 댓글 갯수 가져오기
+    public int updateReplyCount(Long bno);
 
 }

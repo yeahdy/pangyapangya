@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>원데이클래스 | Main</title>
+    <title>원데이클래스 | 빵야빵야(屋)</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="" />
@@ -11,57 +11,10 @@
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="icon" type="image/png"  href="/images/favicon.png"/>
 </head>
+<style th:replace="/main/header::header_style"></style>
 <style>
-    .headerIcon{
-        width: 40px;
-        display: block;
-        margin: auto;"
-    }
-    .icon.solid:before {
-        font-weight: 100;
-        content: none;
-    }
-
-    .spotlights h5{
-        font-weight: bold;
-        font-size: small;
-    }
-
-    .spotlights p{
-        font-size: small;
-        margin-bottom: 1em;
-    }
-
-    /* 검색창 */
-    .search {
-        position: relative;
-        text-align: center;
-        width: 400px;
-        margin: 0 auto;
-    }
-    input {
-        width: 100%;
-        border-radius: 20px;
-        border: 1px solid #bbb;
-        margin: 10px 0;
-        padding: 10px 12px;
-    }
-    .fa-search {
-        position: absolute;
-        left: 90%;
-        top: 35%;
-        margin: 0;
-    }
-    form {
-        margin: 0;
-    }
     p {
         margin: 0 0 1em 0;
-    }
-
-    .spotlights h5{
-        font-weight: bold;
-        font-size: small;
     }
 
     .spotlights > article {
@@ -93,52 +46,6 @@
         color: black;
     }
 
-    /* header */
-    .headerIcon{
-        width: 40px;
-        display: block;
-        margin: auto;"
-    }
-    .icon.solid:before {
-        font-weight: 100;
-        content: none;
-    }
-
-    .spotlights h5{
-        font-weight: bold;
-        font-size: small;
-    }
-
-
-    /* 검색창 */
-    .search {
-        position: relative;
-        text-align: center;
-        width: 400px;
-        margin: 0 auto;
-    }
-    input {
-        width: 100%;
-        border-radius: 20px;
-        border: 1px solid #bbb;
-        margin: 10px 0;
-        padding: 10px 12px;
-    }
-    .fa-search {
-        position: absolute;
-        left: 90%;
-        top: 35%;
-        margin: 0;
-    }
-    form {
-        margin: 0;
-    }
-    #bannerDiv{
-        position: fixed;
-        top: 66.66px;
-        z-index: 999;
-    }
-
     .image.fit img {
         border-radius: 4px;
     }
@@ -153,8 +60,7 @@
 <body class="is-preload" style="padding: 200px">
 
 <!-- Header -->
-<header id="header" th:include="/main/header::header_body">
-</header>
+<header id="header" th:include="/main/header::header_body"></header>
 
 <div class="wrapper" style="margin: 0 auto 0em;">
     <div id="bannerDiv">
@@ -164,14 +70,9 @@
 
 <!-- Wrapper -->
 <div class="wrapper">
-
     <!-- Main -->
     <section class="main">
-        <!--        <div>-->
-        <!--            <img src="/images/classbanner.jpeg" alt="" width="200px">-->
-        <!--        </div>-->
-
-        <!-- Spotlights 2 -->
+        <!-- 원데이 클래스 -->
         <section class="spotlights alt" id="class">
             <th:block th:each="class : ${list}">
                 <article th:object="${class}" class="item" style="border-width: 0px 1px 0px 0px;" >

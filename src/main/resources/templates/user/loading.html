@@ -57,8 +57,9 @@
                     type : 'get',
                     data : param,
                     contentType: "application/json; charset=UTF-8",
-                    success : function(){
+                    success : function(res){
                         location.href="/main/mainPage"
+                        console.log("로그인 완료: " + res)
                     },
                     error: function(xhr, type){
                         console.log(xhr);

@@ -39,8 +39,8 @@ import java.util.List;
 @RequestMapping("/user/*")
 @RequiredArgsConstructor
 public class UserController {
+    private static final String SESSIONU = "sessionU";
     private final UserService userService;
-    private String mainView = "redirect:/main/mainPage";
 
     /* 로그인 */
     @GetMapping("login")
@@ -49,21 +49,21 @@ public class UserController {
     @PostMapping("login")
     public RedirectView login(UserVO userVO, HttpServletRequest req, RedirectAttributes rttr){
         log.info("---------로그인-----------");
-        log.info("ceoId: " + userVO.getUserId());
-        log.info("ceoPw: " + userVO.getUserPw());
+        log.info("userId: " + userVO.getUserId());
+        log.info("userPw: " + userVO.getUserPw());
         log.info("--------------------------");
 
         HttpSession session = req.getSession(); // session 생성
         if(!userService.login(userVO)) {
             log.info("-------로그인 실패-------");
-            session.setAttribute("sessionU", null);  // session 저장하기
-            // 아이디 비번 틀렸을 경우
             rttr.addFlashAttribute("check", "false");
             return new RedirectView("login");
         }
         log.info("-------로그인 성공-------");
+        log.info("session Id: " + session.getId()); // session 아이디 발급
         UserVO userInfo= userService.userInfo(userVO.getUserId());
-        session.setAttribute("sessionU", userInfo.getUserId()); //session 저장하기
+//        session.setAttribute("sessionU", userInfo.getUserId()); //session 저장하기
+        session.setAttribute(SESSIONU , userInfo.getUserId()); //session 저장하기
         return new RedirectView("/main/mainPage");
     }
 
@@ -72,13 +72,13 @@ public class UserController {
     public void logout(HttpServletRequest req){
         HttpSession session = req.getSession(false);    // false: 세션이 없을 경우 null 반환. 기본값 true
         if(session != null){
-            session.invalidate();   //세션 삭제
+            session.invalidate();   //세션 초기화(삭제)
         }
     }
 
     /* 아이디 찾기 */
     @GetMapping("idFind")
-    public String idFind(){ return "user/idFind"; }
+    public String idFind(){ return "user/idFind";}
 
     /* 아이디 찾기 완료 */
     @PostMapping ("idFindSuccess")
@@ -108,7 +108,7 @@ public class UserController {
 
     /* 비밀번호 찾기 */
     @GetMapping("pwFind")
-    public String pwFind(){ return "user/pwFind"; }
+    public String pwFind(){ return "user/pwFind";}
 
     @PostMapping("pwFind")
     public RedirectView pwFind(UserVO userVO, RedirectAttributes rttr){
@@ -178,20 +178,11 @@ public class UserController {
 
     /* 회원가입 완료 */
     @GetMapping("joinSuccess")
-    public String joinSuccess(HttpSession session){
-        String sessionU = (String)session.getAttribute("sessionU");
-        String sessionC = (String)session.getAttribute("sessionC");
-        if(sessionU != null || sessionC != null){
-            return "main/mainPage";
-        }
-        return "user/joinSuccess";
-    }
+    public String joinSuccess(){ return "user/joinSuccess"; }
 
     /* 로딩페이지 */
     @GetMapping("loading")
-    public String loading(){
-        return "user/loading";
-    }
+    public String loading(){ return "user/loading"; }
 
     /* ************************************* Rest Api 로 카카오톡 로그인 ************************************* */
 
@@ -269,7 +260,7 @@ public class UserController {
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
-            sb.append("&client_id=56ca7f16524140167e76230ff811876e");  //본인이 발급받은 key
+            sb.append("&client_id=56ca7f16524140167e76230ff811876e");  //본인이 발급받은 REST API key
             sb.append("&redirect_uri=http://localhost:10009/user/loading");     // 본인이 설정해 놓은 경로
             sb.append("&code=" + authorize_code);
             bw.write(sb.toString());

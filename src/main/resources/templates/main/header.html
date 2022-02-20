@@ -10,6 +10,11 @@
 	<meta name="keywords" content="" />
 	<link rel="stylesheet" href="/css/main.css" />
 	<style th:fragment="header_style">
+		.mainLogo{
+			width: 100px;
+			margin-top: 1.3em;
+		}
+
 		.headerIcon{
 			width: 40px;
 			display: block;
@@ -53,6 +58,15 @@
 			margin: 0;
 		}
 
+		@media screen and (max-width: 980px) {
+			.mainLogo{
+				width: 80px;
+				padding-top: 1em;
+			}
+			.search{
+				width: 210px;
+			}
+		}
 	</style>
 </head>
 <body class="is-preload" style="padding: 10em 200px 0 200px;">
@@ -62,13 +76,14 @@
 
 	<!-- Logo -->
 	<span class="logo">
-		<a href="/main/mainPage"><img src="/images/mainLogo2.png" alt="myPage" style="width: 100px;margin-top: 1.3em;"/></a>
+		<a href="/main/mainPage"><img src="/images/mainLogo2.png" alt="myPage" class="mainLogo"/></a>
 		<span></span>
 	</span>
 
 	<!-- Nav -->
 	<nav id="nav">
 		<ul>
+			<!-- 메뉴 -->
 			<li><div class="changeColor"><a href="/main/breadList">오늘의 빵</a></div></li>
 			<li><div class="changeColor"><a href="/class/classMain">원데이 클래스</a></div></li>
 			<li>
@@ -79,17 +94,20 @@
 				</ul>
 			</li>
 			<!-- 검색창 -->
-			<form action="/main/breadList" id="searchForm">
-				<div class="search">
-					<a href="#" id="iconSearch"><i class="fas fa-search"></i></a>
-					<input type="text" id="keyword" name="keyword" placeholder="먹고 싶은 빵 종류를 검색 해 보세요" maxlength="17" style="background-color: wheat;border-radius: 10px;color: darkgray">
-
-				</div>
-				<input type="hidden" class="box" value="검색">
-			</form>
+			<li>
+				<form action="/main/breadList" id="searchForm">
+					<div class="search">
+						<li id="iconSearch"><i class="fas fa-search"></i></li>
+						<input type="text" id="keyword" name="keyword" placeholder="먹고 싶은 빵 종류를 검색 해 보세요" maxlength="17" style="background-color: wheat;border-radius: 10px;color: darkgray">
+					</div>
+					<input type="hidden" class="box" value="검색">
+				</form>
+			</li>
 			<!-- 비회원일 경우 -->
 			<li th:if="${session.sessionU == null && session.sessionC == null}">
-				<a href="#" class="icon solid fa-angle-down"><img src="/images/iconPerson.png" alt="myPage" class="headerIcon"/></a>
+				<a href="#" class="icon solid fa-angle-down"><img src="/images/iconPerson.png" alt="myPage" class="headerIcon"/>
+					<span style="display: none">로그인 또는 회원가입을 해주세요</span>
+				</a>
 				<ul>
 					<li><a href="/user/login">로그인</a></li>
 					<li><a href="/user/join">회원가입</a></li>
@@ -97,19 +115,23 @@
 			</li>
 			<!-- 일반회원일 경우 -->
 			<li th:if="${session.sessionU != null}">
-				<input type="hidden" id="sessionU" th:value="${session['sessionU']}" />
-				<a href="#" class="icon solid fa-angle-down"><img src="/images/iconPerson.png" alt="myPage" class="headerIcon"/></a>
+<!--				<input type="hidden" id="sessionU" th:value="${session['sessionU']}" />-->
+				<a href="#" class="icon solid fa-angle-down"><img src="/images/iconPerson.png" alt="myPage" class="headerIcon"/>
+					<span style="display: none">내 정보</span>
+				</a>
 				<ul>
 					<li><a href="/mypage/breadOrderList">주문 내역</a></li>
 					<li><a href="/mypage/myWriting_new">내 글보기</a></li>
-					<li><a href=" /mypage/modifyMyInfo">내 정보관리</a></li>
+					<li><a href=" /mypage/checkPassword_new">내 정보관리</a></li>
 					<li><a onclick="kakaoLogout()" th:href="@{/user/logout}">로그아웃</a></li>
 				</ul>
 			</li>
 			<!-- 사장님일 경우 -->
 			<li th:if="${session.sessionC != null}">
-				<input type="hidden" id="sessionC" th:value="${session['sessionC']}" />
-				<a href="#" class="icon solid fa-angle-down"><img src="/images/iconPerson.png" alt="myPage" class="headerIcon"/></a>
+				<!--<input type="hidden" id="sessionC" th:value="${session['sessionC']}" />-->
+				<a href="#" class="icon solid fa-angle-down"><img src="/images/iconPerson.png" alt="myPage" class="headerIcon"/>
+					<span style="display: none">내 정보</span>
+				</a>
 				<ul>
 					<li>
 						<a href="#">글 등록하기</a>
@@ -138,7 +160,8 @@
 				</ul>
 			</li>
 
-			<li style="margin-left: -1em;">
+			<!-- 장바구니 -->
+			<li th:unless="${session.sessionC != null}" style="margin-left: -1em;">
 				<a href="/mypage/cart"><img src="/images/iconCart.png" alt="cart" class="headerIcon"/></a>
 			</li>
 		</ul>
@@ -161,16 +184,18 @@
 
 	// 메뉴 색상 변경
 	let div= $("#nav").find(".changeColor");
-	console.log(div);
 
 	div.each(function (index, element) {
 		console.log(index, element);
 		$(element).mouseleave(function(){
 			$(element).css("color", "white");
+			$(element).css("border-bottom", "none");
 		})
 		$(element).mouseover(function(){
 			$(element).css("color", "black");
+			$(element).css("border-bottom", "4px solid black");
 		})
+
 	})
 
 	// 검색창 공백막기
@@ -205,6 +230,7 @@
 
 	Kakao.init('2465241f2a949966552234d75ef14dee'); //발급받은 키 중 javascript키를 사용해준다.
 	console.log("sdk초기화여부판단" + Kakao.isInitialized()); // sdk초기화여부판단
+ */
 	// 카카오톡 로그아웃
 	function kakaoLogout() {
 		if (Kakao.Auth.getAccessToken()) {
@@ -221,7 +247,7 @@
 			Kakao.Auth.setAccessToken(undefined)
 		}
 	}
-*/
+
 
 </script>
 </body>

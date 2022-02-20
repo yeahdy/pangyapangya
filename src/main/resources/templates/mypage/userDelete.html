@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<html>
+<head>
+	<title>회원탈퇴 | 빵야빵야(屋)</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="/css/main.css" />
+	<link rel="stylesheet" href="/css/login.css" />
+	<link rel="icon" type="image/png"  href="/images/favicon.png"/>
+	<style th:include="/main/header::header_style"></style>
+	<style>
+		#all{display: flex;}
+		.wrapper{width: 75%;}
+		#mainSection{padding: 0;}
+		#rightHeader h2{color: #F9A825; font-size: 1.2em; font-weight: 900;}
+		#explain p{font-size: 0.8em; background: #fbf6f6; height: 80px; padding: 20px 10px;}
+		#ad{background: none; width: 15%; height: 10px;}
+		#ad img{width: 100%; height: 600px;}
+		#myMainSection{display: flex;}
+		#myLeftSection{width: 20%; background: #f9efef;}
+		#myRightSection{width: 80%; padding: 37px 35px 15px 45px;}
+		.myPageTitle{background: #F9A825; margin: 0; padding: 7px 7px 7px 15px;}
+		.myPageTitle p{margin: 0; color: #fff;}
+		#allDiv{padding:15px;}
+		#allDiv p{margin: 0; font-size: 0.85em; font-weight: bold; color: #000;}
+		.contentDiv{margin-top: 15px; margin-bottom: 15px;}
+		.contentDiv a{color: #3b3b3b; font-weight: lighter; border: none; font-size: 0.8rem;}
+		.myPageSelectMenu{margin-top: 5px; margin-bottom: 5px;}
+		#subDiv2 {padding-right: 27px;}
+		.table-1{display: flex; width: 55%; margin: 50px auto 20px;}
+		.table-1 div p{margin: 0; padding: 10px 17px 0;}
+		.table-title{width: 25%; color: #F9A825; font-weight: 600; padding-top: 10px; text-align: center;}
+		.table-content{width: 75%;}
+		.table-content div{width: 200px; margin-right: 5px;}
+		#title1 p{margin-bottom: 1em; font-size: 1.3em; font-weight: 600; color: #3c4b51;}
+		#title2{margin-bottom: 1em; font-size: 1.3em; font-weight: 600; color: #000; width: 20%; margin: 0 auto;}
+		hr {margin: 1em 0 2em;}
+		sub {font-size: 0.5em; font-weight: lighter; top: 0.3em; left: 0.8em; color: #888}
+		input[type="text"], textarea{border: none; margin: 0;}
+		input[type="file"]{display: none;}
+		#registDiv{width: 20%; margin: 0 auto;}
+		select{border: none;}
+		input[type="password"]{border: none; margin: 0;}
+		#contentDiv{text-align: center;}
+	</style>
+</head>
+<body class="is-preload" style="padding: 200px">
+	<header id="header" th:include="/main/header::header_body"></header>
+	<!-- Wrapper -->
+	<div th:if="${check == 'false'}">
+		<input type="hidden" id="update_False" th:value="${check}" />
+	</div>
+	<div>
+		<div id="all">
+			<div class="wrapper">
+				<!-- Main -->
+				<section class="main second-main">
+					<section id="mainSection">
+						<section id="myMainSection">
+							<section id="myLeftSection">
+								<div id="myLeftDiv">
+									<div class="myPageMenu">
+										<div class="myPageTitle"><p>MY PAGE</p></div>
+										<div id="allDiv">
+											<div class="myPageSelect1"><p>주문 내역</p></div>
+											<div class="contentDiv">
+												<div class="myPageSelectMenu"><p><a href="/mypage/breadOrderList">빵 결제 내역</a></p></div>
+												<div class="myPageSelectMenu"><p><a href="/mypage/oneDayClassList">원데이 클래스 신청 내역</a></a></p></div>
+												<div class="myPageSelectMenu floorDiv"><p><a href="/mypage/testingList">빵 체험단 신청 내역</a></a></p></div>
+											</div>
+
+											<div class="myPageSelect1"><p>내 글 보기</p></div>
+											<div class="contentDiv">
+												<div class="myPageSelectMenu"><p><a href="/mypage/bread_review">빵집 리뷰</a></p></div>
+												<div class="myPageSelectMenu"><p><a href="/mypage/oneDayClass_review">원데이 클래스</a></a></p></div>
+												<div class="myPageSelectMenu floorDiv"><p><a href="/mypage/testing_review">빵 체험단</a></a></p></div>
+											</div>
+
+											<div class="myPageSelect1"><p>내 정보</p></div>
+											<div class="contentDiv">
+												<div class="myPageSelectMenu"><p>
+													<a href="/mypage/checkPassword_new">내 정보 수정</a>
+												</p></div>
+												<div class="myPageSelectMenu"><p>
+													<a href="/mypage/userDelete" style="text-decoration: underline; color: chocolate;">회원 탈퇴</a>
+												</p></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+							<section id="myRightSection">
+								<div id="myRightDiv">
+									<form method="post" action="/mypage/userDelete" id="registForm">
+										<!--전체-->
+										<div id="contentDiv">
+											<!--밑에 상세정보 입력Div-->
+											<div id="subDiv2">
+												<p id="title2">회원 탈퇴</p>
+												<hr>
+												<div class="table-1" th:object="${user}">
+													<div class="table-title">비밀번호</div>
+													<div class="table-content">
+														<input type="password" id="userPw" name="userPw"/>
+														<input type="hidden" name="userId" th:field="*{userId}">
+													</div>
+												</div>
+											</div><!--밑에 상세정보 입력Div-->
+											<div id="registDiv">
+												<input type="button" id="deleteBtt" class="primary" value="회원 탈퇴">
+											</div>
+										</div><!--전체DIv-->
+									</form>
+								</div>
+							</section>
+						</section>
+					</section>
+				</section>
+			</div>
+			<div id="ad">
+				<span class="image"><img src="/images/ECdDwLmUIAIAX7k.jpg" alt=""></span>
+			</div>
+		</div>
+	</div>
+	<!-- Footer -->
+	<footer id="footer" th:include="/main/footer::footer_body"></footer>
+	<!-- Scripts -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/jquery.dropotron.min.js"></script>
+	<script src="/js/browser.min.js"></script>
+	<script src="/js/breakpoints.min.js"></script>
+	<script src="/js/util.js"></script>
+	<script src="/js/main.js"></script>
+	<script th:replace="/main/header::header_js"></script>
+	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+	<script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
+</body>
+<script type="text/javascript">
+	let deleteBtt = $("#deleteBtt");
+	let registForm= $("#registForm");
+
+	$(document).ready(function () {
+		deleteBtt.on('click', function () {
+			if (!$('#userPw').val()) {
+				$("#userPw").focus();
+				alert("비밀번호를 입력 해 주세요.")
+				return;
+			}else{
+				registForm.submit();
+			}
+		})
+
+		/* 로그인 실패 컨트롤러*/
+		console.log("update_False: " + $("#update_False").val());
+		if ($("#update_False").val() == 'false') {
+			alert("비밀번호가 일치하지 않습니다.");
+		}
+	})
+</script>
+</html>

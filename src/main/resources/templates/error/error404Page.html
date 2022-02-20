@@ -10,51 +10,7 @@
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="icon" type="image/png"  href="/images/favicon.png"/>
-    <style>
-        .headerIcon{
-            width: 40px;
-            display: block;
-            margin: auto;"
-        }
-        .icon.solid:before {
-            font-weight: 100;
-            content: none;
-        }
-
-        .spotlights h5{
-            font-weight: bold;
-            font-size: small;
-        }
-
-        .spotlights p{
-            font-size: small;
-        }
-
-        /* 검색창 */
-        .search {
-            position: relative;
-            text-align: center;
-            width: 400px;
-            margin: 0 auto;
-        }
-        input {
-            width: 100%;
-            border-radius: 20px;
-            border: 1px solid #bbb;
-            margin: 10px 0;
-            padding: 10px 12px;
-        }
-        .fa-search {
-            position: absolute;
-            left: 90%;
-            top: 35%;
-            margin: 0;
-        }
-        form {
-            margin: 0;
-        }
-
-    </style>
+    <style th:replace="/main/header::header_style"></style>
 </head>
 <body class="is-preload" style="padding: 10em 200px 0 200px; background: white;">
 

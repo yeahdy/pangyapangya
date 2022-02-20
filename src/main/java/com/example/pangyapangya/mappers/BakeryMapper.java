@@ -30,7 +30,7 @@ public interface BakeryMapper {
     public int delete(Long bno);
 
     //    게시글 전체 개수
-    public int getTotal(Criteria criteria);
+    public int getTotal(String keyword);
 
     // 해당 회원의 게시글 전체 갯수
     public int myTotal(String ceoId);
@@ -43,8 +43,10 @@ public interface BakeryMapper {
 
     // 사장님이 등록한 게시글 가져오기
     public List<BakeryVO> breadList(String keyword);
-    //    게시글 상세정보
+
+    // 게시글 상세정보
     public BakeryVO breadInfo(Long bno);
+
 //    //  빵 후기
 //    public List<BreadReviewVO> bakeryReviewList();
 //    //  후기 댓글 한개

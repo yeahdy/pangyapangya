@@ -3,57 +3,15 @@
 
 <html>
 <head>
-    <title>회원 정보</title>
+    <title>회원 정보수정 | 빵야빵야(屋)</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="/css/main.css" />
+    <link rel="icon" type="image/png"  href="/images/favicon.png"/>
+    <style th:include="/main/header::header_style"></style>
     <style>
-        .headerIcon{
-            width: 40px;
-            display: block;
-            margin: auto;"
-        }
-        .icon.solid:before {
-            font-weight: 100;
-            content: none;
-        }
-
-        .spotlights h5{
-            font-weight: bold;
-            font-size: small;
-        }
-
-        .spotlights p{
-            font-size: small;
-        }
-
-        /* 검색창 */
-        .search {
-            position: relative;
-            text-align: center;
-            width: 400px;
-            margin: 0 auto;
-        }
-        input {
-            width: 100%;
-            border-radius: 20px;
-            border: 1px solid #bbb;
-            margin: 10px 0;
-            padding: 10px 12px;
-        }
-        .fa-search {
-            position: absolute;
-            left: 90%;
-            top: 35%;
-            margin: 0;
-        }
-        form {
-            margin: 0;
-        }
-        /**/
-
         #all{display: flex;}
         .wrapper{width: 75%;}
         #ad{background: #fff; width: 15%; height: 10px;}
@@ -96,6 +54,16 @@
         table input{
             border-radius: 10px;
         }
+        .info_error {
+            display: none;
+            padding-left: 25px;
+            text-align: left;
+            font-size: 12px;
+            color: #F9A825;
+            background: url(/images/iconAlert.png) no-repeat 5px bottom/16px;
+            background-position-y: 1px;
+            margin: 0.5em;
+        }
     </style>
 </head>
 <body class="is-preload" style="padding: 200px">
@@ -107,9 +75,6 @@
 <!-- Wrapper -->
 <div id="all">
     <div class="wrapper">
-
-
-
         <section id="myLeftSection">
             <div id="myLeftDiv">
                 <div class="myPageMenu">
@@ -124,44 +89,46 @@
 
                         <div class="myPageSelect1"><p>내 글 보기</p></div>
                         <div class="contentDiv">
-                            <div class="myPageSelectMenu"><p><a href="/mypage/bread_review" style="text-decoration: underline; color: chocolate;">빵집 리뷰</a></p></div>
+                            <div class="myPageSelectMenu"><p><a href="/mypage/bread_review">빵집 리뷰</a></p></div>
                             <div class="myPageSelectMenu"><p><a href="/mypage/oneDayClass_review">원데이 클래스</a></a></p></div>
                             <div class="myPageSelectMenu floorDiv"><p><a href="/mypage/testing_review">빵 체험단</a></a></p></div>
                         </div>
 
                         <div class="myPageSelect1"><p>내 정보</p></div>
                         <div class="contentDiv">
-                            <div class="myPageSelectMenu"><p><a href=" /mypage/checkPassword_new">내 정보 수정</a></p></div>
-                            <div class="myPageSelectMenu"><p><a href="#">회원 탈퇴</a></a></p></div>
+                            <div class="myPageSelectMenu"><p>
+                                <a href="/mypage/checkPassword_new" style="text-decoration: underline; color: chocolate;">내 정보 수정</a>
+                            </p></div>
+                            <div class="myPageSelectMenu"><p>
+                                <a href="/mypage/userDelete">회원 탈퇴</a>
+                            </p></div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
 
         <!-- Main -->
         <section class="main second-main">
-
             <section>
                 <section id="myMainSection">
-
-
                     <section id="myRightSection" class="form">
                         <div id="myRightDiv">
-                            <form method="post" action="/myPageCeo/edit" id="registForm">
-
+                            <form method="post" action="/mypage/edit" id="modityForm">
                                 <header>
                                     <h2 id="title">회원 정보 관리</h2>
+                                    <div th:if="${check == 'true'}">
+                                        <input type="hidden" id="updateChk" th:value="${check}" />
+                                    </div>
                                 </header>
                                 <table id="form" th:object="${userInfo}">
                                     <tr>
                                         <td>이름</td>
-                                        <td><input th:field="*{userName}" readonly></td>
+                                        <td><input type="text" th:field="*{userName}" readonly></td>
                                     </tr>
                                     <tr>
                                         <td>아이디</td>
-                                        <td><input th:value="*{userId}" readonly></td>
+                                        <td><input type="text" name="userId" th:value="*{userId}" readonly></td>
                                     </tr>
                                     <tr>
                                         <td>비밀번호</td>
@@ -170,7 +137,6 @@
                                             <p class="info_error" id="userPwError1">비밀번호를 입력해주세요.</p>
                                             <p class="info_error" id="userPwError2" style="display: block;">비밀번호는 영문+숫자+특수문자를 포함한 8~20자 까지 입니다.</p>
                                         </td>
-
                                     </tr>
                                     <tr>
                                         <td>비밀번호 확인</td>
@@ -179,41 +145,32 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <!--인증 하기 추가-->
                                         <td>휴대전화</td>
-                                        <td><input type="" th:value="*{userPhoneNum}"></td>
+                                        <td><input type="tel" id="userPhoneNum" name="userPhoneNum" th:value="*{userPhoneNum}"></td>
                                     </tr>
-
-                                    <!--우편번호 작성하는 거 양식 바꾸기-->
-                                    <!--<tr>
-                                        <td>우편번호</td>
-                                        <td> <input type="" th:value="*{userZipcode}"></td>
-                                    </tr>-->
                                     <tr>
                                         <td rowspan="3">주소</td>
                                         <td>
                                             <div id="zip">
                                                 <input type="text" id="userZipcode" name="userZipcode" placeholder="우편번호" th:value="*{userZipcode}">
-                                                <input type="button"  id="userZipcode_bt" onclick="" value="우편번호 찾기" >
+                                                <input type="button" id="userZipcode_bt" onclick="" value="우편번호 찾기" >
                                             </div>
                                         </td>
 
                                     </tr>
                                     <tr>
-                                        <td> <input type="" th:value="*{userAddress}"></td>
+                                        <td><input type="text" id="userAddress" name="userAddress" th:value="*{userAddress}"></td>
                                     </tr>
                                     <tr>
-                                        <td><input type="" th:value="*{userAddress_detail}"></td>
+                                        <td><input type="text" name="userAddressdetail" th:value="*{userAddressdetail}"></td>
                                     </tr>
-
                                 </table>
                                 <section>
-                                    <button id="modify_button" class="primary bac">정보 수정 하기</button>
+                                    <input type="button" id="modify_button" class="button primary fit" value="정보 수정 하기" style="margin-top: 1em;"/>
                                 </section>
                             </form>
                         </div>
                     </section>
-                    <!--</form>-->
                 </section>
             </section>
         </section>
@@ -239,7 +196,6 @@
     let pwCheck= false;
     let pwConfiCheck= false;
 
-    $(".info_error").css("display", "none");
     $('#modify_button').on("click", function () {
         // 비밀번호
         if(!$('#userPw').val()){
@@ -274,25 +230,22 @@
             $("#addressError1").hide();
         }
 
-        /* console.log("체크여부: "+pwCheck);
-         if(!pwCheck||!pwConfiCheck){
-             console.log("비밀번호 확인");
-             alert("비밀번호를 다시 확인 해 주세요");
-         }*/
+        console.log("pwCheck: "+pwCheck);
+        console.log("pwConfiCheck: "+pwConfiCheck);
 
-        if(!pwCheck){
-            $("#userPw").focus();
-        }else if(!pwConfiCheck){
-            $("#confirmPw").focus();
+        if(pwCheck && pwConfiCheck){
+            modityForm.submit();
+        }else if(!pwCheck || !pwConfiCheck){
+            alert("비밀번호를 다시 확인 해 주세요");
         }
     });
 
     // 비밀번호 유효성 검사
     $("#userPw").focusout(function () {
-        let pwCheck= /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/
-        if(!pwCheck.test($('#userPw').val())){
+        let pwLegCheck= /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/
+        if(!pwLegCheck.test($("#userPw").val())){
             $("#userPwError2").show();
-            pwCheck = false;
+            pwCheck= false;
             return;
         }else {
             $("#userPwError2").hide();
@@ -312,7 +265,10 @@
         }
     });
 
-
+    /* 회원정보 수정 성공 컨트롤러*/
+    if($("#updateChk").val() == 'true'){
+        alert("회원정보 수정이 완료되었습니다.");
+    }
 
 </script>
 </body>

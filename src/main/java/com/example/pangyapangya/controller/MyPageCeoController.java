@@ -61,7 +61,6 @@ public class MyPageCeoController {
     }
 
     //마이페이지(사장님) 내가 작성한 글 - 빵집소개
-
     @GetMapping("bakeryRe")
     public String bakeryRe(Criteria criteria, Model model, HttpSession session, BakeryVO bakeryVO){
         String sessionU = (String)session.getAttribute("sessionU");
@@ -75,7 +74,7 @@ public class MyPageCeoController {
 
         model.addAttribute("total", bakeryService.myTotal(sessionC));
         model.addAttribute("list", bakeryService.getList(criteria));
-        model.addAttribute("pageMaker", new PageDTO(bakeryService.getTotal(criteria), 10, criteria));
+//        model.addAttribute("pageMaker", new PageDTO(bakeryService.getTotal(criteria), 10, criteria));
         return "myPageCeo/bakeryRe";
     }
 //상세보기 페이지로 넘길건데
@@ -225,21 +224,19 @@ public class MyPageCeoController {
     }
 
     @PostMapping("delete")
-    public String delete(CeoVO ceoVO, HttpServletRequest req, RedirectAttributes rttr){
+    public RedirectView delete(CeoVO ceoVO, HttpServletRequest req, RedirectAttributes rttr){
         HttpSession session = req.getSession(); // session 생성
-        if(!ceoService.loginCEO(ceoVO)) {
-            session.setAttribute("sessionC", null);
-            rttr.addAttribute("check", "false");
-            return "myPageCeo/delete";
+        if(ceoService.loginCEO(ceoVO)){
+            bakeryService.ceoDelete(ceoVO); // 회원탈퇴 계정으로 만들기(status == 1)
+            rttr.addFlashAttribute("check", "true");
+            session.invalidate();
+            return new RedirectView("/main/mainPage");
         }else{
-            if(bakeryService.ceoDelete(ceoVO)){
-                rttr.addFlashAttribute("check", "true");
-                session.invalidate();
-                return "main/mainPage";
-            }
+            rttr.addFlashAttribute("check", "false");
+            return new RedirectView("delete");
         }
-        return "myPageCeo/delete";
     }
+
 }
 
 

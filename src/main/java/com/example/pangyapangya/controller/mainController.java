@@ -1,9 +1,8 @@
 package com.example.pangyapangya.controller;
 
-import com.example.pangyapangya.services.BakeryService;
-import com.example.pangyapangya.services.ClassCeoService;
-import com.example.pangyapangya.services.TestService;
-import com.example.pangyapangya.services.UserService;
+import com.example.pangyapangya.beans.vo.TestingReviewBoardVO;
+import com.example.pangyapangya.beans.vo.TestingReviewVO;
+import com.example.pangyapangya.services.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -11,20 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Random;
-/*
-    [ Task ]		    [ URL ]			    [ Method ]		[ Parameter ]			    [ Form ]	[ URL이동 ]
-    메인 페이지	        /main/mainPage		GET		        ???				            없음	    없음
-    로그인		        /user/login		    POST		    userId, Pw, status		    있음	    이동
-    아이디 찾기	        /user/idFind		POST		    user/ceoPhoneNum			있음	    이동
-    아이디 찾기 완료	/user/idFindSuccess	POST		    user/ceoId, user/ceoName	없음	    없음
-    비밀번호 찾기	    /user/pwFind		POST		    user/ceoId, user/ceoPhoneNum있음	    이동
-    비밀번호 찾기 완료	/user/idFindSuccess	POST		    user/ceoPw			        없음        없음
-    회원가입- 일반회원	/user/join		    POST		    userVO				        있음      	이동
-    회원가입- 사장님	/user/joinCEO		POST		    ceoVO	정보 반반씩 처리?	있음	    이동
-    회원가입- 사장님	/user/joinCEO2		POST		    ceoVO				        있음      	이동
-    회원가입- 약관동의	/user/joinConfirm	X		        X				            없음      	없음
-*/
+
 @Controller
 @Slf4j
 @RequestMapping("/main/*")
@@ -34,7 +24,9 @@ public class mainController {
     private final BakeryService bakeryService;
     private final TestService testService;
     private final ClassCeoService classCeoService;
+    private final ClassReplyService classReplyService;
 
+/*
     @GetMapping("index")
     public String index(){ return "main/index"; }
 
@@ -45,7 +37,8 @@ public class mainController {
 
     @GetMapping("generic")
     public String generic(){ return "main/generic"; }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////
+*/
+
     /* 헤더 */
     @GetMapping("header")
     public String header(){ return "main/header"; }
@@ -55,18 +48,56 @@ public class mainController {
     public String breadList(Model model){
         // 오늘의 빵
         model.addAttribute("breadList", bakeryService.breadList_main());
-//        // 원데이 클래스
+        // 원데이 클래스
         model.addAttribute("classList", classCeoService.classList_main());
         // 빵 체험단(모집)
         model.addAttribute("tasting", testService.mainTest());
-        // 빵 체험단(리뷰)
+        // 빵 체험단(리뷰 게시글)
         model.addAttribute("tastingRe", testService.mainReview());
-        /*model.addAttribute("reviewTotal", testService) 리뷰갯수*/
+
         return "main/mainPage";
     }
 
+    /* 빵 체험단 리뷰- 댓글1 */
+    @ResponseBody
+    @GetMapping("getTastingReviews1")
+    public List<TestingReviewVO> getTastingReviews1 (){
+        /* 각 게시글 번호 */
+        List<TestingReviewBoardVO> tastingRe= testService.mainReview();
+        Long getTno1 = tastingRe.get(0).getTno();
+        log.info("첫번째 게시글번호: " + getTno1);
+        return testService.getTastingReviews(getTno1);
+    }
+    /* 빵 체험단 리뷰- 댓글2 */
+    @ResponseBody
+    @GetMapping("getTastingReviews2")
+    public List<TestingReviewVO> getTastingReviews2 (){
+        /* 각 게시글 번호 */
+        List<TestingReviewBoardVO> tastingRe= testService.mainReview();
+        Long getTno2 = tastingRe.get(1).getTno();
+        log.info("두번째 게시글번호: " + getTno2);
+        return testService.getTastingReviews(getTno2);
+    }
+    /* 빵 체험단 리뷰- 댓글3 */
+    @ResponseBody
+    @GetMapping("getTastingReviews3")
+    public List<TestingReviewVO> getTastingReviews3 (){
+        List<TestingReviewBoardVO> tastingRe= testService.mainReview();
+        Long getTno3 = tastingRe.get(2).getTno();
+        log.info("세번째 게시글번호: " + getTno3);
+        return testService.getTastingReviews(getTno3);
+    }
 
+    /* 빵 체험단 리뷰- 댓글 */
+//    @ResponseBody
+//    @GetMapping("getTastingReviews")
+//    public List<TestingReviewVO> getTastingReviews (@RequestParam("tno") long tno){
+//        List<TestingReviewBoardVO> tastingRe= testService.mainReview();
+//        log.info("빵체험단 리뷰 댓글(tno): " + tno);
+//        return testService.getTastingReviews(tno);
+//    }
 
+/*
     @GetMapping("mainPage_test")
     public String mainPage_test(HttpSession session){
         String sessionU = (String)session.getAttribute("sessionU");
@@ -76,7 +107,7 @@ public class mainController {
         }
         return "main/mainPage_test";
     }
-
+*/
 
     /* footer */
     @GetMapping("footer")
@@ -84,8 +115,9 @@ public class mainController {
 
 
     /* 인증번호 */
+    @ResponseBody
     @GetMapping("/main/execute")
-    public @ResponseBody String sendSMS(String userPhoneNum) {
+    public String sendSMS(String userPhoneNum) {
         // 5자리 인증번호 만들기
         Random random  = new Random();
         String numStr = "";
@@ -98,7 +130,7 @@ public class mainController {
         System.out.println("인증번호 : " + numStr);
 
         // 문자 보내기
-        userService.certifiedPhoneNumber(userPhoneNum , numStr);
+//        userService.certifiedPhoneNumber(userPhoneNum , numStr);
         return numStr;
     }
 

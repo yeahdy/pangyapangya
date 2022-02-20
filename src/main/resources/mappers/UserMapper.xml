@@ -11,8 +11,8 @@
     <!-- 회원가입 -->
     <insert id="join">
         INSERT INTO TBL_USER
-        (USERID, USERPW, USERNAME, USERZIPCODE, USERADDRESS, USERADDRESS_DETAIL, USERPHONENUM)
-        VALUES(#{userId}, #{userPw}, #{userName}, #{userZipcode}, #{userAddress}, #{userAddress_detail}, #{userPhoneNum})
+        (USERID, USERPW, USERNAME, USERZIPCODE, USERADDRESS, USERADDRESSDETAIL, USERPHONENUM)
+        VALUES(#{userId}, #{userPw}, #{userName}, #{userZipcode}, #{userAddress}, #{userAddressdetail}, #{userPhoneNum})
     </insert>
 
     <!-- 카카오 회원가입 -->
@@ -31,7 +31,7 @@
 
     <!-- 아이디 찾기 -->
     <select id="idFind" resultType="UserVO">
-        SELECT USERID, USERPW, USERNAME, USERZIPCODE, USERADDRESS, USERADDRESS_DETAIL, USERPHONENUM, STATUS
+        SELECT USERID, USERPW, USERNAME, USERZIPCODE, USERADDRESS, USERADDRESSDETAIL, USERPHONENUM, STATUS
         FROM TBL_USER WHERE USERPHONENUM = #{userPhoneNum}
     </select>
 
@@ -62,9 +62,22 @@
 
     <!-- 회원 정보 조회 -->
     <select id="userInfo" resultType="UserVO">
-        SELECT USERID, USERPW, USERNAME, USERZIPCODE, USERADDRESS, USERADDRESS_DETAIL, USERPHONENUM, STATUS
+        SELECT USERID, USERPW, USERNAME, USERZIPCODE, USERADDRESS, USERADDRESSDETAIL, USERPHONENUM, STATUS
         FROM TBL_USER
         WHERE USERID= #{userId}
     </select>
 
+    <!-- 회원 정보 수정 -->
+    <update id="userUpdate">
+        UPDATE TBL_USER
+        SET USERPHONENUM = #{userPhoneNum}, USERZIPCODE = #{userZipcode}, USERADDRESS = #{userAddress}, USERADDRESSDETAIL = #{userAddressdetail}
+        WHERE USERID = #{userId}
+    </update>
+
+    <!-- 회원탈퇴-->
+    <update id="userDelete">
+        UPDATE TBL_USER
+        SET STATUS = 1
+        WHERE USERID = #{userId}
+    </update>
 </mapper>

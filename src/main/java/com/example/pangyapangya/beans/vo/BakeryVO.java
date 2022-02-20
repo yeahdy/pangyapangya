@@ -21,6 +21,6 @@ public class BakeryVO {
     private int breadPrice;
     private List<BakeryFileVO> attachList;
     private String keyword;
-    private int reviewCnt;
+    private int replyCount;
     /*private List<BakeryFileVO> attachList;*/
 }

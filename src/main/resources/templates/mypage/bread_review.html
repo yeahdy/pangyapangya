@@ -10,49 +10,8 @@
     <meta name="keywords" content="" />
     <link rel="icon" type="image/png"  href="/images/favicon.png"/>
     <link rel="stylesheet" href="/css/main.css" />
+    <style th:include="/main/header::header_style"></style>
     <style>
-        .headerIcon{
-            width: 40px;
-            display: block;
-            margin: auto;"
-        }
-        .icon.solid:before {
-            font-weight: 100;
-            content: none;
-        }
-
-        .spotlights h5{
-            font-weight: bold;
-            font-size: small;
-        }
-
-        .spotlights p{
-            font-size: small;
-        }
-
-        /* 검색창 */
-        .search {
-            position: relative;
-            text-align: center;
-            width: 400px;
-            margin: 0 auto;
-        }
-        input {
-            width: 100%;
-            border-radius: 20px;
-            border: 1px solid #bbb;
-            margin: 10px 0;
-            padding: 10px 12px;
-        }
-        .fa-search {
-            position: absolute;
-            left: 90%;
-            top: 35%;
-            margin: 0;
-        }
-        form {
-            margin: 0;
-        }
         #all{display: flex;}
         .wrapper{width: 75%;}
         #mainSection{padding: 0;}
@@ -96,9 +55,7 @@
 </head>
 <body class="is-preload" style="padding: 200px">
 <!-- Header -->
-<header id="header" th:include="/main/header::header_body">
-
-</header>
+<header id="header" th:include="/main/header::header_body"></header>
 
 <!-- Wrapper -->
 <div id="all">

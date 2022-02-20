@@ -9,20 +9,11 @@
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
     <link rel="stylesheet" href="/css/main.css"/>
+    <style th:include="/main/header::header_style"></style>
     <style>
         p {
             margin: 0 0 1em 0;
         }
-
-        .spotlights h5 {
-            font-weight: bold;
-            font-size: small;
-        }
-
-        .spotlights p {
-            font-size: small;
-        }
-
         .spotlights > article {
             padding: 1.0em 2.25em 0.5em 2.25em;
             border-style: solid;
@@ -46,122 +37,8 @@
             color: black;
         }
 
-
-        /* header */
-        .headerIcon {
-            width: 40px;
-            display: block;
-            margin: auto;
-        "
-        }
-
-        .icon.solid:before {
-            font-weight: 100;
-            content: none;
-        }
-
-        .spotlights h5 {
-            font-weight: bold;
-            font-size: small;
-        }
-
-        .spotlights p {
-            font-size: small;
-        }
-
-        .headerIcon {
-            width: 40px;
-            display: block;
-            margin: auto;
-        "
-        }
-
-        .icon.solid:before {
-            font-weight: 100;
-            content: none;
-        }
-
-        .spotlights h5 {
-            font-weight: bold;
-            font-size: small;
-        }
-
-        .spotlights p {
-            font-size: small;
-        }
-
-        /* 검색창 */
-        .search {
-            position: relative;
-            text-align: center;
-            width: 400px;
-            margin: 0 auto;
-        }
-
-        input {
-            width: 100%;
-            border-radius: 20px;
-            border: 1px solid #bbb;
-            margin: 10px 0;
-            padding: 10px 12px;
-        }
-
-        .fa-search {
-            position: absolute;
-            left: 90%;
-            top: 35%;
-            margin: 0;
-        }
-
-        form {
-            margin: 0;
-        }
-
-        .headerIcon {
-            width: 40px;
-        }
-
-        .icon.solid:before {
-            font-weight: 100;
-            content: none;
-        }
-
         div#wrap {
             display: flex;
-        }
-
-        .spotlights h5 {
-            font-weight: bold;
-        }
-
-        /* 검색창 */
-        .search {
-            position: relative;
-            text-align: center;
-            width: 400px;
-            margin: 0 auto;
-        }
-
-        input {
-            width: 100%;
-            border-radius: 20px;
-            border: 1px solid #bbb;
-            margin: 10px 0;
-            padding: 10px 12px;
-        }
-
-        .fa-search {
-            position: absolute;
-            left: 90%;
-            top: 35%;
-            margin: 0;
-        }
-
-        .img-warp {
-            position: relative;
-            display: block;
-            width: 100%;
-            height: auto;
         }
 
         .review {
@@ -250,17 +127,14 @@
 </head>
 <body class="is-preload" style="padding: 3.6% 200px 200px 200px">
 
-<!-- ----------------------------------------------------------------------------------------------------Header---------------------------------------------------------------------------------- -->
-<header id="header" th:include="/main/header::header_body">
+<!-- Header-->
+<header id="header" th:include="/main/header::header_body"></header>
 
-</header>
-<!-- ----------------------------------------------------------------------------------------------------Header---------------------------------------------------------------------------------- -->
 <div class="wrapper">
     <div id="bannerDiv">
         <img src="/images/testReview.png" style="width: 1433.66px">
     </div>
 </div>
-<!-- -----------------------------------------------------------------------------------------------------section----------------------------------------------------------------------------------- -->
 <div class="wrapper">
     <!-- Main -->
     <section class="main">
@@ -280,7 +154,6 @@
     </section>
 </div>
 
-<!-- ----------------------------------------------------------------------------------------------Footer-------------------------------------------------------------------------------------------------------------------------- -->
 <!-- Footer -->
 <footer id="footer" th:include="/main/footer::footer_body"></footer>
 

@@ -3,7 +3,7 @@
 
 <html>
 <head>
-	<title>회원가입-사장님 | 빵야빵야(屋)</title>
+	<title>회원가입 | 빵야빵야(屋)</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<meta name="description" content="" />
@@ -39,7 +39,8 @@
 				<div class="line_inp">
 					<p class="form_title">사업자 등록번호</p>
 					<input type="tel" name="shopRegNum" id="shopRegNum" placeholder="사업자 등록번호를 입력해주세요">
-					<p class="info_error" id="shopRegNumError1">가게 이름을 입력해주세요.</p>
+					<p class="info_error" id="shopRegNumError1">사업자 등록번호를 입력해주세요.</p>
+					<p class="info_error" id="shopRegNumError2">유효하지 않는 사업자 등록번호 입니다.</p>
 				</div>
 				<div class="line_inp">
 					<p class="form_title">가게 이름</p>
@@ -88,8 +89,9 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 	let joinCEO2Form = $("#joinCEO2Form");
+	let checkShopRegNum;
 
-	//비밀번호 숨기기
+	// 비밀번호 숨기기
 	$('.type_pwd').on('click',function() {
 		var $this = $(this);
 		$this.toggleClass('hide');
@@ -100,7 +102,7 @@
 		}
 	});
 
-	//공백 막기
+	// 공백 막기
 	$('#nextButton').on("click", function () {
 		// 사업자 등록번호
 		if(!$("#shopRegNum").val()){
@@ -138,10 +140,81 @@
 			$("#shopAddressError1").hide();
 		}
 
-		joinCEO2Form.submit();
+		// 사업자 등록번호 유효성 검사가 true일 경우 <form> 넘기기
+		if(checkShopRegNum){
+			joinCEO2Form.submit();
+			$("#shopRegNumError2").hide();
+		}else{
+			$("#shopRegNumError2").show();
+		}
 	})
 
+	// 사업자 등록번호를 입력 했을 경우 자동하이픈 추가 + 유효성 검사
+	$('#shopRegNum').on('keyup', function(){
+		let num = $('#shopRegNum').val();
+		num.trim();
+		// 자동 하이픈 추가
+		this.value = autoHyphen(num) ;
 
+		// 사업자 등록번호 유효성 검사결과
+		checkShopRegNum = checkCorporateRegistrationNum(this.value);
+		console.log("사업자 등록번호 유효성 검사결과: " + checkShopRegNum);
+	});
+
+
+	// 사업자 등록번호 유효성 검사
+	function checkCorporateRegistrationNum(value) {
+		console.log("사업자 등록번호: "+ value);
+		// - 를 슬래시로 감싸고 뒤에 gi 를 붙이면 replaceAll 과 같은 결과를 볼 수 있음 ※ replace(-,'')를 할 경우 첫번째 - 만 대체됨
+		// - 를 공백처리 한후 숫자를 하나씩 분리 해 map 방식으로 담는다.
+		let valueMap = value.replace(/-/gi,'').split('').map(function(item) {
+			return parseInt(item, 10);
+		});
+
+		console.log("사업자 번호 길이: " + valueMap.length)
+		// 번호의 길이가 10일 경우
+		if (valueMap.length === 10) {
+			// 사업자 번호 인증키 값
+			let multiply = [1, 3, 7, 1, 3, 7, 1, 3, 5];
+			let checkSum = 0;
+
+			// 각 자리수마다 매칭하여 multiply * valueMap 한 후 모두 더한다.
+			for (let i = 0; i < multiply.length; ++i) {
+				checkSum += multiply[i] * valueMap[i];
+			}
+
+			// 마지막에서 두번째 숫자끼리 곱한 후 10으로 나눈 '몫'을 위에서 더한 총값과 더한다
+			checkSum += parseInt((multiply[8] * valueMap[8]) / 10, 10);
+
+			// 마지막 사업자 번호 = (10 - checkSum에서 10으로 나눈 '나머지') 과 같다면 true 리턴
+			return Math.floor(valueMap[9]) === ((10 - (checkSum % 10)) % 10);
+		}
+		// 사업자 등록번호가 10자리가 아닐 경우 false 리턴
+		return false;
+	}
+
+	// 사업자 등록번호 자동 하이픈 추가 (ex. 110-81-41272)
+	function autoHyphen(value){
+		value = value.replace(/[^0-9]/g, '');	// 숫자만 가져오기
+		let tmp = '';
+
+		if(value.length < 4){		// 3자리 숫자일 경우
+			return value;
+		}else if(value.length < 6){	// 6자리 숫자일 경우
+			tmp += value.substr(0, 3);
+			tmp += '-';
+			tmp += value.substr(3);
+			return tmp;
+		}else if(value.length < 11 ){	// 10자리 모두 입력했을 경우
+			tmp += value.substr(0, 3);
+			tmp += '-';
+			tmp += value.substr(3, 2);
+			tmp += '-';
+			tmp += value.substr(5);
+			return tmp;
+		}
+		return value;
+	}
 
 	// 다음 주소 api
 	function execDaumPostcode() {
@@ -190,6 +263,15 @@
 				document.getElementById("shopAddressDetail").focus();
 			}
 		}).open();
+	}
+
+
+	/* 미디어 쿼리 */
+	// footer
+	if(window.matchMedia('(max-width: 980px)').matches){
+		$('#footer_inner').css({
+			"display": "none"
+		});
 	}
 
 </script>

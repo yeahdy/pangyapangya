@@ -3,7 +3,7 @@
 
 <html>
 <head>
-	<title>회원가입-일반회원 | 빵야빵야(屋)</title>
+	<title>회원가입 | 빵야빵야(屋)</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<meta name="description" content="" />
@@ -49,6 +49,48 @@
 			margin-bottom: 40px;
 		}
 
+		.line_inp .inp{
+			width: calc(100% - 110px) !important;
+			float: left;
+		}
+
+		.half_button{
+			width: 100px !important;
+			padding: 0px !important;
+			font-size: 13px !important;
+		}
+
+		/* 미디어 쿼리 */
+		@media screen and (max-width: 980px) {
+			.box {
+				width: 350px;
+			}
+
+			.box_login {
+				width: 350px;
+			}
+
+			.box a {
+				font-size: 15px;
+			}
+
+			.box_login .tit {
+				font-size: 19px;
+			}
+
+			.cont_login .box_inp .line_inp input{
+				height: 40px;
+			}
+
+			.line_inp .inp{
+				width: calc(100% - 85px) !important;
+			}
+
+			.half_button{
+				width: 80px !important;
+				font-size: 11px !important;
+			}
+		}
 	</style>
 </head>
 <body class="is-preload" style="padding: 5em 200px 0 200px;background-color: white;">
@@ -98,33 +140,25 @@
 						<input type="text" name="userName" id="userName" placeholder="이름(실명)을 입력해주세요">
 						<p class="info_error" id="userNameError1">이름(실명)을 입력해주세요.</p>
 					</div>
-					<!-- 이메일 인증 할지 말지 고민
-					<div class="line_inp">
-						<p class="form_title">이메일</p>
-						<input type="text" name="email" id="userEmail" placeholder="이메일 주소를 입력해주세요">
-						<p class="info_error" id="emailError1">이메일 형식에 맞지 않습니다.</p>
-						<p class="info_error" id="emailError2">이메일 주소를 입력해주세요.</p>
-					</div>
-					-->
 					<div class="line_inp">
 						<p class="form_title">휴대폰 번호</p>
-						<input type="tel" class="inp" id="userPhoneNum" name="userPhoneNum" placeholder="휴대폰 번호를 - 없이 입력해주세요" style="width: calc(100% - 110px);float: left;">
-						<input type="button" id="goSMS" value="SMS 전송" style="width: 100px;padding: 0px;" />
+						<input type="tel" class="inp" id="userPhoneNum" name="userPhoneNum" placeholder="휴대폰 번호를 - 없이 입력해주세요"/>
+						<input type="button" class="half_button" id="goSMS" value="SMS 전송" />
 					</div>
 					<div class="line_inp confirmDiv" style="display: none">
 						<p class="form_title">인증번호</p>
-						<input class="inp" id="authNumber" type="tel" placeholder="SMS로 수신된 인증번호 5자리를 입력해주세요" style="width: calc(100% - 110px);float: left;">
+						<input class="inp" id="authNumber" type="tel" placeholder="SMS로 수신된 인증번호 5자리를 입력해주세요"/>
 						<input type="hidden" id="authCode"/>
-						<input type="button" id="confirmBnt" value="인증" style="width: 100px;padding: 0px;" />
+						<input type="button" class="half_button" id="confirmBnt" value="인증" />
 						<!-- 타이머 -->
 						<p class="count" style="margin: 0em 23em 0em 0em;color: #F9A825;"><span class="timer"></span></p>
 					</div>
 					<div class="line_inp">
 						<p class="form_title">주소</p>
-						<input type="text" class="inp" id="userZipcode" name="userZipcode" placeholder="우편번호" style="width: calc(100% - 110px);float: left;">
-						<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" style="width: 100px;padding: 0px;font-size: 13px"><br>
+						<input type="text" class="inp" id="userZipcode" name="userZipcode" placeholder="우편번호" />
+						<input type="button" class="half_button" onclick="execDaumPostcode()" value="우편번호 찾기" /><br>
 						<input type="text" id="userAddress" name="userAddress" placeholder="주소">
-						<input type="text" id="userAddress_detail" name="userAddress_detail" placeholder="상세주소">
+						<input type="text" id="userAddressdetail" name="userAddressdetail" placeholder="상세주소">
 						<p class="info_error" id="addressError1">주소를 정확히 입력해주세요.</p>
 					</div>
 				</div>
@@ -304,6 +338,8 @@
 	$(document).ready(function(){
 		$('#userPhoneNum').on('keyup', function () {
 			$(this).val($(this).val().replace(/[^0-9]/g, ""));	// 문자열에서 숫자(/[^0-9]/g)만 가져오기
+
+			// ※ /[^0-9]/g 는 숫자가 아닌 문자를 모두 선택 → replace 선택된 문자들을 모두 공백처리
 		});
 
 		// 인증번호 확인
@@ -349,7 +385,7 @@
 					method: 'get',
 					data: {'userPhoneNum': userPhoneNum},
 					success: function (response) {
-						authCode.attr('value', response);
+						authCode.attr('value', response);	// 의 속성 valauthCode호로 설정
 						console.log("input태그에 담긴 인증번호: " + authCode.val());
 
 						$('.timer').text("02:00");
@@ -434,19 +470,27 @@
 						extraAddr = ' (' + extraAddr + ')';
 					}
 					// 조합된 참고항목을 해당 필드에 넣는다.
-					document.getElementById("userAddress_detail").value = extraAddr;
+					document.getElementById("userAddressdetail").value = extraAddr;
 
 				} else {
-					document.getElementById("userAddress_detail").value = '';
+					document.getElementById("userAddressdetail").value = '';
 				}
 
 				// 우편번호와 주소 정보를 해당 필드에 넣는다.
 				document.getElementById('userZipcode').value = data.zonecode;
 				document.getElementById("userAddress").value = addr;
 				// 커서를 상세주소 필드로 이동한다.
-				document.getElementById("userAddress_detail").focus();
+				document.getElementById("userAddressdetail").focus();
 			}
 		}).open();
+	}
+
+
+	/* 미디어 쿼리 */
+	if(window.matchMedia('(max-width: 980px)').matches){
+		$('#footer_inner').css({
+			"display": "none"
+		});
 	}
 
 </script>

@@ -11,7 +11,7 @@ public class UserVO {
     private String userName;
     private String userZipcode;
     private String userAddress;
-    private String userAddress_detail;
+    private String userAddressdetail;
     private String userPhoneNum;
     private int status;
     private int applyCnt;

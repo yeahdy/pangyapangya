@@ -94,9 +94,11 @@ public class TestDAO {
     }
 
 
-
-
-//    예진님
+    /* 메인페이지 */
+    // 빵 체험단 신청 게시판 목록
     public List<TestingVO> mainTest(){return mapper.mainTest();}
+    // 빵 체험단 리뷰 게시판 목록
     public List<TestingReviewBoardVO> mainReview(){return mapper.mainReview();}
+    // 빵 체험단 리뷰 게시글의 전체 댓글정보 조회
+    public List<TestingReviewVO> getTastingReviews (Long tno){return mapper.getTastingReviews(tno); }
 }

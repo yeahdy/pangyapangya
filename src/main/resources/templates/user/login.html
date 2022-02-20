@@ -75,14 +75,47 @@
 		.naverA{
 			border-color: #dcdcdc !important;
 		}
+
+		@media screen and (max-width: 980px) {
+			.box{
+				width: 350px;
+			}
+
+			.box_login{
+				width: 350px;
+			}
+
+			.box a{
+				font-size: 15px;
+			}
+
+			.box_login .tit{
+				font-size: 19px;
+			}
+
+			.iconSpan{
+				font-size: 10px;
+			}
+
+			.kakaoIcon{
+				background-size: 15px auto;
+			}
+
+			.naverIcon {
+				background-size: 13px auto;
+			}
+
+			.box_login .box_btn .btn{
+				font-size: 12px;
+			}
+
+		}
 	</style>
 </head>
 <body class="is-preload" style="padding: 5em 200px 0 200px;background-color: white;">
 
 <!-- Header -->
-<header id="header" th:include="/main/header::header_body">
-
-</header>
+<header id="header" th:include="/main/header::header_body"></header>
 
 <!-- Wrapper -->
 <!-- Main -->
@@ -277,6 +310,13 @@
 		})
 	}
 */
+
+	/* 미디어 쿼리 */
+	if(window.matchMedia('(max-width: 980px)').matches){
+		$('#footer_inner').css({
+			"display": "none"
+		});
+	}
 
 </script>
 </body>

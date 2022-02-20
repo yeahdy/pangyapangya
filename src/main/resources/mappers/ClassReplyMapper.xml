@@ -30,4 +30,5 @@
     <select id="getTotal" resultType="_int">
         SELECT COUNT(RNO) FROM TBL_CLASSREVIEWREPLY WHERE BNO = #{bno}
     </select>
+
 </mapper>

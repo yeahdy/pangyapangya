@@ -22,6 +22,6 @@ public class ClassCeoVO {
     private String breadType;
     private String breadName;
     private String shopName;
-    private int reviewCnt;
+    private Long replyCount;
     private List<ClassCeoFileVO> attachList;
 }

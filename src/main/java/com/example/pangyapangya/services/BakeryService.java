@@ -15,7 +15,7 @@ public interface BakeryService {
     public boolean modify(BakeryVO bakeryVO);
     public boolean remove(Long bno);
     public List<BakeryVO> getList(Criteria criteria);
-    public int getTotal(Criteria criteria);
+    public int getTotal(String keyword);
     public int myTotal(String ceoId);
     public CeoVO getCeo(String ceoId);
     public boolean ceoUpdate(CeoVO ceoVO);

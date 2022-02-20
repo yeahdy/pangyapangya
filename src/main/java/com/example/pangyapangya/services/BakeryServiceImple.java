@@ -69,7 +69,7 @@ public class BakeryServiceImple implements BakeryService{
     }
 
     @Override
-    public int getTotal(Criteria criteria) { return bakeryDAO.getTotal(criteria); }
+    public int getTotal(String keyword) { return bakeryDAO.getTotal(keyword); }
 
     @Override
     public int myTotal(String ceoId) { return bakeryDAO.myTotal(ceoId); }

@@ -3,7 +3,7 @@
 
 <html>
 <head>
-	<title>마이페이지 | 회원 탈퇴</title>
+	<title>회원탈퇴 | 빵야빵야(屋)</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<meta name="description" content="" />
@@ -11,49 +11,8 @@
 	<link rel="stylesheet" href="/css/main.css" />
 	<link rel="stylesheet" href="/css/login.css" />
 	<link rel="icon" type="image/png"  href="/images/favicon.png"/>
+	<style th:include="/main/header::header_style"></style>
 	<style>
-		.headerIcon{
-			width: 40px;
-			display: block;
-			margin: auto;"
-		}
-		.icon.solid:before {
-			font-weight: 100;
-			content: none;
-		}
-
-		.spotlights h5{
-			font-weight: bold;
-			font-size: small;
-		}
-
-		.spotlights p{
-			font-size: small;
-		}
-
-		/* 검색창 */
-		.search {
-			position: relative;
-			text-align: center;
-			width: 400px;
-			margin: 0 auto;
-		}
-		input {
-			width: 100%;
-			border-radius: 20px;
-			border: 1px solid #bbb;
-			margin: 10px 0;
-			padding: 10px 12px;
-		}
-		.fa-search {
-			position: absolute;
-			left: 90%;
-			top: 35%;
-			margin: 0;
-		}
-		form {
-			margin: 0;
-		}
 		#all{display: flex;}
 		.wrapper{width: 75%;}
 		#mainSection{padding: 0;}
@@ -90,18 +49,15 @@
 	</style>
 </head>
 <body class="is-preload" style="padding: 200px">
-
 	<header id="header" th:include="/main/header::header_body"></header>
-
-	<div th:if="${check == 'true'}">
-		<input type="hidden" id="updateChk" th:value="${check}" />
-	</div>
 	<!-- Wrapper -->
+	<div th:if="${check == 'false'}">
+		<input type="hidden" id="update_False" th:value="${check}" />
+	</div>
 	<div>
 		<div id="all">
 			<div class="wrapper">
 				<!-- Main -->
-
 				<section class="main second-main">
 					<section id="mainSection">
 						<section id="myMainSection">
@@ -131,7 +87,6 @@
 									</div>
 								</div>
 							</section>
-
 							<section id="myRightSection">
 								<div id="myRightDiv">
 									<form method="post" action="/myPageCeo/delete" id="registForm">
@@ -144,14 +99,13 @@
 												<div class="table-1" th:object="${ceo}">
 													<div class="table-title">비밀번호</div>
 													<div class="table-content">
-														<input type="password" name="ceoPw"/>
+														<input type="password" id="ceoPw" name="ceoPw"/>
 														<input type="hidden" name="ceoId" th:field="*{ceoId}">
 													</div>
 												</div>
 											</div><!--밑에 상세정보 입력Div-->
-
 											<div id="registDiv">
-												<input type="submit" class="primary" value="회원 탈퇴">
+												<input type="button" id="deleteBtt" class="primary" value="회원 탈퇴">
 											</div>
 										</div><!--전체DIv-->
 									</form>
@@ -180,20 +134,25 @@
 	<script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
 </body>
 <script type="text/javascript">
+	let deleteBtt = $("#deleteBtt");
+	let registForm= $("#registForm");
 
-	//비밀번호 숨기기
-	$('.type_pwd').on('click',function() {
-		var $this = $(this);
-		$this.toggleClass('hide');
-		if($this.hasClass('hide')){
-			$this.prev('input').prop('type','password');
-		}else{
-			$this.prev('input').prop('type','text');
+	$(document).ready(function () {
+		deleteBtt.on('click', function () {
+			if (!$('#ceoPw').val()) {
+				$("#ceoPw").focus();
+				alert("비밀번호를 입력 해 주세요.")
+				return;
+			}else{
+				registForm.submit();
+			}
+		})
+
+		/* 로그인 실패 컨트롤러*/
+		console.log("update_False: " + $("#update_False").val());
+		if ($("#update_False").val() == 'false') {
+			alert("비밀번호가 일치하지 않습니다.");
 		}
-	});
-	/* 로그인 실패 컨트롤러*/
-	if($("#updateChk").val() == 'true'){
-		alert("회원 탈퇴가 완료되었습니다.\n이용해주셔서 감사합니다.");
-	}
+	})
 </script>
 </html>

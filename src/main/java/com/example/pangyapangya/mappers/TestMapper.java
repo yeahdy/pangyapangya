@@ -1,9 +1,6 @@
 package com.example.pangyapangya.mappers;
 
-import com.example.pangyapangya.beans.vo.TestingImgVO;
-import com.example.pangyapangya.beans.vo.TestingRequestVO;
-import com.example.pangyapangya.beans.vo.TestingReviewBoardVO;
-import com.example.pangyapangya.beans.vo.TestingVO;
+import com.example.pangyapangya.beans.vo.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -66,12 +63,12 @@ public interface TestMapper {
     public int checkApplyCnt(String userId);
 
 
-
-
-
-//    예진님
-//    빵 체험단 신청 게시판
+    /* 메인페이지 */
+    // 빵 체험단 신청 게시판 목록
     public List<TestingVO> mainTest();
-//    빵 체험단 리뷰 게시판
+    // 빵 체험단 리뷰 게시판 목록
     public List<TestingReviewBoardVO> mainReview();
+    // 빵 체험단 리뷰 게시글의 전체 댓글정보 조회
+    public List<TestingReviewVO> getTastingReviews (Long tno);
+
 }

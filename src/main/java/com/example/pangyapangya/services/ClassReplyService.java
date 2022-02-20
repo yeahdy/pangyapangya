@@ -29,4 +29,9 @@ public class ClassReplyService {
         log.info("getList..............");
         return new ClassReplyPageDTO(classReplyDAO.getTotal(bno), classReplyDAO.getList(bno, criteria));
     }
+
+    public int getTotal(Long bno){
+        log.info("getTotal.............");
+        return classReplyDAO.getTotal(bno);
+    }
 }

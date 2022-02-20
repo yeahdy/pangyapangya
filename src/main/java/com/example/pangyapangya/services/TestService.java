@@ -1,10 +1,7 @@
 package com.example.pangyapangya.services;
 
 import com.example.pangyapangya.beans.dao.TestDAO;
-import com.example.pangyapangya.beans.vo.TestingImgVO;
-import com.example.pangyapangya.beans.vo.TestingRequestVO;
-import com.example.pangyapangya.beans.vo.TestingReviewBoardVO;
-import com.example.pangyapangya.beans.vo.TestingVO;
+import com.example.pangyapangya.beans.vo.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -56,8 +53,13 @@ public class TestService {
     public int checkApplyCnt(String userId){return testDAO.checkApplyCnt(userId);}
     public boolean requestUser(String userId){return testDAO.requestUser(userId);}
 
-
-    //    예진님
+    /* 메인페이지 */
+    // 빵 체험단 신청 게시판 목록
     public List<TestingVO> mainTest(){return testDAO.mainTest();}
+    // 빵 체험단 리뷰 게시판 목록
     public List<TestingReviewBoardVO> mainReview(){return testDAO.mainReview();}
+
+    // 빵 체험단 리뷰 게시글의 전체 댓글정보 조회
+    public List<TestingReviewVO> getTastingReviews (Long tno){return testDAO.getTastingReviews(tno); }
+
 }

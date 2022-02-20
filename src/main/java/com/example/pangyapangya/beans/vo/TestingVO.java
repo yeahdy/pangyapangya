@@ -8,6 +8,7 @@ import java.util.List;
 @Component
 @Data
 public class TestingVO {
+    /*빵체험단 모집 정보(사장님)*/
     private Long tno;
     private String startDate;
     private String endDate;

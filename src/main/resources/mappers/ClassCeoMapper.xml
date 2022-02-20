@@ -106,16 +106,34 @@
 
 
 
+
     <!-- 메인페이지 글 가져오기 -->
+    <resultMap id="classList_main" type="classCeoVO">
+        <result property="bno" column="BNO"/>
+        <result property="title" column="TITLE"/>
+        <result property="ceoId" column="CEOID"/>
+        <result property="classPrice" column="CLASSPRICE"/>
+        <result property="ceoName" column="CEONAME"/>
+        <result property="classPhoto" column="CLASSPHOTO"/>
+        <result property="shopName" column="SHOPNAME"/>
+        <result property="replyCount" column="REPLYCOUNT"/>
+    </resultMap>
+
     <select id="classList_main" resultType="classCeoVO">
         <![CDATA[
             SELECT * FROM
             (
-                SELECT ROWNUM R, BNO, TITLE, CEOID, CLASSPRICE, REGDATE, ENDDATE, CLASSDATE, RECRUITMENT, DESCRIPTION, BREADTYPE, BREADNAME, CEONAME, CLASSPHOTO, REVIEWCNT
+                SELECT ROW_NUMBER() OVER(ORDER BY BNO DESC) R, BNO, TITLE, CEOID, CLASSPRICE, CEONAME, CLASSPHOTO, SHOPNAME, REPLYCOUNT
                 FROM TBL_CEO_CLASS
-                ORDER BY BNO DESC
             )
             WHERE R<= 8
         ]]>
     </select>
+
+    <!-- 댓글 갯수 가져오기 -->
+    <update id="updateReplyCount">
+            UPDATE TBL_CEO_CLASS S
+            SET S.REPLYCOUNT = (SELECT COUNT(RNO) FROM TBL_CLASSREVIEWREPLY WHERE BNO = #{bno})
+            WHERE S.BNO = #{bno}
+    </update>
 </mapper>

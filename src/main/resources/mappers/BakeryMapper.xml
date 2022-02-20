@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.pangyapangya.mappers.BakeryMapper">
+    <!--빵 검색-->
     <sql id="search">
         <if test="keyword != null">
             <trim suffix="AND">
@@ -10,29 +11,18 @@
         </if>
     </sql>
 
+    <!-- 빵 게시글 목록-->
     <select id="breadList" resultType="bakeryVO">
         SELECT * FROM
         (
-        SELECT ROWNUM R, BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, BAKERYPHOTO, REGDATE, BREADTYPE, BREADNAME, BREADPRICE, REVIEWCNT
+        SELECT ROWNUM R, BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, BAKERYPHOTO, REGDATE, BREADTYPE, BREADNAME, BREADPRICE, REPLYCOUNT
         FROM TBL_BAKERY
         ORDER BY BNO DESC
         )
         WHERE
         <include refid="search"></include>
         <![CDATA[
-            R<= 20
-        ]]>
-    </select>
-
-    <select id="breadList_main" resultType="bakeryVO">
-        <![CDATA[
-            SELECT * FROM
-            (
-                SELECT ROWNUM R, BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, BAKERYPHOTO, REGDATE, BREADTYPE, BREADNAME, BREADPRICE, REVIEWCNT
-                FROM TBL_BAKERY
-                ORDER BY BNO DESC
-            )
-            WHERE R<= 8
+            R<= 50
         ]]>
     </select>
 
@@ -67,7 +57,7 @@
     </select>
 
     <insert id="insert">
-        INSERT INTO TBL_BAKERY (BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, REGDATE, BREADTYPE, BREADNAME, BREADPRICE, BAKERYPHOTO, REVIEWCNT)
+        INSERT INTO TBL_BAKERY (BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, REGDATE, BREADTYPE, BREADNAME, BREADPRICE, BAKERYPHOTO)
         VALUES(TBL_BAKERY_SEQ.NEXTVAL, #{title}, #{content}, #{ceoId}, #{ceoName}, #{shopName}, SYSDATE, #{breadType}, #{breadName}, #{breadPrice}, '
 /images/brownie.jpg',0)
     </insert>
@@ -76,7 +66,7 @@
         <selectKey keyProperty="bno" order="BEFORE" resultType="long">
             SELECT TBL_BAKERY_SEQ.NEXTVAL FROM DUAL
         </selectKey>
-        INSERT INTO TBL_BAKERY (BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, REGDATE, BREADTYPE, BREADNAME, BREADPRICE, BAKERYPHOTO,REVIEWCNT)
+        INSERT INTO TBL_BAKERY (BNO, TITLE, CONTENT, CEOID, CEONAME, SHOPNAME, REGDATE, BREADTYPE, BREADNAME, BREADPRICE, BAKERYPHOTO)
         VALUES(#{bno}, #{title}, #{content}, #{ceoId}, #{ceoName}, #{shopName}, SYSDATE, #{breadType}, #{breadName}, #{breadPrice}, '
         /images/brownie.jpg',0)
     </insert>
@@ -111,18 +101,6 @@
         WHERE CEOID = #{ceoId}
     </select>
 
-    <update id="ceoUpdate">
-        UPDATE TBL_CEO
-        SET CEOPW = #{ceoPw}, SHOPNAME = #{shopName}, SHOPCALLNUMBER = #{shopCallNumber}, SHOPZIPCODE = #{shopZipcode}, SHOPADDRESS = #{shopAddress}, SHOPADDRESSDETAIL = #{shopAddressDetail}, PHONENUM = #{phoneNum}, SHOPREGNUM = #{shopRegNum}
-        WHERE CEOID = #{ceoId}
-    </update>
-
-    <update id="ceoDelete">
-        UPDATE TBL_CEO
-        SET STATUS = 1
-        WHERE CEOID = #{ceoId}
-    </update>
-
     <select id="breadInfo" resultType="bakeryVO">
         SELECT * FROM TBL_BAKERY
         WHERE BNO = #{bno}
@@ -156,4 +134,29 @@
         WHERE R > (#{criteria.pageNum} - 1) * #{criteria.amount}
         ]]>
     </select>
+
+    <!-- 메인페이지용 빵 게시글 -->
+    <select id="breadList_main" resultType="bakeryVO">
+        <![CDATA[
+            SELECT * FROM
+            (
+                SELECT ROW_NUMBER() OVER(ORDER BY BNO DESC) R, BNO, TITLE, CONTENT, CEOID, SHOPNAME, BAKERYPHOTO, BREADPRICE, REPLYCOUNT
+                FROM TBL_BAKERY
+            )
+            WHERE R<= 8
+        ]]>
+    </select>
+
+    <!-- 사장님 회원관리-->
+    <update id="ceoUpdate">
+        UPDATE TBL_CEO
+        SET CEOPW = #{ceoPw}, SHOPNAME = #{shopName}, SHOPCALLNUMBER = #{shopCallNumber}, SHOPZIPCODE = #{shopZipcode}, SHOPADDRESS = #{shopAddress}, SHOPADDRESSDETAIL = #{shopAddressDetail}, PHONENUM = #{phoneNum}, SHOPREGNUM = #{shopRegNum}
+        WHERE CEOID = #{ceoId}
+    </update>
+
+    <update id="ceoDelete">
+        UPDATE TBL_CEO
+        SET STATUS = 1
+        WHERE CEOID = #{ceoId}
+    </update>
 </mapper>

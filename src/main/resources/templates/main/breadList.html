@@ -2,53 +2,22 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>베이커리 | 빵야빵야</title>
+    <title>베이커리 | 빵야빵야(屋)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="icon" type="image/png"  href="/images/favicon.png"/>
+    <style th:replace="/main/header::header_style"></style>
 </head>
 <style>
     a{
         border-bottom: none;
     }
-    .grid{
-        display: grid;
-        grid-gap: 12px;
-        grid-template-columns: repeat(auto-fill, minmax(18%, auto));
-        justify-content: center;
-    }
-    .frame{
-        width : auto;
-        height: 300px;
-        border: 1px solid gray;
-        border-radius: 7px;
-    }
 
-    .thumbnail{
-        width: 188px;
-        height: 200px;
-        border-bottom: 1px solid gray;
-        overflow: hidden;
-    }
-
-    .title{
-        height: 50px;
-        border-bottom: 1px solid #c1c1c1;
-    }
     .title a{
         font-size: large;
         color: black;
-    }
-    .review{
-        height: 50px;
-    }
-
-    .filter{
-        border: #3b3b3b;
-        display: grid;
-        grid-gap: 8px;
     }
 
     .thumbnail img {
@@ -72,187 +41,159 @@
         color: #3b3b3b;
         border-bottom: none;
     }
-    a.maker{
-        font-size: xx-small;
-        color : #888888;
-    }
-    .headerIcon{
-        width: 40px;
-        display: block;
-        margin: auto;"
-    }
-    .icon.solid:before {
-        font-weight: 100;
-        content: none;
-    }
 
     h4{
-        margin-left: 15px;
         color: black;
-    }
-
-    /* 검색창 */
-    .search {
-        position: relative;
-        text-align: center;
-        width: 400px;
-        margin: 0 auto;
-    }
-    input {
-        width: 100%;
-        border-radius: 20px;
-        border: 1px solid #bbb;
-        margin: 10px 0;
-        padding: 10px 12px;
-    }
-    .fa-search {
-        position: absolute;
-        left: 90%;
-        top: 35%;
-        margin: 0;
-    }
-    form {
-        margin: 0;
-    }
-    .spotlights h5{
+        font-size: 20px;
         font-weight: bold;
-        font-size: small;
+        letter-spacing: 1px;
+        padding: 30px 0 10px;
+        text-align: left;
+        border-bottom: 1px solid #ccc;
     }
 
-    .spotlights p{
-        font-size: small;
+    .getTotal{
+        padding: 0em 2em;
+        color: black;
+        font-size: medium;
+        font-weight: bold;
     }
+
     /* 갤러리 */
     .spotlights > article {
         padding: 1.0em 2.25em 0.5em 2.25em;
         border-style: solid;
-        border-width: 1px 1px 0px 0px;
+        border-width: 0px 0px 0px 0px;
         width: 25%;
     }
-    .image.fit{
-        overflow: hidden;
-        margin: 0 0 0.5em 0;
-        /*height: 10vw;*/
+
+    .spotlights > article:nth-child(odd):last-child {
+        border-width: 0px;
+        position: unset;
     }
+
+    .wrapper {
+        position: unset;
+    }
+
+    .image.fit{
+        margin-bottom: 1em;
+    }
+
     .image.fit img{
         width: 100%;
-        /*height: 100%;*/
         object-fit:cover;
     }
-    .bread-title{
+
+    .breadDiv{
         display: flex;
         flex-direction: column;
         margin-bottom: 5px
     }
+
+    .breadTitle{
+        height: 30px;
+        overflow: hidden;
+    }
+
     .bakery-name{
         color: #3b3b3b;
-        font-size: xx-small;
+        font-size: small;
     }
-    .review-star{
 
-    }
     .star-one{
         height: 15px;
     }
+
     .bread-name{
         color: black;
         font-size: 15px;
+        font-weight: bold;
     }
-    .bread-content{
-        width: 191px;
-        height: 60px;
-        overflow: hidden;
-        margin-bottom: 10px
+
+    .class_price{
+        font-weight: bolder;
+        margin: 0px;
+        font-size: 20px !important;
+        color: #F9A825;
+        text-align: start;
     }
+
     .review-cnt a{
         color: #5a5a5a;
         font-size: 13px;
         font-weight: bold;
     }
 
-    #inner{
-        background-color: white;
-        width: 990px;
-        margin: auto;
-        padding-top: 5em;
+    .box {
+        padding: 1.5em;
+        width: 100%;
+        border: none;
+        margin: 0px;
     }
-    .is-preload{
-        width: 990px;
-        display: flex;
-        flex-direction: row;
-        margin: auto;
-    }
+
+
 </style>
-<body class="is-preload" style="padding-top: 2em;">
+<body style="padding: 70px 200px 200px 200px">
 
 <!-- Header -->
-<header id="header" th:include="/main/header::header_body">
+<header id="header" th:include="/main/header::header_body"></header>
 
-</header>
+<div class="wrapper" style="margin: 0 auto 0em;">
+    <div class="box">
+        <h4>따끈따끈 오늘의 빵</h4>
+    </div>
+</div>
 
 <!-- Wrapper -->
-<div id="inner">
-    <div>
-        <h1>베이커리</h1>
-    </div>
-    <div style="padding-top: 2.0em;padding-bottom: 0em;">
-        <h4>오늘의 빵</h4>
-    </div>
-
-
-    <!-- 빵 목록 -->
-    <!-- Blurb 1 -->
-
-    <!-- Spotlights 1 -->
-
-    <section class="spotlights alt">
-        <article th:each="bakery : ${list}">
-            <div th:object="${bakery}">
-                <!--<input type="hidden" name="bno" th:text="*{bno}" >-->
-
-                <a th:href="*{bno}" class="image fit goInfo">
-                    <img th:src="*{bakeryPhoto}" alt="">
-                </a>
-                <div class="info-header">
-                    <div>
-                        <a th:href="*{bno}" class="bakery-name goInfo" name="shopName" th:text="*{shopName}"></a>
-                    </div>
-                    <div class="bread-title">
+<div class="wrapper">
+    <section class="main">
+        <div class="getTotal">
+            <p th:text="|총 ${getTotal}개의 빵|"></p>
+        </div>
+        <!-- 빵 목록 -->
+        <section class="spotlights alt">
+            <article th:each="bakery: ${list}">
+                <div th:object="${bakery}">
+                    <a th:href="*{bno}" class="image fit goInfo">
+                        <img th:src="*{bakeryPhoto}" alt="">
+                    </a>
+                    <div class="info-header">
                         <div>
-                            <a th:href="*{bno}" class="bread-name goInfo" name="breadName" th:text="*{title}"></a>
+                            <a th:href="*{bno}" class="bakery-name goInfo" name="shopName" th:text="*{shopName}"></a>
                         </div>
-                        <div class="review-star">
-                        <span>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                            <img class="star-one" src="/images/cookie_star.png"/>
-                        </span>
+                        <div class="breadDiv">
+                            <div class="breadTitle">
+                                <a th:href="*{bno}" class="bread-name goInfo" name="breadName" th:text="*{title}"></a>
+                            </div>
+                            <div class="review-star">
+                            <span>
+                                <img class="star-one" src="/images/cookie_star.png"/>
+                                <img class="star-one" src="/images/cookie_star.png"/>
+                                <img class="star-one" src="/images/cookie_star.png"/>
+                                <img class="star-one" src="/images/cookie_star.png"/>
+                                <img class="star-one" src="/images/cookie_star.png"/>
+                            </span>
+                            </div>
                         </div>
                     </div>
+                    <div>
+                        <p class="class_price"><span th:text="|*{#numbers.formatInteger(breadPrice,3,'COMMA')} ₩|"></span></p>
+                    </div>
+                    <div class="review-cnt">
+                        <a>리뷰 <span th:text="*{replyCount}"></span> 개</a>
+                    </div>
                 </div>
-                <div class="bread-content">
-                    <p th:text="*{content}"></p>
-                </div>
-                <div class="review-cnt">
-                    <a href="" th:text="'리뷰 '+*{reviewCnt}+'개'">리뷰 0개</a>
-                </div>
-            </div>
-        </article>
-
+            </article>
+        </section>
     </section>
 </div>
 
 <br>
 
 <!-- Footer -->
-<!--<footer id="footer" style="background-color: #f5f5f5">
-    <div class="copyright">
-        &copy; Untitled. All rights reserved.
-    </div>
-    <footer id="footer" th:include="/main/footer::footer_body"></footer>
--->
+<footer id="footer" th:include="/main/footer::footer_body"></footer>
+
 <!--Script-->
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.dropotron.min.js"></script>
@@ -267,64 +208,64 @@
         e.preventDefault();
         location.href = "/main/breadDetail?bno=" + $(this).attr("href");
     })
-
-    let currentPage = 1
-
-    const DATA_PER_PAGE = 10,
-        lastPage = 5
-
-    const msgLoading = document.getElementById("msg-loading")
-
-
-    // 데이터 추가 함수
-    function addData(currentPage) {
-        $("#list").append("<article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article>");
-    }
-
-    // IntersectionObserver 갱신 함수
-    function observeLastChild(intersectionObserver) {
-
-        const listChildren = document.querySelectorAll("#list article")
-        listChildren.forEach(el => {
-
-            if (!el.nextSibling && currentPage < lastPage) {
-                intersectionObserver.observe(el) // el에 대하여 관측 시작
-            } else if (currentPage >= lastPage) {
-                intersectionObserver.disconnect()
-            }
-
-        })
-    }
-
-    // IntersectionObeserver 부분
-    const observerOption = {
-        root: null,
-        rootMargin: "0px 0px 0px 0px",
-        threshold: 0.5
-    }
-
-    // IntersectionObserver 인스턴스 생성
-    const io = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-
-            // entry.isIntersecting: 특정 요소가 뷰포트와 50%(threshold 0.5) 교차되었으면
-            if (entry.isIntersecting) {
-
-                // 다음 데이터 가져오기: 자연스러운 연출을 위해 setTime-out 사용
-                setTimeout(() => {
-                    addData(++currentPage)
-                    observer.unobserve(entry.target)
-                    observeLastChild(observer)
-
-                }, 1000)
-            }
-        })
-    }, observerOption)
-
-
-    // 초기 데이터 생성
-    addData(currentPage)
-    observeLastChild(io)
+    //
+    // let currentPage = 1
+    //
+    // const DATA_PER_PAGE = 10,
+    //     lastPage = 5
+    //
+    // const msgLoading = document.getElementById("msg-loading")
+    //
+    //
+    // // 데이터 추가 함수
+    // function addData(currentPage) {
+    //     $("#list").append("<article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article>");
+    // }
+    //
+    // // IntersectionObserver 갱신 함수
+    // function observeLastChild(intersectionObserver) {
+    //
+    //     const listChildren = document.querySelectorAll("#list article")
+    //     listChildren.forEach(el => {
+    //
+    //         if (!el.nextSibling && currentPage < lastPage) {
+    //             intersectionObserver.observe(el) // el에 대하여 관측 시작
+    //         } else if (currentPage >= lastPage) {
+    //             intersectionObserver.disconnect()
+    //         }
+    //
+    //     })
+    // }
+    //
+    // // IntersectionObeserver 부분
+    // const observerOption = {
+    //     root: null,
+    //     rootMargin: "0px 0px 0px 0px",
+    //     threshold: 0.5
+    // }
+    //
+    // // IntersectionObserver 인스턴스 생성
+    // const io = new IntersectionObserver((entries, observer) => {
+    //     entries.forEach(entry => {
+    //
+    //         // entry.isIntersecting: 특정 요소가 뷰포트와 50%(threshold 0.5) 교차되었으면
+    //         if (entry.isIntersecting) {
+    //
+    //             // 다음 데이터 가져오기: 자연스러운 연출을 위해 setTime-out 사용
+    //             setTimeout(() => {
+    //                 addData(++currentPage)
+    //                 observer.unobserve(entry.target)
+    //                 observeLastChild(observer)
+    //
+    //             }, 1000)
+    //         }
+    //     })
+    // }, observerOption)
+    //
+    //
+    // // 초기 데이터 생성
+    // addData(currentPage)
+    // observeLastChild(io)
 </script>
 </body>
 </html>

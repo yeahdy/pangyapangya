@@ -202,7 +202,17 @@ var settings = {
 		$('<a href="#navPanel" class="navPanelToggle">Menu</a>')
 			.appendTo($header);
 
-		$('<div id="navPanel">' + '<nav>' + $('#nav').navList() + '</nav>' + '<a href="#navPanel" class="close"></a>' + '</div>')
+		$('<div id="navPanel">' + '<nav>' +
+			'<li style="list-style: none;">' +
+				'<form action="/main/breadList" id="searchForm">' +
+					'<div class="search">' +
+						'<li id="iconSearch" style="list-style: none;">' + '<i class="fas fa-search" aria-hidden="true">' + '</i>' + '</li>' +
+						'<input type="text" id="keyword" name="keyword" maxlength="17" style="backgroundcolor: white;border-radius: 10px;color: darkgray;">' +
+					'</div>' +
+					'<input type="hidden" class="box" value="검색">' +
+				'</form>' +
+			'</li>'
+			+ $('#nav').navList() + '</nav>' + '<a href="#navPanel" class="close"></a>' + '</div>')
 			.appendTo($body)
 			.panel({
 				delay: 500,
