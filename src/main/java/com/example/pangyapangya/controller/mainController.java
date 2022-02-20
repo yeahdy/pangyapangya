@@ -24,20 +24,6 @@ public class mainController {
     private final BakeryService bakeryService;
     private final TestService testService;
     private final ClassCeoService classCeoService;
-    private final ClassReplyService classReplyService;
-
-/*
-    @GetMapping("index")
-    public String index(){ return "main/index"; }
-
-    @GetMapping("elements")
-    public String elements(){
-        return "main/elements";
-    }
-
-    @GetMapping("generic")
-    public String generic(){ return "main/generic"; }
-*/
 
     /* 헤더 */
     @GetMapping("header")
@@ -62,7 +48,6 @@ public class mainController {
     @ResponseBody
     @GetMapping("getTastingReviews1")
     public List<TestingReviewVO> getTastingReviews1 (){
-        /* 각 게시글 번호 */
         List<TestingReviewBoardVO> tastingRe= testService.mainReview();
         Long getTno1 = tastingRe.get(0).getTno();
         log.info("첫번째 게시글번호: " + getTno1);
@@ -72,7 +57,6 @@ public class mainController {
     @ResponseBody
     @GetMapping("getTastingReviews2")
     public List<TestingReviewVO> getTastingReviews2 (){
-        /* 각 게시글 번호 */
         List<TestingReviewBoardVO> tastingRe= testService.mainReview();
         Long getTno2 = tastingRe.get(1).getTno();
         log.info("두번째 게시글번호: " + getTno2);
@@ -87,27 +71,6 @@ public class mainController {
         log.info("세번째 게시글번호: " + getTno3);
         return testService.getTastingReviews(getTno3);
     }
-
-    /* 빵 체험단 리뷰- 댓글 */
-//    @ResponseBody
-//    @GetMapping("getTastingReviews")
-//    public List<TestingReviewVO> getTastingReviews (@RequestParam("tno") long tno){
-//        List<TestingReviewBoardVO> tastingRe= testService.mainReview();
-//        log.info("빵체험단 리뷰 댓글(tno): " + tno);
-//        return testService.getTastingReviews(tno);
-//    }
-
-/*
-    @GetMapping("mainPage_test")
-    public String mainPage_test(HttpSession session){
-        String sessionU = (String)session.getAttribute("sessionU");
-        String sessionC = (String)session.getAttribute("sessionC");
-        if(sessionU == null && sessionC == null){
-            return "/user/login";
-        }
-        return "main/mainPage_test";
-    }
-*/
 
     /* footer */
     @GetMapping("footer")
@@ -130,7 +93,7 @@ public class mainController {
         System.out.println("인증번호 : " + numStr);
 
         // 문자 보내기
-//        userService.certifiedPhoneNumber(userPhoneNum , numStr);
+        userService.certifiedPhoneNumber(userPhoneNum , numStr);
         return numStr;
     }
 

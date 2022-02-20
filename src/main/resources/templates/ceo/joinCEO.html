@@ -24,7 +24,7 @@
 		.box {
 			display: flex;
 			justify-content: center;
-			width: 460px;
+			width: 400px;
 			margin: 0 auto;
 			cursor: pointer;
 			padding: 1em;
@@ -47,15 +47,12 @@
 
 	</style>
 </head>
-<body class="is-preload" style="padding: 5em 200px 0 200px;background-color: white;">
+<body class="is-preload" style="padding:0px 200px;background-color: white;">
 
 <!-- Header -->
-<header id="header" th:replace="/main/header::header_body">
-
-</header>
+<header id="header" th:replace="/main/header::header_body"></header>
 
 <!-- Wrapper -->
-<!-- 전송전송 -->
 <!-- Main -->
 <section class="cont_login container">
 	<form action="/ceo/createCEO" method="post" id="joinCEOform">
@@ -280,7 +277,6 @@
 	$(document).ready(function(){
 		$('#userPhoneNum').on('keyup', function () {
 			$(this).val($(this).val().replace(/[^0-9]/g, ""));	// 문자열에서 숫자만 가져오기
-
 			// ※ /[^0-9]/g 는 숫자가 아닌 문자를 모두 선택 → replace 선택된 문자들을 모두 공백처리
 	});
 

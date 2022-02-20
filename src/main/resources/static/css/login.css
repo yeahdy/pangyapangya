@@ -11,16 +11,16 @@ body.on{
 }
 
 .box_login {
-    width: 460px;
+    width: 400px;
     margin: 0 auto;
-    padding: 35px 20px;
+    padding: 35px 10px;
     border: 1px solid #eee;
 }
 
 .box_login .tit {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
-    font-size: 24px;
+    font-size: 22px;
     color: #000;
     font-weight: 300;
     line-height: 33px;
@@ -64,7 +64,7 @@ body.on{
     height: 20px;
     margin-top: 10px;
     padding: 0 17px 0 14px;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 20px;
     letter-spacing: -0.35px;
     color: #666;
@@ -173,7 +173,7 @@ body.on{
 
 .cont_login .box_inp .line_inp input {
     width: 100%;
-    height: 48px;
+    height: 45px;
     border: none;
     border-bottom: 1px solid #eee;
     color: black;

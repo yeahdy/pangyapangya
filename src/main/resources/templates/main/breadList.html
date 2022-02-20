@@ -11,9 +11,10 @@
     <style th:replace="/main/header::header_style"></style>
 </head>
 <style>
-    a{
-        border-bottom: none;
+    body{
+        padding: 70px 200px 200px 200px;
     }
+    a{ border-bottom: none; }
 
     .title a{
         font-size: large;
@@ -25,7 +26,6 @@
         height: inherit;
         border-radius: 6px 6px 0px 0px;
         border-color: #c1c1c1;
-        /*margin: -20% 0%;*/
     }
 
     .review img{
@@ -61,7 +61,7 @@
 
     /* 갤러리 */
     .spotlights > article {
-        padding: 1.0em 2.25em 0.5em 2.25em;
+        padding: 1.0em 1.5em 0.5em 1.5em;
         border-style: solid;
         border-width: 0px 0px 0px 0px;
         width: 25%;
@@ -72,8 +72,11 @@
         position: unset;
     }
 
-    .wrapper {
-        position: unset;
+    .wrapper .box {
+        padding: 1.5em;
+        width: 100%;
+        border: none;
+        margin: 0px;
     }
 
     .image.fit{
@@ -83,6 +86,7 @@
     .image.fit img{
         width: 100%;
         object-fit:cover;
+        border-radius: 5px;
     }
 
     .breadDiv{
@@ -92,7 +96,7 @@
     }
 
     .breadTitle{
-        height: 30px;
+        height: 40px;
         overflow: hidden;
     }
 
@@ -107,14 +111,14 @@
 
     .bread-name{
         color: black;
-        font-size: 15px;
+        font-size: 13px;
         font-weight: bold;
     }
 
     .class_price{
         font-weight: bolder;
         margin: 0px;
-        font-size: 20px !important;
+        font-size: 18px !important;
         color: #F9A825;
         text-align: start;
     }
@@ -124,17 +128,26 @@
         font-size: 13px;
         font-weight: bold;
     }
-
-    .box {
-        padding: 1.5em;
-        width: 100%;
-        border: none;
-        margin: 0px;
-    }
-
-
 </style>
-<body style="padding: 70px 200px 200px 200px">
+<!-- 미디어 쿼리 -->
+<style>
+    @media screen and (max-width: 980px) {
+        body{
+            padding: 60px 0px;
+        }
+
+        .wrapper{
+            width: calc(100% - 0em);
+        }
+
+        .spotlights > article {
+            width: 33.3333%;
+            border-width: 0px;
+            padding: 1em 1em 0.5em 1em;
+        }
+    }
+</style>
+<body>
 
 <!-- Header -->
 <header id="header" th:include="/main/header::header_body"></header>
@@ -158,7 +171,7 @@
                     <a th:href="*{bno}" class="image fit goInfo">
                         <img th:src="*{bakeryPhoto}" alt="">
                     </a>
-                    <div class="info-header">
+                    <div class="info-header" style="line-height: 18px">
                         <div>
                             <a th:href="*{bno}" class="bakery-name goInfo" name="shopName" th:text="*{shopName}"></a>
                         </div>
@@ -203,69 +216,11 @@
 <script src="/js/main.js"></script>
 <script th:replace="/main/header::header_js"></script>
 <script th:inline="javascript">
-
     $("a.goInfo").on("click", function(e){
         e.preventDefault();
         location.href = "/main/breadDetail?bno=" + $(this).attr("href");
     })
-    //
-    // let currentPage = 1
-    //
-    // const DATA_PER_PAGE = 10,
-    //     lastPage = 5
-    //
-    // const msgLoading = document.getElementById("msg-loading")
-    //
-    //
-    // // 데이터 추가 함수
-    // function addData(currentPage) {
-    //     $("#list").append("<article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article><article><a href=\"#\" class=\"image fit\"><img src=\"/images/melon1.jpg\" alt=\"\"></a><h5>카페노티드</h5><p>달콤한 생크림이 가득 들어간 도넛/ 딸기, 우유, 초코, 메론 등</p></article>");
-    // }
-    //
-    // // IntersectionObserver 갱신 함수
-    // function observeLastChild(intersectionObserver) {
-    //
-    //     const listChildren = document.querySelectorAll("#list article")
-    //     listChildren.forEach(el => {
-    //
-    //         if (!el.nextSibling && currentPage < lastPage) {
-    //             intersectionObserver.observe(el) // el에 대하여 관측 시작
-    //         } else if (currentPage >= lastPage) {
-    //             intersectionObserver.disconnect()
-    //         }
-    //
-    //     })
-    // }
-    //
-    // // IntersectionObeserver 부분
-    // const observerOption = {
-    //     root: null,
-    //     rootMargin: "0px 0px 0px 0px",
-    //     threshold: 0.5
-    // }
-    //
-    // // IntersectionObserver 인스턴스 생성
-    // const io = new IntersectionObserver((entries, observer) => {
-    //     entries.forEach(entry => {
-    //
-    //         // entry.isIntersecting: 특정 요소가 뷰포트와 50%(threshold 0.5) 교차되었으면
-    //         if (entry.isIntersecting) {
-    //
-    //             // 다음 데이터 가져오기: 자연스러운 연출을 위해 setTime-out 사용
-    //             setTimeout(() => {
-    //                 addData(++currentPage)
-    //                 observer.unobserve(entry.target)
-    //                 observeLastChild(observer)
-    //
-    //             }, 1000)
-    //         }
-    //     })
-    // }, observerOption)
-    //
-    //
-    // // 초기 데이터 생성
-    // addData(currentPage)
-    // observeLastChild(io)
+
 </script>
 </body>
 </html>

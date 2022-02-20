@@ -29,9 +29,10 @@ public class BreadDetailController {
     private final CEOService ceoService;
     private final BreadDetailService breadDetailService;
 
+    /* 오늘의 빵 게시판 */
     @GetMapping("breadList")
     public String breadList(Model model, BakeryVO bakeryVO){
-        model.addAttribute("getTotal" , bakeryService.getTotal(bakeryVO.getKeyword()));
+        model.addAttribute("getTotal" , bakeryService.getTotal(bakeryVO.getKeyword())); // 게시글 갯수
         model.addAttribute("list", bakeryService.breadList(bakeryVO.getKeyword()));
         return "main/breadList";
     }

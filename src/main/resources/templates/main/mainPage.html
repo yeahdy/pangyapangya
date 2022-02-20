@@ -18,25 +18,26 @@
 
 		.spotlights a{
 			font-weight: bold;
-			font-size: initial;
+			font-size: 12px;
 			color: black;
 		}
-		/*
+
 		.spotlights p{
-			margin-bottom: 1em;
+			/*margin-bottom: 1em;*/
+			font-size: 11px;
 		}
-		*/
+
 		p { margin: 0 0 1em 0; }
 		/* 갤러리 */
 		.spotlights > article {
-			padding: 1.0em 2.25em 0.5em 2.25em;
+			padding: 1.0em 1.5em 0.5em 1.5em;
 			border-style: solid;
 			border-width: 0px 0px 0px 0px;
 			width: 25%;
 		}
 
 		.image.fit img {
-			border-radius: 4px;
+			border-radius: 5px;
 		}
 
 		h4 {
@@ -55,7 +56,7 @@
 		.class_price{
 			font-weight: bolder;
 			margin: 0px;
-			font-size: 20px !important;
+			font-size: 18px !important;
 			color: #F9A825;
 			text-align: start;
 		}
@@ -84,7 +85,7 @@
 			background: #f5f5f5;margin-bottom: 1em;
 			border: solid 0px;
 			border-radius: 5px;
-            height: 20em;
+            height: 19.5em;
             overflow: hidden;
 		}
 
@@ -106,6 +107,7 @@
 			.spotlights > article {
 				width: 25%;
 				border-width: 0px;
+				padding: 1em 1em 0.5em 1em;
 			}
 
 			.spotlights p {
@@ -339,6 +341,7 @@
 		}
 	})
 
+	/* 빵 체험단 실시간 리뷰(댓글 3개) */
 	function getTastingReviews1() {
 		// let tno= $(".tastingReTNO").attr('href');
 		$.ajax({
@@ -369,11 +372,9 @@
 		})
 	}
 	function getTastingReviews2() {
-		// let tno= $(".tastingReTNO").attr('href');
 		$.ajax({
 			type: 'GET',
 			url: '/main/getTastingReviews2',
-			/*data: {tno},*/
 			success: function (result) {
 				console.log(result)
                 if(result.length == 0){
@@ -398,11 +399,9 @@
 		})
 	}
 	function getTastingReviews3() {
-		// let tno= $(".tastingReTNO").attr('href');
 		$.ajax({
 			type: 'GET',
 			url: '/main/getTastingReviews3',
-			/*data: {tno},*/
 			success: function (result) {
 				console.log(result)
                 if(result.length == 0){
