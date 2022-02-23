@@ -60,9 +60,7 @@ public class UserController {
             return new RedirectView("login");
         }
         log.info("-------로그인 성공-------");
-        log.info("session Id: " + session.getId()); // session 아이디 발급
         UserVO userInfo= userService.userInfo(userVO.getUserId());
-//        session.setAttribute("sessionU", userInfo.getUserId()); //session 저장하기
         session.setAttribute(SESSIONU , userInfo.getUserId()); //session 저장하기
         return new RedirectView("/main/mainPage");
     }
@@ -188,8 +186,7 @@ public class UserController {
 
     // 카카오톡 로그인 연동 (인가코드 발급)
     @RequestMapping(value = "/login/getKakaoAuthUrl")
-    public @ResponseBody
-    String getKakaoAuthUrl(
+    public @ResponseBody String getKakaoAuthUrl(
             HttpServletRequest request) throws Exception {
         System.out.println("--------- 카카오연동 들어옴 ---------");
 
