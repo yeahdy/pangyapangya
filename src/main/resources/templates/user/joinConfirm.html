@@ -13,6 +13,10 @@
 	<link rel="icon" type="image/png"  href="/images/favicon.png"/>
 	<style th:include="/main/header::header_style"></style>
 	<style>
+		.cont_login .terms_lst article {
+			padding: 8px 30px 0px 0px;
+		}
+
 		@media screen and (max-width: 980px) {
 			.box{
 				width: 350px;
@@ -40,9 +44,7 @@
 <body class="is-preload" style="padding: 5em 200px 0 200px;background-color: white;">
 
 <!-- Header -->
-<header id="header" th:include="/main/header::header_body">
-
-</header>
+<header id="header" th:include="/main/header::header_body"></header>
 
 <!-- Wrapper -->
 	<!-- Main -->

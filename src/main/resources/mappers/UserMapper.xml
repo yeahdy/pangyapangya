@@ -32,25 +32,25 @@
     <!-- 아이디 찾기 -->
     <select id="idFind" resultType="UserVO">
         SELECT USERID, USERPW, USERNAME, USERZIPCODE, USERADDRESS, USERADDRESSDETAIL, USERPHONENUM, STATUS
-        FROM TBL_USER WHERE USERPHONENUM = #{userPhoneNum}
+        FROM TBL_USER WHERE USERPHONENUM = #{userPhoneNum} AND STATUS = 0
     </select>
 
     <!-- 동일한 전화번호의 아이디 갯수 -->
     <select id="idFindCnt" resultType="_int">
         SELECT COUNT(USERID) FROM TBL_USER
-        WHERE USERPHONENUM = #{userPhoneNum}
+        WHERE USERPHONENUM = #{userPhoneNum} AND STATUS = 0
     </select>
 
     <!-- 비밀번호 찾기 : 아이디 유무 조회 -->
     <select id="pwFind" resultType="_int">
         SELECT COUNT(USERID) FROM TBL_USER
-        WHERE USERID = #{userId}
+        WHERE USERID = #{userId} AND STATUS = 0
     </select>
 
     <!-- 비밀번호 찾기: 아이디 + 전화번호 + 이름 같아야 인증 가능 -->
     <select id="pwFindAuth" resultType="_int">
         SELECT COUNT(USERID) FROM TBL_USER
-        WHERE USERID = #{userId} AND USERPHONENUM = #{userPhoneNum} AND USERNAME = #{userName}
+        WHERE USERID = #{userId} AND USERPHONENUM = #{userPhoneNum} AND USERNAME = #{userName} AND STATUS = 0
     </select>
 
     <!-- 비밀번호 변경 -->
